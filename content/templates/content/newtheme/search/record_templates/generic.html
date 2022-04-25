@@ -1,0 +1,12 @@
+{% load content_extras %}
+
+{% if result.content_type == "EVENT" %}
+{% include "content/newtheme/search/record_templates/event.html" %}
+{% elif result.content_type == "RFP" or result.content_type == "RFQ" %}
+{% include "content/newtheme/search/record_templates/rfp.html" %}
+{% elif result.record_type == "CONTACT" %}
+{% include "content/newtheme/search/record_templates/consultant.html" %}
+{% else %}
+{% include "content/newtheme/search/record_templates/content.html" %}
+
+{% endif %}

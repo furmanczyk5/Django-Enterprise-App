@@ -1,0 +1,50 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load content_extras %}
+
+{% block content_main %}
+
+<div class="page-head">
+    <h1 class="page-title">AICP Status</h1>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+      <div class="directory-page-grid-item">
+          <div class="accordion-content">
+            {% if exam.is_candidate %}
+              <h2 class="accordion-handle">AICP Candidate Pilot Program</h2>
+              <h5>Certification Application</h5>
+              <p><strong>Date Submitted: </strong>{{exam.cand_cert_sub_date|date_from_open_water}}</p>
+              <p><strong>Status: </strong>{{exam.cand_cert_status|none_to_empty_string}}</p>
+              <h5>Exam Registration</h5>
+              <p><strong>Registration Date: </strong>{{exam.exam_reg_sub_date|date_from_open_water}}</p>
+              <p><strong>Eligibility ID: </strong>{{exam.exam_reg_eligibility_id|none_to_empty_string}}</p>
+              <p><strong>Exam Dates: </strong>{{exam.exam_reg_exam_window_open|date_from_json_datetime:"%Y-%m-%d"}} -
+                {{exam.exam_reg_exam_window_close|date_from_json_datetime:"%Y-%m-%d"}}</p>
+              <h5>Exam Results</h5>
+              <p><strong>Exam Date: </strong>{{exam.exam_date}}</p>
+              <p><strong>Scaled Score: </strong>{{exam.scaled_score}}</p>
+              <h5>Certification Essays</h5>
+              <p><strong>Date Submitted: </strong>{{exam.cand_essay_sub_date|date_from_open_water}}</p>
+              <p><strong>Status: </strong>{{exam.cand_essay_status|none_to_empty_string}}</p>
+            {% else %}
+              <h2 class="accordion-handle">AICP Certification Process</h2>
+              <h5>Certification Application</h5>
+              <p><strong>Date Submitted: </strong>{{exam.trad_cert_sub_date|date_from_open_water}}</p>
+              <p><strong>Status: </strong>{{exam.trad_cert_status|none_to_empty_string}}</p>
+              <h5>Certification Essays</h5>
+              <p><strong>Date Submitted: </strong>{{exam.trad_essay_sub_date|date_from_open_water}}</p>
+              <p><strong>Status: </strong>{{exam.trad_essay_status|none_to_empty_string}}</p>
+              <h5>Exam Registration</h5>
+              <p><strong>Registration Date: </strong>{{exam.exam_reg_sub_date|date_from_open_water}}</p>
+              <p><strong>Eligibility ID: </strong>{{exam.exam_reg_eligibility_id|none_to_empty_string}}</p>
+              <p><strong>Exam Dates: </strong>{{exam.exam_reg_exam_window_open|date_from_json_datetime:"%Y-%m-%d"}} -
+                {{exam.exam_reg_exam_window_close|date_from_json_datetime:"%Y-%m-%d"}}</p>
+              <h5>Exam Results</h5>
+              <p><strong>Exam Date: </strong>{{exam.exam_date|date:"Y-m-d"}}</p>
+              <p><strong>Scaled Score: </strong>{{exam.scaled_score}}</p>
+            {% endif %}
+          </div>
+      </div>
+</div>
+{% endblock %}

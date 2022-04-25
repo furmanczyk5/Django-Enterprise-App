@@ -1,0 +1,133 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+<div class="page-head">
+  <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+  </ol>
+
+  <h1 class="page-title">Search Results for &ldquo;<strong>Rural Design</strong>&rdquo;</h1>
+  <p class="search-results-message">Showing 1-5 of 25</p>
+</div>
+
+<div class="layout-tracery no-top-border">
+  <div class="layout-column">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 search-results-form-wrap">
+        <form action="" class="filter-selection" method="GET">
+          <div class="input-group header-search-form">
+            <label class="control-label sr-only" for="keyword">Search by keyword</label>
+            <input type="text" class="form-control" placeholder="Enter keyword" name="keyword" {% if keyword %}value="{{ keyword }}" {% endif %} required />
+            <span class="input-group-btn">
+              <button class="btn btn-primary" id="go" type="submit">Go</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="search-options layout-tracery no-top-border">
+  <div class="filter-control layout-column col-md-12">
+    <button class="btn btn-default dropdown-toggle" id="filter-button" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="filter-text">FILTER </span></button>
+    <form class="sort-control">
+      Sort:
+      <div class="dropdown">
+        <button class="btn btn-default link-button dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Relevance
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="?keyword=&sort=relevance">Relevance</a></li>
+          <li><a href="?keyword=&sort=sort_time+asc">Date (newest first)</a></li>
+          <li><a href="?keyword=&sort=sort_time+dec">Date (oldest first)</a></li>
+        </ul>
+      </div>
+    </form>
+
+    <div class="accordion-wrapper">
+      <div class="accordion">
+        <h2 class="accordion-handle">Topics</h2>
+        <div class="accordion-content">
+        [tags]
+        </div>
+      </div>
+      <div class="accordion">
+        <h2 class="accordion-handle">Format</h2>
+        <div class="accordion-content">
+        [tags]
+        </div>
+      </div>
+      <div class="accordion">
+        <h2 class="accordion-handle">Community Type</h2>
+        <div class="accordion-content">
+        [tags]
+        </div>
+      </div>
+      <div class="accordion">
+        <h2 class="accordion-handle">Jurisdiction</h2>
+        <div class="accordion-content">
+        [tags]
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="search-results-list layout-tracery">
+  <ul>
+    <li>
+      <a href="#" class="search-result">
+        <h6 class="search-result-category">
+          Digital Education
+        </h6>
+        <h4 class="search-result-title">Urban Design and Preservation</h4>
+        <div class="search-result-description">
+          {{result.description}}
+        </div>
+      </a>
+    </li>
+    <li class="search-result">
+      <a href="#" class="search-result">
+        <h6 class="search-result-category">
+          Streaming
+        </h6>
+        <h4 class="search-result-title">
+          <span class="members-only">Members Only</span>
+          L'Enfant Lecture on City Planning and Design
+        </h4>
+        <div class="search-result-description">
+
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="search-result">
+        <h6 class="search-result-category">
+          Book
+        </h6>
+        <div class="search-result-image">
+          <img src="//placehold.it/200x260" />
+        </div>
+        <h4 class="search-result-title">Rural by Design</h4>
+        <div class="search-result-meta">by: Tom Daniels</div>
+        <div class="search-result-description">
+          When this planning classic by author Randall Arendt first appeared 20 years ago, it showed how creative, practical land-use planning can preserve open space and keep community character intact.
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="layout-tracery no-top-border">
+  <div class="layout-column">
+    <div class="row">
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+

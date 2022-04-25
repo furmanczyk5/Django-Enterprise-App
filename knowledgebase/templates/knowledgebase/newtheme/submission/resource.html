@@ -1,0 +1,22 @@
+{% extends "knowledgebase/newtheme/submission/edit.html" %}
+
+{% load static %}
+
+{% block form_fields %}
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Resource Information</h3>
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.resource_url %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.text %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.description %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.editorial_comments %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.collection_choices %}
+
+        {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.submission_verified %}
+{% endblock %}

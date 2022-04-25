@@ -1,0 +1,19 @@
+<div class="form-group">
+  <div class="row">
+    <div class="col-sm-6">
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.first_name %}
+    </div>
+    <div class="col-sm-6">
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.last_name %}
+    </div>
+  </div>
+</div>
+
+{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.bio %}
+
+{{ form.content }}
+<br>
+<div>
+  <button type="submit" name="submitButton" value="additional_speaker" class="btn btn-sm btn-primary">Add This Speaker</button>
+</div>
+<br>

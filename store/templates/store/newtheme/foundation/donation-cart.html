@@ -1,0 +1,42 @@
+<div style="margin-bottom:2em;">
+    <span style="margin-right:1em;">
+      <h4 class="foundation-toggle-form-link" style="display: inline-block" href="javascript:;">
+      <!--Support Hurricane Recovery with a Gift to the Foundation-->
+        Would You Like to Donate to the APA Foundation?
+      </h4>
+    </span>
+    <a id="ToggleFormButton" class="foundation-toggle-form-link btn btn-primary btn-sm" href="javascript:;">Donate Now</a>
+  <div id="DonationFormSection" class="form-section form-section-enclosed-light" style="display:none;">
+
+    <div class="layout-tracery">
+      <div class="layout-column">
+        <form method="post" action="{{action}}">
+          {% csrf_token %}
+          <div class="small" style="margin-bottom:12px;">
+            Gifts to the Foundation support APA's philanthropic efforts and are tax deductible.
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.amount %}
+            </div>
+            <div class="col-sm-6">
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.product_id %}
+            </div>
+            <div style="display:none;">
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.name %}
+            </div>
+          </div>
+          <br/>
+          <div class="form-group" align="right">
+            <button type="submit" class="btn btn-primary btn-sm">Donate</button>
+          </div>
+        </form>
+      </div>
+    </div>
+        
+    {% if link %}
+    <a href="/foundation/waystogive/">Invest in the future of planning, make a recurring gift today.</a>
+    {% endif %}
+      
+  </div>
+</div>

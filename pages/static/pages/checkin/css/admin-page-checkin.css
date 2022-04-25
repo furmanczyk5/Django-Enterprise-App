@@ -1,0 +1,59 @@
+div.planning-admin-checkin-tool div.planning-admin-checkin-checkedin, div.planning-admin-checkin-tool div.planning-admin-checkin-checkedout {
+    font-weight: bold;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    color: #fff;
+    border: 1px solid #bbb;
+}
+
+div.planning-admin-checkin-tool div.planning-admin-checkin-checkedin {
+	background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #99ee99),color-stop(100%, #88cc88));
+	background: -moz-linear-gradient(#99ee99,#88cc88);
+	background: -webkit-linear-gradient(#99ee99,#88cc88);
+	background: linear-gradient(#99ee99,#88cc88);
+}
+
+div.planning-admin-checkin-tool div.planning-admin-checkin-checkedout {
+	background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ee9999),color-stop(100%, #cc8888));
+	background: -moz-linear-gradient(#ee9999,#cc8888);
+	background: -webkit-linear-gradient(#ee9999,#cc8888);
+	background: linear-gradient(#ee9999,#cc8888);
+}
+
+div.planning-admin-checkin-tool a {
+
+	background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cccccc),color-stop(100%, #bbbbbb));
+	background: -moz-linear-gradient(#cccccc,#bbbbbb);
+	background: -webkit-linear-gradient(#cccccc,#bbbbbb);
+	background: linear-gradient(#cccccc,#bbbbbb);
+
+    display: inline-block;
+    opacity: 0.9;
+}
+
+ul.grp-object-tools li div.planning-admin-checkin-tool a {
+	border: 0px solid #bbb !important;
+    border-left-width: 1px !important;
+}
+
+div.planning-admin-checkin-tool span.status {
+	padding: 4px 6px 4px 12px;
+} 
+
+.loading {
+
+	position:relative;
+	overflow:hidden;
+}
+
+.loading:before {
+	content:'';
+	position: absolute;
+	z-index: 98;
+	width: 100%;
+	height: 100%;
+	top:0px;
+	left:0px;
+	background:rgba(100,100,100,0.4) url("/static/content/image/ajax-loader.svg") no-repeat center;
+}

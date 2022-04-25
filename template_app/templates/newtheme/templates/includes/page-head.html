@@ -1,0 +1,20 @@
+<div class="page-head{% if no_border_bottom %} no-border-bottom little-spacing-bottom{% endif %}">
+  <div class="page-head-social-sharing">
+
+    {% include "newtheme/templates/includes/social-sharing-widget.html" %}
+    {% if request.contact %}
+    {% include "newtheme/templates/includes/myapa-bookmark-widget.html" with content_id=content.master.id bookmarked=bookmarked %}
+    {% endif %}
+  </div>
+
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  {% if content.overline %}
+    <h3>{{ content.overline }}</h3>
+  {% endif %}
+
+  <h1 class="page-title">{{ title }}</h1>
+
+  {% if subtitle and subtitle != '' %}
+  <h4 class="page-subtitle">{{ subtitle }}</h4>
+  {% endif %}
+</div>

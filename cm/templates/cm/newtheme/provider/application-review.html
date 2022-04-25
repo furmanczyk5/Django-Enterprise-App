@@ -1,0 +1,182 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+
+{% block content_main %}
+
+<div class="page-head">
+  <h1 class="page-title">
+    {{title}}
+  </h1>
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+
+    <h2>
+      Please review your application and submit below.
+    </h2>
+    <p class="featured-family">
+      <input type="Hidden" name="provider_app_id" value="{{ provider.id }}">
+      <b>Provider:</b> {{ provider.company }}
+    </p>
+
+    <div class="form-section form-section-enclosed-dark form-section-limit-width">
+      <h3 class="form-section-title">Relevance to Planners</h3>
+      <p>
+        In this section, you will explain how your training is relevant to certified planners. You may focus on one training activity or describe different activities. An activity described could be a course, webinar, event, or other.
+      </p>
+      <hr class="dashed" />
+
+      <div class="form-group">
+        <p class="small">
+          Briefly explain how your organization ensures that the topics selected enhance and expand the skills, knowledge, and abilities of practicing planners.
+        </p>
+        <p class="accent">
+          {{ application.explain_topics}}
+        </p>
+      </div>
+
+      <div class="form-group">
+        <p class="small">
+          Learning/training objectives articulate the knowledge and skills you want participants to acquire by the end of the activity. Learning objectives should be concise and concrete.
+        </p>
+        <p class="small">Does your organization develop written learning/training objectives?</p>
+        <p class="accent">
+          {{ application.objectives_status }}
+        </p>
+      </div>
+
+      <div class="form-group">
+        <p class="small">
+          If you answered “Always” or “Sometimes,” provide at least three examples of the planning-related learning/training objectives for three activities your organization has sponsored.
+        </p>
+        <p class="small">
+          If you answered “Never,” please develop and provide three learning/training objectives for three events you may have in the future.
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Example 1: Activity name and objectives</label>
+        <p class="accent">
+          {{ application.objectives_example_1 }}
+        </p>
+      </div>
+
+      {% if self.review_status == "DUE" %}
+      <div class="form-group">
+        <label>Example 1: Supporting Upload (a copy of the post-event evaluation completed by an attendee)</label>
+        <p class="accent">
+          {% if application.supporting_document_1 %}
+          <a href="{{application.supporting_document_1.url}}">{{ application.supporting_document_1.name }}</a>
+          {% else %}
+          None
+          {% endif %}
+        </p>
+      </div>
+      {% endif %}
+
+      <div class="form-group">
+        <label>Example 2: Activity name and objectives</label>
+        <p class="accent">
+          {{ application.objectives_example_2 }}
+        </p>
+      </div>
+
+      {% if self.review_status == "DUE" %}
+      <div class="form-group">
+        <label>Example 2: Supporting Upload (a copy of the post-event evaluation completed by an attendee)</label>
+        <p class="accent">
+          {% if application.supporting_document_2 %}
+          <a href="{{ application.supporting_document_2.url }}">{{ application.supporting_document_2.name }}</a>
+          {% else %}
+          None
+          {% endif %}
+        </p>
+      </div>
+      {% endif %}
+
+      <div class="form-group">
+        <label>Example 3: Activity name and objectives</label>
+        <p class="accent">
+          {{ application.objectives_example_3 }}
+        </p>
+      </div>
+
+      {% if self.review_status == "DUE" %}
+      <div class="form-group">
+        <label>Example 3: Supporting Upload (a copy of the post-event evaluation completed by an attendee)</label>
+        <p class="accent">
+          {% if application.supporting_document_3 %}
+          <a href="{{ application.supporting_document_3.url }}">{{ application.supporting_document_3.name }}</a>
+          {% else %}
+          None
+          {% endif %}
+        </p>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <div class="form-section form-section-enclosed-dark form-section-limit-width">
+      <h3 class="form-section-title">Planning-Expert Speakers</h3>
+      <p>
+        Activities must be led by one or more speakers who meet AICP’s definition of an expert: an individual who has contributed to the field of planning through practice, teaching, research, or publications; has completed work that exhibits a mastery of the principles of planning; and whose work demonstrates a commitment to outstanding quality and professionalism.
+      </p>
+      <hr class="dashed" />
+
+      <div class="form-group{%if form_obj.how_determines_speakers.errors %} has-error {% endif %}">
+        <p class="small">How does your organization determine and evaluate the appropriate qualifications for speakers?</p>
+        <p class="accent">{{ application.how_determines_speakers }}</p>
+      </div>
+    </div>
+
+    <div class="form-section form-section-enclosed-dark">
+      <h3 class="form-section-title">CM Provider Commitments</h3>
+      <div class="form-group">
+        <p>
+          In addition to upholding all CM program policies outlined in the Provider Toolkit, our organization agrees to:
+        </p>
+        <ol class="small">
+          <li>Provide all services competently.</li>
+          <li>Not discriminate in the delivery of continuing educational activities or the conduct of research and scholarly courses on the basis of race or ethnicity, gender, age, religion, national origin, sexual orientation, or disability.</li>
+          <li>Not misrepresent the credentials of presenters, assistants, or personnel and to inform those who are involved in the educational activities of the names of persons providing services.</li>
+          <li>Limit statements advertising, announcing, or marketing professional services or products during the educational activity. A brief statement either at the beginning or end of the activity is permissible.</li>
+          <li>Ensure that your speakers reference sources when using other individuals’ ideas, research, courses, or products in any written, oral, or media presentation or summary.</li>
+          <li>Adhere to prevailing professional standards when referencing other professional entities, research results, and products.</li>
+          <li>Not demean any other provider or manufacturer in its own advertising, announcements,, or marketing.</li>
+          <li>Not engage in dishonesty, fraud, deceit, or misrepresentation or any form of conduct that adversely reflects on the AICP Certification Maintenance provider program, the planning profession, or other AICP CM providers.</li>
+          <li>Ensure that information collected from AICP members is secure from unauthorized use.</li>
+          <li>Notify participants of any changes to event details entered into the CM system.</li>
+          <li>Market an event as “CM-approved” only after your provider application is approved by AICP. You may not advertise an event as CM approved before your provider application is approved.</li>
+        </ol>
+      </div>
+
+    </div>
+
+    <form method="post">
+
+      {% csrf_token %}
+      <div class="form-section form-section-enclosed-dark form-section-limit-width">
+        <h3 class="form-section-title">Verification</h3>
+        <div class="form-group">
+
+          {% include 'newtheme/sandbox/forms/includes/input-boolean.html' with field=form.agree %}
+
+          <p class="small">
+            I agree to abide by all of the foregoing terms and conditions. I affirm that the information provided in this application is true to the best of my knowledge.
+          </p>
+        </div>
+      </div>
+
+      <br>
+      <div>
+        <a href="{% url 'cm:provider_application_edit' application_id=application.id %}" class="btn btn-default">Edit</a>
+        <input class="btn btn-primary" type="submit" value="Submit" align="left">
+      </div>
+    </form>
+    
+  </div>
+</div>
+
+
+{% endblock %}

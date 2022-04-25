@@ -1,0 +1,74 @@
+{% load content_extras %}
+
+<form id="sort-facet-form">
+  <div class="sort-facet-form-disabled"></div>
+  <div class="search-options layout-tracery no-top-border no-bottom-border">
+    <div class="filter-control layout-column col-md-12">
+      <button {% block disable_filters %}{% if not facet_results and not filter_form.cm %} disabled="disabled"{% endif %}{% endblock %} class="btn btn-sm btn-default collapsed" id="filter-button" type="button" data-toggle="collapse" data-target="#filtersWrap" aria-expanded="false" aria-controls="filtersWrap"><span class="filter-text">FILTER {% if selected_tag_count %}({{selected_tag_count}}){% endif %}</span></button>
+
+      {# Sort Form #}
+      <div class="sort-control">
+        <div class="dropdown">
+          <a class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {# Get selected choice or show label only #}
+            <span class="sort-select-label">{{ filter_form.sort.label }}:</span>
+            {% if not filter_form.sort.data %}
+              {% if filter_form.sort.initial %}
+                {{ filter_form.sort.initial|convert_to_label }}
+              {% else %}
+                Relevance {# {{filter_form.sort.data}} returns None if on Relevance #}
+              {% endif %}
+            {% endif %}
+            {% for the_value, the_label in filter_form.fields.sort.choices %}
+              {% ifequal filter_form.sort.data the_value %} {# {{filter_form.sort.data}} returns None if on Relevance #}
+                {{ the_label }}
+              {% endifequal %}
+            {% endfor %}
+            <span class="caret"></span>
+          </a>
+          {# fancy dropdown list #}
+          <ul class="dropdown-menu sort_dropdown" aria-labelledby="dropdownMenu1">
+            {% for the_value, the_label in filter_form.fields.sort.choices %}
+            <li><a href="#" data-option="{{ the_value }}">{{ the_label }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {# bring in the keyword field as hidden #}
+        {{ filter_form.keyword.as_hidden }}
+        {# hide the facet results #}
+        <div id="facet-results" class="hidden">
+        {% for tag_type in facet_results %}
+            {% for tag in tag_type.tags %}
+              <input id="tag{{tag.id}}" type="checkbox" class="facet-tag" {% if  tag.selected %} checked="checked" {% endif %} name="tags" value={{tag.id}}>
+            {% endfor %}
+        {% endfor %}
+        </div>
+
+        {# hidden select for sort form submission #}
+        <div id="sort-select" class="hidden">
+        {{ filter_form.sort }}
+        </div>
+      </div>
+      {# Sort Form #}
+
+
+      <div class="filter-results-wrap">
+        {% if tags %} <div id="filtersWrap" class="filters-wrap">
+        {% else %} <div id="filtersWrap" class="filters-wrap collapse">
+        {% endif %}
+          {% block custom_search_filters %}
+          {% if filter_form.cm %}
+          {% include "content/newtheme/search/includes/filters.html" with filter_form=filter_form %}
+          {% endif %}
+          {% endblock %}
+
+          {% if facet_results %}
+          {% include "content/newtheme/search/includes/facet-filters.html" with facet_results=facet_results %}
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

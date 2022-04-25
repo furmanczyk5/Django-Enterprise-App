@@ -1,0 +1,13 @@
+{% extends 'newtheme/templates/content-page-sidebar.html' %}
+
+
+{% block page_head %}
+{% include 'newtheme/templates/includes/page-head.html' with no_border_bottom=True%}
+{% endblock page_head %}
+
+{% block content_main %}
+    {{ block.super }}
+
+    <!-- {# search implementation here ... #} -->
+
+{% endblock %}

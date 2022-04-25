@@ -1,0 +1,100 @@
+{% extends 'cm/newtheme/aicp-page-sidebar.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+
+{% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+    <div class="page-head">
+      {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+      <h1 class="page-title">{{content.title}}</h1>
+    </div>
+
+    <div class="layout-tracery">
+        <div class="layout-column">
+
+            {{ content.text|safe }}
+        </div>
+    </div>
+
+<h2 class="headline-underline">Advanced Specialty Certificate Holders</h2>
+
+<div class="row">
+<div class="col-xs-12 col-sm-4">
+  <img src="{% static 'exam/images/CEP_logo.jpg'%}" style="width:auto; max-height:100px; padding-bottom:20px;"/>
+  {% for fellow in cep_group %}
+  {% with ec=fellow.member_type|is_deceased %}
+  {% with sharing=fellow.individualprofile.share_profile %}
+  {% with member_fellow=fellow.user|has_group:"member" %}
+  {% if sharing == "PUBLIC" and member_fellow and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% elif sharing == "MEMBER" and member_fellow and logged_in_user and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% elif fellow.individualprofile.experience %}
+  <p><a href="{% url 'asc_experience' username=fellow.user.username %}"
+    style="text-decoration:none">{{fellow.full_title}}{{ec}}</a></p>
+  {% else %}
+  <p>{{fellow.full_title}}{{ec}}</p>
+  {% endif %}
+  {% endwith %}
+  {% endwith %}
+  {% endwith %}
+  {% endfor %}
+</div>
+
+<div class="col-xs-12 col-sm-4">
+  <img src="{% static 'exam/images/CTP_logo.jpg' %}"  style="width:auto; max-height:100px; padding-bottom:20px;"/>
+  {% for fellow in ctp_group %}
+  {% with ec=fellow.member_type|is_deceased %}
+  {% with sharing=fellow.individualprofile.share_profile %}
+  {% with member_fellow=fellow.user|has_group:"member" %}
+  {% if sharing == "PUBLIC" and member_fellow and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% elif sharing == "MEMBER" and member_fellow and logged_in_user and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% elif fellow.individualprofile.experience %}
+  <p><a href="{% url 'asc_experience' username=fellow.user.username %}"
+    style="text-decoration:none">{{fellow.full_title}}{{ec}}</a></p>
+  {% else %}
+  <p>{{fellow.full_title}}{{ec}}</p>
+  {% endif %}
+  {% endwith %}
+  {% endwith %}
+  {% endwith %}
+  {% endfor %}
+</div>
+
+<div class="col-xs-12 col-sm-4">
+  <img src="{% static 'exam/images/CUD_logo.jpg' %}"  style="width:auto; max-height:100px; padding-bottom:20px;"/>
+  {% for fellow in cud_group %}
+  {% with ec=fellow.member_type|is_deceased %}
+  {% with sharing=fellow.individualprofile.share_profile %}
+  {% with member_fellow=fellow.user|has_group:"member" %}
+  {% if sharing == "PUBLIC" and member_fellow and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% elif sharing == "MEMBER" and member_fellow and logged_in_user and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% elif fellow.individualprofile.experience %}
+  <p><a href="{% url 'asc_experience' username=fellow.user.username %}"
+    style="text-decoration:none">{{fellow.full_title}}{{ec}}</a></p>  
+  {% else %}
+  <p>{{fellow.full_title}}{{ec}}</p>
+  {% endif %}
+  {% endwith %}
+  {% endwith %}
+  {% endwith %}
+  {% endfor %}
+  <br><br>
+  <small><p>* denotes deceased</p></small>
+  <br><br>
+</div>
+</div>
+{#  3  columns with faicp mixed in #}
+{% endblock %}

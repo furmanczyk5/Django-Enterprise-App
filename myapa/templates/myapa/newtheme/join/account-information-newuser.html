@@ -1,0 +1,52 @@
+{% extends 'myapa/newtheme/join/account-information.html' %}
+
+
+{% block join_name_fields %}
+
+{% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.prefix_name %}
+{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.first_name %}
+{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.middle_name %}
+{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.last_name %}
+{% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.suffix_name %}
+{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.informal_name %}
+
+{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.birth_date %}
+
+{% endblock %}
+
+
+{% block join_password_section %}
+<div class="form-section form-section-enclosed-dark">
+  <h3 class="form-section-title">Create a Password</h3>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.password %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.verify_password %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.password_hint %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.password_answer %}
+
+</div>
+{% endblock %}
+
+
+{% block create_account_login %}
+<div class="col-xs-12 col-sm-5 col-md-4">
+  <div class="section">
+    <div class="action">
+      <form method="post" action=" ">
+        {% csrf_token %}
+
+        <div class="form-section form-section-limit-width form-section-enclosed-light">
+          <h2 class="form-section-title">Already have a login?</h2>
+          <p>If you are or previously have been an APA member, or have created an account on the APA website, please log in before proceeding.</p>
+          <a class="btn btn-lg btn-full btn-default member-login" href="/login/">Log In</a>
+          <div class="list-of-links-small">
+            <h4>
+              <a href="https://www.planning.org/login/help.htm" class="login-help">Login Help</a>
+            </h4>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

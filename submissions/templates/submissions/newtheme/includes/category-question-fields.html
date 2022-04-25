@@ -1,0 +1,38 @@
+{% load content_extras %}
+
+{% for question in form.submission_category.the_questions %}
+{% with n=question.id|stringformat:"s"%}
+{% with question_field_name="submission_question_"|add:n %}
+{% with question_field=form|getattr:question_field_name %}
+
+<div class="form-group{%if question_field.errors %} has-error {% endif %}">
+	{% if question.question_type == "CHECKBOX" %}
+		<h3>{{question_field.label}}</h3>
+		<table>
+			<tr>
+				<td>{{question_field}}</td>
+				<td>{{question_field.help_text}}{% if question_field.field.required %} <span class="required"></span>{% endif %}</td>
+			</tr>
+		</table>
+	{% else %}
+		<h3>{{question_field.label}}{% if question_field.field.required %}<span class="required"></span>{% endif %}</h3>
+		{% if question_field.help_text %}<span>{{question_field.help_text}}</span><br/>{% endif %}
+		
+		{{ question_field }}
+
+		{% if question_field.errors %}
+		  <div class="form-error">
+		    {% for error in question_field.errors %}
+		    <p class="form-error-server">{{ error|escape }}</p>
+		    {% endfor %}
+		  </div>
+	  	{% endif %}
+	{% endif %}
+</div>
+<br/>
+<br/>
+
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endfor %}

@@ -1,0 +1,15 @@
+<div class="conference-ticket">
+	<div class="text-huge margin-bottom">Pop into the APA Pavilion</div>
+	<br/>
+	<p>
+		<div class="text-large text-light margin-bottom">Connect with APA staff and members</div>
+		<div class="text-large text-light margin-bottom">Recharge devices</div>
+		<div class="text-large text-light margin-bottom">Check out short presentations</div>
+		<div class="text-large text-light margin-bottom">Relax in our lounge space</div>
+	</p>
+	<br/>
+	<br/>
+	<div class="text-large text-light margin-bottom">Visit us in the NPC18 Exhibit Hall</div>
+
+	<div class="bottom-line">{{ticket.multipart_attendee.contact.full_title}} | {{ticket.multipart_attendee.contact.user.username}} {{ticket.multipart_attendee.contact.member_type|default_if_none:""}} | {{ticket.multipart_attendee.purchase.product_price.imis_reg_class}}</div>
+</div>

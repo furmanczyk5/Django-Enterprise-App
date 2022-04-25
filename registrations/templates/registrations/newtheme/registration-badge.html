@@ -1,0 +1,145 @@
+{% extends extends_template|default:"newtheme/templates/conference/page-nosidebar.html"  %}
+{#{% extends extends_template|default:"newtheme/templates/layout-nosidebar.html"  %}#}
+
+{% load tz %}
+{% load compress %}
+{% load static %}
+{% load badge_tags %}
+
+{% block additional_head_css %}
+{{block.super}}
+{% compress css %}
+<link type="text/less" rel="stylesheet" href="{% static 'registrations/css/includes/tickets-style.less' %}" />
+{% endcompress %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="layout-tracery">
+	<div class="layout-column">
+	<h1>{{ event.title }}</h1>
+
+		<p>
+			{% localtime off %}
+			{% ifequal event.begin_time|date:"SHORT_DATE_FORMAT" event.end_time|date:"SHORT_DATE_FORMAT"%}
+		      <span>{{event.begin_time_astimezone|date:"l, F j, Y"}}</span><br/>
+		      <span>
+		        {{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+		      </span>
+		      {% else %}
+		      <span>
+		        {{event.begin_time_astimezone|date:"l, F j, P"}} - {{event.end_time_astimezone|date:"l, F j, Y, P e"}}
+		      </span>
+		    {% endifequal %}
+		    {# {{ event.begin_time_astimezone|date:"F jS" }} - {{ event.end_time_astimezone|date:"F jS, Y" }} #}
+		    {% endlocaltime %}
+		</p>
+
+		<hr/>
+
+		<form method="post" id="confirm_badge_form">
+			{% csrf_token %}
+
+			{% block badge_fields %}
+			<div class="row form-group">
+				<div class="col-xsm-12 col-sm-7 col-md-5">
+					<div class="sato" style="height:auto;max-width:4in;">
+						<div class="page" style="padding:0px;height:auto;max-width:4in;">
+							<div id="badge_preview" class="ticket" style="height:4in;width:4in;font-family:initial;border:1px dotted black;color:black;">
+
+								{% include event.ticket_template|default_if_none:"registrations/tickets/layouts/CONFERENCE-BADGE.html" with ticket=badge %}
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xsm-12 col-sm-5 col-md-7">
+					<h2>Badge Details</h2>
+
+					<div class="form-group">
+						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.badge_name %}
+					</div>
+					<div class="form-group">
+						<div class="key-value-pair">
+							<div class="key">Full Name</div>
+							<div class="value">{{badge|get_full_name}}</div>
+						</div>
+					</div>
+					<div class="form-group">
+						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.badge_company %}
+					</div>
+					<div class="form-group">
+						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.badge_location %}
+					</div>
+				</div>
+			</div>
+			{% endblock %}
+
+			{% block address_fields %}
+			{% if is_npc %}
+			<div class="form-group">
+				<h2>Where should APA mail your badge?</h2>
+				<div class="help-block">
+					Note: The address you enter below will not change your APA billing address or contact information in MyAPA.
+				</div>
+				<div class="form-group">
+					{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address1 %}
+				</div>
+
+				<div class="form-group">
+					{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address2 %}
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-4">
+							{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %}
+						</div>
+						<div class="col-sm-4">
+							{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %}
+						</div>
+						<div class="col-sm-4">
+							{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %}
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-4">
+						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.zip_code %}
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			{% endblock %}
+
+			{% block form_submit_button %}
+			<div class="form-group">
+				<p>
+					<button type="submit" name="submit_button" class="btn btn-primary btn-lg"
+						{% if has_activities %} value="and_add_activities"
+						{% else %} value="just_register"
+						{% endif %}>{{ confirm_badge_text|default:"Submit" }}</button>
+				</p>
+			</div>
+			{% endblock %}
+
+		</form>
+
+	</div>
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script src="{% static 'registrations/js/confirm-badge.js' %}?v=0.2"></script>
+{% endblock %}
+
+
+
+
+

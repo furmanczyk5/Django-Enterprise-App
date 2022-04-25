@@ -1,0 +1,30 @@
+// page-head-conference
+
+.page-head-conference {
+  padding-left: 0;
+  padding-right: 0;
+
+  @media screen and (min-width: @screen-md-min) {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+// myapa bookmark, new breakpoint to prevent removal of float too early
+
+@media screen and (min-width: @screen-md-min) {
+  .page-head-conference {
+    .myapa-bookmark-widget {
+      margin-top: 10px;
+      padding-bottom: 0px;
+      float: right;
+      clear: right;
+      text-align: left;
+    }
+
+    .social-sharing-widget + .myapa-bookmark-widget {
+      margin-top: 0;
+    }
+
+  }
+}

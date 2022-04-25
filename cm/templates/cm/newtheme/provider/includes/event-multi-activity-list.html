@@ -1,0 +1,84 @@
+{% load tz %}
+
+<div class="search-results-list dashboard-events-list">
+{% for activity in activities %}
+
+  {% if forloop.first %}
+  <div class="row hidden-xs hidden-sm">
+    <div class="col-md-6 dashboard-events-result-col">
+      <h3 class="h-flush">Title</h3>
+    </div>
+    <div class="col-md-3 dashboard-events-result-col">
+      <h3 class="h-flush">Time</h3>
+    </div>
+    <div class="col-md-1 dashboard-events-result-col">
+      <h3 class="h-flush">CM</h3>
+    </div>
+    <div class="col-md-2 dashboard-events-result-col">
+      <h3 class="h-flush">Complete?</h3>
+    </div>
+  </div>
+
+  <ul>
+  {% endif %}
+
+    <li class="search-result">
+      <div class="row">
+        <div class="col-md-6 dashboard-events-result-col">
+          <h3 class="h-flush visible-xs visible-sm">Title</h3>
+          <h4 class="search-result-title">
+            <a href="/cm/provider/events/{{activity.master_id}}/update/">{{activity.title}}</a>
+          </h4>
+        </div>
+        <div class="col-md-3 dashboard-events-result-col">
+          <h3 class="h-flush visible-xs visible-sm">Time</h3>
+          <p>
+            {% localtime off %}
+            {{activity.begin_time_astimezone|date:"F j, Y, P e"}}
+            {% endlocaltime %}
+          </p>
+        </div>
+        <div class="col-md-1 dashboard-events-result-col">
+          <h3 class="h-flush visible-xs visible-sm">CM</h3>
+          {{activity.cm_approved}}
+        </div>
+        <div class="col-md-2 dashboard-events-result-col">
+          <h3 class="h-flush visible-xs visible-sm">Complete?</h3>
+          {% if activity.is_valid_for_submission %}
+          <span class="icon-checkmark text-green"></span>
+          {% else %}
+          <span class="icon-close text-red"></span>
+          {% endif %}
+        </div>
+      </div>
+      <div class="row dashboard-events-controls">
+        <div class="col-xs-12">
+          <a class="btn btn-sm btn-icon btn-dashboard-events" href="/cm/provider/events/{{activity.master_id}}/update/">
+            Edit
+            <span class="icon-apa-edit"></span>
+          </a>
+          <form method="post" name="remove_activity_from_multi" action="{% url 'cm:multi_event_activities_view' master_id=event.master_id %}">
+            {% csrf_token %}
+            <input type="hidden" name="activity_master_id" value="{{activity.master_id}}"/>
+            <button class="btn btn-sm btn-icon btn-icon-danger btn-dashboard-events" type="submit" name="submitButton" value="remove_activity" onclick="return confirm('Are you sure you want to delete this activity?')">
+              Delete
+              <span class="icon-apa-close"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </li>
+
+  {% if forloop.last %}
+  </ul>
+  {% endif %}
+
+  {% empty %}
+  <ul>
+    <li class="search-result">
+        <p>There are no activities for this event yet. <a href="/cm/provider/events/{{event.master_id}}/activity/add/?next={{request.path}}">Add an activity</a>.</p>
+    </li>
+  </ul>
+  {% endfor %}
+
+</div>

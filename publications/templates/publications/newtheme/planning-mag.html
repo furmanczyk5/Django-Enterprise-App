@@ -1,0 +1,90 @@
+{% extends 'newtheme/templates/content-page-sidebar.html' %}
+
+
+{% block content_main %}
+
+    <!-- {# TO DO... this dupes a lot of page-head.html ... way want to refactor inheritance here #} -->
+    <div class="page-head no-border-bottom no-spacing-bottom">
+        <div style="padding-bottom: 5%">
+        {% include "newtheme/templates/includes/social-sharing-widget.html" with url=post_url title=result.title %}
+        {% if request.contact %}
+            {% include "newtheme/templates/includes/myapa-bookmark-widget.html" with content_id=content.master.id bookmarked=bookmarked %}
+        {% endif %}
+        <ol class="breadcrumb">
+            {% for crumb in ancestors|slice:":-1" %}
+            <li>
+                {% if crumb.url %}
+                    <a href="{{crumb.url}}">{{crumb}}</a>
+                {% else %}
+                    {{crumb}}
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ol>
+        </div>
+
+        <!-- planning mag dropdown example -->
+        {% with ancestors|last as issue %}
+        <div class="form-section form-section-enclosed-dark planning-magazine-article-picker">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-7">
+                    <h2>{{ issue.title }}</h2>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-5">
+
+                    <div class="form-group">
+                        <label>In This Issue:</label>
+                        <select class="form-control" onchange="location.href = this.options[this.selectedIndex].value">
+                            {% for article in issue.child_menuitems.all %}
+                            <option
+                                value="{{ article.get_url }}"
+                                {% if article.get_url == content.url %}
+                                selected="selected"
+                                {% endif %}
+                            >
+                                {{ article.title }}
+                            </option>
+                        {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endwith %}
+
+
+      {% if content.overline %}
+        <h3>{{ content.overline }}</h3>
+      {% endif %}
+
+      <h1 class="page-title">{{ title }}</h1>
+
+      {% if subtitle %}
+      <h4 class="page-subtitle">{{ subtitle }}</h4>
+      {% endif %}
+    </div>
+
+    <div class="layout-tracery no-top-border">
+        <div class="layout-column">
+
+          <div class="row">
+            <div class="col-lg-9">
+              <div class="content-managed-html">
+                {% block content_details %}
+                  {{ content.text|safe }}
+                {% endblock %}
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="banner-ads-container">
+                {% include 'newtheme/sandbox/banner-ad/layout-banner-ad-small-3up-vertical.html' %}
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+

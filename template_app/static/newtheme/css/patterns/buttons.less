@@ -1,0 +1,212 @@
+/* ////////////
+// BUTTONS
+//////////// */
+.btn {
+  font-family: @font-family-sans-serif;
+  font-size: 16px;
+  white-space: normal;
+  font-style: normal;
+
+  //Establish border for use with buttons that need it
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+
+  //paddings
+  padding-top: 7px;
+  padding-bottom: 7px;
+
+  //Make buttons 100% on mobile, with less padding
+  width: 100%;
+  padding-left: 9px;
+  padding-right: 9px;
+
+  //Collapse buttons on desktop
+  @media screen and (min-width: @screen-sm-min) {
+    width: auto;
+    padding-left: 29px;
+    padding-right: 29px;
+  }
+
+  -webkit-transition: background-color @primary-transition-duration @primary-transition-easing;
+  -moz-transition: background-color @primary-transition-duration @primary-transition-easing;
+  -ms-transition: background-color @primary-transition-duration @primary-transition-easing;
+  -o-transition: background-color @primary-transition-duration @primary-transition-easing;
+  transition: background-color @primary-transition-duration @primary-transition-easing;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: transparent;
+    box-shadow: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: @color-athens-gray;
+          border-color: @color-athens-gray;
+    }
+  }
+}
+
+a.btn {
+  text-decoration: none; //Due to some styling on links...
+}
+
+.btn-sm,
+.btn-xs {
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.btn-lg {
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.btn-primary {
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+  background-color: @color-btn-primary-background;
+
+  &:focus,
+  &:hover {
+    color: #fff;
+    border-color: transparent;
+    background-color: @color-btn-primary-background-hover;
+  }
+
+  &:active {
+    background-color: @color-btn-primary-background-active;
+  }
+}
+
+.btn-dark {
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+  background-color: @color-btn-dark-background;
+
+  &:focus,
+  &:hover {
+    color: #fff;
+    border-color: transparent;
+    background-color: @color-btn-dark-background-hover;
+  }
+
+  &:active {
+    background-color: @color-btn-dark-background-active;
+  }
+}
+
+.btn-default {
+  color: @color-limeade;
+  border-color: @color-limeade;
+  background-color: @color-btn-default-background;
+
+  &:focus,
+  &:hover {
+    color: @color-limeade;
+    border-color: @color-limeade;
+    background-color: @color-btn-default-background-hover;
+  }
+
+  &:active {
+    color: @color-limeade;
+    border-color: @color-limeade;
+    background-color: @color-btn-default-background-active;
+  }
+}
+
+.btn-orange {
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+  background-color: @color-btn-orange-background;
+
+  &:focus,
+  &:hover {
+    color: #fff;
+    border-color: transparent;
+    background-color: @color-btn-orange-background-hover;
+  }
+
+  &:active {
+    background-color: @color-btn-orange-background-active;
+  }
+}
+
+
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-icon {
+  padding: 0;
+  color: #aaa;
+  font-weight: bold;
+
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+
+  -webkit-transition: color @primary-transition-duration @primary-transition-easing;
+  -moz-transition: color @primary-transition-duration @primary-transition-easing;
+  -ms-transition: color @primary-transition-duration @primary-transition-easing;
+  -o-transition: color @primary-transition-duration @primary-transition-easing;
+  transition: color @primary-transition-duration @primary-transition-easing;
+
+  // any icomoon
+  [class^="icon-"], [class*=" icon-"] {
+    font-size: .85em;
+  }
+  .icon-apa-close {
+    font-size: .60em;
+  }
+  &:hover {
+    color: @color-limeade;
+  }
+  &.btn-icon-danger {
+    &:hover {
+      color: @color-form-error;
+    }
+  }
+}
+.btn-inline {
+    width: auto;
+}
+
+.btn-strong {
+  font-weight: bold;
+}
+
+//Special specific buttons:
+
+//Back Button, for inside page head
+.back-button {
+  margin-bottom: 20px;
+}
+
+.btn-toolbar.btn-mobile {
+  margin-right: 5px;
+}
+
+@media screen and (min-width: @screen-sm-min) {
+  .button-float {
+    float: right;
+  }
+
+  .btn-toolbar.btn-mobile {
+    margin-right: 0px;
+  }
+}

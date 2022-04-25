@@ -1,0 +1,152 @@
+//hidden on small screens
+.mega-menu-wrap {
+  display: none;
+  @media screen and (min-width: @screen-sm-min) {
+    display: block;
+  }
+}
+
+
+  .mega-menu-wrap {
+    // display: block;
+    position: absolute;
+    top: 100%; //position underneath navbar
+    // left: (@grid-gutter-width / 2) * -1;
+    z-index: 99;
+    // http://stackoverflow.com/questions/17904088/disable-less-css-overwriting-calc
+    // width: ~"calc(100% + 15px)";
+    width: 100%;
+    background: #f7f7f7;
+    // border: #dcdee3 solid 1px;
+    // box-shadow: 0px 5px 9px 0px rgba(0, 0, 0, .1);
+
+    // -webkit-box-shadow: 0px 3px 18px -4px rgba(0,0,0,0.75);
+    // -moz-box-shadow: 0px 3px 18px -4px rgba(0,0,0,0.75);
+    // box-shadow: 0px 3px 18px -4px rgba(0,0,0,0.75);
+  }
+
+  // border on the sides of the sections, spans whole height
+  .mega-menu-section-border {
+    position: absolute;
+    height: 95%;
+    width: 10px;
+    top: 5%;
+    border-right: #dcdee3 solid 1px;
+  }
+  .mega-menu-section-border:nth-child(n+1) {
+    left: 0;
+  }
+  .mega-menu-section-border:nth-child(n+2) {
+    left: 32%;
+  }
+  .mega-menu-section-border:nth-child(n+3) {
+    left: 65%;
+  }
+  .mega-menu-section-border:nth-child(n+4) {
+    opacity: 0;
+  }
+  .mega-menu-section {
+    margin: auto;
+    max-width: 1280px;
+    background: none;
+    padding-top: 60px;
+    min-height: 250px;
+    padding: @grid-gutter-width / 2;
+    width: 100%;
+    display: none;
+    background-color: #f7f7f7;
+
+    &.open {
+      display: block;
+      border: #dcdee3 solid 1px;
+      box-shadow: 0px 7px 15px -6px rgba(0, 0, 0, .1);
+    }
+  }
+
+  .mega-menu-section-heading {
+    padding-bottom: @grid-gutter-width / 2;
+
+    border-bottom-width: 10px;
+    border-bottom-style: solid;
+    border-bottom-color: @color-bahama-blue;
+
+    color: @color-bahama-blue;
+    margin-top: 0px;
+  }
+
+  .mega-menu-section-link {
+    &:link,
+    &:active,
+    &:visited {
+      text-decoration: none;
+      color: @text-color;
+    }
+    &:hover {
+      color: @link-hover-color;
+    }
+  }
+
+  .mega-menu-section-sub-heading {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    font-size: 16px;
+    text-transform: none;
+
+    a:link,
+    a:active {
+      color: @color-sycamore;
+    }
+    a:hover,
+    a:focus {
+      text-decoration: none;
+      color: @color-btn-primary-background-active
+    }
+  }
+
+  .mega-menu-list-wrap {
+    &:nth-child(3n + 1) {
+      clear: left;
+    }
+  }
+  .mega-menu-list {
+    padding: 0 (@grid-gutter-width / 2);
+    margin: (@grid-gutter-width / 2) 0;
+    li {
+      padding: 4px 0;
+      list-style: none;
+    }
+  }
+
+@media screen and (min-width: @screen-md-min) {
+  .mega-menu-list-wrap {
+    &:nth-child(1n+0) {
+      clear: none; //clear all the floats
+    }
+    &:nth-child(4n + 1) {
+      clear: left; //re-assign the floats
+    }
+  }
+  //borders between sections
+  .mega-menu-section-border:nth-child(n+1) {
+    left: 0%;
+  }
+  .mega-menu-section-border:nth-child(n+2) {
+    left: 24%;
+  }
+  .mega-menu-section-border:nth-child(n+3) {
+    left: 49%;
+  }
+  .mega-menu-section-border:nth-child(n+4) {
+    opacity: 1;
+    left: 74%;
+  }
+}
+
+@media screen and (min-width: @screen-lg-min) {
+  .mega-menu-wrap {
+    margin: 0 auto;
+    width: 100%;
+    left: 0;
+  }
+}

@@ -1,0 +1,34 @@
+{% load staticfiles %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=yes">
+		<title>{% block title %}{{ title }}{% endblock %}</title>
+	</head>
+	<body>
+		<div class="pdf-content address-labels">
+
+		{% for attendee in attendees %}
+
+			<div class="page">
+				<div class="address-label">
+					<div>{{ attendee.contact.user.username }}</div>
+					<div class="bold">{{ attendee.contact.full_title }}</div>
+					<div>{{ attendee.address1 }}</div>
+					<div>{{ attendee.address2 }}</div>
+					<div>{{ attendee.city }}, {{ attendee.state }} {{attendee.zip_code }}</div>
+
+					{% if attendee.country != "United States" %}
+					<div>{{ attendee.country }}</div>
+					{% endif %}
+				</div>
+			</div>
+
+		{% endfor %}
+
+		</div>
+	</body>
+</html>

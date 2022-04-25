@@ -1,0 +1,224 @@
+{% extends 'newtheme/templates/conference/layout-nosidebar.html' %}
+
+{% load tz %}
+{% load content_extras %}
+{% load static %}
+
+{% block messages %}{{ block.super }}{% endblock %}
+
+{% block content_main_access %}
+  {% if breadcrumb %}
+    {% include 'newtheme/templates/includes/breadcrumbs.html' with breadcrumb=breadcrumb %}
+  {% endif %}
+
+  <div class="row">
+
+    <div class="col-md-9">
+
+      {% block before_results %}
+
+        {% if content %}
+          {{ content.text|safe }}
+        {% endif %}
+
+
+        <div class="hidden-print">
+
+          <div id="twoActivityTypesInfo" class="hidden">
+            <p>
+              <b>Ticketed Activities: </b>
+              Activities with a green "Ticket Required" button require a ticket which YOU MUST “<b>purchase</b>” to
+              attend—even if it’s free. Purchase your ticket, add it to your cart, and continue through the purchasing
+              process to confirm your space in that activity. Be sure to double check that you haven’t left something in
+              your cart!
+            </p>
+            <p>
+              <b>Non-Ticketed Activities: </b>
+              Activities with a <span class="text-green"><span
+                class="icon-circle-plus"></span><span>Schedule</span></span> or <span class="text-red"><span
+                class="icon-circle-minus"></span><span>Schedule</span></span> button are included in your registration
+              fee and are first-come, first-seated. No spaces are reserved for these activities, so don’t be late.
+              Adding these non-ticketed activities to My Schedule is for your reference only.
+            </p>
+          </div>
+        </div>
+        <!-- SEARCH INFO -->
+
+        {% if show_session_filter_form %}
+          {% comment %}
+          Bit of a hack to only show the session filter form if the request is for
+          the microsite conference session search, i.e. /{microsite}/program/search
+          as for now MicrositeSearchView and MicrositeConferenceSearchView are sharing
+          the same templates.
+          {% endcomment %}
+
+          <form id="sort-facet-form" action="#search-results-start">
+            <div class="search-options">
+              <div class="sort-facet-form-disabled"></div>
+              <div class="input-group form-section form-section-limit-width header-search-form">
+                <label class="control-label sr-only" for="keyword">Search by keyword</label>
+                {{ filter_form.keyword }}
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                  </span>
+              </div>
+              <div class="form-section">
+                <div class="form-section-enclosed-light form-section-no-border-top">
+                  <div class="filter-results-wrap">
+                    <div id="filtersWrap" class="filters-wrap">
+
+                      {% for field in filter_form.hidden_fields %}{{ field }}{% endfor %}
+
+                      <div class="conference-search-filter-group">
+                        <div class="col-sm-3">
+                          <label>Days</label>
+                        </div>
+                        <div class="col-sm-9">
+                          {{ filter_form.date }}
+                        </div>
+                      </div>
+
+                      {% if microsite %}
+                      {% for field in filter_form %}
+                      {% if field|is_filter_field %}
+                      <div class="conference-search-filter-group">
+                        <div class="col-sm-3">
+                          <label>{{ field|convert_field_name }}</label>
+                        </div>
+                        <div class="col-sm-9">
+                          {{ field }}
+                        </div>
+                      </div>
+                      {% endif %}
+                      {% endfor %}
+                      {% endif %}
+                      {% with search_filter_codes=microsite.get_program_search_filter_codes %}
+
+
+                      {% if "CM_FILTER" in search_filter_codes %}
+                      <div class="conference-search-filter-group">
+                        <div class="col-sm-3">
+                          <label for="">CM Filter</label>
+                        </div>
+                        <div class="col-sm-9">
+                          {{ filter_form.cm }}
+                        </div>
+                      </div>
+                      {% endif %}
+                      {% endwith %}
+                    </div>
+                  </div>
+
+
+                {# xx results and tags #}
+                <br>
+                {% include "conference/newtheme/program/includes/results-information.html" with results=results tag_lists=tag_lists request=request speaker=speaker form=form %}
+                <div class="conference-day-anchors">
+                  <!-- content -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+
+        {% endif %}
+      {% endblock %}
+
+
+      <div class="layout-tracery no-top-border no-bottom-border">
+        <div class="layout-column col-md-12 ">
+          {% if results.response.docs %}
+          <div class="search-pagination">
+            {% include "content/newtheme/search/includes/pagination.html" with p=pagination %}
+          </div>
+           {% endif %}
+        </div>
+      </div>
+
+
+      <a id="search-results-start"></a>
+
+      {% block searchList %}
+        {% if results.response.docs %}
+          <div class="content-preview-list layout-tracery">
+          <ul>
+        {% endif %}
+      {% if results.responseHeader.timeout %}
+        <p>We're sorry, but there was a problem retrieving search results. Please try again in a few minutes.</p>
+      {% else %}
+      {% for result in results.response.docs %}
+        {% include 'conference/newtheme/program/includes/results-list-item.html' with result=result %}
+      {% empty %}
+        {% block empty_results %}
+          <p>There are no results matching your query</p>
+        {% endblock %}
+      {% endfor %}
+      {% endif %}
+      {% if results.response.docs %}
+        </ul>
+        </div>
+      {% endif %}
+      {% endblock searchList %}
+
+
+      <div class="layout-tracery no-top-border no-bottom-border">
+        <div class="layout-column col-md-12 ">
+          {% if results.response.docs %}
+          <div class="search-pagination">
+            {% include "content/newtheme/search/includes/pagination.html" with p=pagination %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+
+    </div>
+
+     {# Temporarily disabling for NPC @ Home #}
+    {% comment %}
+    <div class="col-md-3">
+      {% block conference_sidebar %}
+      <div class="view-schedule-widget">
+        <div class="view-schedule-widget-links">
+          <h5> Ways to Download/View the Program</h5>
+          <a href="{{ microsite.pdf_inline_url }}" target="_blank" class="view-schedule-widget-link">Download/Print the Full Conference program (PDF)</a>
+        </div>
+      <p>&nbsp;</p>
+        <div class="view-schedule-widget-links">
+          <a href="{{ microsite.pdf_inline_url }}/?{{request.META.QUERY_STRING}}" target="_blank" class="view-schedule-widget-link">Download/Print the Conference program as filtered (PDF)</a>
+          <br><p class="small">Note: The conference program is subject to change.</p>
+        </div>
+        <p>&nbsp;</p>
+
+      </div>
+
+        {% include "newtheme/templates/conference/includes/schedule-widget.html" %}
+
+      {% endblock %}
+    </div>
+    {% endcomment %}
+
+  </div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+  {{ block.super }}
+  <script src="{% static 'newtheme/js/conference-search-filter-control.js' %}"></script>
+  <script>
+    // Defining the add/remove from My Schedule functionality here instead of trying to
+    // inline it in the button onclick in the results-list-item template...
+    function removeFromSchedule(activityId) {
+        $.get('/conference/api/0.1/schedule/remove/' + activityId + '/');
+        $('#activity-add-' + activityId + ',#activity-remove-' + activityId).toggle();
+        return false;
+    }
+
+    function addToSchedule(activityId) {
+        $.get('/conference/api/0.1/schedule/add/' + activityId + '/');
+        $('#activity-add-' + activityId + ',#activity-remove-' + activityId).toggle();
+        return false;
+    }
+  </script>
+{% endblock additional_body_js %}

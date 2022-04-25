@@ -1,0 +1,38 @@
+<div class="home">
+  {% extends 'newtheme/templates/micro/base.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+{% load ui_tags %}
+{% load compress %}
+
+
+{% block leader_ad %}{% endblock %}
+
+{% block content_main %}
+
+{% if content.get_featured_image_media.image_file.url %}
+<div class="layout-hero-image layout-hero-image-home">
+  <img class="layout-hero-image-image" src="{{ content.get_featured_image_media.image_file.url }}" title="{{ content.get_featured_image_media.title }}" alt="{{ content.get_featured_image_media.description }}"/>
+  <div class="layout-hero-image-content">
+    <!-- BEGIN CMS -->
+    {{ content.text|render_planning_shortcodes|safe }}
+    <!-- END CMS -->
+  </div>
+</div>
+{% else %}
+<div class="layout-tracery">
+  <div class="layout-column">
+    <!-- BEGIN CMS -->
+    {{ content.text|render_planning_shortcodes|safe }}
+    <!-- END CMS -->
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block footer %}
+  {% include "content/newtheme/includes/planning_home_footer.html" %}
+  {% endblock %}
+    </div>

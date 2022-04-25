@@ -1,0 +1,842 @@
+{% extends 'newtheme/templates/layout-pattern-library.html' %}
+{% load staticfiles %}
+
+
+{% block title %}APA Pattern Library 4: New Patterns{% endblock %}
+
+{% block introduction %}This pattern library contains new patterns{% endblock %}
+
+{% block patterns %}
+
+<h1 class="pl-h1">New Patterns</h1>
+
+
+<h2 class="pl-h2">2 Column List of Names with Modal</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A section overview page pattern for a section of content in 2 columns as links.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<h2 class="headline-underline">2014 AICP College of Fellows</h2>
+<div class="row">
+  <div class="two-col-layout col-xs-12 col-sm-6">
+    <h4><a type="button" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="Example Title" data-content="This is a description">John J. Accor`dino, FAICP [MODAL]</a></h4>
+    <h4><a href="#">Leonard James Bauer, FAICP</a></h4>
+    <h4><a href="#">Anna M. Breinich, FAICP</a></h4>
+    <h4><a href="#">Pamela Judith Brown, FAICP</a></h4>
+    <h4><a href="#">Robert N. Brown, FAICP</a></h4>
+    <h4><a href="#">William S. Dahlstrom, FAICP</a></h4>
+    <h4><a href="#">Frank Duke, FAICP</a></h4>
+    <h4><a href="#">Elaine K. Echols, FAICP</a></h4>
+    <h4><a href="#">Gerald Andrews Emison, FAICP</a></h4>
+    <h4><a href="#">Stephen B. Friedman, FAICP</a></h4>
+    <h4><a href="#">S. Gail Goldberg, FAICP</a></h4>
+    <h4><a href="#">David Michael Haight, FAICP</a></h4>
+    <h4><a href="#">David P. Healey, FAICP</a></h4>
+    <h4><a href="#">Ellen M. Heath, FAICP</a></h4>
+    <h4><a href="#">Milton J. Herd, FAICP</a></h4>
+    <h4><a href="#">Satyendra Singh Huja, FAICP</a></h4>
+    <h4><a href="#">Thomas Jacobson, FAICP</a></h4>
+    <h4><a href="#">Gil Kelly, FAICP</a></h4>
+    <h4><a href="#">Andrea Wohlfeld Kuhn, FAICP</a></h4>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <h4><a href="#">Jerome W. Lubin, FAICP</a></h4>
+    <h4><a href="#">Robert W. Marans, FAICP</a></h4>
+    <h4><a href="#">Laurie B. Marston, FAICP</a></h4>
+    <h4><a href="#">Robin H. McCaffrey, FAICP</a></h4>
+    <h4><a href="#">Frederick Merrill, FAICP</a></h4>
+    <h4><a href="#">Barry C. Nocks, FAICP</a></h4>
+    <h4><a href="#">Vincent A. Papsidero, FAICP</a></h4>
+    <h4><a href="#">James Francis Parajon, FAICP</a></h4>
+    <h4><a href="#">Julie Pastor, FAICP</a></h4>
+    <h4><a href="#">James E. Peters, FAICP</a></h4>
+    <h4><a href="#">Patricia D. Petrie, FAICP</a></h4>
+    <h4><a href="#">Joel Edward Putterman, FAICP</a></h4>
+    <h4><a href="#">Jeffrey Alan Rader, FAICP</a></h4>
+    <h4><a href="#">Carol A. Rhea, FAICP</a></h4>
+    <h4><a href="#">Mitchell J. Silver, FAICP</a></h4>
+    <h4><a href="#">Albert Jack Stodghill, FAICP</a></h4>
+    <h4><a href="#">Susan L. Trevarthen, FAICP</a></h4>
+    <h4><a href="#">Philip H. Wheeler, FAICP</a></h4>
+  </div>
+</div>
+<hr/>
+<hr/>
+
+<h3 class="pl-h3">code:</h3>
+
+<pre><code class="html">&lt;h2 class=&quot;headline-underline&quot;&gt;...&lt;/h2&gt;
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3 class="pl-h3">modal code:</h3>
+<pre><code class="html">&lt;a type="button" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="Example Title" data-content="This is a description"&gt;
+...
+&lt;/a&gt;
+</code></pre>
+
+<h3 class="pl-h3">js dependencies</h3>
+
+<pre><code class="html">&lt;!-- inside additional_body_js block... --&gt;
+&lt;script src="&lbrace;% static 'newtheme/vendor/bootstrap/js/tooltip.js' %&rbrace;"&gt;&lt;/script&gt;
+&lt;script src="&lbrace;% static 'newtheme/vendor/bootstrap/js/popover.js' %&rbrace;"&gt;&lt;/script&gt;
+&lt;script&gt;
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+&lt;/script&gt;
+</code></pre>
+
+
+<h2 class="pl-h2">3 Column List of Names with Modal</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A section overview page pattern for a section of names in 3 columns as links.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<h2 class="headline-underline">Fellows at AICP</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+  <h3> A </h3>
+  <h4><a type="button" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="Example Title" data-content="This is a description">Norman Abbott, FAICP [MODAL]</a></h4>
+  <h4><a href="#">Charles Allen, FAICP</a></h4>
+  <h4><a href="#">David J. Allor, FAICP</a></h4>
+  <h3> B </h3>
+  <h4><a href="#">Edmund Bacon, FAICP</a></h4>
+  <h4><a href="#">Ann Bagley, FAICP</a></h4>
+  <h4><a href="#">Tridib Banerjee, FAICP</a></h4>
+  <h3>C</h3>
+  <h4><a href="#">David L. Callies, FAICP</a></h4>
+  <h4><a href="#">Brian Campbell, FAICP</a></h4>
+  <h4><a href="#">Paulette Carolin, FAICP</a></h4>
+  <h3>D</h3>
+  <h4><a href="#">Greg Dale, FAICP</a></h4>
+  <h4><a href="#">Linda C. Dalton, FAICP</a></h4>
+  <h4><a href="#">Wayne Daltry, FAICP</a></h4>
+  <h3>E</h3>
+  <h4><a href="#">John Epling, FAICP</a></h4>
+  <h4><a href="#">Richard B. Erickson, FAICP</a></h4>
+  <h4><a href="#">Jerome Ernst, FAICP</a></h4>
+  <h3>F</h3>
+  <h4><a href="#">Craig Farmer, FAICP</a></h4>
+  <h4><a href="#">Paul Farmer, FAICP</a></h4>
+  <h4><a href="#">Wayne Feiden, FAICP</a></h4>
+  <h3>G</h3>
+  <h4><a href="#">Ralph Gakenheimer, FAICP</a></h4>
+  <h4><a href="#">Joanne Garnett, FAICP</a></h4>
+  <h4><a href="#">David R. Gattis, FAICP</a></h4>
+  <h3>H</h3>
+  <h4><a href="#">Besim S. Hakim, FAICP</a></h4>
+  <h4><a href="#">Irving Hand, FAICP</a></h4>
+  <h4><a href="#">Wes Hankins, FAICP</a></h4>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+  <h3> I</h3>
+  <h4><a href="#">Daniel Iacofano, FAICP</a></h4>
+  <h3>J</h3>
+  <h4><a href="#">David Johnson, FAICP</a></h4>
+  <h4><a href="#">Alexander Jaegerman, FAICP</a></h4>
+  <h4><a href="#">Robert J. Juster, FAICP</a></h4>
+  <h3>K</h3>
+  <h4><a href="#">Vivian Kahn, FAICP</a></h4>
+  <h4><a href="#">Edward Kaiser, FAICP</a></h4>
+  <h4><a href="#">Jerome L. Kaufman, FAICP</a></h4>
+  <h3>L</h3>
+  <h4><a href="#">Bruce Laing, FAICP</a></h4>
+  <h4><a href="#">Floyd Lapp, FAICP</a></h4>
+  <h4><a href="#">Deborah A. Lawlor, FAICP</a></h4>
+  <h3>M</h3>
+  <h4><a href="#">Dean Macris, FAICP</a></h4>
+  <h4><a href="#">Marjorie Macris, FAICP</a></h4>
+  <h4><a href="#">George G. Mader, FAICP</a></h4>
+  <h3>N</h3>
+  <h4><a href="#">Jack Nasar, FAICP</a></h4>
+  <h4><a href="#">Lee Nellis, FAICP</a></h4>
+  <h4><a href="#">Arthur C. Nelson, FAICP</a></h4>
+  <h3>O</h3>
+  <h4><a href="#">Robert B. Olshansky, FAICP</a></h4>
+  <h4><a href="#">Ben Orsbon, FAICP</a></h4>
+  <h3>P</h3>
+  <h4><a href="#">Dean C. Palos, FAICP</a></h4>
+  <h4><a href="#">Robert J. Paternoster, FAICP</a></h4>
+  <h3>Q</h3>
+  <h4><a href="#">Ray Quay, FAICP</a></h4>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+  <h3>R</h3>
+  <h4><a href="#">Bruce A. Race, FAICP</a></h4>
+  <h4><a href="#">Julianne Rankin, FAICP</a></h4>
+  <h4><a href="#">Robert E. Reiman, FAICP</a></h4>
+  <h3>S</h3>
+  <h4><a href="#">Peter D. Salins, FAICP</a></h4>
+  <h4><a href="#">Brenda C. Scheer, FAICP</a></h4>
+  <h4><a href="#">Gary Schoennauer, FAICP</a></h4>
+  <h3>T</h3>
+  <h4><a href="#">Jeffrey M. Taebel, FAICP</a></h4>
+  <h4><a href="#">Emily Talen, FAICP</a></h4>
+  <h4><a href="#">Brian D. Taylor, FAICP</a></h4>
+  <h3>U</h3>
+  <h4><a href="#">Richard W. Unger, FAICP</a></h4>
+  <h3>V</h3>
+  <h4><a href="#">David Varady, FAICP</a></h4>
+  <h3>W</h3>
+  <h4><a href="#">Fritz Wagner, FAICP</a></h4>
+  <h3>Y</h3>
+  <h4><a href="#">Byrnes Yamashita, FAICP</a></h4>
+  <h4><a href="#">Bruce T. Yoder, FAICP</a></h4>
+  <h3>Z</h3>
+  <h4><a href="#">Alfred Zelinka, FAICP</a></h4>
+  <h4><a href="#">James P. Zook, FAICP</a></h4>
+  </div>
+</div>
+<hr/>
+<hr/>
+
+
+<h3 class="pl-h3">code:</h3>
+  <pre><code class="html">&lt;h2 class=&quot;headline-underline&quot;&gt;...&lt;/h2&gt;
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-4&quot;&gt;
+    &lt;h3&gt;...&lt;/h3&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-4&quot;&gt;
+    &lt;h3&gt;...&lt;/h3&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-4&quot;&gt;
+    &lt;h3&gt;...&lt;/h3&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+    &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3 class="pl-h3">modal code:</h3>
+<pre><code class="html">&lt;a type="button" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="Example Title" data-content="This is a description"&gt;
+...
+&lt;/a&gt;
+</code></pre>
+
+<h3 class="pl-h3">js dependencies</h3>
+
+<pre><code class="html">&lt;!-- inside additional_body_js block... --&gt;
+&lt;script src="&lbrace;% static 'newtheme/vendor/bootstrap/js/tooltip.js' %&rbrace;"&gt;&lt;/script&gt;
+&lt;script src="&lbrace;% static 'newtheme/vendor/bootstrap/js/popover.js' %&rbrace;"&gt;&lt;/script&gt;
+&lt;script&gt;
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+&lt;/script&gt;
+</code></pre>
+
+<h2 class="pl-h2">Content2ColumnWLinks</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A section overview page pattern for a section of content in 2 columns with headings as links.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+<h3 class="headline-underline">Current Projects</h3>
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <div class="list-of-links">
+      <h4><a href="#">Hazards Planning: Coastal Zone Management</a></h4>
+      <p>Working with the Coastal States Organization, APA’s hazardrds Planning Research Center will produce a PAS Report on coastal zone management.</p>
+      <h4><a href="#">Growing Food Connections</a></h4>
+      <p>This project will target 20 urban and rural communities across the U.S. that are significantly underserved by the nation’s food system.</p>
+      <h4><a href="#">NOAA Digital Coast</a></h4>
+      <p>A partnership with NOAA to review new planning tools for coastal communities, assist in using and accessing those tools, and in helping advance coastal zone management policy.</p>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <div class="list-of-links">
+      <h4><a href="#">MoreHazards Planning: Planning Information Exchange</a></h4>
+      <p>In cooperation with ASFPM, APA is conducting a series of quarterly webinars for practitioners on hazard mitigation planning.</p>
+      <h4><a href="#">Hazards Planning: Coastal Zone Management</a></h4>
+      <p>Working with the Coastal States Organization, APA’s Hazards Planning Research Center will produce a PAS Report on coastal zone management.</p>
+      <h4><a href="#">SunShot Solar Outreach Partnership</a></h4>
+      <p>APA and partners will help local and regional governments implement solar energy in their communities. </p>
+    </div>
+  </div>
+</div>
+<div class="read-more-link"><a href="#">See all Current Research Projects</a></div>
+
+
+<h3 class="pl-h3">code:</h3>
+
+<pre><code class="html">&lt;h3 class=&quot;headline-underline&quot;&gt;...&lt;/h3&gt;
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    &lt;div class=&quot;list-of-links&quot;&gt;
+      &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+      &lt;p&gt;...&lt;/p&gt;
+      &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+      &lt;p&gt;...&lt;/p&gt;
+      &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    &lt;div class=&quot;list-of-links&quot;&gt;
+      &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+      &lt;p&gt;...&lt;/p&gt;
+      &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+      &lt;p&gt;...&lt;/p&gt;
+      &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;read-more-link&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Section Page Blog Roll</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A variant of Content2ColumnWLinks to display a list of blog posts. Uses</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+<h3 class="headline-underline">Blog Posts</h3>
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <div class="content-preview-list no-top-border no-top-spacing no-bottom-border no-inner-borders">
+      <ul>
+        <li class="content-preview-item">
+          <h6 class="content-preview-item-superheadline">January 14, 2016</h6>
+          <h4 class="content-preview-item-headline"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>
+        </li>
+        <li class="content-preview-item">
+          <h6 class="content-preview-item-superheadline">January 14, 2016</h6>
+          <h4 class="content-preview-item-headline"><a href="#">Maecenas in nibh nulla. Sed blandit nunc dui. In maximus id mi</a></h4>
+        </li>
+        <li class="content-preview-item">
+          <h6 class="content-preview-item-superheadline">January 14, 2016</h6>
+          <h4 class="content-preview-item-headline"><a href="#">Aenean mollis varius sapien, lobortis vestibulum nibh hendrerit at. Maecenas consequat ullamcorper velit, sed scelerisque lorem</a></h4>
+        </li>
+        <li class="content-preview-item">
+          <h6 class="content-preview-item-superheadline">January 14, 2016</h6>
+          <h4 class="content-preview-item-headline"><a href="#">Sed non finibus erat. Praesent dignissim enim dui</a></h4>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <div class="content-preview-list no-top-border no-top-spacing no-bottom-border no-inner-borders">
+      <ul>
+        <li class="content-preview-item">
+          <h6 class="content-preview-item-superheadline">January 14, 2016</h6>
+          <h4 class="content-preview-item-headline"><a href="#">Phasellus sagittis arcu lectus, vel cursus mauris euismod vel</a></h4>
+        </li>
+        <li class="content-preview-item">
+          <h6 class="content-preview-item-superheadline">January 14, 2016</h6>
+          <h4 class="content-preview-item-headline"><a href="#">Donec eu metus in ex feugiat consectetur non a ante. Pellentesque eget sem ac libero</a></h4>
+        </li>
+        <li class="content-preview-item">
+          <h6 class="content-preview-item-superheadline">January 14, 2016</h6>
+          <h4 class="content-preview-item-headline"><a href="#">Quisque vestibulum est ut vehicula rhoncus</a></h4>
+        </li>
+        <li class="content-preview-item">
+          <h6 class="content-preview-item-superheadline">January 14, 2016</h6>
+          <h4 class="content-preview-item-headline"><a href="#">Nunc ut nibh nec lectus vulputate congue</a></h4>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="read-more-link"><a href="#">See all Blog Posts</a></div>
+
+
+<h3 class="pl-h3">code:</h3>
+
+<pre><code class="html">&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    &lt;div class=&quot;content-preview-list no-top-border no-top-spacing no-bottom-border no-inner-borders&quot;&gt;
+      &lt;ul&gt;
+        &lt;li class=&quot;content-preview-item&quot;&gt;
+          &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...[Date]...&lt;/h6&gt;
+          &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;content-preview-item&quot;&gt;
+          &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...[Date]...&lt;/h6&gt;
+          &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;content-preview-item&quot;&gt;
+          &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...[Date]...&lt;/h6&gt;
+          &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;content-preview-item&quot;&gt;
+          &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...[Date]...&lt;/h6&gt;
+          &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    &lt;div class=&quot;content-preview-list no-top-border no-top-spacing no-bottom-border no-inner-borders&quot;&gt;
+      &lt;ul&gt;
+        &lt;li class=&quot;content-preview-item&quot;&gt;
+          &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...[Date]...&lt;/h6&gt;
+          &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;content-preview-item&quot;&gt;
+          &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...[Date]...&lt;/h6&gt;
+          &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;content-preview-item&quot;&gt;
+          &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...[Date]...&lt;/h6&gt;
+          &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;content-preview-item&quot;&gt;
+          &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...[Date]...&lt;/h6&gt;
+          &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;read-more-link&quot;&gt;&lt;a href=&quot;...&quot;&gt;See all Blog Posts&lt;/a&gt;&lt;/div&gt;
+</code></pre>
+
+
+<h2 class="pl-h2">Content 3 Column with Subheadings</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A 3-colum content section with subheadings and other basic typography.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+<h2>National Centers for Planning</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doeiusmod tempor incididunt ut labore et</p>
+<br/>
+
+<div class="layout-tracery layout-tracery-3col no-top-border no-top-spacing">
+
+  <div class="layout-column">
+    <h3 class="headline-underline">Green Communities Center</h3>
+    <p>The Green Communities Center advances practices that improve environmental quality, address climate change, and reduce developmental impaces on natural resource.</p>
+    <h5>Priorities</h5>
+    <ul>
+      <li>Green and Blue Infrastructure</li>
+      <li>Green Energy</li>
+      <li>Green Transportation</li>
+    </ul>
+    <div class="read-more-link"><a href="#">Learn More</a></div>
+  </div>
+
+  <div class="layout-column">
+    <h3 class="headline-underline">Hazards Planning Center</h3>
+    <p>The Hazards Planning Center advances Practices that promote resilience by reducing the impact of natural hazards on communities and regions.</p>
+    <h5>Priorities</h5>
+    <ul>
+      <li>Hazard Mitigation</li>
+      <li>Post Disaster Recovery</li>
+      <li>Climation Change Adaption</li>
+    </ul>
+    <div class="read-more-link"><a href="#">Learn More</a></div>
+  </div>
+
+  <div class="layout-column">
+    <h3 class="headline-underline">Planning and Community Health Center</h3>
+    <p>The Planning and Community Health Center advances practices that improve human environments to promote public health through active living, healthy eating, and health in all planning policies.</p>
+    <h5>Priorities</h5>
+    <ul>
+      <li>Active Living</li>
+      <li>Food Systems</li>
+      <li>Health in all Planning Policies</li>
+    </ul>
+    <div class="read-more-link"><a href="#">Learn More</a></div>
+  </div>
+
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;h2&gt;...&lt;/h2&gt;
+&lt;p&gt;...&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;div class=&quot;layout-tracery layout-tracery-3col no-top-border no-top-spacing&quot;&gt;
+
+  &lt;div class=&quot;layout-column&quot;&gt;
+    &lt;h3 class=&quot;headline-underline&quot;&gt;...&lt;/h3&gt;
+    &lt;p&gt;...&lt;/p&gt;
+    &lt;h5&gt;...&lt;/h5&gt;
+    &lt;ul&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class=&quot;read-more-link&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;layout-column&quot;&gt;
+    &lt;h3 class=&quot;headline-underline&quot;&gt;...&lt;/h3&gt;
+    &lt;p&gt;...&lt;/p&gt;
+    &lt;h5&gt;...&lt;/h5&gt;
+    &lt;ul&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class=&quot;read-more-link&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;layout-column&quot;&gt;
+    &lt;h3 class=&quot;headline-underline&quot;&gt;...&lt;/h3&gt;
+    &lt;p&gt;...&lt;/p&gt;
+    &lt;h5&gt;...&lt;/h5&gt;
+    &lt;ul&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class=&quot;read-more-link&quot;&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">CareersFeature</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Featured content for the careers page.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+<h3 class="featured-item-title"><span>The Career Center <span class="nobr">that Works for You</span></span></h3>
+<div class="layout-tracery slab-gray layout-tracery-2col no-top-border">
+  <div class="layout-column">
+    <h4>PAS Research</h4>
+    <p>APA's career resource can help you perform at your best as well as help you find and get the position you want, no matter your career stage. Find your perfect position and keep track of the positions you're pursuing.</p>
+    <br/>
+
+    <div class="row">
+      <div class="col-xs-6 col-md-4 col-lg-3">
+        <img src="//placehold.it/320x320" class="img-responsive" />
+      </div>
+      <div class="career-description col-xs-6 col-md-8 col-lg-9">
+        <div class="list-of-links-small">
+          <h4><a href="#">View All Jobs</a></h4>
+          <h4><a href="#">My APA Profile and Resume</a></h4>
+          <p>APA Members: Post your resume as part of your profile.</p>
+          <h4><a href="#">Tips for applicants</a></h4>
+          <p>Find cover letter, resume, online profile, and interview guidance.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="layout-column">
+    <h4>For Employers</h4>
+    <p>When you select candidates from APA's membership, you know you are getting knowledgeable staff committed to continually enhancing their expertise. Find your perfect employee and track your job postings.</p>
+    <br/>
+
+    <div class="row">
+      <div class="col-xs-6 col-md-4 col-lg-3">
+        <img src="//placehold.it/320x320" class="img-responsive" />
+      </div>
+      <div class="col-xs-6 col-md-8 col-lg-9">
+        <div class="list-of-links-small">
+          <h4><a href="#">Post a job</a></h4>
+          <h4><a href="#">See posting tips and rates</a></h4>
+          <h4><a href="#">Search resumes</a></h4>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+
+<pre><code class="html">&lt;h3 class=&quot;featured-item-title&quot;&gt;...&lt;/span&gt;&lt;/h3&gt;
+&lt;div class=&quot;layout-tracery slab-gray layout-tracery-2col no-top-border&quot;&gt;
+
+  &lt;div class=&quot;layout-column&quot;&gt;
+    &lt;h2&gt;...&lt;/h2&gt;
+    &lt;p&gt;...&lt;/p&gt;
+    &lt;br/&gt;
+
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div class=&quot;col-xs-6 col-md-4 col-lg-3&quot;&gt;
+        &lt;img src=&quot;...&quot; class=&quot;img-responsive&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-xs-6 col-md-8 col-lg-9&quot;&gt;
+        &lt;div class=&quot;list-of-links-small&quot;&gt;
+          &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+          &lt;p&gt;...&lt;/p&gt;
+          &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+          &lt;p&gt;...&lt;/p&gt;
+          &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+          &lt;p&gt;...&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;layout-column&quot;&gt;
+    &lt;h2&gt;...&lt;/h2&gt;
+    &lt;p&gt;...&lt;/p&gt;
+    &lt;br/&gt;
+
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div class=&quot;col-xs-6 col-md-4 col-lg-3&quot;&gt;
+        &lt;img src=&quot;...&quot; class=&quot;img-responsive&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-xs-6 col-md-8 col-lg-9&quot;&gt;
+        &lt;div class=&quot;list-of-links-small&quot;&gt;
+          &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+          &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+          &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+
+
+<h2 class="pl-h2">Responsive Table</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Responsive table.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+  <div class="table-responsive">
+  <table class="table content">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+        <th>City</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+       <tr>
+        <td>2</td>
+        <td>John</td>
+        <td>Doe</td>
+        <td>25</td>
+        <td>Florida</td>
+        <td>USA</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;table-responsive&quot;&gt;
+  &lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th>#&lt;/th&gt;
+        &lt;th>Firstname&lt;/th&gt;
+        &lt;th>Lastname&lt;/th&gt;
+        &lt;th>Age&lt;/th&gt;
+        &lt;th>City&lt;/th&gt;
+        &lt;th>Country&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td>1&lt;/td&gt;
+        &lt;td>Anna&lt;/td&gt;
+        &lt;td>Pitt&lt;/td&gt;
+        &lt;td>35&lt;/td&gt;
+        &lt;td>New York&lt;/td&gt;
+        &lt;td>USA&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td>2&lt;/td&gt;
+        &lt;td>John&lt;/td&gt;
+        &lt;td>Doe&lt;/td&gt;
+        &lt;td>25&lt;/td&gt;
+        &lt;td>Florida&lt;/td&gt;
+        &lt;td>USA&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<h2 class="pl-h2">Event Feature</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A featured event for a section overview page</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="layout-tracery">
+  <div class="layout-column">
+    <div class="row">
+      <div class="col-xs-12 col-md-4 col-lg-3">
+        <img src="//placehold.it/600x600" class="img-responsive" />
+      </div>
+      <div class="col-xs-12 col-md-8 col-lg-9">
+        <h2 class="headline-underline">
+          <small>October 28, 2016 | Washington DC, USA</small>
+          AICP Symposiums
+        </h2>
+        <div class="row">
+          <div class="col-xs-12 col-md-12 col-lg-7">
+            <p><strong>AICP sponsors regular symposiums on a variety of topics vital to practicing planners.</strong> This years' focus is In urban areas, stormwater presents major challenges for water quality. Runoff and combined sewer overflows result in impaired quality and degraded watersheds. Increasingly, green infrastructure approaches can treat and reduce discharge volumes and help mitigate flood risk, in addition to a range of environmental, social, and economic benefits.</p>
+            <p><a href="#" class="btn btn-primary">Register Now</a></p>
+            <br/>
+          </div>
+          <div class="col-xs-12 col-md-12 col-lg-5">
+            <h5>Key Speakers</h5>
+            <div class="list-of-speakers">
+              <h4>Paula Conolly, AICP</h4>
+              <p>Policy Strategist, Green City, Clean Waters Program, Philadelphia Water Department</p>
+              <h4>Bethany Bezak, PE, LEED AP</h4>
+              <p>Green Infrastructure Manager, DC Water, DC Clean Rivers Project</p>
+              <h4>Mathy Stanislaus</h4>
+              <p>Assistant Administrator for the Office of Solid Waste and Emergency Response, U.S. EPA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="read-more-link">
+      <a href="#">Learn more about AICP Symposiums</a>
+    </div>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;layout-tracery&quot;&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div class=&quot;col-xs-12 col-md-4 col-lg-3&quot;&gt;
+        &lt;img src=&quot;...&quot; class=&quot;img-responsive&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-xs-12 col-md-8 col-lg-9&quot;&gt;
+        &lt;h2 class=&quot;headline-underline&quot;&gt;
+          &lt;small&gt;October 28, 2016 | Washington DC, USA&lt;/small&gt;
+          [Event Title]
+        &lt;/h2&gt;
+        &lt;div class=&quot;row&quot;&gt;
+          &lt;div class=&quot;col-xs-12 col-md-12 col-lg-7&quot;&gt;
+            &lt;p&gt;...&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-primary&quot;&gt;Register Now&lt;/a&gt;&lt;/p&gt;
+            &lt;br/&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-xs-12 col-md-12 col-lg-5&quot;&gt;
+            &lt;h5&gt;Key Speakers&lt;/h5&gt;
+            &lt;div class=&quot;list-of-speakers&quot;&gt;
+              &lt;h4&gt;...&lt;/h4&gt;
+              &lt;p&gt;...&lt;/p&gt;
+              &lt;h4&gt;...&lt;/h4&gt;
+              &lt;p&gt;...&lt;/p&gt;
+              &lt;h4&gt;...&lt;/h4&gt;
+              &lt;p&gt;...&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;read-more-link&quot;&gt;
+      &lt;a href=&quot;#&quot;&gt;Learn more about [Event Title]&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+</script>
+
+
+<!-- FROM LAYOUT-PATTERN-LIBRARY -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>
+//Initialize highlight.js
+hljs.initHighlightingOnLoad();
+
+//Generate jump links
+jQuery(document).ready(function(){
+  var $container = jQuery('.pl-patterns');
+  var $jumpNav = jQuery('.pl-jump-nav');
+  var $headings = $container.find('.pl-h1, .pl-h2');
+
+  var headlineIdCount = 0;
+
+  $headings.each(function(i, o) {
+    var $thisHeading = jQuery(this);
+
+    var headingText = $thisHeading.text();
+
+    var $newLink = $('<a href="#"/>').text(headingText).on('click', function (e) {
+      e.preventDefault();
+
+      $('html, body').animate({
+          scrollTop: parseInt($thisHeading.offset().top)
+      }, 0);
+
+    });
+
+    //Indent H2s
+    if($thisHeading.is('.pl-h2')) {
+      $newLink.prepend('&nbsp;&nbsp;&nbsp;&nbsp;');
+    }
+    $jumpNav.append($newLink);
+  });
+});
+</script>
+{% endblock %}

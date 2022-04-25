@@ -1,0 +1,188 @@
+{% extends 'cm/newtheme/aicp-page-sidebar.html' %}
+
+{% load cm_tags %}
+{% load template_app_extras %}
+
+{% block content_sidebar %}
+{# would rather use /cm/ than /cm/log/, third level menu does not open #}
+{% sidenav for_url='/cm/log/' current_page_url='/cm/search/providers/' %}
+{% endblock %}
+
+{% block content_main %}
+
+{% if event %}
+<div class="page-head">
+
+	{% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+	{% if provider.organizationprofile.image %}
+  	<div style="width:200px" class="col-sm-12 col-md-4 image-block pull-left">
+    	<img src="{{provider.organizationprofile.image.image_file.url}}" />
+  	</div>
+  	{% endif %}
+
+	<h1 class="">{{event.title}}</h1>
+
+	<div class="details-section">
+		{% if provider %}
+		<h2 class="details-subtitle">
+			<a href="/cm/provider/{{provider.id}}/details/">{{provider.title}}</a>
+	    </h2>
+	    {% endif %}
+
+		{% if stats.rating_avg %}
+		<p>{% star_rating stats.rating_avg|floatformat:2 stats.rating_total %}</p>
+		<div class="row">
+		  <div class="col-xs-12 small">
+		    <div>
+		      <span class="star-rating-rating featured-family">5 star</span>
+		      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_5 total=stats.rating_total %}</span>
+		    </div>
+		    <div>
+		      <span class="star-rating-rating featured-family">4 star</span>
+		      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_4 total=stats.rating_total %}</span>
+		    </div>
+		    <div>
+		      <span class="star-rating-rating featured-family">3 star</span>
+		      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_3 total=stats.rating_total %}</span>
+		    </div>
+		    <div>
+		      <span class="star-rating-rating featured-family">2 star</span>
+		      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_2 total=stats.rating_total %}</span>
+		    </div>
+		    <div>
+		      <span class="star-rating-rating featured-family">1 star</span>
+		      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_1 total=stats.rating_total %}</span>
+		    </div>
+		    <div>
+		      <span class="star-rating-rating featured-family">0 star</span>
+		      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_0 total=stats.rating_total %}</span>
+		    </div>
+		  </div>
+		</div>
+		{% endif %}
+
+    </div>
+
+</div>
+{% else %}
+<div class="page-head">
+
+	{% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+	{% if provider.organizationprofile.image %}
+  	<div style="width:200px" class="col-sm-12 col-md-4 image-block pull-left">
+    	<img src="{{provider.organizationprofile.image.image_file.url}}" />
+  	</div>
+  	{% endif %}
+
+	<h1 class="">{{provider.title}}</h1>
+
+	<div class="details-section">
+
+      <p>{{provider.city}}, {{provider.state}}, {{provider.country}}</p>
+
+		{% if stats.rating_avg %}
+      	<p>{% star_rating stats.rating_avg|floatformat:2 stats.rating_total %}</p>
+		<div class="row">
+		  	<div class="col-xs-12 small">
+			    <div>
+			      <span class="star-rating-rating featured-family">5 star</span>
+			      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_5 total=stats.rating_total %}</span>
+			    </div>
+			    <div>
+			      <span class="star-rating-rating featured-family">4 star</span>
+			      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_4 total=stats.rating_total %}</span>
+			    </div>
+			    <div>
+			      <span class="star-rating-rating featured-family">3 star</span>
+			      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_3 total=stats.rating_total %}</span>
+			    </div>
+			    <div>
+			      <span class="star-rating-rating featured-family">2 star</span>
+			      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_2 total=stats.rating_total %}</span>
+			    </div>
+			    <div>
+			      <span class="star-rating-rating featured-family">1 star</span>
+			      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_1 total=stats.rating_total %}</span>
+			    </div>
+			    <div>
+			      <span class="star-rating-rating featured-family">0 star</span>
+			      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=stats.rating_breakdown.r_0 total=stats.rating_total %}</span>
+			    </div>
+			</div>
+		</div>
+		{% endif %}
+
+		<br/>
+
+		<div class="popularity-tabs">
+	      <ul class="nav nav-tabs" role="tablist">
+	        <li role="presentation"><a href="{% url 'cm:provider_details' provider_id=provider.id %}">Events</a></li>
+	        <li role="presentation" class="active"><a>Reviews</a></li>
+	      </ul>
+	    </div>
+
+    </div>
+
+    {% if provider.bio %}
+    <p class="featured">{{provider.bio}}</p>
+    {% endif %}
+
+</div>
+{% endif %}
+
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h2>Comments</h3>
+		{% if comments %}
+		<div class="search-pagination">
+	      {% if previous_page %}
+	      <a class="pull-left" href="{{previous_page}}"><b> &lt; Back</b></a>
+	      {% endif %}
+	      <span class="pagination-results"><b>{{start}} - {{end}}</b></span>
+	      of <b> {{total}} </b>
+	      {% if next_page %}
+	      <a class="pull-right" href="{{next_page}}"><b>Next &gt;</b></a>
+	      {% endif %}
+	    </div>
+	    <hr style="margin-bottom:0px;"/>
+		<div class="event-review-comments">
+			{% for comment in comments %}
+			<div class="event-reviews-comment">
+				<div id="comment-{{comment.id}}" class="cm-comment {{forloop.counter|divisibleby:2|yesno:',alt'}}">
+					<div>
+						<p class="small">{{comment.submitted_time|date:"l, F j, Y, P e"}}</p>
+						{% if not event or comment.content.event.event_type == "ACTIVITY" %}
+						<h4>{{ comment.content.event.title }}</h4>
+						{% endif%}
+					</div>
+					<div>{% star_rating comment.rating %}</div>
+					<p>{{comment.commentary}}</p>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="search-pagination">
+	      {% if previous_page %}
+	      <a class="pull-left" href="{{previous_page}}"><b> &lt; Back</b></a>
+	      {% endif %}
+	      <span class="pagination-results"><b>{{start}} - {{end}}</b></span>
+	      of <b> {{total}} </b>
+	      {% if next_page %}
+	      <a class="pull-right" href="{{next_page}}"><b>Next &gt;</b></a>
+	      {% endif %}
+	    </div>
+	    {% else %}
+	    <p>There are no comments available for {{event|default_if_none:provider.title}}</p>
+	    {% endif %}{# if comments #}
+
+	</div>
+</div>
+
+{% endblock %}
+
+
+
+
+

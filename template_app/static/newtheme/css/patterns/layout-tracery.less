@@ -1,0 +1,200 @@
+  @layout-tracery-columns-breakpoint: @screen-sm-min;
+
+.layout-tracery {
+  &:extend(.clearfix all);
+
+  margin-left: 0;
+  margin-right: 0;
+
+  //When stacking multiple layouts, add a margin between them
+  & + & {
+    margin-top: @padding-vertical-outer;
+  }
+}
+
+.layout-tracery .layout-column {
+  width: 100%;
+
+  border-color: @color-content-borders;
+  border-width: 1px 0;
+  border-style: solid;
+
+  padding-top: 40px;
+  padding-bottom: 15px;
+
+  width: 100%;
+  float: left;
+  position: relative;
+
+  padding-left: @padding-level-2-xs;
+  padding-right: @padding-level-2-xs;
+
+  @media screen and (min-width: @padding-breakpoint) {
+    padding-left: @padding-level-2-md;
+    padding-right: @padding-level-2-md;
+  }
+
+  &.layout-column-balanced-padding {
+    padding-top: @padding-vertical-inner;
+    padding-bottom: @padding-vertical-inner;
+  }
+
+  //Double line on mobile
+  & + .layout-column {
+    margin-top: @padding-vertical-outer;
+
+    @media screen and (min-width: @layout-tracery-columns-breakpoint) {
+      margin-top: 0px;
+    }
+
+  }
+
+  //B
+  @media screen and (min-width: @layout-tracery-columns-breakpoint) {
+    border-left-width: 1px;
+
+    &:first-child {
+      border-left-width: 0;
+    }
+  }
+
+}
+
+//Less specific to avoid breaking custom margins
+.layout-column {
+  & > :first-child,
+  & [class*="col-"] > :first-child {
+    margin-top: 0;
+  }
+}
+
+.layout-tracery.no-top-border {
+  & .layout-column {
+    border-top-width: 0;
+  }
+}
+
+.layout-tracery.no-bottom-border {
+  & .layout-column {
+    border-bottom-width: 0;
+  }
+}
+
+.layout-tracery.no-top-spacing {
+  & .layout-column {
+    padding-top: 0;
+  }
+}
+
+.layout-tracery.no-bottom-spacing {
+  & .layout-column {
+    padding-bottom: 0;
+  }
+}
+
+.layout-tracery.no-side-spacing {
+  & .layout-column {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.layout-tracery.no-border {
+  & .layout-column {
+    border-top-width: 0;
+    border-bottom-width: 0;
+  }
+}
+
+.layout-tracery.no-side-border {
+  & .layout-column {
+    border-left-width: 0;
+  }
+}
+
+// Images inside layout-tracery
+.layout-tracery .img-responsive {
+  margin-bottom: 35px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    margin-bottom: 20px;
+  }
+}
+
+.two-col-layout {
+  max-width: 500px;
+}
+
+.layout-tracery.layout-tracery-2col {
+  & {
+    @media screen and (min-width: @layout-tracery-columns-breakpoint) {
+      //Make all columns the same height
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      //End
+    }
+  }
+
+  & .layout-column {
+    @media screen and (min-width: @layout-tracery-columns-breakpoint) {
+      width: (100% / 2);
+    }
+  }
+}
+
+.layout-tracery.layout-tracery-3col {
+  & {
+    @media screen and (min-width: @layout-tracery-columns-breakpoint) {
+      //Make all columns the same height
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      //End
+    }
+  }
+
+  & .layout-column {
+    @media screen and (min-width: @layout-tracery-columns-breakpoint) {
+      width: ( 100% * (1 / 3) );
+    }
+  }
+
+  & .layout-column-span2 {
+    @media screen and (min-width: @layout-tracery-columns-breakpoint) {
+      width: ( 100% * (2 / 3) );
+    }
+  }
+}
+
+//Breakout class, allows elements to offset the horizontal padding of layout-tracery layout-column with negative margins
+.layout-tracery .utility-breakout-layout-tracery {
+
+  margin-left: -1 * @padding-level-2-xs;
+  margin-right: -1 * @padding-level-2-xs;
+
+
+  @media screen and (min-width: @padding-breakpoint) {
+    margin-left: -1 * @padding-level-2-md;
+    margin-right: -1 * @padding-level-2-md;
+  }
+}
+
+//Only breakout in XS, useful for mobile layouts that need to fake not being nested in layout-tracery
+.layout-tracery .utility-breakout-layout-tracery-xs-only {
+
+  margin-left: -1 * @padding-level-2-xs;
+  margin-right: -1 * @padding-level-2-xs;
+
+
+  @media screen and (min-width: @screen-sm-min) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.layout-tracery .utility-layout-column-padding-top-as-margin {
+  margin-top: @layout-tracery-padding-top;
+}

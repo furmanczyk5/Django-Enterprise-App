@@ -1,0 +1,94 @@
+/**
+ * dependencies: slab
+ */
+.video-block {
+  &:extend(.slab-blue all);
+
+  & .video {
+    & {
+      position: relative;
+      padding-bottom: 50.25%; /* 16:9 */
+      height: 0;
+    }
+
+    &:before {
+      position: relative;
+      content: '';
+      width: 100%;
+      padding-top: 100% / (16 / 9); //An aspect ratio hack
+    }
+
+    & video,
+    & iframe {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100% !important;
+      width: 100% !important;
+    }
+  }
+
+
+  &  .caption {
+
+    .strip-edge-margins();
+
+    &:extend(.form-head all); //spacing on h2
+    //note: background color is on parent element, no background color needed here.
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    padding-left: @padding-level-2-xs;
+    padding-right: @padding-level-2-xs;
+
+    @media screen and (min-width: @screen-md-min) {
+      padding-left: @padding-level-2-md;
+      padding-right: @padding-level-2-md;
+    }
+  }
+}
+
+.video-block-vertical {
+  //default presentation is vertical, no changes needed
+}
+
+.video-block-horizontal {
+  .clearfix();
+
+  @media screen and (min-width: @screen-md-min) {
+    & video {
+      float: left;
+      width: 67%;
+    }
+
+    & .caption {
+      float: left;
+      width: 33%;
+    }
+  }
+}
+
+
+
+.video-thumbnail {
+  &:extend(.video-block all);
+
+  & .caption {
+    padding: 16px 20px;
+
+    @media screen and (min-width: @screen-md-min) {
+      padding: 16px 20px;
+    }
+
+    color: #fff;
+    margin: 0;
+    font-size: 16px;
+    font-family: @font-family-sans-serif;
+  }
+
+  &.color-orange {
+    &:extend(.slab-orange all);
+  }
+
+}

@@ -1,0 +1,199 @@
+.session-detail-header-breakout {
+  &:extend(.layout-hero-image-conference-breakout all);
+  &:extend(.layout-hero-image-conference-home all);
+
+  margin-bottom: 30px;
+  // border: 5px solid;
+
+  & .session-detail-header {
+    position: relative;
+    min-height: 237px;
+    @media screen and (min-width: @screen-sm-min) {
+      height: 237px;
+    }
+
+    & .session-detail-header-background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+
+      & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    & .session-detail-header-body {
+      &:extend(.homepage-conference-cta all);
+
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      & .session-detail-header-body-title {
+        font-family: @font-family-base;
+        font-weight: 300;
+        font-size: 40px;
+        color: @color-alabaster;
+        text-align: center;
+        margin-left: @grid-gutter-width;
+        margin-right: @grid-gutter-width;
+      }
+    }
+  }
+}
+
+.session-detail-page {
+
+  & .session-detail-page-head {
+    margin-bottom: 32px;
+
+    & .session-detail-page-social-sharing {
+      @media screen and (min-width: @screen-sm-min) {
+        float: right;
+      }
+    }
+  }
+
+  .mobile-schedule-widget {
+    display: block;
+  }
+
+  .desktop-schedule-widget {
+    display: none;
+  }
+
+  @media screen and (min-width: @screen-sm-min) {
+    .mobile-schedule-widget {
+      display: none;
+    }
+
+    .desktop-schedule-widget {
+      display: block;
+    }
+  }
+
+  & .session-detail-page-body {
+    .make-row();
+
+    & .session-detail-page-body-main {
+      @media screen and (min-width: @screen-sm-min) {
+        padding-right: @grid-gutter-width * 2;
+      }
+
+      & .session-detail-title {
+        h2 {
+          margin-top: 0;
+          // margin-bottom: 36px;
+        }
+      }
+
+      & .session-detail-body-description {
+        margin-top: 70px;
+
+        ul {
+          li {
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.session-detail-body-description-speakers {
+  &:extend(.homepage-featured-content-secondary all);
+
+  margin-top: 25px;
+  margin-bottom: 60px;
+  padding: @grid-gutter-width;
+
+  & .content-preview-item {
+    font-family: @font-family-serif;
+    margin-left: -1 * @grid-gutter-width / 2;
+    margin-right: -1 * @grid-gutter-width / 2;
+
+    @media screen and (min-width: @screen-sm-min) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    & .content-preview-item-image-floated {
+      @image-width-small: 71px;
+      @image-padding-small: 10px;
+
+      float: left;
+      width: 100%;
+      margin-bottom: 0.5em; //Spaces description out
+
+      @media screen and (min-width: @screen-sm-min) {
+        width: 90px;
+      }
+
+      & img {
+        display: inline-block;
+        width: 100%;
+        max-width: @image-width-small;
+      }
+
+    }
+
+    & .no-image {
+      height: 100px;
+    }
+  }
+}
+
+.session-detail-buttons {
+  width: 100%;
+
+  & .btn {
+    width: 100%;
+    margin-bottom: 19px;
+
+    @media screen and (min-width: @screen-sm-min) {
+      width: calc(50% ~"-" @grid-gutter-width);
+      margin-bottom: 0;
+    }
+  }
+
+  & .session-detail-buttons-notice {
+    &:extend(.small);
+
+    font-family: @font-family-sans-serif;
+    margin-top: 15px;
+    padding-left: 0;
+
+    @media screen and (min-width: @screen-sm-min) {
+      padding-left: 25px;
+    }
+  }
+}
+
+.session-detail-list-of-links {
+  & .link-item {
+    margin-bottom: 22px;
+  }
+}
+
+.session-detail-footer {
+  padding-left: calc(@grid-gutter-width / 2);
+
+  @media screen and (max-width: @screen-sm-min) {
+    & .session-detail-footer-quick-links-button.quick-links-button {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+.add-to-cart-hidden-quantity {
+  .add-to-cart-quantity-wrap {
+    display: none;
+  }
+}

@@ -1,0 +1,41 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}Provider Registration for Annual Unlimited Package{% endblock %}
+
+<!-- NOTE... perhaps better to create a standard form, and then inherit the CM form from that? -->
+
+{% block content_main %}
+<div class="page-head">
+  <h1 class="page-title">Provider Registration for Annual Unlimited Package</h1>
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+    <p class="featured">Annual registration is based on a calendar year (Jan-Dec) and can be purchased throughout the year.</p>
+    <p class="featured-family">
+      <b>Provider:</b> {{ provider.company }}
+    </p>
+    <form class="validate-form" method="post">
+      {% csrf_token %}
+      {% include "ui/newtheme/forms/includes/display-errors.html" with form=registration_form %}
+      <div class="form-section form-section-enclosed-dark form-section-limit-width">
+        {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=registration_form.registration_type %}
+      </div>
+      <div class="form-section form-section-enclosed-dark form-section-limit-width">
+        {% include "newtheme/sandbox/forms/includes/input-select.html" with field=registration_form.year %}
+      </div>
+
+      <div class="form-section form-section-limit-width featured-family">
+        <p class="small">
+          <i><b>Please Note:</b> Registration plans are non-refundable. Please review your selection before submitting.</i>
+        </p>
+      </div>
+      {{ registration_form.provider }}
+      <br>
+      <div>
+        <button type="submit" class="btn btn-primary" name="submitButton" value="claim_form_submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

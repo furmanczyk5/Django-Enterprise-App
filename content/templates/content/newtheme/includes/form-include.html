@@ -1,0 +1,9 @@
+{% for hidden in form.hidden_fields %}
+{{ hidden }}
+{% endfor %}
+
+{% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+{% for field in form.visible_fields %}
+{% include "newtheme/sandbox/forms/includes/input-text.html" with field=field %}
+{% endfor %}

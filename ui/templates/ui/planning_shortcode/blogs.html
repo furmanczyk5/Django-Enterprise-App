@@ -1,0 +1,19 @@
+{% load content_extras %}
+
+<div class="content-preview-list no-top-spacing no-top-border no-bottom-border">
+	<ul>
+	    {% for result in results.response.docs %}
+
+	    <li class="content-preview-item">
+	        <h6 class="content-preview-item-superheadline">
+	            {{ result.begin_time|datetime_from_json|date:"F j, Y" }}
+	        </h6>
+	        <h4 class="content-preview-item-headline">
+	            <a href="{{result|solr_record_to_details_path_filter}}">
+	                {{ result.title }}
+	            </a>
+	        </h4>
+	    </li>
+	    {% endfor %}
+	</ul>
+</div>

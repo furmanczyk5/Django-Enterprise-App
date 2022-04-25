@@ -1,0 +1,6268 @@
+[
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff",
+    "permissions": [
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_blogcategorycontenttagtype",
+        "blog",
+        "blogcategorycontenttagtype"
+      ],
+      [
+        "change_blogcategorycontenttagtype",
+        "blog",
+        "blogcategorycontenttagtype"
+      ],
+      [
+        "add_blogpost",
+        "blog",
+        "blogpost"
+      ],
+      [
+        "change_blogpost",
+        "blog",
+        "blogpost"
+      ],
+      [
+        "add_communitytypecontenttagtype",
+        "content",
+        "communitytypecontenttagtype"
+      ],
+      [
+        "change_communitytypecontenttagtype",
+        "content",
+        "communitytypecontenttagtype"
+      ],
+      [
+        "change_content",
+        "content",
+        "content"
+      ],
+      [
+        "add_contentrelationship",
+        "content",
+        "contentrelationship"
+      ],
+      [
+        "change_contentrelationship",
+        "content",
+        "contentrelationship"
+      ],
+      [
+        "delete_contentrelationship",
+        "content",
+        "contentrelationship"
+      ],
+      [
+        "add_contenttagtype",
+        "content",
+        "contenttagtype"
+      ],
+      [
+        "change_contenttagtype",
+        "content",
+        "contenttagtype"
+      ],
+      [
+        "add_formatcontenttagtype",
+        "content",
+        "formatcontenttagtype"
+      ],
+      [
+        "change_formatcontenttagtype",
+        "content",
+        "formatcontenttagtype"
+      ],
+      [
+        "add_jurisdictioncontenttagtype",
+        "content",
+        "jurisdictioncontenttagtype"
+      ],
+      [
+        "change_jurisdictioncontenttagtype",
+        "content",
+        "jurisdictioncontenttagtype"
+      ],
+      [
+        "add_taxotopictag",
+        "content",
+        "taxotopictag"
+      ],
+      [
+        "change_taxotopictag",
+        "content",
+        "taxotopictag"
+      ],
+      [
+        "add_image",
+        "imagebank",
+        "image"
+      ],
+      [
+        "change_image",
+        "imagebank",
+        "image"
+      ],
+      [
+        "add_audio",
+        "media",
+        "audio"
+      ],
+      [
+        "change_audio",
+        "media",
+        "audio"
+      ],
+      [
+        "add_document",
+        "media",
+        "document"
+      ],
+      [
+        "change_document",
+        "media",
+        "document"
+      ],
+      [
+        "add_image",
+        "media",
+        "image"
+      ],
+      [
+        "change_image",
+        "media",
+        "image"
+      ],
+      [
+        "add_media",
+        "media",
+        "media"
+      ],
+      [
+        "change_media",
+        "media",
+        "media"
+      ],
+      [
+        "add_mediaimagemastercontent",
+        "media",
+        "mediaimagemastercontent"
+      ],
+      [
+        "change_mediaimagemastercontent",
+        "media",
+        "mediaimagemastercontent"
+      ],
+      [
+        "add_video",
+        "media",
+        "video"
+      ],
+      [
+        "change_video",
+        "media",
+        "video"
+      ],
+      [
+        "add_bookmark",
+        "myapa",
+        "bookmark"
+      ],
+      [
+        "change_bookmark",
+        "myapa",
+        "bookmark"
+      ],
+      [
+        "add_contact",
+        "myapa",
+        "contact"
+      ],
+      [
+        "change_contact",
+        "myapa",
+        "contact"
+      ],
+      [
+        "add_contactcommittee",
+        "myapa",
+        "contactcommittee"
+      ],
+      [
+        "change_contactcommittee",
+        "myapa",
+        "contactcommittee"
+      ],
+      [
+        "add_contactcontentadded",
+        "myapa",
+        "contactcontentadded"
+      ],
+      [
+        "change_contactcontentadded",
+        "myapa",
+        "contactcontentadded"
+      ],
+      [
+        "add_contactrelationship",
+        "myapa",
+        "contactrelationship"
+      ],
+      [
+        "change_contactrelationship",
+        "myapa",
+        "contactrelationship"
+      ],
+      [
+        "add_contactrole",
+        "myapa",
+        "contactrole"
+      ],
+      [
+        "change_contactrole",
+        "myapa",
+        "contactrole"
+      ],
+      [
+        "add_contacttagtype",
+        "myapa",
+        "contacttagtype"
+      ],
+      [
+        "change_contacttagtype",
+        "myapa",
+        "contacttagtype"
+      ],
+      [
+        "add_educationaldegree",
+        "myapa",
+        "educationaldegree"
+      ],
+      [
+        "change_educationaldegree",
+        "myapa",
+        "educationaldegree"
+      ],
+      [
+        "add_individualcontact",
+        "myapa",
+        "individualcontact"
+      ],
+      [
+        "change_individualcontact",
+        "myapa",
+        "individualcontact"
+      ],
+      [
+        "add_individualprofile",
+        "myapa",
+        "individualprofile"
+      ],
+      [
+        "change_individualprofile",
+        "myapa",
+        "individualprofile"
+      ],
+      [
+        "add_jobhistory",
+        "myapa",
+        "jobhistory"
+      ],
+      [
+        "change_jobhistory",
+        "myapa",
+        "jobhistory"
+      ],
+      [
+        "add_organization",
+        "myapa",
+        "organization"
+      ],
+      [
+        "change_organization",
+        "myapa",
+        "organization"
+      ],
+      [
+        "add_organizationprofile",
+        "myapa",
+        "organizationprofile"
+      ],
+      [
+        "change_organizationprofile",
+        "myapa",
+        "organizationprofile"
+      ],
+      [
+        "add_provider",
+        "myapa",
+        "provider"
+      ],
+      [
+        "change_provider",
+        "myapa",
+        "provider"
+      ],
+      [
+        "add_school",
+        "myapa",
+        "school"
+      ],
+      [
+        "change_school",
+        "myapa",
+        "school"
+      ],
+      [
+        "add_staffcontact",
+        "myapa",
+        "staffcontact"
+      ],
+      [
+        "change_staffcontact",
+        "myapa",
+        "staffcontact"
+      ],
+      [
+        "add_userauthorizationtoken",
+        "myapa",
+        "userauthorizationtoken"
+      ],
+      [
+        "change_userauthorizationtoken",
+        "myapa",
+        "userauthorizationtoken"
+      ],
+      [
+        "change_landingpagemastercontent",
+        "pages",
+        "landingpagemastercontent"
+      ],
+      [
+        "add_ticket",
+        "support",
+        "ticket"
+      ],
+      [
+        "change_ticket",
+        "support",
+        "ticket"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "planning",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "member",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-P013",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "webuser",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-P013",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CPOL",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "ENVIRON",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PLAN_BLACK-nonmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CFCLT",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "JAPA",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "nonzoning",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "member-chapter",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "commissioner",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "RESORT",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PAS-promo",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "INTL",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "SCD",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "foreign-nonmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "HOUSING",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-M001",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "chapterconferencerep",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "chapterconferenceadmin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "researchadmin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "contactposition_admin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CPUBS",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LAW-nonmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "GALIP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-SCHL",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-M001",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "planningboardmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CEDU",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "webadmin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "promoadmin-book",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CAICP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-SCHL",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "division",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_customers",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "practicingplanner",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "lifemember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "nonmember-nonzoning",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "INTER_GOV",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CCONF",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "aicpexam-newapplicant",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PDO",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PAS",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CPUBS",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CRES",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CHOST",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_usc",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CPRES",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "SMALL_TOWN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_cms_content",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CEDU",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "promoadmin-prospect",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "awc-customer-aicp",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_MD",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CEXH",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "ECON",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CEXH",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_exam_admin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "student-np",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "discountadmin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "duplicateadmin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "nonaicp",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_events",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "TRANS",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LAW",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "FED_PLAN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "studentmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "chapter-only",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CFCLT",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "aicp_cm",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "speaker",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "resumesearch",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "aicpmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CVIP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CSCHL",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "URBAN_DES",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CHOST",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PUDS_BOARD",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "nonmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-COUT",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CVIP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "planningboard-nonmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "nonmember-foryear",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "member-media",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CPD-nonmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "subscriptionadmin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "ZONING",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "FAICP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CAICP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "awc-customer-nonaicp",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "INTER_GOV-nonmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "freestudentadmin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_conf_admin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "nonmember-nonchapter",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CITY_PLAN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CSPK",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PEL",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "WOMEN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAP_NEWS_ED",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "NEW_URB",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "paidstudent",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "aicpexam-previousapplicant",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "npmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "companyrecord",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CCONF",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEGIS_POLICY",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEG_LIAIS",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_cm",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_events_edit",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "chapter",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "mentor",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "INDG_PLAN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "cldr",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CRES",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "foreignmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_AK",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "leadership",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_exam",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-CPOL",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "mwc",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CPD",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "member-nonaicp",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CSPK",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "promoadmin-subscription",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "14CONF-COUT",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LAP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PRIVATE",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_VA",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "reset_password",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "member-pas",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CPRES",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_KS",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_customers_password",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "freestudent",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_NV",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "tugo_cms_systems",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CIP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "INFO_TECH",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "retiredmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-BSPKR",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-CSPKR",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "POLICY_ADVOCACY",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "HMDR",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PLAN_BLACK",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "15CONF-MWC",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "nonmember-women",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "ENVIRON-nonmember",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "example-django-group",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "administrator",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "editor",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "product-admin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "make_public_test_group",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "planning-magazine-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "community-outreach-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "knowledge-center-or-overview-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "specialty-publication-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "about-apa-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "career-center-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "membership-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "conferences-and-meetings-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "connect-with-apa-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "research-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "purchase-BOOK_A00811",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "aicp-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "policy-advocacy-author",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "16CONF",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_VA",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_HMDR",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_CITY_PLAN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_AK",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_WOMEN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_LAW",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_LAP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_URBAN_DES",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_TRANS",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_INTL",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_INFO_TECH",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_ENVIRON",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_ECON",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_HOUSING",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_CPD",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_SMALL_TOWN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_INTER_GOV",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_NEW_URB",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_FED_PLAN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_PLAN_BLACK",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_NE",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_GALIP",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_PRIVATE",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_KS",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "LEADERSHIP_SCD",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "onsite-conference-admin",
+    "permissions": [
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "change_individualcontact",
+        "myapa",
+        "individualcontact"
+      ],
+      [
+        "add_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "change_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "add_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ],
+      [
+        "change_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_NE",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-store-admin",
+    "permissions": [
+      [
+        "add_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "change_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "add_course",
+        "events",
+        "course"
+      ],
+      [
+        "change_course",
+        "events",
+        "course"
+      ],
+      [
+        "add_event",
+        "events",
+        "event"
+      ],
+      [
+        "change_event",
+        "events",
+        "event"
+      ],
+      [
+        "add_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "change_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "add_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "change_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "add_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "change_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "add_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "change_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "add_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "change_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "add_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "change_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "add_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "change_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "add_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "change_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "add_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "change_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "add_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "change_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "add_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ],
+      [
+        "change_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ],
+      [
+        "add_bookcontent",
+        "store",
+        "bookcontent"
+      ],
+      [
+        "change_bookcontent",
+        "store",
+        "bookcontent"
+      ],
+      [
+        "add_cart",
+        "store",
+        "cart"
+      ],
+      [
+        "change_cart",
+        "store",
+        "cart"
+      ],
+      [
+        "add_cartitem",
+        "store",
+        "cartitem"
+      ],
+      [
+        "change_cartitem",
+        "store",
+        "cartitem"
+      ],
+      [
+        "add_contentproduct",
+        "store",
+        "contentproduct"
+      ],
+      [
+        "change_contentproduct",
+        "store",
+        "contentproduct"
+      ],
+      [
+        "add_donation",
+        "store",
+        "donation"
+      ],
+      [
+        "change_donation",
+        "store",
+        "donation"
+      ],
+      [
+        "add_order",
+        "store",
+        "order"
+      ],
+      [
+        "change_order",
+        "store",
+        "order"
+      ],
+      [
+        "add_payment",
+        "store",
+        "payment"
+      ],
+      [
+        "change_payment",
+        "store",
+        "payment"
+      ],
+      [
+        "add_product",
+        "store",
+        "product"
+      ],
+      [
+        "add_productcandidateenrollment",
+        "store",
+        "product"
+      ],
+      [
+        "change_product",
+        "store",
+        "product"
+      ],
+      [
+        "change_productcandidateenrollment",
+        "store",
+        "product"
+      ],
+      [
+        "add_productawardnomination",
+        "store",
+        "productawardnomination"
+      ],
+      [
+        "change_productawardnomination",
+        "store",
+        "productawardnomination"
+      ],
+      [
+        "add_productbook",
+        "store",
+        "productbook"
+      ],
+      [
+        "change_productbook",
+        "store",
+        "productbook"
+      ],
+      [
+        "add_productchapter",
+        "store",
+        "productchapter"
+      ],
+      [
+        "change_productchapter",
+        "store",
+        "productchapter"
+      ],
+      [
+        "add_productcmpercredit",
+        "store",
+        "productcmpercredit"
+      ],
+      [
+        "change_productcmpercredit",
+        "store",
+        "productcmpercredit"
+      ],
+      [
+        "add_productcmregistration",
+        "store",
+        "productcmregistration"
+      ],
+      [
+        "change_productcmregistration",
+        "store",
+        "productcmregistration"
+      ],
+      [
+        "add_productdigitalpublication",
+        "store",
+        "productdigitalpublication"
+      ],
+      [
+        "change_productdigitalpublication",
+        "store",
+        "productdigitalpublication"
+      ],
+      [
+        "add_productdivision",
+        "store",
+        "productdivision"
+      ],
+      [
+        "change_productdivision",
+        "store",
+        "productdivision"
+      ],
+      [
+        "add_productdonation",
+        "store",
+        "productdonation"
+      ],
+      [
+        "change_productdonation",
+        "store",
+        "productdonation"
+      ],
+      [
+        "add_productdues",
+        "store",
+        "productdues"
+      ],
+      [
+        "change_productdues",
+        "store",
+        "productdues"
+      ],
+      [
+        "add_productebook",
+        "store",
+        "productebook"
+      ],
+      [
+        "change_productebook",
+        "store",
+        "productebook"
+      ],
+      [
+        "add_productevent",
+        "store",
+        "productevent"
+      ],
+      [
+        "change_productevent",
+        "store",
+        "productevent"
+      ],
+      [
+        "add_productexamapplication",
+        "store",
+        "productexamapplication"
+      ],
+      [
+        "change_productexamapplication",
+        "store",
+        "productexamapplication"
+      ],
+      [
+        "add_productexamregistration",
+        "store",
+        "productexamregistration"
+      ],
+      [
+        "change_productexamregistration",
+        "store",
+        "productexamregistration"
+      ],
+      [
+        "add_productjobad",
+        "store",
+        "productjobad"
+      ],
+      [
+        "change_productjobad",
+        "store",
+        "productjobad"
+      ],
+      [
+        "add_productoption",
+        "store",
+        "productoption"
+      ],
+      [
+        "change_productoption",
+        "store",
+        "productoption"
+      ],
+      [
+        "add_productprice",
+        "store",
+        "productprice"
+      ],
+      [
+        "change_productprice",
+        "store",
+        "productprice"
+      ],
+      [
+        "add_productpublished",
+        "store",
+        "productpublished"
+      ],
+      [
+        "change_productpublished",
+        "store",
+        "productpublished"
+      ],
+      [
+        "add_productresearchinquiry",
+        "store",
+        "productresearchinquiry"
+      ],
+      [
+        "change_productresearchinquiry",
+        "store",
+        "productresearchinquiry"
+      ],
+      [
+        "add_productshipping",
+        "store",
+        "productshipping"
+      ],
+      [
+        "change_productshipping",
+        "store",
+        "productshipping"
+      ],
+      [
+        "add_productstreaming",
+        "store",
+        "productstreaming"
+      ],
+      [
+        "change_productstreaming",
+        "store",
+        "productstreaming"
+      ],
+      [
+        "add_productsubscription",
+        "store",
+        "productsubscription"
+      ],
+      [
+        "change_productsubscription",
+        "store",
+        "productsubscription"
+      ],
+      [
+        "add_producttax",
+        "store",
+        "producttax"
+      ],
+      [
+        "change_producttax",
+        "store",
+        "producttax"
+      ],
+      [
+        "add_purchase",
+        "store",
+        "purchase"
+      ],
+      [
+        "change_purchase",
+        "store",
+        "purchase"
+      ],
+      [
+        "add_subscription",
+        "store",
+        "subscription"
+      ],
+      [
+        "change_subscription",
+        "store",
+        "subscription"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-aicp",
+    "permissions": [
+      [
+        "add_claim",
+        "cm",
+        "claim"
+      ],
+      [
+        "change_claim",
+        "cm",
+        "claim"
+      ],
+      [
+        "add_cmcomment",
+        "cm",
+        "cmcomment"
+      ],
+      [
+        "change_cmcomment",
+        "cm",
+        "cmcomment"
+      ],
+      [
+        "add_cmorder",
+        "cm",
+        "cmorder"
+      ],
+      [
+        "change_cmorder",
+        "cm",
+        "cmorder"
+      ],
+      [
+        "add_log",
+        "cm",
+        "log"
+      ],
+      [
+        "change_log",
+        "cm",
+        "log"
+      ],
+      [
+        "add_period",
+        "cm",
+        "period"
+      ],
+      [
+        "change_period",
+        "cm",
+        "period"
+      ],
+      [
+        "add_provider",
+        "cm",
+        "provider"
+      ],
+      [
+        "change_provider",
+        "cm",
+        "provider"
+      ],
+      [
+        "add_providerapplication",
+        "cm",
+        "providerapplication"
+      ],
+      [
+        "change_providerapplication",
+        "cm",
+        "providerapplication"
+      ],
+      [
+        "add_providerregistration",
+        "cm",
+        "providerregistration"
+      ],
+      [
+        "change_providerregistration",
+        "cm",
+        "providerregistration"
+      ],
+      [
+        "add_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "change_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "add_course",
+        "events",
+        "course"
+      ],
+      [
+        "change_course",
+        "events",
+        "course"
+      ],
+      [
+        "add_event",
+        "events",
+        "event"
+      ],
+      [
+        "change_event",
+        "events",
+        "event"
+      ],
+      [
+        "add_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "change_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "add_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "change_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "add_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "change_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "add_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "change_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "add_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "change_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "add_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "change_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "add_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "change_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "add_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "change_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "add_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "change_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "add_applicationcategory",
+        "exam",
+        "applicationcategory"
+      ],
+      [
+        "change_applicationcategory",
+        "exam",
+        "applicationcategory"
+      ],
+      [
+        "add_applicationdegree",
+        "exam",
+        "applicationdegree"
+      ],
+      [
+        "change_applicationdegree",
+        "exam",
+        "applicationdegree"
+      ],
+      [
+        "add_applicationjobhistory",
+        "exam",
+        "applicationjobhistory"
+      ],
+      [
+        "change_applicationjobhistory",
+        "exam",
+        "applicationjobhistory"
+      ],
+      [
+        "add_exam",
+        "exam",
+        "exam"
+      ],
+      [
+        "change_exam",
+        "exam",
+        "exam"
+      ],
+      [
+        "add_aicpcandidateapplication",
+        "exam",
+        "examapplication"
+      ],
+      [
+        "add_examapplication",
+        "exam",
+        "examapplication"
+      ],
+      [
+        "change_aicpcandidateapplication",
+        "exam",
+        "examapplication"
+      ],
+      [
+        "change_examapplication",
+        "exam",
+        "examapplication"
+      ],
+      [
+        "add_examapplicationorder",
+        "exam",
+        "examapplicationorder"
+      ],
+      [
+        "change_examapplicationorder",
+        "exam",
+        "examapplicationorder"
+      ],
+      [
+        "add_examapplicationreview",
+        "exam",
+        "examapplicationreview"
+      ],
+      [
+        "change_examapplicationreview",
+        "exam",
+        "examapplicationreview"
+      ],
+      [
+        "add_examapplicationrole",
+        "exam",
+        "examapplicationrole"
+      ],
+      [
+        "change_examapplicationrole",
+        "exam",
+        "examapplicationrole"
+      ],
+      [
+        "add_examregistration",
+        "exam",
+        "examregistration"
+      ],
+      [
+        "change_examregistration",
+        "exam",
+        "examregistration"
+      ],
+      [
+        "add_examregistrationorder",
+        "exam",
+        "examregistrationorder"
+      ],
+      [
+        "change_examregistrationorder",
+        "exam",
+        "examregistrationorder"
+      ],
+      [
+        "add_verificationdocument",
+        "exam",
+        "verificationdocument"
+      ],
+      [
+        "change_verificationdocument",
+        "exam",
+        "verificationdocument"
+      ],
+      [
+        "add_aicppage",
+        "pages",
+        "aicppage"
+      ],
+      [
+        "change_aicppage",
+        "pages",
+        "aicppage"
+      ],
+      [
+        "add_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "change_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "add_connectpage",
+        "pages",
+        "connectpage"
+      ],
+      [
+        "change_connectpage",
+        "pages",
+        "connectpage"
+      ],
+      [
+        "add_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "change_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "add_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "change_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "add_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ],
+      [
+        "change_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ],
+      [
+        "add_answer",
+        "submissions",
+        "answer"
+      ],
+      [
+        "change_answer",
+        "submissions",
+        "answer"
+      ],
+      [
+        "add_answerreview",
+        "submissions",
+        "answerreview"
+      ],
+      [
+        "change_answerreview",
+        "submissions",
+        "answerreview"
+      ],
+      [
+        "add_category",
+        "submissions",
+        "category"
+      ],
+      [
+        "change_category",
+        "submissions",
+        "category"
+      ],
+      [
+        "add_period",
+        "submissions",
+        "period"
+      ],
+      [
+        "change_period",
+        "submissions",
+        "period"
+      ],
+      [
+        "add_question",
+        "submissions",
+        "question"
+      ],
+      [
+        "change_question",
+        "submissions",
+        "question"
+      ],
+      [
+        "add_review",
+        "submissions",
+        "review"
+      ],
+      [
+        "change_review",
+        "submissions",
+        "review"
+      ],
+      [
+        "add_reviewrole",
+        "submissions",
+        "reviewrole"
+      ],
+      [
+        "change_reviewrole",
+        "submissions",
+        "reviewrole"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-conference",
+    "permissions": [
+      [
+        "add_branchoffice",
+        "consultants",
+        "branchoffice"
+      ],
+      [
+        "change_branchoffice",
+        "consultants",
+        "branchoffice"
+      ],
+      [
+        "add_consultant",
+        "consultants",
+        "consultant"
+      ],
+      [
+        "change_consultant",
+        "consultants",
+        "consultant"
+      ],
+      [
+        "add_consultantlisting",
+        "consultants",
+        "consultantlisting"
+      ],
+      [
+        "change_consultantlisting",
+        "consultants",
+        "consultantlisting"
+      ],
+      [
+        "add_rfp",
+        "consultants",
+        "rfp"
+      ],
+      [
+        "change_rfp",
+        "consultants",
+        "rfp"
+      ],
+      [
+        "add_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "change_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "add_course",
+        "events",
+        "course"
+      ],
+      [
+        "change_course",
+        "events",
+        "course"
+      ],
+      [
+        "add_event",
+        "events",
+        "event"
+      ],
+      [
+        "change_event",
+        "events",
+        "event"
+      ],
+      [
+        "add_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "change_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "add_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "change_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "add_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "change_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "add_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "change_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "add_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "change_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "add_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "change_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "add_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "change_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "add_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "change_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "add_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "change_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "add_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "change_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "add_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "change_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "add_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ],
+      [
+        "change_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-editor",
+    "permissions": [
+      [
+        "add_jurorassignment",
+        "awards",
+        "jurorassignment"
+      ],
+      [
+        "change_jurorassignment",
+        "awards",
+        "jurorassignment"
+      ],
+      [
+        "add_submission",
+        "awards",
+        "submission"
+      ],
+      [
+        "change_submission",
+        "awards",
+        "submission"
+      ],
+      [
+        "add_submissioncategory",
+        "awards",
+        "submissioncategory"
+      ],
+      [
+        "change_submissioncategory",
+        "awards",
+        "submissioncategory"
+      ],
+      [
+        "add_microsite",
+        "conference",
+        "microsite"
+      ],
+      [
+        "change_microsite",
+        "conference",
+        "microsite"
+      ],
+      [
+        "add_branchoffice",
+        "consultants",
+        "branchoffice"
+      ],
+      [
+        "change_branchoffice",
+        "consultants",
+        "branchoffice"
+      ],
+      [
+        "add_consultant",
+        "consultants",
+        "consultant"
+      ],
+      [
+        "change_consultant",
+        "consultants",
+        "consultant"
+      ],
+      [
+        "add_consultantlisting",
+        "consultants",
+        "consultantlisting"
+      ],
+      [
+        "change_consultantlisting",
+        "consultants",
+        "consultantlisting"
+      ],
+      [
+        "add_rfp",
+        "consultants",
+        "rfp"
+      ],
+      [
+        "change_rfp",
+        "consultants",
+        "rfp"
+      ],
+      [
+        "add_communitytypecontenttagtype",
+        "content",
+        "communitytypecontenttagtype"
+      ],
+      [
+        "change_communitytypecontenttagtype",
+        "content",
+        "communitytypecontenttagtype"
+      ],
+      [
+        "add_content",
+        "content",
+        "content"
+      ],
+      [
+        "change_content",
+        "content",
+        "content"
+      ],
+      [
+        "add_contentimage",
+        "content",
+        "contentimage"
+      ],
+      [
+        "change_contentimage",
+        "content",
+        "contentimage"
+      ],
+      [
+        "add_contentrelationship",
+        "content",
+        "contentrelationship"
+      ],
+      [
+        "change_contentrelationship",
+        "content",
+        "contentrelationship"
+      ],
+      [
+        "add_contenttagtype",
+        "content",
+        "contenttagtype"
+      ],
+      [
+        "change_contenttagtype",
+        "content",
+        "contenttagtype"
+      ],
+      [
+        "add_contenttaxoupload",
+        "content",
+        "contenttaxoupload"
+      ],
+      [
+        "change_contenttaxoupload",
+        "content",
+        "contenttaxoupload"
+      ],
+      [
+        "add_emailtemplate",
+        "content",
+        "emailtemplate"
+      ],
+      [
+        "change_emailtemplate",
+        "content",
+        "emailtemplate"
+      ],
+      [
+        "add_formatcontenttagtype",
+        "content",
+        "formatcontenttagtype"
+      ],
+      [
+        "change_formatcontenttagtype",
+        "content",
+        "formatcontenttagtype"
+      ],
+      [
+        "add_jurisdictioncontenttagtype",
+        "content",
+        "jurisdictioncontenttagtype"
+      ],
+      [
+        "change_jurisdictioncontenttagtype",
+        "content",
+        "jurisdictioncontenttagtype"
+      ],
+      [
+        "add_mastercontent",
+        "content",
+        "mastercontent"
+      ],
+      [
+        "change_mastercontent",
+        "content",
+        "mastercontent"
+      ],
+      [
+        "add_menuitem",
+        "content",
+        "menuitem"
+      ],
+      [
+        "change_menuitem",
+        "content",
+        "menuitem"
+      ],
+      [
+        "add_messagetext",
+        "content",
+        "messagetext"
+      ],
+      [
+        "change_messagetext",
+        "content",
+        "messagetext"
+      ],
+      [
+        "add_section",
+        "content",
+        "section"
+      ],
+      [
+        "change_section",
+        "content",
+        "section"
+      ],
+      [
+        "add_serialpub",
+        "content",
+        "serialpub"
+      ],
+      [
+        "change_serialpub",
+        "content",
+        "serialpub"
+      ],
+      [
+        "add_tag",
+        "content",
+        "tag"
+      ],
+      [
+        "change_tag",
+        "content",
+        "tag"
+      ],
+      [
+        "add_tagtype",
+        "content",
+        "tagtype"
+      ],
+      [
+        "change_tagtype",
+        "content",
+        "tagtype"
+      ],
+      [
+        "add_taxotopictag",
+        "content",
+        "taxotopictag"
+      ],
+      [
+        "change_taxotopictag",
+        "content",
+        "taxotopictag"
+      ],
+      [
+        "add_taxotopictagflat",
+        "content",
+        "taxotopictagflat"
+      ],
+      [
+        "change_taxotopictagflat",
+        "content",
+        "taxotopictagflat"
+      ],
+      [
+        "add_directory",
+        "directories",
+        "directory"
+      ],
+      [
+        "change_directory",
+        "directories",
+        "directory"
+      ],
+      [
+        "add_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "change_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "add_course",
+        "events",
+        "course"
+      ],
+      [
+        "change_course",
+        "events",
+        "course"
+      ],
+      [
+        "add_event",
+        "events",
+        "event"
+      ],
+      [
+        "change_event",
+        "events",
+        "event"
+      ],
+      [
+        "add_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "change_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "add_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "change_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "add_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "change_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "add_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "change_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "add_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "change_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "add_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "change_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "add_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "change_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "add_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "change_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "add_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "change_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "add_job",
+        "jobs",
+        "job"
+      ],
+      [
+        "change_job",
+        "jobs",
+        "job"
+      ],
+      [
+        "add_collection",
+        "knowledgebase",
+        "collection"
+      ],
+      [
+        "change_collection",
+        "knowledgebase",
+        "collection"
+      ],
+      [
+        "add_collectionrelationship",
+        "knowledgebase",
+        "collectionrelationship"
+      ],
+      [
+        "change_collectionrelationship",
+        "knowledgebase",
+        "collectionrelationship"
+      ],
+      [
+        "add_healthresource",
+        "knowledgebase",
+        "healthresource"
+      ],
+      [
+        "change_healthresource",
+        "knowledgebase",
+        "healthresource"
+      ],
+      [
+        "add_resource",
+        "knowledgebase",
+        "resource"
+      ],
+      [
+        "change_resource",
+        "knowledgebase",
+        "resource"
+      ],
+      [
+        "add_resourcesuggestion",
+        "knowledgebase",
+        "resourcesuggestion"
+      ],
+      [
+        "change_resourcesuggestion",
+        "knowledgebase",
+        "resourcesuggestion"
+      ],
+      [
+        "add_resourcesuggestionreview",
+        "knowledgebase",
+        "resourcesuggestionreview"
+      ],
+      [
+        "change_resourcesuggestionreview",
+        "knowledgebase",
+        "resourcesuggestionreview"
+      ],
+      [
+        "add_solarresource",
+        "knowledgebase",
+        "solarresource"
+      ],
+      [
+        "change_solarresource",
+        "knowledgebase",
+        "solarresource"
+      ],
+      [
+        "add_story",
+        "knowledgebase",
+        "story"
+      ],
+      [
+        "change_story",
+        "knowledgebase",
+        "story"
+      ],
+      [
+        "add_storyreview",
+        "knowledgebase",
+        "storyreview"
+      ],
+      [
+        "change_storyreview",
+        "knowledgebase",
+        "storyreview"
+      ],
+      [
+        "add_suggestionreviewrole",
+        "knowledgebase",
+        "suggestionreviewrole"
+      ],
+      [
+        "change_suggestionreviewrole",
+        "knowledgebase",
+        "suggestionreviewrole"
+      ],
+      [
+        "add_aboutpage",
+        "pages",
+        "aboutpage"
+      ],
+      [
+        "change_aboutpage",
+        "pages",
+        "aboutpage"
+      ],
+      [
+        "add_aicppage",
+        "pages",
+        "aicppage"
+      ],
+      [
+        "change_aicppage",
+        "pages",
+        "aicppage"
+      ],
+      [
+        "add_careerpage",
+        "pages",
+        "careerpage"
+      ],
+      [
+        "change_careerpage",
+        "pages",
+        "careerpage"
+      ],
+      [
+        "add_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "change_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "add_connectpage",
+        "pages",
+        "connectpage"
+      ],
+      [
+        "change_connectpage",
+        "pages",
+        "connectpage"
+      ],
+      [
+        "add_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "change_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "add_landingpage",
+        "pages",
+        "landingpage"
+      ],
+      [
+        "change_landingpage",
+        "pages",
+        "landingpage"
+      ],
+      [
+        "add_membershippage",
+        "pages",
+        "membershippage"
+      ],
+      [
+        "change_membershippage",
+        "pages",
+        "membershippage"
+      ],
+      [
+        "add_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "change_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "add_policypage",
+        "pages",
+        "policypage"
+      ],
+      [
+        "change_policypage",
+        "pages",
+        "policypage"
+      ],
+      [
+        "add_article",
+        "publications",
+        "article"
+      ],
+      [
+        "change_article",
+        "publications",
+        "article"
+      ],
+      [
+        "add_book",
+        "publications",
+        "book"
+      ],
+      [
+        "change_book",
+        "publications",
+        "book"
+      ],
+      [
+        "add_ebook",
+        "publications",
+        "ebook"
+      ],
+      [
+        "change_ebook",
+        "publications",
+        "ebook"
+      ],
+      [
+        "add_multipleformatsrelated",
+        "publications",
+        "multipleformatsrelated"
+      ],
+      [
+        "change_multipleformatsrelated",
+        "publications",
+        "multipleformatsrelated"
+      ],
+      [
+        "add_planningmagarticle",
+        "publications",
+        "planningmagarticle"
+      ],
+      [
+        "change_planningmagarticle",
+        "publications",
+        "planningmagarticle"
+      ],
+      [
+        "add_publication",
+        "publications",
+        "publication"
+      ],
+      [
+        "change_publication",
+        "publications",
+        "publication"
+      ],
+      [
+        "add_report",
+        "publications",
+        "report"
+      ],
+      [
+        "change_report",
+        "publications",
+        "report"
+      ],
+      [
+        "add_redirect",
+        "redirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "redirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "redirects",
+        "redirect"
+      ],
+      [
+        "add_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "change_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "add_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ],
+      [
+        "change_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ],
+      [
+        "add_inquiry",
+        "research_inquiries",
+        "inquiry"
+      ],
+      [
+        "change_inquiry",
+        "research_inquiries",
+        "inquiry"
+      ],
+      [
+        "add_inquiryreview",
+        "research_inquiries",
+        "inquiryreview"
+      ],
+      [
+        "change_inquiryreview",
+        "research_inquiries",
+        "inquiryreview"
+      ],
+      [
+        "add_inquiryreviewrole",
+        "research_inquiries",
+        "inquiryreviewrole"
+      ],
+      [
+        "change_inquiryreviewrole",
+        "research_inquiries",
+        "inquiryreviewrole"
+      ],
+      [
+        "add_bookcontent",
+        "store",
+        "bookcontent"
+      ],
+      [
+        "change_bookcontent",
+        "store",
+        "bookcontent"
+      ],
+      [
+        "add_cart",
+        "store",
+        "cart"
+      ],
+      [
+        "change_cart",
+        "store",
+        "cart"
+      ],
+      [
+        "add_cartitem",
+        "store",
+        "cartitem"
+      ],
+      [
+        "change_cartitem",
+        "store",
+        "cartitem"
+      ],
+      [
+        "add_contentproduct",
+        "store",
+        "contentproduct"
+      ],
+      [
+        "change_contentproduct",
+        "store",
+        "contentproduct"
+      ],
+      [
+        "add_donation",
+        "store",
+        "donation"
+      ],
+      [
+        "change_donation",
+        "store",
+        "donation"
+      ],
+      [
+        "add_order",
+        "store",
+        "order"
+      ],
+      [
+        "change_order",
+        "store",
+        "order"
+      ],
+      [
+        "add_payment",
+        "store",
+        "payment"
+      ],
+      [
+        "change_payment",
+        "store",
+        "payment"
+      ],
+      [
+        "add_product",
+        "store",
+        "product"
+      ],
+      [
+        "change_product",
+        "store",
+        "product"
+      ],
+      [
+        "add_productawardnomination",
+        "store",
+        "productawardnomination"
+      ],
+      [
+        "change_productawardnomination",
+        "store",
+        "productawardnomination"
+      ],
+      [
+        "add_productbook",
+        "store",
+        "productbook"
+      ],
+      [
+        "change_productbook",
+        "store",
+        "productbook"
+      ],
+      [
+        "add_productchapter",
+        "store",
+        "productchapter"
+      ],
+      [
+        "change_productchapter",
+        "store",
+        "productchapter"
+      ],
+      [
+        "add_productcmpercredit",
+        "store",
+        "productcmpercredit"
+      ],
+      [
+        "change_productcmpercredit",
+        "store",
+        "productcmpercredit"
+      ],
+      [
+        "add_productcmregistration",
+        "store",
+        "productcmregistration"
+      ],
+      [
+        "change_productcmregistration",
+        "store",
+        "productcmregistration"
+      ],
+      [
+        "add_productdigitalpublication",
+        "store",
+        "productdigitalpublication"
+      ],
+      [
+        "change_productdigitalpublication",
+        "store",
+        "productdigitalpublication"
+      ],
+      [
+        "add_productdivision",
+        "store",
+        "productdivision"
+      ],
+      [
+        "change_productdivision",
+        "store",
+        "productdivision"
+      ],
+      [
+        "add_productdonation",
+        "store",
+        "productdonation"
+      ],
+      [
+        "change_productdonation",
+        "store",
+        "productdonation"
+      ],
+      [
+        "add_productdues",
+        "store",
+        "productdues"
+      ],
+      [
+        "change_productdues",
+        "store",
+        "productdues"
+      ],
+      [
+        "add_productebook",
+        "store",
+        "productebook"
+      ],
+      [
+        "change_productebook",
+        "store",
+        "productebook"
+      ],
+      [
+        "add_productevent",
+        "store",
+        "productevent"
+      ],
+      [
+        "change_productevent",
+        "store",
+        "productevent"
+      ],
+      [
+        "add_productexamapplication",
+        "store",
+        "productexamapplication"
+      ],
+      [
+        "change_productexamapplication",
+        "store",
+        "productexamapplication"
+      ],
+      [
+        "add_productexamregistration",
+        "store",
+        "productexamregistration"
+      ],
+      [
+        "change_productexamregistration",
+        "store",
+        "productexamregistration"
+      ],
+      [
+        "add_productjobad",
+        "store",
+        "productjobad"
+      ],
+      [
+        "change_productjobad",
+        "store",
+        "productjobad"
+      ],
+      [
+        "add_productoption",
+        "store",
+        "productoption"
+      ],
+      [
+        "change_productoption",
+        "store",
+        "productoption"
+      ],
+      [
+        "add_productprice",
+        "store",
+        "productprice"
+      ],
+      [
+        "change_productprice",
+        "store",
+        "productprice"
+      ],
+      [
+        "add_productpublished",
+        "store",
+        "productpublished"
+      ],
+      [
+        "change_productpublished",
+        "store",
+        "productpublished"
+      ],
+      [
+        "add_productresearchinquiry",
+        "store",
+        "productresearchinquiry"
+      ],
+      [
+        "change_productresearchinquiry",
+        "store",
+        "productresearchinquiry"
+      ],
+      [
+        "add_productshipping",
+        "store",
+        "productshipping"
+      ],
+      [
+        "change_productshipping",
+        "store",
+        "productshipping"
+      ],
+      [
+        "add_productstreaming",
+        "store",
+        "productstreaming"
+      ],
+      [
+        "change_productstreaming",
+        "store",
+        "productstreaming"
+      ],
+      [
+        "add_productsubscription",
+        "store",
+        "productsubscription"
+      ],
+      [
+        "change_productsubscription",
+        "store",
+        "productsubscription"
+      ],
+      [
+        "add_producttax",
+        "store",
+        "producttax"
+      ],
+      [
+        "change_producttax",
+        "store",
+        "producttax"
+      ],
+      [
+        "add_purchase",
+        "store",
+        "purchase"
+      ],
+      [
+        "change_purchase",
+        "store",
+        "purchase"
+      ],
+      [
+        "add_subscription",
+        "store",
+        "subscription"
+      ],
+      [
+        "change_subscription",
+        "store",
+        "subscription"
+      ],
+      [
+        "add_answer",
+        "submissions",
+        "answer"
+      ],
+      [
+        "change_answer",
+        "submissions",
+        "answer"
+      ],
+      [
+        "add_answerreview",
+        "submissions",
+        "answerreview"
+      ],
+      [
+        "change_answerreview",
+        "submissions",
+        "answerreview"
+      ],
+      [
+        "add_category",
+        "submissions",
+        "category"
+      ],
+      [
+        "change_category",
+        "submissions",
+        "category"
+      ],
+      [
+        "add_period",
+        "submissions",
+        "period"
+      ],
+      [
+        "change_period",
+        "submissions",
+        "period"
+      ],
+      [
+        "add_question",
+        "submissions",
+        "question"
+      ],
+      [
+        "change_question",
+        "submissions",
+        "question"
+      ],
+      [
+        "add_review",
+        "submissions",
+        "review"
+      ],
+      [
+        "change_review",
+        "submissions",
+        "review"
+      ],
+      [
+        "add_reviewrole",
+        "submissions",
+        "reviewrole"
+      ],
+      [
+        "change_reviewrole",
+        "submissions",
+        "reviewrole"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-research",
+    "permissions": [
+      [
+        "add_communitytypecontenttagtype",
+        "content",
+        "communitytypecontenttagtype"
+      ],
+      [
+        "change_communitytypecontenttagtype",
+        "content",
+        "communitytypecontenttagtype"
+      ],
+      [
+        "change_content",
+        "content",
+        "content"
+      ],
+      [
+        "add_contentrelationship",
+        "content",
+        "contentrelationship"
+      ],
+      [
+        "change_contentrelationship",
+        "content",
+        "contentrelationship"
+      ],
+      [
+        "delete_contentrelationship",
+        "content",
+        "contentrelationship"
+      ],
+      [
+        "add_contenttagtype",
+        "content",
+        "contenttagtype"
+      ],
+      [
+        "change_contenttagtype",
+        "content",
+        "contenttagtype"
+      ],
+      [
+        "add_formatcontenttagtype",
+        "content",
+        "formatcontenttagtype"
+      ],
+      [
+        "change_formatcontenttagtype",
+        "content",
+        "formatcontenttagtype"
+      ],
+      [
+        "add_jurisdictioncontenttagtype",
+        "content",
+        "jurisdictioncontenttagtype"
+      ],
+      [
+        "change_jurisdictioncontenttagtype",
+        "content",
+        "jurisdictioncontenttagtype"
+      ],
+      [
+        "add_taxotopictag",
+        "content",
+        "taxotopictag"
+      ],
+      [
+        "change_taxotopictag",
+        "content",
+        "taxotopictag"
+      ],
+      [
+        "add_collection",
+        "knowledgebase",
+        "collection"
+      ],
+      [
+        "change_collection",
+        "knowledgebase",
+        "collection"
+      ],
+      [
+        "add_collectionrelationship",
+        "knowledgebase",
+        "collectionrelationship"
+      ],
+      [
+        "change_collectionrelationship",
+        "knowledgebase",
+        "collectionrelationship"
+      ],
+      [
+        "add_healthresource",
+        "knowledgebase",
+        "healthresource"
+      ],
+      [
+        "change_healthresource",
+        "knowledgebase",
+        "healthresource"
+      ],
+      [
+        "add_resource",
+        "knowledgebase",
+        "resource"
+      ],
+      [
+        "change_resource",
+        "knowledgebase",
+        "resource"
+      ],
+      [
+        "add_resourcesuggestion",
+        "knowledgebase",
+        "resourcesuggestion"
+      ],
+      [
+        "change_resourcesuggestion",
+        "knowledgebase",
+        "resourcesuggestion"
+      ],
+      [
+        "add_resourcesuggestionreview",
+        "knowledgebase",
+        "resourcesuggestionreview"
+      ],
+      [
+        "change_resourcesuggestionreview",
+        "knowledgebase",
+        "resourcesuggestionreview"
+      ],
+      [
+        "add_solarresource",
+        "knowledgebase",
+        "solarresource"
+      ],
+      [
+        "change_solarresource",
+        "knowledgebase",
+        "solarresource"
+      ],
+      [
+        "add_story",
+        "knowledgebase",
+        "story"
+      ],
+      [
+        "change_story",
+        "knowledgebase",
+        "story"
+      ],
+      [
+        "add_storyreview",
+        "knowledgebase",
+        "storyreview"
+      ],
+      [
+        "change_storyreview",
+        "knowledgebase",
+        "storyreview"
+      ],
+      [
+        "add_suggestionreviewrole",
+        "knowledgebase",
+        "suggestionreviewrole"
+      ],
+      [
+        "change_suggestionreviewrole",
+        "knowledgebase",
+        "suggestionreviewrole"
+      ],
+      [
+        "add_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "change_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "add_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "change_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "add_contentplace",
+        "places",
+        "contentplace"
+      ],
+      [
+        "change_contentplace",
+        "places",
+        "contentplace"
+      ],
+      [
+        "add_place",
+        "places",
+        "place"
+      ],
+      [
+        "change_place",
+        "places",
+        "place"
+      ],
+      [
+        "add_placedata",
+        "places",
+        "placedata"
+      ],
+      [
+        "change_placedata",
+        "places",
+        "placedata"
+      ],
+      [
+        "add_inquiry",
+        "research_inquiries",
+        "inquiry"
+      ],
+      [
+        "change_inquiry",
+        "research_inquiries",
+        "inquiry"
+      ],
+      [
+        "add_inquiryreview",
+        "research_inquiries",
+        "inquiryreview"
+      ],
+      [
+        "change_inquiryreview",
+        "research_inquiries",
+        "inquiryreview"
+      ],
+      [
+        "add_inquiryreviewrole",
+        "research_inquiries",
+        "inquiryreviewrole"
+      ],
+      [
+        "change_inquiryreviewrole",
+        "research_inquiries",
+        "inquiryreviewrole"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-communications",
+    "permissions": [
+      [
+        "add_jurorassignment",
+        "awards",
+        "jurorassignment"
+      ],
+      [
+        "change_jurorassignment",
+        "awards",
+        "jurorassignment"
+      ],
+      [
+        "add_submission",
+        "awards",
+        "submission"
+      ],
+      [
+        "change_submission",
+        "awards",
+        "submission"
+      ],
+      [
+        "add_submissioncategory",
+        "awards",
+        "submissioncategory"
+      ],
+      [
+        "change_submissioncategory",
+        "awards",
+        "submissioncategory"
+      ],
+      [
+        "add_aboutpage",
+        "pages",
+        "aboutpage"
+      ],
+      [
+        "change_aboutpage",
+        "pages",
+        "aboutpage"
+      ],
+      [
+        "add_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "change_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "add_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "change_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "add_policypage",
+        "pages",
+        "policypage"
+      ],
+      [
+        "change_policypage",
+        "pages",
+        "policypage"
+      ],
+      [
+        "add_article",
+        "publications",
+        "article"
+      ],
+      [
+        "change_article",
+        "publications",
+        "article"
+      ],
+      [
+        "add_book",
+        "publications",
+        "book"
+      ],
+      [
+        "change_book",
+        "publications",
+        "book"
+      ],
+      [
+        "add_ebook",
+        "publications",
+        "ebook"
+      ],
+      [
+        "change_ebook",
+        "publications",
+        "ebook"
+      ],
+      [
+        "add_multipleformatsrelated",
+        "publications",
+        "multipleformatsrelated"
+      ],
+      [
+        "change_multipleformatsrelated",
+        "publications",
+        "multipleformatsrelated"
+      ],
+      [
+        "add_planningmagarticle",
+        "publications",
+        "planningmagarticle"
+      ],
+      [
+        "change_planningmagarticle",
+        "publications",
+        "planningmagarticle"
+      ],
+      [
+        "add_publication",
+        "publications",
+        "publication"
+      ],
+      [
+        "change_publication",
+        "publications",
+        "publication"
+      ],
+      [
+        "add_report",
+        "publications",
+        "report"
+      ],
+      [
+        "change_report",
+        "publications",
+        "report"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-education",
+    "permissions": [
+      [
+        "add_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "change_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "add_course",
+        "events",
+        "course"
+      ],
+      [
+        "change_course",
+        "events",
+        "course"
+      ],
+      [
+        "add_event",
+        "events",
+        "event"
+      ],
+      [
+        "change_event",
+        "events",
+        "event"
+      ],
+      [
+        "add_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "change_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "add_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "change_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "add_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "change_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "add_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "change_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "add_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "change_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "add_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "change_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "add_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "change_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "add_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "change_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "add_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "change_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "add_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "change_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "add_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "change_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "add_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "change_attendee",
+        "registrations",
+        "attendee"
+      ],
+      [
+        "add_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ],
+      [
+        "change_nationalconferenceattendee",
+        "registrations",
+        "nationalconferenceattendee"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-membership",
+    "permissions": [
+      [
+        "add_claim",
+        "cm",
+        "claim"
+      ],
+      [
+        "change_claim",
+        "cm",
+        "claim"
+      ],
+      [
+        "add_cmcomment",
+        "cm",
+        "cmcomment"
+      ],
+      [
+        "change_cmcomment",
+        "cm",
+        "cmcomment"
+      ],
+      [
+        "add_cmorder",
+        "cm",
+        "cmorder"
+      ],
+      [
+        "change_cmorder",
+        "cm",
+        "cmorder"
+      ],
+      [
+        "add_log",
+        "cm",
+        "log"
+      ],
+      [
+        "change_log",
+        "cm",
+        "log"
+      ],
+      [
+        "add_period",
+        "cm",
+        "period"
+      ],
+      [
+        "change_period",
+        "cm",
+        "period"
+      ],
+      [
+        "add_provider",
+        "cm",
+        "provider"
+      ],
+      [
+        "change_provider",
+        "cm",
+        "provider"
+      ],
+      [
+        "add_providerapplication",
+        "cm",
+        "providerapplication"
+      ],
+      [
+        "change_providerapplication",
+        "cm",
+        "providerapplication"
+      ],
+      [
+        "add_providerregistration",
+        "cm",
+        "providerregistration"
+      ],
+      [
+        "change_providerregistration",
+        "cm",
+        "providerregistration"
+      ],
+      [
+        "add_applicationcategory",
+        "exam",
+        "applicationcategory"
+      ],
+      [
+        "change_applicationcategory",
+        "exam",
+        "applicationcategory"
+      ],
+      [
+        "add_applicationdegree",
+        "exam",
+        "applicationdegree"
+      ],
+      [
+        "change_applicationdegree",
+        "exam",
+        "applicationdegree"
+      ],
+      [
+        "add_applicationjobhistory",
+        "exam",
+        "applicationjobhistory"
+      ],
+      [
+        "change_applicationjobhistory",
+        "exam",
+        "applicationjobhistory"
+      ],
+      [
+        "add_exam",
+        "exam",
+        "exam"
+      ],
+      [
+        "change_exam",
+        "exam",
+        "exam"
+      ],
+      [
+        "add_examapplication",
+        "exam",
+        "examapplication"
+      ],
+      [
+        "change_examapplication",
+        "exam",
+        "examapplication"
+      ],
+      [
+        "add_examapplicationorder",
+        "exam",
+        "examapplicationorder"
+      ],
+      [
+        "change_examapplicationorder",
+        "exam",
+        "examapplicationorder"
+      ],
+      [
+        "add_examapplicationreview",
+        "exam",
+        "examapplicationreview"
+      ],
+      [
+        "change_examapplicationreview",
+        "exam",
+        "examapplicationreview"
+      ],
+      [
+        "add_examapplicationrole",
+        "exam",
+        "examapplicationrole"
+      ],
+      [
+        "change_examapplicationrole",
+        "exam",
+        "examapplicationrole"
+      ],
+      [
+        "add_examregistration",
+        "exam",
+        "examregistration"
+      ],
+      [
+        "change_examregistration",
+        "exam",
+        "examregistration"
+      ],
+      [
+        "add_examregistrationorder",
+        "exam",
+        "examregistrationorder"
+      ],
+      [
+        "change_examregistrationorder",
+        "exam",
+        "examregistrationorder"
+      ],
+      [
+        "add_verificationdocument",
+        "exam",
+        "verificationdocument"
+      ],
+      [
+        "change_verificationdocument",
+        "exam",
+        "verificationdocument"
+      ],
+      [
+        "add_membershippage",
+        "pages",
+        "membershippage"
+      ],
+      [
+        "change_membershippage",
+        "pages",
+        "membershippage"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-careers",
+    "permissions": [
+      [
+        "add_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "change_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "add_course",
+        "events",
+        "course"
+      ],
+      [
+        "change_course",
+        "events",
+        "course"
+      ],
+      [
+        "add_event",
+        "events",
+        "event"
+      ],
+      [
+        "change_event",
+        "events",
+        "event"
+      ],
+      [
+        "add_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "change_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "add_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "change_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "add_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "change_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "add_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "change_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "add_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "change_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "add_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "change_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "add_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "change_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "add_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "change_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "add_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "change_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "add_careerpage",
+        "pages",
+        "careerpage"
+      ],
+      [
+        "change_careerpage",
+        "pages",
+        "careerpage"
+      ],
+      [
+        "add_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "change_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-leadership",
+    "permissions": [
+      [
+        "add_directory",
+        "directories",
+        "directory"
+      ],
+      [
+        "change_directory",
+        "directories",
+        "directory"
+      ],
+      [
+        "add_aboutpage",
+        "pages",
+        "aboutpage"
+      ],
+      [
+        "change_aboutpage",
+        "pages",
+        "aboutpage"
+      ],
+      [
+        "add_careerpage",
+        "pages",
+        "careerpage"
+      ],
+      [
+        "change_careerpage",
+        "pages",
+        "careerpage"
+      ],
+      [
+        "add_connectpage",
+        "pages",
+        "connectpage"
+      ],
+      [
+        "change_connectpage",
+        "pages",
+        "connectpage"
+      ],
+      [
+        "add_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "change_outreachpage",
+        "pages",
+        "outreachpage"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-marketing",
+    "permissions": [
+      [
+        "add_aboutpage",
+        "pages",
+        "aboutpage"
+      ],
+      [
+        "change_aboutpage",
+        "pages",
+        "aboutpage"
+      ],
+      [
+        "add_aicppage",
+        "pages",
+        "aicppage"
+      ],
+      [
+        "change_aicppage",
+        "pages",
+        "aicppage"
+      ],
+      [
+        "add_careerpage",
+        "pages",
+        "careerpage"
+      ],
+      [
+        "change_careerpage",
+        "pages",
+        "careerpage"
+      ],
+      [
+        "add_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "change_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "add_connectpage",
+        "pages",
+        "connectpage"
+      ],
+      [
+        "change_connectpage",
+        "pages",
+        "connectpage"
+      ],
+      [
+        "add_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "change_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "add_membershippage",
+        "pages",
+        "membershippage"
+      ],
+      [
+        "change_membershippage",
+        "pages",
+        "membershippage"
+      ],
+      [
+        "add_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "change_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "add_policypage",
+        "pages",
+        "policypage"
+      ],
+      [
+        "change_policypage",
+        "pages",
+        "policypage"
+      ],
+      [
+        "add_article",
+        "publications",
+        "article"
+      ],
+      [
+        "change_article",
+        "publications",
+        "article"
+      ],
+      [
+        "add_book",
+        "publications",
+        "book"
+      ],
+      [
+        "change_book",
+        "publications",
+        "book"
+      ],
+      [
+        "add_ebook",
+        "publications",
+        "ebook"
+      ],
+      [
+        "change_ebook",
+        "publications",
+        "ebook"
+      ],
+      [
+        "add_multipleformatsrelated",
+        "publications",
+        "multipleformatsrelated"
+      ],
+      [
+        "change_multipleformatsrelated",
+        "publications",
+        "multipleformatsrelated"
+      ],
+      [
+        "add_planningmagarticle",
+        "publications",
+        "planningmagarticle"
+      ],
+      [
+        "change_planningmagarticle",
+        "publications",
+        "planningmagarticle"
+      ],
+      [
+        "add_publication",
+        "publications",
+        "publication"
+      ],
+      [
+        "change_publication",
+        "publications",
+        "publication"
+      ],
+      [
+        "add_report",
+        "publications",
+        "report"
+      ],
+      [
+        "change_report",
+        "publications",
+        "report"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-publications",
+    "permissions": [
+      [
+        "add_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "change_knowledgecenterpage",
+        "pages",
+        "knowledgecenterpage"
+      ],
+      [
+        "add_article",
+        "publications",
+        "article"
+      ],
+      [
+        "change_article",
+        "publications",
+        "article"
+      ],
+      [
+        "add_book",
+        "publications",
+        "book"
+      ],
+      [
+        "change_book",
+        "publications",
+        "book"
+      ],
+      [
+        "add_ebook",
+        "publications",
+        "ebook"
+      ],
+      [
+        "change_ebook",
+        "publications",
+        "ebook"
+      ],
+      [
+        "add_multipleformatsrelated",
+        "publications",
+        "multipleformatsrelated"
+      ],
+      [
+        "change_multipleformatsrelated",
+        "publications",
+        "multipleformatsrelated"
+      ],
+      [
+        "add_planningmagarticle",
+        "publications",
+        "planningmagarticle"
+      ],
+      [
+        "change_planningmagarticle",
+        "publications",
+        "planningmagarticle"
+      ],
+      [
+        "add_publication",
+        "publications",
+        "publication"
+      ],
+      [
+        "change_publication",
+        "publications",
+        "publication"
+      ],
+      [
+        "add_report",
+        "publications",
+        "report"
+      ],
+      [
+        "change_report",
+        "publications",
+        "report"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-policy",
+    "permissions": [
+      [
+        "add_jurorassignment",
+        "awards",
+        "jurorassignment"
+      ],
+      [
+        "change_jurorassignment",
+        "awards",
+        "jurorassignment"
+      ],
+      [
+        "add_submission",
+        "awards",
+        "submission"
+      ],
+      [
+        "change_submission",
+        "awards",
+        "submission"
+      ],
+      [
+        "add_submissioncategory",
+        "awards",
+        "submissioncategory"
+      ],
+      [
+        "change_submissioncategory",
+        "awards",
+        "submissioncategory"
+      ],
+      [
+        "add_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "change_activity",
+        "events",
+        "activity"
+      ],
+      [
+        "add_course",
+        "events",
+        "course"
+      ],
+      [
+        "change_course",
+        "events",
+        "course"
+      ],
+      [
+        "add_event",
+        "events",
+        "event"
+      ],
+      [
+        "change_event",
+        "events",
+        "event"
+      ],
+      [
+        "add_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "change_eventlogentry",
+        "events",
+        "eventlogentry"
+      ],
+      [
+        "add_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "change_eventmulti",
+        "events",
+        "eventmulti"
+      ],
+      [
+        "add_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "change_eventsingle",
+        "events",
+        "eventsingle"
+      ],
+      [
+        "add_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "change_nationalconferenceactivity",
+        "events",
+        "nationalconferenceactivity"
+      ],
+      [
+        "add_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "change_nationalconferenceeval",
+        "events",
+        "nationalconferenceeval"
+      ],
+      [
+        "add_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "change_nationalconferenceparticipant",
+        "events",
+        "nationalconferenceparticipant"
+      ],
+      [
+        "add_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "change_nationalconferenceproposal",
+        "events",
+        "nationalconferenceproposal"
+      ],
+      [
+        "add_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "change_speaker",
+        "events",
+        "speaker"
+      ],
+      [
+        "add_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "change_speakereval",
+        "events",
+        "speakereval"
+      ],
+      [
+        "add_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "change_conferencespage",
+        "pages",
+        "conferencespage"
+      ],
+      [
+        "add_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "change_outreachpage",
+        "pages",
+        "outreachpage"
+      ],
+      [
+        "add_policypage",
+        "pages",
+        "policypage"
+      ],
+      [
+        "change_policypage",
+        "pages",
+        "policypage"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "reinstatement_cm",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "organization-store-admin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "17CONF",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PDO-list",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Moderators",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_document",
+        "wagtaildocs",
+        "document"
+      ],
+      [
+        "change_document",
+        "wagtaildocs",
+        "document"
+      ],
+      [
+        "delete_document",
+        "wagtaildocs",
+        "document"
+      ],
+      [
+        "add_image",
+        "wagtailimages",
+        "image"
+      ],
+      [
+        "change_image",
+        "wagtailimages",
+        "image"
+      ],
+      [
+        "delete_image",
+        "wagtailimages",
+        "image"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Editors",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_document",
+        "wagtaildocs",
+        "document"
+      ],
+      [
+        "change_document",
+        "wagtaildocs",
+        "document"
+      ],
+      [
+        "delete_document",
+        "wagtaildocs",
+        "document"
+      ],
+      [
+        "add_image",
+        "wagtailimages",
+        "image"
+      ],
+      [
+        "change_image",
+        "wagtailimages",
+        "image"
+      ],
+      [
+        "delete_image",
+        "wagtailimages",
+        "image"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "aicp_cm_OLD",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "HI",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "URBAN_DES-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "COMPONENT_ADMIN",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PAN",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "candidate_cm",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "purchase-BOOK_P589",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "new-member",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "staff-cms-editor",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "18CONF",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_MO-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "TRANS-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "HOUSING-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "leader",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "BLACK-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_WI-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_CT-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_CA-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_TN-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_FL-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "PRIVATE-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_WCC-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_NNE-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CITY-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_AZ-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "WOMEN-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_TX-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_HI-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_KS-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "CHAPT_VA-admin",
+    "permissions": [
+      [
+        "access_admin",
+        "wagtailadmin",
+        "admin"
+      ],
+      [
+        "add_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "change_redirect",
+        "wagtailredirects",
+        "redirect"
+      ],
+      [
+        "delete_redirect",
+        "wagtailredirects",
+        "redirect"
+      ]
+    ]
+  }
+}
+]

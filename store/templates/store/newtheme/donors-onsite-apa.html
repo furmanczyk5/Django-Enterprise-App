@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2019 Annual Fund Donors Donors</title>
+  <link rel="icon" href="{% static 'store/image/foundation-icon.png' %}" type="image/png"/>
+  <link rel="stylesheet" href="{% static 'store/css/donors-onsite.css' %}" />
+  <link rel="stylesheet" href="{% static 'store/css/bootstrap.min.css' %}" />
+</head>
+
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3">
+      <img src="{% static 'store/image/APAFoundationLogo.png' %}"
+         alt="APA Foundation Logo"
+         class="img-fluid"
+    />
+    </div>
+    <div class="col-lg-9">
+      <h1 class="apa-blue">Thank You To Our 2019 Donors!</h1>
+    </div>
+
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row mh-100">
+
+    {% for donor in donors %}
+    <div class="col"><span class="donor-name">{{ donor }}</span></div>
+    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+    <div class="w-100"></div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+</div>
+
+  <script src="{% static 'store/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

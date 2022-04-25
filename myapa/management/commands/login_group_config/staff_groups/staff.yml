@@ -1,0 +1,29 @@
+---
+
+# Django model admin permissions for the staff group.
+# Whether or not someone gets assigned the staff group is determined
+# by the co_id field in the iMIS Name table, do not directly assign any here.
+staff_users:
+  -
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+  - blog_blogcategorycontenttagtype
+  - blog_blogpost
+  - content_communitytypecontenttagtype
+  - content_contenttagtype
+  - content_formatcontenttagtype
+  - content_jurisdictioncontenttagtype
+  - content_taxotopictag
+  - imagebank_image
+  - media_audio
+  - media_document
+  - media_image
+  - media_media
+  - media_mediaimagemastercontent
+  - media_video
+  - myapa_individualcontact
+  - pages_landingpagemastercontent
+  - support_ticket

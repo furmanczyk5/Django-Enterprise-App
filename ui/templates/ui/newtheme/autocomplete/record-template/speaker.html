@@ -1,0 +1,37 @@
+{% comment %}
+<!-- The Add New Contact link assumes that the page is using "PlanningModal" javascript -->
+{% endcomment %}
+
+<div class="menu">
+{% if is_search %}
+  <div class="menu-header menu-item clearfix">
+    <a class="clear-search pull-right btn btn-sm btn-default">clear</a>
+    <p class="small">{{results|length}} of {{results_total}} results showing</p>
+  </div>
+{%endif%}
+{% if results %}
+<div class="list-of-speakers records">
+{% for record in results %}
+  <div class="menu-item selectable" data-values="contact:{{record.id}}">
+    <h4>{{record.title}}</h4>
+    <p>
+      {% if record.company %}{{record.company}}<br>{% endif %}
+      {{record.city}}{% if record.city and record.state %},{% endif %} {{record.state}}
+      {% if record.email %}
+      <br>
+      <span class="small">{{record.email|default_if_none:""}}</span>
+      {% endif %}
+
+    </p>
+  </div>
+{% endfor %}
+</div>
+{% else %}
+    <div class="menu-item not-selectable"><p>no results</p></div>
+{% endif %}
+{% if not is_search and results_total > results|length %}
+  <div class="menu-item menu-footer clearfix">
+    <a class="view-more btn btn-sm btn-default pull-right">View More Results</a>
+  </div>
+{% endif %}
+</div>

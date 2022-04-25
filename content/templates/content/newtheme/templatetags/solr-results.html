@@ -1,0 +1,5 @@
+{% load content_extras %}
+
+{% for result in results.response.docs %}
+{% include record_template with result=result %}
+{% endfor %}

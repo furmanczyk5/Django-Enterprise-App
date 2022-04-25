@@ -1,0 +1,41 @@
+{% with content.contactrole.first.contact as contact%}
+  {% if contact.first_name %}
+    <p>Dear {{contact.first_name}},</p>
+  {% else %}
+    <p>Dear member,</p>
+  {% endif %}
+{% endwith %}
+
+{% if content.content_type == 'KNOWLEDGEBASE_STORY' %}
+  <p>
+    Thank you for submitting your story, "{{content.title}}", to the APA Research KnowledgeBase. We are pleased to inform you that we approved your story for inclusion in the "{{content.related.first.content_live}}" collection. It now appears in the online collection and its status is "Published" in your Research KnowledgeBase Contributor's Dashboard.
+  </p>
+{% endif %} 
+
+{% if content.content_type != 'KNOWLEDGEBASE_STORY' %}
+  <p>
+    Thank you for suggesting {{content.title}} to the APA Research KnowledgeBase. We are pleased to inform you that we approved this resource for inclusion in the "{{content.related.first.content_live}}" collection. It now appears in the online collection and its status is “Published” in your Research KnowledgeBase Contributor’s Dashboard.
+  </p>
+
+  <p>
+    Please note: APA may not have used your suggested title for this resource, for one of two reasons:
+      <ul>
+        <li>It may not conform to the specific naming conventions APA uses for Research KnowledgeBase resources; or</li>
+        <li>Your submission relates to an existing plan, report, etc., and was added to that encompassing resource.</li>
+      </ul>
+  </p>
+{% endif %}
+
+<p>
+  Your contribution will make the APA Research KnowledgeBase a more valuable resource for all members. We appreciate your participation and encourage you to submit more stories or resources that could be useful to other planners.
+</p>
+ 
+<p>
+  If you have any questions, please email <a href="mailto:knowledgebase@planning.org" target="_top">knowledgebase@planning.org</a>.
+</p>
+    
+<p>
+  Sincerely,<br style="margin:0" />
+  American Planning Association<br style="margin:0" />
+  Research Department
+</p>

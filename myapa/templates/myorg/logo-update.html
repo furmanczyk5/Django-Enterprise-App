@@ -1,0 +1,33 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+
+<div class="page-head">
+  <p>
+    <a class="btn btn-default" href="{% url 'myorg' %}">Back to My Organization</a>
+  </p>
+  <h1 class="page-title">Logo Upload</h1>
+  <h4 class="page-subtitle">Your logo must be one of these file types: JPG, GIF, or PNG</h4>
+</div>
+
+<p>If necessary, your logo will be resized proportionately to fit the space available. If your logo exceeds 400 pixels in height it will be cropped (at the bottom) to that size.</p>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <div class="form-section-limit-width">
+          {{ form.image_file }}
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-sm btn-primary" value="Upload"/>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

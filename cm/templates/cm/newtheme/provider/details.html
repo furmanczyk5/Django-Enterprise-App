@@ -1,0 +1,83 @@
+{% extends 'cm/newtheme/aicp-page-sidebar.html' %}
+
+{% load cm_tags %}
+{% load template_app_extras %}
+
+{% block content_sidebar %}
+{# would rather use /cm/ than /cm/log/, third level menu does not open #}
+{% sidenav for_url='/cm/log/' current_page_url='/cm/search/providers/' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  {% if provider.organizationprofile.image %}
+  <div style="width:200px" class="col-sm-12 col-md-4 image-block pull-left">
+    <img src="{{provider.organizationprofile.image.image_file.url}}" />
+  </div>
+  {% endif %}
+  <h1 class="">{{provider.title}}</h1>
+  <div class="details-section">
+    <p>{{provider.city}}, {{provider.state}}, {{provider.country}}</p>
+    {% if provider.rating_average %}
+    <p>{% star_rating rating_stats.rating_avg|floatformat:2 rating_stats.rating_count%}</p>
+    {% endif %}
+    <div class="popularity-tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a>Events</a></li>
+        <li role="presentation"><a href="{% url 'cm:provider_comments' provider_id=provider.id %}">Reviews</a></li>
+      </ul>
+    </div>
+  </div>
+    {% if provider.bio %}
+    <p class="featured">{{provider.bio}}</p>
+    {% endif %}
+</div>
+
+
+
+{% if provider_roles %}
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2>Events</h2>
+
+    <div class="search-pagination">
+      {% if previous_page %}
+      <a class="pull-left" href="{{previous_page}}"><b> &lt; Back</b></a>
+      {% endif %}
+      <span class="pagination-results"><b>{{start}} - {{end}}</b></span>
+      of <b> {{total}} </b>
+      {% if next_page %}
+      <a class="pull-right" href="{{next_page}}"><b>Next &gt;</b></a>
+      {% endif %}
+    </div>
+
+    <div class="search-results-list dashboard-events-list no-bottom-border">
+      <ul>
+      {% for role in provider_roles %}
+      {% with event=role.content.event %}
+        {% include "cm/newtheme/provider/includes/provider-details-cm-result.html" with event=event role=role %}
+      {% endwith %}
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="layout-tracery no-top-border no-bottom-border">
+  <div class="search-pagination">
+    {% if previous_page %}
+    <a class="pull-left" href="{{previous_page}}"><b> &lt; Back</b></a>
+    {% endif %}
+    <span class="pagination-results"><b>{{start}} - {{end}}</b></span>
+    of <b> {{total}} </b>
+    {% if next_page %}
+    <a class="pull-right" href="{{next_page}}"><b>Next &gt;</b></a>
+    {% endif %}
+  </div>
+</div>
+<hr />
+{% endif %}
+
+
+{% endblock %}

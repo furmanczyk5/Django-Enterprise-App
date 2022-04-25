@@ -1,0 +1,132 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load tz %}
+{% load cm_tags %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Log APA Learn Course Credits</h1><br>
+
+{% if not course_evals %}
+<p style="color:#005595">You haven't completed any courses or they are already logged!</p>
+{% else %}
+  <p>
+    You <strong>may</strong> have completed one or more APA Learn courses that are not in your CM Log. If you see <strong>pending</strong> courses listed below, please click "Add to My Log" for every course you have completed.
+  </p>
+{% endif %}
+</div>
+
+<div>
+  <form action="/cm/log/" style="display:inline-block">
+  <button style="color:#005595" class="button btn btn-lg" type="submit" value="back_to_cm_log">Back to My CM</button>
+</form>
+<a style="color: #005595;display: inline-block;background-color: lightcyan" class="button btn btn-lg pull-right" href="/learn/hidden-pending-courses/">Go to Hidden Courses</a>
+</div>
+
+    <div class="search-results-list dashboard-events-list">
+      <ul>
+{% for eval in course_evals %}
+{% if not eval.cm_claim %}
+<li class="search-result">
+  <div class="row">
+    <div class="col-md-6 col-lg-7 dashboard-events-result-col">
+
+      {% if eval.content.title %}
+      <h4 class="search-result-title">
+        {{ eval.content.title }}
+      </h4>
+      {% endif %}
+
+      {% if eval.submitted_time %}
+        <p class="small">
+{#        {% localtime off %} #}
+            This APA Learn course was completed on:
+            {{eval.submitted_time|date:"l, F j, Y, P e"}}
+{#        {% endlocaltime %} #}
+        </p>
+      {% endif %}
+    </div>
+    {% comment %}
+    <div class="col-md-3 dashboard-events-result-col">
+      {% if eval.content and eval.rating %}
+      {% star_rating eval.rating %}
+      {% endif %}
+    </div>
+    {% endcomment %}
+    <div class="col-md-3 col-lg-2 dashboard-events-result-col pull-right">
+      <div class="dashboard-events-result-cm">
+
+        {% if eval.content.master.id %}
+        <span class="small">#{{eval.content.master.id}}</span>
+        {% endif %}
+
+        <div class="cm-credits-stacked">
+        {% if eval.content.event.cm_approved != 0 %}
+          <div>
+            <span class="cm">CM | </span><span class="cmpoints">
+            {{eval.content.event.cm_approved|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        {% if eval.content.event.cm_law_approved > 0 %}
+          <div>
+            <span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{eval.content.event.cm_law_approved|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        {% if eval.content.event.cm_ethics_approved > 0 %}
+          <div>
+            <span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{eval.content.event.cm_ethics_approved|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% localtime off %}
+        {# need to borrow logic from cm view to set is_aicp_cm in context #}
+        {% if is_aicp_cm or is_reinstatement_cm or not request.user.is_authenticated %}
+<!--             {# put a condition for logging parts of a bundle here??? #}
+            {% comment %}
+            {% if result.event_type == "EVENT_MULTI" %}
+              <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                            href="/events/eventmulti/{{ result.id|split_on_period:1 }}/">Add
+                Activities to My Log</a></div>
+            {% endcomment %}
+ -->            {% if eval.content.event.cm_approved %}
+              <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                            href="/cm/log/claim/event/{{ eval.content.master.id }}/">Add to My
+                Log</a>
+            {% endif %}
+          {% else %}
+          <div class="col-xs-12"><br>
+            <a class="btn btn-sm btn-icon pull-right"
+                                        href="/courses/{{ eval.content.master.id }}/evaluation/">Evaluate</a>
+
+<!--             {# condition for evaluating parts of a bundle? #}
+            {% comment %}
+            {% if result.event_type == "EVENT_MULTI" %}
+              <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                            href="/events/eventmulti/{{ result.id|split_on_period:1 }}/">Evaluate
+                Activities</a></div>
+            {% else %}
+            {% endcomment %}
+            {# {% endif %} #}
+ -->          {% endif %}
+            <br>
+            <form class="pull-right" action="/learn/apa-learn-courses/">
+              <button type="submit" value="{{eval.id}}" name="hide_course" class="bt btn-sm btn-icon" href="/learn/hide-learn-course/" style="padding: 0; border: none; background: none;">Hide</button>
+            </form>
+          </div>
+    {% endlocaltime %}
+  </div>
+</li>
+{% endif %}
+{% endfor %}
+</div>
+</ul>
+{% endblock %}

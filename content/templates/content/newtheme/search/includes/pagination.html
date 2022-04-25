@@ -1,0 +1,19 @@
+{% load content_extras %}
+
+{% with querystring_minus_page=request.META.QUERY_STRING|remove_querystring_param:'page' %}
+  {% if p.total != 0 and p.page != p.first_page %}
+  <a class="pull-left" href="?{{querystring_minus_page}}&amp;page={{p.page|subtract:1}}"><b> < Back</b></a>
+  {% endif %}
+
+ 
+  {% if p.total != 0 %}
+  Showing <span class="pagination-results"><b>{{p.start}} - {{p.end}}</b></span>
+    of <b> {{p.total}} </b>
+    {% else %}
+    no results
+  {% endif %}
+
+  {% if p.total != 0 and p.page != p.last_page %}
+  <a class="pull-right" href="?{{querystring_minus_page}}&amp;page={{p.page|add:1}}"><b>Next ></b></a>
+  {% endif %}
+{% endwith %}

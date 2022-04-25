@@ -1,0 +1,102 @@
+/**
+ * dependencies: slab
+ */
+//adding to bootstrap a bit
+.alert {
+  font-family: @font-family-base;
+
+  p {
+    width: 100%;
+    max-width: 100%;
+  }
+  .error {
+    color: @color-form-error;
+  }
+  &.error {
+    .alert-variant(@brand-danger, transparent, white);
+    &:extend(.slab-whitetext all);
+  }
+  &.success {
+    .alert-variant(@brand-success, transparent, white);
+    &:extend(.slab-whitetext all);
+  }
+  &.info {
+    .alert-variant(@brand-info, transparent, white);
+    &:extend(.slab-whitetext all);
+  }
+  &.warning {
+    .alert-variant(@brand-warning, transparent, white);
+    &:extend(.slab-whitetext all);
+  }
+}
+
+.alert-flat {
+  border-radius: 0;
+}
+
+.alert-danger-dark {
+  .alert-variant(@brand-danger, transparent, white);
+}
+
+// Special dismissible alert
+.alert-dismissible.alert-custom-close {
+  padding-right: @grid-gutter-width / 2;
+  padding-bottom: 0; //account for dismiss button, height of 44px for touch
+
+  // display: none; //for testing
+
+  button.close {
+    position: static;
+    padding: 0;
+    height: 44px;
+    float: right;
+
+    font-size: 16px;
+
+    text-shadow: none;
+    font-weight: normal;
+    opacity: 1;
+
+    //target any icomoon icon
+    [class^="icon-"], [class*=" icon-"] {
+      padding-left: 8px;
+      font-size: 10px;
+    }
+
+  }
+
+}
+.dismiss-button-wrap {
+  margin-top: 15px;
+  &:extend(.clearfix all);
+}
+
+@media screen and (min-width: @screen-sm-min) {
+  .alert-dismissible.alert-custom-close {
+    padding: @grid-gutter-width / 2;
+    //cant esxtend the clearfix from in here.
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+
+
+    button.close {
+      float: none;
+      height: auto;
+    }
+  }
+  .dismiss-button-wrap {
+    float: right;
+    margin-top: 0;
+  }
+  .alert-text {
+    float: left;
+    width: 85%;
+    text-align: center;
+  }
+}

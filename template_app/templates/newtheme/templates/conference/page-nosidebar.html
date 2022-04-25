@@ -1,0 +1,47 @@
+{% extends 'newtheme/templates/conference/layout-nosidebar.html' %}
+
+{% load ui_tags %}
+
+{% load static %}
+
+{% block breakout_page_head %}
+<div class="container content-header-conference-image-breakout-wrap">
+  {% if content.resource_url and content.media_format == "IMAGE" %}
+  <img class="image-breakout" src="{{content.resource_url}}"/>
+  {% else %}
+  {# <img class="image-breakout" src="http://via.placeholder.com/1280x350"/> #}
+    {%if microsite %}
+    <img class="image-breakout" src="{% static microsite.nosidebar_breakout_image_path %}"/>
+    {% else %}
+    {% comment %}
+    <img class="image-breakout" src="{% static 'newtheme/image/Microsite-homepage-draft5.jpg' %}"/>
+    {% endcomment %}
+    {% endif%}
+  {% endif %}
+  <div class="container content-header-conference-image-breakout">
+    <div class="content-header-conference-image-breakout-title-wrap">
+    <h1 class="content-header-conference-image-breakout-title">
+      {{ title }}
+    </h1>
+    </div>
+      {%if microsite %}
+      <img class="content-header-conference-image-breakout-logo visible-md visible-lg" src="{% static microsite.signpost_logo_image_path %}"/>
+      {% else %}
+      {% comment %}
+      <img class="content-header-conference-image-breakout-logo visible-md visible-lg" src="{% static 'newtheme/image/npc-sign.png' %}"/>
+      {% endcomment %}
+      {% endif%}
+  </div>
+</div>
+{% endblock %}
+
+{% block content_main %}
+{% include 'newtheme/templates/conference/includes/page-head.html' %}
+
+  <div class="content-managed-html">
+    {% block content_details %}
+      {{ content.text|render_planning_shortcodes|safe }}
+    {% endblock %}
+  </div>
+
+{% endblock %}

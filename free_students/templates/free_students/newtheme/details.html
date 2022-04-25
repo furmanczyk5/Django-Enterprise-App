@@ -1,0 +1,87 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load content_extras %}
+
+{% load static %}
+
+{% block additional_head_css %}
+{# date picker #}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'ui/modal/css/modal.css' %}?v=0" />
+{% endblock %}
+
+
+{% block content_main %}
+
+<div class="page-head">
+  <a class="btn btn-primary pull-right button-float" href="{{home_url}}">Back to admin dashboard</a>
+  <h1 class="page-title">Free Student Details</h1>
+  <h2 class="page-title">{{student.first_name}} {{student.middle_name}} {{student.last_name}}</h2>
+  
+  <br/>
+
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+
+	<div class="section section-enclosed-light">
+
+        <h3 class="section-title">General Information</h3>
+		{% if student.expected_graduation_date %}
+			<div>Graduation Date: {{student.expected_graduation_date}}</div>
+		{% endif %}
+		<div>Degree Type: {{student.get_degree_type_display}}</div>
+		{% if student.student_id %}
+			<div>Student ID: {{student.student_id}}</div>
+		{% endif %}
+		<div>Birth Date: {{student.birth_date}}</div>
+	
+	</div>
+
+	<div>
+		<h3 class="section section-enclosed-light">Primary Address</h5>
+		
+		<div>{{student.address1}}</div>
+		{% if student.address2 %}
+			<div>{{studen.address2}}</div>
+		{% endif %}
+		<div>{{student.city}}, {{student.state}}</div>	
+		<div>{{student.zip_code}}</div>
+		<div>{{student.country}}</div>
+	</div>
+	{% if student.secondary_address1 %}
+	<div>
+
+		<h3 class="section section-enclosed-light">Secondary Address</h5>
+
+		<div>{{student.secondary_address1}}</div>
+		{% if student.secondary_address2 %}
+			<div>{{student.secondary_address2}}</div>
+		{% endif %}
+		<div>{{student.secondary_city}}, {{student.secondary_state}}</div>	
+		<div>{{student.secondary_zip_code}}</div>
+		<div>{{student.secondary_country}}</div>
+
+	</div>
+	{% endif %}
+	<div>
+		<h3 class="section section-enclosed-light">Contact Information</h5>
+
+		<div>Phone: {{student.phone}}</div>
+		<div>Email: {{student.email}}</div>	
+		{% if student.secondary_phone %}
+			<div>Secondary Phone: {{ student.secondary_phone }}</div>
+		{% endif %}
+		{% if student.secondary_email %}
+			<div>Secondary Email: {{ student.secondary_email }}</div>
+		{% endif %}
+    </div>
+
+      <br >
+      <div class="clearfix btn-toolbar btn-mobile">
+      	<a class="btn btn-primary pull-right button-float" href="{{home_url}}">Back to admin dashboard</a>
+      </div>
+  </div>
+</div>
+{% endblock %}

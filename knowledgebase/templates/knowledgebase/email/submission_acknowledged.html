@@ -1,0 +1,9 @@
+<p>{% with content.contactrole.first.contact as contact%}{% if contact.first_name %}Dear {{contact.first_name}},{% else %}Dear member,{% endif %}{% endwith %}</p>
+
+<p>Thank you for submitting "{{content.title}}" for inclusion in the APA Research KnowledgeBase. APA staff are reviewing it now and you will be notified soon if it is approved or not approved.</p>
+    
+<p>If you have any questions, please email <a href="mailto:knowledgebase@planning.org" target="_top">knowledgebase@planning.org</a>.</p>
+    
+<p>Sincerely,<br style="margin:0" />
+American Planning Association<br style="margin:0" />
+Research Department</p>

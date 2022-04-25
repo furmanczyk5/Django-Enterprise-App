@@ -1,0 +1,257 @@
+{% extends extends_template|default:'cm/newtheme/aicp-page-sidebar.html' %}
+
+{% load staticfiles %}
+{% load cm_tags %}
+
+{% block title %}CM Log{% endblock %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+{% if log %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  {% if is_candidate %}
+  <h1 class="page-title">CM Tracker : {{ contact }}</h1>
+  {% else %}
+  <h1 class="page-title">CM Log : {{ contact }}</h1>
+  {% endif %}
+      <!--
+      <br/>
+      <div class="section-icon section-icon-attention">
+      <h3>IMPORTANT NOTICE</h3>
+      </div>
+      -->
+</div>
+
+  {% if is_candidate %}
+  <p><a href="/myapa/aicp-status/">View your AICP Candidate Pilot Program status.</a></p>
+  {% else %}
+{{ content_messages.CM_LOG_INTRO.text|safe }}
+  {% endif %}
+
+<!-- # FLAGGED FOR REFACTORING: CM CONSOLIDATION -->
+<!-- change this when transitional phase is over -->
+{% if transitional_period %}
+  {% include 'cm/newtheme/includes/log-tabs-transitional.html' with all_logs=all_logs is_candidate=is_candidate %}
+{% elif future_period %}
+  {% include 'cm/newtheme/includes/log-tabs-future.html' with all_logs=all_logs is_candidate=is_candidate %}
+{% else %}
+  {% include 'cm/newtheme/includes/log-tabs.html' with all_logs=all_logs is_candidate=is_candidate %}
+{% endif %}
+
+{% if log.is_current %}
+
+
+  {% if log_overview.law_needed == 0 and log_overview.ethics_needed == 0 and log_overview.general_needed == 0 and is_closed_dt and not is_candidate %}
+
+  <div id="close-step-1" class="form-section form-section-enclosed-dark">
+    <div class="form-group">
+      <h2>
+        Review and Close Your {{ log.period.title }} CM Reporting Period
+      </h2>
+      <p>Please carefully review the summary of your CM credits below. If you have more credits to add or change for
+        {{ log.period.title }}, you may do so now. Once your log is complete, you must close your {{ log.period.title }}
+        period to begin reporting credits for the next two-year period.</p>
+      <p><span style="color:red">If your log is not reviewed and closed by September 15th, it will close automatically,
+        and your next reporting period will open.</span> Please note, after your log is closed you will not be able to make
+        additional changes and that reporting period cannot be reopened.
+      </p>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" id="cm-pre-close-button" type="submit" name="close" value="close" onclick="$('#close-step-1').addClass('hidden');$('#close-step-2').removeClass('hidden');">Close</button>
+    </div>
+  </div>
+
+  <div id="close-step-2" class="form-section form-section-enclosed-dark hidden">
+    <form method="post" id="close_record" name="close_record" onsubmit="
+     if ($('#confirmSignOffCheckbox').is(':checked')) {$('#cm-close-button').addClass('hidden'); return true;} else {alert('Please confirm that you have reviewed your CM log by checking the box.'); return false;}">
+      {% csrf_token %}
+      <div class="form-group">
+        <h3>What Happens Next:</h3>
+        <p>
+          After you click close,
+          <ul>
+            <li>All CM credits logged (below) will be archived and rollover credits will be added to the next two-year reporting period. </li>
+            <li class="error">You will not be able to make additional changes to your {{ log.period.title }} reporting period.</li>
+            <li>A new two-year reporting period tab will open.</li>
+          </ul>
+        </p>
+      </div>
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input classp="form-control" type="checkbox" id="confirmSignOffCheckbox"/>
+            Agree
+          </label>
+        </div>
+        <p class="small">
+          I have reviewed my CM log and confirm that the credits listed below are complete and correct. I have no more credits to add or change for my {{ log.period.title }} reporting period.
+        </p>
+      </div>
+      <div class="form-group">
+        <input class="btn btn-primary" id="cm-close-button" type="submit" name="close"
+        value="Close"  />
+      </div>
+
+    </form>
+  </div>
+
+  {% endif %}
+
+
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2>Add Credits</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="popover-btn-group">
+          <a href="/cm/search/" class="btn btn-lg btn-primary">Live Events</a>
+          <a type="button" class="btn" data-container="body" data-toggle="popover" data-placement="top" data-title="Live Events" data-content='Search CM-registered events that occured at a particular time, either in-person or online.'>
+            <span class="icon-help"></span>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="popover-btn-group">
+          <a href="/learn/apa-learn-courses/" class="btn btn-lg btn-primary">Pending APA Learn Course Credits</a>
+          <a type="button" class="btn" data-container="body" data-toggle="popover" data-placement="top" data-title="APA Learn Course Credits" data-content='Add credits earned from completing CM-eligible APA Learn courses.'>
+            <span class="icon-help"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+          <div class="popover-btn-group">
+            <a href="/cm/search/course/" class="btn btn-lg btn-primary">On-Demand Courses</a>
+            <a type="button" class="btn" data-container="body" data-toggle="popover" data-placement="top" data-title="On-Demand Courses" data-content="Search non-APA Learn CM-registered on-demand courses, such as recorded webinars and podcasts.">
+              <span class="icon-help"></span>
+            </a>
+          </div>
+        </div>
+      {% if not is_candidate %}
+          {% if log_overview.self_reported < 8 and log_overview.is_author < 16 %}
+          <div class="col-md-6">
+            <div class="popover-btn-group">
+              <a href="/cm/logging/selfreport/" class="btn btn-lg btn-primary">Self-Reported Credits</a>
+              <a type="button" class="btn" data-container="body" data-toggle="popover" data-placement="top" data-title="Self-Reported Credits" data-content="For every two-year CM reporting period, AICP members may self-report up to&#160;8 credits from professional development activities that are not registered with APA by the provider.&#160;">
+                <span class="icon-help"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="popover-btn-group">
+              <a href="/cm/logging/author/" class="btn btn-lg btn-primary">Authored Credits</a>
+              <a type="button" class="btn" data-container="body" data-toggle="popover" data-placement="top" data-title="Authored Credits" data-content="For every two-year CM reporting period, AICP members may claim up to 16 CM credits for authoring a published planning-related article, journal article, or non-fiction book.">
+                <span class="icon-help"></span>
+              </a>
+            </div>
+          </div>
+
+          {% elif log_overview.self_reported < 8 or log_overview.is_author < 16 %}
+            {% if log_overview.self_reported < 8 %}
+            <div class="col-md-6">
+              <div class="popover-btn-group">
+                <a href="/cm/logging/selfreport/" class="btn btn-lg btn-primary">Self-Reported Credits</a>
+                <a type="button" class="btn" data-container="body" data-toggle="popover" data-placement="top" data-title="Self-Reported Credits" data-content="For every two-year CM reporting period, AICP members may self-report up to&#160;8 credits from professional development activities that are not registered with APA by the provider.&#160;">
+                  <span class="icon-help"></span>
+                </a>
+              </div>
+            </div>
+            {% else %}
+            <div class="col-md-6">
+              <div class="popover-btn-group">
+                <a href="/cm/logging/author/" class="btn btn-lg btn-primary">Authored Credits</a>
+                <a type="button" class="btn" data-container="body" data-toggle="popover" data-placement="top" data-title="Authored Credits" data-content="For every two-year CM reporting period, AICP members may claim up to 16 CM credits for authoring a published planning-related article, journal article, or non-fiction book.">
+                  <span class="icon-help"></span>
+                </a>
+              </div>
+            </div>
+            {% endif %}
+          {% endif %}
+
+    </div>
+          {% endif %}
+    {% endif %}
+
+    <div class="row">
+
+    </div>
+
+    {% if not log_overview.self_reported < 8 and not is_candidate %}
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Self-Reported Credits</h4>
+        <p>
+          <em>You have logged the maximum number of self-reported credits for this CM reporting period.</em>
+        </p>
+      </div>
+    </div>
+    {% endif %}
+    {% if not log_overview.is_author < 16 and not is_candidate %}
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Authored Credits</h4>
+        <p>
+          <em>You have logged the maximum number of authoring credits for this CM reporting period.</em>
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    {% if is_candidate %}
+    <h2>Credits Tracked: <b class="blue">{{ contact }}</b></h2>
+    {% else %}
+    <h2>Credits Logged: <b class="blue">{{ contact }}</b></h2>
+    {% endif %}
+    <div class="search-results-list dashboard-events-list">
+      <ul>
+      {% for claim in claims %}
+        {% include "cm/newtheme/includes/logged-credit.html" with claim=claim %}
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">CM Log</h1>
+</div>
+  {% if content_messages.NO_ACTIVE_CM_LOG %}
+<div class="layout-tracery">
+  <div class="layout-column">
+    <div class="section-icon section-icon-attention">
+      <h3>Attention</h3>
+      <p>
+      {{ content_messages.NO_ACTIVE_CM_LOG|safe }}
+    </div>
+  </div>
+</div>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+</script>
+{% endblock %}

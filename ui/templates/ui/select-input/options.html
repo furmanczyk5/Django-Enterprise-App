@@ -1,0 +1,6 @@
+{% if has_empty %}
+<option value=""></option>
+{% endif %}
+{% for option in option_tuple_list %}
+<option value="{{option.0}}" {% if option.0 == selected_option %}selected="selected"{%endif%}>{{option.1}}</option>
+{% endfor %}

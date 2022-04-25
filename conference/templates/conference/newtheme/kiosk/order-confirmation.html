@@ -1,0 +1,41 @@
+{% extends "conference/newtheme/kiosk/base.html" %}
+
+{% block content_main %}
+
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h1>Thank you for registering for NPC19!</h1>
+	</div>
+</div>
+<div class="layout-tracery no-top-border no-bottom-border">
+	<div class="layout-column">
+		{% if payment_method == "CC" %}
+			<h3>${{payment_amount|floatformat:"2"}} has been charged to your credit or debit card.</h3>
+
+			<h3>TO RECEIVE YOUR TICKETS AND RECEIPT, PLEASE ASK A REGISTRATION TEAM MEMBER BEHIND THE COUNTER.</h3>
+
+		{% elif payment_method == "NONE" %}
+			<h3>TO RECEIVE YOUR TICKETS, PLEASE NOTIFY THE STAFF BEHIND THE COUNTER THAT YOU HAVE COMPLETED YOUR ORDER.</h3>
+
+		{% else %}
+			<h3>Your total order is <b>${{payment_amount|floatformat:"2"}}</b>.</h3>
+
+      <h3>If you are paying by check, please make it out to <b>AMERICAN PLANNING ASSOCIATION</b>.</h3>
+
+			<h3>Give the cash or check to the registration team member behind the counter and receive your tickets and receipt.</h3>
+
+		{% endif %}
+	</div>
+</div>
+<div class="layout-tracery no-top-border no-bottom-border">
+	<div class="layout-column" align="center">
+		<h3>Order ID: {{order.id}}</h3>
+	</div>
+</div>
+<div class="layout-tracery">
+	<div class="layout-column">
+		<a href="{% url 'kiosk:home' master_id=event.master_id %}" class="btn btn-primary btn-lg">End Session</a>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load ui_tags %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+{% block page_head %}
+{% include 'newtheme/templates/includes/page-head.html' %}
+{% endblock page_head %}
+
+<div class="content-managed-html">
+{% block content_details %}
+  {{ content.text|render_planning_shortcodes|safe }}
+{% endblock %}
+</div>
+
+{% endblock %}

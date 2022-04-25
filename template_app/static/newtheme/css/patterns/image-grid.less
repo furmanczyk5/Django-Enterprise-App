@@ -1,0 +1,144 @@
+// Styles for creating image grids with linked images
+
+.image-result-padding(@padding:15px) {
+  .image-result {
+    margin-top:@padding;
+    margin-bottom:@padding;
+    & + .image-result {
+      margin-top:2*@padding;
+    }
+  }
+  .image-result-col {
+    padding-left:@padding;
+    padding-right:@padding;
+  }
+}
+
+// pattern and options for linked images
+.image-grid-wrapper:after {
+  content:'';
+  display:block;
+  clear:both;
+}
+
+.image-grid-wrapper .image-grid {
+
+  .image-result-col {
+    clear:none;
+  }
+
+  &.lg-padding {
+    .image-result-padding(15px);
+  }
+
+  &.md-padding {
+    .image-result-padding(5px);
+  }
+
+  &.sm-padding {
+    .image-result-padding(2px);
+  }
+
+  &.no-padding {
+    .image-result-padding(0px);
+  }
+
+  &.info-overlay-partial, &.info-overlay {
+  
+    .image-result {
+
+      position:relative;
+      border-bottom:none;
+
+      a {
+        cursor: pointer;
+
+        &:after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0px;
+          left:0px;
+        }
+      }
+    }
+
+    .image-thumbnail {
+      width: 100%;
+      margin-bottom:0px;
+    }
+
+    .image-information {
+      margin-left:0px;
+      padding: 15px;
+      position: absolute;
+      bottom: 0px;
+      color: white;
+      width: 100%;
+      z-index: 2;
+
+      * {
+        color:white;
+      }
+
+      .image-title {
+        font-family: @font-family-sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        margin-top: 25px;
+        margin-bottom:10px;
+        text-transform: none;
+        
+      }
+
+      .image-subtitle {
+        font-family: @font-family-sans-serif;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        margin-top:10px;
+      }
+    }
+  }
+
+  &.info-overlay-partial {
+    .image-result a {
+      &:after {
+        background: rgba(0,0,0,0.2);
+      }
+      .image-information {
+        background: rgba(0,0,0,0.6);
+      }
+      &:hover {
+        &:after {
+          background: rgba(0,0,0,0.0);
+        }
+        .image-information {
+          background: rgba(0,0,0,0.4);
+        }
+      }
+    }
+  }
+
+  &.info-overlay {
+    .image-result a {
+      &:after {
+        background: rgba(0,0,0,0.4);
+      }
+      .image-information {
+        background: rgba(0,0,0,0.0);
+      }
+      &:hover {
+        &:after {
+          background: rgba(0,0,0,0.0);
+        }
+        .image-information {
+          background: rgba(0,0,0,0.0);
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,9 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+<h2 class="headline-underline">{{value.heading}}</h2>
+{% for ll in value.listed_links %}
+    <h4><a href="{{ll.Link_URL}}">{{ll.Link_Text}}</a></h4>
+{% endfor %}
+{#{{value.paragraph}}#}
+{% include_block value.link %}

@@ -1,0 +1,126 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+
+{% include 'newtheme/templates/includes/page-head.html' %}
+
+{% comment %}
+{% include "ui/newtheme/forms/includes/display-errors.html" %}
+{% endcomment %}
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <div class="row">
+      <div {% block content_attributes %}class="col-lg-9"{% endblock %}>
+
+        <div>
+            <a class="btn btn-default btn-small" href="{{home_url}}">Continue Later</a>
+        </div>
+
+        <br>
+
+        {% block preview_details_wrapper %}
+        <div class="form-section form-section-enclosed-dark">
+            <a class="btn btn-sm btn-icon pull-right btn-inline" href="{{edit_url}}">
+                Edit
+                <span class="icon-apa-edit"></span>
+            </a>
+
+            {% block preview_details %}
+            {# by default you can set the preview template in the view. You can also override in the template using this block #}
+            {% include preview_template %}
+            {% endblock %}
+
+        </div>
+        {% endblock %}
+
+        {% block preview_search_result %}{% endblock %}
+
+        {% block preview_questions %}
+        {% if submission_questions %}
+        <div class="form-section form-section-enclosed-dark">
+          <a class="btn btn-sm btn-icon pull-right btn-inline" href="{{edit_url}}">
+              Edit
+              <span class="icon-apa-edit"></span>
+          </a>
+          <h2>Additional Questions</h2>
+          {% for question in submission_questions %}
+          <p>
+            {{ question.title }}<br/>
+            <b>{{ question.the_answer.0.get_value }}</b>
+          </p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% endblock %}
+
+        {% block preview_extra %}{% endblock %}
+
+        <hr class="dashed" />
+
+        {% block verification_form %}
+        <form method="post" id="event_submission_form" novalidate>
+            {% csrf_token %}
+            {% include "ui/newtheme/forms/includes/display-errors.html" with error_instructions='Please resubmit the form after making the following corrections:' form=form %}
+            <div class="form-section form-section-enclosed-dark">
+                <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        {{form.submission_verified}}
+                        {{form.submission_verified.label}}
+                      </label>
+                    </div>
+                    <p class="small">
+                      {% block verification_statement %}
+                      {{ form.submission_verified.help_text|safe }}
+                      {% endblock %}
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="btn-toolbar">
+                <a class="btn btn-default" href="{{home_url}}">Continue Later</a>
+                {% if requires_checkout %}
+                <button type="submit" name="submitButton" value="checkout" class="btn btn-primary">Checkout</button>
+                {% else %}
+                <button type="submit" name="submitButton" value="submitfinal" class="btn btn-primary">Submit</button>
+                {% endif %}
+            </div>
+        </form>
+        {% endblock %}{# verificatio_form #}
+
+        <br>
+
+      </div>
+
+      {% block sideads %}
+      <div class="col-lg-3">
+        <div class="banner-ads-container">
+          {% include 'newtheme/sandbox/banner-ad/layout-banner-ad-small-3up-vertical.html' %}
+        </div>
+      </div>
+      {% endblock %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}<!-- content block -->
+
+{% block additional_body_js %}
+<script>
+  // Prevent impatient people from mashing the submit button
+  $('#event_submission_form').one('submit', function() {
+    $(this).find('button[type="submit"]').attr('disabled', 'disabled');
+  });
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+

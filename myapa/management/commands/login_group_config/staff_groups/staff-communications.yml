@@ -1,0 +1,31 @@
+---
+
+# Django model admin permissions for the staff-communications group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "165243"  # Roberta Rewers
+  - "316890"  # Harriet Bogdanowicz
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+# sorted([i.model for i in ContentType.objects.filter(app_label='')])
+app_models_granted:
+  - awards_jurorassignment
+  - awards_submission
+  - awards_submissioncategory
+  - content_content  # for taxotopic tag inline access
+  - pages_aboutpage
+  - pages_aicppage
+  - pages_careerpage
+  - pages_conferencepage
+  - pages_knowledgecenterpage
+  - pages_landingpage
+  - pages_membershippage
+  - pages_outreachpage
+  - pages_page
+  - pages_policypage
+  - pages_uncategorizedpage
+  - uploads_upload

@@ -1,0 +1,11 @@
+{% if value.Link_Text %}
+
+{% if value.Link_Style == "FANCY" %}
+<div class="read-more-link no-top-border"><a href="{{value.Link_URL}}">{{value.Link_Text}}</a></div>
+{% elif value.Link_Style == "BUTTON" %}
+<p><a class="btn btn-primary" href="{{value.Link_URL}}">{{value.Link_Text}}</a></p>
+{% else %}
+<p><a class="standalone-link" href="{{value.Link_URL}}">{{value.Link_Text}}</a></p>
+{% endif %}
+
+{% endif %}

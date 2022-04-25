@@ -1,0 +1,1 @@
+<a target="_blank" href="{% if upload.get_file %}{{upload.get_file.url}}{% elif upload.url %}{{upload.url}}{%endif%}">{{ upload }}</a>

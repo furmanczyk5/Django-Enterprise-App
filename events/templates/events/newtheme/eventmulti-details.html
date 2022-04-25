@@ -1,0 +1,43 @@
+{% extends "events/newtheme/event-details.html" %}
+
+{% load content_extras %}
+{% load cm_tags %}
+{% load tz %}
+{% load static %}
+
+{% block events_multi %}
+
+<h3>Activities</h3>
+<div class="content-preview-list layout-tracery no-bottom-border">
+
+  <div class="search-pagination">
+    <div class="results-items" style="padding-bottom: 10px;">
+      {% include "content/newtheme/search/includes/pagination.html" with p=pagination %}
+    </div>
+  </div>
+
+  {% block searchKeyword %}
+    {% include "content/newtheme/search/includes/search-keyword.html" with keyword=keyword %}
+  {% endblock searchKeyword %}
+
+  {% block filterSortControl %}
+    {% include "content/newtheme/search/includes/filter-sort-control.html" with filter_form=filter_form %}
+  {% endblock filterSortControl %}
+
+  {% block searchList %}
+    {% include "content/newtheme/search/includes/results-list.html" with results=results.response.docs timeout=results.responseHeader.timeout %}
+  {% endblock searchList %}
+
+  <div class="results-items">
+    {% include "content/newtheme/search/includes/pagination.html" with p=pagination %}
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'newtheme/vendor/bootstrap/js/transition.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/collapse.js' %}"></script>
+<script src="{% static 'newtheme/js/filter-sort-control.js' %}"></script>
+{% endblock additional_body_js %}

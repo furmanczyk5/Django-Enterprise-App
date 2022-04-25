@@ -1,0 +1,102 @@
+{% extends "newtheme/templates/layout-nosidebar.html" %}
+
+{% block title %}My Nominations{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">My Nominations</h1>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+        <p><a class="btn btn-primary" href="{% url 'awards:select_submission_category' %}">Start a New Awards Nomination Entry</a></p>
+    </div>
+</div>
+    
+<div class="layout-tracery">
+    <div class="layout-column">
+        <div class="admin-list">
+
+            <div class="row hidden-xs hidden-sm">
+                <div class="col-md-3">
+                    <h3>Category</h3>
+                </div>
+                <div class="col-md-4">
+                    <h3>Name of Entry</h3>
+                </div>
+                <div class="col-md-2">
+                    <h3>Submitted On</h3>
+                </div>
+                <div class="col-md-2">
+                    <h3>Status</h3>
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+
+            <div class="admin-list-group-wrap">
+            {% for nomination_roles in nominations %}
+            {% with nomination=nomination_roles.content.submission %}
+
+                <div class="col-md-3 admin-list-group">
+                    <div class="h3 h-flush visible-xs-block visible-sm-block">
+                        Category
+                    </div>
+                    <span>{{ nomination.submission_category }}</span>
+                </div>
+
+                <div class="col-md-4 admin-list-group">
+                    <div class="h3 h-flush visible-xs-block visible-sm-block">
+                        Contact
+                    </div>
+                    <span>{{nomination.title}}</span><br/>
+                </div>
+
+                <div class="col-md-2 admin-list-group">
+                    <div class="h3 h-flush visible-xs-block visible-sm-block">
+                        Submitted On
+                    </div>
+                    <span>{{nomination.submission_time|date:"F j, Y"}}</span><br/>
+                </div>
+
+                <div class="col-md-2 admin-list-group">
+                    <div class="h3 h-flush visible-xs-block visible-sm-block">
+                        Status
+                    </div>
+                    <span>
+                        {% if nomination.status == "N" %}
+                        Not Entered
+                        {% else %}
+                        Entered
+                        {% endif %}
+                    </span>
+                </div>
+                
+                <div class="col-md-1 admin-list-controls">
+                    {% if nomination.status == "N" and nomination.submission_period.is_open %}
+                        <a class="btn btn-sm btn-icon" href="{% url 'awards:submission_update' master_id=nomination.master_id %}">Edit<span class="icon-apa-edit"></span></a>
+                    {% elif nomination.status == "N" and not nomination.submission_period.is_open %}
+                        <span>Submission Deadline Passed</span>
+                    {% else %}
+                        <a class="btn btn-sm btn-default" href="{% url 'awards:submission_preview' master_id=nomination.master_id %}" target="_blank">View</a>
+                    {% endif %}
+                </div>
+
+                <div class="clearfix"></div>
+
+            {% endwith %}
+            {% empty %}
+                <p><i>You have not started any nominations</i></p>
+            {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

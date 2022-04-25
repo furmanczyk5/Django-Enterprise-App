@@ -1,0 +1,36 @@
+{% extends "pages/newtheme/default.html" %}
+
+{% load ui_tags %}
+
+{% block content_main %}
+    <h2 class="details-title">{{content.title}}</h2>
+    <div class="form-section form-section-enclosed-light">
+        <h2>Description</h2>
+        {{content.text|render_planning_shortcodes|safe}}
+    </div>
+
+    <div class="form-section form-section-enclosed-light">
+        <h2>Short Description</h2>
+        {{content.description}}
+    </div>
+
+    <div class="form-section form-section-enclosed-light">
+        <h2>Associated Collection</h2>
+        {{collection_titles}}
+    </div>
+
+    {% if content.editorial_comments %}
+        <div class="form-section form-section-enclosed-light">
+            <h2>Notes to Staff</h2>
+            {{content.editorial_comments}}
+        </div>
+    {% endif %}
+
+    {% if content.resource_url %}
+        <div class="form-section form-section-enclosed-light">
+            <h2>Supplemental Materials</h2>
+            <a href="{{content.resource_url}}">{{content.resource_url}}</a>
+        </div>
+    {% endif %}
+
+{% endblock %}

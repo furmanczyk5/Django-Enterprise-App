@@ -1,0 +1,56 @@
+@import "../css/icomoon/style.css";
+
+.hidden {
+	display:none;
+}
+
+span.open:before, span.closed:before, span.windowshade_tree_leaf:before{
+	font-family:'icomoon';
+	vertical-align:middle;
+	font-size:1.6em;
+	overflow:hidden;
+}
+
+span.open:before {
+	content:"\e629";
+	color:#005595;
+}
+
+span.closed:before {
+	content:"\e600";
+	color:#005595;
+}
+
+span.windowshade_tree_leaf:before {
+	content:"\e600";
+	color:#ffffff;
+}
+
+.field-description {
+	width:50%;
+}
+
+/*table tbody tr td, table tbody tr th {
+	padding:6px;
+	border-width:0px;
+}*/
+
+.grp-changelist-results {
+    background: none !important;
+}
+
+table#result_list {
+    font-size: 1.2em !important;
+}
+
+table#result_list tr, td {
+    padding: 6px;
+}
+
+th.field-qualified_title {
+    border-bottom: 1px solid black;
+}
+
+td.field-description {
+    border-bottom: 1px solid black;
+}

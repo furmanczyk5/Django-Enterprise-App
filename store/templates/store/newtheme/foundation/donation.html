@@ -1,0 +1,44 @@
+{% extends 'store/newtheme/foundation/page-sidenav.html' %}
+
+{% load static %}
+{% load content_extras %}
+{% load media_tags %}
+
+{% block content_main %}
+	{% include 'newtheme/templates/includes/page-head.html' %}
+
+	<div class="layout-tracery">
+		<div class="layout-column">
+      <h2>There Are Multiple Ways to Donate to the APA Foundation</h2>
+      <hr />
+      <h3>Online giving</h3>
+      <p>Help sustain the Foundation and make a lasting impact by setting up a recurring donation. No amount is too small to make a difference. Click below to make your one-time or monthly contribution today.</p>
+      <div>
+        <a href="{{ csi_giving_page }}?NetID={{ guid }}" class="btn btn-primary btn-lg" type="submit">Donate</a>
+      </div>
+      <hr />
+      <h3>Phone or Mail</h3>
+      <p>To make a gift by phone, please call 312-431-9100.</p>
+      <p>To make a gift by mail, please download and complete the <a class="planning-media" data-content-id="501649" href="/media/document/9124233/">contribution form</a> and return it with your donation enclosed to the following address:</p>
+      <p style="margin-left: 40px;">APA Foundation<br />
+        c/o American Planning Association<br />
+        P.O. Box 4291<br />
+        Carol Stream, IL 60197-4291</p>
+      <hr />
+      <h3>AICP College of Fellows Fund</h3>
+      <p>The AICP Commission and College of Fellows Committee established the AICP College of Fellows Fund to honor Fellows' commitment to lead the planning profession. <a href="/foundation/fellows/">Donate to the Fellows Fund.</a></p>
+      <hr />
+       <h3>Employer gift matching</h3>
+      <p>Deepen the impact of your donation through employer gift matching. If your company is eligible, request and complete the appropriate matching information from your organization and submit it to us along with your contribution. We&#39;ll take care of the rest.</p>
+      <p>Please use the following federal tax ID to fill out the matching gift paperwork: 52&ndash;1134021.</p>
+      <hr />
+      <h3>Planned Giving</h3>
+      <p>To learn more about joining the <a href="/foundation/lenfantlegacy/">L&#39;Enfant Legacy Society</a> and making an estate gift to the APA Foundation, please call 312-786-6345.</p>
+      <hr />
+      <h3>Investment securities</h3>
+      <p>The simplest and most efficient way to make a gift of any security is to instruct your broker or banker
+        to transfer the security to the APA Foundation.
+        Please contact us at <a href="mailto:foundation@planning.org?subject=I%20would%20like%20to%20donate%20to%20the%20APA%20Foundation.">foundation@planning.org</a> prior to the transfer to obtain the appropriate account information. Gifts of appreciated securities can provide you with special tax advantages including elimination of capital gains taxes and a charitable deduction for the fair-market value of the gift.</p>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,1 @@
+15 * * * * /srv/sites/apa/envs/apa/bin/python /srv/sites/apa/proj/apa/manage.py open_water_invoice_sync --window 0.5

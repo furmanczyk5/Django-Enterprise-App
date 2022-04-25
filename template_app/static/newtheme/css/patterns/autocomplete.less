@@ -1,0 +1,125 @@
+/**
+ * dependencies: bootstrap grid
+ */
+.autocomplete {
+  .menu {
+    z-index:98;
+    box-shadow:2px 2px 12px #888;
+    margin-left: 39px;
+  }
+}
+.autocomplete,
+.selectable-search {
+
+  .menu-item {
+    padding: 16px;
+    background-color: white;
+    border-bottom: solid @color-content-borders 1px;
+    font-size: 14px;
+  }
+  .records {
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+  .menu-footer {
+    padding:6px;
+    white-space:nowrap;
+    overflow:hidden;
+    font-size: 14px;
+  }
+  .selectable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f7f7f7;
+    }
+  }
+}
+
+.selectable-search {
+  background-color: white;
+  // padding: 12px;
+}
+.record {
+  .checkbox {
+    margin: 0;
+    padding-right: 10px;
+  }
+}
+#speakers_formset {
+  .record {
+    &:extend(.row);
+    &.loading {
+      background: url("../../content/image/ajax-loader.svg") no-repeat 10px center;
+    }
+  }
+}
+
+// .autocomplete, .selectable-search {
+//   position:relative;
+
+//   .menu {
+//     background-color:#fff;
+//     border:1px solid #000;
+
+//     .menu-item, .menu-header, .menu-footer {
+//       padding:6px;
+//       white-space:nowrap;
+//       overflow:hidden;
+//     }
+
+//     .menu-item, .menu-header {
+//       border-bottom:1px solid #666;
+//     }
+
+//     .menu-item {
+//       line-height:1.1em;
+//       background-color:white;
+//     }
+
+//     .selectable:hover {
+//       background-color:#dedede;
+//     }
+
+//     .menu-header, .menu-footer, .not-selectable {
+//       background-color:#fafafa;
+//     }
+//   }
+// }
+
+// .selectable-search .menu .records {
+//   max-height:400px;
+//   overflow-y:auto;
+// }
+
+// .autocomplete {
+
+//   .search-wrap {
+//     border:1px solid gray;
+//   }
+
+//   input[type='text'], .search-button {
+//     // .border-box();
+//     padding:0.4em;
+//     border:0;
+//     // .appearance-none;
+
+//     &.loading-right {
+//       background: rgba(255, 255, 255, 0.4) url("../content/image/ajax-loader.svg") no-repeat right;
+//     }
+//   }
+
+//   .search-button {
+//     color:black;
+//     background-color:white;
+//   }
+  
+//   .menu{
+    
+//   }
+// }
+
+// .formset .record, .selectable-search .menu .selectable {
+//   background-color:#fff;
+//   padding: 20px;
+// }

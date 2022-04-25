@@ -1,0 +1,78 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">AICP Certification Application</h1>    
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+    {% if error %}
+
+      <!-- TO DO... insert application errors here as needed... -->
+
+    {% else %}
+      <div class="row">
+
+
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            <div class="form-section form-section-enclosed-dark">
+
+              <br><br>
+              <h3><strong>AICP Certification APPLICATION</strong></h3>
+              <p>The AICP Certification Examination tests the knowledge and skills of members eligible for membership in AICP. To become eligible for certification, a member must submit an application that demonstrates that he or she has obtained the required combination of education and professional planning experience. </p>
+<p>The application consists of:</p>
+ <ul style="list-style-type:none">
+  <li>Section 1: Describe and verify educational history</li>
+  <li>Section 2: Describe and verify employment history</li>
+  <li>Section 3: Respond to eligibility criteria (Describe how your work experience fulfills APA's definition of professional planning experience.)</li>
+  <li>Section 4: Read and verify you have read the AICP Code of Ethics and Professional Conduct</li>
+  <li>Section 5: Application Summary and Review</li>
+</ul> 
+
+<p>You may complete your application all at once or save it and return to it later.</p>
+
+<p>Please thoroughly read the 
+<a href="https://planning.org/media/document/9162410/" target="_blank">AICP Guide Part 1: Certification Application</a> before you begin your application. </p>
+{% if asc_window_open %}
+<p>Only AICP members may apply for Advanced Specialty Certification. For instructions on applying for ASC in your field, click the appropriate link:
+<ul>
+<li><a href="https://www.planning.org/asc/transportation/" target="_blank"> Transportation Planning</a></li>
+<li><a href="https://www.planning.org/asc/environment/" target="_blank">Environmental Planning</a></li>
+<li><a href="https://www.planning.org/asc/urbandesign/" target="_blank">Urban Design</a></li>
+</ul>
+</p>
+{% endif %}
+
+<p>Select your application type from the options below.</p>
+
+              
+
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.application_type %}
+
+
+            </div>
+
+            <div class="form-actions">
+              <input type="submit" name="submit" class="btn btn-primary" value="Continue" />
+            </div>
+          </form>
+
+        </div>
+
+    {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

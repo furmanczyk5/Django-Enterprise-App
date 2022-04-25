@@ -1,0 +1,135 @@
+{% load staticfiles %}
+
+{% load template_app_extras %} {# anything custom needed for the template app #}
+{% get_conference_nav conference_menu as conference_menu %}{# for npc nav bar and footer #}
+
+
+<!-- Footer -->
+<div class="container-fluid footer footer-conference">
+  <!-- Footer Social -->
+  <div class="container-fluid footer-social-container">
+    <div class="row footer-social-wrap">
+      <span class="hidden-xs footer-social-label">Follow Us</span>
+      <div class="social-media-icons">
+
+        <a target="_blank" href="https://www.facebook.com/AmericanPlanningAssociation">
+          <span class="social-media-icon icon-facebook3"></span>
+        </a>
+        <a target="_blank" href="https://www.youtube.com/user/AmericanPlanningAssn">
+          <span class="social-media-icon icon-youtube2"></span>
+        </a>
+        <a target="_blank" href="https://twitter.com/APA_Planning">
+          <span class="social-media-icon icon-twitter3"></span>
+        </a>
+        <a target="_blank" href="http://instagram.com/americanplanningassociation">
+          <span class="social-media-icon icon-instagram2"></span>
+        </a>
+        <a target="_blank" href="https://www.linkedin.com/company/24456/">
+          <span class="social-media-icon icon-linkedin2"></span>
+        </a>
+        {# <a target="_blank" href="https://plus.google.com/115086455695210273594/posts"><span class="icon-googleplus"></span></a> #}
+
+        {# <a target="_blank" href="https://www.flickr.com/photos/75340746@N05/sets/"><span class="icon-flickr"></span></a> #}
+        {# <a target="_blank" href="https://www.planning.org/news/rss/"><span class="icon-feed"></span></a> #}
+        {# <a target="_blank" href="https://itunes.apple.com/us/podcast/american-planning-association/id194167978"><span class="icon-podcast"></span></a> #}
+
+      </div>
+    </div>
+  </div>
+  <div class="row footer-nav-sitemap-core-wrap">
+    <!-- Footer Nav sitemap -->
+    <div class="col-md-9">
+      <div class="hidden-xs footer-nav-sitemap clearfix">
+
+        {% for m in conference_menu %}
+        {% if m.get_url == '/conference/registration/' %}
+        {% else %}
+        <div class="pull-left footer-nav-sitemap-section">
+          <h4>
+            {{ m.title }}
+          </h4>
+          <ul>
+            <li>
+              <a href="{{ m.get_url }}">
+                {{ m.title }} Overview
+              </a>
+            </li>
+            {% if m.get_child_menuitems %}
+            {% for sm in m.get_child_menuitems %}
+            <li>
+              <a href="{{ sm.get_url }}">
+                {{ sm.title }}
+              </a>
+            </li>
+            {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+      </div>
+    </div>
+    <!-- Footer Nav sitemap /\ -->
+    <div class="col-md-3">
+      <hr class="visible-sm">
+      <!-- Footer Nav core -->
+      <ul class="row footer-nav-core">
+        <li>
+          {% if request.user.is_authenticated %}
+          <a href="/logout/">Log Out</a>
+          {% else %}
+          <a href="/login/?next={{request.path|urlencode}}">Log In</a>
+          {% endif %}
+
+        </li>
+        <li>
+          <a href="/membership/">
+            Join
+          </a>
+        </li>
+        <li>
+          <a href="/customerservice/">
+            Contact Us
+          </a>
+        </li>
+        <li class="visible-xs-inline-block pull-right">
+          <a href="#"><b>Back to Top</b></a>
+        </li>
+      </ul>
+      <!-- Footer Nav core /\ -->
+      <!-- Footer locations -->
+      <div class="hidden-xs row footer-locations">
+        <div class="col-sm-4 col-md-12">
+          <h5>Chicago</h5>
+          <p>
+            American Planning Association
+            <br>
+            205 N. Michigan Ave., Suite 1200
+            <br>
+            Chicago, IL 60601-5927
+          </p>
+          <p>
+            <b>Phone</b>: 312-431-9100
+            <br>
+            <b>Fax</b>: 312-786-6700
+          </p>
+        </div>
+      </div>
+      <!-- Footer locations /\ -->
+    </div>
+  </div>
+  <div class="row footer-copy">
+    <div class="col-md-12">
+      <img class="footer-conference-logo" src="{% static '/newtheme/image/APA_stacked_647.png' %}" height="127" width="262" alt="APA Logo">
+      <p class="featured-family strong visit-apa-wrap">
+        Visit APA at <a class="plain-link blue" href="https://planning.org">planning.org</a>
+      </p>
+      <a href="/apaataglance/copyright.htm">
+      &copy; {% now "Y" %} APA. All Rights Reserved
+      </a>
+      |
+      <a href="https://planning.org/privacy/">Privacy Policy</a>
+    </div>
+  </div>
+</div>

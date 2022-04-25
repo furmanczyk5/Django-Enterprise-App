@@ -1,0 +1,12 @@
+{% extends "newtheme/templates/layout-sidebar.html" %}
+
+{% load template_app_extras %}
+
+{% block content_sidebar %}
+{% sidenav for_url="/consultants/" %}
+{% endblock %}
+
+
+{% block content_main %}
+{% include "consultants/newtheme/includes/details.html" %}
+{% endblock %}

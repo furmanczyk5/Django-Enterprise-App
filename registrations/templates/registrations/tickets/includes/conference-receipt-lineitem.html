@@ -1,0 +1,9 @@
+{% load humanize %}
+<span>{{purchase.quantity|floatformat:"0"}}</span> 
+<span> - </span>
+<span>${{purchase.product_price.price|floatformat:"2"|intcomma}}</span>
+<span> - </span>
+{% if purchase.product.content.event.event_type == "ACTIVITY" and purchase.product.content.code %}
+	<b>{{purchase.product.content.code}}</b><span> - </span>
+{% endif %}
+<span>{{purchase.product.content.title|truncatechars:40}}</span>

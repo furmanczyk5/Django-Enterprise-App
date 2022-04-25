@@ -1,0 +1,19 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{# UNUSED? #}
+<h2 class="headline-underline">{{value.heading}}</h2>
+
+<div class="content-preview-list no-top-spacing no-top-border no-bottom-border">
+    <ul>
+    {% for ll in value.listed_links %}
+        <li class="content-preview-item">
+        	{% if ll.overline %}
+            <h6 class="content-preview-item-superheadline">{{ll.overline}}</h6>
+            {% endif %}
+            <h4 class="content-preview-item-headline"><a href="{{ll.url}}">{{ll.title}}</a></h4>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% include_block value.link %}

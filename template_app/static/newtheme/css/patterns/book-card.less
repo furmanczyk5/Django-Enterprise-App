@@ -1,0 +1,76 @@
+/**
+ * dependencies: typography
+ */
+
+/* /////////////////////
+// BOOK CARD
+///////////////////// */
+@book-card-padding: 18px;
+.book-card {
+  border: @color-content-borders solid 1px;
+  background-color: #fff;
+}
+
+.book-card .detail-link {
+  display: block;
+  cursor: pointer;
+}
+
+.book-image-wrap {
+  height: 50vw;
+  overflow: hidden;
+}
+
+@media screen and (min-width: @screen-xs-min) {
+  .book-image-wrap {
+    height: 25vw;
+  }
+}
+@media screen and (min-width: 700px) {
+  .book-image-wrap {
+    height: 260px;
+  }
+}
+
+.book-card .book-image {
+  width: 100%;
+  border-bottom: @color-content-borders solid 1px;
+}
+
+.book-card .book-title {
+  display: block;
+  margin: @book-card-padding 0 8px;
+  padding: 0 @book-card-padding;
+  height: 48px; //show exactly 2 lines. Clamp.js will insert ellipses
+  overflow: hidden;
+}
+
+.book-card a .book-title {
+  color: @link-color;
+}
+
+.book-card a:hover,
+.book-card a:focus {
+  & .book-title {
+    color: @link-hover-color;
+  }
+}
+
+//Todo: extend .key-value-pair
+.book-card .book-prices {
+  &:extend(p.small all);
+  padding: 0 @book-card-padding @book-card-padding;
+}
+
+.book-card .book-prices .book-price {
+  display: block;
+}
+
+.book-card .book-prices .book-price .book-price-label,
+.book-card .book-prices .book-price .book-price-value {
+  display: inline;
+}
+
+.book-card .book-prices .book-price .book-price-label{
+  font-weight: bold;
+}

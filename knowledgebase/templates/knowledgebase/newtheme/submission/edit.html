@@ -1,0 +1,97 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+{% load compress %}
+
+{% block additional_head_css %}
+{{block.super}}
+{# date picker #}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'ui/modal/css/modal.css' %}?v=0" />
+{% compress css %}
+<link type="text/less" rel="stylesheet" href="{% static 'content/css/selectmultipletagswidget.less' %}" />
+{% endcompress %}
+{% endblock %}
+
+
+{% block content_main %}
+
+<div class="page-head">
+  <a class="btn btn-sm btn-default back-button" href="{{home_url}}">Back</a>
+  <h1 class="page-title">{% block title_h1 %}{{title}}{% endblock %}</h1>
+  <br />
+  <p>{{body|safe}}</p>
+  <br/>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <form {% block formattrs %}class="planning-form validate-form" method="post" id="submission_form"{% endblock %}>
+      {% csrf_token %}
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+
+      {% include "ui/newtheme/forms/includes/display-errors.html" with form=form %}
+
+      {% block form_fields %}
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">General Information</h3>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+
+        {% include "submissions/newtheme/includes/time-fields.html" with form=form %}
+
+        {% include "submissions/newtheme/includes/location-fields.html" with form=form %}
+
+        {% include "submissions/newtheme/includes/tag-fields.html" with form=form %}
+         <div class="help-block">At least one topic is required. You may select up to three. Use the Ctl key (or Command key on a mac) to select multiple.</div>
+        <br>
+        <div class="form-group">
+          {% include "submissions/newtheme/includes/cm-fields.html" with form=form %}
+        </div>
+      </div>
+
+      {% endblock %}
+
+      <br/>
+      <div class="clearfix btn-toolbar btn-mobile">
+      <button type="submit" name="submitButton" value="submit" class="btn btn-primary" onclick="tinyMCE.triggerSave()">Submit</button>
+      <button type="submit" name="saveButton" value="save" class="btn btn-default" onclick="tinyMCE.triggerSave()">Save and Finish Later</button>
+      <a class="btn btn-default pull-right button-float" href="{{home_url}}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{ block.super }}
+<script src="{% static 'ui/modal/js/modal.js' %}?v=0"></script>
+<script src="{% static 'submissions/js/event_edit.js' %}?v=0"></script>
+<script src="{% static 'content/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'newtheme/ui/forms/js/formset.js' %}"></script>
+<script src="{% static 'newtheme/autocomplete/js/autocomplete.js' %}"></script>
+<script src="{% static 'rome/rome.min.js' %}"></script>
+<script src="{% static 'rome/rome_setup.js' %}?v=0"></script>
+
+<script src="{% static 'content/ckeditor-content/ckeditor.js' %}"></script>
+
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script src="{% static 'content/js/selectmultipletagswidget.js' %}"></script>
+<script>
+  $(function () {
+    $('.empty_form').find('input[type="radio"],input[type="checkbox"]').iCheck('destroy');
+    $('.selectmultipletagswidget').find('input[type="checkbox"]').iCheck('destroy');
+    $('[data-toggle="popover"]').popover()
+  });
+
+  CKEDITOR.replace('id_text');
+
+</script>
+
+{% endblock %}

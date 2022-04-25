@@ -1,0 +1,21 @@
+{% if form.begin_time or form.end_time%}
+  <div class="form-group">
+    <div class="row">
+      {% if form.begin_time %}
+      <div class="col-sm-4">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.begin_time %}
+      </div>
+      {% endif %}
+      {% if form.end_time %}
+      <div class="col-sm-4">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.end_time %}
+      </div>
+      {% endif %}
+      {% if form.timezone %}
+      <div class="col-sm-4">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.timezone %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

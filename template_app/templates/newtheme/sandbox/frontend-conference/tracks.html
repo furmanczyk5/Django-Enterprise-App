@@ -1,0 +1,227 @@
+{% extends 'newtheme/templates/conference/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="container">
+  {% include 'newtheme/templates/conference/includes/page-head.html' %}
+
+  {# Title, desc and Login widget #}
+  <div class="page-subhead row">
+    <div class="col-sm-8 col-lg-9">
+      <h2>
+        A conference within a conference
+      </h2>
+      <p>
+        Each track is a series of sessions and activities focused on emerging issues and guides to planning practice. Follow one track throughout the conference or pick and choose from a variety.
+      </p>
+    </div>
+    <div class="col-sm-4 col-lg-3">
+      <div class="view-schedule-widget">
+        <h3>Ready to create your NPC 2018 Schedule?</h2>
+        <p class="small">Log in to see the entire conference program and create your NPC 2018 schedule</p>
+        <div class="view-schedule-widget-links">
+          <a href="#" class="btn btn-primary view-schedule-widget-link">Log In to Your Schedule</a>
+          <div class="view-schedule-widget-links-account-block view-schedule-widget-link">
+            <div>Don't have an account?</div>
+            <a href="#">Create one now.</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {# Title, desc and Login widget end #}
+
+  {# Tracks #}
+  <div class="conference-track-content-row">
+      <div class="conference-track-content">
+        <div class="conference-track-content-head">
+          <div class="conference-track-content-head-title">
+            <div class="conference-track-content-head-title-track">
+              Track 1:
+            </div>
+            <div class="conference-track-content-head-title-track-subject">From Climate Change to Resiliency</div>
+          </div>
+          <div class="conference-track-content-head-image">
+            <img src="//placehold.it/353x190" />
+          </div>
+        </div>
+        <div class="conference-track-content-body">
+          <div class="h3 strong">Several themes will be pursued in this track.</div>
+          <div class="accordion">
+            <div class="accordion-handle">
+              Read Track 1 description
+            </div>
+
+            <div class="accordion-content">
+              <p><strong>First:</strong> Sea-level rise and coastal cities and infrastructure. The enormity of the issue will be examined in terms of the vulnerability of major coastal cities.</p>
+
+              <p><strong>Second:</strong> Extreme weather and changing weather cycles that require planners and their communities to be prepared to deal with hazards.</p>
+
+              <p><strong>Third:</strong> How resilience can mean not only withstanding natural hazards but also adapting to economic and other changes — whether sudden or gradual. Managing and planning for water will be addressed throughout.</p>
+            </div>
+          </div>
+
+          <a class="view-track-link" href="#">View Track 1 Related Ressions</a>
+        </div>
+      </div>
+
+      <div class="conference-track-content">
+        <div class="conference-track-content-head">
+          <div class="conference-track-content-head-title">
+            <div class="conference-track-content-head-title-track">
+              Track 2:
+            </div>
+            <div class="conference-track-content-head-title-track-subject">Managing Change in Communities</div>
+          </div>
+          <div class="conference-track-content-head-image">
+            <img src="//placehold.it/353x190" />
+          </div>
+        </div>
+        <div class="conference-track-content-body">
+          <div class="h3 strong">Several themes will be pursued in this track.</div>
+          <div class="accordion">
+            <div class="accordion-handle">
+              Read Track 2 description
+            </div>
+
+            <div class="accordion-content">
+              <p>New technology tools have made urban design concepts accessible to the public and strengthened planners' role in design. Design is also an interdisciplinary undertaking and presentations examine how planning contributes and functions within this context. What skills do you need to get on the team and how do you need to function once you are on the team?</p>
+
+              <p>This topic also may address collective impact and cross-sector partnerships. Sessions will help prepare planners for workforce changes.</p>
+            </div>
+          </div>
+
+          <a class="view-track-link" href="#">View Track 2 Related Ressions</a>
+        </div>
+      </div>
+
+      <div class="conference-track-content">
+        <div class="conference-track-content-head">
+          <div class="conference-track-content-head-title">
+            <div class="conference-track-content-head-title-track">
+              Track 3:
+            </div>
+            <div class="conference-track-content-head-title-track-subject">Transportation</div>
+          </div>
+        </div>
+        <div class="conference-track-content-body">
+          <div class="h3 strong">Several themes will be pursued in this track.</div>
+
+          <div class="accordion">
+            <div class="accordion-handle">
+              Read Track 3 description
+            </div>
+            <div class="accordion-content">
+              <p>Disruption comes in many forms, from the evolving "sharing economy," to technological inventions like mobile apps and fracking, to new lifestyle choices.</p>
+
+              <p>This track explores everything from new locales for winemaking, hip and attractive small towns, casinos, and increased personal choices enabled by technological inventions. These rapidly evolving phenomena are inventing new opportunities and creating new challenges for communities.</p>
+
+              <p>What's next? How are communities responding constructively?</p>
+            </div>
+          </div>
+
+          <a class="view-track-link" href="#">View Track 3 Related Ressions</a>
+        </div>
+      </div>
+
+      <div class="conference-track-content">
+        <div class="conference-track-content-head">
+          <div class="conference-track-content-head-title">
+            <div class="conference-track-content-head-title-track">
+              Track 4:
+            </div>
+            <div class="conference-track-content-head-title-track-subject">Planning and Innovative Government</div>
+          </div>
+        </div>
+        <div class="conference-track-content-body">
+          <div class="h3 strong">Several themes will be pursued in this track.</div>
+
+          <div class="accordion">
+            <div class="accordion-handle">
+              Read Track 4 description
+            </div>
+            <div class="accordion-content">
+              <p><strong>First:</strong> Sea-level rise and coastal cities and infrastructure. The enormity of the issue will be examined in terms of the vulnerability of major coastal cities.</p>
+
+              <p><strong>Second:</strong> Extreme weather and changing weather cycles that require planners and their communities to be prepared to deal with hazards.</p>
+
+              <p><strong>Third:</strong> How resilience can mean not only withstanding natural hazards but also adapting to economic and other changes — whether sudden or gradual. Managing and planning for water will be addressed throughout.</p>
+            </div>
+          </div>
+
+          <a class="view-track-link" href="#">View Track 1 Related Ressions</a>
+        </div>
+      </div>
+
+      <div class="conference-track-content">
+        <div class="conference-track-content-head">
+          <div class="conference-track-content-head-title">
+            <div class="conference-track-content-head-title-track">
+              Track 5:
+            </div>
+            <div class="conference-track-content-head-title-track-subject">Public Health and Planning</div>
+          </div>
+          <div class="conference-track-content-head-image">
+            <img src="//placehold.it/353x190" />
+          </div>
+        </div>
+        <div class="conference-track-content-body">
+          <div class="h3 strong">Several themes will be pursued in this track.</div>
+
+          <div class="accordion">
+            <div class="accordion-handle">
+              Read Track 5 description
+            </div>
+            <div class="accordion-content">
+              <p>New technology tools have made urban design concepts accessible to the public and strengthened planners' role in design. Design is also an interdisciplinary undertaking and presentations examine how planning contributes and functions within this context. What skills do you need to get on the team and how do you need to function once you are on the team?</p>
+
+              <p>This topic also may address collective impact and cross-sector partnerships. Sessions will help prepare planners for workforce changes.</p>
+            </div>
+          </div>
+
+          <a class="view-track-link" href="#">View Track 2 Related Ressions</a>
+        </div>
+      </div>
+
+      <div class="conference-track-content">
+        <div class="conference-track-content-head">
+          <div class="conference-track-content-head-title">
+            <div class="conference-track-content-head-title-track">
+              Track 6:
+            </div>
+            <div class="conference-track-content-head-title-track-subject">Urban Design and Preservation</div>
+          </div>
+        </div>
+        <div class="conference-track-content-body">
+          <div class="h3 strong">Several themes will be pursued in this track.</div>
+
+          <div class="accordion">
+            <div class="accordion-handle">
+              Read Track 6 description
+            </div>
+            <div class="accordion-content">
+              <p>Disruption comes in many forms, from the evolving "sharing economy," to technological inventions like mobile apps and fracking, to new lifestyle choices.</p>
+
+              <p>This track explores everything from new locales for winemaking, hip and attractive small towns, casinos, and increased personal choices enabled by technological inventions. These rapidly evolving phenomena are inventing new opportunities and creating new challenges for communities.</p>
+
+              <p>What's next? How are communities responding constructively?</p>
+            </div>
+          </div>
+
+          <a class="view-track-link" href="#">View Track 3 Related Ressions</a>
+        </div>
+      </div>
+  </div>
+
+  {# Quick Links #}
+  <!--<div class="quick-links-block">
+    <h2 class="headline-underline">Quick Links</h2>
+    <a href="#" class="btn btn-primary quick-links-button">Register for NPC18 now</a>
+    <div class="list-of-links list-of-links-small quick-links">
+      <h4><a href="#">View Full Program</a></h4>
+      <h4><a href="#">View All Tracks</a></h4>
+      <h4><a href="#">View My Schedule</a></h4>
+    </div>
+  </div>-->
+</div>
+{% endblock %}

@@ -1,0 +1,479 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load static %}
+{% load tz %}
+{% load store_tags %}
+{% load event_tags %}
+{% load cm_tags %}
+{% load content_extras %}
+{% load course_tags %}
+
+{% block additional_head_js %}
+
+<link rel="stylesheet" href="{% static 'content/css/change_list_tree.css' %}" />
+
+<style>
+  .btn-primary {
+    margin: 5px 0;
+  }
+</style>
+
+{% endblock %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+{% with event=content %}
+{% if event.product %}
+
+<div class="page-head no-border-bottom no-spacing-bottom">
+  {% include "newtheme/templates/includes/social-sharing-widget.html" %}
+
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+ <div class="image-block">
+  <a href="https://learn.planning.org/catalog/"><img src="{% static 'images/apa_learn_banner_full_width.png' %}" /></a>
+  </div>
+
+  <h1 class="page-title">{{ event.title }}</h1>
+
+
+  <!-- <h2 class="details-subtitle">#{{ event.code }}</h2> -->
+</div>
+
+
+<div class="layout-tracery no-border">
+  <div class="layout-column">
+
+    <div class="row content-managed-html">
+
+      <div class="col-xs-12 col-sm-8 col-lg-9">
+
+        <div class="format-picker-option-prices key-value-pair-group">
+
+          {% all_price_options as all_options %}
+
+          {% regroup all_options by option_title as price_list %}
+            {% for option_item in price_list %}
+
+                <div class="key-value-pair-group" id="{{ option_item.grouper|slugify }}" {% if not forloop.first %} hidden {% endif %}>
+                  <em>{{ option_item.grouper }} </em>
+
+                  {% for price_item in option_item.list %}
+                    {% if price_item.status == 'A' or price_item.status == 'H' %}
+                    <div class="key-value-pair">
+                      <div class="key" {% if not price_item.is_user_price %} style="font-weight: normal;" {% endif %}>{{ price_item.title }}</div>
+                      <!-- NOTE: DO NOT CHANGE THE ORDER OF THESE!!!!!
+                      setProductOption in course_details.js uses nextElementSibling
+                      to determine min and max quantities -->
+                      <input type="hidden" class="product_options" value="{{ price_item.option_id }}" />
+                      <input type="hidden" class="min_quantity" value="{{ price_item.min_quantity }}" />
+                      <input type="hidden" class="max_quantity" value="{{ price_item.max_quantity }}" />
+
+                      <div class="value" {% if price_item.is_user_price %} style="font-weight: bold;" {% endif %}>${{ price_item.price }} per learner</div>
+                    </div>
+                   {% endif %}
+                  {% endfor %}
+                </div> <!-- key-value-pair-group -->
+            {% endfor %}
+        </div> <!-- format-picker-option-prices key-value-pair-group -->
+
+        <br />
+
+        {% if request.user.is_authenticated %}
+
+        <form method="POST" action="/store/cart/add/">
+          {% csrf_token %}
+          <label for="quantity">Number of Learners:</label>
+          <input type="hidden" name="product_id" value="{{ product.id }}" />
+          <input type="hidden" id="product_option_id" name="option_id" value="" />
+          <input type="hidden" id="redirect" name="redirect" value="store:cart" />
+          <select id="quantity" name="quantity">
+            <option value="1" selected>1</option>
+          </select>
+
+          <br />
+          <br />
+
+          <div id="codePurchase">
+
+            <input type="checkbox" id="for_someone_else" name="for_someone_else">
+            <label style="display: inline;" for="for_someone_else">Purchasing a course for an individual other than yourself? Check here to receive an access code for the learner.</label>
+
+          </div>
+
+        <br />
+          
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Group Pricing Information
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <p>APA Learn offers individual and group pricing. You may purchase one or more licenses for this course.</p>
+                  <p>To purchase, enter the number of learners and add to your cart. APA Learn will automatically figure the correct total cost based on the number of learners and the price per learner for that tier. This total cost will appear in your cart.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        <br />
+        <br />
+
+        <p class="text-right">
+          <input type="submit" class="btn btn-primary" value="Add to Cart and Check Out" />
+
+          <input type="submit" class="btn btn-primary" id="return_to_apa_learn" value="Add to Cart and Return to APA Learn" />
+        </p>
+
+        <p class="text-right">
+          <a class="btn btn-default" href="https://learn.planning.org/catalog/">Return to APA Learn</a>
+
+        </p>
+
+
+        </form>
+
+        {% else %}
+
+        <a class="btn btn-primary" href="/login/?next={{request.path|urlencode}}">Sign In to Add to Cart</a>
+        <br />
+
+        {% endif %}
+
+        <br/>
+        <br/>
+
+        <h3 class="form-section-title">Certification Maintenance</h3>
+        <hr/>
+        <div class="row">
+          <div class="col-xs-4">
+            {% if event.cm_approved and event.event_type != "EVENT_MULTI" %}
+            <span align="left" style="display:inline-block">
+                <span class="cm">CM | </span><span class="cmpoints">{{event.cm_approved|floatformat:"-2"}}</span>
+                {% if event.cm_law_approved %}
+                <br>
+                <span class="cmlawethics" style="margin-left:4px;">L</span><span class="cmpoints"><span
+                class="cm"> | </span>{{event.cm_law_approved|floatformat:"-2"}}</span>
+                {% endif %}
+                {% if event.cm_ethics_approved %}
+                <br>
+                <span class="cmlawethics" style="margin-left:4px;">E</span><span class="cmpoints"><span
+                class="cm"> | </span>{{event.cm_ethics_approved|floatformat:"-2"}}</span>
+                {% endif %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+        <br><br>
+
+        {{ content.text|safe }}
+
+        <hr>
+
+        {% if product.product_type in product_details_list %}
+        <h2>Product Details</h2>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-6">
+            <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+
+              {% if cm_approved %}
+              <div class="key-value-pair">
+                <div class="key">CM Approved</div>
+                <div class="value">{{ cm_approved }}</div>
+              </div>
+              {% endif %}
+
+              {% if cm_law_approved %}
+              <div class="key-value-pair">
+                <div class="key">Law Approved</div>
+                <div class="value">{{ cm_law_approved }}</div>
+              </div>
+              {% endif %}
+
+              {% if cm_ethics_approved %}
+              <div class="key-value-pair">
+                <div class="key">Ethics Approved</div>
+                <div class="value">{{ cm_ethics_approved }}</div>
+              </div>
+              {% endif %}
+
+              {% if content.length_in_minutes %}
+              <div class="key-value-pair">
+                <div class="key">Duration</div>
+                <div class="value">{{content.length_in_minutes }} minutes</div>
+              </div>
+              {% endif %}
+
+              {% if content.page_count %}
+              <div class="key-value-pair">
+                <div class="key">Page Count</div>
+                <div class="value">{{ content.page_count }}</div>
+              </div>
+              {% endif %}
+
+              {% if content.resource_published_date %}
+              <div class="key-value-pair">
+                <div class="key">Date Published</div>
+                <div class="value">{{ content.resource_published_date }}</div>
+              </div>
+              {% endif %}
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+
+            <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+
+              {% if content.isbn %}
+              <div class="key-value-pair">
+                <div class="key">ISBN</div>
+                <div class="value">{{ content.isbn }}</div>
+              </div>
+              {% endif %}
+
+              {% if content.publication_format %}
+              <div class="key-value-pair">
+                <div class="key">Format</div>
+                <div class="value">{{ content.publication_format }}</div>
+              </div>
+              {% endif %}
+
+              {% if publishers %}
+              <div class="key-value-pair">
+                <div class="key">{{publishers|length|pluralize:"Publisher,Publishers"}}</div>
+                <div class="value">
+                  {% for publisher in publishers %}
+                  {{publisher.company}}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+              {% endif %}
+
+            </div>
+          </div>
+
+        </div>
+
+        {% comment %}
+        <!--
+        {% if authors %}
+          <div class="accordion">
+            <h2 class="accordion-handle">About the {{authors|length|pluralize:"Author,Authors"}}</h2>
+            <div class="accordion-content">
+            {% for contact in authors %}
+              <p>
+                {% if contact.first_name or contact.last_name %}
+                  <b>{{contact.first_name}} {{contact.last_name}}</b><br/>
+                {% else %}
+                  <b>{{contact.contact.title}}</b><br/>
+                {% endif %}
+
+                {% if contact.bio %}
+                  {{contact.bio}}
+                {% elif contact.contact and contact.contact.bio %}
+                  {{contact.contact.bio}}
+                {% endif %}
+              </p>
+            {% endfor %}
+            </div>
+          </div>
+        {% endif %} -->
+        {% endcomment %}
+
+        {% if speakers %}
+        <div class="accordion">
+          <h2 class="accordion-handle">About the {{speakers|length|pluralize:"Speaker,Speakers"}}</h2>
+          <div class="accordion-content">
+            {% for contact in speakers %}
+            <p>
+              {% if contact.first_name or contact.last_name %}
+              <b>{{contact.first_name}} {{contact.last_name}}</b><br/>
+              {% else %}
+              <b>{{contact.contact.first_name}} {{contact.contact.last_name}}</b><br/>
+              {% endif %}
+
+              {% if contact.bio %}
+              {{contact.bio}}
+              {% elif contact.contact and contact.contact.bio != '' %}
+              {{contact.contact.bio}}
+              {% endif %}
+            </p>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if content.table_of_contents and content.table_of_contents != '' %}
+        <div class="accordion">
+          <h2 class="accordion-handle">Table of Contents</h2>
+          <div class="accordion-content">
+            {{ content.table_of_contents|safe}}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if product.reviews and product.reviews != ''%}
+        <div class="accordion">
+          <h2 class="accordion-handle">Reviews</h2>
+          <div class="accordion-content">
+            {{ product.reviews|safe }}
+          </div>
+        </div>
+        {% endif %}
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% else %}
+
+<div class="page-head">
+  <h1 class="page-title">
+    {{ event.title }}
+  </h1>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+
+    {% if event.provider_roles %}
+    <h2 class="details-subtitle">
+      <a href="/cm/provider/{{event.provider_roles.0.contact.id}}/details/">
+        {{event.provider_roles.0.contact.title}}
+      </a>
+    </h2>
+    {% endif %}
+
+    <p class="small">
+      #{{ event.master.id }}
+    </p>
+
+    <p class="address">
+      {% localtime off %}
+      {% ifequal event.begin_time|date:"SHORT_DATE_FORMAT" event.end_time|date:"SHORT_DATE_FORMAT"%}
+      {{event.begin_time_astimezone|date:"l, F j, Y"}}<br>
+      {{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+      {% else %}
+      {{event.begin_time_astimezone|date:"l, F j, Y, P"}}<br>{{event.end_time_astimezone|date:"l, F j, Y, P e"}}
+      {% endifequal %}
+      {% endlocaltime %}
+    </p>
+
+    {% if event.city or event.state or event.country %}
+    <p class="address">
+      {{event.city}}, {{event.state}}, {{event.country}}
+    </p>
+    {% endif %}
+
+    {% if event.cm_approved and event.event_type != "EVENT_MULTI" %}
+    <p>
+      <span class="cm">CM | </span><span class="cmpoints">{{event.cm_approved|floatformat:"-2"}}</span>
+
+      {% if event.cm_law_approved %}
+      <br>
+      <span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_law_approved|floatformat:"-2"}}</span>
+      {% endif %}
+
+      {% if event.cm_ethics_approved %}
+      <br>
+      <span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_ethics_approved|floatformat:"-2"}}</span>
+      {% endif %}
+    </p>
+    {% evaluate_event_button event request.user.contact %}
+    {% endif %}
+
+    {% if event.text %}
+    <h3>Overview</h3>
+    <div class="content-managed-html">
+      <p>
+        {{ event.text|safe }}
+      </p>
+    </div>
+    {% endif %}
+
+    {% if event.resource_url %}
+    <h3>Resource URL</h3>
+    <!-- CHECK FOR HTTPS WAS CREATING SERVER ERROR ON PROD ...! -->
+    {% if resource %}
+    <p>{{event.resource_url}}</p>
+    {% else %}
+    <p>
+      <a class="text" target="_BLANK" href="{{event.resource_url}}">view resource</a>
+    </p>
+    {% endif %}
+    {% endif %}
+
+    {% if event.speaker_roles %}
+      {% for speaker in event.speaker_roles %}
+        {% if forloop.first %}
+          <h3>Speakers</h3>
+          <div class="list-of-speakers">
+        {% endif %}
+
+        <!-- FLAGGED FOR REFACTORING: SPEAKER DETAILS DISPLAY -->
+        {% if speaker.contact %}
+          <h4>{{ speaker.contact.first_name }} {{ speaker.contact.last_name }}</h4>
+        {% elif speaker.first_name %}
+          <h4>{{ speaker.first_name }} {{ speaker.last_name }}</h4>
+        {% endif %}
+
+        {% if speaker.confirmed %}
+          <p><em>Confirmed Speaker</em></p>
+        {% elif speaker.invitation_sent %}
+          <p><em>Invited Speaker</em></p>
+        {% endif %}
+
+        {% if speaker.contact %}
+          <p>{{ speaker.contact.bio }}</p>
+        {% elif speaker.bio %}
+          <p>{{ speaker.bio }}</p>
+        {% endif %}
+
+        {% if forloop.last %}
+        </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    <p>
+      {% if event.event_type == "ACTIVITY" %}
+      {% activity_ticket_link activity=event %}
+      {% else %}
+      {% event_register_link %}
+      {% endif %}
+    </p>
+
+    {% block events_multi %}{% endblock events_multi %}
+
+  </div>
+</div>
+
+{% endif %}
+{% endwith %}
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{ block.super }}
+
+<script src="{% static 'newtheme/vendor/bootstrap/js/collapse.js' %}"></script>
+<script src="{% static 'learn/course_details.js' %}"></script>
+
+{% endblock additional_body_js %}

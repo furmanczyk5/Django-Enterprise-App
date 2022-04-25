@@ -1,0 +1,14 @@
+{% load i18n admin_urls %}
+
+<li>
+	<div class="planning-admin-checkin-tool" data-content-id="{{ original.id }}">
+		<div class="planning-admin-checkin-checkedout">
+			<span class="status">status: checked out by another user</span>
+			<a class="planning-admin-checkin" href="javascript:;">{% trans "Check In" %}</a>
+		</div>
+		<div style="display:none" class="planning-admin-checkin-checkedin">
+			<span class="status">status: checked in</span>
+			<a class="planning-admin-checkout" href="{% url opts|admin_urlname:'changelist' %}">{% trans "Check Out" %}</a>
+		</div>
+	</div>
+</li>

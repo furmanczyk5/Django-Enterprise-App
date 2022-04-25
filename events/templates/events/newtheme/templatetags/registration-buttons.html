@@ -1,0 +1,63 @@
+{% if product and registration_is_open %}
+
+{% if user %}
+	
+<div class="row">
+
+	<div class="col-sm-12">
+		
+		{% if has_registration and has_activities %}
+		{% if location == "CONFERENCE_KIOSK" %}<h3>Our Records indicate that you have already purchased registration.</h3>{% endif %}
+		<p>
+			{% if location != "CONFERENCE_KIOSK" %}<b>You are registered!</b>{% endif %}
+			{% if has_activities%}
+				<br />
+				<a href="{{add_activities_url}}" class="button btn btn-primary btn-lg">Purchase Activities</a>
+			{% endif %}
+		</p>
+
+		{% if location == "CONFERENCE_KIOSK" and reprint_url %}
+		<br/>
+		<br/>
+		<p>
+			<a href="{{reprint_url}}" class="button btn btn-primary btn-lg">Reprint Badge and Tickets</a>
+		</p>
+		{% endif %}
+
+		{% else %}
+		{% if location == "CONFERENCE_KIOSK" %}<h3>Welcome to the conference! please select the option below to register.</h3>{% endif %}
+		<p>
+			<a href="{{register_url}}" class="button btn btn-primary btn-lg">Register</a>
+		</p>
+		{% endif %}
+		
+	</div>
+</div>
+
+{% else %}
+	
+	<div class="row">
+
+		<div class="col-sm-6">
+			<p>
+				<br/>
+				<a href="{{register_url}}" class="button btn btn-primary btn-lg">Log in to Register</a>
+			</p>
+		</div>
+
+		<div class="col-sm-6">
+			{% if has_activities %}
+			<p>
+				<b>Already Registered?</b><br/>
+				<a href="{{add_activities_url}}" class="button btn btn-primary btn-lg">Log in to Add Activities</a>
+			</p>
+			{% endif %}
+		</div>
+		
+	</div>
+
+{% endif %}
+<br/>
+<br/>
+
+{% endif %}

@@ -1,0 +1,189 @@
+{% load tz %}
+{% load content_extras %}
+{% load template_app_extras %}
+{% for result in results %}
+
+{% should_render_activity is_waitlist_block result.id|split_on_period:1 waitlisted_master_ids as should_render %}
+{% if should_render %}
+{% with timezone=result.timezone|default:"US/Central" %}
+{% with begin_time=result.begin_time|datetime_with_zone_from_json:timezone end_time=result.end_time|datetime_with_zone_from_json:timezone %}
+
+{% localtime off %}
+{% ifchanged begin_time %}
+{% ifchanged begin_time|date:"omd" %}
+{% if not forloop.first %}
+</div>
+{% endif %}
+<a class="conference-result-day-anchor" name="{{ begin_time|date:'lNjY' }}"
+   title="{{ begin_time|date:'D n/j' }}"></a>
+<h2>{{ begin_time|date:"l, N j, Y" }}</h2>
+<div class="conference-event-row">
+  {% endifchanged %}
+  {% endifchanged %}
+  {% endlocaltime %}
+  <!--<div class="conference-event-row"> started above-->
+  {# workaround to compare the next elements time only if the date has not changed #}
+  <div class="conference-event-col">
+    <div class="conference-event
+        {% with next_element=results|ss_next:forloop.counter0 previous_element=results|ss_previous:forloop.counter0 %}
+        {% if forloop.first %}
+
+            {% if result.end_time > next_element.begin_time %}
+              color-red
+            {% else %}
+              border-green
+            {% endif %}
+
+        {% elif not forloop.last %}
+
+          {% if result.end_time > next_element.begin_time %}
+            color-red
+          {% elif previous_element.end_time > result.begin_time %}
+            color-red
+          {% else %}
+            border-green
+          {% endif %}
+
+
+        {% elif forloop.last %}
+            {% if previous_element.end_time > result.begin_time %}'
+              color-red
+            {% else %}
+              border-green
+            {% endif %}
+        {% endif %}
+        {% endwith %}
+
+    ">
+      <div class="conference-event-body">
+        {% if result.has_product %}
+        <div class="section-icon section-icon-ticket">
+          <h3>Ticket Required</h3>
+        </div>
+        {% endif %}
+        {% if "Food Included" in result.tags %}
+        <div class="section-icon section-icon-spoon-knife">
+          <h3>Food Included</h3>
+        </div>
+        {% endif %}
+        <a href="/events/activity/{{ result.id|split_on_period:1 }}/">
+          <h2 class="headline-underline">{{ result.title }}</h2>
+        </a>
+        <!-- Date and time -->
+        {% localtime off %}
+        <!-- Date -->
+        {# workaround to compare the next elements time only if the date has not changed #}
+        <div class="
+            {% with next_element=results|ss_next:forloop.counter0 previous_element=results|ss_previous:forloop.counter0 %}
+        {% if forloop.first %}
+
+            {% if result.end_time > next_element.begin_time %}
+              section-icon section-icon-attention
+            {% else %}
+              search-result-description
+            {% endif %}
+
+        {% elif not forloop.last %}
+
+          {% if result.end_time > next_element.begin_time %}
+            section-icon section-icon-attention
+          {% elif previous_element.end_time > result.begin_time %}
+            section-icon section-icon-attention
+          {% else %}
+            search-result-description
+          {% endif %}
+
+
+        {% elif forloop.last %}
+            {% if previous_element.end_time > result.begin_time %}'
+              section-icon section-icon-attention
+            {% else %}
+              search-result-description
+            {% endif %}
+        {% endif %}
+        {% endwith %}
+        ">
+          <h3>TIME:
+            <!-- start and end same day -->
+            {% ifequal begin_time|date:"omd" end_time|date:"omd" %}
+            {{ begin_time|date:"f A" }} - {{ end_time|date:"f A e" }}
+            {% else %}
+            <!-- extends through multiple days -->
+            {{ begin_time|date:"N j f A" }} - {{ end_time|date:"N j f A e" }}
+            {% endifequal %}
+          </h3>
+        </div>
+        {% endlocaltime %}
+
+        <div class="conference-event-body-teaser-text">
+          <p>{{ result.description }}</p>
+        </div>
+
+        <div class="conference-event-body-details">
+          <!-- Room -->
+          {% if result.tags_ROOM %}
+          <div class="conference-event-body-detail">
+            <p class="conference-event-body-location">
+              Room: {{ result.tags_ROOM.0|split_on_period:2 }}
+            </p>
+          </div>
+          {% endif %}
+          <!-- Room -->
+          <div class="conference-event-body-detail">
+            {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=result %}
+          </div>
+
+          {% if result.prices %}
+            <div class="conference-event-body-detail">
+              <p class="conference-event-body-cost">
+                {% for price in result.prices %}
+                  <p>{{ price|split_on_line:2 }}: ${{ price|split_on_line:0 }}</p>
+                {% endfor %}
+
+                {% if result.quantity %}
+                  <p>Tickets: {{result.quantity}}</p>
+                {% endif %}
+              </p>
+            </div>
+          {% endif %}
+
+        </div>
+
+        <div class="list-of-buttons">
+
+          {% if is_authenticated and show_schedule_stuff %}
+          <!--has_product comes from solr-->
+          {% if result.has_product %}
+          {% if purchase_info.user_total < purchase_info.max_quantity_per_person %}
+          <a class="btn btn-primary btn-full" title="Purchase Additional Ticket"
+             href="/events/activity/{{ result.id|split_on_period:1 }}/">
+            Purchase Additional Ticket
+          </a>
+          {% endif %}
+          {% elif not is_waitlist_block %}
+          <a class="btn btn-primary btn-full" title="Remove from Schedule"
+             id="activity-remove-{{ result.id|split_on_period:1 }}"
+             {% if result.id not in scheduled_solr_ids %}style="display:none;" {% endif %}
+             onclick="removeFromSchedule({{ result.id|split_on_period:1 }})">
+            Remove from My Schedule
+          </a>
+          <a class="btn btn-primary btn-full" id="activity-add-{{ result.id|split_on_period:1 }}"
+             title="Add to Schedule"
+             {% if result.id in scheduled_solr_ids %}style="display:none" {% endif %}
+             onclick="addToSchedule({{ result.id|split_on_period:1 }})">
+            Add to My Schedule
+          </a>
+          {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if forloop.last %}
+</div>
+{% endif %}
+
+{% endwith %}
+{% endwith %}
+{% endif %}
+{% endfor %}

@@ -1,0 +1,26 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load content_extras %}
+
+<h2 class="headline-underline">{{value.heading}}</h2>
+
+<div class="content-preview-list no-top-border no-top-spacing no-bottom-border">
+    <ul>
+        {% for n in news.response.docs %}
+            <li class="content-preview-item content-preview-item-featured">
+                <h6 class="content-preview-item-superheadline">{{n.begin_time|datetime_from_json|date:"F j, Y"}}</h6>
+                <h4 class="content-preview-item-headline"><a href="{{n|solr_record_to_details_path_filter}}">{{n.title}}</a></h4>
+            </li>
+        
+        {% empty %}
+        <li class="content-preview-item content-preview-item-featured">
+            There is currently no {{component_type}}-related news.
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="read-more-link">
+        <a href="/news/posts/">View all {{component_type}} News</a>
+    </div>
+</div>
+
+{% include_block value.link %}

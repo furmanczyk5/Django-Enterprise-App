@@ -1,0 +1,14 @@
+{% extends "submissions/newtheme/forms/review.html" %}
+
+
+{% block preview_details_wrapper %}
+<a class="btn btn-sm btn-icon pull-right btn-inline" href="{{edit_url}}">
+    Edit
+    <span class="icon-apa-edit"></span>
+</a>
+
+{% include "awards/newtheme/includes/submission-details.html" with nomination=content %}
+
+{% endblock %}
+
+{% block preview_questions %}{% endblock %}

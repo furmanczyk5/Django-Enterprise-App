@@ -1,0 +1,23 @@
+{% if not request.detect_mobile_app.is_mobileapp %}
+{# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+<!-- FLAGGED FOR DELETION -->
+<!-- we need to pull this from the microsite record so delete this file after passing QA-->
+<div class="banner-ad banner-ad-leaderboard {% if outside_content %}banner-ad-leaderboard-outside-content{% endif %}">
+<div id="sas_86355"></div>
+<script type="application/javascript">
+    sas.cmd.push(function() {
+        sas.call("std", {
+            siteId: 80676, //
+            pageId: 628301, // Page : Planning.org/conferencepage
+            formatId: 86355, // Format : responsive_728x90_floor 728x90
+            target: '' // Targeting
+        });
+    });
+</script>
+<noscript>
+    <a href="https://www5.smartadserver.com/ac?jump=1&nwid=1541&siteid=80676&pgname=conferencepage&fmtid=86355&visit=m&tmstp=[timestamp]&out=nonrich" target="_blank">
+        <img src="https://www5.smartadserver.com/ac?out=nonrich&nwid=1541&siteid=80676&pgname=conferencepage&fmtid=86355&visit=m&tmstp=[timestamp]" border="0" alt="" />
+    </a>
+</noscript>
+</div>
+{% endif %}

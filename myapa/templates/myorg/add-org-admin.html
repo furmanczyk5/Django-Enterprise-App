@@ -1,0 +1,46 @@
+<div class="menu">
+
+  {% if is_search %}
+  <div class="menu-header menu-item clearfix">
+    <a class="clear-search pull-right btn btn-sm btn-default">clear</a>
+    <p class="small">{{ results|length }} of {{ results_total }} results showing</p>
+  </div>
+  {% endif %}
+
+{% if results %}
+
+
+
+<div class="list-of-speakers records">
+{% for record in results %}
+  <div class="menu-item">
+    <h5>{{ record.title }}</h5>
+    <p>
+      {{ record.email }} <br />
+      {% if record.company %}{{record.company}}<br>{% endif %}
+      {{ record.city }}{% if record.city and record.state %},{% endif %} {{ record.state }}
+    </p>
+    <form method="post" action="{% url 'myorg_admin_add' %}">
+      {% csrf_token %}
+      <input type="hidden" name="username" value="{{ record.user.username }}"/>
+      <input type="hidden" name="email" value="{{ record.email }}" />
+      <button type="submit" name="submit" value="add" class="btn btn-sm btn-primary">Add</button>
+    </form>
+  </div>
+{% endfor %}
+</div>
+{% else %}
+    <div class="menu-item not-selectable">
+      <p>
+        There are no results matching your query. Please either search again with a different email address or <a href="mailto:{{ email }}?subject={{ email_subject }}&body={{ email_body }}">contact the individual</a> you are trying to add and request that they create an APA account.
+      </p>
+    </div>
+{% endif %}
+
+{% if not is_search and results_total >= 5 %}
+<div class="menu-item menu-footer clearfix">
+  <a class="view-more btn btn-sm btn-default pull-right">View More Results</a>
+</div>
+{% endif %}
+
+</div>

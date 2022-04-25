@@ -1,0 +1,26 @@
+{% load content_extras %}
+
+<div class="books-carousel">
+  {% for result in results.response.docs %}
+  <div class="books-carousel-slide">
+    <div class="book-card">
+      <a {% if result.url %}href="{{result.url}}"{% else %}href="/publications/book/{{result.id|split_on_period:1}}/"{% endif %}>
+        <div class="book-image-wrap">
+          <img class="book-image" src="{{result.thumbnail}}" />
+        </div>
+        <h4 class="book-title">{{result.title}}</h4>
+      </a>
+      {% if result.prices %}
+      <div class="book-prices">
+        {% for price in result.prices %}
+        <div class="book-price">
+            <span class="book-price-label">{{ price|split_on_line:2 }}:</span>
+            <span class="book-price-value">${{ price|split_on_line:0 }}</span>
+          </div>
+        {% endfor %}
+      </div>
+      {% endif%}
+    </div>
+  </div>
+  {% endfor %}
+</div>

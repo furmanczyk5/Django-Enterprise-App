@@ -1,0 +1,35 @@
+<xml xmlns:c1="http://c1.composite.net/StandardFunctions">
+<root xmlns:in="http://www.composite.net/ns/transformation/input/1.0">
+<ContentType ContentTypeCode="RESOURCE" ContentTypeName="Planning Resource" HasSubmissions="0" HasContent="1" HasSearch="1" DefaultPrimaryAppCode="RESEARCH_RESOURCES" DefaultAppCodes="RESEARCH_RESOURCES" OptionalAppCodes="SOLAR" IsSelected="1"/>
+<ContentApp AppCode="SOLAR" AppStatus="A" ParentAppCode="RESEARCH_RESOURCES" SearchUrlPath="/solar/data/search/" RecordUrlPath="/solar/data/content/" AllowSlugs="1" TagTypeCodes="RESOURCE_TOOL,SOLAR_PRACTICE,SOLAR_FEATURE" SearchIncludeArchive="0"/>
+<Content ContentID="1002367" ContentStatus="A" ParentContentID="0" PrimaryAppCode="SOLAR" AppCodes="SOLAR" ChildContentAppCodes="" ContentTypeCode="RESOURCE" Taxo_RecordID="10614" Slug="" ContentCode="" ProviderCompanyID="" Title=" Fort Collins City Plan" Subtitle="" ShortDescription="The city's comprehensive plan includes several solar energy-related goals in its Environmental Health and Sustainability element. " ContentText="The comprehensive plan's Environmental Health and Sustainability element includes a number of solar energy goals, including encouraging use of renewable energy systems and protecting solar access (Principles ENV5, ENV6; Policies ENV 5.2, ENV 5.4). Also integrating solar and solar gardens into the power grid (Policy ENV 7.10). Action items include developing a community solar garden (Longer-Term Action Item 37)." HasXhtml="0" SpecialInstructions="" MoreInfoUrl="http://www.fcgov.com/planfortcollins/pdf/cityplan.pdf" ProductCode="" CreatedByID="143742" LastUpdatedByID="181410" CreatedDateTime="2014-08-27T13:32:00.007" LastUpdatedDateTime="2015-01-02T12:33:27.447" AdminNotes="" AvailablePeriodCodes="" _Temp_OldSystemTable="_Solar_Data_Import_Flatten" _Temp_OldSystemID="1612" _Temp_OldSystemCode="0229" PublishedDatesAreLive="1"/>
+<Taxo_Record RecordID="10614" RecordCreatedByID="143742" RecordLastUpdatedByID="181410" RecordCreatedDateTime="2014-08-27T13:32:00.133" RecordLastUpdatedDateTime="2015-01-02T12:32:55.690" _TempID="1002367"/>
+<Taxo_Record_Topic TopicTaggingID="10252" RecordID="10614" TopicTagCode="POLICYENERGYSOLAR" LocationTagCode="" SpaceTagCode="" PlanningTaskTagCode=""/>
+<Place PlaceID="13662" PlaceTypeTagCode="CENSUS_CITY" CensusRegionTagCode="MOUNTAIN" Country="United States" StateCode="CO" PlaceName="Fort Collins" PlaceNameDescriptor="City" CensusGeoID="827425">
+<Place_Data PlaceID="13662" DataPriority="0" DataYear="2010" SourceName="US Census" PopulationCount="143986" PopulationRangeTagCode="100K_250K" HousingUnits="60503" DensitySquareMile="2653" DensityTagCode="URBAN_LOW" Latitude="4.054821777343750e+001" Longitude="-1.050648345947266e+002" LandAreaSquareMiles="5.427700042724609e+001" WaterAreaSquareMiles="1.254999995231628e+000"/>
+</Place>
+<Taxo_Authority AuthorityID="4371" AuthorityTypeCode="ORGANIZATION" FullName="Fort Collins, City of" OrganizationName="Fort Collins, City of" AssociationTypeCode="AUTHOR" SortOrder="999"/>
+<TagType TagTypeCode="TAXO_MASTERTOPIC" TagTypeName="Taxonomy Master Topics">
+<Tag TagID="2337" TagCode="POLICYENERGYSOLAR" TagName="Solar Energy Policy" SortNumber="0" IsTagged="1"/>
+</TagType>
+<TagType TagTypeCode="REGION" TagTypeName="Geographic Region">
+<Tag TagID="118" TagCode="MOUNTAIN" TagName="Mountain" SortNumber="0" IsTagged="1"/>
+</TagType>
+<TagType TagTypeCode="PLACE_DENSITY" TagTypeName="Population Density">
+<Tag TagID="3008" TagCode="URBAN_LOW" TagName="1,000-2,999/square mile" SortNumber="2" IsTagged="1"/>
+</TagType>
+<TagType TagTypeCode="PLACE_POPULATION_RANGE" TagTypeName="Population Range">
+<Tag TagID="3104" TagCode="100K_250K" TagName="100K to 250K" SortNumber="3" IsTagged="1"/>
+</TagType>
+<TagType TagTypeCode="PLACE_TYPE" TagTypeName="Type of Place">
+<Tag TagID="3092" TagCode="CENSUS_CITY" TagName="City" SortNumber="1" IsTagged="1"/>
+</TagType>
+<TagType TagTypeCode="SOLAR_PRACTICE" TagTypeName="Solar Practice">
+<Tag TagID="3027" TagCode="ACCESSORY_SOLAR" TagName="Supports Accessory Solar Energy Use" SortNumber="0" IsTagged="1"/>
+<Tag TagID="3029" TagCode="SOLAR_ACCESS" TagName="Supports Solar Access Protections" SortNumber="0" IsTagged="1"/>
+</TagType>
+<TagType TagTypeCode="RESOURCE_TOOL" TagTypeName="Tool Type">
+<Tag TagID="3019" TagCode="PLAN_COMPREHENSIVE" TagName="Comprehensive Plan" SortNumber="0" IsTagged="1"/>
+</TagType>
+</root>
+</xml>

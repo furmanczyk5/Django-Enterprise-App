@@ -1,0 +1,83 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">Exam Registration</h1>
+    
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+    {% if error %}
+      {% if error == 'registered' %}
+      <h4>You have already registered for the exam.</h4>
+      {% elif error == 'no_application' %}
+      <h4>We could not find an approved application for the open exam.  
+      <a href='https://planning.org/aicp/' target='_blank'>Click here to learn about applying for the AICP and ASC exams.</a></h4>
+      {% elif error == 'expired_approval' %}
+      <h4>We're sorry but your application approval has expired and you must re-apply for the exam.  
+      <a href='https://planning.org/aicp/' target='_blank'>Click here to learn about applying for the AICP and ASC exams.</a></h4>
+      {% elif error == 'registration_ended' %}
+      <h4>Registration for the exam is now closed.</h4>
+      {% endif %}
+
+
+    {% else %}
+      <div class="row">
+
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            <div class="form-section form-section-enclosed-dark">
+            
+              <h3 class="form-section-title">Certificate Name</h3>
+              {% if is_advanced %}
+              <p>Enter your name exactly as you would like it to appear on your official notice of AICP Advanced Special Certification. APA will issue this document to successful exam candidates.</p>
+              {% else %}
+              <p>Enter your name exactly as you would like it to appear on your AICP certificate of membership. The membership certificate will be issued to passing exam candidates upon receipt and payment of AICP dues.</p>
+              {% endif %}
+              
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.certificate_name %}
+              <hr/>
+
+              <h3 class="form-section-title">Release of Information</h3>
+
+              <p>
+              I would like to release my contact information to Professional Development Officers in my chapter for exam preparation training purposes.
+              </p>
+
+              {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.release_information %}
+
+              <hr/>
+
+              <h3 class="form-section-title">Test Center Arrangements</h3>
+
+              <p>Please contact aicpexam@planning.org to request an exam accommodation after you register for the AICP Certification Exam.</p>
+
+              {% comment %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.ada_requirement %}
+              {% endcomment %}
+
+            </div>
+
+            <div class="form-actions">
+              <input type="submit" name="submit" class="btn btn-primary" value="Continue" />
+            </div>
+          </form>
+
+        </div>
+    {% endif %}
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

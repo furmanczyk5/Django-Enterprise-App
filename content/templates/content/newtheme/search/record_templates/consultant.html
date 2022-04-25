@@ -1,0 +1,19 @@
+{% load content_extras %}
+
+<li class="content-preview-item">
+	<h6 class="content-preview-item-superheadline">CONSULTANT</h6>
+
+	<h4 class="content-preview-item-headline">
+		<a href="{{result|solr_record_to_details_path_filter}}">{{ result.company }}</a>
+	</h4>
+
+    <div class="content-preview-item-summary">
+      {{result.address_city}}, 
+      {% if result.address_state %}, {{ result.address_state }}{% endif %}
+      {% if result.address_country and result.address_country != "United States" %}, {{result.address_country}} {% endif %}
+    </div>
+
+	{% if result.about_me %}
+    <div class="content-preview-item-summary">{{result.about_me|truncatewords:50}}</div>
+	{% endif %}
+</li>

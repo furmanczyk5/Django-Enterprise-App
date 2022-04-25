@@ -1,0 +1,31 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load content_extras %}
+
+{% include_block page.body %}
+
+<h1>tree template test</h1>
+{{test_context}}
+<h1>{{tree}}</h1>
+<h1>{{tree.name}}</h1>
+<h1>{{value}}</h1>
+<h2 class="headline-underline">Tag name: {{tree.name}}</h2>
+{% for block in page.body %}
+    {{ block }}
+  {% endfor %}
+
+    {% for block in page.body %}
+        <section>{% include_block block %}</section>
+    {% endfor %}
+
+<div class="content-preview-list no-top-border no-top-spacing no-bottom-border">
+    <ul>
+        <h4 class="content-preview-item-headline"><a href="/blog/blogpost/{{n.id|split_on_period:1}}">{{tree.depth}}</a></h4>
+    {% endfor %}
+    </ul>
+    <div class="read-more-link">
+        <a href="">Link to Django Tree?</a>
+    </div>
+</div>
+
+<h3>Tree path: {{tree.path}}</h3>

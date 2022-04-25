@@ -1,0 +1,338 @@
+[
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "w1.planning.org",
+    "name": "w1.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "www.planning.org",
+    "name": "www.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "planning.org",
+    "name": "planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "chapter.planning.org",
+    "name": "chapter.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "division.planning.org",
+    "name": "division.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "virginia.planning.org",
+    "name": "virginia.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "urbandesign.planning.org",
+    "name": "urbandesign.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "wisconsin.planning.org",
+    "name": "wisconsin.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "staging.planning.org",
+    "name": "staging.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "missouri.planning.org",
+    "name": "missouri.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "housing.planning.org",
+    "name": "housing.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "transportation.planning.org",
+    "name": "transportation.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "future-www.planning.org",
+    "name": "future-www.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "local-development.planning.org",
+    "name": "local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "ct.planning.org",
+    "name": "ct.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "wcc.planning.org",
+    "name": "wcc.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "florida.planning.org",
+    "name": "florida.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "hawaii.planning.org",
+    "name": "hawaii.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "california.planning.org",
+    "name": "california.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "arizona.planning.org",
+    "name": "arizona.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "tennessee.planning.org",
+    "name": "tennessee.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "nne.planning.org",
+    "name": "nne.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "texas.planning.org",
+    "name": "texas.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "blackcommunity.planning.org",
+    "name": "blackcommunity.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "women.planning.org",
+    "name": "women.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "city.planning.org",
+    "name": "city.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "privatepractice.planning.org",
+    "name": "privatepractice.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "kansas.planning.org",
+    "name": "kansas.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "virginia-local-development.planning.org",
+    "name": "virginia-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "wisconsin-local-development.planning.org",
+    "name": "wisconsin-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "missouri-local-development.planning.org",
+    "name": "missouri-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "ct-local-development.planning.org",
+    "name": "ct-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "wcc-local-development.planning.org",
+    "name": "wcc-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "florida-local-development.planning.org",
+    "name": "florida-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "hawaii-local-development.planning.org",
+    "name": "hawaii-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "california-local-development.planning.org",
+    "name": "california-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "arizona-local-development.planning.org",
+    "name": "arizona-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "tennessee-local-development.planning.org",
+    "name": "tennessee-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "nne-local-development.planning.org",
+    "name": "nne-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "texas-local-development.planning.org",
+    "name": "texas-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "kansas-local-development.planning.org",
+    "name": "kansas-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "urbandesign-local-development.planning.org",
+    "name": "urbandesign-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "transportation-local-development.planning.org",
+    "name": "transportation-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "housing-local-development.planning.org",
+    "name": "housing-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "blackcommunity-local-development.planning.org",
+    "name": "blackcommunity-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "women-local-development.planning.org",
+    "name": "women-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "city-local-development.planning.org",
+    "name": "city-local-development.planning.org"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "privatepractice-local-development.planning.org",
+    "name": "privatepractice-local-development.planning.org"
+  }
+}
+]

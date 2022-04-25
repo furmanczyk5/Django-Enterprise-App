@@ -1,0 +1,40 @@
+---
+
+# Django model admin permissions for the staff-publiccations group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "162584"  # Julie Von Bergen
+  - "162597"  # Meghan Stromberg
+  - "299816"  # Mary Hammon
+  - "334229"  # Lindsay Nieman
+  - "358441"  # Cynthia Currie
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+
+  - content_content
+  - content_contentrelationship
+  - content_contenttagtype
+  - content_formatcontenttagtype
+  - content_mastercontent
+  - content_serialpub
+  - content_taxotopictagflat
+  - content_taxotopictag
+  - content_tag
+  - content_tagtype
+  - myapa_contactrole
+  - pages_knowledgecenterpage
+  - publications_article
+  - publications_multipleformatsrelated
+  - publications_planningmagarticle
+  - publications_planningmagfeaturedcontenttagtype
+  - publications_planningmagsectioncontenttagtype
+  - publications_planningmagseriescontenttagtype
+  - publications_planningmagslugcontenttagtype
+  - publications_planningmagsponsoredcontenttagtype
+  - publications_publication
+  - publications_report

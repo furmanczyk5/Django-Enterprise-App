@@ -1,0 +1,161 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+
+{% block content %}
+<header id="grp-content-title">
+	<h1>Select Printing Options</h1>
+  	<ul class="grp-object-tools">
+   		<li><a href="{{request.get_full_path}}">Back</a></li>
+    </ul>
+</header>
+
+<form action="" method="post" id="mass-ticket-printing-form">
+	{% csrf_token %}
+
+	{% for field in form.hidden_fields %}
+	{{field}}
+	{% endfor %}
+
+	<fieldset class="grp-module">
+	<div class="grp-row grp-cells-1">
+		<div class="l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.paper_size.label_tag }}</div>
+			<div class="c-2">{{ form.paper_size }}
+			{% if form.paper_size.help_text %}<p class="grp-help">{{form.paper_size.help_text}}</p>{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="grp-row grp-cells-2 grp-cells">
+		<div class="grp-cell l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.query_mode.label_tag }}</div>
+			<div class="c-2">{{ form.query_mode }}
+			{% if form.query_mode.help_text %}<p class="grp-help">{{form.query_mode.help_text}}</p>{% endif %}
+			</div>
+		</div>
+		<div class="grp-cell l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.separate_documents.label_tag }}</div>
+			<div class="c-2">{{ form.separate_documents }}
+			{% if form.separate_documents.help_text %}<p class="grp-help">{{form.separate_documents.help_text}}</p>{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="grp-row grp-cells-2 grp-cells">
+		<div class="grp-cell l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.badge_include_twitter.label_tag }}</div>
+			<div class="c-2">{{ form.badge_include_twitter }}
+			{% if form.badge_include_twitter.help_text %}<p class="grp-help">{{form.badge_include_twitter.help_text}}</p>{% endif %}
+			</div>
+		</div>
+		<div class="grp-cell l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.badge_include_twitter_attribute.label_tag }}</div>
+			<div class="c-2">{{ form.badge_include_twitter_attribute }}
+			{% if form.badge_include_twitter_attribute.help_text %}<p class="grp-help">{{form.badge_include_twitter_attribute.help_text}}</p>{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="grp-row grp-cells-1">
+		<div class="l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.num_receipts.label_tag }}</div>
+			<div class="c-2">{{ form.num_receipts }}
+			{% if form.num_receipts.help_text %}<p class="grp-help">{{form.num_receipts.help_text}}</p>{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="grp-row grp-cells-1">
+		<div class="l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.badge_margin_top.label_tag }}</div>
+			<div class="c-2">{{ form.badge_margin_top }}
+			{% if form.badge_margin_top.help_text %}<p class="grp-help">{{form.badge_margin_top.help_text}}</p>{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="grp-row grp-cells-1">
+		<div class="l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.ticket_margin_top.label_tag }}</div>
+			<div class="c-2">{{ form.ticket_margin_top }}
+			{% if form.ticket_margin_top.help_text %}<p class="grp-help">{{form.ticket_margin_top.help_text}}</p>{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="grp-row grp-cells-2 grp-cells">
+		<div class="grp-cell l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.page_margin_top.label_tag }}</div>
+			<div class="c-2">{{ form.page_margin_top }}
+			{% if form.page_margin_top.help_text %}<p class="grp-help">{{form.page_margin_top.help_text}}</p>{% endif %}
+			</div>
+		</div>
+		<div class="grp-cell l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.page_margin_bottom.label_tag }}</div>
+			<div class="c-2">{{ form.page_margin_bottom }}
+			{% if form.page_margin_bottom.help_text %}<p class="grp-help">{{form.page_margin_bottom.help_text}}</p>{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="grp-row grp-cells-2 grp-cells">
+		<div class="grp-cell l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.page_margin_left.label_tag }}</div>
+			<div class="c-2">{{ form.page_margin_left }}
+			{% if form.page_margin_left.help_text %}<p class="grp-help">{{form.page_margin_left.help_text}}</p>{% endif %}
+			</div>
+		</div>
+		<div class="grp-cell l-2c-fluid l-d-4">
+			<div class="c-1">{{ form.page_margin_right.label_tag }}</div>
+			<div class="c-2">{{ form.page_margin_right }}
+			{% if form.page_margin_right.help_text %}<p class="grp-help">{{form.page_margin_right.help_text}}</p>{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="grp-row grp-cells-1 code ">
+		<div class="l-2c-fluid l-d-4">
+			<div class="c-1"></div>
+			<div class="c-2">
+				<input type="hidden" name="action" value="print_tickets_W_options" />
+				<input type="hidden" name="apply" value="Print" />
+				<div id="mass-ticket-printing-form-ready">
+    				<input type="submit" value="Generate New PDF"/>
+    				<span id="mass-ticket-printing-message"></span>
+    			</div>
+    			<div id="mass-ticket-printing-form-progress" style="display:none"></div>
+    		</div>
+		</div>
+	</div>
+    </fieldset>
+    
+</form>
+
+<ul>
+{{ attendees|slice:":100"|unordered_list }}
+{% if attendees|length > 100 %}
+<strong>... and {{attendees|length|add:-100}} others</strong>
+{% endif %}
+</ul>
+
+{% endblock %}
+
+{% block extrahead %}
+{{block.super}}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="{% static 'registrations/js/mass-ticket-printing.js' %}?v=1.1"></script>
+<style>
+	.task-progressbar {
+		position:relative;
+		height:1em;
+		width:100%;
+		clear:both;
+		box-sizing:border-box;
+		border:1px solid grey;
+	}
+	.task-progressbar .task-progressbar-progress {
+		height:100%;
+		background-color:lightblue;
+		transition:width 0.5s;
+	}
+	.task-revoke {
+		color:red;
+	}
+</style>
+{% endblock %}
+
+
+

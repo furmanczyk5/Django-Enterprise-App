@@ -1,0 +1,17 @@
+{% extends 'newtheme/templates/content-page-sidebar.html' %}
+
+{% block leader_ad %}{% endblock %}
+
+{% block content_sidebar_wrap %}
+<div class="column-sidebar content-sidebar no-top-spacing">
+	<div>
+		<span class="foundation-logo"></span>
+	</div>
+
+	{% block content_sidebar %}
+	{% include 'newtheme/templates/includes/sidenav.html' %}
+	{% endblock %}
+</div>
+{% endblock %}
+
+{% block footer_ad %}{% endblock %}

@@ -1,0 +1,55 @@
+/**
+ * dependencies: typography
+ */
+[data-toggle="popover"] {
+  cursor: pointer;
+}
+
+.popover-btn-group {
+  padding-bottom: @grid-gutter-width / 2;
+  text-align: center;
+  .btn {
+    // width: 80%;
+    &[data-toggle="popover"] {
+      padding-top: 0;
+      padding-right: 10px;
+      padding-left: 10px;
+      width: auto;
+      vertical-align: top;
+      color: #bdbfc4;
+
+      &:hover,
+      &:focus {
+        color: #cbced3;
+        outline: none;
+
+      }
+    }
+  }
+}
+.popover.bottom {
+  margin-top: 0;
+}
+.popover-title {
+  &:extend(.h4);
+  background-color: white;
+  border-bottom: none;
+  text-transform: none;
+  display: flex;
+  justify-content: space-between;
+}
+.exit-button {
+  cursor: pointer;
+}
+.popover-content {
+  font-family: @font-family-serif;
+}
+
+@media screen and (min-width: @screen-sm-min) {
+  .popover-btn-group {
+    text-align: left;
+    .btn {
+      width: 80%;
+    }
+  }
+}

@@ -1,0 +1,103 @@
+.myapa-bookmark-widget {
+  & {
+
+  }
+
+  &.is-busy .myapa-bookmark-widget-toggle {
+    opacity: 0.5;
+  }
+
+  &.is-bookmarked .myapa-bookmark-widget-toggle {
+    .myapa-bookmark-widget-toggle-icon {
+      color: @color-sycamore;
+      &:before {
+        content: "\e914";
+      }
+    }
+
+  }
+
+  .myapa-bookmark-widget-toggle {
+
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    outline: none;
+
+
+    -webkit-transition: color @primary-transition-duration @primary-transition-easing;
+    -moz-transition: color @primary-transition-duration @primary-transition-easing;
+    -ms-transition: color @primary-transition-duration @primary-transition-easing;
+    -o-transition: color @primary-transition-duration @primary-transition-easing;
+    transition: color @primary-transition-duration @primary-transition-easing;
+
+    &:hover {
+      .myapa-bookmark-widget-toggle-text,
+      .myapa-bookmark-widget-toggle-icon
+       {
+        color: @color-limeade;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+  }
+
+  & .myapa-bookmark-widget-toggle .myapa-bookmark-widget-toggle-text {
+    // .sr-only();
+    padding-right: 6px;
+    display: inline-block;
+
+    font-size: 14px;
+    color: @color-sycamore;
+  }
+
+  & .myapa-bookmark-widget-toggle .myapa-bookmark-widget-toggle-icon {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    margin-top: -3px;
+    position: relative;
+    top: 2px;
+
+    color: #aaa;
+
+    &:before {
+      content: "\e913";
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & .myapa-bookmark-widget-see-all {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 0 0 0 9px;
+    border-left: solid @color-content-borders 1px;
+    font-size: 14px;
+  }
+
+}
+
+
+@media screen and (max-width: 320px) {
+  .myapa-bookmark-widget .myapa-bookmark-widget-see-all{
+    padding-left: 0px;
+    border-left: none;
+ }
+}

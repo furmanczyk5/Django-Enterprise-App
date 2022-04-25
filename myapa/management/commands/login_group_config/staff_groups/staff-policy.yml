@@ -1,0 +1,24 @@
+---
+
+# Django model admin permissions for the staff-policy group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "140010"  # Jason Jordan
+  - "165243"  # Roberta Rewers
+  - "310352"  # Emily Pasi
+  - "348265"  # Catherine Hinshaw
+  - "355364"  # Derek Segars
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+
+  - awards_jurorassignment
+  - awards_submission
+  - awards_submissioncategory
+  - pages_conferencespage
+  - pages_outreachpage
+  - pages_policypage

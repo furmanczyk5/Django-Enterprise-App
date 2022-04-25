@@ -1,0 +1,822 @@
+[
+{
+  "model": "content.tagtype",
+  "pk": 2,
+  "fields": {
+    "code": "EVENTS_NATIONAL_TYPE",
+    "title": "Activity Type",
+    "status": "A",
+    "description": "Activity Type tag for conference",
+    "slug": null,
+    "created_time": "2014-12-15T23:01:58.136Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-04-12T14:47:54.425Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 3,
+  "fields": {
+    "code": "EVENTS_NATIONAL_AUDIENCE",
+    "title": "Audience",
+    "status": "A",
+    "description": "Audience tag for conference",
+    "slug": null,
+    "created_time": "2014-12-15T23:01:58.418Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-12-07T22:46:15.611Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 4,
+  "fields": {
+    "code": "DIVISION",
+    "title": "Division",
+    "status": "A",
+    "description": "Division members: Propose directly to your division for review. Sessions not accepted by a division as a by-right session will be reviewed with the general call for proposals.",
+    "slug": null,
+    "created_time": "2014-12-15T23:01:58.515Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-04-12T14:58:08.826Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 5,
+  "fields": {
+    "code": "EVENTS_NATIONAL_TRACK_17",
+    "title": "Tracks and Symposia '17",
+    "status": "I",
+    "description": "",
+    "slug": null,
+    "created_time": "2014-12-15T23:01:58.961Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2017-12-13T00:51:12.065Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 6,
+  "fields": {
+    "code": "EVENTS_NATIONAL_CEU",
+    "title": "CEU Credits",
+    "status": "A",
+    "description": "CEU Credits tag for NPC",
+    "slug": null,
+    "created_time": "2014-12-15T23:01:59.167Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-10-25T19:26:25.971Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 7,
+  "fields": {
+    "code": "TRANSIT",
+    "title": "Mode of Transportation",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2015-01-14T19:12:12.450Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2015-12-02T17:10:29.304Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 8,
+  "fields": {
+    "code": "ROOM",
+    "title": "Room Assignment",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2015-01-20T19:42:18.728Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-03-26T16:05:54.679Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 9,
+  "fields": {
+    "code": "TAXO_MASTERTOPIC",
+    "title": "Taxonomy Master Topics",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2015-03-13T16:12:23.194Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2015-03-13T16:12:23.194Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 10,
+  "fields": {
+    "code": "SEARCH_TOPIC",
+    "title": "Topic",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2015-03-13T16:12:41.593Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-02-23T23:20:30.193Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": 2
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 11,
+  "fields": {
+    "code": "NPC_TOPIC",
+    "title": "NPC Topic",
+    "status": "A",
+    "description": "Specialized topic list for NPC",
+    "slug": null,
+    "created_time": "2015-06-24T17:23:59.158Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2017-04-27T15:23:38.372Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 12,
+  "fields": {
+    "code": "NPC_TRACK_2016",
+    "title": "Tracks '16",
+    "status": "A",
+    "description": "Tracks help focus a portion of the conference program on selected current topics and provide a \"conference within a conference.\" These topics help call attention to emerging issues and guide planning practice. Not all sessions will fit into a track, as planning is broad field with many topical areas. You do not have to select a track.",
+    "slug": null,
+    "created_time": "2015-06-24T17:23:59.168Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2017-12-13T01:06:36.889Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 15,
+  "fields": {
+    "code": "IMAGE_ORIENTATION",
+    "title": "Image Orientation",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2015-07-23T21:47:28.843Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2015-07-23T21:48:27.615Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 17,
+  "fields": {
+    "code": "IMAGE_COLOR",
+    "title": "Color vs. Black and White",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2015-07-23T21:55:36.513Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-08-10T15:20:20.903Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 18,
+  "fields": {
+    "code": "IMAGE_NUMBEROFPEOPLE",
+    "title": "Number of People",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2015-07-23T22:03:36.618Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-08-10T16:10:20.843Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 20,
+  "fields": {
+    "code": "CONFERENCE_PROPOSAL_REVIEW_SELECTION_1",
+    "title": "Conference Proposal Reviewer Selections - 1",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2015-08-05T19:27:54.107Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2015-08-05T19:44:16.667Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 21,
+  "fields": {
+    "code": "CONFERENCE_PROPOSAL_REVIEW_SELECTION_2",
+    "title": "Conference Proposal Reviewer Selections - 2",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2015-08-05T19:46:59.830Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2015-08-05T19:48:04.653Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 27,
+  "fields": {
+    "code": "JURISDICTION",
+    "title": "Jurisdiction",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-02-03T08:31:45.802Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-02-23T23:20:05.732Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": 4
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 28,
+  "fields": {
+    "code": "COMMUNITY_TYPE",
+    "title": "Community Type",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-02-03T08:41:07.858Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-02-23T23:19:19.903Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": 3
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 29,
+  "fields": {
+    "code": "FORMAT",
+    "title": "Format",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-02-12T18:19:36.113Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-07-23T21:38:31.222Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": 1
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 30,
+  "fields": {
+    "code": "BOOKS_PROMO",
+    "title": "Books promotional tags",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-02-18T05:28:48.842Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2017-04-12T15:01:36.787Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 31,
+  "fields": {
+    "code": "JOB_EXPERIENCE_LEVEL",
+    "title": "Experience Level",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-02-24T23:12:54.278Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-02-24T23:13:08.842Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 32,
+  "fields": {
+    "code": "AICP_LEVEL",
+    "title": "AICP Level",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-02-24T23:14:17.386Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-03-15T20:53:41.763Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 33,
+  "fields": {
+    "code": "JOB_CATEGORY",
+    "title": "Specialty",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-02-24T23:22:31.992Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-03-01T23:11:33.091Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 34,
+  "fields": {
+    "code": "CENSUS_REGION",
+    "title": "Region",
+    "status": "A",
+    "description": null,
+    "slug": null,
+    "created_time": "2016-03-02T22:16:36.891Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-03-02T22:16:36.891Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 35,
+  "fields": {
+    "code": "BLOG_CATEGORY",
+    "title": "Blog Category",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-03-04T01:02:37.890Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-06-26T19:21:33.446Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 36,
+  "fields": {
+    "code": "CONTENT_FEATURED",
+    "title": "Featured Content",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-03-04T01:03:58.870Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2017-10-11T20:37:58.952Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 37,
+  "fields": {
+    "code": "EXAM_PLANNING_PROCESS",
+    "title": "Discuss how you applied a planning process appropriate to the situation at the position in question through one of the three sections of professional planning content.",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-03-12T04:11:15.721Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-10-25T20:47:25.126Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 38,
+  "fields": {
+    "code": "EXAM_ADVANCED_CONCENTRATION",
+    "title": "Approximately what percent of your time was dedicated to this certifification type?",
+    "status": "A",
+    "description": null,
+    "slug": null,
+    "created_time": "2016-03-12T04:11:16.868Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-03-12T04:11:16.868Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 40,
+  "fields": {
+    "code": "APA_NEWS_TYPES",
+    "title": "APA News Types",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-06-08T20:44:31.687Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-11-11T14:25:22.480Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 41,
+  "fields": {
+    "code": "PLACE_DENSITY",
+    "title": "Population Density",
+    "status": "A",
+    "description": "Population density of the place associated with the resource.",
+    "slug": null,
+    "created_time": "2016-07-08T18:59:57.295Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-07-08T18:59:57.310Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 42,
+  "fields": {
+    "code": "PLACE_POPULATION_RANGE",
+    "title": "Population Range",
+    "status": "A",
+    "description": null,
+    "slug": null,
+    "created_time": "2016-07-08T18:59:57.321Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-07-08T18:59:57.331Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 43,
+  "fields": {
+    "code": "PLACE_TYPE",
+    "title": "Type of Place",
+    "status": "A",
+    "description": "Type of place associated with the resource.",
+    "slug": null,
+    "created_time": "2016-07-08T18:59:57.348Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-07-08T18:59:57.363Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 44,
+  "fields": {
+    "code": "KNOWLEDGEBASE_TOOL",
+    "title": "Tool Type",
+    "status": "A",
+    "description": "The type of planning tool represented by the resource.",
+    "slug": null,
+    "created_time": "2016-07-08T18:59:57.372Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-07-08T18:59:57.383Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 45,
+  "fields": {
+    "code": "KNOWLEDGEBASE_SOLAR_PRACTICE",
+    "title": "Solar Practice",
+    "status": "A",
+    "description": "The specific solar energy issue(s) that the resource addresses.",
+    "slug": null,
+    "created_time": "2016-07-08T18:59:57.393Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-07-08T18:59:57.409Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 46,
+  "fields": {
+    "code": "STATE",
+    "title": "State",
+    "status": "A",
+    "description": null,
+    "slug": null,
+    "created_time": "2016-08-09T21:43:54.286Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2016-08-09T21:43:54.286Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 47,
+  "fields": {
+    "code": "TEST_AUDIENCE",
+    "title": "Audience",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2016-09-14T17:13:00.082Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-11-16T18:58:01.376Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 48,
+  "fields": {
+    "code": "RESOURCE_COLLECTION",
+    "title": "Resource Collection",
+    "status": "A",
+    "description": "For tags used to bring APA resources of different types into one collection",
+    "slug": null,
+    "created_time": "2016-10-26T19:19:26.923Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-05-16T14:00:29.057Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 49,
+  "fields": {
+    "code": "KNOWLEDGEBASE_RESOURCE_CATEGORIES",
+    "title": "Knowledgebase Resource Categories",
+    "status": "A",
+    "description": "The resource formats specific to the Knowledgebase.",
+    "slug": null,
+    "created_time": "2016-12-20T20:25:03.839Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-10-30T19:13:35.102Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 50,
+  "fields": {
+    "code": "WAGTAG_ROOT",
+    "title": "Wagtail Tags Root Page Tag Type",
+    "status": "A",
+    "description": null,
+    "slug": null,
+    "created_time": "2017-07-19T16:55:41.483Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2017-07-19T16:55:41.483Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 51,
+  "fields": {
+    "code": "EVENTS_NATIONAL_TRACK",
+    "title": "Tracks",
+    "status": "A",
+    "description": "",
+    "slug": null,
+    "created_time": "2017-12-13T00:51:38.340Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-04-12T18:30:47.724Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+},
+{
+  "model": "content.tagtype",
+  "pk": 52,
+  "fields": {
+    "code": "NPC_CATEGORY",
+    "title": "NPC Category",
+    "status": "A",
+    "description": "Categories to use for special NPC program searches (like social justice)",
+    "slug": null,
+    "created_time": "2018-01-23T23:15:39.077Z",
+    "created_by_id": 9999999,
+    "updated_by_id": 9999999,
+    "updated_time": "2018-11-15T22:17:56.767Z",
+    "parent": null,
+    "min_allowed": null,
+    "max_allowed": null,
+    "submission_only": false,
+    "sort_number": null
+  }
+}
+]

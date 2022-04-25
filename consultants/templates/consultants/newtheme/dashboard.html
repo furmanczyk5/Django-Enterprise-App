@@ -1,0 +1,26 @@
+{% extends "newtheme/templates/layout-sidebar.html" %}
+
+{% load template_app_extras %}
+
+{% block content_sidebar %}
+{% sidenav for_url="/consultants/" %}
+{% endblock %}
+
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Consultants Online Dashboard </h1>
+</div>
+
+<div class="layout-tracery">
+  	<div class="layout-column">
+		<p>Thank you for choosing APA to advertise your firm. Customize your company’s Consultants Online profile to attract the interest of agencies and organizations seeking a firm with specific qualifications and expertise. </p>
+		<p>Click the button below to begin entering or editing your firm’s profile information. You may enter all the information at once or save your work in progress and return later to finish. You will have the opportunity to review and edit your profile before it is posted and visible to others, and also to revise it at any time after it is posted.</p>
+		<p>Once your online profile is posted you will receive automatic notifications of all RFPs and RFQs submitted to APA.</p><br>
+		<p><a class="btn btn-primary" href="{% url "consultants:profile_create" %}">Create/Edit Your Consultant Profile</a></p><br>
+	</div>
+</div>
+
+{% endblock %}

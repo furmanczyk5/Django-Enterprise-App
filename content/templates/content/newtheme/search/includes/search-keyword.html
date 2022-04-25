@@ -1,0 +1,25 @@
+{% load ui_tags %}
+
+<div class="layout-tracery keyword-search no-top-border no-bottom-border">
+
+  <div class="layout-column">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 search-results-form-wrap">
+        <form action="{{search_url|default:''}}" class="filter-selection" method="GET">
+          <div class="input-group header-search-form">
+            <label class="control-label sr-only" for="keyword">Search</label>
+            {% if filter_form and filter_form.keyword %}
+            {{filter_form.keyword}}
+            {% else %}
+            <input type="text" class="form-control" placeholder="Enter keyword" name="keyword" {% if keyword %}value="{{ keyword }}" {% endif %} required />
+            {{search_url | get_hidden_input_fields | safe}}
+            {% endif %}
+            <span class="input-group-btn">
+              <button class="btn btn-primary" id="go" type="submit">Go</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

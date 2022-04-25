@@ -1,0 +1,17 @@
+.wordcounter-display-wrap {
+	position:relative;
+	display:block;
+	margin:0px;
+}
+
+.wordcounter-display-wrap .wordcounter-display {
+	position: absolute;
+	background-color: black;
+	color: white;
+	padding: 2px;
+	font-size: 0.8em;
+	display: block;
+	right: 0px;
+	top: 0px;
+	opacity: 0.8;
+}

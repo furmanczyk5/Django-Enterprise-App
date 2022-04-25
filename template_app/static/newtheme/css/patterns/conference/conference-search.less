@@ -1,0 +1,92 @@
+/**
+ * dependencies: slab
+ */
+
+.conference-search-filter-group {
+  &:extend(.slab-gray all);
+  .make-row();
+  margin: 0;
+  margin-top: -1px; //overlap borders when two accordions are directly adjacent
+  border-width: 1px;
+  border-style: solid;
+  border-color: @color-content-borders;
+  padding-top: 13px;
+  padding-bottom: 13px;
+
+  label {
+    color: @color-sycamore;
+    font-size: 22px;
+    text-transform: none;
+    font-weight: 400;
+  }
+
+  select {
+    &:extend(.form-control all);
+  }
+}
+
+.conference-results-info {
+  font-family: @font-family-sans-serif;
+}
+
+.conference-search-date-group-tabs {
+  input {
+    visibility: hidden;
+  }
+}
+
+.conference-day-anchors-skip-to {
+  margin: 0;
+  display: inline-block;
+}
+
+.conference-search-item {
+  @media screen and (max-width: @screen-xs-max) {
+    .btn {
+      width: auto;
+    }
+    .search-id,
+    .cm-credits {
+      float: left;
+    }
+  }
+  .search-left {
+    float: none;
+    width: 100%;
+    .make-sm-column(8);
+    padding: 0;
+  }
+  .search-right {
+    float: none;
+    width: 100%;
+    .make-sm-column(4);
+    padding: 0;
+    @media screen and (min-width: @screen-sm-min) {
+      text-align: right;
+    }
+  }
+  span.search-result-description:first-child {
+    padding-right: 15px;
+  }
+}
+
+.content-preview-list > ul > li.conference-search-item {
+  &.conference-search-item-day {
+    border-bottom: 0;
+  }
+  &.conference-search-item-ticketed {
+    &:extend(.slab-gray all);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: -30px;
+    margin-right: -30px;
+    margin-top: -1px;
+  }
+}
+
+.search-options #filter-button {
+  cursor: default;
+}

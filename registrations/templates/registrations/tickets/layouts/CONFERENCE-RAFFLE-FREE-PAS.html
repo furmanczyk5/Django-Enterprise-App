@@ -1,0 +1,11 @@
+<div class="conference-raffle-ticket">
+	<div class="text-large margin-bottom">{{attendee.contact.user.username}} - {{attendee.contact.title}}</div>
+
+	<div class="text-large bold margin-bottom">You could win four FREE PAS reports!</div>
+
+	<div class="text-large margin-bottom">Come to the APA Bookstore in the Planning Expo, make a purchase, and turn in this ticket at checkout for a chance to win. Four winning tickets will be drawn at random – one each on Saturday through Tuesday.</div>
+
+	<div class="text-small">APA will notify the winners by April 13. Each winner will be entitled to choose four free PAS reports among dozens in our catalog. Limit one entry per person.</div>
+
+	<div class="bottom-line">{{attendee.contact.title}} | {{attendee.contact.user.username}} {{attendee.contact.member_type|default_if_none:""}} | {{attendee.purchase.product_price.imis_reg_class}}</div>
+</div>

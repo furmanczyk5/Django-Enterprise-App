@@ -1,0 +1,49 @@
+{% extends "newtheme/templates/blank.html" %}
+
+{% load compress %}
+{% load static %}
+
+
+{% block additional_head_css %}
+
+{{block.super}}
+{% compress css %}
+<link type="text/less" rel="stylesheet" href="{% static 'content/css/include/loading.less' %}" />
+{% endcompress %}
+<style>
+	{# to prevent "margin collapse" from leaving space at the top of body tag #}
+	body {
+	    padding-top: 1px;
+	    margin-top: -1px;
+	}
+</style>
+
+{% endblock %}
+
+
+{% block badge_login %}
+<div class="badge-logged-in">
+	{% if request.user.is_authenticated %}
+	<p class="pull-right">
+		<span class="badge-logged-in-label">Hello {{ request.contact.first_name }}</span>
+	</p>
+  	{% endif %}
+	<p style="margin-top:10px;">
+		{% if previous_step_url %}
+		<a href="{{previous_step_url}}" class="btn btn-default" style="margin-right:24px;">Back</a>
+		{% endif %}
+		<a href="{% url 'kiosk:home' master_id=event.master_id %}" class="btn btn-default">End Session</a>
+ 	</p>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script>
+  $(function(){
+    $(window).on("unload beforeunload", function() {
+      $("body").after("<div class='loading-box'></div>");
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load staticfiles %}
+{% load compress %}
+{% load content_extras %}
+
+{% block content_main %}
+	<div class="page-head">
+	  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+	  <h1 class="page-title">Free Student Enrollment Portal</h1>
+	  <h2>School: {{school.company}}</h2>
+
+	</div>
+	<!-- school is only passed in if FSMA relationship is found -->
+	{% if school %}
+	<div class="layout-tracery">
+	 	<div class="layout-column">
+	 	<p>
+			Welcome to the Free Student Enrollment Portal. From this portal you will enroll your students for membership and keep track of each individual’s status.  Please read the instructions below before proceeding, as the system has undergone several changes from previous years.  
+		</p>
+		<p>
+			Note: unless a duplicate record is found, APA membership begins when you click “Upload Enrollment to APA”.
+		</p>
+		<p>
+			<a href="/join/students/free/instructions/" target="_blank">ENROLLMENT INSTRUCTIONS</a>
+		</p>
+		<p>
+			When you are ready, click the button below to begin a new enrollment.
+		</p>
+			<p><a class="btn btn-primary" href="{% url 'freestudents_admin_student_create' school_id=school.user.username %}">Enroll New Student Member</a></p>
+		</div>
+	</div>
+	
+	<div class="layout-tracery">
+	  <div class="layout-column">
+	  		<h2>All Students</h2>
+	  		<div>
+	  		<p>You have entered enrollment information for these students.   Click <a href="/join/students/free/instructions/#status" target="_blank">here</a> to learn about the STATUS types: Complete, Pending, Duplicate Pending, Duplicate Confirmed</p>
+
+	  		<p>
+			Contact <a href="mailto:studentmembership@planning.org">studentmembership@planning.org</a> with questions.
+	  		</p>
+
+
+	  		</div>
+		    <div class="admin-list">
+		      <div class="row hidden-xs hidden-sm">
+		       <div class="col-md-2">
+		          <h3>APA ID</h3>
+		        </div>
+		        <div class="col-md-2">
+		          <h3>First Name</h3>
+		        </div>
+		        <div class="col-md-2">
+		          <h3>Last Name</h3>
+		        </div>
+		        <div class="col-md-2">
+		          <h3>Degree Type</h3>
+		        </div>
+		        <div class="col-md-2">
+		          <h3>Status</h3>
+		        </div>
+		        <div class="col-md-2">
+		        </div>
+		      </div>
+		      <div class="admin-list-group-wrap">
+		      	{% for student in pending_students|add:current_students %}
+		      	<div class="col-md-2 admin-list-group">
+			  		<div class="h3 h-flush visible-xs-block visible-sm-block">ID</div>
+					{{student.user_id}}
+				</div>
+
+				<div class="col-md-2 admin-list-group">
+				  	<div class="h3 h-flush visible-xs-block visible-sm-block">First Name</div>
+					{{student.first_name}}
+				</div>
+
+				<div class="col-md-2 admin-list-group">
+					<div class="h3 h-flush visible-xs-block visible-sm-block">Last Name</div>
+					{{student.last_name}}
+				</div>
+
+				<div class="col-md-2 admin-list-group">
+					<div class="h3 h-flush visible-xs-block visible-sm-block">Degree</div>
+					{{student.degree_level}}<br/>
+					{{student.graduation_date|date:"M Y"}}
+				</div>
+
+				<div class="col-md-2 admin-list-group">
+				  <div class="h3 h-flush visible-xs-block visible-sm-block">Status</div>
+				  {% if student.member_type == "PSTU" %}
+				  	Pending
+				  {% elif student.member_type == "STU" %}
+				  	Complete
+				  {% endif %}
+				</div>
+
+				<div class="col-md-2 admin-list-controls">
+					<div class="h3 h-flush visible-xs-block visible-sm-block"></div>
+
+					{% if student.member_type == "PSTU" %}
+					<a class="btn btn-sm btn-icon" href="{% url 'freestudents_admin_student_edit' school_id=school.user.username student_id=student.user_id %}">Edit<span class="icon-apa-edit" style="padding-right:8px;"></span></a>
+						
+					<form method="post" action="{% url 'freestudents_admin_student_delete' school_id=school.user.username student_id=student.user_id %}">
+						{% csrf_token %}
+						<button type="submit" class="btn btn-sm btn-icon" href="/free-students/student/{{student.id}}/delete/" 
+						   onclick="return confirm('Are you sure you want to delete the student {{ student.first_name }} {{student.last_name }} permanently?')">Delete
+							<span class="icon-apa-close"></span>
+						</button>
+					</form>
+					
+
+					{% else %}
+						<!-- <a class="btn btn-sm btn-icon" href="/free-students/student/{{student.id}}/details/">Details<span class="icon-apa-edit"></span></a> -->
+					{% endif %}
+				</div>
+
+				<div class="clearfix"></div>
+		    	{% empty %}
+		        <p><i>No students have been submitted.</i></p>
+			    {% endfor %}
+		      </div>
+		    </div>
+	 	</div>
+	 </div>
+	{% else %}
+	<div>
+		<p>
+			Thank you for your interest in enrolling your students for APA Student Membership. You are attempting to access the student enrollment portal. However, your login credentials do not match those of the program administrator for your department who is on file with APA.
+		</p>
+		<p>
+			To obtain assistance or to identify a different program administrator for your department, please contact APA at <a href="mailto:studentmembership@planning.org">studentmembership@planning.org</a>.
+		</p>
+	</p></div>
+	{% endif %}
+{% endblock %}

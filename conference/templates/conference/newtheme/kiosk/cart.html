@@ -1,0 +1,60 @@
+{% extends "store/newtheme/cart.html" %}
+
+{% load compress %}
+{% load static %}
+{% load store_tags %}
+
+{% block additional_head_css %}
+
+<style>
+	label {
+		zoom:1.4;
+	}
+	.iradio {
+		zoom:2;
+		margin-bottom:0.4em;
+		margin-right: 0.2em;
+	}
+</style>
+
+{{block.super}}
+
+{% endblock %}
+
+
+{% block donation_form %}
+{% if not has_donation_purchase %}
+<div id="DonationPrompt">
+{% url 'kiosk:foundation_donation_cart' master_id=event.master_id as donation_action %}
+{% donation_form request=request action=donation_action link=None %}
+</div>
+{% endif %}
+{% endblock %}
+
+
+{% block payment_options %}
+{% if allow_checks and purchase_total %}
+<div class="action">
+	<h3>Payment Method: </h3>
+	<p><input type="radio" name="payment_method" value="CC" checked="checked"/>Pay online with a credit or debit card</p>
+	<p><input type="radio" name="payment_method" value="CHECK"/>Pay in person with cash or a check</p>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block checkout_or_complete %}
+<div align="left">
+  <button type="submit" name="submitButton" value="no_payment_order" class="btn btn-primary btn-lg">{{ purchase_total|yesno:"Continue to Payment, Complete Order" }}</button>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script>
+	$(function(){
+		$("form", document).submit(function(event){
+			$(event.target).closest(".layout-column, .layout-tracery").wrap("<div class='loading'></div>");
+		});
+	});
+</script>
+{% endblock %}

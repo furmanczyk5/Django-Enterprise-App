@@ -1,0 +1,27 @@
+{% extends 'newtheme/templates/micro/base.html' %}
+
+{% load content_extras %}
+{% load static %}
+{% load ui_tags %}
+
+{% block content_wrap %}
+<div class="container content-wrap content-borders">
+  <div class="content-main">
+    {% include "newtheme/templates/includes/django-message.html" %}
+      {% block content_main_access %}
+        {{ block.super }}
+      {% endblock %}
+      {% include "newtheme/sandbox/banner-ad/banner-ad-footer.html" %}
+  </div>
+</div>
+{% endblock %}
+
+{% block content_main %}
+  {% include 'newtheme/templates/includes/page-head.html' %}
+  <div class="content-managed-html">
+    {% block content_details %}
+      {{ content.text|safe }}
+    {% endblock %}
+  </div>
+
+{% endblock %}

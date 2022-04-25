@@ -1,0 +1,26 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load staticfiles %}
+{% block title %}Certification Maintenance Provider Application{% endblock %}
+
+{% block content_main %}
+<div class="page-head">
+  <h1 class="page-title">
+    New Provider Account Creation Form
+  </h1>
+</div>
+<div class="layout-tracery">
+
+  <p>Dear member/provider/administrator :
+
+  We are experiencing technical difficulties with the CM provider application system.  We are actively working to resolve the issue and sincerely apologize for this inconvenience.  Please send an email to Alisa Moore at <a href="mailto:amoore@planning.org">amoore@planning.org</a> to provide your contact information and we will update you when the issue has been resolved. Thank you for understanding.
+
+  </p>
+
+</div>
+
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+{% endblock %}

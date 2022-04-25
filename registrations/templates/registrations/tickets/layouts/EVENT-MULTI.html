@@ -1,0 +1,25 @@
+{% load content_extras %}
+
+<div class="chapterconference-badge">
+	<div class="badge-name" {% if badge_margin_top %}style="margin-top:{{ badge_margin_top }}in"{% endif %}>
+    {% if ticket.first_name %}
+      {{ ticket.first_name.strip }}
+    {% endif %}
+  </div>
+
+	<div class="full-name">{{ ticket.title.strip }}</div>
+	<div class="company">{{ ticket.badge_company.strip }}</div>
+	<div class="location">
+		{% if ticket.badge_location %}
+			{{ ticket.badge_location.strip }}
+		{% elif ticket.country == "United States" %}
+			{{ ticket.city.strip }}, {{ ticket.state.strip }}
+		{% else %}
+			{{ ticket.city.strip }}, {{ ticket.country.strip }}
+		{% endif %}
+	</div>
+	{% if badge_include_twitter and ticket.purchase|getattr:badge_include_twitter_attribute %}
+	<div class="twitter">{{ ticket.purchase|getattr:badge_include_twitter_attribute }}</div>
+	{% endif %}
+</div>
+

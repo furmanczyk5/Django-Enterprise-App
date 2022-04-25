@@ -1,0 +1,337 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load content_extras %}
+{% load myapa_tags %}
+
+{% block content_main %}
+<div class="page-head">
+
+  <h1 class="page-title">{% block join_title %}APA Membership{% endblock %}</h1>
+
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2>Membership Summary</h2>
+
+    {% block join_account_information_section %}
+    <div class="form-section form-section-enclosed-light">
+
+      {% block join_account_informaton_link %}
+      <a class="btn btn-sm btn-icon pull-right" href="{% url "join_account" %}">
+        Edit
+        <span class="icon-apa-edit"></span>
+      </a>
+      {% endblock %}
+
+      <h3>APA Profile Information</h3>
+
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Full Name</td>
+              <td>{{contact.full_title}}</td>
+            </tr>
+            <tr>
+              <td>Nickname</td>
+              <td>{{imis_contact.informal}}</td>
+            </tr>
+            <tr>
+              <td>Date of Birth</td>
+              <td>{{ contact.birth_date|date:"M j, Y" }}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>
+                <div class="key-value-pair">
+                  <span class="key">Primary Email</span>
+                  <span class="value">{{contact.email}}</span></div>
+                <div class="key-value-pair">
+                  <span class="key">Alternate Email</span>
+                  <span class="value">{{contact.secondary_email}}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td>
+                <div class="key-value-pair">
+                  <span class="key">Cell Phone</span>
+                  <span class="value">{{contact.cell_phone}}</span>
+                </div>
+                <div class="key-value-pair">
+                  <span class="key">Work Phone</span>
+                  <span class="value">{{contact.secondary_phone}}</span>
+                </div>
+                <div class="key-value-pair">
+                  <span class="key">Home Phone</span>
+                  <span class="value">{{contact.phone}}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Home Address</td>
+              <td>
+                <div>{{primary_address.address_1}}</div>
+                <div>{{primary_address.address_2}}</div>
+                <div>{{primary_address.city}}, {{primary_address.state_province}} {{primary_address.zip}}, {{primary_address.country}}</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Work Address</td>
+              <td>
+                {% if secondary_address and secondary_address.address_1 %}
+                <div>{{secondary_address.address_1}}</div>
+                <div>{{secondary_address.address_2}}</div>
+                <div>{{secondary_address.city}}, {{secondary_address.state_province}} {{secondary_address.zip}}, {{secondary_address.country}}</div>
+                {% endif %}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    {% endblock %}
+
+    {% block join_school_information_section %}{% endblock %}
+
+    {% block join_personal_information_section %}
+    <div class="form-section form-section-enclosed-light">
+
+      {% block join_personal_information_link %}
+      <a class="btn btn-sm btn-icon pull-right" href="{% url "join_personal_info" %}">
+        Edit
+        <span class="icon-apa-edit"></span>
+      </a>
+      {% endblock %}
+
+      <h3>Professional and Demographic Information</h3>
+
+      <div class="table-responsive">
+        <table class="table">
+          <!-- Include Salary Range and Functional Title-->
+          <tbody>
+            <tr>
+              <td>Salary Range</td>
+              <td>{{demographics.salary_range|get_salary_range_name}}</td>
+            </tr>
+             <tr>
+              <td>Functional Title</td>
+              <td>{{demographics.functional_title|get_functional_title_name}}</td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td>{{demographics.gender|get_gender_name}}</td>
+            </tr>
+            <tr>
+              <td>Race</td>
+              <td>
+              {% with races=demographics|get_race_name_list %}
+              {% for race in races %}
+              <div>{{race}}</div>
+              {% endfor %}
+              {% endwith %}
+              </td>
+            </tr>
+            <tr>
+              <td>Hispanic Origin</td>
+              <td>{{demographics|get_hispanic_origin_name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endblock %}
+
+    {% block join_membership_information_section %}
+    <div class="form-section form-section-enclosed-light">
+
+      {% block join_membership_informaton_link %}
+      <a class="btn btn-sm btn-icon pull-right" href="{% url "join_subscriptions" %}">
+        Edit
+        <span class="icon-apa-edit"></span>
+      </a>
+      {% endblock %}
+
+      <h3>Membership Information</h3>
+
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Membership Type</td>
+              <td>{{membership_purchase.product.content.title}}</td>
+              <td>${{membership_purchase.product_price.price}}</td>
+            </tr>
+            {% if aicp_dues_purchase %}
+            <tr>
+              <td></td>
+              <td>{{aicp_dues_purchase.product.content.title}}</td>
+              <td>${{aicp_dues_purchase.product_price.price}}</td>
+            </tr>
+            {% elif aicp_prorated_dues_purchase %}
+            <tr>
+              <td></td>
+              <td>{{aicp_prorated_dues_purchase.product.content.title}}</td>
+              <td>${{aicp_prorated_dues_purchase.product_price.price}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+              <td>Primary APA Chapter</td>
+              <td>{{primary_chapter_purchase.product.content.title}}</td>
+              <td>${{primary_chapter_purchase.product_price.price}}</td>
+            </tr>
+
+            {% for chapter_purchase in other_chapter_purchases %}
+            <tr>
+              <td>{% if forloop.first %}Additional Chapters{% endif %}</td>
+              <td>{{chapter_purchase.product.content.title}}</td>
+              <td>${{chapter_purchase.product_price.price}}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td>Additional Chapters</td>
+              <td>(None)</td>
+              <td></td>
+            </tr>
+            {% endfor %}
+
+            {% for division_purchase in division_purchases %}
+            <tr>
+              <td>{% if forloop.first %}APA Divisions{% endif %}</td>
+              <td>{{division_purchase.product.content.title}}</td>
+              <td>${{division_purchase.product_price.price}}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td>APA Divisions</td>
+              <td>(None)</td>
+              <td></td>
+            </tr>
+            {% endfor %}
+
+            {% for subscription_purchase in subscription_purchases %}
+            <tr>
+              <td>{% if forloop.first %}Subscriptions{% endif %}</td>
+              <td>{{subscription_purchase.product.content.title}}</td>
+              <td>${{subscription_purchase.product_price.price}}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td>Subscriptions</td>
+              <td>(None)</td>
+              <td></td>
+            </tr>
+            {% endfor %}
+
+            <tr>
+              <td>Planning Magazine</td>
+              <td>You have elected to receive {{demographics.exclude_planning_print|yesno:"digital,print"}} issues of <i>Planning</i></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>Planners' Advocacy Network</td>
+              <td>You have elected to {{planners_advocacy|yesno:",not "}}join the Planners' Advocacy Network</td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td><b>Total</b></td>
+              <td><b>${{total}}</b></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+      {% if show_recurring_options %}
+        <div class="form-section form-section-enclosed-light">
+
+        <form id="paymentFrequency" class="radio-inline">
+
+          <div class="container">
+            <div class="row">
+
+              <div class="col-md-6">
+                <h3>Recurring Auto Renewal Payments</h3>
+
+                <input id="annual" name="frequency" type="radio" value="12" />
+                <label style="padding-top: 2px;" for="annual">Annual</label>
+
+                <input id="monthly" name="frequency" type="radio" value="1" />
+                <label style="padding-top: 2px;" for="monthly">Monthly</label>
+
+                <p class="small">By selecting a Recurring Auto Renewal Payment option, I agree to and accept the
+                  <a target="_blank" href="/membership/auto-renewal/">terms, conditions and authorization agreement</a> and consent
+                  to have my credit card charged for the annual/monthly membership.</p>
+              </div>
+
+              <div class="col-md-6">
+                <h3>Standard Payment</h3>
+                <input id="standard" name="frequency" type="radio" value="standard" checked />
+                <label style="padding-top: 2px;" for="standard">Standard Payment</label>
+              </div>
+
+            </div>
+          </div>
+
+
+          </form>
+
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    <br>
+
+    {% block join_continue_button %}
+    <div>
+      <a id="cartButton" class="btn btn-primary" href="{% url 'store:cart' %}">Proceed to Cart</a>
+    </div>
+    {% endblock %}
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+
+ {{ block.super }}
+
+  <script>
+
+    {% if show_recurring_options %}
+    (function setCartUrl() {
+
+
+      function getCartUrl(val) {
+        if (val && val !== "standard") {
+          return '/store/cart/?recurring=' + val
+        }
+        return '/store/cart/'
+      }
+      var form = $("form#paymentFrequency");
+
+      var inputs = form.find("input");
+
+      // initial default selection
+      var selection = inputs.find(":checked").val();
+      $("#cartButton").attr('href', getCartUrl(selection));
+
+      $(inputs).on('ifChecked', function(event) {
+        selection = event.target.value;
+        $("#cartButton").attr('href', getCartUrl(selection));
+      })
+
+    })();
+
+  </script>
+  {% endif %}
+
+{% endblock additional_body_js %}

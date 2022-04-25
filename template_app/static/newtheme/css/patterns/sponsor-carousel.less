@@ -1,0 +1,64 @@
+// requires books-carousel
+
+@sponsor-carousel-gutter: @padding-level-1-xs;
+/////////
+// New sponsor specific classes
+/////////
+.sponsor-carousel-wrap {
+  margin: 0 @grid-gutter-width / 2;
+  padding-top: 40px;
+
+  @media screen and (min-width: @screen-md-min) {
+    margin: 0 @grid-gutter-width;
+  }
+}
+// Special geading
+.sponsor-carousel-heading {
+  &:extend(.headline-underline all);
+  margin-bottom: 40px;
+}
+
+
+a.sponsor-carousel-read-more {
+  &:extend(a.read-more-link all);
+  &:extend(a.plain-link all);
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.sponsor-carousel-image-wrap {
+
+}
+
+.sponsor-carousel-image {
+  width: 100%;
+}
+
+///////////
+// Carousel
+///////////
+.sponsor-carousel {
+  margin: 0 (-1 * (@sponsor-carousel-gutter / 2));
+  position: relative;
+}
+
+.sponsor-carousel .sponsor-carousel-slide {
+  margin: 0 (@sponsor-carousel-gutter / 2);
+}
+
+.sponsor-carousel .slick-slide:focus {
+  outline: none; //disable outline after click
+}
+
+//Begin edge fade effects
+.sponsor-carousel .slick-list:before,
+.sponsor-carousel .slick-list:after {
+  &:extend(.sponsor-carousel .slick-list:before all);
+}
+
+.sponsor-carousel .slick-prev {
+  &:extend(.books-carousel .slick-prev);
+}
+.sponsor-carousel .slick-next {
+  &:extend(.books-carousel .slick-next);
+}

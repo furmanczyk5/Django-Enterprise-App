@@ -1,0 +1,31 @@
+{% if form.errors or display_errors %} 
+<div class="section-icon section-icon-attention">
+    <p class="error">
+      <b>
+      {% if error_instructions %}
+        {{error_instructions}}
+      {% else %}
+        The operation could not be performed because one or more error(s) occurred.<br />Please resubmit the form after making the following changes:
+      {% endif%}
+      </b>
+    </p>
+    <div class="has-error">
+      <div class="form-error">
+        {% for err in form.non_field_errors %}
+            <p>{{ err|safe }}</p>
+        {% endfor %}
+
+        {% for field in form %}
+        {% if field.errors %}
+            <p><strong>{{field.label}}</strong> &ndash; {{ field.errors|striptags }}</p>
+        {% endif %}
+        {% endfor %}
+
+        {% for err in display_errors %}
+            <p>{{ err|safe }}</p>
+        {% endfor %}
+
+      </div>
+    </div>
+</div>
+{% endif %}

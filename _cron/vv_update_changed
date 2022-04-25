@@ -1,0 +1,1 @@
+@daily /srv/sites/apa/envs/apa/bin/python /srv/sites/apa/proj/apa/manage.py bulk_geocode_votervoice -m handle_imis_changed

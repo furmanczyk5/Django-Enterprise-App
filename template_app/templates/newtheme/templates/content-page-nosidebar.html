@@ -1,0 +1,14 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load ui_tags %}
+
+{% block content_main %}
+{% include 'newtheme/templates/conference/includes/page-head.html' %}
+
+  <div class="content-managed-html">
+    {% block content_details %}
+      {{ content.text|render_planning_shortcodes|safe }}
+    {% endblock %}
+  </div>
+
+{% endblock %}

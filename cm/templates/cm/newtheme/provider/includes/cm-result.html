@@ -1,0 +1,165 @@
+{% load cm_tags %}
+{% load content_extras %}
+{% load tz %}
+
+<li class="search-result">
+<div class="row">
+  <div class="col-md-6 dashboard-events-result-col ">
+    <h3 class="h-flush visible-xs visible-sm">Title</h3>
+        <h4 class="search-result-title">
+      {% if event.is_published %}
+          
+           {% if event.event_type == "EVENT_SINGLE" %}
+           <a href="/events/eventsingle/{{event.master_id}}">{{event.title}}</a>
+           {% elif event.event_type == "EVENT_MULTI" %}
+           <a href="/events/eventmulti/{{event.master_id}}">{{event.title}}</a>
+           {% elif event.event_type == "EVENT_INFO" %}
+           <a href="/events/eventinfo/{{event.master_id}}">{{event.title}}</a>
+           {% elif event.event_type == "COURSE" %}
+           <a href="/events/course/{{event.master_id}}">{{event.title}}</a>
+           {% endif%}
+
+      {% else %}
+            {{event.title}}
+      {% endif%}   
+    </h4>
+    <p class="small">
+      {% localtime off %}
+      {{event.begin_time|date:"l, F j, Y, P e"}}
+      {% endlocaltime %}
+    </p>
+  </div>
+  <div class="col-md-2 dashboard-events-result-col ">
+    <h3 class="h-flush visible-xs visible-sm">Type</h3>
+    <p>
+      {{choice_library.event_type|human_readable_value_from_choice:event.event_type}}
+    </p>
+  </div>
+  <div class="col-md-2 dashboard-events-result-col ">
+    <h3 class="h-flush visible-xs visible-sm">Status</h3>
+    <p>
+    {% if event.is_cancelled %}
+      Cancelled
+    {% elif event.is_pending_payment %}
+      Pending Payment
+    {% elif event.is_published and event.has_changes %}
+      Entered
+      <br>
+      Edited
+    {% elif event.is_published %}
+      Entered
+    {% elif event.is_submitted and not event.has_published_version %}
+      Processing your entered event
+    {% else %}
+      Not Entered
+    {% endif%}
+    </p>
+  </div>
+  <div class="col-md-2  dashboard-events-result-col clearfix">
+    <div class="dashboard-events-result-cm">
+    <span class="small">#{{event.master_id}}</span>
+    {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=event %}
+    </div>
+  </div>
+</div>
+
+{% if event.avg_rating_tuple and event.is_past %}
+<div class="row">
+  <div class="col-xs-12 dashboard-events-result-col">
+  {% if event.event_type == "EVENT_MULTI" %}
+    <a class="see-event-reviews" id="see-event-reviews-{{event.master_id}}">See Activity Reviews</a>
+  {% else %}
+    <span>{% star_rating event.avg_rating_tuple.0|floatformat:2 event.avg_rating_tuple.1 %}</span>
+    {% if event.avg_rating_tuple.1 %}
+      <a class="see-event-reviews" id="see-event-reviews-{{event.master_id}}">See Reviews</a>
+    {% endif%}
+  {% endif %}
+  </div>
+</div>
+<div class="event-reviews" style="display:none" id="event-reviews-{{event.master_id}}"></div>
+{% endif %}
+
+
+<div class="row dashboard-events-controls">
+  <div class="col-xs-12">
+
+  {% comment %}
+  <!-- RELIST IS BROKEN, DONT USE-->
+
+  <!--
+  {% if event.is_published %}
+
+    <form method="post" action="/cm/provider/event/{{event.master_id}}/relist/">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-sm btn-icon btn-dashboard-events">
+        Relist Event
+      </button>
+    </form>
+
+  {% endif %}
+  -->
+  {% endcomment %}
+
+  {% if event.is_editable %}
+
+    {% if event.is_submitted and not event.has_published_version %}{# this takes care initial submit, publishing delay #}
+    <div class="help-block">
+      Your entered event is being processed. This may take a few minutes. You may not edit this event until the publishing process is complete.
+    </div>
+    {% else %}
+    <a class="btn btn-sm btn-icon btn-dashboard-events" href="/cm/provider/events/{{event.master_id}}/update/">
+      Edit
+      <span class="icon-apa-edit"></span>
+    </a>
+
+      {% if event.is_published %}
+      <form method="post" action="/cm/provider/events/{{event.master_id}}/cancel/">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-icon btn-icon-danger btn-dashboard-events" onclick="return confirm('Are you sure you want to unpublish event #{{event.master_id}}?')">
+          Cancel
+          <span class="icon-apa-close"></span>
+        </button>
+      </form>
+      {% else %}
+      <form method="post" action="/cm/provider/events/{{event.master_id}}/delete/">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-icon btn-icon-danger btn-dashboard-events" onclick="return confirm('Are you sure you want to delete the event#{{event.master_id}} permanently?')">
+          Delete
+          <span class="icon-apa-close"></span>
+        </button>
+      </form>
+      {% endif %}
+      
+    {% endif %}
+
+  {% endif %}
+
+
+<!--
+  {% if event.is_past %}
+  <form method="post" action="/cm/provider/events/{{event.master_id}}/relist/">
+    {% csrf_token %}
+     
+    <button type="submit" class="btn btn-sm btn-icon btn-dashboard-events">
+      {% if not event.event_type == "EVENT_MULTI" %}
+      Relist
+      <span class="icon-apa-calendar"></span>
+       {% endif %}
+    </button>
+  </form>
+  {% endif %}
+-->
+
+
+  {% if event.has_registration_product %}
+    <a class="btn btn-sm btn-icon btn-dashboard-events" href="/events/manage/{{event.master_id}}/reports/">
+      View Reports
+    </a>
+  {% endif %}
+
+  </div>
+</div>
+
+
+
+</li>

@@ -1,0 +1,9 @@
+<div class="conference-drink-ticket">
+	<div class="title"><b>Drink Ticket</b></div>
+	<div class="event">{{event.title}}</div>
+	<div class="time">{{event.begin_time|date:"l, F j, fA"}} - {{event.end_time|date:"fA"}}</div>
+	<div class="location">Planning Expo, Hall C</div>
+	<div class="help-text">Valid for one beer, wine, or soft drink.</div>
+
+	<div class="bottom-line">{{attendee.contact.title}} | {{attendee.contact.user.username}} {{attendee.contact.member_type|default_if_none:""}} | {{attendee.purchase.product_price.imis_reg_class}}</div>
+</div>

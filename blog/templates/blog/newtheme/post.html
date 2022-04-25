@@ -1,0 +1,108 @@
+{% extends 'newtheme/templates/content-page-sidebar.html' %}
+
+{% block content_main %}
+{% include 'newtheme/templates/includes/page-head.html' %}
+<div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+
+        {% with featured_image=content.get_featured_image_media %}
+        {% if featured_image %}
+        <div class="image-block image-breakout">
+            <img src="{{featured_image.image_file.url}}" />
+        </div>
+        {% endif%}
+        {% endwith %}
+
+        <div class="row">
+            <div class="col-xs-12 col-lg-9 blog-post">
+
+                <div class="content-managed-html">
+                  {% block content_details %}
+                    {{ content.text|safe }}
+                  {% endblock %}
+                </div>
+
+                <hr class="double" />
+                {% comment %}
+                <h6>{{ content.resource_published_date|date:"F j, Y" }}</h6>
+                {% endcomment %}
+
+                {% if content.resource_published_date %}
+                <h6>{{ content.resource_published_date|date:"F j, Y" }}</h6>
+                {% elif content.published_time %}
+                <h6>{{ content.published_time|date:"F j, Y" }}</h6>
+                {% endif %}
+
+                {% if authors|length > 0 %}
+                <h2 class="blog-author">
+                    By
+                    {% for author in authors %}
+                    {{author.contact.title}}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </h2>
+                {% endif %}
+
+                <div class="key-value-pair-group key-value-pair-group-tags">
+                    <div class="key-value-pair blog-tags">
+                        <div class="key">Tags</div>
+                        <div class="value">
+                        {% for tag in tags %}
+                        <span>
+                            <a href="/blog/?tags={{tag.id}}">
+                                {{tag.title}}{% if not forloop.last %}, {% endif %}
+                            </a>
+                        </span>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-social">
+                    {% include "newtheme/templates/includes/social-sharing-widget.html" with url=post_url title=result.title %}
+                    {# {% if request.contact %} #}
+                    {# {% include "newtheme/templates/includes/myapa-bookmark-widget.html" with content_id=content.master.id bookmarked=bookmarked hide_all_bookmarks='true' %} #}
+                    {# {% endif %} #}
+                </div>
+
+                <hr />
+                <hr />
+
+                <nav>
+                  <ul class="pager">
+                    {% if previous_blog %}
+                    <li class="previous"><a href="{% if previous_blog.url %}{{previous_blog.url}}{% else %}/blog/blogpost/{{previous_blog.master_id}}/{% endif %}"><span aria-hidden="true">&lt;</span> Previous</a></li>
+                    {% else %}
+                    <li class="previous disabled"><span><span aria-hidden="true">&lt;</span> Previous</span></li>
+                    {% endif %}
+                    {% if next_blog %}
+                    <li class="next"><a href="{% if next_blog.url %}{{next_blog.url}}{% else %}/blog/blogpost/{{next_blog.master_id}}/{% endif %}">Next <span aria-hidden="true">&gt;</span></a></li>
+                    {% else %}
+                    <li class="next disabled"><span>Next <span aria-hidden="true">&gt;</span></span></li>
+                    {% endif %}
+                  </ul>
+                </nav>
+                <!--
+                Related posts:
+                <hr class="double" />
+
+                <h2 class="headline-underline">Related</h2>
+
+                <div class="list-of-links list-of-links-small">
+                    <h4><a href="#">[FPO]</a></h4>
+                    <h4><a href="#">[FPO]</a></h4>
+                    <h4><a href="#">[FPO]</a></h4>
+                </div>
+                -->
+
+            </div>
+            <div class="col-xs-12 col-lg-3">
+                <div class="banner-ads-container">
+                    {% include 'newtheme/sandbox/banner-ad/layout-banner-ad-small-3up-vertical.html' %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

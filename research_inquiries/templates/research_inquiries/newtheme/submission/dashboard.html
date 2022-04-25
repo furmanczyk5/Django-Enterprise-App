@@ -1,0 +1,103 @@
+{% extends "newtheme/templates/layout-nosidebar.html" %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Inquiry Answer Service Dashboard </h1>
+  <p>
+  	From this dashboard, you can request customized planning research and view responses to your past inquiries.</p>
+  <p>
+  	To initiate your request, click "Start a New Inquiry" below. An APA research expert will review your inquiry and contact you, by email, typically within one business day, with the estimated number of hours required to respond, the price ($125 per hour * estimated hours), and a link to purchase the requisite number of hours. <strong>Tip:</strong> If you anticipate making many or complex requests of Inquiry Answer Service, consider purchasing a bundle of 25 hours of expert service at the discounted rate of $2,500. Hours purchased in a bundle do not expire.</p>
+  <p>
+  	When your purchase is complete, the Inquiry Answer Service team will begin researching and preparing a response to your inquiry. APA researchers respond to most inquiries within three to five business days. When their response is complete, APA will notify you by email and include a link to view the response from your dashboard.
+  </p>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+  		<h2>Ready to place an inquiry? Start here.</h2>
+		<p><a class="btn btn-primary" href="{% url "inquiry:inquiry_create" %}">Start a New Inquiry</a></p>
+	</div>
+</div>
+	
+<div class="layout-tracery">
+  	<div class="layout-column">
+  		<h2>Inquiries for {{organization}}</h2>
+  		<p>
+			Check on the status of your inquiry or see what your colleagues are asking.
+			The list shows the status of all inquiries submitted by staff at your agency. Click "View" to see submitted inquiries and PAS responses.
+		</p>
+    	<div class="admin-list">
+
+	    	<div class="row hidden-xs hidden-sm">
+		        <div class="col-md-3">
+		         	<h3>Title</h3>
+		        </div>
+		        <div class="col-md-4">
+		        	<h3>Contact</h3>
+		        </div>
+		        <div class="col-md-2">
+		          	<h3>Submitted On</h3>
+		        </div>
+		        <div class="col-md-2">
+		          	<h3>Status</h3>
+		        </div>
+		        <div class="col-md-1">
+		        </div>
+	      	</div>
+
+	      	<div class="admin-list-group-wrap">
+	  		{% for inquiry_role in inquiries %}
+	  		{% with inquiry=inquiry_role.content.inquiry %}
+
+		    	<div class="col-md-3 admin-list-group">
+		          	<div class="h3 h-flush visible-xs-block visible-sm-block">
+		            	Title
+		          	</div>
+					<span>{{ inquiry.title }}</span>
+		        </div>
+
+		        <div class="col-md-4 admin-list-group">
+		          	<div class="h3 h-flush visible-xs-block visible-sm-block">
+		            	Contact
+		          	</div>
+		          	<span>{{inquiry_role.first_name}} {{inquiry_role.last_name}}</span><br/>
+		          	<span>{{inquiry_role.email}}</span>
+	          	</div>
+
+	          	<div class="col-md-2 admin-list-group">
+	          		<div class="h3 h-flush visible-xs-block visible-sm-block">
+		            	Submitted On
+		          	</div>
+		          	<span>{{inquiry.submission_time|date:"F j, Y"}}</span><br/>
+	          	</div>
+
+		        <div class="col-md-2 admin-list-group">
+		          	<div class="h3 h-flush visible-xs-block visible-sm-block">
+		            	Status
+		          	</div>
+					<span>{{inquiry.status_text}}</span>
+		        </div>
+		        
+		        <div class="col-md-1 admin-list-controls">
+	            	{% if inquiry.show_edit %}
+						<a class="btn btn-sm btn-icon" href="{% url 'inquiry:inquiry_update' master_id=inquiry.master_id %}">Edit<span class="icon-apa-edit"></span></a>
+					{% else %}
+						<a class="btn btn-sm {{inquiry.is_complete|yesno:'btn-primary,btn-default'}}" href="{% url 'inquiry:inquiry_preview' master_id=inquiry.master_id %}" target="_blank">View</a>
+					{% endif %}
+		        </div>
+
+		        <div class="clearfix"></div>
+
+		    {% endwith %}
+	        {% empty %}
+	    		<p><i>You have not started any Inquiries</i></p>
+	      	{% endfor %}
+
+			</div>
+    	</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "newtheme/templates/layout-sidebar.html" %}
+
+{% block content_main %}
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Thank you for your submission!</h1>
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+  	<h3>
+  		Your RFP/RFQ is under review. Once approved, it will remain on our website through the specified deadline.
+  	</h3>
+  	<p>
+  		<a class="btn btn-primary" href="{% url "consultants:rfp_dashboard" %}">Back to the RFP/RFQ dashboard</a>
+  	</p>
+  </div>
+</div> 
+{% endblock %}

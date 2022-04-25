@@ -1,0 +1,7 @@
+{% load event_tags %}
+{% comment %}
+    activity_ticket_link not correctly checking registration;
+    if the user is on this page, they should have registration;
+    passing True for now until activity_ticket_link is fixed?
+{% endcomment %}
+{% activity_ticket_link activity=event product_price=event.product_info.price purchase_info=event.product_info.purchase_info has_registration=True %}

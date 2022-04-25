@@ -1,0 +1,11 @@
+<div class="social-sharing-widget">
+    <div
+        class="addthis_sharing_toolbox"
+        {% if url %}
+        data-url="{{ url }}"
+        {% endif %}
+        {% if title %}
+        data-title="{{ title }}"
+        {% endif %}
+    ></div>
+</div>

@@ -1,0 +1,75 @@
+{% extends 'newtheme/templates/base.html' %}
+
+{% load tz %}
+{% load static %}
+
+
+{% block additional_head_css %}
+<link href="{% static 'myorg/css/datatables.min.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content_main_access %}
+
+{% include "newtheme/templates/includes/django-message.html" %}
+
+<div class="page-head" style="margin-top: 5rem;">
+  <p>
+    <a class="btn btn-default" href="{% url 'myorg' %}">Back to My Organization</a>
+  </p>
+  <h1 class="page-title">All Partner Organizations for {{ company }}</h1>
+</div>
+
+<div class="container">
+
+  {% if partners %}
+  <div class="table-responsive">
+
+    <table class="display table table-hover" id="partners_datatable">
+      <thead>
+        <tr>
+          <th>
+            ID
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Location
+          </th>
+        </tr>
+     </thead>
+
+      <tbody>
+        {% for partner in partners %}
+        <tr>
+          <td>{{ partner.user.username }}</td>
+          <td>{{ partner.company }}</td>
+          <td>{{ partner.location_label }}</td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+  {% else %}
+    <h2>No partners yet</h2>
+    <h3><a href="/customerservice/contact-us/">Contact customer service</a> to have another organization linked to yours.</h3>
+  {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'myorg/js/datatables.min.js' %}"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#partners_datatable').DataTable({
+      order: [[1, "asc"]],  // Name
+    })
+  })
+</script>
+
+{% endblock %}

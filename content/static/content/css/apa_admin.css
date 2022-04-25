@@ -1,0 +1,57 @@
+
+body { 
+    background: url("../image/admin-background-4.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+header#grp-content-title>h1 {
+    visibility:hidden;
+}
+
+a { 
+    color: #292e47;
+}
+
+.grp-module .grp-row:not(tr) { 
+    background-color:rgba(222, 222, 222, 0.2);
+    margin-bottom:1px;
+    border-bottom:0px;
+}
+
+.grp-collapse.grp-closed>h2.grp-collapse-handler {
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    /* background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA=='); */
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bcdfeb),color-stop(100%, #a1d4e5));
+    background-image: -moz-linear-gradient(#bcdfeb,#a1d4e5);
+    background-image: -webkit-linear-gradient(#bcdfeb,#a1d4e5);
+    background-image: linear-gradient(#bcdfeb,#a1d4e5);
+}
+
+// .grp-collapse.grp-open>h2.grp-collapse-handler, 
+// .grp-collapse.grp-module.grp-closed>h2.grp-collapse-handler { 
+//     // background-color: #292e47; 
+//     // background-image: none;
+//     // color:#ffffff;
+//     border-width:0px;
+//     // text-shadow:none;
+//     }
+
+
+#grp-content {
+    background-color:rgba(99, 99, 99, 0.4);
+    height:auto;
+    width:auto;
+    padding: 4px 20px 20px 20px;
+    margin:20px;
+}
+
+header#grp-header #grp-navigation h1#grp-admin-title {
+    color:#dddddd;
+    font-weight: normal;
+}

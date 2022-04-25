@@ -1,0 +1,81 @@
+---
+
+# Django model admin permissions for the staff-aicp group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "181410"  # Ann Dillemuth
+  - "218838"  # Ryan Scherzinger
+  - "228137"  # Alisa Moore
+  - "232910"  # Jennifer Rolla
+  - "259188"  # William French
+  - "274131"  # Felicia Braunstein
+  - "294383"  # Eric Roach
+  - "324696"  # DC TEMP
+
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+# sorted([i.model for i in ContentType.objects.filter(app_label='')])
+app_models_granted:
+  - cm_claim
+  - cm_cmcomment
+  - cm_cmorder
+  - cm_log
+  - cm_period
+  - cm_provider
+  - cm_providerapplication
+  - cm_providerregistration
+  - events_activity
+  - events_course
+  - events_event
+  - events_eventinfo
+  - events_eventlogentry
+  - events_eventmulti
+  - events_eventsingle
+  - events_nationalconferenceactivity
+  - events_nationalconferenceeval
+  - events_nationalconferenceparticipant
+  - events_nationalconferenceproposal
+  - events_speaker
+  - events_speakereval
+  - exam_aicpcandidateapplication
+  - exam_applicationcategory
+  - exam_applicationdegree
+  - exam_applicationjobhistory
+  - exam_exam
+  - exam_examapplication
+  - exam_examapplicationorder
+  - exam_examapplicationreview
+  - exam_examapplicationrole
+  - exam_examregistration
+  - exam_examregistrationorder
+  - exam_verificationdocument
+  - exam_aicpcredentialdata
+  - myapa_contact
+  - myapa_contactcommittee
+  - myapa_contactcontentadded
+  - myapa_contactrelationship
+  - myapa_contactrole
+  - myapa_contacttagtype
+  - myapa_educationaldegree
+  - myapa_individualprofile
+  - myapa_jobhistory
+  - myapa_organization
+  - myapa_organizationprofile
+  - myapa_provider
+  - myapa_school
+  - pages_aicppage
+  - pages_conferencespage
+  - pages_connectpage
+  - pages_outreachpage
+  - submissions_answer
+  - submissions_answerreview
+  - submissions_category
+  - submissions_period
+  - submissions_question
+  - submissions_review
+  - submissions_reviewrole
+

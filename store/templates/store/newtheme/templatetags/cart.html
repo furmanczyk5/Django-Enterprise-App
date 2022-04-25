@@ -1,0 +1,46 @@
+<div class="store-cart_items">
+	<table class="registration-table">
+		<tr>
+		    <td><strong>Item</strong></td>
+		    <td><strong>Price</strong></td>
+		    <td><strong>Quantity</strong></td>
+		    <td><strong>Total</strong></td>
+		    <td> </td>
+		</tr>
+		{% if conflict_purchase_ids %} <font color="red">TIME CONFLICT FOR ACTIVITIES.</font> {% endif %}
+		{% for item in cart_items %}
+			<tr class="cart-line-item" {% if item.id in conflict_purchase_ids %} bgcolor="#edafaf" {% endif %}>
+		        <td>{{ item.product.content.title }}{% if item.option %} | {{item.option.title}}{% endif %}
+		        {% if item.is_waitlist %}<br/><span class="bold">WAITLIST</span>{% endif %}
+            {% comment %}
+		        {% if item.is_standby %}<br/><span class="bold">STANDBY</span>{% endif %}
+            {% endcomment %}
+		        {% if item.product_price.comped %}<br/><span class="bold">COMPLIMENTARY</span>{% endif %}
+		        </td>
+		        <td> ${{ item.product_price.price }} </td>
+		        <td> {{ item.quantity }} </td>
+		        <td> ${{ item.amount }} </td>
+		        <td> {% if not item.product_price.comped %}
+			        	{% if remove_is_form %}
+			        	<form method="post" class="remove-from-cart" data-master-id="{{item.product.content.master_id}}">
+			        		{% csrf_token %}
+			        		<input type="hidden" name="purchase_id" value="{{item.id}}" />
+							{% if item.id in conflict_purchase_ids %}
+			        		  <button type="submit" class="small"
+									  style="color: #666; border-color: #666">Remove
+							  </button>
+							{% else %}
+							  <button type="submit" class="small">Remove</button>
+							{% endif %}
+			        	</form>
+			        	{% else %}
+			        	<a href="/store/cart/?delete={{ item.id }}" class="button small">Remove</a>
+			        	{% endif %}
+		        	{% endif %}
+		        </td>
+		    </tr>
+		{% empty %}
+		<tr><td colspan="5">Your cart is empty</td></tr>
+		{% endfor%}
+	</table>
+</div>

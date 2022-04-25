@@ -1,0 +1,25 @@
+{% extends 'newtheme/templates/content-page-ads-on-side.html' %}
+
+{% block content_details %}
+
+	{{ block.super }}
+
+	{% if content.media_format == "DOCUMENT" %}
+		<div>
+			<a class="btn btn-primary" href="{{ content.media.get_file.url }}">
+			Download
+			</a>
+		</div>
+	{% else %}
+		<div>{{content.to_html}}</div>
+	{% endif %}
+
+{% endblock %}
+
+
+
+
+
+
+
+

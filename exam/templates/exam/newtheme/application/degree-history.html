@@ -1,0 +1,71 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+{% load content_extras %}
+{% load myapa_tags %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">AICP Certification Application</h1><br>
+    <h2 class="page-title">SECTION 1: EDUCATION HISTORY</h2>
+  </div>
+  <div class="layout-tracery no-bottom-border">
+                <h3><strong>AICP Certification Application</strong></h3>
+                <p><strong>Education History</strong></p>
+              <p>Applicants for AICP Certification must have completed a specified combination of education and years of professional planning experience, as described in the <a href="https://www.planning.org/certification/eligible/" target="_blank">AICP Certification Eligibility Requirements</a></p>
+<p>Please enter your education history and upload your education verification document so we may determine the required amount of experience that must be provided on the application. APA will accept <em>one</em> of the following three forms of education verification: 
+</p>
+ <ul style="list-style-type:disc">
+  <li>Official transcript. Please open sealed transcripts, scan them, and save them as a PDF. </li>
+  <li>Notarized photocopy of diploma. (The Notary Public confirms that the copy is a true replica of the original diploma.) </li>
+  <li>Letter from school dean, registrar, or program director confirming that the degree was conferred. The letter must be printed on college/university letterhead and include the letter writer’s title and contact information.</li>
+</ul> 
+    <div class="layout-column">
+      <div class="row">
+<!-- onsubmit="return formsubmitcheck()" -->
+<form method="post" class="planning-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- MANAGEMENT FORM -->
+            {{ form_set.management_form }}
+            <!-- MANAGEMENT FORM -->
+            {% for form in form_set%}
+            {% include "ui/newtheme/forms/includes/display-errors.html" %}
+            {% for hidden in form.hidden_fields %}
+              {{ hidden }}
+            {% endfor %}
+            <div class="accordion">
+                <h4 class="accordion-handle">
+                    {% if form.school.value %}
+                      {% get_school_name form.school.value %}
+                    {% elif form.other_school.value %}
+                      {{ form.other_school.value }}
+                    {% else %}
+                      Add New Degree
+                    {% endif %}
+                </h4>
+                <div class="accordion-content">
+                    <p>
+                        <a class="btn btn-danger btn-sm" href="{% url 'degree_delete' master_id=view.application.master_id %}?edu_id={{form.id.value}}">Delete</a>
+                    </p>
+                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.school %}
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.other_school %}
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.graduation_date %}
+                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.level %}
+                    {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.is_planning %}
+                    <br>
+                    <p class="small" id="file_field">Choose Education Verification Document (pdf only): {{ form.uploaded_file }} </p>
+                </div>
+              </div>
+            {% endfor %}
+            <div class="form-actions">
+              <input id="file_upload" type="submit" name="save_and_add_another" class="btn btn-primary" value="Save and add another degree"/>
+              <input id="file_upload" type="submit" name="save_and_continue" class="btn btn-primary" value="Save and continue" />
+            </div>
+        </form>
+
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

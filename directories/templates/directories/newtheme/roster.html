@@ -1,0 +1,51 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load staticfiles %}
+{% load compress %}
+{% load content_extras %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+    <div class="page-head">
+      {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+      <h1 class="page-title">{{ directory.title }}</h1>
+    </div>
+
+    <div class="results-items">
+        <div class="content-preview-list layout-tracery no-bottom-border">
+        <ul>
+            {% for result in results %}
+				<li class="content-preview-item">
+                    <h4>{{result}}</h4>
+                    {% if result.company %}<b>Organization: </b>{{result.company}}<br>{% endif %}
+                    {% if result.phone %}<b>Phone: </b>{{result.phone}}<br>{% endif %}
+                    {% if result.email %}<b>Email: </b><a class="small button" href="mailto::{{result.email}}">Click here to email</a><br>{% endif %}
+                    {% if result.city %}{{result.city}}, {% endif %}
+                    {% if result.state %}{{result.state}} {% endif %}
+                    {% if result.zip_code %}{{result.zip_code}}<br>{% endif %}
+                    {% if result.country %}{{result.country}}{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+
+        <div class="search-pagination" align="center">
+        <span class="step-links">
+            {% if results.has_previous %}
+                <a href="?page={{ results.previous_page_number }}" class="pull-left"><b> < Previous </b></a>
+            {% endif %}
+            <span class="pagination-results">
+            Page {{ results.number }} of {{ results.paginator.num_pages }}
+            </span>
+            {% if results.has_next %}
+                <a href="?page={{ results.next_page_number }}" class="pull-right"><b> Next > </b></a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock %}

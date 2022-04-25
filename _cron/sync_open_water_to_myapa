@@ -1,0 +1,1 @@
+20 9 * * * /srv/sites/apa/envs/apa/bin/python /srv/sites/apa/proj/apa/manage.py sync_open_water_to_myapa

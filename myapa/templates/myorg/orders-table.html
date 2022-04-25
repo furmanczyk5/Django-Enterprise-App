@@ -1,0 +1,82 @@
+{% extends 'newtheme/templates/base.html' %}
+
+{% load tz %}
+{% load humanize %}
+{% load store_tags %}
+{% load static %}
+
+
+
+{% block additional_head_css %}
+<link href="{% static 'myorg/css/datatables.min.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block content_main_access %}
+
+<div class="page-head" style="margin-top: 5rem;">
+  <p>
+    <a class="btn btn-default" href="{% url 'myorg' %}">Back to My Organization</a>
+  </p>
+  <h1 class="page-title">All Orders for {{ company }}</h1>
+</div>
+
+<div class="container">
+
+  {% if purchases %}
+  <div class="table-responsive">
+
+    <table class="display table table-hover" id="orders_datatable">
+      <thead>
+        <tr>
+          <th>
+            Order #
+          </th>
+          <th>
+            Amount
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+            Status
+          </th>
+          <th>
+            Submitted
+          </th>
+          <th>
+            Receipt
+          </th>
+        </tr>
+     </thead>
+
+      <tbody>
+        {% for purchase in purchases %}
+        <tr>
+          <td>{{ purchase.order.id }}</td>
+          <td>${{ purchase.amount|intcomma }}</td>
+          <td>{{ purchase.product_type_label }}</td>
+          <td>{{ purchase.order|get_order_status_label }} </td>
+          <td data-order="{{ purchase.order.submitted_time|date:'c' }}">
+            {{ purchase.order.submitted_time|date:"l, F j, Y, P e" }}
+          </td>
+          <td><a href="/store/order_confirmation/?order_id={{ purchase.order.id }}">View</a></td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+  {% else %}
+    <h2>No orders have been submitted</h2>
+  {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'myorg/js/datatables.min.js' %}"></script>
+<script src="{% static 'myorg/js/orders-datatable.js' %}"></script>
+{% endblock %}

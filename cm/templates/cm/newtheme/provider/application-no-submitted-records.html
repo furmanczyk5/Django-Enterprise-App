@@ -1,0 +1,17 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}Certification Maintenance Provider Application{% endblock %}
+
+
+{% block content_main %}
+
+<div class="section-icon section-icon-attention">
+  <h3>Attention</h3>
+  <p>
+    Our records indicate that there are submitted provider applications that are yet to be reviewed by our staff. Please proceed to the Dashboard.
+  </p>
+</div>
+<br>
+<a class="btn btn-primary" href="{% url 'myorg' %}">My Organization Dashboard</a>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+.star-rating {
+  font-size: 16px;
+  font-family: @font-family-sans-serif;
+}
+
+.star-rating-rating {
+  color: @color-bahama-blue;
+  padding-right: 5px;
+}
+
+.star-rating-star-wrap {
+  position:relative;
+  color: @color-bahama-blue;
+  overflow:hidden;
+
+  //show number of reviews on same line
+  & + div {
+    display: inline;
+  }
+}
+
+.star-rating-star-wrap-inner {
+  text-align: left;
+  white-space: nowrap;
+  position: absolute;
+  left: 0px;
+  color: @color-bahama-blue;
+  overflow: hidden;
+}

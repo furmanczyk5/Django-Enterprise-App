@@ -1,0 +1,161 @@
+/**
+ * dependencies: form section
+ */
+
+.homepage-featured-content-secondary {
+  &:extend(.form-section all);
+  &:extend(.form-section-enclosed-dark all);
+
+  & {
+    position: relative;
+    padding: 0;
+  }
+
+  & + & {
+    margin-top: 25px;
+
+    @media screen and (min-width: @screen-sm-min) {
+      margin-top: 0;
+    }
+  }
+
+  &.homepage-featured-content-secondary-conference {
+    margin-top: -30px;
+    z-index: 9;
+
+    @media screen and (min-width: @screen-sm-min) {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 40px;
+      max-width: 1050px; // make sure it doesn't get too big since it's in a breakout
+    }
+
+    .homepage-featured-content-secondary-conference-wrap {
+      padding-top: 20px;
+
+      @media screen and (min-width: @screen-sm-min) {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &.color-blue {
+    //Do nothing, inherited from form-section
+  }
+
+  &.color-orange {
+    &:before {
+      background-color: @color-anzac;
+    }
+  }
+
+  &.color-red {
+    &:before {
+      background-color: @color-chocolate-red;
+    }
+  }
+
+  &.color-green {
+    &:before {
+      background-color: @color-sycamore;
+    }
+  }
+
+  & .homepage-featured-content-secondary-image {
+    //overrun borders
+    width: 100%;
+    width: calc(100% ~"+" 2px);
+    margin-left: 0;
+    margin-left: calc(-1px);
+    //end overrun borders
+
+    & img {
+      width: 100%;
+    }
+  }
+
+  & .homepage-featured-content-secondary-image,
+  &.highlight-blue .homepage-featured-content-secondary-image {
+    border-color: @color-bahama-blue;
+  }
+
+  &.highlight-gold .homepage-featured-content-secondary-image {
+    border-color: @color-anzac;
+  }
+
+  & .homepage-featured-content-secondary-body {
+    .strip-edge-margins();
+
+    padding-left: @padding-level-2-xs;
+    padding-right: @padding-level-2-xs;
+    padding-top: 24px;
+    padding-bottom: 24px;
+
+    @media screen and (min-width: @padding-breakpoint) {
+      padding-left: @padding-level-2-md;
+      padding-right: @padding-level-2-md;
+    }
+  }
+
+  & .homepage-featured-content-secondary-body h2 {
+    //Smaller H2s...
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  @media screen and (min-width: @screen-sm-min) {
+    &.has-read-more-link {
+      position: relative;
+      padding-bottom: 24px + 38px;
+
+      & .read-more-link {
+        position: absolute;
+        bottom: 23px; //Looks like 30 in practice
+        left: @padding-level-2-xs;
+        width: calc(100% ~"-" (2*@padding-level-2-xs));
+
+        @media screen and (min-width: @padding-breakpoint) {
+          left: @padding-level-2-md;
+          width: calc(100% ~"-" (2*@padding-level-2-md));
+        }
+      }
+
+    }
+  }
+}
+
+@media screen and (min-width: @screen-sm-min) {
+  html.flexbox {
+
+    & .homepage-featured-content-secondary-row {
+      display: flex;
+      margin-left: @grid-gutter-width / -2;
+      margin-right: @grid-gutter-width / -2;
+
+      & .homepage-featured-content-secondary {
+        flex: 1;
+        margin-left: @grid-gutter-width / 2;
+        margin-right: @grid-gutter-width / 2;
+        flex-direction: column;
+      }
+    }
+
+  }
+
+  html.no-flexbox {
+
+    & .homepage-featured-content-secondary-row {
+      .clearfix();
+      margin-left: @grid-gutter-width / -2;
+      margin-right: @grid-gutter-width / -2;
+
+      & .homepage-featured-content-secondary {
+        float: left;
+        margin-left: @grid-gutter-width / 2;
+        margin-right: @grid-gutter-width / 2;
+      }
+    }
+
+  }
+
+}

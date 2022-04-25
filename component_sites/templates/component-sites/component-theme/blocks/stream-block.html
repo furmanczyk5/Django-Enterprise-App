@@ -1,0 +1,7 @@
+{% load wagtailcore_tags %}
+
+{% for item in value %}
+{{item}}
+{# we may need this if we need to pass parent_context #}
+{# {% include_block item %} #}
+{% endfor %}

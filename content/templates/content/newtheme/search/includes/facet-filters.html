@@ -1,0 +1,37 @@
+<div class="facet-overview">
+  <div class="facet-overview-controls clearfix">
+    <span class="facet-current-tags-label pull-left">Current Filters</span>
+    <a class="btn btn-sm btn-clear-tags pull-right">Clear All</a>
+  </div>
+  <div class="facet-current-filters">
+    {% for tag_type in facet_results %}
+      {% for tag in tag_type.tags %}
+        {% if tag.selected %}
+          <a href="#" data-tag="tag{{tag.id}}" class="btn btn-sm btn-dark btn-facet-tag-selected" title="{{tag.title}}">{{tag.title}} 
+        
+          ({{tag.count}})
+
+          <span class="icon-apa-close"></span></a>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+{% for tag_type in facet_results %}
+  <div class="accordion">
+    <h2 class="accordion-handle">{{tag_type.title}}</h2>
+    <div class="accordion-content">
+      <div>
+      {% for tag in tag_type.tags %}
+
+        <button {% if tag.selected %} disabled="disabled" {% endif %} href="#" data-tag="tag{{tag.id}}" class="btn btn-default btn-facet-tag" title="{tag.title}}">{{tag.title}} 
+
+          ({{tag.count}})
+
+        <b>&nbsp;+&nbsp;</b></button>
+      {% endfor %}
+      </div>
+    </div>
+
+  </div>
+{% endfor %}

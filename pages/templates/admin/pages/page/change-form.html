@@ -1,0 +1,8 @@
+{% extends "admin/content/content/change-form.html" %}
+
+{% block object-tools-items %}
+{{block.super}}
+{% if original %}
+{% include 'admin/pages/page/includes/planning-admin-checkin-tool-item.html' %}
+{% endif %}
+{% endblock %}

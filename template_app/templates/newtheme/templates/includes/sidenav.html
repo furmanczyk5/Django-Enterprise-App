@@ -1,0 +1,138 @@
+{% load template_app_extras %}
+
+{% if ancestors.2.url == '/divisions/' and not content.url == '/divisions/' %}
+<div class="local-navigation">
+    <a href="{{ ancestors.1.url }}"><h3 class="local-navigation-title">{{ ancestors.1 }}</h3></a>
+    <ul class="local-navigation-list">
+        <li>
+            <a href="{{ ancestors.1.url }}">{{ ancestors.1 }}</a>
+        </li>
+        <li>
+            <a href="{{ ancestors.2.url }}" class="local-navigation-btn-back">
+                <span class="icon-keyboard-arrow-right pull-left"></span>
+                {{ ancestors.2.title }}
+            </a>
+        </li>
+    
+        <ul class="local-navigation-list-dark">
+            <li>
+                <a href="{{ancestors.3.url}}">
+                    <h4 class="local-navigation-subtitle blue">
+                        {{ ancestors.3.title }}
+                    </h4>
+                </a>
+
+            </li>
+            {% meunitems ancestors.3 as menu3 %}
+            {% for m in menu3 %}
+                <li>
+                    <a href="{{ m.get_url }}"
+                        {% if m.get_url == ancestors.3.url or m.get_url == content.url  %} class="active" {% endif %}
+                        >
+                        {{ m.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </ul>
+</div>
+{% elif ancestors.2.url == '/chapters/' and not content.url == '/chapters/' %}
+<div class="local-navigation">
+    <a href="{{ ancestors.1.url }}"><h3 class="local-navigation-title">{{ ancestors.1 }}</h3></a>
+    <ul class="local-navigation-list">
+        <li>
+            <a href="{{ ancestors.1.url }}">{{ ancestors.1 }}</a>
+        </li>
+        <li>
+            <a href="{{ ancestors.2.url }}" class="local-navigation-btn-back">
+                <span class="icon-keyboard-arrow-right pull-left"></span>
+                {{ ancestors.2.title }}
+            </a>
+        </li>
+        
+        <ul class="local-navigation-list-dark">
+            <li>
+
+                <a href="{{ancestors.3.url}}">
+                    <h4 class="local-navigation-subtitle blue">
+                        {{ ancestors.3.title }}
+                    </h4>
+                </a>
+
+            </li>
+            {% meunitems ancestors.3 as menu3 %}
+            {% for m in menu3 %}
+                <li>
+                    <a href="{{ m.get_url }}"
+                        {% if m.get_url == ancestors.3.url or m.get_url == content.url  %} class="active" {% endif %}
+                        >
+                        {{ m.title }}
+                    </a>
+                </li>
+
+
+            {% endfor %}
+        </ul>
+
+    </ul>
+</div>
+{% else %}
+<div class="local-navigation">
+
+{% if ancestors.1 %}
+
+  <a href="{{ ancestors.1.url }}"><h3 class="local-navigation-title">{{ ancestors.1 }}</h3></a>
+
+    <ul class="local-navigation-list">
+      {% meunitems ancestors.1 as menu1 %}
+      {% for m in menu1 %}
+        <li>
+
+            <a href="{{ m.get_url }}" 
+                {% if m.get_url == ancestors.2.url or m.get_url == content.url  %} class="active" {% endif %}
+                >
+                {{ m.title }}
+            </a>
+
+            
+
+            {# TO DO... maybe this should be by page, and not url ...? #}
+            {% if ancestors.2 and ancestors.2.url == m.get_url  %}
+
+                <ul>
+                    {% meunitems ancestors.2 as menu2 %}
+                    {% for m in menu2 %}
+
+                        <li>
+                            <a href="{{ m.get_url }}" {% if m.get_url == ancestors.3.url or m.get_url == content.url  %} class="active" {% endif %}>
+                                {{ m.title }}
+                            </a>
+                        </li>
+
+                        {# TO DO... maybe this should be by page, and not url ...? #}
+                        {% if ancestors.3 and ancestors.3.url == m.get_url  %}
+                            <ul>
+                                {% meunitems ancestors.3 as menu3 %}
+                                {% for m in menu3 %}
+                                    <li>
+                                        <a href="{{ m.get_url }}" {% if m.get_url == ancestors.4.url or m.get_url == content.url  %} class="active" {% endif %}>
+                                            {{ m.title }}
+                                        </a>
+                                    </li>
+
+
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+
+    {% endfor %}
+
+  </ul>
+{% endif %}
+</div>
+{% endif %}

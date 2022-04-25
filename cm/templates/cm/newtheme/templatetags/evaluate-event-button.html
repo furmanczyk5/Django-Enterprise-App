@@ -1,0 +1,18 @@
+{% if evaluation_message %}{{evaluation_message}}<br/>{% endif %}
+{% if evaluation_action == "LOGIN" %}
+	{% if not is_candidate %}
+<a class="btn {{extra_class}}" href="{{evaluation_url}}">Add to My Log</a>
+	{% else %}
+<a class="btn {{extra_class}}" href="{{evaluation_url}}">Add to CM Tracker</a>
+	{% endif %}
+{% elif evaluation_action == "CLAIM_CM" %}
+	{% if not is_candidate %}
+<a class="btn {{extra_class}}" href="{{evaluation_url}}">Add to My Log</a>
+	{% else %}
+<a class="btn {{extra_class}}" href="{{evaluation_url}}">Add to My CM Tracker</a>
+	{% endif %}	
+{% elif evaluation_action == "EVALUATE" %}
+<a class="btn {{extra_class}}" href="{{evaluation_url}}">Evaluate Event</a>
+{% elif evaluation_action == "VIEW_CM" %}
+<a class="btn {{extra_class}}" href="{{evaluation_url}}">View My CM Claim</a>
+{% endif %}

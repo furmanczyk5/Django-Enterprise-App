@@ -1,0 +1,16 @@
+<div class="content-preview-list layout-tracery no-bottom-border">
+  <ul>
+    {% if timeout %}
+    <p> We're sorry, but there was a problem retrieving search results. Please try again in a few minutes.</p>
+    {% else %}
+      {% if results %}
+        {% for result in results %}
+        {% include record_template with result=result %}
+        {% endfor %}
+      {% else %}
+      <p>There are no results matching your query.</p>
+      {% endif %}
+    {% endif %}
+  </ul>
+  <hr>
+</div>

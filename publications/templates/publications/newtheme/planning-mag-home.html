@@ -1,0 +1,377 @@
+{% extends 'newtheme/templates/layout-planning-magazine.html' %}
+{% load static %}
+
+{% load content_extras %}
+
+{% block content_main %}
+
+<div class="planning">
+
+<!--   <div class="row breadcrumbs">
+    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-9"> -->
+  <ol class="breadcrumb">
+      {% for crumb in ancestors|slice:":-1" %}
+      <li>
+          {% if crumb.url %}
+              <a href="{{crumb.url}}">{{crumb}}</a>
+          {% else %}
+              {{crumb}}
+          {% endif %}
+      </li>
+      {% endfor %}
+  </ol>
+<!--     </div>
+  </div> -->
+
+  <!-- Title -->
+  <div class="row top_title articles">
+    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
+      <h1>{{content.title}}</h1>
+      <h3>{{content.subtitle}}</h3>
+    </div>
+  </div>
+
+    {% for result in hero.response.docs|slice:":1" %}
+    <!-- featured article -->
+    <div class="featured_article">
+      <div class="flex-col-1">
+        <div>
+          <h6>{{ result.tags_PLANNING_MAG_SECTION.0|split_on_period:2 }}</h6>
+          <h2><a href="{{result|solr_record_to_details_path_filter}}">{{ result.title }}</a></h2>
+          <p class="featured">{{result.description}}</p>
+          {% if result.date_text %}
+            <p class="featured_date">{{result.date_text}}</p>
+          {% elif result.resource_published_date %}
+            <p class="featured_date">{{result.resource_published_date|full_date_from_json_datetime}}</p>
+          {% endif %}
+          <p class="featured_byline"><i>By</i> <span>{{result.contact_roles_AUTHOR.0|split_on_line:1}}</span></p>
+        </div>
+      </div>
+      <div class="flex-col-2">
+        <!-- <img src="//placehold.it/1200x567" alt="featured article image" class="img-responsive"/> -->
+        <img src="{{result.featured_image}}" alt="{{result.description}}" class="img-responsive"/>
+      </div>
+    </div>
+    {% endfor %}
+
+  <!-- Recent Articles -->
+  <div class="row recent_articles">
+    <!-- title for row -->
+    <div class="col-md-12 col-sm-12 col-xs-12 title-column">
+      <h3>Recent Articles</h3>
+    </div>
+
+
+    <!-- left column -->
+    <div class="col-md-6 col-sm-12 col-xs-12 left-column remove-outside-gutter-mobile">
+
+      {% for result in recent.response.docs|slice:":1" %}
+
+        <a href="{{result|solr_record_to_details_path_filter}}" class="content-preview-item">
+          <div class="content-preview-item-image-block">
+            <!-- <img src="//placehold.it/568x426" alt="featured recent article image" class="img-responsive" /> -->
+            <img src="{{result.featured_image}}" alt="{{result.featured_image_caption}}" class="img-responsive" />
+          </div>
+          <div class="content-preview-item-headline add-outside-gutter-mobile">
+            {% if result.permission_groups|is_member_or_subscription %}
+            <div class="members-only">APA Member Content</div>
+            {% endif %}
+            {% if result.tags_SPONSORED %}
+            <div class="members-only sponsored-content">{{ result.tags_SPONSORED.0|split_on_period:2 }}</div>
+            {% endif %}
+            <h6 class="content-preview-item-superheadline">{{ result.tags_PLANNING_MAG_SECTION.0|split_on_period:2 }}</h6>
+            <div class="content-preview-item-title">{{result.title}}</div>
+          </div>
+          {% if result.date_text %}
+            <div class="content-preview-item-postline add-outside-gutter-mobile"><strong>{{result.date_text}}</strong></div>
+          {% elif result.resource_published_date %}
+            <div class="content-preview-item-postline add-outside-gutter-mobile"><strong>{{result.resource_published_date|full_date_from_json_datetime}}</strong></div>
+          {% endif %}
+        </a>
+
+      {% endfor %}
+
+    </div>
+
+
+    <!-- right column -->
+    <div class="col-md-6 col-sm-12 col-xs-12 right-column">
+
+      {% for result in recent.response.docs|slice:"1:4" %}
+        <!-- nested row: 1 -->
+        <div class="row nested-row row-no-gutters">
+
+          <!-- left image -->
+          <div class="col-md-4 col-sm-4 col-xs-12 cust-xs-img">
+            {% if result.thumbnail_2 %}
+              <div class="content-preview-item-image-block">
+                <img src="{{result.thumbnail_2}}" alt="{{result.featured_image_caption}}" class="img-responsive" />
+              </div>
+            {% else %}
+              <div class="content-preview-item-image-block">
+                <img src="//placehold.it/198x132" alt="recent article image" class="img-responsive"/>
+              </div>
+            {% endif %}
+          </div>
+          <!-- right column -->
+          <div class="col-md-8 col-sm-8 col-xs-12 cust-xs-text">
+            <div class="content-preview-item">
+              <div class="content-preview-item-headline">
+                {% if result.permission_groups|is_member_or_subscription %}
+                <div class="members-only">APA Member Content</div>
+                {% endif %}
+                {% if result.tags_SPONSORED %}
+                <div class="members-only sponsored-content">{{ result.tags_SPONSORED.0|split_on_period:2 }}</div>
+                <!-- <div class="members-only sponsored-content">Sponsored Content</div> -->
+                {% endif %}
+                  {% if result.tags_PLANNING_MAG_SECTION.0|split_on_period:2 %}
+                    <h6 class="content-preview-item-superheadline">{{ result.tags_PLANNING_MAG_SECTION.0|split_on_period:2 }}</h6>
+                  {% else %}
+                    <h6 class="content-preview-item-superheadline">Intersections</h6>
+                  {% endif %}
+                <div class="content-preview-item-title"><a href="{{result|solr_record_to_details_path_filter}}">{{result.title}}</a></div>
+              </div>
+              {% if result.date_text %}
+                <div class="content-preview-item-postline add-outside-gutter-mobile"><strong>{{result.date_text}}</strong></div>
+              {% elif result.resource_published_date %}
+                <div class="content-preview-item-postline add-outside-gutter-mobile"><strong>{{result.resource_published_date|full_date_from_json_datetime}}</strong></div>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+    {% endfor %}
+
+    </div>
+
+  </div>
+
+  <!-- additional articles section -->
+
+  <!-- Innovations -->
+  <div class="row addtl_articles layout-tracery">
+
+    <div class="layout-column">
+
+      <div class="title-column">
+        <h2>Innovations</h2>
+      </div>
+
+      <div class="row slider">
+
+        {% for result in innovations.response.docs|slice:":5" %}
+          <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+            {% include "publications/newtheme/includes/horizontal-article-list.html" with result=result %}
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <div class="row read-more-row">
+
+        <div class="col-md-11 col-sm-12 read-more-col">
+          <a href="section/innovations/" class="read-more-link">See more Innovations articles</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- tools -->
+  <div class="row addtl_articles layout-tracery">
+
+    <div class="layout-column">
+
+      <div class="title-column">
+        <h2>Tools</h2>
+      </div>
+
+      <div class="row slider">
+
+        {% for result in tools.response.docs|slice:":5" %}
+          <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+            {% include "publications/newtheme/includes/horizontal-article-list.html" with result=result %}
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <div class="row read-more-row">
+
+        <div class="col-md-11 col-sm-12 read-more-col">
+          <a href="section/tools/" class="read-more-link">See more Tools articles</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Intersections -->
+  <div class="row addtl_articles layout-tracery">
+
+    <div class="layout-column">
+
+      <div class="title-column">
+        <h2>Intersections</h2>
+      </div>
+
+      <div class="row slider">
+
+        {% for result in intersections.response.docs|slice:":5" %}
+          <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+            {% include "publications/newtheme/includes/horizontal-article-list.html" with result=result %}
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <div class="row read-more-row">
+
+        <div class="col-md-11 col-sm-12 read-more-col">
+          <a href="section/intersections/" class="read-more-link">See more Intersections articles</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- voices -->
+  <div class="row addtl_articles layout-tracery">
+
+    <div class="layout-column">
+
+      <div class="title-column">
+        <h2>Voices</h2>
+      </div>
+
+      <div class="row slider">
+
+        {% for result in voices.response.docs|slice:":5" %}
+          <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+            {% include "publications/newtheme/includes/horizontal-article-list.html" with result=result %}
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <div class="row read-more-row">
+
+        <div class="col-md-11 col-sm-12 read-more-col">
+          <a href="section/voices/" class="read-more-link">See more Voices articles</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Pre-footer CTA -->
+  <div class="homepage-featured-content-secondary-row row prefooter_cta">
+    <div class="homepage-featured-content-secondary">
+      <div class="homepage-featured-content-secondary-body">
+        <h4 class="homepage-featured-content-secondary-title">Sign up for Planning emails</h4>
+        <p>Receive Planning featured articles and recent content in your inbox</p>
+        <a href="/myapa/contactpreferences/update/" class="btn btn-primary btn-sub">Subscribe</a>
+      </div>
+    </div>
+    <div class="homepage-featured-content-secondary img-col">
+      <div class="homepage-featured-content-secondary-body">
+        <div class="row nested-row">
+          <div class="col-md-4 col-sm-12 text-center">
+            <!-- this will need to be pulled from some natural place where this image lives; need to query for some content -->
+            <!-- record tied to the cover image and then pull its thumbnail? -->
+            <!-- <img class="img-responsive" src="//placehold.it/113x143" alt="Planning magazine image"/> -->
+            <img class="img-responsive" src="https://planning-org-uploaded-media.s3.amazonaws.com/image/Planning-2021-07-image08.jpg" alt="Planning magazine image"/>
+          </div>
+          <div class="col-md-8 col-sm-12 text-col">
+            <h4 class="homepage-featured-content-secondary-title">Download Planning Magazine</h4>
+            <p>Access the most recent issue. Download the digital version now.</p>
+            <a href="/publications/document/9217914/" class="btn btn-primary btn-download">Log in to download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="homepage-featured-content-secondary">
+      <div class="homepage-featured-content-secondary-body list-of-links">
+        <h4 class="homepage-featured-content-secondary-title">Additional Resources</h4>
+        <h4><a href="/planning/about/">About</a></h4>
+        <h4><a href="/planning/suggestions/">Contributor Guidelines</a></h4>
+        <h4><a href="/planning/previous/">Previous Edition</a></h4>
+        <h4><a href="/advertise/">Advertise with APA</a></h4>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pre-footer 3 up ads -->
+  <div class="row prefooter_3up_ads hidden-xs hidden-sm">
+
+    <div class="col-md-2 col-md-offset-3">
+      <div class="banner-ad banner-ad-small">
+        <script type="text/javascript">
+        sas.call("std", {
+        siteId: 80676, // 
+        pageId: 584791, // Page : Planning.org/apa
+        formatId: 34980, // Format : APA - Box 1 (180x150) 180x150
+        target: '' // Targeting
+        });
+        </script>
+        <noscript>
+        <a href="http://www5.smartadserver.com/ac?jump=1&nwid=1541&siteid=80676&pgname=apa&fmtid=34980&visit=m&tmstp=[timestamp]&out=nonrich" target="_blank">                
+        <img src="https://www5.smartadserver.com/ac?out=nonrich&nwid=1541&siteid=80676&pgname=apa&fmtid=34980&visit=m&tmstp=[timestamp]" border="0" alt="" /></a>
+        </noscript>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="banner-ad banner-ad-small">
+        <script type="text/javascript">
+        sas.call("std", {
+        siteId: 80676, // 
+        pageId: 584791, // Page : Planning.org/apa
+        formatId: 34981, // Format : APA - Box 2 (180x150) 180x150
+        target: '' // Targeting
+        });
+        </script>
+        <noscript>
+        <a href="http://www5.smartadserver.com/ac?jump=1&nwid=1541&siteid=80676&pgname=apa&fmtid=34981&visit=m&tmstp=[timestamp]&out=nonrich" target="_blank">                
+        <img src="https://www5.smartadserver.com/ac?out=nonrich&nwid=1541&siteid=80676&pgname=apa&fmtid=34981&visit=m&tmstp=[timestamp]" border="0" alt="" /></a>
+        </noscript>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="banner-ad banner-ad-small">
+        <script type="text/javascript">
+        sas.call("std", {
+        siteId: 80676, // 
+        pageId: 584791, // Page : Planning.org/apa
+        formatId: 34982, // Format : APA - Box 3 (180x150) 180x150
+        target: '' // Targeting
+        });
+        </script>
+        <noscript>
+        <a href="http://www5.smartadserver.com/ac?jump=1&nwid=1541&siteid=80676&pgname=apa&fmtid=34982&visit=m&tmstp=[timestamp]&out=nonrich" target="_blank">                
+        <img src="https://www5.smartadserver.com/ac?out=nonrich&nwid=1541&siteid=80676&pgname=apa&fmtid=34982&visit=m&tmstp=[timestamp]" border="0" alt="" /></a>
+        </noscript>
+      </div>
+    </div>
+  </div>
+
+  <!-- prefooter long ad -->
+  <div class="row prefooter_lng_ad">
+    <div class="col-md-12 col-sm-12 text-center">
+      <div class="banner-ad banner-ad-leaderboard banner-ad-footer">
+        {% block footer_ad %}
+          {% include "newtheme/sandbox/banner-ad/planning-mag-footer-ad.html" %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

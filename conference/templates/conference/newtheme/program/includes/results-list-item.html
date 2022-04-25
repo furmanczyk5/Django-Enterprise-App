@@ -1,0 +1,191 @@
+{% load tz %}
+{% load content_extras %}
+
+{% if not show_session_filter_form %}
+  {# If general Microsite search, use the same templates as main site search #}
+  {% if result.content_type != "EVENT" %}
+    {% include "content/newtheme/search/record_templates/content.html" %}
+  {% else %}
+    {% include "content/newtheme/search/record_templates/event.html" %}
+  {% endif %}
+
+{% else %}
+  {# Otherwise, use typical conference session search #}
+  {% with timezone=result.timezone|default:"US/Central" %}
+    {% with begin_time=result.begin_time|datetime_with_zone_from_json:timezone end_time=result.end_time|datetime_with_zone_from_json:timezone %}
+
+      {% localtime off %}
+        {% ifchanged begin_time %}
+          {% ifchanged begin_time|date:"omd" %}
+            <li class="conference-search-item conference-search-item-day">
+              {# {% if microsite.show_skip_to_dates %} #}
+              {% if False %}
+                <a class="conference-result-day-anchor" name="{{ begin_time|date:'lNjY' }}"
+                   title="{{ begin_time|date:'l n/j' }}"></a>
+              {% else %}
+                <a class="conference-result-day-anchor" name="{{ begin_time|date:'lNjY' }}" title=""
+                   id="hide_skip_to"></a>
+              {% endif %}
+              <h2>{{ begin_time|date:"l, N j, Y" }}</h2>
+            </li>
+          {% endifchanged %}
+        {% endifchanged %}
+      {% endlocaltime %}
+
+      <li class="clearfix conference-search-item{% if result.has_product %} conference-search-item-ticketed{% endif %} content-preview-item">
+
+        <div class="clearfix">
+
+          <div class="search-left">
+
+            {% if result.thumbnail %}
+              <div class="content-preview-item-image-floated">
+                <a href="{{ result|solr_record_to_details_path_filter }}">
+                  <img src="{{ result.thumbnail }}"/>
+                </a>
+              </div>
+            {% endif %}
+
+            <div  class="content-preview-item-center-block">
+
+              {% if result.has_product %}
+                <div class="section-icon section-icon-ticket">
+                  <h6>Ticket Required</h6>
+                </div>
+              {% endif %}
+              {% if "Food Included" in result.tags %}
+                <div class="section-icon section-icon-spoon-knife">
+                  <h6>Food Included</h6>
+                </div>
+              {% endif %}
+              {% if result.featured %}
+                <div>
+                  <h3>Featured</h3>
+                </div>
+              {% endif %}
+
+                <!-- title -->
+                <h4 class="content-preview-item-headline search-result-title">
+                  {% if result.content_type == "EVENT" %}
+                    <a href="/events/activity/{{ result.id|split_on_period:1 }}/">{{ result.title }}</a>
+                  {% elif result.content_type == "PAGE" %}
+                    <a href="{{ result.url }}">{{ result.title }}</a>
+                  {% endif %}
+                </h4>
+
+                <!-- sub title -->
+                {% if result.subtitle %}
+                  {{ result.subtitle }}
+                {% endif %}
+
+                {% if result.content_type == "EVENT" %}
+                  <!-- Date and time -->
+                  {% localtime off %}
+                    <!-- Date -->
+                  <span class="search-result-description">
+                    <strong>Date:</strong>&nbsp;
+                        <!-- start and end same day -->
+                        {% ifequal begin_time|date:"omd" end_time|date:"omd" %}
+                          {{ begin_time|date:"N j, Y" }}
+                        {% else %}
+                          <!-- extends through multiple days -->
+                          {{ begin_time|date:"N j, Y" }} - {{ end_time|date:"N j, Y" }}
+                        {% endifequal %}
+                  </span>
+                  <br/>
+                  <!-- Time -->
+                  <span class="search-result-description">
+                    <strong>Time:</strong>&nbsp;
+                          {% ifequal begin_time|date:"omd" end_time|date:"omd" %}
+                            <!-- start and end same day -->
+                            {{ begin_time|date:"f A" }} - {{ end_time|date:"f A e" }}
+                          {% else %}
+                            <!-- extends through multiple days -->
+                            {{ begin_time|date:"N j, Y | f A" }} - {{ end_time|date:"N j, Y | f A e" }}
+                          {% endifequal %}
+                  </span>
+
+                {% endlocaltime %}
+              {% endif %}
+
+
+              <!-- Room / Location-->
+              {% if result.location %}
+                <div class="search-result-description">
+                  <strong>Location:</strong>&nbsp;
+                  {{ result.location }}
+                </div>
+              {% elif result.tags_ROOM %}
+                <div class="search-result-description">
+                  <strong>Location:</strong>&nbsp;
+                  {{ result.tags_ROOM.0|split_on_period:2 }}
+                </div>
+              {% endif %}
+
+              <!-- Prices -->
+              <div class="content-preview-item-summary">
+                <div class="key-value-pair-group">
+                  {% if result.prices %}
+                    {% for price in result.prices %}
+                      <div class="key-value-pair">
+                        <div class="key">{{ price|split_on_line:2 }}</div>
+                        <div class="value">${{ price|split_on_line:0 }}</div>
+                      </div>
+                    {% endfor %}
+                  {% else %}
+                    {% if result.outside_vendor %}
+                        <div class="key-value-pair">
+                          <span class="key bold">Cost</span>
+                          <span class="value">Purchase ticket from 3rd party</span>
+                        </div>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              </div>
+
+
+              <br>
+              <div class="search-result-description">{{ result.description }}</div>
+            </div>
+          </div>
+
+          {% if result.content_type == "EVENT" %}
+          <div class="search-right">
+            <div class="clearfix">
+              <span class="activity-id">{{ result.code }}</span> <br/>
+              <span class="cm-credits">
+          {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=result %}
+          </span>
+            </div>
+            <br>
+            {% if is_authenticated %}
+              {% if result.has_product %}
+                <a class="btn btn-primary"
+                  href="/events/activity/{{ result.id|split_on_period:1 }}/">
+                  View Details
+                </a>
+              {% else %}
+                {% if is_registered and show_schedule_stuff %}
+                  <a class="btn btn-default" title="Remove from Schedule"
+                    id="activity-remove-{{ result.id|split_on_period:1 }}"
+                    {% if result.id not in scheduled_solr_ids %}style="display:none;"{% endif %}
+                    onclick="removeFromSchedule({{ result.id|split_on_period:1 }})">
+                    Remove from My Schedule
+                  </a>
+                  <a class="btn btn-primary" id="activity-add-{{ result.id|split_on_period:1 }}"
+                      title="Add to Schedule"
+                      {% if result.id in scheduled_solr_ids %}style="display:none"{% endif %}
+                      onclick="addToSchedule({{ result.id|split_on_period:1 }})">
+                    Add to My Schedule
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </li>
+
+    {% endwith %}
+  {% endwith %}
+{% endif %}

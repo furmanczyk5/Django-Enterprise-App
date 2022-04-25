@@ -1,0 +1,24 @@
+{% load content_extras %}
+
+{% for result in results.response.docs %}
+
+<div class="search-doc">
+	<div class="search-doc-left">
+
+		<div class="search-doc-title">
+			<h3><a href="{{result|solr_record_to_details_path_filter}}">{{ result.title }}</a></h3>
+		</div>
+
+		<div class="search-doc-time">{{ result.begin_time|datetime_from_json|date:"F j, Y" }}</div>
+
+		{% if result.contact_roles_AUTHOR %}
+		<div class="search-doc-author"><span class="text-grey">By: </span>{{result.contact_roles_AUTHOR.0|split_on_line:1 }}</div>
+		{% endif %}
+
+		{% if result.description %}
+		<div class="search-doc-description">{{result.description}}</div>
+		{% endif %}
+
+    </div>
+</div>
+{% endfor %}

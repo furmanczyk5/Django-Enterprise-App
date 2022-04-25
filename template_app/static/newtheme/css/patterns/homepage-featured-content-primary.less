@@ -1,0 +1,63 @@
+/**
+ * dependencies: slab, typography
+ */
+.homepage-featured-content-primary-wrapper {
+
+}
+
+.homepage-featured-content-primary {
+  position: relative;
+
+  &:extend(.slab-gray all);
+
+  padding-left: @padding-level-2-xs;
+  padding-right: @padding-level-2-xs;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  border-bottom: @color-content-borders solid 1px;
+  margin-bottom: 36px;
+
+  @media screen and (min-width: @screen-md-min) {
+    padding-left: @padding-level-2-md;
+    padding-right: @padding-level-2-md;
+  }
+
+  & p {
+    &:extend(p.featured all);
+  }
+
+  & .cm-wrapper {
+    display: block;
+    margin-top: 20px;
+    text-align: left;
+
+    @media screen and (min-width: @screen-sm-min) {
+      display: inline-block;
+      margin-left: 20px;
+      margin-top: 0;
+    }
+  }
+
+}
+
+//Top "border" overlapping image
+@hfcp-overlap-height: 24px;
+.homepage-featured-content-primary-wrapper {
+
+  &:before {
+    content: '';
+    position: relative;
+    display: block;
+    height: @hfcp-overlap-height;
+    width: 100%;
+    background-color: rgba(102, 102, 102, 0.85);
+  }
+}
+
+.homepage-featured-content-primary {
+  &,
+  & .row > * {
+    .strip-edge-margins();
+  }
+}

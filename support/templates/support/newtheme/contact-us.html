@@ -1,0 +1,45 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+
+{% block content_main %}
+  <head>
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+  </head>
+    <div class="page-head">
+      <h1 class="page-title">Customer Service - Contact Us</h1>
+    </div>
+
+    <div class="layout-tracery">
+        <div class="layout-column">
+        <h4>All fields are required unless labeled as Optional</h4>
+        <div class="form-section form-section-enclosed-dark">
+         <form class="planning-form" method="post">
+			{% csrf_token %}
+
+			{% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+            <div class="form-group form-section-limit-width">
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.apa_id %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.full_name %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.phone %}
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.category %}
+            </div>
+
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.description %}
+            {{form.hcaptcha}}
+			{% for field in form.hidden_fields %}
+			{{ field }}
+			{% endfor %}
+			<br/>
+			<button class="btn btn-primary btn-lg">Submit</button>
+		</form>
+		</div>
+		</div>
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,375 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+
+{% block content_sidebar %}
+<div class="column-sidebarcontent-sidebar">
+<!--PageSidebar-->
+<div class="local-navigation">
+<a href="/communityoutreach/"><h3 class="local-navigation-title">CommunityOutreach</h3></a>
+<ul class="local-navigation-list">
+<li>
+<a href="/greatplaces/" class="active">
+GreatPlacesinAmerica
+</a>
+<ul>
+<li>
+<a href="/greatplaces/peopleschoice/">
+People'sChoice
+</a>
+</li>
+<li>
+<a href="/greatplaces/list.htm">
+PlacesbyState
+</a>
+</li>
+<li>
+<a href="/greatplaces/neighborhoods/characteristics.htm">
+GreatNeighborhoods
+</a>
+</li>
+<li>
+<a href="/greatplaces/spaces/characteristics.htm">
+GreatPublicSpaces
+</a>
+</li>
+<li>
+<a href="/greatplaces/streets/characteristics.htm">
+GreatStreets
+</a>
+</li>
+<li>
+<a href="/greatplaces/suggestion/">
+SuggestaPlace
+</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/aboutplanning/">
+AboutPlanning
+</a>
+</li>
+<li>
+<a href="/awards/">
+NationalPlanningAwards
+</a>
+</li>
+<li>
+<a href="/ncpm/">
+NationalCommunityPlanningMonth
+</a>
+</li>
+<li>
+<a href="/communityassistance/teams/">
+CommunityPlanningAssistanceTeams
+</a>
+</li>
+<li>
+<a href="/prosperityplaybook/">
+ProsperityPlaybook
+</a>
+</li>
+<li>
+<a href="/commissioners/">
+ForCommissioners
+</a>
+</li>
+<li>
+<a href="/kidsandcommunity/">
+KidsandPlanning
+</a>
+</li>
+<li>
+<a href="/diversity/">
+Diversity
+</a>
+</li>
+<li>
+<a href="/international/">
+InternationalInitiatives
+</a>
+</li>
+<li>
+<a href="/collaborations/">
+Collaborations
+</a>
+</li>
+<li>
+<a href="/communityoutreach/#Specialty">
+SpecialtyResources
+</a>
+</li>
+</ul>
+</div>
+</div>
+{% endblock %}
+
+
+{% block content_main %}
+
+<div class="page-head{% if no_border_bottom %} no-border-bottom little-spacing-bottom{% endif %}">
+
+	<div class="page-head-social-sharing">
+		{% include "newtheme/templates/includes/social-sharing-widget.html" %}
+	</div>
+
+	<ol class="breadcrumb">
+	    <li>
+	        <a href="/">Home</a>
+	    </li>
+		<li>                
+			<a href="/communityoutreach/">Community Outreach</a>
+		</li>
+	</ol>
+
+	<h1 class="page-title">{% block page_title %}Linked Images Grid: large padding{% endblock %}</h1>
+
+</div>
+
+<div class="layout-tracery no-bottom-border">
+	<div class="layout-column">
+		<h2>The Gold Standard in America’s Neighborhoods, Streets, and Public Spaces</h2>
+		<p>Each year, APA recognizes outstanding people, planning work, and places — representing the best in planning and community impact. During the National Community Planning Month each October, we celebrate how planning improves lives and communities of lasting value.</p>
+	</div>
+</div>
+
+<div class="image-grid-wrapper">
+	<div class="image-grid {% block image_grid_classes %}info-overlay lg-padding{% endblock %} col-lg-12">
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9132257/">
+		  	<img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R_MG_1343/bcc5afc91d183a104a92c1e4c16011ca.jpg">
+			<div class="image-information">
+				<div class="image-title">
+				Midtown Atlanta
+				</div>
+
+				<div class="image-subtitle">Atlanta, GA</div>
+				</div>
+			
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9132259/">
+		  <img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/_MG_1346/3fddd1d4843a84d346ed8eac2ca1420c.JPG">
+		  <div class="image-information">
+		    <div class="image-title">
+		      Downtown Santa Ana
+		    </div>
+		    
+		    <div class="image-subtitle">Santa Ana, CA</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9132261/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R_MG_1347/8dd3a0d14c038992d5321e8dd941575c.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      Old Louisville
+		    </div>
+		    
+		    <div class="image-subtitle">Louisville, KY</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9132258/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R_MG_1351/c40c9e07b13b7525ab947044c6fd88cb.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      Nob Hill
+		    </div>
+		    
+		    <div class="image-subtitle">Albuquerque, NM</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9131641/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-29_13.00.03/8feb118c9cfeca44e3040d7cc8bdaa16.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      Downtown Warren
+		    </div>
+		    
+		    <div class="image-subtitle">Warren, RI</div>
+		  </div>
+		  </a>
+		</div>
+		</div>
+
+		<!-- streets -->
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9131642/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-29_12.59.49/f265f438d2149202f22d55ec8857fbc1.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      Sherman Avenue
+		    </div>
+		    
+		    <div class="image-subtitle">Coeur d’Alene, ID</div>
+		    </div>
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9131645/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-29_12.51.48/a1fd9a505ed4c487d4a4bd8108a2553d.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      Main Street
+		    </div>
+		    
+		    <div class="image-subtitle">Ketchum, ID</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9131643/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-29_12.54/884c4e221b45760fd6224e51637e671f.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      South 24th Street
+		    </div>
+		    
+		    <div class="image-subtitle">Omaha, NE</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9131644/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-29_12.55/87ca69b8081b0a30c38d57cad39afb9b.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      
+		      Arthur Avenue
+		    </div>
+		    
+		    <div class="image-subtitle">Bronx, NY</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9131646/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-29_12.57.32/b0d9364525a6aa18527963b1ec048c3b.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      
+		      Main Street
+		    </div>
+		    
+		    <div class="image-subtitle">Davidson, NC</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9130841/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-22_13.56.08/15be7302136fae701ed3ec1960d47e76.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      
+		      Golden Heart Plaza
+		    </div>
+		    
+		    <div class="image-subtitle">Fairbanks, AK</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9130844/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-22_13.55.25/25ce546bc95993ba543feb02b3e8a8e9.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      
+		      Central Park Plaza
+		    </div>
+		    
+		    <div class="image-subtitle">Valparaiso IN</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9130843/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-22_13.55.17/5c7ca4402c85d7f203029bfb78cba691.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      
+		      Findlay Market
+		    </div>
+		    
+		    <div class="image-subtitle">Cincinnati, OH</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9130845/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-22_09.34.24/9f12eb388be08d4e4f011da283c1df94.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      
+		      Guthrie Green
+		    </div>
+		    
+		    <div class="image-subtitle">Tulsa, OK</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+		<div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="image-result">
+		  <a href="/imagelibrary/details/9130847/"><img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-22_09.34.28/100bbe51e25dd739322a01e244388c29.jpg">
+		  <div class="image-information">
+		    <div class="image-title">
+		      
+		      Fairmount Park
+		    </div>
+		    
+		    <div class="image-subtitle">Philadelphia, PA</div>
+		    </div>
+		  
+		  </a>
+		  </div>
+		</div>
+
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'newtheme/templates/conference/base.html' %}
+
+{% load static %}
+
+{% block content_wrap %}
+
+{# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+{% block leader_ad %}
+  {% if not request.detect_mobile_app.is_mobileapp %}
+    {% if microsite and microsite.internal_header_ad %}
+      <div class="banner-ad banner-ad-leaderboard">
+        {{ microsite.internal_header_ad|safe }}
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block interstitial_ad %}
+  {% if not request.detect_mobile_app.is_mobileapp %}
+    <!-- No CSS -->
+    {% if microsite and microsite.internal_interstitial_ad %}
+        {{ microsite.internal_interstitial_ad|safe }}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block breakout_page_head %}
+<div class="container content-header-conference-image-breakout-wrap">
+  {% if content.resource_url and content.media_format == "IMAGE" %}
+  <img class="image-breakout" src="{{content.resource_url}}"/>
+  {% else %}
+  {# <img class="image-breakout" src="http://via.placeholder.com/1280x350"/> #}
+    {%if microsite %}
+    <img class="image-breakout" src="{% static microsite.nosidebar_breakout_image_path %}"/>
+    {% else %}
+    {% comment %}
+    <img class="image-breakout" src="{% static 'newtheme/image/Microsite-homepage-draft5.jpg' %}"/>
+    {% endcomment %}
+    {% endif%}
+  {% endif %}
+  <div class="container content-header-conference-image-breakout">
+    <div class="content-header-conference-image-breakout-title-wrap">
+    <h1 class="content-header-conference-image-breakout-title">
+      {{ title }}
+    </h1>
+    </div>
+      {%if microsite %}
+      <img class="content-header-conference-image-breakout-logo visible-md visible-lg" src="{% static microsite.signpost_logo_image_path %}"/>
+      {% else %}
+      {% comment %}
+      <img class="content-header-conference-image-breakout-logo visible-md visible-lg" src="{% static 'newtheme/image/npc-sign.png' %}"/>
+      {% endcomment %}
+      {% endif%}
+  </div>
+</div>
+{% endblock %}
+
+<div class="content-main">
+  <div class="container content-wrap">
+  {% include "newtheme/templates/includes/django-message.html" %}
+    {% block content_main_access %}
+      {{ block.super }}
+    {% endblock %}
+
+    {# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+    {# comment #}
+    {% block conference_footer_ad %}
+      {% if not request.detect_mobile_app.is_mobileapp %}
+        {% if microsite and microsite.footer_ad %}
+          <div class="banner-ad banner-ad-leaderboard banner-ad-footer">
+            {{ microsite.footer_ad|safe }}
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endblock %}
+    {# endcomment #}
+
+    {% block footer_ad %}
+      {% if not request.detect_mobile_app.is_mobileapp %}
+        {% if microsite and microsite.internal_footer_ad %}
+          <div class="banner-ad banner-ad-leaderboard banner-ad-footer">
+            {{ microsite.internal_footer_ad|safe }}
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endblock %}
+
+  </div>
+</div>
+{% endblock %}

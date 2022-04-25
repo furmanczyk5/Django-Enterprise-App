@@ -1,0 +1,18 @@
+{% load content_extras %}
+
+<li class="content-preview-item">
+    <h6 class="content-preview-item-superheadline">
+        {% if result.content_type == "JOB" %}
+        {# Job #}
+        {% else %}
+        {% comment %}
+        {% for format in result.tags_FORMAT %}
+        {{ format|split_on_period:2 }}&nbsp;
+        {% endfor %}
+        {% endcomment %}
+        {% endif %}
+    </h6>
+    <h4 class="content-preview-item-headline"><a href="{{result|solr_record_to_details_path_filter}}">
+        {{result.title}}
+    </a></h4>
+</li>

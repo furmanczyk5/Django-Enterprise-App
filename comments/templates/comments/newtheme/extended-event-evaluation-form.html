@@ -1,0 +1,82 @@
+{% extends 'comments/newtheme/event-evaluation-form.html' %}
+{% load ui_tags %}
+
+{% block event_claim_form %}
+  <form method="post" novalidate>
+
+    {% csrf_token %}
+
+    <br />
+
+    <div class="form-section form-section-enclosed-dark">
+        {% include "ui/newtheme/forms/includes/display-errors.html" with error_instructions='Please resubmit the form after making the following corrections:' form=comment_form %}
+      <h3>Session Rating:</h3>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.objective_rating %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.knowledge_rating %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.practice_rating %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.speaker_rating %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.value_rating %}
+      </div>
+      {% comment %}
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.rating %}
+      </div>
+      <div class="form-group">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.commentary %}
+      </div>
+      {% endcomment %}
+      <div class="form-group">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.commentary_suggestions %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.learn_more_choice %}
+      </div>
+      {# <h2>[--Agree to Publish Section Title--]</h2> #}
+      <div class="form-group">
+        <div class="checkbox">
+          <label for="{{ comment_form.publish.id_for_label }}">
+            {{ comment_form.publish }}
+            Agree
+          </label>
+        </div>
+        <p class="small">
+          You may publish these comments, along with my name, on APA’s website to help other AICP members judge the quality of this provider's events.
+        </p>
+      </div>
+    </div>
+
+  <br/>
+
+  {{ comment_form.contact }}
+  {{ comment_form.content }}
+  <br>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <p>
+        <button class="btn btn-primary" type="submit" name="submitButton" value="claim_form_submit">Submit</button>
+      </p>
+    </div>
+    <div class="col-sm-6" align="right">
+      {% if comment %}
+      <p>
+        <a class="btn btn-dark" href="/events/{{event.master_id}}/evaluation/delete/">Delete Evaluation</a>
+      </p>
+      {% endif%}
+    </div>
+  </div>
+
+  </form>
+{% endblock %}{# event_claim_form #}
+
+
+{% block additional_body_js %}{% endblock additional_body_js %}

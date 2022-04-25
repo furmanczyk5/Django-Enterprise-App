@@ -1,0 +1,61 @@
+{% extends 'submissions/newtheme/forms/edit.html' %}
+
+{% load static %}
+
+{% block additional_head_css %}
+{{block.super}}
+<link type="text/css" rel="stylesheet" href="{% static 'ui/forms/css/wordcount.css' %}" />
+{% endblock %}
+
+{% block form_fields %}
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">General Information</h3>
+    <p class="help-block">All fields are required unless labeled as optional</p><br/>
+
+    {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=form.rfp_type %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.company %}
+
+    {% include "submissions/newtheme/includes/location-fields.html" with form=form %}
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.deadline %}
+
+    <div class="form-group">
+    	<div class="row">
+    		<div class="col-sm-6">
+    			{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %}
+    		</div>
+    		<div class="col-sm-6">
+    			{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.website %}
+    		</div>
+    	</div>
+    </div>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.description %}
+
+</div>
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">Full RFP/RFQ Description</h3>
+	<p class="small">
+	  Enter your Request in the box below. Please limit your posting to 2,000 words. NOTE: APA reserves the right to reject postings that are not planning-related or that are actually job postings. (To list a job opening, go to <a href="/careercenter/">Jobs Online</a> )
+	</p>
+	<div class="form-group{%if form.text.errors %} has-error {% endif %}">
+	  {{ form.text }}
+	{% if form.text.errors %}
+	<div class="form-error">
+	  {% for error in form.text.errors %}
+	  <p class="form-error-server">{{ error|escape }}</p>
+	  {% endfor %}
+	</div>
+	{% endif %}
+	</div>
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/wordcount.js' %}"></script>
+{% endblock %}

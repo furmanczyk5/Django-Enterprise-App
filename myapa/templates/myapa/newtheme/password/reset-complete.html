@@ -1,0 +1,17 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}Password reset complete{% endblock %}
+
+{% block content_main %}
+<div class="layout-tracery no-bottom-border no-top-border">
+  <div class="layout-column">
+    <h2>Password Reset Completed</h2>
+    <p>
+      You have successfully set your new password. Use it with your APA ID or email address to log in to the APA website.
+    </p>
+    <p>
+      <a class="btn btn-primary" href="{{ login_url }}">Log In</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

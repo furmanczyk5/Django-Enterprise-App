@@ -1,0 +1,156 @@
+{% extends 'newtheme/templates/layout-pattern-library.html' %}
+
+{% block title %}APA Conference Pattern Library{% endblock %}
+
+{% block introduction %}{% endblock %}
+
+{% block patterns %}
+
+<section class="pl-section">
+  <h1 class="pl-h1">Conference Minor Pattern Changes</h1>
+<!-- Event Card -->
+  <h2 class="pl-h2">Conference Event Cards</h2>
+
+  <h3 class="pl-h3">description:</h3>
+  <div class="pl-description">
+    <p>Cards show details of events happening at the conference.</p>
+  </div>
+
+
+  <h3 class="pl-h3">example:</h3>
+
+  <div class="conference-event-row">
+      <div class="conference-event color-red">
+        <div class="conference-event-body">
+          <h2 class="headline-underline">Title of Event</h2>
+          <div class="section-icon section-icon-attention">
+            <h3>TIME: 9:30AM - 10:30AM</h3>
+          </div>
+          <div class="conference-event-body-teaser-text">
+            <p>Some short teaser text if possible might be good here. Just one or two sentences.</p>
+          </div>
+
+          <div class="conference-event-body-details">
+            <div class="conference-event-body-detail"><p class="conference-event-body-location">Location: Javitas Center Hall Rm: 205</p></div>
+            <div class="conference-event-body-detail"><span class="cm-wrapper">
+              <span class="cm">CM | </span><span class="cmpoints">1.25 | </span><span class="cmcredits">Law (.5)</span>
+            </span></div>
+            <div class="conference-event-body-detail"><p class="conference-event-body-cost">Cost: Included in Registration</p></div>
+          </div>
+
+          <div class="list-of-buttons">
+            <a class="btn btn-orange btn-full btn-padding-bottom" href="#">Remove From Schedule</a>
+            <a class="btn btn-primary btn-full" disabled href="#">Log CM Credit</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="conference-event border-green">
+        <div class="conference-event-body">
+          <h2 class="headline-underline">Title of Event</h2>
+          <h3>TIME: 9:30AM - 10:30AM</h3>
+          <div class="conference-event-body-teaser-text">
+            <p>Some short teaser text if possible might be good here. Just one or two sentences.</p>
+          </div>
+
+          <div class="conference-event-body-details">
+            <div class="conference-event-body-detail"><p class="conference-event-body-location">Location: Javitas Center Hall Rm: 205</p></div>
+            <div class="conference-event-body-detail">
+              <span class="cm-wrapper"><span class="cm">CM | </span><span class="cmpoints">1.25 | </span><span class="cmcredits">Law (.5)</span></span>
+            </div>
+            <div class="conference-event-body-detail"><p class="conference-event-body-cost">Cost: $150</p></div>
+          </div>
+
+          <div class="list-of-buttons">
+            <a class="btn btn-primary btn-full" href="#">View Confirmation</a>
+            <a class="btn btn-primary btn-full" disabled href="#">Log CM Credit</a>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+  <!-- CODE -->
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">
+  &lt;div class="conference-event color-red"&gt;
+    &lt;div class="conference-event-body"&gt;
+      &lt;h2 class="headline-underline"&gt;Title of Event&lt;/h2&gt;
+      &lt;div class="section-icon section-icon-attention"&gt;
+        &lt;h3&gt;TIME: 9:30AM - 10:30AM&lt;/h3&gt;
+      &lt;/div&gt;
+      &lt;div class="conference-event-body-teaser-text"&gt;
+        &lt;p&gt;Some short teaser text if possible might be good here. Just one or two sentences.&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="conference-event-body-details"&gt;
+        &lt;div class="conference-event-body-detail"&gt;&lt;p class="conference-event-body-location"&gt;Location: Javitas Center Hall Rm: 205&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="conference-event-body-detail"&gt;&lt;span class="cm-wrapper"&gt;
+          &lt;span class="cm"&gt;CM | &lt;/span&gt;&lt;span class="cmpoints"&gt;1.25 | &lt;/span&gt;&lt;span class="cmcredits"&gt;Law (.5)&lt;/span&gt;
+        &lt;/span&gt;&lt;/div&gt;
+        &lt;div class="conference-event-body-detail"&gt;&lt;p class="conference-event-body-cost"&gt;Cost: Included in Registration&lt;/p&gt;&lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class="list-of-buttons"&gt;
+        &lt;a class="btn btn-orange btn-full btn-padding-bottom" href="#"&gt;Remove From Schedule&lt;/a&gt;
+        &lt;a class="btn btn-primary btn-full" disabled href="#"&gt;Log CM Credit&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  </code></pre>
+
+<!-- / Event Card -->
+
+<!-- Related Sessions -->
+  <h2 class="pl-h2">List of Related Sessions</h2>
+  <h3 class="pl-h3">example:</h3>
+
+  <div class="row related-session-row">
+    <div class="col-xs-12">
+      <h2 class="headline-underline">List of related sessions</h2>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <h4><a href="#">Resume Clinic</a></h4>
+      <h4><a href="#">Learning from Don Draper: Presentation Skills</a></h4>
+      <h4><a href="#">Emerging Professionals Institute</a></h4>
+      <h4><a href="#">The Thing About City Managers and Planners</a></h4>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <h4><a href="#">Building a Strong Planning Student Organization</a></h4>
+      <h4><a href="#">Now that You're AICP</a></h4>
+      <h4><a href="#">Charting a Career in Sustainability</a></h4>
+    </div>
+    <div class="col-xs-12">
+      <a href="#" class="btn btn-primary">View all Career Zones Sessions</a>
+    </div>
+  </div>
+
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">
+  &lt;div class="row related-session-row"&gt;
+    &lt;div class="col-xs-12"&gt;
+      &lt;h2 class="headline-underline"&gt;List of related sessions&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-12 col-sm-6"&gt;
+      &lt;h4&gt;&lt;a href="#"&gt;Resume Clinic&lt;/a&gt;&lt;/h4&gt;
+      &lt;h4&gt;&lt;a href="#"&gt;Learning from Don Draper: Presentation Skills&lt;/a&gt;&lt;/h4&gt;
+      &lt;h4&gt;&lt;a href="#"&gt;Emerging Professionals Institute&lt;/a&gt;&lt;/h4&gt;
+      &lt;h4&gt;&lt;a href="#"&gt;The Thing About City Managers and Planners&lt;/a&gt;&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-12 col-sm-6"&gt;
+      &lt;h4&gt;&lt;a href="#"&gt;Building a Strong Planning Student Organization&lt;/a&gt;&lt;/h4&gt;
+      &lt;h4&gt;&lt;a href="#"&gt;Now that You're AICP&lt;/a&gt;&lt;/h4&gt;
+      &lt;h4&gt;&lt;a href="#"&gt;Charting a Career in Sustainability&lt;/a&gt;&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-12"&gt;
+      &lt;a href="#" class="btn btn-primary"&gt;View all Career Zones Sessions&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  </code></pre>
+<!-- / Related Sessions -->
+</section>
+
+
+{% endblock %}

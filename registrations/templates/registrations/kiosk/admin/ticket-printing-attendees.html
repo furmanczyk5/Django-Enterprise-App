@@ -1,0 +1,29 @@
+{% load content_extras %}
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Tickets</th>
+        <th>Added</th>
+      </tr>
+    </thead>
+    <tbody>	
+  		{% for ticket_purchase in ticket_purchases %}
+	    <tr>
+	        <td>{{ ticket_purchase.user.username }}</td>
+	        <td>{{ ticket_purchase.user.contact.title }}</td>
+          <td>
+            <a href="{{ imis_staff_site }}/imis/APAStaff2019/NPC/Badge_and_Ticket_Printing.aspx?EventCode={{ event_code }}&ID={{ ticket_purchase.user.username }}" target="_blank">{{ ticket_purchase.product.content.title }}
+            </a>
+	        </td>
+	        <td>{{ ticket_purchase.order.submitted_time|age }}</td>
+	    </tr>
+	    {% empty %}
+	    	<td colspan="6">Nothing to Print</td>
+	    {% endfor %}
+    </tbody>
+  </table>
+</div>

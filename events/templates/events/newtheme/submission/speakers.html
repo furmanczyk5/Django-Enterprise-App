@@ -1,0 +1,170 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load myapa_tags %}
+{% load static %}
+{% load compress %}
+
+{% block additional_head_css %}
+{{block.super}}
+{% compress css %}
+<link type="text/less" rel="stylesheet" href="{% static 'content/css/include/loading.less' %}" />
+{% endcompress %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+	<a class="btn btn-sm btn-default back-button" href="{{ home_url }}">Back</a>
+    <h1 class="page-title">Add Speakers - {{content.title}}</h1>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+
+    	<form method="post" class="planning-form">
+
+   			{% csrf_token %}
+            {{ form.management_form }}
+
+            {% for f in form %}
+
+			{% if f.instance.id and f.instance.contact %}
+			<div class="accordion">
+				<h4 class="accordion-handle">{{f.instance.contact}}</h4>
+				<div class="accordion-content">
+					<p><b>{{f.instance.contact}}</b></p>
+					<p>{{f.instance.contact.email}}</p>
+					<p>{{f.instance.contact.bio}}</p>
+					{% for field in f %}{{field.as_hidden}}{% endfor %}
+					<label>{{ f.DELETE }} Delete</label>
+				</div>
+			</div>
+			{% elif f.instance.id %}
+			<div class="accordion">
+				<h4 class="accordion-handle">{{f.instance.first_name}} {{f.instance.last_name}}</h4>
+				<div class="accordion-content">
+					{% for hidden in f.hidden_fields %}{{ hidden }}{% endfor %}
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+      						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=f.first_name %}	
+      						</div>
+      						<div class="col-sm-6">
+      						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=f.last_name %}
+      						</div>
+						</div>
+					</div>
+					<div class="form-group">
+					{% include "newtheme/sandbox/forms/includes/input-text.html" with field=f.email %}
+					</div>
+					<div class="form-group">
+					{% include "newtheme/sandbox/forms/includes/input-text.html" with field=f.bio %}
+					</div>
+					<label>{{ f.DELETE }} Delete</label>
+				</div>
+			</div>
+			{% else %}
+			<div class="accordion open">
+				<h4 class="accordion-handle">Add a speaker</h4>
+			 	<div class="accordion-content">
+			 		<div class="form-group">
+			 			{% block database_speakers_message %}
+					    <h4>
+					      Choose from APA’s Speaker Database
+					      <span class="tooltip floatright" title="Activities must be led by one or more speaker who meets AICP’s definition of an expert: an individual who has contributed to the field of planning through practice, teaching, research, or publications; has completed work that exhibits a mastery of the principles of planning; and whose work demonstrates a commitment to outstanding quality and professionalism.">?</span>
+					    </h4>
+					    <p class="small">
+					      Enter the speaker’s name below to search APA's contacts list. If the search does not return a record for the person you named, you may ‘Add Speakers Apart from APA’s Speaker Database’ (below)
+					    </p>
+					    {% endblock %}
+				  	</div>
+
+				  	<div class="form-group">
+				      <div class="autocomplete" data-url-path="/ui/autocomplete/speaker_formset/" data-selection-type="inputvalue" data-inputvalue-selectors="contact:#{{f.contact.id_for_label}}" data-search-target="#speakers_search_target">
+				      	<!-- data-record-template-url="/events/submissions/speaker_formset/display_record/{contact}/" -->
+				      	<!-- data-formset-prefix="speakers" -->
+				        <div class="input-group">
+				          <span class="input-group-addon"><span class="icon-search-icon"></span></span>
+				          <input class="input form-control" type="text" id="select_speaker_id" placeholder="Speaker Name"/>
+				        </div>
+				      </div>
+				    </div>
+
+				    <div id="speakers_search_target" class="selectable-search"></div>
+
+				    <br />
+
+				    <div class="form-section form-section-enclosed-dark" id="speaker_contact_display" style="display:none">
+				    	<!-- display selected speaker here -->
+				    </div>
+
+				    <br/>
+
+				    <div class="form-group">
+				    	{% block other_speakers_message %}
+					    <h4>
+					      Add Speakers Apart from APA’s Speaker Database
+					    </h4>
+					    <p class="small">
+					    	If you do not wish to select from APA's speaker database, please enter speaker information (first name, last name and bio, the email field is optional) below. The speaker will not be included in APA's speaker database and this information will not be automatically updated if the speaker updates his or her APA Profile.
+					    </p>
+					    {% endblock %}
+				  	</div>
+			 		{% for hidden in f.hidden_fields %}{{ hidden }}{% endfor %}
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+      						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=f.first_name %}	
+      						</div>
+      						<div class="col-sm-6">
+      						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=f.last_name %}
+      						</div>
+						</div>
+					</div>
+					<div class="form-group">
+					{% include "newtheme/sandbox/forms/includes/input-text.html" with field=f.email %}
+					</div>
+					<div class="form-group">
+					{% include "newtheme/sandbox/forms/includes/input-text.html" with field=f.bio %}
+					</div>
+			 	</div>
+			 </div>
+		 	{% endif %}
+
+			{% endfor %}
+
+			<br/>
+
+			<div class="form-group">
+				<p class="small">If you have questions about adding a speaker, contact <a href="mailto:SpeakerInfo@planning.org">SpeakerInfo@planning.org</a>.</p>
+			</div>
+
+			<div class="clearfix btn-toolbar btn-mobile">
+		      <button type="submit" name="submitButton" value="save" class="btn btn-primary">Save and Add Another Speaker</button>
+		      <button type="submit" name="submitButton" value="submit" class="btn btn-primary">Save and Continue</button>
+		      <!--<a class="btn btn-default pull-right button-float" href="{{home_url}}">Cancel</a>-->
+		    </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'content/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'newtheme/ui/forms/js/formset.js' %}"></script>
+<script src="{% static 'newtheme/autocomplete/js/autocomplete.js' %}?v=0.2"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script src="{% static 'events/js/submissions_speakers.js' %}"></script>
+<script>
+  $(function () {
+    $('.empty_form').find('input[type="radio"],input[type="checkbox"]').iCheck('destroy');
+    $('[data-toggle="popover"]').popover()
+  });
+</script>
+
+{% endblock %}
+

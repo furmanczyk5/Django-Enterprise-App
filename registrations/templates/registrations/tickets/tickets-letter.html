@@ -1,0 +1,29 @@
+{% load staticfiles %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=yes">
+		<title>{% block title %}{{ title }}{% endblock %}</title>
+	</head>
+	<body>
+		<div class="pdf-content letter">
+			{% for ticket_group in grouped_tickets %}
+			<div class="page" {% if page_style %}style="{{page_style}}"{% endif %}>
+				<div class="tickets">
+				{% for ticket in ticket_group %}
+				{% if ticket.ticket_template %}
+					<div class="ticket">
+						{% include ticket.ticket_template with ticket=ticket %}
+					</div>
+				{% endif %}
+				{% endfor %}
+				</div>
+			</div>
+
+			{% endfor %}
+		</div>
+	</body>
+</html>

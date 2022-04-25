@@ -1,0 +1,126 @@
+{% extends 'component-sites/component-theme/templates/base.html' %}
+
+{% load wagtailimages_tags %}
+{% load content_extras %}
+
+{% block messages %}
+{{ block.super }}
+{% if form.errors %}
+<div class="message error">Your username and password didn't match. Please try again.</div>
+{% endif %}
+{% endblock %}
+
+{% block leader_ad %}{% endblock %}
+
+{% block nav %}
+<div class="layout-hero-image-with-nav">
+  {% image page.featured_image width-1200 as feat_img %}
+    <img src="{{feat_img.url}}" alt="{{page.featured_image.alt_text}}" class="layout-hero-image-with-nav-image" style="height:auto">
+
+    {{ block.super }}
+</div>
+{% endblock %}
+
+{% block content_main %}
+
+<div class="layout-tracery no-top-border no-bottom-border">
+  <div class="layout-column"> 
+  
+    
+    
+    {% comment %}
+    <!-- DOWNTIME MSG IN CASE IT'S NEEDED QUICKLY... -->
+    <!--
+    <div class="section-icon section-icon-attention">
+    <h3>Login Unavailable</h3>
+    <p>
+    On Saturday, November 19, and Sunday, November 20, the APA website will undergo maintenance and updates to improve functionality and security. While these operations take place, from approximately 8 a.m. (CT) Saturday to 10 p.m. (CT) Sunday, it will not be possible to log into our website or process transactions. APA will remove this message when those capabilities are restored. We apologize for the inconvenience and appreciate your understanding.
+    </p>
+    </div>
+-->
+  {% endcomment %}
+    
+
+  <div class="form-section form-section-limit-width form-section-enclosed-light login-wrapper">
+    <form method="post">
+    {% csrf_token %}
+
+      <h2 class="form-section-title">Log In</h2>
+      <div class="form-group has-feedback{%if form.username.errors %} has-error {% endif %}">
+        <label for="{{ form.username.id_for_label }}">APA ID or Email Address:</label>
+        {{ form.username|addcss:"form-control" }}
+        <span class="icon-user-icon form-control-feedback"></span>
+        {% if form.username.errors %}
+        <div class="form-error">
+          {% for error in form.username.errors %}
+          <p class="form-error-server">{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if form.username.help_text %}
+        <div class="help-block">{{ form.username.help_text|safe }}</div>
+        {% endif %}
+      </div>
+      <div class="form-group has-feedback{%if form.password.errors %} has-error {% endif %}">
+        <label for="{{ form.password.id_for_label }}">Password:</label>
+        {{ form.password|addcss:"form-control" }}
+        <span class="icon-apa-password form-control-feedback"></span>
+        {% if form.password.errors %}
+        <div class="form-error">
+          {% for error in form.password.errors %}
+          <p class="form-error-server">{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if form.password.help_text %}
+        <div class="help-block">{{ form.password.help_text|safe }}</div>
+        {% endif %}
+      </div>
+
+      {% block login_remember_me %}
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="remember_me">
+            Remember me
+          </label>
+        </div>
+      </div>
+      {% endblock %}
+
+      <div class="form-group login-button">
+        <input type="submit" value="Log In" class="btn btn-primary full-width-button"/>
+      </div>
+
+    </form>
+  </div>
+  
+
+  {% block login_join_links %}
+  <div class="form-section form-section-limit-width">
+  <div class="list-of-links text-center">
+    <h3>Trouble logging in?</h3>
+    <h6>I am an APA member <i>or</i> I already created an APA web account</h6>
+    <a class="btn btn-default btn-sm" href="{{http_hostname}}/login/help.htm" style="margin-bottom:24px;">
+      Login Help
+    </a>
+    <br/>
+    <h6>I am not an APA member, but I would like to join APA</h6>
+    <a class="btn btn-primary btn-sm" href="{{http_hostname}}/join/" style="margin-bottom:24px;">
+      Join APA
+    </a>
+    <br/>
+    <h6>I am not an APA member and have not created an APA web account</h6>
+    <a class="btn btn-primary btn-sm" href="{{http_hostname}}/login/help.htm" style="margin-bottom:24px;">
+      Create a New Nonmember Account
+    </a>
+  </div>
+  </div>
+  {% endblock %}
+
+
+
+</div>
+</div>
+
+{% endblock %}

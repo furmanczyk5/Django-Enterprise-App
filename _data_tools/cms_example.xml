@@ -1,0 +1,79 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <CMSData WebUserGroups="" WebUserID="" LoginGroups="" Allowed="true" AdBundleCode="STANDARD" Title="APA Mission and Vision" xmlns="" xmlns:in="http://www.composite.net/ns/transformation/input/1.0">
+    <Sitemap>
+      <Section>
+        <Page Title="APA at a Glance" FriendlyUrl="/apaataglance/">
+          <Page Title="Vision/Mission" FriendlyUrl="/apaataglance/mission.htm" Selected="true" />
+          <Page Title="History" FriendlyUrl="/apaataglance/history.htm" />
+          <Page Title="Diversity" FriendlyUrl="/diversity/" />
+          <Page Title="APA Board of Directors" FriendlyUrl="/apaataglance/leadership/apaboard.htm" />
+          <Page Title="AICP Commission" FriendlyUrl="/apaataglance/leadership/aicpcommission.htm" />
+          <Page Title="APA Elections" FriendlyUrl="/elections/?redirect" />
+          <Page Title="APA's Electoral Regions" FriendlyUrl="/apaataglance/electoralmap.htm" />
+          <Page Title="APA Senior Staff" FriendlyUrl="/apaataglance/leadership/apastaff.htm" />
+          <Page Title="APA Foundation" FriendlyUrl="/foundation/" />
+          <Page Title="Ethics" FriendlyUrl="/ethics/" />
+          <Page Title="APA Green Team" FriendlyUrl="/apaataglance/greenteam/" />
+          <Page Title="APA Mailing Lists" FriendlyUrl="/apaataglance/maillist/" />
+        </Page>
+      </Section>
+    </Sitemap>
+    <Content>
+      <div class="layout_content">
+               <div class="section">
+                 <h1>APA Mission and Vision</h1>
+                 </div>
+                 <div class="section">
+                 <h2>Our Mission </h2>
+                 <p>The American Planning Association provides leadership in the  development of vital communities by advocating excellence in planning,  promoting education and citizen empowerment, and providing the tools and support  necessary to meet the challenges of growth and change.</p>
+</div>
+                 <div class="section">
+                 <h2>Our Vision</h2>
+                 <ul>
+                   <li>Maintain  APA's preeminence in planning through innovative practice and by developing  solutions to address the emerging issues that our communities, our members, and  the Association will face in the 21st century.</li>
+                   <li> Planning  is embraced as an essential means of efficiently allocating public resources  and sustaining vital communities.</li>
+                   <li>APA  members are leaders in initiatives regarding the economy, environment, and  equity.</li>
+                   <li>Communities  have confidence in planning to guide decision making for future investments and  achieve their aspirations through good planning.</li>
+                   </ul>
+                 <p> This vision is an extension of our mission and is the basis for  the goals and strategies set forth in the Development Plan. It is what defines  us as planners. And, most importantly, it is the measure by which we want to be  judged — both individually and as an organization.</p>
+                 </div>
+                 <div class="section">
+                  <h2>Our Core Values</h2>
+  <p>We are the leaders of a planning movement. We champion planning  excellence that addresses economic, environmental, and equity issues, and we  provide technical support for our Chapters, Divisions, and members. </p>
+  <ul>
+    <li>All planners serve the public interest. </li>
+    <li>We value accountability and transparency in carrying out our  duty as trusted advisors to the public we serve. </li>
+    <li>We are inclusive and believe that all people should enjoy equal  opportunity. </li>
+    <li>We are committed to fairness, diversity, community engagement,  choice, and collaboration in seeking solutions. </li>
+    <li>We provide and value public education and empowerment. </li>
+    <li>We collaborate closely with other professions to ensure the best  outcomes for our communities and regions. </li>
+    <li>We work toward integrated and comprehensive planning solutions. </li>
+    <li>We are influential and visionary leaders working toward  community and regional sustainability and resilience. </li>
+    <li>We reinforce our shared sense of purpose by highlighting the  values reflected in our Articles of Incorporation, AICP Code of Ethics and  Professional Conduct, and APA Ethical Principles. </li>
+    <li>We contribute to the development of, and respect for, our  profession.</li>
+  </ul>
+
+                 </div>
+                 <div class="section">
+    <h2>What Does APA Do?   </h2>
+    <p>As leaders of the planning movement, APA acts on many  fronts.</p>
+               <ul>
+                 <li>We advocate for planning at the national level;  support chapters', divisions', and members' efforts at the state and local  levels; and file amicus briefs in selected court cases.</li>
+                 <li>We promote good planning through vigorous public  information and education programs.</li>
+                 <li>We produce digital and print materials that  describe the outcomes of good planning, educate the nation about planning, and  reinforce the individual and collective efforts of APA members.</li>
+                 <li>We assure excellence in the field —  and raise the  stature of the planning profession — by supporting the efforts of the Planning  Accreditation Board and emphasizing the importance of AICP certification for  practicing planners.</li>
+                 <li>We develop accessible, affordable continuing  education programs.</li>
+                 <li>We support certified planners in their pursuit  of certification maintenance.</li>
+                 <li>We promote a diverse workforce by bringing  employers and job seekers together through our job services.</li>
+                 <li>We assure excellence in local decision making by  offering training, information, and support to planning commissioners, elected  officials, and engaged citizens.</li>
+                 <li>We seek national and international partnerships  to advance both the planning movement and principles of sustainability, inclusion,  and nondiscrimination. </li>
+                 <li>We address issues of social equity in our  publications, host diversity forums, and provide a diversity portal on our  website.</li>
+                 <li>We work to attract and retain minority members  so our membership will reflect the nation's diversity.</li>
+                 <li>We enhance the state of planning knowledge by  identifying and fulfilling a vigorous agenda of applied research.</li>
+                 <li>We share research results with our subscribers,  members, and, ultimately, the national community.</li>
+               </ul>
+               </div>
+</div>
+    </Content>
+  </CMSData>
+</xml>

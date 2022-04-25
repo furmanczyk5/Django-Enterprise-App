@@ -1,0 +1,473 @@
+{% extends 'newtheme/templates/layout-pattern-library.html' %}
+
+{% block title %}APA Pattern Library: Linked Images{% endblock %}
+
+{% block introduction %}This pattern library contains information and coding samples about creating linked image grids{% endblock %}
+
+{% block patterns %}
+
+<h1 class="pl-h1">Code Structure</h1>
+
+<h2 class="pl-h2">Image Grid</h2>
+<div class="pl-description">
+	<p>An image grid requires a <b>&lt;div class=&quot;image-grid-wrapper&quot;&gt;</b>, wrapping a <b>&lt;div class=&quot;image-grid&quot;&gt;</b>, containing several <b>&lt;div class=&quot;image-result-col&quot;&gt;</b> elements, each one or more <b>&lt;div class=&quot;image-result&quot;&gt;</b> elements. (see code below)</p>
+
+	<p>The <b>&lt;div class=&quot;image-grid&quot;&gt;</b> element should also include addition classes to apply styling to the grid.</p>
+
+	<ul>
+		<li>You must use one of the following classes to control the background of the overlaying info: <b>info-overlay</b>, <b>info-overlay-partial</b></li>
+		<li>You must use one of the following classes to control the padding between images: <b>lg-padding</b>, <b>md-padding</b>, <b>sm-padding</b>, <b>no-padding</b>.</li>
+	</ul>
+
+	<p>
+		The <b>&lt;div class=&quot;image-result-col&quot;&gt;</b> elements should also include addition classes to specify the width of each column and how they change with screen size. Use <b>col-lg-4 col-md-6 col-sm-12 col-xs-12</b> (as in the code below), to go from 3 cols (large screen), to 2 cols (medium screen), to 1 col (small screen).
+	</p>
+
+	<p>Do not wrap an image grid within <b>&lt;div class=&quot;layout-tracery&quot;&gt;</b>. You can do this, but it will add additional padding to the entire grid.
+</div>
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">
+&lt;div class=&quot;image-grid-wrapper&quot;&gt;
+    &lt;div class=&quot;image-grid info-overlay-partial md-padding&quot;&gt;
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12&quot;&gt;
+            &lt;div class=&quot;image-result&quot;&gt;...&lt;/div&gt;
+            &lt;div class=&quot;image-result&quot;&gt;...&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12&quot;&gt;
+            &lt;div class=&quot;image-result&quot;&gt;...&lt;/div&gt;
+            &lt;div class=&quot;image-result&quot;&gt;...&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12&quot;&gt;
+            &lt;div class=&quot;image-result&quot;&gt;...&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+
+<h2 class="pl-h2">Image Result</h2>
+<div class="pl-description">
+	<p>Each <b>&lt;div class=&quot;image-result&quot;&gt;...&lt;/div&gt;</b> element should contain one <b>&lt;a&gt;</b> element, which links to the location users are directed to when clicking through and wraps the image, and information (see code below for an example an image result and the classes to use)</p>
+	<p>Linked Images will not work unless wrapped within the image grid code above.</p>
+</div>
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">
+&lt;div class=&quot;image-result&quot;&gt;
+    &lt;a href=&quot;/imagelibrary/details/9132257/&quot;&gt;
+        &lt;img class=&quot;image-thumbnail&quot; src=&quot;http://www.fortna.com/wp-content/uploads/o-MIDTOWN-ATLANTA-facebook.jpg&quot;&gt;
+        &lt;div class=&quot;image-information&quot;&gt;
+            &lt;div class=&quot;image-title&quot;&gt;(1) Midtown Atlanta&lt;/div&gt;
+            &lt;div class=&quot;image-subtitle&quot;&gt;Atlanta, GA&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+</code></pre>
+
+
+<h1 class="pl-h1">Examples</h1>
+
+<h2 class="pl-h2">Sorting by column</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  	<p>
+  		Place multiple <b>&lt;div class=&quot;image-result&quot;&gt;</b> elements within a <b>&lt;div class=&quot;image-result-col&quot;&gt;</b> element to organize and sort images into columns.
+	</p>
+	<p>
+		If you have images that are not all the same dimensions, you should use this method of sorting.
+	</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="image-grid-wrapper">
+    <div class="image-grid info-overlay-partial md-padding">
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <h2>2016 Great <br/>Neighborhoods</h2>
+
+            <div class="image-result">
+                <a href="/imagelibrary/details/9132257/">
+                    <img class="image-thumbnail" src="http://img1.10bestmedia.com/Images/Photos/88589/p-midtown_54_990x660_201405311804.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(1) Midtown Atlanta</div>
+                        <div class="image-subtitle">Atlanta, GA</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="image-result">
+                <a href="/imagelibrary/details/9132259/">
+                    <!--<img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/_MG_1346/3fddd1d4843a84d346ed8eac2ca1420c.JPG">-->
+                    <img class="image-thumbnail" src="https://ssl.c.photoshelter.com/img-get/I0000d2.SdOq_AK0/s/800/800/Historical-Santora-Arts-Building-in-Downtown-Santa-Ana-LAS-107.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(2) Downtown Santa Ana</div>
+                        <div class="image-subtitle">Santa Ana, CA</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <h2>2016 Great <br/>Streets</h2>
+
+            <div class="image-result">
+                <a href="/imagelibrary/details/9131642/">
+                    <!--<img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-29_12.59.49/f265f438d2149202f22d55ec8857fbc1.jpg">-->
+                    <img class="image-thumbnail" src="https://s-media-cache-ak0.pinimg.com/236x/8e/06/24/8e0624522c770ab053eb47966de8f29b--coeur-dalene-idaho.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(3) Sherman Avenue</div>
+                        <div class="image-subtitle">Coeur d’Alene, ID</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="image-result">
+                <a href="/imagelibrary/details/9131645/">
+                    <img class="image-thumbnail" src="https://static1.squarespace.com/static/57d2ff13414fb53b530c099f/t/57d325568419c258720ca65c/1473455474902/">
+                    <div class="image-information">
+                        <div class="image-title">(4) Main Street</div>
+                        <div class="image-subtitle">Ketchum, ID</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <h2>2016 Great <br/>Public Spaces</h2>
+
+            <div class="image-result">
+                <a href="/imagelibrary/details/9130841/">
+                    <img class="image-thumbnail" src="http://photos.alaskatravel.com/d/2512-4/golden-heart-plaza">
+                    <div class="image-information">
+                        <div class="image-title">(5) Golden Heart Plaza</div>
+                        <div class="image-subtitle">Fairbanks, AK</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="image-result">
+                <a href="/imagelibrary/details/9130844/">
+                    <img class="image-thumbnail" src="https://pp2.walk.sc/t342/production/12811_central_park_plaza_valparaiso.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(6) Central Park Plaza</div>
+                        <div class="image-subtitle">Valparaiso, IN</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">
+&lt;div class=&quot;image-grid-wrapper&quot;&gt;
+    &lt;div class=&quot;image-grid info-overlay-partial md-padding&quot;&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12&quot;&gt;
+            &lt;h2&gt;2016 Great &lt;br/&gt;Neighborhoods&lt;/h2&gt;
+
+            &lt;div class=&quot;image-result&quot;&gt;
+                &lt;a href=&quot;/imagelibrary/details/9132257/&quot;&gt;
+                    &lt;img class=&quot;image-thumbnail&quot; src=&quot;https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R_MG_1343/bcc5afc91d183a104a92c1e4c16011ca.jpg&quot;&gt;
+                    &lt;div class=&quot;image-information&quot;&gt;
+                        &lt;div class=&quot;image-title&quot;&gt;(1) Midtown Atlanta&lt;/div&gt;
+                        &lt;div class=&quot;image-subtitle&quot;&gt;Atlanta, GA&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12&quot;&gt;
+            &lt;h2&gt;2016 Great &lt;br/&gt;Streets&lt;/h2&gt;
+
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12&quot;&gt;
+            &lt;h2&gt;2016 Great &lt;br/&gt;Public Spaces&lt;/h2&gt;
+
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Sorting by row</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  	<p>
+  		Individually wrap a <b>&lt;div class=&quot;image-result&quot;&gt;</b> element within a <b>&lt;div class=&quot;image-result-col&quot;&gt;</b> element to organize and sort images by row.
+	</p>
+	<p>
+		If you have images that are not all the same dimensions, the resulting grid will not have equal padding between rows.
+	</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="image-grid-wrapper">
+    <div class="image-grid info-overlay-partial md-padding">
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+
+            <div class="image-result">
+                <a href="/imagelibrary/details/9132257/">
+                    <img class="image-thumbnail" src="http://www.fortna.com/wp-content/uploads/o-MIDTOWN-ATLANTA-facebook.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(1) Midtown Atlanta</div>
+                        <div class="image-subtitle">Atlanta, GA</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="image-result">
+                <a href="/imagelibrary/details/9132259/">
+                	<img class="image-thumbnail" src="http://www.downtown-santaana.com/dtsanew/wp-content/uploads/2017/01/15802192_950345891762356_2789843728498425856_n.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(2) Downtown Santa Ana</div>
+                        <div class="image-subtitle">Santa Ana, CA</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="image-result">
+                <a href="/imagelibrary/details/9131642/">
+                	<img class="image-thumbnail" src="https://s3-media1.fl.yelpcdn.com/bphoto/XQNhCvjSUp8kIB9xtwqGbw/ls.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(3) Sherman Avenue</div>
+                        <div class="image-subtitle">Coeur d’Alene, ID</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="image-result">
+                <a href="/imagelibrary/details/9131645/">
+                    <img class="image-thumbnail" src="https://static1.squarespace.com/static/57d2ff13414fb53b530c099f/t/57d325568419c258720ca65c/1473455474902/">
+                    <div class="image-information">
+                        <div class="image-title">(4) Main Street</div>
+                        <div class="image-subtitle">Ketchum, ID</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="image-result">
+                <a href="/imagelibrary/details/9130841/">
+                    <img class="image-thumbnail" src="http://photos.alaskatravel.com/d/2512-4/golden-heart-plaza">
+                    <div class="image-information">
+                        <div class="image-title">(5) Golden Heart Plaza</div>
+                        <div class="image-subtitle">Fairbanks, AK</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="image-result">
+                <a href="/imagelibrary/details/9130844/">
+                    <img class="image-thumbnail" src="https://pp2.walk.sc/t342/production/12811_central_park_plaza_valparaiso.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(6) Central Park Plaza</div>
+                        <div class="image-subtitle">Valparaiso, IN</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">
+&lt;div class=&quot;image-grid-wrapper&quot;&gt;
+    &lt;div class=&quot;image-grid info-overlay-partial md-padding&quot;&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12&quot;&gt;
+
+            &lt;div class=&quot;image-result&quot;&gt;
+                &lt;a href=&quot;/imagelibrary/details/9132257/&quot;&gt;
+                    &lt;img class=&quot;image-thumbnail&quot; src=&quot;http://www.fortna.com/wp-content/uploads/o-MIDTOWN-ATLANTA-facebook.jpg&quot;&gt;
+                    &lt;div class=&quot;image-information&quot;&gt;
+                        &lt;div class=&quot;image-title&quot;&gt;(1) Midtown Atlanta&lt;/div&gt;
+                        &lt;div class=&quot;image-subtitle&quot;&gt;Atlanta, GA&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12&quot;&gt;
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12&quot;&gt;
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        ...
+
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<h2 class="pl-h2">Changing Column Sizes</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  	<p>
+  		You can use our standard col-*-* (e.g. col-lg-8, col-sm-12, ...) classes to vary the size of images and create responsive pages
+	</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="image-grid-wrapper">
+    <div class="image-grid info-overlay-partial md-padding">
+
+        <div class="image-result-col col-lg-8 col-md-6 col-sm-12 col-xs-12">
+
+            <div class="image-result">
+                <a href="/imagelibrary/details/9132257/">
+                    <!--<img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R_MG_1343/bcc5afc91d183a104a92c1e4c16011ca.jpg">-->
+                    <img class="image-thumbnail" src="http://www.fortna.com/wp-content/uploads/o-MIDTOWN-ATLANTA-facebook.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(1) Midtown Atlanta</div>
+                        <div class="image-subtitle">Atlanta, GA</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="image-result">
+                <a href="/imagelibrary/details/9132259/">
+                    <!--<img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/_MG_1346/3fddd1d4843a84d346ed8eac2ca1420c.JPG">-->
+                    <img class="image-thumbnail" src="http://www.downtown-santaana.com/dtsanew/wp-content/uploads/2017/01/15802192_950345891762356_2789843728498425856_n.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(2) Downtown Santa Ana</div>
+                        <div class="image-subtitle">Santa Ana, CA</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="image-result-col col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="image-result">
+                <a href="/imagelibrary/details/9131642/">
+                    <!--<img class="image-thumbnail" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/CACHE/images/imagebank/R2017-07-29_12.59.49/f265f438d2149202f22d55ec8857fbc1.jpg">-->
+                    <img class="image-thumbnail" src="https://s3-media1.fl.yelpcdn.com/bphoto/XQNhCvjSUp8kIB9xtwqGbw/ls.jpg">
+                    <div class="image-information">
+                        <div class="image-title">(3) Sherman Avenue</div>
+                        <div class="image-subtitle">Coeur d’Alene, ID</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="image-result-col col-lg-6 col-md-4 col-sm-12 col-xs-12">
+            <div class="image-result">
+                <a href="/imagelibrary/details/9131645/">
+                    <img class="image-thumbnail" src="https://static1.squarespace.com/static/57d2ff13414fb53b530c099f/t/57d325568419c258720ca65c/1473455474902/">
+                    <div class="image-information">
+                        <div class="image-title">(4) Main Street</div>
+                        <div class="image-subtitle">Ketchum, ID</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="image-result-col col-lg-6 col-md-4 col-sm-12 col-xs-12">
+            <div class="image-result">
+                <a href="/imagelibrary/details/9130841/">
+                    <img class="image-thumbnail" src="http://photos.alaskatravel.com/d/2512-4/golden-heart-plaza">
+                    <div class="image-information">
+                        <div class="image-title">(5) Golden Heart Plaza</div>
+                        <div class="image-subtitle">Fairbanks, AK</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">
+&lt;div class=&quot;image-grid-wrapper&quot;&gt;
+    &lt;div class=&quot;image-grid info-overlay-partial md-padding&quot;&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-8 col-md-6 col-sm-12 col-xs-12&quot;&gt;
+
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-6 col-sm-12 col-xs-12&quot;&gt;
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-4 col-md-4 col-sm-12 col-xs-12&quot;&gt;
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-6 col-md-4 col-sm-12 col-xs-12&quot;&gt;
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;image-result-col col-lg-6 col-md-4 col-sm-12 col-xs-12&quot;&gt;
+            &lt;div class=&quot;image-result&quot;&gt;
+                ...
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+{% endblock %}
+

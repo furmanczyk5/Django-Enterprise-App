@@ -1,0 +1,41 @@
+{% extends "newtheme/templates/layout-sidebar.html" %}
+
+{% load template_app_extras %}
+
+{% block content_sidebar %}
+{% sidenav for_url="/consultants/" %}
+{% endblock %}
+
+{% load static %}
+{% load myapa_tags %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">Find a Consultant</h1><br>
+    <p>Find the firm that fits your consulting needs in APA's listing of companies that provide planning expertise in general and specialty planning. Click on the firm name to view its profile.</p>
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+
+    {% for consultant in consultant_list %}
+      <a href="{% url 'consultants:consultant_display' org_id=consultant.id %}"><p><strong>Firm: </strong>{{ consultant.company }}</p></a>      
+      <p><strong>Headquarters: </strong>{{ consultant.city }}, {{ consultant.state }}</p>
+      <p><strong>About This Firm: </strong>{{ consultant.bio }}</p>
+      <p><strong>Website: </strong><a href="{{ consultant.personal_url }}" target="_blank">{{ consultant.personal_url }}</a></p>
+      <p><strong>Other Locations/Branch Offices: </strong>
+      {% if consultant.get_branch_offices %}
+      | 
+      {% endif %}
+      {% for branch in consultant.get_branch_offices %}
+         {{ branch.city }}, {{ branch.state }}
+        {% if branch.country and branch.country != "United States"%}<span>{{branch.country}}</span><br>{% endif %} | 
+      {% endfor %}</p>
+
+      <hr>
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock %}

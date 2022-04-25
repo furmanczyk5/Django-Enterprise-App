@@ -1,0 +1,44 @@
+{% extends "pages/newtheme/default.html" %}
+
+{% load content_extras %}
+
+{% block content_main %}
+
+<div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    
+    <h1 class="page-title">My APA Bookmarks</h1>
+</div>
+	<div class="layout-tracery no-bottom-border">
+		<div class="layout-column">
+
+		{% for bookmark in bookmarks %}
+			{% if bookmark.content.url == None %}
+				{% if bookmark.content.content_type == 'KNOWLEDGEBASE' %}
+					<h3><a href="/knowledgebase/resource/{{bookmark.content.master.id}}">{{ bookmark.content.title }}</a></h3>
+				{% elif bookmark.content.content_type == 'KNOWLEDGEBASE_STORY' %}
+					<h3><a href="/knowledgebase/story/{{bookmark.content.master.id}}">{{ bookmark.content.title }}</a></h3>
+				{% elif bookmark.content.content_type == 'JOB' and not bookmark.content.make_inactive_time|datetime_is_past %}
+					<h3><a href="/jobs/ad/{{bookmark.content.master.id}}">{{ bookmark.content.title }}</a></h3>
+				{% elif bookmark.content.content_type == 'JOB' and bookmark.content.make_inactive_time|datetime_is_past %}
+					<h3>{{ bookmark.content.title }}</h3><p>This job posting has expired.</p>
+				{% endif %}
+			{% else %}
+				<h3><a href="{{ bookmark.content.url }}">{{ bookmark.content.title }}</a></h3>
+			{% endif %}
+			<div class="row">
+			<p>
+			{{ bookmark.content.description }}
+			<a style="display: flex; justify-content: flex-end" class="right btn btn-sm" href="/myapa/bookmark/{{bookmark.content.master_id}}/?action=delete&redirect=True">x Remove Bookmark</a>
+			</p>
+			</div>
+			<hr/>
+		{% empty %}
+			<p><em>You currently have no bookmarked pages.</em></p>
+		{% endfor %}
+
+		</div>
+	</div>
+
+
+{% endblock content_main %}

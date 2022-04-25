@@ -1,0 +1,7 @@
+<ol class="breadcrumb">
+{% for a in ancestors %}
+	<li>
+		<a href="{{a.url}}">{{a.title}}</a>
+	</li>
+{% endfor %}
+</ol>

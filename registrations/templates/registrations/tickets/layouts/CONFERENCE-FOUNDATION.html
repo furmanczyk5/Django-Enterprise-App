@@ -1,0 +1,12 @@
+{% load content_extras %}
+
+<div class="conference-ticket">
+
+	<div>
+		<img style="margin-top:-0.5in;max-width:100%;height:auto;" src="{{'registrations/image/conference-foundation-card.jpg'|system_file_path}}"/>
+	</div>
+
+	{% comment %}
+	<div class="bottom-line">{{ticket.multipart_attendee.contact.full_title}} | {{ticket.multipart_attendee.contact.user.username}} {{ticket.multipart_attendee.contact.member_type|default_if_none:""}} | {{ticket.multipart_attendee.purchase.product_price.imis_reg_class}}</div>
+	{% endcomment %}
+</div>

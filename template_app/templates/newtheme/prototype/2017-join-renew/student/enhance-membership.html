@@ -1,0 +1,105 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+
+{% block content_main %}
+
+  <div class="page-head">
+    <h1 class="page-title">Student Membership</h1>
+  </div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <div class="form-head">
+      <h2>Enhance Your Membership</h2>
+      <p>Want to connect with others who share your interests? Need to keep up on the latest in planning? Add APA divisions, additional chapters, and the Planners' Advocacy Network to your membership.</p>
+    </div>
+
+    <form method="post" class="planning-form">
+
+      {% csrf_token %}
+
+      {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Planners' Advocacy Network</h3>
+
+        <p>Be a part of APA's network of engaged planning advocates shaping policy positions and advancing the federal policy agenda for planning through APA. Membership in the Planners' Advocacy Network is free to APA members.</p>
+
+       
+
+        {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.planners_advocacy %}
+
+      </div>
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Add up to 5 divisions for free</h3>
+
+        {% include "newtheme/prototype/2017-join-renew/student/includes/divisions-subscriptions-multiple-choices.html" with field=form.divisions form=form %}
+
+      </div>
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Your APA Chapter</h3>
+
+        <p>One free APA Chapter is inlcluded with Student Membership. Your APA Chapter is determined by your Mailing address. <a href="">Edit Address Preferences and Chapter Assignment</a></p>
+
+        <div>
+          <img src="{% static 'images/badges/ILlogo.jpg' %}" style="float:left; margin-right:16px"/>
+          <h2>Illinois</h2>
+        </div>
+
+        <div style="clear:both"></div>
+
+      </div>
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Free Subscriptions</h3>
+
+        <p>
+          With Student Membership you receive the following subscriptions for free
+        </p>
+
+        <p>***List the subscriptions that come with APA Student Membership***</p>
+
+        <ul>
+          <li>Planning Magazine (Digital)</li>
+          <li>JAPA (Digital)</li>
+          <li>others?...</li>
+        </ul>
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Continue to Membership Summary</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<!-- <script>
+$(function(){
+
+  function checkNumberOfDivisions(){
+    var $checkedDivisions = $("input[name='divisions']:checked");
+    var $uncheckedDivisions = $("input[name='divisions']").not(":checked");
+    if($checkedDivisions.length >= 5) {
+      $uncheckedDivisions.prop('disabled', true);
+      $uncheckedDivisions.closest(".icheckbox").hide();
+    }else{
+      $uncheckedDivisions.prop('disabled', false);
+      $uncheckedDivisions.closest(".icheckbox").show();
+    }
+    $checkedDivisions.prop('disabled', false);
+    $checkedDivisions.closest(".icheckbox").show();
+  }
+
+  $("*", $("input[name='divisions']").closest(".checkbox")).on("click", checkNumberOfDivisions);
+
+});
+</script> -->
+{% endblock %}
+

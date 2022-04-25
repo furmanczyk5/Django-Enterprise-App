@@ -1,0 +1,5 @@
+/* css to fix autocomplete and ckeditor dialog layering */
+
+.ui-autocomplete {
+	z-index:11000;
+}

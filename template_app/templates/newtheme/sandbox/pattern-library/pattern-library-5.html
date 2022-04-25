@@ -1,0 +1,64 @@
+{% extends 'newtheme/templates/layout-pattern-library.html' %}
+
+{% block title %}APA Pattern Library Level 3: Forms{% endblock %}
+
+{% block introduction %}{% endblock %}
+
+{% block patterns %}
+
+<section class="pl-section">  
+  <h1 class="pl-h1">Image Search Library</h1>
+
+
+  <h3 class="pl-h3">description:</h3>
+  <div class="pl-description">
+    <p>The input tag specifies an input field where the user can enter data.</p>
+  </div>
+
+  <h3 class="pl-h3">examples:</h3>
+  <div class="image-search-wrapper">
+    <div class="image-result col-md-4">
+      <img class="book-image" src="//placehold.it/200x200" />
+    </div>
+    <div class="image-result col-md-4">
+      <img class="book-image" src="//placehold.it/200x200" />
+    </div>
+    <div class="image-result col-md-4">
+      <div class="image-library-result">
+      <a href="...">
+      <img class="" src="//placehold.it/375x375" />
+    <h4 class="book-title">...</h4>
+  </a>
+  <div class="book-prices">
+    <div class="book-price">
+      <span class="book-price-label">List Price:</span>
+      <span class="book-price-value">$000.00</span>
+    </div>
+    <div class="book-price">
+      <span class="book-price-label">Member Price:</span>
+      <span class="book-price-value">$000.00</span>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+
+  <hr />
+
+
+
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">&lt;input type=&quot;text&quot; class=&quot;form-control&quot; value=&quot;Regular&quot;&gt;...&lt;/input&gt;
+  </code></pre>
+
+  <div class="form-group has-error">
+    <input type="text" class="form-control" value="Error" />
+  </div>
+
+
+
+
+</section>
+
+
+{% endblock %}

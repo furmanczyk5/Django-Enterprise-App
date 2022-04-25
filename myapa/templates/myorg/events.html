@@ -1,0 +1,216 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load tz %}
+{% load content_extras %}
+{% load cm_tags %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+  <h1 class="page-title">All Events for {{ company }}</h1>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2>Events</h2>
+    <div class="admin-list">
+
+      <div class="row hidden-xs hidden-sm">
+        <div class="col-md-3">
+          <h3>Title</h3>
+        </div>
+        <div class="col-md-3">
+          <h3>Type</h3>
+        </div>
+        <div class="col-md-3">
+          <h3>Status</h3>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+      </div>
+
+      <div class="row">
+
+        {% for event in events %}
+
+        <div class="col-md-3 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Title
+          </div>
+          <h4 class="search-result-title">
+            {% with is_past=event|activity_is_past %}
+            {% if event.event_type == "EVENT_SINGLE" %}
+            <a href="/events/eventsingle/{{ event.master_id }}/">
+              {% if is_past %} PAST: {% endif %} {{ event.title }}
+            </a>
+            {% elif event.event_type == "EVENT_MULTI" %}
+            <a href="/events/eventmulti/{{ event.master_id }}/">
+              {% if is_past %} PAST: {% endif %} {{ event.title }}
+            </a>
+            {% elif event.event_type == "EVENT_INFO" %}
+            <a href="/events/eventinfo/{{ event.master_id }}/">
+              {% if is_past %} PAST: {% endif %} {{ event.title }}
+            </a>
+
+            {% comment %}
+            {% elif event.event_type == "LEARN_COURSE" %}
+            <a href="/learn/course/{{ event.master_id }}/">
+              {% if is_past %} PAST: {% endif %} {{ event.title }}
+            </a>
+            {% endcomment %}
+
+            {% elif event.event_type == "ACTIVITY" %}
+            <a href="/events/activity/{{ event.master_id }}/">
+              {% if is_past %} PAST: {% endif %} {{ event.title }}
+            </a>
+
+            {% comment %}
+            {% else %}
+            {{ event.title }}
+            {% endcomment %}
+
+            {% endif %}
+            {% endwith %}
+          </h4>
+          <p class="small">
+            {{ event.begin_time|date:"l, F j, Y, P e"}}
+          </p>
+        </div>
+
+        <div class="col-md-3 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Type
+          </div>
+          {% if event.event_type == "EVENT_SINGLE" %}
+          <span>Single Event</span>
+          {% elif event.event_type == "EVENT_MULTI" %}
+          <span>Multipart Event</span>
+          {% elif event.event_type == "EVENT_INFO" %}
+          <span>Information-Only Event</span>
+
+          {% comment %}
+          {% elif event.event_type == "LEARN_COURSE" %}
+          <span>APA Learn Course</span>
+          {% endcomment %}
+
+          {% elif event.event_type == "ACTIVITY" %}
+          <span>Activity</span>
+          {% endif %}
+        </div>
+
+        <div class="col-md-3 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Status
+          </div>
+          <!-- TO DO... may want to color code this based on the status: -->
+          {% if event.is_cancelled %}
+          <span>Cancelled</span>
+          {% elif event.status == "P" %}
+          <span>Pending Payment</span>
+          {% elif event.has_changes %}
+          <span>
+            Entered
+            <br />
+            Edited
+          </span>
+          {% elif event.is_published %}
+          <span>Entered</span>
+          {% elif event.status == "A" and event.publish_status != "SUBMITTED" %}
+          <span>Processing your entered event</span>
+          {% else %}
+          <span>Not Entered</span>
+          {% endif %}
+        </div>
+
+        <div class="col-md-3 admin-list-group">
+          <div class="dashboard-events-result-cm">
+            <span class="small">#{{ event.master_id }}</span>
+            {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=event %}
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 dashboard-events-result-col">
+          {% if event.event_type == "EVENT_MULTI" %}
+            <a class="see-event-reviews" id="see-event-reviews-{{ event.master_id }}">See Activity Reviews</a>
+          {% else %}
+            <span>{% star_rating event.avg_rating_tuple.0|floatformat:2 event.avg_ratin_tuple.1 %}</span>
+            {% if event.avg_rating_tuple.1 %}
+            <a class="see-event-reviews" id="see-event-reviews-{{ event.master_id }}">See Reviews</a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="event-reviews" style="display:none;" id="event-reviews-{{ event.master_id }}">
+
+      </div>
+
+      <div class="row dashboard-events-controls">
+        <div class="col-xs-12">
+          {% if event.is_editable %}
+            {% if event.is_submitted and not event.has_published_version %}
+              <div class="help-block">
+                Your entered event is being processed. This may take a few minutes. You may not edit this event until the publishing process is complete.
+              </div>
+            {% else %}
+              <a class="btn btn-sm btn-icon btn-dashboard-events" href="/cm/provider/events/{{ event.master_id }}/update/">
+                Edit
+                <span class="icon-apa-edit"></span>
+              </a>
+
+              {% if event.is_published %}
+              <form method="post" action="/cm/provider/events/{{ event.master_id }}/cancel/">
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-icon btn-icon-danger btn-dashboard-events"
+                  onclick="return confirm('Are you sure you want to unpublish event #{{ event.master_id }}?')">
+                  Cancel
+                  <span class="icon-apa-close"></span>
+                </button>
+              </form>
+              {% else %}
+              <form method="post" action="/cm/provider/events/{{ event.master_id }}/delete/">
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-icon btn-icon-danger btn-dashboard-events"
+                  onclick="return confirm('Are you sure you want to delete the event #{{ event.maste_id }} permanently?')">
+                  Delete
+                  <span class="icon-apa-close"></span>
+                </button>
+              </form>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+          {% if event.has_registration_product %}
+          <a class="btn btn-sm btn-icon btn-dashboard-events" href="/events/manage/{{ event.master_id }}/reports/">
+            View Reports
+          </a>
+          {% endif %}
+
+        </div>
+      </div>
+
+       {% empty %}
+        <p><em>No events have been submitted.</em></p>
+
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

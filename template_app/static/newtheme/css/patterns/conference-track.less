@@ -1,0 +1,208 @@
+/**
+ * dependencies: form-section slab accordion read-more-link
+ */
+
+ .conference-track-content {
+   &:extend(.slab-gray all);
+   margin-bottom: 38px;
+   border-style: solid;
+   border-width: 1px;
+   border-color: @color-content-borders;
+   border-top-width: 0; // no border top
+
+   & {
+     position: relative;
+     padding: 0;
+   }
+
+   & + & {
+     margin-top: 25px;
+
+     @media screen and (min-width: @screen-xs-min) {
+       margin-top: 0;
+     }
+   }
+
+   & .conference-track-content-head {
+     //overrun borders
+     width: 100%;
+     width: calc(100% ~"+" 2px);
+     margin-left: 0;
+     margin-left: calc(-1px);
+     //end overrun borders
+     background-color: @color-stone-blue;
+     height: 190px;
+     position: relative;
+
+     & .conference-track-content-head-title {
+       &:extend(.slab-whitetext);
+       &:extend(.h2);
+
+       position: absolute;
+       top: 0;
+       left: 0;
+       margin: 0;
+       padding: 42px 33px;
+       z-index: 2;
+
+       & .conference-track-content-head-title-track {
+         font-weight: 600;
+       }
+
+       & .conference-track-content-head-title-track-subject {
+       }
+     }
+
+     & .conference-track-content-head-image {
+       position: absolute;
+       top: 0;
+       left: 0;
+       z-index: 1;
+       width: 100%;
+       height: 190px;
+       opacity: .2;
+
+       & img {
+         width: 100%;
+         height: 100%;
+       }
+     }
+   }
+
+   & .conference-track-content-body {
+     padding: 33px;
+
+     & .accordion {
+       &:extend(.accordion.always-open-sm all);
+       border-width: 0;
+
+       & .accordion-handle {
+         font-size: 18px;
+         border: solid 1px @color-content-borders;
+         background-color: #fafafa;
+       }
+
+       &.open {
+         & .accordion-handle {
+           background-color: @color-limeade;
+         }
+       }
+
+       & .accordion-content {
+          &:extend(.slab-gray all);
+          @media screen and (min-width: @screen-xs-min) {
+            display: block;
+          }
+
+         padding: 0;
+       }
+     }
+
+     & .h3 {
+       font-size: 17px;
+       margin-top: 0;
+     }
+     & .view-track-link {
+       &:extend(a.read-more-link);
+       font-weight: 600;
+     }
+   }
+ }
+
+ @media screen and (min-width: @screen-md-min) {
+   html.flexbox {
+
+     & .conference-track-content-row {
+       display: flex;
+       flex-flow: row wrap;
+       margin-left: @grid-gutter-width / -2;
+       margin-right: @grid-gutter-width / -2;
+
+       & .conference-track-content {
+         width: calc(33.33% ~"-" @grid-gutter-width);
+         margin-left: @grid-gutter-width / 2;
+         margin-right: @grid-gutter-width / 2;
+         flex-direction: column;
+       }
+     }
+
+   }
+
+   html.no-flexbox {
+
+     & .conference-track-content-row {
+       .clearfix();
+       margin-left: @grid-gutter-width / -2;
+       margin-right: @grid-gutter-width / -2;
+
+       & .conference-track-content {
+         float: left;
+         margin-left: @grid-gutter-width / 2;
+         margin-right: @grid-gutter-width / 2;
+       }
+     }
+
+   }
+
+   .conference-track-content-body {
+     & .accordion-handle {
+       .accordion-handle-hide();
+     }
+   }
+
+ }
+
+ @media screen and (max-width: @screen-sm-max) and (min-width: @screen-xs-min) {
+   html.flexbox {
+
+     & .conference-track-content-row {
+       display: flex;
+       flex-flow: row wrap;
+       margin-left: @grid-gutter-width / -2;
+       margin-right: @grid-gutter-width / -2;
+
+       & .conference-track-content {
+         width: calc(50% ~"-" @grid-gutter-width);
+         margin-left: @grid-gutter-width / 2;
+         margin-right: @grid-gutter-width / 2;
+         flex-direction: column;
+       }
+     }
+
+   }
+
+   .conference-track-content-body {
+     & .accordion-handle {
+       .accordion-handle-hide();
+     }
+   }
+
+}
+
+@media screen and (max-width: @screen-xs-min) {
+  html.flexbox {
+
+    & .conference-track-content-row {
+      display: flex;
+      flex-flow: row wrap;
+      margin-left: @grid-gutter-width / -2;
+      margin-right: @grid-gutter-width / -2;
+
+      & .conference-track-content {
+        width: 100%;
+        margin-left: @grid-gutter-width / 2;
+        margin-right: @grid-gutter-width / 2;
+        flex-direction: column;
+
+        & .conference-track-content-body {
+          padding: 33px 20px;
+          & .accordion-content {
+            padding: 20px 5px;
+          }
+        }
+      }
+    }
+
+  }
+
+}

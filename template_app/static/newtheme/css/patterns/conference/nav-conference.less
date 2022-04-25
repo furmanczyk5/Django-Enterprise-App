@@ -1,0 +1,74 @@
+// Overrides of navbar
+.nav-container-conference {
+  margin-top: 0;
+  background-color: rgba(0,0,0,0.8);
+  .navbar-nav {
+    background-color: transparent;
+    // Applying nav size to prevent css bug
+    // if the home button isn't added to the
+    // menu yet
+
+    // six nav items (no home link)
+    &.nav-size-6 {
+      li {
+        width: 16.666%; // 100 / 6 items
+      }
+    }
+    // seven nav items (with home link)
+    &.nav-size-7 {
+      li {
+        width: 14.2857%; // 100 / 7 items
+      }
+    }
+  }
+}
+.nav-container-conference {
+  .navbar-nav-link-wrap {
+    text-align: center;
+    // remove borders
+    &:after {
+      width: 0;
+    }
+    a {
+      font-size: 14px;
+    }
+    // update arrow icons to be next to content
+    a [class^="icon-"] {
+      position: absolute;
+      top: 40%;
+      right: 1px;
+    }
+  }
+}
+
+// upgrade font size up to md screen, then use default
+@media screen and (min-width: @screen-md-min) {
+  .nav-container-conference {
+    .navbar-nav-link-wrap {
+      a {
+        font-size: 19px; // we have a little more room so let's use it
+      }
+    }
+  }
+}
+
+// Special breakout nav item
+.nav-container-conference {
+  .navbar-nav-link-wrap-breakout-wrap {
+    position: relative;
+    border-top-color: @color-limeade; // always on
+    z-index: 999;
+  }
+}
+
+.navbar-nav-link-wrap-breakout {
+  position: absolute;
+  padding-bottom: 14px; // 7px border and some for the bottom
+  height: 70px; // take into account 14px bottom
+  width: 101%; // 100 / 6 leaves fraction pixels and we want this on the edge
+  background: @color-limeade;
+
+  @media screen and (min-width: 1280px) {
+    width: 100%; //fractional width should be gone at this point
+  }
+}

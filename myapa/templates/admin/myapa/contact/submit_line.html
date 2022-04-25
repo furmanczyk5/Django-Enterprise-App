@@ -1,0 +1,36 @@
+{% load i18n %}
+<footer class="grp-module grp-submit-row grp-fixed-footer">
+    <header style="display:none"><h1>Submit Options</h1></header>
+    <ul>
+
+        <!-- standard django buttons ... -->
+        {% if show_delete_link %}
+            <li class="grp-float-left"><a href="delete/" class="grp-button grp-delete-link">{% trans "Delete" %}</a></li>
+        {% endif %}
+
+        {% if show_save %}
+        	<li><input type="submit" value="{% trans 'Save' %}" class="grp-button grp-default" name="_save" /></li>
+        {% endif %}
+
+        {% if show_save_and_add_another %}
+        	<li><input type="submit" value="{% trans 'Save and add another' %}" class="grp-button" name="_addanother" /></li>
+        {% endif %}
+
+        {% if show_save_and_continue %}
+        	<li><input type="submit" value="{% trans 'Save and continue editing' %}" class="grp-button" name="_continue" /></li>
+        {% endif %}
+
+        {% if show_solr_publish %}
+            <li><input type="submit" value="{% trans 'Publish to Search' %}" class="grp-button" name="_solr_publish" style="background:yellow; color:black"/></li>
+        {% endif %}
+
+        {% if show_imis_sync %}
+            <li><input type="submit" value="{% trans 'Sync from imis' %}" class="grp-button" name="_sync_imis" style="background:aqua; color:black" /></li>
+        {% endif %}
+
+        {% if show_sync_credly %}
+        <li><input type="submit" value="{% trans 'Sync Credentials' %}" class="grp-button" name="_sync_credly" style="background:#CDB7DF; color:black;" /></li>
+        {% endif %}
+
+    </ul>
+</footer>

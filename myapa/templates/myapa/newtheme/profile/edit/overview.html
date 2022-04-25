@@ -1,0 +1,229 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  {% if view_profile %}
+    <h1 class="page-title">{{profile_contact.first_name}} {{profile_contact.last_name}}{% if profile_contact.designation %}, {{profile_contact.designation}}{% endif %} - Profile</h1>
+  {% else %}
+    <h1 class="page-title">Profile</h1>
+  {% endif %}
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+  {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <div class="form-group">
+        <h3 class="form-section-title">Professional Biography</h3>
+        <p>
+          Tell about your key accomplishments, past assignments, and education. Write in third person (“he” or “she”).
+        </p>
+        <p class="accent">{{contact.bio|safe}}</p>
+      </div>
+      <div class="form-group">
+      <h3 class="form-section-title">About Me</h3>
+        <p>Let other members get to know you. Share a brief description of yourself.</p>
+        <p class="accent">{{contact.about_me|safe}}</p>
+      </div>
+      <div class="form-group">
+        <a class="btn btn-sm btn-icon" href="/myapa/profile/bio/">
+          Edit
+          <span class="icon-apa-edit"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <h3 class="form-section-title">Education</h3>
+      {% if schools %}
+      {% for school in schools %}
+        {% if school.school %}
+          <b>{{school.school}}</b>
+        {% else %}
+          <b>{{school.other_school}}</b>
+        {% endif %}
+        <br>
+        Graduation Date: {% if school.graduation_date %}{{school.graduation_date|date:"F"}}, {{school.graduation_date.year}}{% endif %}<br>
+        Degree Level: {{school.get_level_display}}<br>
+        {% if school.is_planning %} <i>Planning Degree</i><br>{% endif %}
+      <br>
+      {% endfor %}
+      {% endif %}
+      <div class="form-group">
+
+        <a class="btn btn-sm btn-icon" href="/myapa/education/update">
+          Add School
+          <span class="icon-apa-edit"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <h3 class="form-section-title">Job History</h3>
+      {% if jobs %}
+      {% for job in jobs %}
+        <b>{{job.company}}</b><br>
+        <b>{{job.title}}</b><br>
+        {% if not job.is_current %}
+          {{job.start_date|date:"F"}}, {{job.start_date.year}} - {{job.end_date|date:"F"}}, {{job.end_date.year}}<br>
+        {% else %}
+          {{job.start_date|date:"F"}}, {{job.start_date.year}} - Present<br>
+        {% endif %}
+        {% if job.is_part_time %}<i>Part time</i><br>{% endif %}
+        {{job.city}}, {{job.state}}<br>
+        {{job.zip_code}}<br>
+        {{job.country}}<br><br>
+      {% endfor %}
+      {% endif %}
+      <div class="form-group">
+        <a class="btn btn-sm btn-icon" href="/myapa/job_history/update">
+          Add Job History
+          <span class="icon-apa-edit"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <h3 class="form-section-title">Social</h3>
+      {% if contact.personal_url %}
+        <b>Personal URL: </b>
+        <a href="{{contact.personal_url}}" target="_blank">{{ contact.personal_url }}</a>
+        <br>
+      {% endif %}
+      {% if contact.linkedin_url %}
+        <b>LinkedIn URL: </b>
+        <a href="{{contact.linkedin_url}}" target="_blank">{{ contact.linkedin_url }}</a>
+        <br>
+      {% endif %}
+      {% if contact.facebook_url %}
+        <b>Facebook URL: </b>
+        <a href="{{contact.facebook_url}}" target="_blank">{{ contact.facebook_url }}</a>
+        <br>
+      {% endif %}
+      {% if contact.twitter_url %}
+        <b>Twitter URL: </b>
+        <a href="{{contact.twitter_url}}" target="_blank">{{ contact.twitter_url }}</a>
+        <br>
+      {% endif %}
+      {% if contact.instagram_url %}
+        <b>Instagram URL: </b>
+        <a href="{{contact.instagram_url}}" target="_blank">{{ contact.instagram_url }}</a>
+        <br>
+      {% endif %}
+      <div class="form-group">
+        <p>Add your social media profiles to stay connected  with other members</p>
+        <a class="btn btn-sm btn-icon" href="/myapa/social_links/update">
+          Add Profiles
+          <span class="icon-apa-edit"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <h3 class="form-section-title">Resume</h3>
+      <div class="attention">
+        <p class="section-icon-attention">Resume upload is temporarily disabled due to a technical issue. We apologize for the inconvenience and hope to have this functionality restored soon.</p>
+      </div>
+
+      {% comment %}
+
+        {% if resume.uploaded_file %}
+        <div class="form-group">
+          <p>
+            <img src="{% static 'images/badges/resume.png' %}" alt="Resume icon" width="15" height="20"/>
+          </p>
+          <ul class="text-justify list-inline">
+            <li>
+              <a class="btn btn-sm btn-icon" id="view_button" href="{{ resume.uploaded_file.url }}" target="_blank">
+                View/Download
+                <span class="icon-apa-documents"></span>
+              </a>
+            </li>
+            <li>
+              <a class="btn btn-sm btn-icon" href="{% url 'resume_upload' %}">
+                Update
+                <span class="icon-apa-edit"></span>
+              </a>
+            </li>
+            <li>
+              <a class="btn btn-sm btn-icon btn-icon-danger" href="{% url 'details_delete'%}?resume_delete=true">
+              Delete
+
+                <span class="icon-apa-close"></span>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+        {% else %}
+        <p>
+          Post your resume for employers to see.
+        </p>
+        <div class="form-group">
+          <a class="btn btn-sm btn-icon" href="{% url 'resume_upload' %}">
+            Add Resume
+            <span class="icon-apa-edit"></span>
+          </a>
+
+
+        </div>
+        {% endif %}
+
+      {% endcomment %}
+
+
+
+      <a id="planners-advocacy-network"></a>
+    </div>
+
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <h3 class="form-section-title">Join the Planners’ Advocacy Network</h3>
+      <p>
+        Dig into grassroots advocacy!
+        APA’s new network lets you connect with elected officials,
+        influence policymakers, access special reports, get advocacy training, and save on events.
+      </p>
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+        <p>
+          {{ advocacy_form.grassroots_member }} Yes, include me in the <em>Planners’ Advocacy Network</em>.
+        </p>
+        <input type="submit" class="btn btn-sm btn-primary" value="Update"/>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+
+    <!-- NEED TO ADD THIS... -->
+    <!--
+    <div class="action">
+      <h4>Certifications</h4>
+      <p class="text-small text-grey">Include any certifications or designations here.</p>
+      <br>
+      <a>Edit</a>
+    </div>
+    <br>
+    -->
+
+{% endblock %}
+
+{% block additional_body_js %}
+
+{% endblock %}

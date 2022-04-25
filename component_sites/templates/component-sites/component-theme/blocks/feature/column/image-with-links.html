@@ -1,0 +1,26 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+<h2 class="headline-underline">{{value.heading}}</h2>
+
+<div class="row">
+	<div class="col-xs-8">
+		<a href="value.image.url">
+      {% image value.image.image width-800 as tmp_img %}
+      <img src="{{tmp_img.url}}" alt="{{value.image.image.alt_text}}" style="width:100%;height:auto">
+    </a>
+	</div>
+	<div class="col-xs-4">
+		<div class="content-preview-list no-top-spacing no-top-border no-bottom-border">
+		    <ul>
+		    {% for ll in value.listed_links %}
+		        <li class="content-preview-item">
+		            <h4 class="content-preview-item-headline"><a href="{{ll.Link_URL}}">{{ll.Link_Text}}</a></h4>
+		        </li>
+		    {% endfor %}
+		    </ul>
+		</div>
+	</div>
+</div>
+
+{% include_block value.link %}

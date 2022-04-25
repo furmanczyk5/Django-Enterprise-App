@@ -1,0 +1,70 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load content_extras %}
+
+{% block content_main %}
+<div class="page-head">
+
+  <h1 class="page-title">Contact Preferences</h1>
+
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+    <div class="form-head">
+      <div class="help-block">All fields are required unless labeled as optional</div>
+    </div>
+    <form method="post" class="planning-form">
+    {% csrf_token %}
+    <div class="form-section form-section-enclosed-dark">
+      <p>We’d like to be sure we’re sending you the information you want. Please tell us what you’d like to receive. </p>
+      <div class="form-group{%if form.preferences.errors %} has-error {% endif %}">
+        <label for="{{ form.preferences.id_for_label }}">{{ form.preferences.label }}:</label>
+        {% if form.preferences.errors %}
+        <div class="form-error">
+          {% for error in form.preferences.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="help-block help-block-align-left">
+            You can change your selections anytime. Please allow a week for changes to take effect.
+        </div>
+        <div class="multiple-choices">
+          
+            {% for option in form.preferences %}
+              <div class="multiple-choices-row">
+              {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=option %}
+              </div>
+            {% endfor %}
+
+        </div>
+
+      </div>
+      
+    </div>
+
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <h3 class="form-section-title">Skip the print! Opt for <i>Planning</i>'s digital edition</h3>
+      <p>
+        One of the great benefits of APA membership is <i>Planning</i> magazine. APA’s flagship publication is available in print and in a digital edition you can read online or in an app. Want to skip the print? Check the box below.
+      </p>
+      <div class="checkbox">
+        <label>
+          {{ form.exclude_planning_print }}
+          I want only the digital edition of <i>Planning</i>. Please do not send me the print edition.
+        </label>
+      </div>
+    </div>
+
+
+    <br>
+    <input class="btn btn-primary" type="submit" value="Submit"/>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

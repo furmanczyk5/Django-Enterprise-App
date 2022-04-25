@@ -1,0 +1,23 @@
+{% load wagtailimages_tags %}
+
+<h2 class="headline-underline">{{value.heading}}</h2>
+<div class="video-block">
+        <div class="video" style="overflow:hidden;">
+            {% for p in value.photos %}
+            {% image p original as tmp_photo %}
+            <a href="{{tmp_photo.url}}" alt="{{p.alt_text}}" data-lightbox="{{gallery_identifier}}">{% if forloop.first %}{% image p original class="wt-responsive-img" %}{% endif %}</a>
+            {% endfor %}
+        </div>
+    </div>
+<br>
+    <div class="caption">
+        {% if value.link.Link_Text %}
+            {% if value.link.Link_Style == "FANCY" %}
+            <div class="read-more-link no-top-border"><a href="{{value.link.Link_URL}}">{{value.link.Link_Text}}</a></div>
+            {% elif value.link.Link_Style == "BUTTON" %}
+            <p><a class="btn btn-primary" href="{{value.link.Link_URL}}">{{value.link.Link_Text}}</a></p>
+            {% else %}
+            <p><a class="standalone-link" href="{{value.link.Link_URL}}">{{value.link.Link_Text}}</a></p>
+            {% endif %}
+        {% endif %}
+    </div>

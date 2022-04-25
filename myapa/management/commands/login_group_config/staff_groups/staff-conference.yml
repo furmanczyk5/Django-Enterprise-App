@@ -1,0 +1,56 @@
+---
+
+# Django model admin permissions for the staff-conference group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "126856"  # Rosemary Regalado
+  - "228137"  # Alisa Moore
+  - "248708"  # Milagros Marrero
+  - "307515"  # Dustin Calliari
+  - "309831"  # Kate Calabra
+  - "334372"  # Rylee Sullivan
+  - "335276"  # Araceli Jimenez
+  - "344730"  # Molly Walsh
+  - "346895"  # Eva Wilczek
+  - "354353"  # Devin Lindsey
+
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+  - conference_conferenceactivity
+  - conference_cadmiummapping
+  - conference_cadmiumsync
+  - conference_conferenceattendee
+  - conference_conferencecontact
+  - conference_conferenceparticipant
+  - conference_microsite
+  - conference_micrositeactivity
+  - conference_micrositeattendee
+  - conference_micrositecontributor
+  - conference_nationalconferenceactivity
+  - conference_nationalconferenceattendee
+  - conference_nationalconferencecontributor
+  - conference_syncmapping
+  - consultants_branchoffice
+  - consultants_consultant
+  - consultants_consultantlisting
+  - consultants_rfp
+  - events_activity
+  - events_event
+  - events_eventinfo
+  - events_eventlogentry
+  - events_eventmulti
+  - events_eventsingle
+  - events_nationalconferenceactivity
+  - events_nationalconferenceeval
+  - events_nationalconferenceparticipant
+  - events_nationalconferenceproposal
+  - events_speaker
+  - events_speakereval
+  - pages_conferencespage
+  - registrations_attendee
+  - registrations_nationalconferenceattendee

@@ -1,0 +1,115 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load content_extras %}
+{% load myapa_tags %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+<div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Your Order History</h1>
+  <h4 class="page-subtitle">Click any order # for your receipt and access to digital purchases.</h4>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+
+        {% for order in orders %}
+        <div class="form-section form-section-enclosed-dark">
+            <h2 class="form-section-title"><a href="/store/order_confirmation/?order_id={{ order.trans_number }}">Order #{{ order.trans_number }}</a></h2>
+            <p>{{ order.transaction_date|date:"m/d/Y"}}</p>
+
+            <ol class="ecommerce-order-summary-list">
+                {% get_related_trans order as related_trans %}
+                {% get_purchases_products_list order as purchases %}
+                {% get_total_balance related_trans as total_balance %}
+                {% for purchase in purchases %}
+                  {% get_django_purchase purchase.0 as django_purchase %}
+                {# may not make sense to restrict here #}
+                {#{% if purchase.1.status != "H" or purchase.0.quantity > 0 %}#}
+              {% if True %}
+                <li>
+                    <div class="row">
+                        <div class="col-xs-12 ecommerce-product-title">
+                            {% if django_purchase.product.title %}
+                              <h4>{{ django_purchase.product.title }}</h4>
+                            {% elif purchase.1.title %}
+                              <h4>{{ purchase.1.title }}</h4>
+                            {% else %}
+                              {% get_description related_trans as description %}
+                              <h4>{{description|safe}}</h4>
+                            {% endif %}
+
+                            {% comment %}
+
+                            TODO: purchase.is_standby is causing some issues now that registrations are
+                            handled in iMIS
+                            https://sentry.io/american-planning-association/planning/issues/835543740/
+
+                            {% if purchase.is_standby %}
+                            <p>STANDBY</p>
+                            {% endif %}
+
+                            {% endcomment %}
+                        </div>
+                        <div class="col-xs-12 ecommerce-product-meta">
+                            <div class="key-value-pair-group">
+                                <div class="key-value-pair">
+                                    <div class="key">Price</div>
+                                    <div class="value">${{ purchase.0.unit_price|floatformat:"2" }}</div>
+                                </div>
+                                <div class="key-value-pair">
+                                    <div class="key">Quantity</div>
+                                    <div class="value">{{ purchase.0.quantity|floatformat:"2" }}</div>
+                                </div>
+                            </div>
+                            <div class="key-value-pair-group">
+                                <div class="key-value-pair key-value-pair-featured">
+                                    <div class="key">Total</div>
+                                    <div class="value">${{ purchase.2|abs|floatformat:"2" }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ol>
+
+            <h3>Order Total</h3>
+            <p>${{ total_balance.0|abs|floatformat:"2" }}</p>
+
+            {% if order.transaction_type == "PAY" %}
+            <h3>Payments</h3>
+            <div class="key-value-pair-group">
+                <div class="key-value-pair">
+                    <div class="key">Payment</div>
+                    <div class="value">
+                      ${{ order.amount|floatformat:"2" }}
+                      {% if order.payment_type %}
+                        | {{ order.payment_type }}
+                      {% else %}
+                        {#Payment type unspecified#}
+                      {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+
+            <h3>Balance</h3>
+            <p>${{ total_balance.1|floatformat:"2" }}</p>
+
+        </div>
+
+        {% empty %}
+        <p>No past orders.</p>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

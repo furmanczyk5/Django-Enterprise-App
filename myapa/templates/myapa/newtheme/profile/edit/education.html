@@ -1,0 +1,157 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load static %}
+{% load content_extras %}
+{% load myapa_tags %}
+{% load ui_tags %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">Education</h1>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+
+        <div class="col-sm-9">
+          <div class="form-head">
+            <div class="help-block">All fields are required unless labeled as optional</div>
+          </div>
+            <form method="post" class="planning-form" onsubmit="return formsubmitcheck()" >
+
+                {% csrf_token %}
+
+                {% for hidden in form.hidden_fields %}
+                {{hidden}}
+                {% endfor %}
+                
+                {{ form.management_form }}
+                
+                {% formset_display_errors formset=form %}
+
+                {% for subform in form %}
+                <div class="accordion {% if subform.errors %}open{% endif %}">
+                    <h4 class="accordion-handle">
+                        {% if subform.school.value and subform.school.value != "OTHER" %}
+                        {{ accredited_schools|human_readable_value_from_choice:subform.school.value }}
+                        {% elif subform.other_school.value %}
+                        {{ subform.other_school.value }}
+                        {% else %}
+                        Add new school
+                        {% endif %}
+                    </h4>
+                    <div class="accordion-content">
+
+                        {% if subform.id.value %}
+                        <p>
+                            <a class="btn btn-danger btn-sm" href="{% url 'details_delete'%}?edu_id={{subform.id.value}}">Delete</a>
+                        </p>
+                        {% endif %}
+
+                        <div class="form-section form-section-enclosed-light education-degree-form-container" data-prefix="{{subform.prefix}}-">
+                            <h3 class="form-section-title">School Information</h3>
+
+                            <div class="form-section-limit-width form-group">
+
+                                {% for hidden in subform.hidden_fields %}
+                                {{hidden}}
+                                {% endfor %}
+
+                                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=subform.school %}
+
+                                <div class="degree-program-other form-group" style="display:none">
+                                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=subform.degree_program %}
+                                </div>
+
+                                <div class="other-school-fields form-group" style="display:none">
+                                    <div class="school-other form-group" style="display:none">
+                                        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=subform.other_school %}
+                                    </div>
+
+                                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=subform.degree_type_choice %}
+                                    <div class="degreetype-other form-group" style="display:none">
+                                        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=subform.degree_type_other %}
+                                    </div>
+
+                                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=subform.level %}
+
+                                    <div class="degreelevel-other form-group" style="display:none">
+                                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=subform.level_other %}
+                                    </div>
+                                </div>
+                                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=subform.student_id %}
+                            </div>
+
+                            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=subform.graduation_date %}
+
+                            <div class="row form-group">
+                                <div class="col-sm-6">
+                                    {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=subform.is_current %}
+                                </div>
+                                <div class="col-sm-6">
+                                    {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=subform.complete %}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="form-group">
+                    <div class="checkbox extra-margin">
+                        <label>
+                            <input type="checkbox" name="verifybox" value="check" id="verifybox">
+                            I verify that the information I have provided is true.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input class="btn btn-primary" type="submit" value="Save"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script src="{% static 'myapa/js/education-degree-form.js' %}"></script>
+<script>
+$(function(){
+    $(".education-degree-form-container").each(function(index){
+        new EducationDegreeForm($(this));
+    });
+});
+</script>
+
+<script type="text/javascript">
+  function formsubmitcheck() {
+    var verified = $('#verifybox')
+      if (verified){
+        var status = verified.prop('checked');
+        var edit_status = $("#is_edit").val()
+        if (status || edit_status == "true"){
+          return true
+        }
+        else{
+          alert("Please verify the information you have provided is true.")
+          return false
+        }
+      }
+
+  }
+</script>
+{% endblock %}

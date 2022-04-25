@@ -1,0 +1,149 @@
+{% extends 'component-sites/component-theme/templates/base.html' %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load content_extras %}
+{% load component_sites_tags %}
+
+{% block leader_ad %}{% endblock %}
+
+{% block nav %}
+<div class="layout-hero-image-with-nav">
+    {% image page.featured_image width-1200 as feat_img %}
+    <img src="{{feat_img.url}}" alt="{{page.featured_image.alt_text}}" class="layout-hero-image-with-nav-image" style="height:auto">
+    {{ block.super }}
+</div>
+{% endblock %}
+
+{% block content_main %}
+
+<div class="layout-hero-image layout-hero-image-home">
+  <div class="layout-hero-image-content">  
+  	{# {{page.featured_content}} #}
+    {% include_block page.featured_content %}
+  </div>
+</div>
+
+<div class="layout-tracery layout-tracery-flex">
+
+	{% if page.include_events %}
+    <div class="layout-column">
+        <h2>Upcoming Events</h2>
+        <div class="content-preview-list no-top-spacing no-top-border no-bottom-border">
+            <ul>
+            {% if events.response.docs %}
+            {% for e in events.response.docs %}
+                <li class="content-preview-item">
+                  {% comment %}
+                	{% if forloop.first %}
+                	<div class="content-preview-item-image-block">
+                    {% image page.events_image width-800 as events_img %}
+                    <img src="{{events_img.url}}" alt="{{page.events_image.alt_text}}" style="height:auto">
+
+                    </div>
+                	{% endif %}
+                  {% endcomment %}
+	                <h6 class="content-preview-item-superheadline">{{e.begin_time|datetime_from_json_nodecimal|date:"F j, Y"}}</h6>
+	                <h4 class="content-preview-item-headline"><a href="{{e|solr_record_to_details_path_filter}}">{{e.title}}</a></h4>
+	                {% if e.tags|length > 0 %}
+	                <ul class="content-preview-item-tags">
+	                    {% for tag in e.tags %}
+	                    <li>{{tag}}</li>
+	                    {% endfor %}
+	                </ul>
+	                {% endif %}
+	            </li>
+            {% endfor %}
+            {% else %}
+                <li class="content-preview-item">
+                    There are no upcoming events at this time.
+                </li>
+            {%endif%}
+
+            </ul>
+        </div>
+        <div class="read-more-link">
+            <a href="/events/search/">View all Events</a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if page.include_news %}
+    <div class="layout-column">
+        <h2>Chapter News</h2>
+        <div class="content-preview-list no-top-border no-top-spacing no-bottom-border">
+            <ul>
+            {% if news.response.docs %}
+                {% for n in news.response.docs %}
+                    <li class="content-preview-item">
+                      {% comment %}
+                        {% if forloop.first %}
+                        <div class="content-preview-item-image-block">
+                            {% image page.news_image width-800 as news_img %}
+                    <img src="{{news_img.url}}" alt="{{page.news_image.alt_text}}" style="height:auto">
+                        </div>
+                        {% endif %}
+                      {% endcomment %}
+                        <h6 class="content-preview-item-superheadline">{{n.published_time|datetime_from_json|date:"F j, Y"}}</h6>
+                        <h4 class="content-preview-item-headline"><a href="{{n|solr_record_to_details_path_filter}}">{{n.title}}</a></h4>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="content-preview-item">
+                    There is currently no chapter-related news.
+                </li>
+            {% endif %}
+            </ul>
+            <div class="read-more-link">
+                <a href="/news/posts/">View all Chapter News</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if page.include_jobs %}
+    <div class="layout-column">
+        <h2>Featured Job Postings</h2>
+        <div class="content-preview-list no-top-border no-top-spacing no-bottom-border">
+            <ul>
+            {% if jobs.response.docs %}
+                {% for j in jobs.response.docs %}
+                    <li class="content-preview-item">
+                      {% comment %}
+                        {% if forloop.first %}
+                        <div class="content-preview-item-image-block">
+                          {% image page.jobs_image width-800 as jobs_img %}
+                          <img src="{{jobs_img.url}}" alt="{{page.jobs_image.alt_text}}" style="height:auto">
+                        </div>
+                        {% endif %}
+                      {% endcomment %}
+                        <h4 class="content-preview-item-headline"><a href="/jobs/ad/{{j.id|split_on_period:1}}">{{j.title}}</a></h4>
+                        <div>{{j.company}}</div>
+                        <div class="key-value-pair">
+                            <div class="key">Location</div>
+                            <div class="value">{{j.address_city}}, {{j.address_state}} {% if j.address_country != "United States" %}{{j.address_country}}{% endif %}</div>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="content-preview-item">
+                    There are no job postings at this time.
+                </li>
+            {% endif %}
+
+            </ul>
+            <div class="read-more-link">
+                <a href="/jobs/posts/">View all Job Postings</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+{{page.additional_content}}
+
+
+{% endblock %}
+
+{% block footer_ad %}{% endblock %}

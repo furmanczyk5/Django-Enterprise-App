@@ -1,0 +1,24 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% load content_extras %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+
+  <h1 class="page-title">{{ title }}</h1>
+
+</div>
+
+{% if event %}
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <h2>{{ event }}</h2>
+    <h3>{{ message }}</h3>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "submissions/newtheme/forms/edit.html" %}
+
+{% load static %}
+
+{% block additional_head_css %}
+{{block.super}}
+<link type="text/css" rel="stylesheet" href="{% static 'ui/forms/css/wordcount.css?v=0' %}" />
+{% endblock %}
+
+{% block form_fields %}
+	<div class="form-section form-section-enclosed-dark">
+		<h3 class="form-section-title">General Information</h3>
+		<div class="help-block">All fields are required unless labeled as optional</div>
+		{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+		{% include "submissions/newtheme/includes/location-fields.html" with form=form %}
+	</div>
+
+	{% if form.submission_category.the_questions %}
+	<div class="form-section form-section-enclosed-dark">
+		<div class="action">
+	    {% include "submissions/newtheme/includes/category-question-fields.html" with form=form %}
+		</div>
+	</div>
+	{% endif %}
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/wordcount.js?v=0' %}"></script>
+{% endblock %}

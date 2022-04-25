@@ -1,0 +1,41 @@
+{% extends 'newtheme/templates/content-page-ads-on-side.html' %}
+
+{% load ui_tags %}
+
+{% block content_main %}
+{% include 'newtheme/templates/includes/page-head.html' %}
+<div class="layout-tracery">
+  <div class="layout-column layout-column-balanced-padding">
+    {% if content.resource_url and content.media_format == "IMAGE" %}
+    <div class="image-block">   
+      <img src="{{content.resource_url}}"/> 
+    </div>
+    {% endif %}
+    {% with featured_image=content.get_featured_image_media %}
+        {% if featured_image %}
+        <div class="image-block image-breakout">
+            <img src="{{featured_image.image_file.url}}" />
+            <div class="caption">
+                <p>{{featured_image.description}}</p>
+            </div>
+        </div>
+        {% endif %}
+        {% endwith %} 
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="content-managed-html">
+          {% block content_details %}
+          {{featured_image.description}}
+          {{ content.text|render_planning_shortcodes|safe }}
+          {% endblock %}
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="banner-ads-container">
+          {% include 'newtheme/sandbox/banner-ad/layout-banner-ad-small-3up-vertical.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

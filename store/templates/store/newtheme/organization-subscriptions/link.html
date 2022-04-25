@@ -1,0 +1,99 @@
+{% extends extends_template|default:'newtheme/templates/layout-sidebar.html' %}
+
+{% load static %}
+
+{% block content_main %}
+
+{% if product.code == "SUB_PAS" %}
+  <h1>Subscribe to {{ product.content.title }}.</h1>
+
+  {% if product.content.text %}
+  <p>{{ product.content.text }}</p>
+  {% endif %}
+
+  <h5>{{ contact }} | APA ID: #{{ contact.user.username }} | {{ contact.company }}</h5>
+
+  <p>Subscribe to PAS in a few easy steps.</p>
+  <ol type="1">
+    <li>Tell us about your organization.</li>
+    <li>Choose the category that describes it.</li>
+    <li>Click Continue and identify the employees you want to enjoy the benefits of PAS.</li>
+  </ol>
+
+{% elif product.code == "SUB_CMSR10" %}
+  <h1>Get <i>The Commissioner</i> for everyone!</h1>
+  
+  {% if product.content.text %} 
+  <p>{{ product.content.text }}</p>
+  {% endif %}
+
+  <h5>{{ contact }} | APA ID: #{{ contact.user.username }} | {{ contact.company }}</h5>
+
+  <p>Subscribe to <i>The Commissioner</i> in a few easy steps.</p>
+
+  <ol type="1">
+    <li>Tell us about your organization.</li>
+    <li>Choose the category that describes it.</li>
+    <li>Click Continue then identify the people you want to enjoy <i>The Commissioner.</i></li>
+  </ol>
+
+{% else %}
+  <h1>Subscribe to {{ product.content.title }}.</h1>
+{% endif %}
+
+{% include "ui/newtheme/forms/includes/display-errors.html" with form=form display_errors=display_errors %}
+
+<form name="new_company_form" method="post" class="action">
+  {% csrf_token %}
+
+  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.company %}
+  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address1 %}
+  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address2 %}
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %}
+      </div>
+      <div class="col-sm-6">
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %}
+      </div>
+      <div class="col-sm-6">
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.zip_code %}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.phone %}
+      </div>
+      <div class="col-sm-6">
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.fax_number %}
+      </div>
+    </div>
+  </div>
+
+  {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=form.record_type %}
+
+  <br> <br>
+  <button type="submit" class="btn btn-primary">Continue</button>
+  <br><br>
+  
+</form>
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+{% endblock %}

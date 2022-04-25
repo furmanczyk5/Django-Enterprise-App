@@ -1,0 +1,72 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% load staticfiles %}
+
+{% load content_extras %}
+
+{% block title %}Create a Non-member Account{% endblock %}
+
+
+{% block content_main %}
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Email Confirmation for Order ID: {{ order.id }}</h1>
+</div>
+{% if not is_admin %}
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+  <p>You do not have access to view this content.</p>
+  </div>
+</div>
+{% else %}
+  
+  <div class="layout-tracery">
+    <div class="layout-column">
+        <div class="form-head">
+          <p>Please fill out the form below to send an order confirmation email to the entered recipient.</p>
+        </div>
+    </div>
+
+  </div>
+  <div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <form class="planning-form validate-form" method="post" id="submission_form">
+      {% csrf_token %}
+
+      {% include "ui/newtheme/forms/includes/display-errors.html" with form=form %}
+
+      {% block form_fields %}
+      
+      <div class="form-section form-section-limit-width form-section-enclosed-dark">
+        <h3 class="form-section-title">Contact Information</h3>
+        {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.email %}
+      <br>
+      <input class="btn btn-primary" type="submit" value="Submit" />
+      {% endblock %}
+    </form>
+      </div>
+    </div>
+{% endif %}
+{% endblock %}
+{% block additional_body_js %}
+<script src="{% static 'ui/modal/js/modal.js' %}?v=0"></script>
+<script src="{% static 'submissions/js/event_edit.js' %}?v=0"></script>
+<script src="{% static 'content/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'newtheme/ui/forms/js/formset.js' %}"></script>
+<script src="{% static 'newtheme/autocomplete/js/autocomplete.js' %}"></script>
+<script src="{% static 'rome/rome.min.js' %}"></script>
+<script src="{% static 'rome/rome_setup.js' %}"></script>
+<script src="{% static 'content/js/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'content/js/tinymce/tinymce_setup.js' %}"></script>
+
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script>
+  $(function () {
+    $('.empty_form').find('input[type="radio"],input[type="checkbox"]').iCheck('destroy');
+    $('[data-toggle="popover"]').popover()
+  });
+</script>
+
+{% endblock %}

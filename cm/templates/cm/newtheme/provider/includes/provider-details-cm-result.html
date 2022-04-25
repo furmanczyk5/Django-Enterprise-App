@@ -1,0 +1,114 @@
+{% load tz %}
+{% load cm_tags %}
+{% load content_extras %}
+<li class="search-result">
+  <div class="row">
+    <div class="col-md-9 dashboard-events-result-col">
+      {{result.contact_roles_PROVIDER.0|split_on_line:1 }}
+      {% if event.title %}
+      <h4 class="search-result-title">
+        {% if event.event_type == "EVENT_SINGLE" %}
+        <a href="/events/eventsingle/{{event.master_id}}/">{{event.title}}</a>
+        {% elif event.event_type == "EVENT_MULTI" %}
+        <a href="/events/eventmulti/{{event.master_id}}/">{{event.title}}</a>
+        {% elif event.event_type == "COURSE" %}
+        <a href="/events/course/{{event.master_id}}/">{{event.title}}</a>
+        {% elif event.event_type == "ACTIVITY" %}
+        <a href="/events/activity/{{event.master_id}}/">{{event.title}}</a>
+        {% else %}
+        <a href="/events/event/{{event.master_id}}/">{{event.title}}</a>
+        {% endif %}
+      </h4>
+      {% endif %}
+
+      <p>
+      {% localtime off %}
+      {% ifequal event.begin_time|date:"SHORT_DATE_FORMAT" event.end_time|date:"SHORT_DATE_FORMAT"%}
+        {{event.begin_time_astimezone|date:"l, F j, Y"}}<br/>
+        {{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+        {% else %}
+        {{event.begin_time_astimezone|date:"l, F j, Y, P"}} - {{event.end_time_astimezone|date:"l, F j, Y, P e"}}
+      {% endifequal %}
+      {% endlocaltime %}
+
+      </p>
+      <p>
+        {% if event.city or event.state or event.country %}
+        {{event.city}}{% if event.state %}, {{event.state}}{% endif %}{% if event.country %}, {{event.country}}{% endif %}
+        {% endif %}
+      </p>
+      {% if result.description %}
+      <p>
+        {{ result.description }}
+      </p>
+      {% endif %}
+    </div>
+    <div class="col-md-3 dashboard-events-result-col">
+      <div class="dashboard-events-result-cm">
+
+        {% if event.event.master.id %}
+        <span class="small">#{{event.event.master.id}}</span>
+        {% endif %}
+
+        {% if event.cm_approved %}
+        <div class="cm-credits-stacked">
+          <div>
+            <span class="cm">CM  | </span><span class="cmpoints">{{event.cm_approved|floatformat:"-2"}}</span>
+          </div>
+          <div>
+            {% if event.cm_law_approved %}
+            <span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_law_approved|floatformat:"-2"}}</span>
+            {% endif %}
+          </div>
+          <div>
+            {% if event.cm_ethics_approved %}
+            <span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_ethics_approved|floatformat:"-2"}}</span>
+            {% endif %}
+          </div>
+          <!-- FLAGGED FOR REFACTORING: CM CREDITS DISPLAY -->
+          <div>
+            {% if event.cm_equity_credits %}
+            <span class="cmlawethics">Eq</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_equity_credits|floatformat:"-2"}}</span>
+            {% endif %}
+          </div>
+          <div>
+            {% if event.cm_targeted_credits %}
+            <span class="cmlawethics">SR</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_targeted_credits|floatformat:"-2"}}</span>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div>
+        {% if event.is_speaker %}
+          <p class="small"><em>Speaker</em></p>
+        {% endif %}
+        {% if event.is_author %}
+          <p class="small"><em>Author</em></p>
+        {% endif %}
+        {% if event.self_reported %}
+          <p class="small"><em>Self Reported</em></p>
+        {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 dashboard-events-result-col">
+      {% star_rating role.content.rating_average|default:0|floatformat:2 role.content.rating_count %}
+    </div>
+  </div>
+
+
+
+{% if event.cm_approved %}
+<div class="row dashboard-events-controls">
+  <div class="col-xs-12">
+{#    <a class="btn btn-sm btn-icon btn-dashboard-events">Add to My Log</a> #}
+{% evaluate_event_button event request.user.contact extra_class="btn btn-sm btn-icon btn-dashboard-events" %}
+  </div>
+</div>
+{% endif %}
+
+</li>

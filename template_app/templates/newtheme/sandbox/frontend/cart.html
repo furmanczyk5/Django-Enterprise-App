@@ -1,0 +1,138 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="page-head">
+  <h1 class="page-title">Shopping Cart</h1>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+
+    <div class="pre-cart">
+      <div class="form-section form-section-enclosed-dark">
+        <div class="row">
+          <div class="col-xs-12 col-lg-6">
+            <div class="cart-subtotal-container">
+              <h2 class="cart-subtotal">
+                <span class="cart-subtotal-label">Cart Subtotal (2 items)</span>
+                <span class="cart-subtotal-value">$159.99</span>
+              </h2>
+            </div>
+          </div>
+          <div class="col-xs-12 col-lg-6">
+            <div class="cart-action-buttons btn-toolbar cart-action-buttons-align-right-lg">
+              <a href="#" class="btn btn-lg btn-default">Continue Shopping</a>
+              <a href="#" class="btn btn-lg btn-primary">Proceed to Checkout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Subtotal Block Goes Here-->
+    <h3>Your Cart</h3>
+
+    <ol class="ecommerce-products-list">
+      <li>
+        <div class="ecommerce-product-preview">
+          <div class="row">
+            <div class="ecommerce-product-preview-image col-xs-12 col-sm-2 hidden-xs">
+              <img src="//placehold.it/300x400" class="img-responsive" />
+            </div>
+            <div class="col-xs-12 col-sm-8">
+              <div class="row">
+                <div class="col-xs-12 col-md-5 ecommerce-product-name">
+                  <h4><a href="#">The Environmental Planning Handbook for Sustainable Communities and Regions, Second Edition</a></h4>
+                  <p>by: <a href="#">Tom Daniels</a></p>
+                </div>
+                <div class="col-xs-12 col-md-6 col-md-offset-1 ecommerce-product-meta">
+                  <h5>Paperback</h5>
+                  <div class="key-value-pair-group">
+                    <div class="key-value-pair">
+                      <div class="key">List Price</div>
+                      <div class="value">$99.95</div>
+                    </div>
+                    <div class="key-value-pair">
+                      <div class="key">Member</div>
+                      <div class="value">$79.95 &ndash; <em>You save $20</em></div>
+                    </div>
+                  </div>
+
+                  <!--
+                  Optional table format
+                  <table class="key-value-pair-table">
+                    <tr>
+                      <td>List Price</td>
+                      <td>$99.95</td>
+                    </tr>
+                    <tr class="key-value-pair">
+                      <td>Member</td>
+                      <td>$79.95 &ndash; <em>You save $20</em></td>
+                    </tr>
+                  </table>
+                  -->
+
+
+                  <div class="in-stock-label">In Stock</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-2 ecommerce-product-actions">
+              <div class="row">
+                <div class="col-xs-6 col-sm-12">
+                  <select class="action-quantity form-control">
+                    <option>QTY: 1</option>
+                    <option>QTY: 2</option>
+                    <option>QTY: 3</option>
+                    <option>QTY: 4</option>
+                    <option>QTY: 5</option>
+                    <option>QTY: 6</option>
+                    <option>QTY: 7</option>
+                    <option>QTY: 8</option>
+                    <option>QTY: 9</option>
+                    <option>QTY: 10</option>
+                  </select>
+                </div>
+                <div class="col-xs-6 col-sm-12">
+                  <a href="#" class="action-remove">
+                    Remove
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="save-cart-label"><a href="#">Save Cart</a></div>
+        </div>
+      </li>
+      <li>2</li>
+      <li>3</li>
+    </ol>
+
+    <hr/>
+
+    <div class="after-cart">
+
+      <div class="cart-subtotal-container text-right">
+        <h2 class="cart-subtotal">
+          <span class="cart-subtotal-label">Cart Subtotal (2 items)</span>
+          <span class="cart-subtotal-value">$159.99</span>
+        </h2>
+        <h4 class="cart-total-savings">
+          <span class="cart-total-savings-label">Total savings</span>
+          <span class="cart-total-savings-value">$40.00</span>
+        </h2>
+      </div>
+
+      <div class="cart-action-buttons btn-toolbar text-right">
+        <a href="#" class="btn btn-default">Continue Shopping</a>
+        <a href="#" class="btn btn-primary">Proceed to Checkout</a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}

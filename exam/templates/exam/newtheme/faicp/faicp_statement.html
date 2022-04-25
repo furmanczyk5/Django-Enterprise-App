@@ -1,0 +1,16 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+
+{% block content_main %}
+
+
+{% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+
+<h2 class="headline-underline">{{fellow.full_title}}</h2>
+
+<p>{{fellow.individualprofile.statement}}</p>
+
+{% endblock %}

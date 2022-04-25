@@ -1,0 +1,24 @@
+{% load content_extras %}
+
+  <a href="{{result|solr_record_to_details_path_filter}}" class="content-preview-item">
+    <div class="content-preview-item-image-block">
+      {% if result.thumbnail_2 %}
+        <img src="{{ result.thumbnail_2 }}" alt="{{result.featured_image_caption}}" class="img-responsive" />
+      {% else %}
+        <img src="//placehold.it/198x132" alt="recent article image" class="img-responsive"/>
+      {% endif %}
+    </div>
+    <div class="content-preview-item-headline">
+      {% if result.permission_groups|is_member_or_subscription %}
+      <div class="members-only">APA Member Content</div>
+      {% endif %}
+      <!-- not seeing sponsored NEED TO ADJUST THE LOGIC HERE -->
+      {% if result.tags_SPONSORED %}
+      <div class="members-only sponsored-content">{{ result.tags_SPONSORED.0|split_on_period:2 }}</div>
+      {% endif %}
+      {% if result.tags_PLANNING_MAG_SLUG %}
+      <h6 class="content-preview-item-superheadline">{{ result.tags_PLANNING_MAG_SLUG.0|split_on_period:2 }}</h6>
+      {% endif %}
+      <div class="content-preview-item-title">{{result.title}}</div>
+    </div>
+  </a>

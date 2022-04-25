@@ -1,0 +1,61 @@
+{% load cm_tags %}
+
+<hr class="dashed">
+
+{% if error_message %}
+  <div class="attention">{{error_message}}</div>
+{% else %}
+
+
+<a class="btn btn-sm btn-default close-event-reviews">hide reviews</a><br><br>
+
+<div class="row">
+  <div class="col-xs-12 small">
+    <div>
+      <span class="star-rating-rating featured-family">5 star</span>
+      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=breakdown.r_5 total=total %}</span>
+    </div>
+    <div>
+      <span class="star-rating-rating featured-family">4 star</span>
+      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=breakdown.r_4 total=total %}</span>
+    </div>
+    <div>
+      <span class="star-rating-rating featured-family">3 star</span>
+      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=breakdown.r_3 total=total %}</span>
+    </div>
+    <div>
+      <span class="star-rating-rating featured-family">2 star</span>
+      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=breakdown.r_2 total=total %}</span>
+    </div>
+    <div>
+      <span class="star-rating-rating featured-family">1 star</span>
+      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=breakdown.r_1 total=total %}</span>
+    </div>
+    <div>
+      <span class="star-rating-rating featured-family">0 star</span>
+      <span>{% include "cm/newtheme/includes/bar-percentage.html" with value=breakdown.r_0 total=total %}</span>
+    </div>
+  </div>
+</div>
+
+<div class="event-review-comments">
+  {% for comment in comments %}
+  <div class="event-reviews-comment">
+
+      <div id="comment-{{comment.id}}" class="cm-comment {{forloop.counter|divisibleby:2|yesno:',alt'}}">
+        <div>
+          <p class="small">{{comment.submitted_time}}</p>
+          {% if comment.content.event.event_type == "ACTIVITY" %}
+          <h4>{{ comment.content.event.title }}</h4>
+          {% endif%}
+        </div>
+        <div>{% star_rating comment.rating %}</div>
+        <p>{{comment.commentary}}</p>
+      </div>
+
+  </div>
+  {% endfor %}
+</div>
+<a class="btn btn-sm btn-default close-event-reviews">hide reviews</a>
+<hr class="dashed">
+{% endif %}

@@ -1,0 +1,32 @@
+.tab-wrap {
+  border-bottom: solid @color-content-borders 1px;
+  padding-bottom: 20px;
+}
+
+.tab {
+  margin-right: @grid-gutter-width;
+  position: relative;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &.selected {
+    color: @color-sycamore;
+
+    &:after {
+      position: absolute;
+      top: 35px;
+      left: 45%;
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border-right: 0.1em solid @color-content-borders;
+      border-top: 0.1em solid @color-content-borders;
+      transform: rotate(315deg);
+      margin-right: 0.5em;
+      background: #f7f7f7;
+    }
+  }
+}

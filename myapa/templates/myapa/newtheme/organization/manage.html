@@ -1,0 +1,111 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+
+<div class="page-head no-border-bottom no-spacing-bottom">
+    {% if company_contact %}
+    <h1 class="page-title">{{company_contact.company}} - Organization Profile</h1>
+    <h4 class="page-subtitle">{{ contact }} | APA ID: #{{ contact.user.username }} | {{ contact.company }}</h4>
+    {% else %}
+    <h1 class="page-title">Organization Profile</h1>
+    <h4 class="page-subtitle">Associated Company contact for your profile, can not be found. Please contact our customer service at <a href="mailto:customerservice@planning.org"><b>customerservice@planning.org</b></a>, for any questions.</h4>
+    {% endif %}
+</div>
+
+{% if company_contact %}
+<div class="layout-tracery no-top-border no-bottom-border">
+    <div class="layout-column">
+        {% if contact_admin == contact %}
+        <p>Welcome to {{company_contact}} profile page! You can view and manage all the details related to your organization using this page.</p>
+
+        <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+            {% if company_contact.organization_type %}
+            <div class="key-value-pair">
+                <div class="key">Organization Type</div>
+                <div class="value">{{company_contact.organization_type}}</div>
+            </div>
+            {% endif %}
+            {% if company_contact.pas_type %}
+            <div class="key-value-pair">
+                <div class="key">PAS Type</div>
+                <div class="value">{{company_contact.pas_type}}</div>
+            </div>
+            {% endif %}
+            {% if company_contact.bio %}
+            <div class="key-value-pair">
+                <div class="key">Organization Description</div>
+                <div class="value">{{ company_contact.bio }}</div>
+            </div>
+            {% endif %}
+        </div>
+        {% else %}
+        <p>It looks as if you’re trying to view <b>{{company_contact.company}}</b> organization profile, but you aren't listed as your organization’s administrator. Only administrators can view the organization profile. For any information please contact your administrator, <strong>{{ contact_admin.first_name }} {{contact_admin.last_name }}</strong> at  <strong>{{ contact_admin.email }}</strong>.</p>
+        {% endif %}
+
+        {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+        {% if contact_admin == contact %}
+        {% if contact_list %}
+        <h3>Subscribed Users:</h3>
+        <table class="table">
+            <tr class="head grey">
+                <th>Subscriber Name</th>
+                <th>Company</th>
+                <th></th>
+            </tr>
+            {% for contact_obj in contact_list %}
+            <tr id="id_{{contact_obj.ID}}">
+                <td>{{ contact_obj.LAST_FIRST }}</td>
+                <td>{% if contact_obj.COMPANY_SORT %}{{ contact_obj.COMPANY_SORT }}{% else %}--{% endif %}</td>
+                <td><button class="btn btn-sm btn-danger delete_contact" id="{{ contact_obj.ID }}">Delete</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        <form method="post" class="planning-form action" id="roster_email_form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.roster_emails %}
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        {{ form.employee_verify }}
+                        I verify that the employees listed above work at the subscriber’s office.
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Continue</button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+    {% endif %}
+{% endblock %}
+
+{% block additional_body_js %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".delete_contact").click(function(){
+            var id = $(this).attr("id")
+            $.ajax({
+                "url":"{% url 'store:related_contact_delete'%}",
+                method:"get",
+                data:"username="+id,
+                success:function(obj,status){
+                    if(obj.status == "success"){
+                        $("#id_"+id).remove()
+                    }
+                },
+                error:function(){
+
+                }
+            })
+        })
+    })
+</script>
+{% endblock %}

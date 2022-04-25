@@ -1,0 +1,42 @@
+{% extends extends_template|default:'cm/newtheme/aicp-page-sidebar.html' %}
+
+{% load staticfiles %}
+{% load cm_tags %}
+
+{% block title %}CM Log{% endblock %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+	<div class="layout-tracery">
+	  <div class="layout-column">
+
+		{% if is_success %}
+
+
+				<h1>Thank You</h1>
+				<p>{{message}}</p>
+			
+
+				<hr/>
+
+					<h2>Update Your Bio</h2>
+					<form method="post">
+						{% csrf_token %}
+						<textarea name="bio" class="full-width">{{contact.bio}}</textarea>
+						<button class="right" type="submit">Submit</button>
+					</form>
+				</div>
+			</div>
+
+	{% else %}
+
+			<p class="attention">{{message}}</p>
+
+
+	{% endif %}
+
+{% endblock %}

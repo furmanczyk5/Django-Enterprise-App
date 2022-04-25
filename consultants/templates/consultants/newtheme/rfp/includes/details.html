@@ -1,0 +1,68 @@
+<h2 class="details-title">{{rfp.title}}</h2>
+<h3 class="details-subtitle">{{rfp.company}}</h3>
+
+<p>
+	<span>{{rfp.city}},</span>
+    <span>{{rfp.state}}</span>
+    {% if rfp.country and rfp.country != "United States"%}<span>{{rfp.country}}</span>{% endif %}
+</p>
+
+<div class="content-managed-html">
+    {{ rfp.text|safe }}
+</div>
+
+<br/>
+
+<div class="form-section form-section-enclosed-light">
+	<div class="layout-tracery">
+		<div class="layout-column">
+			<div class="admin-list">
+				<div class="row hidden-xs hidden-sm">
+					<div class="col-md-6">
+						<h3>Request Type</h3>
+					</div>
+					<div class="col-md-6">
+						<h3>Deadline</h3>
+					</div>
+				</div>
+				<div class="admin-list-group-wrap">
+					<div class="col-md-6 admin-list-group">
+						<div class="h3 h-flush visible-xs-block visible-sm-block">
+							Request Type
+						</div>
+						<span>{{ rfp.rfp_type }}</span> 
+					</div>
+					<div class="col-md-6 admin-list-group">
+						<div class="h3 h-flush visible-xs-block visible-sm-block">
+							Deadline
+						</div>
+						{% if rfp.deadline %}
+							<span>{{ rfp.deadline|date:"l, F j, Y" }}</span> 
+						{% else %} 
+							-- 
+						{% endif %}
+					</div>
+			    </div> <!-- admin list group wrap -->
+		    </div> <!-- admin list -->
+	 	</div> <!-- layout column -->
+	 </div> <!-- layout tracery -->
+</div>
+
+<div class="form-section form-section-enclosed-light">
+
+    <h3 class="section-title">Contact Information</h3>
+
+    {% if rfp.website %}
+		<h5>Website</h5>
+		<div>
+			<a href="{{rfp.website}}" target="_blank">{{rfp.website}}</a>
+		</div>
+	{% endif %}
+
+	{% if rfp.email %}
+		<h5>Contact Email</h5>
+		<div>
+			<a href="mailto:{{rfp.email}}" target="_blank">{{rfp.email}}</a>
+		</div>
+	{% endif %}
+</div>

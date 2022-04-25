@@ -1,0 +1,56 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load i18n admin_static %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block messages %}
+{{ block.super }}
+{% if form.errors %}
+    <div class="message error">
+    {{ form.old_password.errors }}
+    {{ form.new_password1.errors }}
+    {{ form.new_password2.errors }}
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block content_main %}
+
+
+<div class="page-head">
+
+  <h1 class="page-title">{{ title }}</h1>
+
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <div class="form-head">
+      <div class="help-block">All fields are required unless labeled as optional</div>
+    </div>
+    <form action="" method="post" class="password-change">
+    {% csrf_token %}
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <h3 class="form-section-title">Change password</h3>
+
+      <p class="password-change-description">Please enter your old password, for security's sake, and then enter and confirm your new password. Passwords must be between 8-16 characters in length.</p>
+
+      {% include "newtheme/sandbox/forms/includes/input-text-auth.html" with field=form.old_password %}
+
+      {% include "newtheme/sandbox/forms/includes/input-text-auth.html" with field=form.new_password1 %}
+
+      {% include "newtheme/sandbox/forms/includes/input-text-auth.html" with field=form.new_password2 %}
+
+    </div>
+
+    <br>
+    <input type="submit" value="{% trans 'Change my password' %}" class="btn btn-primary" />
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+

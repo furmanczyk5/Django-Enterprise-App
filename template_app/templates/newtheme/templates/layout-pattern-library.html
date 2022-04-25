@@ -1,0 +1,65 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block additional_head_css %}
+<link type="text/css" rel="stylesheet" href="{% static 'newtheme/css/pattern-library.css' %}" />
+{% endblock %}
+
+{% block content_wrap %}
+<div class="container container-pattern-library">
+  <h1 class="pl-h1 pl-logo">
+    {% block title %}{% endblock %}
+  </h1>
+
+  <div class="pl-introduction pl-description">
+    {% block introduction %}{% endblock %}
+  </div>
+
+  <div class="pl-jump-nav">
+    <h3 class="pl-h3">Jump to a section:</h3>
+    <!-- Dynamically Generated -->
+  </div>
+
+  <div class="pl-patterns">
+    {% block patterns %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>
+//Initialize highlight.js
+hljs.initHighlightingOnLoad();
+
+//Generate jump links
+jQuery(document).ready(function(){
+  var $container = jQuery('.pl-patterns');
+  var $jumpNav = jQuery('.pl-jump-nav');
+  var $headings = $container.find('.pl-h1, .pl-h2');
+
+  var headlineIdCount = 0;
+
+  $headings.each(function(i, o) {
+    var $thisHeading = jQuery(this);
+
+    var headingText = $thisHeading.text();
+
+    var $newLink = $('<a href="#"/>').text(headingText).on('click', function (e) {
+      e.preventDefault();
+
+      $('html, body').animate({
+          scrollTop: parseInt($thisHeading.offset().top)
+      }, 0);
+
+    });
+
+    //Indent H2s
+    if($thisHeading.is('.pl-h2')) {
+      $newLink.prepend('&nbsp;&nbsp;&nbsp;&nbsp;');
+    }
+    $jumpNav.append($newLink);
+  });
+});
+</script>
+{% endblock %}

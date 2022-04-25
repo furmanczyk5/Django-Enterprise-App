@@ -1,0 +1,26 @@
+{% extends 'newtheme/templates/base.html' %}
+
+{% block content_wrap %}
+<div class="container content-wrap">
+  <div class="mainrow">
+
+    {% block content_sidebar_wrap %}
+    <div class="column-sidebar content-sidebar">
+    <!-- Page Sidebar -->
+    {% block content_sidebar %}{% endblock %}
+    </div>
+    {% endblock %}
+
+    <div class="column-maincontent content-main content-borders">
+      {% include "newtheme/templates/includes/django-message.html" %}
+      {% block content_main_access %}
+        {{ block.super }}
+      {% endblock %}
+
+      {% block footer_ad %}
+      {% include "newtheme/sandbox/banner-ad/banner-ad-footer.html" %}
+      {% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

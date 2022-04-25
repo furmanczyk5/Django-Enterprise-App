@@ -1,0 +1,20 @@
+{% load wagtailcore_tags %}
+
+{% if rows %}
+<div class="layout-tracery layout-tracery-flex">
+{% for column in rows.0 %}
+	{% if column %}
+	<div class="layout-column">
+	{% for item in column %}
+		<div class="layout-tracery no-side-spacing {% if forloop.first %}no-top-border{% endif %} {% if forloop.last %}no-bottom-border{% endif %}">
+			<div class="layout-column">
+			{# {{item}} #}
+			{% include_block item %}
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+	{% endif %}
+{% endfor %}
+</div>
+{% endif %}

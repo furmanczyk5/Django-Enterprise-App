@@ -1,0 +1,19 @@
+{% with content.contactrole.first.contact as contact%}
+  {% if contact.first_name %}
+    Dear {{contact.first_name}},
+  {% else %}
+    Dear member,
+  {% endif %}
+{% endwith %}
+
+Thank you for submitting "{{content.title}}" to the APA Research KnowledgeBase. We regret to inform you that we did not approve your submission for inclusion in the "{{content.related.first.content_live}}" collection because it is off-topic or duplicates existing content. 
+    
+We appreciate your interest and encourage you to continue to submit stories or resources that could be useful to other planners.
+    
+If you have any questions, please email <a href="mailto:knowledgebase@planning.org" target="_top">knowledgebase@planning.org</a>.
+   
+<p>
+  Sincerely,<br style="margin:0" />
+  American Planning Association<br style="margin:0" />
+  Research Department
+</p>

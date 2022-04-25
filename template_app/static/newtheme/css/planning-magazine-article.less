@@ -1,0 +1,316 @@
+@pm-font-size: 16px;
+@pm-font-size-desktop: 22px;
+@pm-font-size-sm: 16px;
+@pm-article-h2-size: 24px;
+@pm-article-h2-size-desktop: 32px;
+@pm-article-h3-size: 20px;
+@pm-article-h3-size-desktop: 28px;
+@pm-article-h4-size: 17px;
+@pm-article-h4-size-desktop: 24px;
+@pm-article-h4-line-height: 35px;
+@pm-article-caption: 18px;
+@pm-font-color: #000000;
+@pm-data-color-accent: #84344e;
+@pm-quote-color: #236192;
+@pm-data-font-size: 44px;
+@pm-data-font-size-desktop: 65px;
+@pm-font-serif: 'Janson Text LT Std', 'Times New Roman', serif;
+@pm-font-sans-serif: 'HCo Gotham SSm', 'Arial';
+@pm-font-sans-serif-alt: 'Venti-CF-Extra-Bold', 'Arial';
+@pm-font-weight-medium: 500;
+@pm-row-mb: 43px;
+
+
+.planning_article {
+    font-size: @pm-font-size;
+    font-family: @pm-font-serif;
+
+    @media (min-width: @screen-md-min) {
+        font-size: @pm-font-size-desktop;
+    }
+
+    h2,
+    .h2 {
+        margin-top: 32px;
+        margin-bottom: 16px;
+        font-size: @pm-article-h2-size;
+        font-weight: @pm-font-weight-medium;
+
+        @media (min-width: @screen-md-min) {
+            font-size: @pm-article-h2-size-desktop;
+        }
+    }
+
+    h3,
+    .h3 {
+        font-size: @pm-article-h3-size;
+
+        @media (min-width: @screen-md-min) {
+            font-size: @pm-article-h3-size-desktop;
+        }
+
+    }
+
+    h4,
+    .h4 {
+        font-size: @pm-article-h4-size;
+        font-weight: bold;
+        line-height: @pm-article-h4-line-height;
+
+        @media (min-width: @screen-md-min) {
+            font-size: @pm-article-h4-size-desktop;
+        }
+    }
+
+    p {
+        margin-bottom: 50px;
+
+        @media only screen and (max-width: @screen-xs-max) {
+            line-height: 27px;
+        }
+    }
+
+    p,
+    ul,
+    ol:not(.breadcrumb) {
+        max-width: 100%;
+    }
+
+    ul,
+    ol:not(.breadcrumb) {
+        padding-left: 1em;
+        margin-bottom: 32px;
+
+        li + li {
+            margin-top: 1em;
+        }
+    }
+
+    .image-block {
+        .caption {
+            font-size: @pm-article-caption;
+
+            @media only screen and (max-width:@screen-sm-max) {
+              font-size: @pm-font-size;
+            }
+
+            background-color: transparent;
+
+            &:not(.text-center) {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+
+    .inner-content {
+        // padding-left: 30px;
+        // padding-right: 30px;
+    }
+
+    .article-content-breakout {
+        margin-bottom: @pm-row-mb;
+
+        @media (min-width: 1180px) {
+            margin-left: calc(-8.33333333% - 15px);
+            margin-right: calc(-8.33333333% - 15px);
+        }
+
+        @media (max-width: @screen-xs-max) {
+            .image-block {
+                img {
+                    margin-left: -15px;
+                    margin-right: -15px;
+                    width: calc(100% + 30px);
+                }
+            }
+        }
+
+        .col-sm-6 + .col-sm-6{
+            margin-top: @pm-row-mb;
+
+            @media (min-width: @screen-sm-min) {
+                margin-top: 0;
+            }
+        }
+
+    }
+
+    blockquote {
+
+        font-family: @pm-font-sans-serif;
+        font-weight: @pm-font-weight-medium;
+        color: @pm-quote-color;
+        // FLAGGED FOR REFACTORING: PLANNING MAG FINAL CHANGES
+        // It looks like this is what Sandstorm intends:
+        margin-bottom: 50px;
+
+        @media (min-width: @screen-md-min) {
+            font-size: 25px;
+            margin-left: 90px;
+            margin-right: 90px;
+        }
+
+        .attribution {
+            margin-top: 1em;
+            margin-bottom: 2em;
+            font-family: @pm-font-serif;
+            font-style: italic;
+            text-align: right;
+            color: @pm-font-color;
+
+            @media (min-width: @screen-md-min) {
+                font-size: 22px;
+            }
+        }
+    }
+}
+
+.article-data-block {
+    margin-top: 44px;
+}
+
+.article-content-timeline {
+    margin-bottom: @pm-row-mb;
+    padding: 40px 30px;
+
+    @media (min-width: @screen-sm-min) {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 32px;
+        font-family: @pm-font-serif;
+        text-align: center;
+    }
+
+    .row {
+        margin-bottom: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.article-content-sidebar {
+    margin-bottom: @pm-row-mb;
+    padding: 40px 30px;
+
+    @media (min-width: @screen-sm-min) {
+        padding: 65px 60px;
+    }
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 32px;
+        font-family: @pm-font-serif;
+        text-align: center;
+
+        @media only screen and (max-width: @screen-xs-max) {
+            line-height: 34px;
+        }
+    }
+
+    h4 {
+        @media only screen and (min-width: @screen-sm-min) {
+            font-size: 25px;
+        }
+    }
+}
+
+// FLAGGED FOR REFACTORING: PLANNING MAG FINAL CHANGES
+.article-content-sidebar p:last-of-type {
+    margin-bottom: 0px;
+}
+
+.content-preview-item-data-block {
+    & + .content-preview-item-data-block {
+        margin-top: 24px;
+
+        @media (min-width: @screen-md-min) {
+            font-size: 40px;
+        }
+    }
+
+    &.content-preview-item-data-block-image-floated-reverse {
+        text-align: right;
+
+        .content-preview-item-image-floated {
+            float: right;
+        }
+    }
+
+    &.content-preview-item-data-block-underline {
+        &:after {
+            content: '';
+            margin-top: -12px;
+            height: 12px;
+            width: 110px;
+            background-color: @pm-data-color-accent;
+        }
+
+    }
+
+    .content-preview-item-summary {
+        .date {
+            font-size: @pm-font-size-desktop;
+        }
+
+        .data {
+            line-height: 1em;
+            font-family: @pm-font-sans-serif-alt;
+            font-size: @pm-data-font-size;
+            color: @pm-data-color-accent;
+
+            @media (min-width: @screen-md-min) {
+                font-size: @pm-data-font-size-desktop;
+            }
+        }
+
+        p {
+            font-weight: 300;
+        }
+
+        .date + p {
+            font-size: 11px;
+
+            @media (min-width: @screen-md-min) {
+                font-size: @pm-font-size;
+            }
+        }
+
+        .data + p {
+            font-size: 17px;
+        }
+    }
+}
+
+.pm-ad-interrupter {
+
+    .pm-ad-interrupter-notice {
+        margin-bottom: 10px;
+        margin-top: 2px;
+        font-family: @pm-font-sans-serif;
+        font-weight: @pm-font-weight-medium;
+        font-size: 8px;
+        text-transform: uppercase;
+    }
+
+    .banner-ad-leaderboard {
+        &::before,
+        &::after {
+            content: "";
+            background-color: #d3d3d3;
+            width: 100%;
+            height: 2px;
+            display: inline-block;
+
+            @media (min-width: @screen-md-min) {
+                width: 70%;
+            }
+        }
+    }
+}

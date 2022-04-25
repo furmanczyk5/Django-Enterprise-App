@@ -1,0 +1,61 @@
+@import "mixins";
+
+@width-pagination-nav: 2.0em;
+
+.planning-search-infobar{
+	padding:1em;
+	font-size:1.4em;
+	background-color:#eee;
+
+	.planning-pagination-nav {
+		width:@width-pagination-nav;
+		height:@width-pagination-nav;
+		display:inline-block;
+		white-space:nowrap;
+		line-height:@width-pagination-nav;
+		&.selected {
+			border:2px solid black;
+			.rounded(50%);
+		}
+	}
+
+	.filter-item {
+		display:inline-block;
+		vertical-align:middle;
+		margin:0.25em 0.5em 0.25em 0em;
+	}
+}
+
+.planning-search-result {
+	margin:2em 0em;
+	&:hover {
+		.opacity;
+	}
+
+	.planning-search-thumbnail {
+		.rounded(24px);
+	}
+}
+
+.planning-image-details-image {
+	margin-top:50%
+}
+
+.facet-menu {
+	width: 196px;
+	float:right;
+	// height: 174px;
+	// padding:4px 8px;
+	// background-color:@color-action;
+	// color:@color-lightgrey;
+	// font-size: 0.8em;
+	// margin:(2 * @width-margin) 0px;
+	// img {
+	// 	margin:4px 0px;
+	// }
+}
+
+
+
+
+

@@ -1,0 +1,91 @@
+/**
+ * dependencies: form section
+ */
+.conference-event-row {
+  .make-row();
+}
+
+.conference-event-col {
+  .make-sm-column(6);
+  .make-md-column(4);
+  margin-bottom: @grid-gutter-width;
+  @media screen and (min-width: @screen-sm-min) {
+    &:nth-child(2n+1){
+      clear: left;
+    }
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    &:nth-child(2n+1){
+      clear: none;
+    }
+
+    &:nth-child(3n+1){
+      clear: left;
+    }
+  }
+}
+
+.conference-event {
+  &:extend(.form-section all);
+  &:extend(.form-section-enclosed-dark all);
+
+  & {
+    position: relative;
+    padding: 0;
+  }
+
+  & + & {
+    margin-top: 25px;
+
+    @media screen and (min-width: @screen-sm-min) {
+      margin-top: 0;
+    }
+  }
+
+  &:before {
+    background-color: @color-anzac;
+  }
+
+  &.color-red {
+    &:before {
+      background-color: @color-chocolate-red;
+    }
+  }
+
+  &.border-green {
+    border-color: @color-limeade;
+  }
+
+  & .conference-event-body {
+    .strip-edge-margins();
+
+    padding-left: @padding-level-2-xs;
+    padding-right: @padding-level-2-xs;
+    padding-top: 24px;
+    padding-bottom: 24px;
+
+    @media screen and (min-width: @padding-breakpoint) {
+      padding-left: @padding-level-2-md;
+      padding-right: @padding-level-2-md;
+    }
+
+    & .conference-event-body-teaser-text {
+      height: 70px;
+      margin-bottom: 1.1em;
+      overflow: hidden;
+    }
+
+    & .conference-event-body-details {
+      & .conference-event-body-detail {
+        margin-bottom: 24px;
+      }
+    }
+  }
+
+  & .conference-event-body h2 {
+    color: @color-limeade;
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+}

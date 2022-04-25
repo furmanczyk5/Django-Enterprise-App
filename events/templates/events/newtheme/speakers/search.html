@@ -1,0 +1,187 @@
+{% extends 'content/newtheme/search/results.html' %}
+
+{% load content_extras %}
+
+{% block searchHeader %}
+<h1 class="page-title list-of-links">APA Speaker Directory</h1>
+{% if filter_form.keyword.value %}
+<h2 class="page-subtitle">Results for &ldquo;<strong>{{filter_form.keyword.value}}</strong>&rdquo;</h2>
+{% else %}
+
+{{ content.text|safe }}
+
+{% endif %}
+{% endblock searchHeader %}
+
+{% block searchKeyword %}
+{% include "content/newtheme/search/includes/search-keyword.html" with keyword=keyword filter_form=filter_form %}
+{% endblock searchKeyword %}
+
+{% block filterSortControl %}
+{% include "events/newtheme/speakers/search-filters.html" with facet_results=facet_results filter_form=filter_form %}
+{% endblock filterSortControl %}
+
+{% block searchList %}
+{% with results=results.response.docs %}
+<div class="content-preview-list layout-tracery no-bottom-border">
+  <ul>
+  {% for result in results %}
+  <li class="content-preview-item">
+
+  {% if result.thumbnail %}
+  <div class="content-preview-item-image-floated">
+    {% if result.url %}
+    <a href="{{result.url}}">
+      <img src="{{result.thumbnail}}" />
+    </a>
+    {% else %}
+    <img src="{{result.thumbnail}}" />
+    {% endif %}
+  </div>
+  {% endif %}
+  
+  <div class="content-preview-item-center-block">
+    <h4 class="content-preview-item-headline">
+      {% if result.url %}
+      <a href="{{result|solr_record_to_details_path_filter}}">{{ result.title }}</a>
+      {% else %}
+      {{ result.title }}
+      {% endif %}
+    </h4>
+
+    {% if result.url %}
+    <div class="content-preview-item-summary">
+      <a class="btn btn-sm btn-primary" href="{{result|solr_record_to_details_path_filter}}">View Profile</a>
+    </div>
+    {% endif %}
+
+    <div class="content-preview-item-summary">
+    	<div class="key-value-pair-group">
+        {% if result.address_city or result.address_state or result.address_country %}
+        <div class="key-value-pair">
+          <div class="key">Location</div>
+          <div class="value">
+          {{result.address_city}}{%if result.address_state %}, {{ result.address_state }}{% endif %}{% if result.address_country and result.address_country != "United States" %}, {{result.address_country}} {% endif %}</div>
+        </div>
+        {% endif %}
+    		{% if result.company %}
+    		<div class="key-value-pair">
+        	<div class="key">Company</div>
+        	<div class="value">{{result.company}}</div>
+      	</div>
+      	{% endif %}
+
+      	{% if result.email and result.user_has_contact_permission %}
+    		<div class="key-value-pair">
+        	<div class="key">Email</div>
+        	<div class="value"><a href="mailto:{{result.email}}">{{result.email}}</a></div>
+      	</div>
+      	{% endif %}
+
+      	{% if result.phone and result.user_has_contact_permission %}
+    		<div class="key-value-pair">
+        	<div class="key">Phone</div>
+        	<div class="value">{{result.phone}}</div>
+      	</div>
+      	{% endif %}
+
+      </div>
+    </div>
+
+    {% if result.bio %}
+    <div class="speaker-bio content-preview-item-summary">
+
+      <div class="part-bio">
+      {{result.bio|truncatechars:"250"}}{% if result.bio|length > 250 %}<a href="javascript:;" class="show-more">Show More</a>{% endif %}
+      </div>
+
+      {% if result.bio|length > 250 %}
+      <div class="full-bio" style="display:none">
+      {{result.bio}} <a href="javascript:;" class="show-less">Show Less</a>
+      </div>
+      {% endif %}
+
+    </div>
+    {% endif %}
+
+    <div class="speaker-events content-preview-item-summary">
+    	<h5>Events</h5>
+
+    	{% for event in result.speaker_events|slice:":3" %}
+        {#<!-- NOTE: MAY RETHINK THIS CONDITION WITH LAUNCH OF APA LEARN -->#}
+        {% if event|split_on_line:1 == 'ACTIVITY'  %}
+      	   <div>
+              {{ event|split_on_line:3|slice:":10" }}:
+              <a href="/events/activity/{{ event|split_on_line:0 }}/">
+                  {{ event|split_on_line:2 }}
+              </a>
+          </div>
+        {% endif %}
+    	{% endfor %}
+      {% for event in result.speaker_events|slice:"3:" %}
+        {% if event|split_on_line:1 == 'ACTIVITY'  %}
+          <div class="more-events" style="display:none">
+              {{ event|split_on_line:3|slice:":10" }}:
+              <a href="/events/activity/{{ event|split_on_line:0 }}/">
+                {{ event|split_on_line:2 }}
+              </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% if result.speaker_events|length > 3 %}
+      <div>
+        <a class="show-more" href="javascript:;">Show More</a>
+        <a class="show-less" href="javascript:;" style="display:none;">Show Less</a>
+      </div>
+      {% endif %}
+    </div>
+
+  </li>
+  {% empty %}
+  <p>There are no results matching your query</p>
+  {% endfor %}
+  </ul>
+  <hr>
+</div>
+{% endwith %}
+{% endblock searchList %}
+
+{% block additional_body_js %}
+{{block.super}}
+
+<script>
+
+$(function(){
+
+  $(".speaker-events a.show-more", document).on("click", function(event){
+    var $speaker_events_section = $(event.target).closest(".speaker-events");
+    $speaker_events_section.find(".show-more").hide();
+    $speaker_events_section.find(".more-events").show();
+    $speaker_events_section.find(".show-less").show();
+  });
+
+  $(".speaker-events a.show-less", document).on("click", function(event){
+    var $speaker_events_section = $(event.target).closest(".speaker-events");
+    $speaker_events_section.find(".show-less").hide();
+    $speaker_events_section.find(".more-events").hide();
+    $speaker_events_section.find(".show-more").show();
+  });
+
+  $(".speaker-bio a.show-more", document).on("click", function(event){
+    var $speaker_bio_section = $(event.target).closest(".speaker-bio");
+    $speaker_bio_section.find(".part-bio").hide();
+    $speaker_bio_section.find(".full-bio").show();
+  });
+
+  $(".speaker-bio a.show-less", document).on("click", function(event){
+    var $speaker_bio_section = $(event.target).closest(".speaker-bio");
+    $speaker_bio_section.find(".full-bio").hide();
+    $speaker_bio_section.find(".part-bio").show();
+  });
+
+});
+</script>
+
+{% endblock %}
+
+

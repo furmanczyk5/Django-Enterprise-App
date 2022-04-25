@@ -1,0 +1,24 @@
+{% load content_extras %}
+
+<li class="content-preview-item">
+
+	{# <h6 class="content-preview-item-superheadline">{{result.content_type}}</h6>#}
+
+	<h4 class="content-preview-item-headline">
+		<a href="{{result|solr_record_to_details_path_filter}}">{{ result.title }}</a>
+	</h4>
+
+	<div class="content-preview-item-subheadline">{{result.company}}</div>
+
+    <div class="content-preview-item-summary">
+       {% if result.address_city %}{{result.address_city}},{% endif %}
+      {% if result.address_state %}{{result.address_state}}{% endif %}
+      {% if result.address_country and result.address_country != "United States"%}, {{result.address_country}}{% endif %}
+    </div>
+
+    <div class="content-preview-item-summary">Deadline: {{result.end_time|datetime_from_json|date:"l, F j, Y"}}</div>
+
+	{% if result.description %}
+    <div class="content-preview-item-summary">{{result.description}}</div>
+	{% endif %}
+</li>

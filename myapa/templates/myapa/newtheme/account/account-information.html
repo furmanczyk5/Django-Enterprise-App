@@ -1,0 +1,201 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+{% load myapa_tags %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">{% block join_title %}MyAPA{% endblock %}</h1>
+    {% block join_subtitle %}
+    <h4 class="page-subtitle">
+      Please be sure this information is complete, accurate, and up to date. This will help APA know and serve you better.
+    </h4>
+    {% endblock %}
+  </div>
+
+  {% block form_intro %}{% endblock %}
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+
+      <div class="form-head" {% if potential_duplicates %}style="display:none"{% endif %}>
+        <h2>Email, Date of Birth, and Phone</h2>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-7 col-md-8">
+
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            {% for hidden in form.hidden_fields %}
+            {{hidden}}
+            {% endfor %}
+
+            {% block join_name_section %}
+            <div id="account-information-fields" {% if potential_duplicates %}style="display:none"{% endif %}>
+
+              <div class="form-section form-section-enclosed-dark">
+              
+                <h3 class="form-section-title">Name</h3>
+                 <div class="form-group">
+                   {% if not is_admin %}
+                  <p>To update your name, please submit a request using our <a href="/customerservice/contact-us/">customer service form</a>.</p>
+                   {% endif %}
+                </div>
+
+                {% block join_name_fields %}
+
+                {% if contact.prefix_name %}
+                <div class="form-group">
+                  <label>Prefix: </label>
+                  <div class="form-control-static">
+                    {{ contact.prefix_name }}
+                  </div>
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                  <label>First Name: </label>
+                  <div class="form-control-static">
+                    {{ contact.first_name }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Middle Name: </label>
+                  <div class="form-control-static">
+                    {{ contact.middle_name }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>last Name: </label>
+                  <div class="form-control-static">
+                    {{ contact.last_name }}
+                  </div>
+                </div>
+
+                {% if contact.suffix_name %}
+                <div class="form-group">
+                  <label>Suffix: </label>
+                  <div class="form-control-static">
+                    {{ contact.suffix_name }}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.informal_name %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.birth_date %}
+
+                {% endblock %}
+
+              </div>
+              {% endblock %}
+
+              {% block join_email_section %}
+              <div class="form-section form-section-enclosed-dark">
+                  <h3 class="form-section-title"> PRIMARY EMAIL </h3>
+                      <div class="form-group">
+                <div class="form-group">
+                  <p>Email is the primary way APA communicates with members. Please be sure your email address is always up to date. An alternative email helps to ensure that we can reach you.</p>
+                </div>
+                  </div>
+                      
+
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %}
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.verify_email %}
+
+                  <div class="form-group">
+                    <h3 class="form-section-title"> ALTERNATE EMAIL</h3>
+                  </div>
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_email %}
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_verify_email %}
+
+              </div>
+              {% endblock %}
+
+              {% block join_password_section %}{% endblock %}
+
+
+              {% block join_contact_info_section %}
+              <div class="form-section form-section-enclosed-dark">
+                <div class="form-section form-section-limit-width">
+                  <h3 class="form-section-title">PHONE NUMBER</h3>
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_phone %}
+                </div>
+              </div>
+              {% endblock %}
+
+              {% block join_addresses_section %}{% endblock %}
+
+              {% block form_submit_button %}
+              <div class="form-actions">
+                <input type="submit" name="submit" class="btn btn-primary" value="Save" />
+              </div>
+              {% endblock %}
+            </div>
+
+            {% if potential_duplicates %}
+            <div id="duplicate-account-prompt" class="form-section form-section-enclosed-dark">
+
+                <h2>Potential Duplicate Account</h2>
+
+                <p>It looks like you may already have an account. Do you recognize the information below?</p>
+
+                <div class="admin-list">
+                <div class="admin-list-group-wrap">
+                  {% for duplicate_contact in potential_duplicates %}
+
+                  <div class="col-md-5 admin-list-group">
+                    <div>Name: <b>{{ duplicate_contact.full_title}}</b></div>
+                    <div>Email: <b>{{ duplicate_contact.email|email_star_mask }}</b></div>
+                    <div>State/Province: <b>{{ duplicate_contact.state }}</b></div>
+                  </div>
+                  <div class="col-md-7 admin-list-group">
+                  This is me:
+                    <a class="btn btn-primary btn-sm" href="/login/?next={{ request.path }}" style="margin:2px;">Log in</a>
+                    <a class="btn btn-primary btn-sm" href="/password_reset/" style="margin:2px;">Reset password</a>
+                  </div>
+                  <div class="clearfix"></div>
+                  <hr/>
+                  {% endfor %}
+
+                </div>
+                </div>
+
+                <p>
+                If you don't know your password and don't have access to the email listed;
+                or if you have any questions about this warning,
+                <a href="/customerservice/">contact customer service</a>.
+                </p>
+
+                <p>If this is not you, please ignore this warning and create a new account.</p>
+                <div class="form-group">
+                  <button type="submit" name="submit" class="btn btn-primary" value="duplicate_continue" style="width:auto;">
+                  Create New Account</button>
+                </div>
+
+            </div>
+{% endif %}
+
+          </form>
+        </div>
+
+        {% block create_account_login %}{% endblock %}
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+

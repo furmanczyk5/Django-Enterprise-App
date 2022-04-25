@@ -1,0 +1,96 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+{% load compress %}
+
+{% block additional_head_css %}
+{# date picker #}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+{% endblock additional_head_css %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+<div class="page-head">
+  {% include "newtheme/templates/includes/social-sharing-widget.html" %}
+
+  {% if breadcrumb %}
+  {% include 'newtheme/templates/includes/breadcrumbs.html' with breadcrumb=breadcrumb%}
+  {% endif %}
+
+  <h1 class="page-title">Blog</h1>
+</div>
+<div class="layout-tracery no-bottom-border blog-post">
+  <div class="layout-column">
+
+
+    <div class="row">
+      <div class="col-xs-12 col-lg-8">
+
+        {% if results.response.docs|length > 0 %}
+        <div class="content-preview-list no-top-border no-top-spacing">
+          <ul>
+            {% for result in results.response.docs %}
+            {% include "blog/newtheme/post-preview.html" with result=result %}
+            {% endfor %}
+          </ul>
+        </div>
+        <hr>
+        <div class="search-pagination">
+        {% include "content/newtheme/search/includes/pagination.html" with p=pagination %}
+        </div>
+        <hr>
+        <hr>
+
+        {% else %}
+        <p>There are no blog posts available.</p>
+        {% endif %}
+      </div>
+      <div class="col-xs-12 col-lg-4">
+        <div class="blog-sidebar-section">
+          <form id="sort-facet-form">
+          {% for tag_type in facet_results %}
+            <h5>{{tag_type.title}}</h5>
+
+            <div class="list-of-links list-of-links-tiny">
+            {% for tag in tag_type.tags %}
+              {# {% if tag.selected %} disabled="disabled" {% endif %} #}
+              <h4><a href="#" class="btn-facet-tag" data-tag="tag{{tag.id}}">{{tag.title}}</a></h4>
+            {% endfor %}
+            </div>
+
+          {% endfor %}
+
+          <br>
+          <h4><a href="https://www.planning.org/multimedia/blogs/">Archives</a></h4>
+
+          <div id="facet-results" class="hidden">
+          {% for tag_type in facet_results %}
+          {% for tag in tag_type.tags %}
+          <input id="tag{{tag.id}}" type="checkbox" class="facet-tag" name="tags" value={{tag.id}}>
+          {% endfor %}
+          {% endfor %}
+          </div>
+
+          </form>
+
+        </div>
+        <div class="blog-sidebar-section">
+          <div class="banner-ads-container">
+            {% include 'newtheme/sandbox/banner-ad/layout-banner-ad-small-3up-vertical.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block additional_body_js %}
+<script src="{% static 'newtheme/js/filter-sort-control.js' %}"></script>
+{% endblock additional_body_js%}

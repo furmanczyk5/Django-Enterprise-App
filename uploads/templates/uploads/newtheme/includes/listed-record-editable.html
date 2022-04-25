@@ -1,0 +1,6 @@
+<form method="post">
+	{% csrf_token %}
+	<input type="hidden" name="remove_id" value="{{upload.id}}"/>
+	<button type="submit" style="float:right" class="small right btn btn-sm btn-default" name="submit_button" value="remove" class="right">remove</button>
+</form>
+{% include "uploads/newtheme/includes/listed-record.html" %}

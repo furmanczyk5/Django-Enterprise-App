@@ -1,0 +1,94 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+  <h1 class="page-title">All Orders for {{ company }}</h1>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2>Orders</h2>
+    <div class="admin-list">
+      <div class="row hidden-xs hidden-sm">
+        <div class="col-md-2">
+          <h3>Order #</h3>
+        </div>
+        <div class="col-md-2">
+          <h3>Amount</h3>
+        </div>
+        <div class="col-md-2">
+          <h3>Status</h3>
+        </div>
+        <div class="col-md-2">
+          <h3>Submitted On</h3>
+        </div>
+        <div class="col-md-2">
+          <h3>Receipt</h3>
+        </div>
+      </div>
+      <div class="admin-list-group-wrap">
+        {% for purchase in purchases %}
+        {% with order=purchase.order %}
+
+        <div class="col-md-2 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Order #
+          </div>
+         {{ order.id }}
+        </div>
+        <div class="col-md-2 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Amount
+          </div>
+          ${{ purchase.amount }}
+        </div>
+        <div class="col-md-2 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Status
+          </div>
+          <!-- TO DO... may want to color code this based on the status: -->
+          {% if order.order_status == "NOT_SUBMITTED" %}
+          <span>Not Yet Submitted</span>
+          {% elif order.order_status == "SUBMITTED" %}
+          <span>Submitted</span>
+          {% elif order.order_status == "CANCELLED" %}
+          <span>Cancelled</span>
+          {% elif order.order_status == "PROCESSED" %}
+          <span>Processed (archived)</span>
+          {% endif %}
+        </div>
+        <div class="col-md-2 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Submitted On
+          </div>
+          {% if order.submitted_time %}
+          {{ order.submitted_time|date:"M d Y P e" }}
+          {% else %}
+          --
+          {% endif %}
+        </div>
+        <div class="col-md-2 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Receipt
+          </div>
+          <a href="/store/order_confirmation/?order_id={{ order.id }}">View</a>
+        </div>
+        {% endwith %}
+        <div class="clearfix"></div>
+        {% empty %}
+        <p><i>No orders have been submitted.</i></p>
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

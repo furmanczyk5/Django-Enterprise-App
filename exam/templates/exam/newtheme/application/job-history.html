@@ -1,0 +1,116 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+{% load myapa_tags %}
+{% load exam_extras %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    {% if is_advanced %}
+    <h1 class="page-title">ASC Application</h1><br>
+    {% else %}
+    <h1 class="page-title">AICP Certification Application</h1><br>
+    {% endif %}
+    <h2 class="page-title">SECTION 2: EMPLOYMENT HISTORY</h2>
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+            {% if is_advanced %}
+            <h3><strong>AICP ADVANCED SPECIALTY CERTIFICATION APPLICATION</strong></h3>
+            <p><strong>Employment  History</strong></p>
+            <p>Please enter your professional planning experience for each position.</p>
+            {% else %}
+            <h3><strong>AICP Certification APPLICATION</strong></h3>
+            <p><strong>Employment  History</strong></p>
+            <p>Please enter your professional planning experience and upload an employment verification letter for each position. Employment verification letters are used to verify the professional planning experience on the application.
+              See section "Verification of Education and Employment" in the <a href="/media/document/9137038/">AICP Candidate Pilot Program Guide</a> for more information.</p>
+    {% endif %}
+
+    <div class="layout-column">
+      <div class="row">
+
+              {% if is_advanced %}
+              <h4>Required planning experience: <strong>{{ required_planning_experience }} years</strong></h4>
+              {% else %}
+              <h4>Required planning experience based on your education history: <strong>{{ required_planning_experience }} years</strong></h4>
+              {% endif %}
+              <h4>Total planning experience entered so far: <strong>{{ planning_experience }} years</strong></h4><br>
+
+          <form align="left" id="new_user_reg" method="post" class="validate-form" onsubmit="return formsubmitcheck()" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- MANAGEMENT FORM -->
+            {{ form_set.management_form }}
+            <!-- MANAGEMENT FORM -->
+
+            {% for form in form_set %}
+            <!-- {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %} -->
+              {% include "ui/newtheme/forms/includes/display-errors.html" %}
+  
+              {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+              {% endfor %}
+              
+              <div class="accordion">
+                  <h4 class="accordion-handle">
+                  
+                      {% if form.company.value %}
+                        {{ form.company.value }}
+                      {% else %}
+                        Add New Job
+                      {% endif %}
+                      <!-- Add New Job -->
+                  </h4>
+                  <div class="accordion-content">
+                      <p>
+                          {% if form.company.value %}
+                          <a class="btn btn-danger btn-sm" href="{% url 'job_delete' master_id=view.application.master_id %}?job_id={{form.id.value}}">Delete</a>
+                          {% endif %}
+                      </p>
+                      <!-- {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.verification_document %} -->
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.company %}
+                      <!-- {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %} -->
+                      <!-- {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %} -->
+                      <!-- {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.zip_code %} -->
+                      <!-- {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %} -->
+                      <!--{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.phone %}-->
+
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.start_date %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.end_date %}
+                      Experience value of this job: {{ form.instance.get_planning_experience|timedelta_to_year }} years.</br>
+
+                      {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.is_current %}
+                      {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.is_part_time %}
+
+                      <!-- {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.is_planning %} -->
+                      <!-- {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.contact_employer %} -->
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.supervisor_name %}
+                      <br>
+
+                      <!-- {{ form.verification_document }}<br> -->
+                      <!-- {{ form.uploaded_file.value }} -->
+                      {% if is_advanced %}
+                      <p>Employment verification document not required for ASC applicants.</p>
+                      {% else %}
+                      <p class="small" id="file_field">Choose Employment Verification Document (pdf only):
+                      {{ form.uploaded_file }}
+                      </p>
+                      {% endif %}
+                  </div>
+                </div>
+
+            {% endfor %}
+
+            <div class="form-actions">
+              <input id="file_upload" type="submit" name="save_and_add_another" class="btn btn-primary" value="Save and add another job"/>
+              <input id="file_upload" type="submit" name="save_and_continue" class="btn btn-primary" value="Save and continue" />
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

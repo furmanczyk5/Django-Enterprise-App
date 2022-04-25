@@ -1,0 +1,58 @@
+---
+
+# Django model admin permissions for the staff-marketing group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "119464"  # Susan Deegan
+  - "126797"  # Sally Lamberston
+  - "141400"  # Karen Kazmierczak
+  - "283811"  # Elizabeth Lang
+  - "307515"  # Dustin Calliari
+  - "344730"  # Molly Walsh
+  - "351894"  # Ariana Hampton-Marcell
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+
+  - conference_conferenceactivity
+  - conference_conferenceattendee
+  - conference_conferencecontact
+  - conference_conferenceparticipant
+  - conference_microsite
+  - conference_micrositeactivity
+  - conference_micrositeattendee
+  - conference_micrositecontributor
+  - conference_nationalconferenceactivity
+  - conference_nationalconferenceattendee
+  - conference_nationalconferencecontributor
+  - content_content
+  - knowledgebase_collection
+  - knowledgebase_collectionrelationship
+  - knowledgebase_healthresource
+  - knowledgebase_resource
+  - knowledgebase_resourcesuggestion
+  - knowledgebase_resourcesuggestionreview
+  - knowledgebase_resourcesuggestionreviewrole
+  - knowledgebase_solarresource
+  - knowledgebase_story
+  - knowledgebase_storyreview
+  - knowledgebase_storyreviewrole
+  - knowledgebase_suggestionreviewrole
+  - myapa_contactrole
+  - pages_aboutpage
+  - pages_aicppage
+  - pages_careerpage
+  - pages_conferencespage
+  - pages_connectpage
+  - pages_knowledgecenterpage
+  - pages_membershippage
+  - pages_outreachpage
+  - pages_policypage
+  - publications_article
+  - publications_planningmagarticle
+  - publications_publication
+  - publications_report

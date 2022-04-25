@@ -1,0 +1,135 @@
+<div class="container-fluid cm-filters" style="border: solid #e4e7eb 1px;">
+  <div class="container-fluid">
+    <h6 class="cm-filters-row-heading">CM CREDITS</h6>
+    <div class="row">
+      <div class="checkbox {% if filter_form.cm.errors %} has-error {% endif %}">
+        {#<label for="{{ filter_form.cm.id_for_label }}">{{ filter_form.cm.label }}:</label>#}
+        {{ filter_form.cm }}
+        {% if filter_form.cm.help_text %}
+        <div class="help-block">{{ filter_form.cm.help_text|safe }}</div>
+        {% endif %}
+        {% if filter_form.cm.errors %}
+        <div class="form-error">
+          {% for error in filter_form.cm.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+    <div class="row">
+
+      {% if filter_form.event_type %}
+      <div class="col-sm-4 form-group form-group-horizontal{%if filter_form.event_type.errors %} has-error {% endif %}">
+        <label for="{{ filter_form.event_type.id_for_label }}">{{ filter_form.event_type.label }}:</label>
+        {{ filter_form.event_type }}
+        {% if filter_form.event_type.help_text %}
+        <div class="help-block">{{ filter_form.event_type.help_text|safe }}</div>
+        {% endif %}
+        {% if filter_form.event_type.errors %}
+        <div class="form-error">
+          {% for error in filter_form.event_type.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if filter_form.state %}
+      <div class="col-sm-4 form-group form-group-horizontal{%if filter_form.state.errors %} has-error {% endif %}">
+        <label for="{{ filter_form.state.id_for_label }}">{{ filter_form.state.label }}:</label>
+        {{ filter_form.state }}
+        {% if filter_form.state.help_text %}
+        <div class="help-block">{{ filter_form.state.help_text|safe }}</div>
+        {% endif %}
+        {% if filter_form.state.errors %}
+        <div class="form-error">
+          {% for error in filter_form.state.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  {% if filter_form.range_after and filter_form.range_before %}
+  <div class="container-fluid">
+    <h6 class="cm-filters-row-heading">DATES</h6>
+    <div class="row">
+
+      <div class="col-sm-6 col-md-4 col-lg-3 form-group form-group-horizontal{%if filter_form.range_after.errors %} has-error {% endif %}">
+        <label for="{{ filter_form.range_after.id_for_label }}">{{ filter_form.range_after.label }}:</label>
+        {{ filter_form.range_after }}
+        {% if filter_form.range_after.help_text %}
+        <div class="help-block">{{ filter_form.range_after.help_text|safe }}</div>
+        {% endif %}
+        {% if filter_form.range_after.errors %}
+        <div class="form-error">
+          {% for error in filter_form.range_after.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+      </div>
+
+      <div class="col-sm-6 col-md-4 col-lg-3 form-group form-group-horizontal{%if filter_form.range_before.errors %} has-error {% endif %}">
+        <label for="{{ filter_form.range_before.id_for_label }}">{{ filter_form.range_before.label }}:</label>
+        {{ filter_form.range_before }}
+        {% if filter_form.range_before.help_text %}
+        <div class="help-block">{{ filter_form.range_before.help_text|safe }}</div>
+        {% endif %}
+        {% if filter_form.range_before.errors %}
+        <div class="form-error">
+          {% for error in filter_form.range_before.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+
+  {% if filter_form.has_meeting_type|default_if_none:True %}
+  <div class="container-fluid">
+    <h6 class="cm-filters-row-heading">CM Meeting Type</h6>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group checkbox">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="{{ filter_form.is_free.html_name }}" value="{{ filter_form.is_free.value }}" {% if request.GET.is_free == 'False' %}checked{%endif%}>
+            {{ filter_form.is_free.label }}
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="{{ filter_form.is_apa.html_name }}" value="{{ filter_form.is_apa.value }}" {% if request.GET.is_apa == 'False' %}checked{%endif%}>
+            {{ filter_form.is_apa.label }}
+          </label>
+          {% if filter_form.include_archived %}
+          <label class="checkbox-inline">
+            <input type="checkbox" name="{{ filter_form.include_archived.html_name }}" value="{{ filter_form.include_archived.value }}"  {% if request.GET.include_archived == 'False' %}checked{%endif%}>
+            {{ filter_form.include_archived.label }}
+          </label>
+          {%endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+<br />
+
+<div class="container-fluid">
+  <div class="row">
+    <button class="btn btn-primary">Apply Filters</button>
+  </div>
+</div>

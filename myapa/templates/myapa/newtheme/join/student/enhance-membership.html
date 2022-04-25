@@ -1,0 +1,73 @@
+{% extends 'myapa/newtheme/join/enhance-membership.html' %}
+
+{% load static %}
+
+{% block join_title %}APA Student Membership{% endblock %}
+
+{% block join_exclude_planning_print %}{% endblock %}
+
+{% block join_primary_chapter %}
+<div class="form-section form-section-enclosed-light">
+	<h3 class="form-section-title">Your Primary APA Chapter</h3>
+	<p>One free APA Chapter is included with Student Membership. Your APA Chapter is determined by your Mailing address. <a href="/join/student/account/">Edit Address Preferences and Chapter Assignment</a></p>
+	<div>
+	  <img src="{% static primary_chapter_logo %}" style="float:left; margin-right:16px"/>
+	  <h2>{{primary_chapter.title}}</h2>
+	</div>
+	<div style="clear:both"></div>
+</div>
+{% endblock %}
+
+{% block join_chapters %}{% endblock %}
+
+{% block join_divisions %}
+<div class="form-section form-section-enclosed-dark">
+	<h3 class="form-section-title">DIVISIONS</h3>
+	<p>Join up to five APA divisions ― communities of professionals who share your interests ― free. Divisions offer specialized education, forums, and publications, as well as contribute to national policy work.</p><br/>
+	{% include "myapa/newtheme/join/includes/multiple-checkbox-field.html" with field=form.divisions form=form %}
+</div>
+{% endblock %}
+
+{% block join_subscriptions %}
+<div class="form-section form-section-enclosed-dark">
+	<h3 class="form-section-title">FREE ONLINE PUBLICATIONS</h3>
+	<p>
+	  Included with student membership is free online access to the following publications:
+	</p>
+
+	<ul>
+	  <li><i>Planning</i></li>
+	    <li>PAS Reports</li>	
+	  <li><i>PAS Memo </i></li>
+	  <li><i>PAS QuickNotes </i></li>
+	    <li>PAS Essential Info Packets</li> 
+	  <li><i>Journal of the American Planning Association</i></li> 
+	  <li><i>Zoning Practice</i></li> 
+	</ul>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<!-- <script>
+$(function(){
+
+  function checkNumberOfDivisions(){
+    var $checkedDivisions = $("input[name='divisions']:checked");
+    var $uncheckedDivisions = $("input[name='divisions']").not(":checked");
+    if($checkedDivisions.length >= 5) {
+      $uncheckedDivisions.prop('disabled', true);
+      $uncheckedDivisions.closest(".icheckbox").hide();
+    }else{
+      $uncheckedDivisions.prop('disabled', false);
+      $uncheckedDivisions.closest(".icheckbox").show();
+    }
+    $checkedDivisions.prop('disabled', false);
+    $checkedDivisions.closest(".icheckbox").show();
+  }
+
+  $("*", $("input[name='divisions']").closest(".checkbox")).on("click", checkNumberOfDivisions);
+
+});
+</script> -->
+{% endblock %}

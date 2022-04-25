@@ -1,0 +1,121 @@
+{% load static %}
+
+<div class="mega-menu-wrap">
+
+  {% for m in root_menu %}
+    {% if m.get_child_menuitems %}
+  <section id="mega-menu-section-{{ m.id }}" class="row mega-menu-section">
+
+    <div class="col-sm-3">
+      <h2 class="mega-menu-section-heading">{{ m.title }}</h2>
+
+      {% if m.get_url == "/aicp/" %}
+      <div><img class="img-responsive" src="{% static 'content/image/AICP_stacked_647-180.png' %}" /></div>
+      {% elif m.get_url == "/foundation/" %}
+      <div><img class="img-responsive" src="{% static 'content/image/Foundation-horizontal.png' %}" /></div>
+      {% endif %}
+
+      {# {% if m.get_url == "/knowledgecenter/" %} #}
+      {# <h3 class="mega-menu-section-sub-heading"> #}
+        {# <a href="{{ m.get_url }}" class="mega-menu-section-link">{{ m.title }} Overview</a> #}
+      {# </h3> #}
+      {# {% endif %} #}
+    </div>
+
+    <div class="col-sm-9">
+      {# Special menu for knowledge center only #}
+      {% if m.get_url == "/knowledgecenter/" %}
+      <span class="mega-menu-section-border"></span>
+      <span class="mega-menu-section-border"></span>
+      <span class="mega-menu-section-border"></span>
+      <span class="mega-menu-section-border"></span>
+
+      <div class="row">
+        <div class="col-sm-4 col-md-3 mega-menu-list-wrap">
+          <ul class="mega-menu-list">
+            <li>
+              <h3 class="mega-menu-section-sub-heading">
+                <a href="{{ m.get_url }}">{{ m.title }} Overview</a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        {% for sm1 in m.get_child_menuitems %}
+        <div class="col-sm-4 col-md-3 mega-menu-list-wrap">
+          <ul class="mega-menu-list">
+            <li>
+              <h3 class="mega-menu-section-sub-heading">
+                <a href="{{ sm1.get_url }}">{{ sm1.title }}</a>
+              </h3>
+            </li>
+            {% if sm1.get_child_menuitems %}
+              {% for sm2 in sm1.get_child_menuitems %}
+            <li><a href="{{ sm2.get_url }}" class="mega-menu-section-link">{{ sm2.title }}</a></li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        {% endfor %}
+
+      </div>
+
+
+      {% elif m.get_url == "/education/" %}
+      <span class="mega-menu-section-border"></span>
+
+      <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4 mega-menu-list-wrap">
+          <ul class="mega-menu-list">
+            <li>
+              <h3 class="mega-menu-section-sub-heading">
+                <a href="{{ m.get_url }}">{{ m.title }} Overview</a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+
+        {% for sm1 in m.get_child_menuitems %}
+        <div class="col-sm-4 col-md-4 col-lg-4 mega-menu-list-wrap">
+          <span class="mega-menu-section-border"></span>
+          <ul class="mega-menu-list">
+            <li>
+              <h3 class="mega-menu-section-sub-heading">
+                <a href="{{ sm1.get_url }}">{{ sm1.title }}</a>
+              </h3>
+            </li>
+
+            {% if sm1.get_child_menuitems %}
+              {% for sm2 in sm1.get_child_menuitems %}
+            <li><a href="{{ sm2.get_url }}" class="mega-menu-section-link">{{ sm2.title }}</a></li>
+
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        {% endfor %}
+
+      </div>
+
+      {% else %}
+      <ul class="mega-menu-list">
+      <li>
+        <h3 class="mega-menu-section-sub-heading">
+          <a href="{{ m.get_url }}">{{ m.title }} Overview</a>
+        </h3>
+      </li>
+      {% for sm1 in m.get_child_menuitems %}
+        <li>
+          <h3 class="mega-menu-section-sub-heading">
+            <a href="{{ sm1.get_url }}">{{ sm1.title }}</a>
+          </h3>
+        </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+  </section>
+    {% endif %}
+  {% endfor %}
+
+</div>

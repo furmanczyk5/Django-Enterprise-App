@@ -1,0 +1,45 @@
+{% extends 'content/newtheme/search/results.html' %}
+
+{% load content_extras %}
+
+{% block searchList %}
+<div class="image-search-wrapper">
+  <div class="layout-tracery no-top-border">
+    <div class="layout-column">
+      <div class="row">
+        <div class="image-grid col-lg-12">
+
+        {% if results.response.docs %}
+
+        {% for result in results.response.docs %}
+
+          <div class="image-result col-md-4 col-sm-6 col-xs-12">
+            <div class="image-search-result">
+              <a href="{% url 'imagebank:image-details' master_id=result.id|split_on_period:1 %}"><img class="image-search-thumbnail" src="{{result.thumbnail_url}}"/></a>
+              <div class="image-information">
+                <div class="image-title">
+                  {% if result.is_apa %}<span class="is-apa"></span>{% endif %}
+                  {{ result.title }}
+                </div>
+                {% for photographer in result.contact_roles_PHOTOGRAPHER %}
+                <div class="photographer-name"><!--<a href="?photographers={{photographer|split_on_line:0}}">-->{{ photographer|split_on_line:1 }}<!--</a>--></div>{% if not forloop.last %}{% endif %}
+                {% endfor %}
+                <div class="copyright-year">{{ result.copyright_date|year_from_json_datetime }}</div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            {% block empty_results %}
+            <div>
+            <a href="/imagelibrary/search"class="">Back to All Images</a>
+          </div>
+          {% endblock %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

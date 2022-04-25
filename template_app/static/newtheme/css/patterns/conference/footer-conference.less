@@ -1,0 +1,29 @@
+.footer-conference {
+
+  .footer-social-container,
+  .social-media-icons {
+    // Match nav color without using 0,0,0,0.8
+    // since these stack
+    background-color: #363636;
+  }
+
+  .footer-nav-core{
+    margin-top: @grid-gutter-width / 4;
+    a {
+      font-size: 14px; // same as rows on left
+    }
+  }
+
+  .visit-apa-wrap {
+    padding-top: 20px;
+    padding-bottom: 36px;
+  }
+}
+
+@media screen and (max-width: @screen-xs-min) {
+  // not mobile first
+  .footer-conference-logo {
+    height: auto;
+    width: 50%;
+  }
+}

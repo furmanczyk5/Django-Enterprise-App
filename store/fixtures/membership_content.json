@@ -1,0 +1,54 @@
+[
+  {
+    "model": "content.content",
+    "pk": 260863,
+    "fields": {
+      "publish_status": "PUBLISHED",
+      "title": "AICP Membership",
+      "status": "A",
+      "created_time": "2015-11-18T16:20:52.332Z",
+      "updated_time": "2017-12-01T15:16:32.082Z",
+      "created_by": 1,
+      "updated_by": 1
+    }
+  },
+  {
+    "model": "content.content",
+    "pk": 490586,
+    "fields": {
+      "publish_status": "PUBLISHED",
+      "title": "AICP Initial Dues",
+      "status": "H",
+      "created_time": "2017-02-11T00:49:56.373Z",
+      "updated_time": "2018-12-26T18:21:47.831Z",
+      "created_by": 1,
+      "updated_by": 1
+    }
+  },
+  {
+    "model": "content.content",
+    "pk": 260854,
+    "fields": {
+      "publish_status": "PUBLISHED",
+      "title": "APA Professional Membership",
+      "status": "A",
+      "created_time": "2015-11-18T15:50:38.058Z",
+      "updated_time": "2019-10-03T14:27:26.027Z",
+      "created_by": 1,
+      "updated_by": 1
+    }
+  },
+  {
+    "model": "content.content",
+    "pk": 260878,
+    "fields": {
+      "publish_status": "PUBLISHED",
+      "title": "APA Student Membership",
+      "status": "A",
+      "created_time": "2015-11-18T15:50:44.735Z",
+      "updated_time": "2017-12-01T15:16:30.182Z",
+      "created_by": 1,
+      "updated_by": 1
+    }
+  }
+]

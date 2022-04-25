@@ -1,0 +1,94 @@
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-BADGE.html" with attendee=attendee %}
+		</div>
+	</div>
+</div>
+
+{% for ticket in attendee.contact.conference_tickets %}
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-ACTIVITY.html" with attendee=attendee event=ticket.event purchase=ticket.purchase is_standby=ticket.is_standby %}
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+{% with reg_option_code=attendee.purchase.option.code %}
+
+<!-- Welcome Reception: ONLY FULL PAID--><!-- NOTE SOME PEOPLE ALREADY HAVE THIS AS A PURCHASE... THAT MEANS THEY WILL GET TWO TICKETS -->
+{% if reg_option_code == "M001" %}
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-ACTIVITY.html" with attendee=attendee description=welcome_reception.hard_coded_description event=welcome_reception %}
+		</div>
+	</div>
+</div>
+{% endif %}
+
+{% if reg_option_code == "M001" or reg_option_code == "M002" %}
+<!-- Drink Ticket: ONLY FULL PAID and DISCOUNTED REGISTRATION -->
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-DRINK-TICKET.html" with attendee=attendee event=meet_and_greet %}
+		</div>
+	</div>
+</div>
+
+<!-- RAFFLE TICKET, FREE PAS WITH BOOKSTORE PURCHASE: ONLY FULL PAID and DISCOUNTED REGISTRATION -->
+
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-RAFFLE-FREE-PAS.html" with attendee=attendee %}
+		</div>
+	</div>
+</div>
+{% endif %}
+
+<!-- RAFFLE TICKET, FREE MEMBERSHIP: ONLY FULL PAID and DISCOUNTED REGISTRATION -->
+{% if reg_option_code == "M001" %}
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-RAFFLE-FREE-MEMBERSHIP.html" with attendee=attendee %}
+		</div>
+	</div>
+</div>
+{% endif %}
+
+{% if reg_option_code != "M003" %}<!-- BADGE ONLY DOES NOT GET THIS -->
+
+<!-- Wifi Card: ALL -->
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-WIFI-CARD.html" with attendee=attendee %}
+		</div>
+	</div>
+</div>
+
+<!-- RECEIPT -->
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-RECEIPT.html" with attendee=attendee receipt=attendee.conference_receipt %}
+		</div>
+	</div>
+</div>
+<!-- RECEIPT (COPY)-->
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-RECEIPT.html" with attendee=attendee receipt=attendee.conference_receipt %}
+		</div>
+	</div>
+</div>
+
+{% endif %}
+
+{% endwith %}

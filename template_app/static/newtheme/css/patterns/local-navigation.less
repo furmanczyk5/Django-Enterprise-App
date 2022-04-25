@@ -1,0 +1,133 @@
+/**
+ * dependencies: slab
+ */
+.local-navigation {
+
+  //Hide on xs
+  //display: none;
+
+  //Show on sm+
+  @media screen and (min-width: @screen-sm-min) {
+    display: block;
+  }
+
+  & .local-navigation-title {
+    color: @color-bahama-blue;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 0;
+    text-transform: none;
+  }
+
+  & .local-navigation-subtitle {
+    margin: 0;
+    padding: 10px;
+  }
+
+  & ul.local-navigation-list {
+    &,
+    & ul,
+    & li {
+      //begin list reset
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      //end list reset
+    }
+
+    //top and bottom blue lines
+    & {
+      border-color: @color-athens-gray;
+      border-width: 17px 0 9px;
+      border-style: solid;
+    }
+    & li a {
+      padding-right: 10px;
+    }
+    //Text contents
+    & li a,
+    & li span {
+      display: block;
+
+      //font
+      font-family: @font-family-sans-serif;
+      color: @text-color;
+
+      //gray borders
+      border-top: @color-content-borders solid 1px;
+
+      //padding
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 0;
+      // padding-right: 0;
+    }
+
+    & li a.active,
+    & li span.active {
+      color: @color-sycamore;
+      font-weight: bold;
+    }
+
+    & li a {
+      &:hover,
+      &:focus {
+        color: @link-hover-color;
+      }
+    }
+
+
+    //Remove border on very first list element
+    & > li:first-child a,
+    & > li:first-child span{
+      border-top: none;
+    }
+
+
+    //1 level down
+    & ul li a,
+    & ul li span {
+      &:extend(.slab-gray all);
+      padding-left: 10px;
+    }
+
+    //2 levels down
+    & ul ul li a,
+    & ul ul li span {
+      padding-left: 20px;
+    }
+
+    //Additional levels must be added manually here.
+
+    .local-navigation-btn-back {
+      padding-left: 5px;
+      background-color: @color-btn-primary-background;
+      color: white;
+      font-weight: bold;
+      &:hover {
+        background-color: @color-btn-primary-background-hover;
+        color: white;
+      }
+      &:active,
+      &:focus {
+        background-color: @color-btn-primary-background-active;
+        color: white;
+      }
+      // any icomoon
+      [class^="icon-"], [class*=" icon-"] {
+        border: none;
+        padding: 0;
+        color: inherit;
+
+        left: 0px;
+        transform: rotate(180deg);
+        font-size: 150%;
+        position: relative;
+      }
+    }
+  }
+
+}
+.local-navigation-list-dark {
+  background-color: #f7f7f7;
+}

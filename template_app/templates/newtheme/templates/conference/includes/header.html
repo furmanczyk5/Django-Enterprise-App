@@ -1,0 +1,109 @@
+{% load static %}
+
+<header class="container-fluid header header-conference">
+  <div class="row">
+    <div class="logo col-xs-5 col-sm-3 col-md-4">
+      {% block header_logo %}
+      <a class="pull-left" href="/" title="APA Home">
+        <span class="icon-APA-box-logo"></span>
+      </a>
+      <span class="header-conference-logo-tagline pull-left">
+        Visit APA at <a class="blue" href="https://planning.org">planning.org</a>
+      </span>
+      {% endblock %}
+    </div>
+    <div class="hidden-xs col-sm-5 col-md-5 header-search-form-wrap">
+      <!-- Search form -->
+    {# FIXME: Hardcoded exception for Water and Planning Connect Microsite #}
+    <!-- FLAGGED FOR REFACTORING: NPC DISABLE PROGRAM VIEWS/SEARCH -->
+    <!-- Remove for all conferences for the time being -->
+    {% comment %}
+    {% if microsite.home_page_code != "WATER_HOME" %}
+      <form action="{{ search_url }}/?keyword=" method="GET">
+        <div class="input-group header-search-form">
+          <label class="control-label sr-only" for="keyword">Search by keyword</label>
+          <input type="text" class="form-control" placeholder="Search Conference" name="keyword" {% if keyword and keyword != '*' %}value="{{ keyword }}" {% endif %} required />
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">Search</button>
+          </span>
+        </div>
+      </form>
+    {% endif %}
+    {% endcomment %}
+      <!-- Search form /\ -->
+    </div>
+    <nav class="nav-super col-xs-7 col-sm-4 col-md-3 clearfix">
+      <ul>
+        {% if request.user.is_authenticated %}
+        {# Logged in #}
+        <li>
+          <a href="/myapa/" title="My APA">My APA</a>
+        </li>
+        <li>
+          <a href="/logout/" title="Log Out">Log Out</a>
+        </li>
+        {% else %}
+        {# not logged in #}
+        <li>
+          <a href="/join/" title="Join">Join</a>
+        </li>
+        <li>
+          <a href="/login/?next={{request.path|urlencode}}" title="Log In">Log In</a>
+        </li>
+        {% endif %}
+
+        <li>
+          <a href="/store/cart/" title="Cart">
+            <span class="sr-only">Cart</span>
+            <span class="icon-cart-icon"></span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+  <div class="visible-xs">
+    <div class="row header-conference-mobile-menu-wrap">
+      <div class="col-xs-7">
+        {% if microsite %}
+        <h2 class="header-conference-heading">{{microsite.event_master.content_draft.title}}</h2>
+        {% else %}
+        <h2 class="header-conference-heading">2018 National Planning Conference</h2>
+        {% endif %}
+      </div>
+      <div class="header-toggle-wrap col-xs-5">
+        <!-- Search toggle, menu toggle -->
+        <button type="button" class="visible-xs pull-right header-mobile-menu-toggle">
+          <span class="sr-only">Toggle navigation</span>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="header-mobile-menu-toggle-label">Menu</div>
+        </button>
+
+        <button type="button" class="visible-xs pull-right header-mobile-search-toggle">
+          <span class="sr-only">Toggle Search</span>
+          <span class="icon-search-icon"></span>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 pull-right header-search-form-wrap header-search-form-wrap-mobile">
+      <!-- Search form -->
+      <form action="/search/" method="GET">
+        <div class="input-group header-search-form">
+          <label class="control-label sr-only" for="keyword">Search by keyword</label>
+          <input type="text" class="form-control" placeholder="Enter keyword or phrase" name="keyword" {% if keyword %}value="{{ keyword }}" {% endif %} required />
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">Search</button>
+          </span>
+        </div>
+      </form>
+      <!-- Search form /\ -->
+      </div>
+    </div>
+  </div>
+</header>

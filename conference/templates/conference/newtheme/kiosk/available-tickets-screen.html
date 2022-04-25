@@ -1,0 +1,90 @@
+{% extends 'newtheme/templates/blank.html' %}
+
+{% load staticfiles %}
+{% load compress %}
+{% load static %}
+{% load tz %}
+{% load humanize %}
+
+
+{% comment %}<!--
+TECHNICALLY NOT KIOSK, BUT FOR REGISTRATION SCREEN NEAR KIOSK
+-->{% endcomment %}
+
+{% block head_resources %}
+{{block.super}}
+<style>
+.activity .search-doc {
+	border-color:#aeaeae;
+}
+.search-doc .search-doc-right {
+	margin-bottom:0;
+}
+.details-title {
+	margin-top:0;
+}
+#content .content-left, #content .wrap {
+	width:100%;
+}
+@media screen and (min-width: 481px) {
+	.content-left section, .content-left div.section {
+	    padding: 0px 24px 12px 24px;
+	}
+}
+@media screen and (min-width: 481px){
+	html body {
+	    min-width: initial;
+	}
+}
+</style>
+{% endblock %}
+
+{% block content_main %}
+<div class="layout-tracery">
+	<div class="layout-column">
+	<h1>Available Tickets</h1>
+
+	{% for activity in activities %}
+		{% if activity.product_info.price %}
+			<h3 class="details-title">{{ activity.title }}</h3>
+			<div>
+				{% localtime off %}
+				{% ifequal activity.begin_time_astimezone|date:"SHORT_DATE_FORMAT" activity.end_time_astimezone|date:"SHORT_DATE_FORMAT"%}
+				<span>{{activity.begin_time_astimezone|date:"l, F j, "}}</span>
+				<span>
+					{{ activity.begin_time_astimezone|date:"P" }} - {{ activity.end_time_astimezone|date:"P e" }}
+				</span>
+				{% else %}
+				<span>
+					{{activity.begin_time_astimezone|date:"l, F j, P"}} - {{activity.end_time_astimezone|date:"l, F j, P e"}}
+				</span>
+				{% endifequal %}
+				{% endlocaltime %}
+			</div>
+			<div>
+				#{{activity.code}}<br/>
+				{{activity.product_info.purchase_info.regular_remaining|floatformat:0|intcomma}} remaining
+			</div>			
+			<hr/>
+		{% endif %}
+	{% endfor %}
+
+</div>
+
+<br/>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+$(function(){
+	setInterval(function(){
+		$("#available-tickets").addClass("loading");
+		location.reload();
+	}, 30000);
+});
+</script>
+{% endblock %}
+
+
+
+

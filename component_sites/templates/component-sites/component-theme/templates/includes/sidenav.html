@@ -1,0 +1,45 @@
+<div class="local-navigation">
+{% if sidenav %}
+
+    <a href="{{ sidenav.url }}"><h3 class="local-navigation-title">{{ sidenav.title }}</h3></a>
+    <ul class="local-navigation-list">
+    {% for m1 in sidenav.children %}
+        <li>
+
+            <a href="{{ m1.url }}" {% if m1.is_open %}class="active"{% endif %}>
+                {{ m1.title }}
+            </a>
+
+            {% if m1.is_open and m1.children %}
+            <ul>
+            {% for m2 in m1.children %}
+
+                <li>
+                    <a href="{{ m2.url }}" {% if m2.is_open %}class="active"{% endif %}>
+                        {{ m2.title }}
+                    </a>
+                </li>
+
+                {% if m2.is_open and m2.children  %}
+                <ul>
+                    {% for m3 in m2.children %}
+                    <li>
+                        <a href="{{ m3.url }}" {% if m3.is_open %}class="active"{% endif %}>
+                            {{ m3.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+            {% endfor %}
+            </ul>
+            {% endif %}
+
+        </li>
+
+    {% endfor %}
+    </ul>
+
+{% endif %}
+</div>

@@ -1,0 +1,156 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="page-head no-border-bottom no-spacing-bottom">
+  <h1 class="page-title ">Thank you for your order!</h1>
+  <h4><a href="#">Print Receipt</a></h4>
+</div>
+
+<div class="layout-tracery no-top-border">
+  <div class="layout-column">
+
+    <div class="row">
+      <div class="col-xs-12 col-lg-9">
+
+        <div class="form-section form-section-enclosed-dark">
+          <h2 class="form-section-title headline-underline">Order Summary</h2>
+          <ol class="ecommerce-order-summary-list">
+            <li>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-2 ecommerce-product-image">
+                  <img src="//placehold.it/300x400" />
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-10">
+                  <div class="row">
+                    <div class="col-xs-12 ecommerce-product-title">
+                      <h4><a href="#">The Environmental Planning Handbook for Sustainable Communities and Regions, Second Edition</a></h4>
+                    </div>
+                    <div class="col-xs-12 ecommerce-product-meta">
+                      <h5>Paperback</h5>
+
+                      <div class="key-value-pair-group">
+                        <div class="key-value-pair">
+                          <div class="key">List Price</div>
+                          <div class="value">$99.95</div>
+                        </div>
+                        <div class="key-value-pair">
+                          <div class="key">Shipping</div>
+                          <div class="value">$0.00</div>
+                        </div>
+                        <div class="key-value-pair">
+                          <div class="key">Tax</div>
+                          <div class="value">$9.95</div>
+                        </div>
+                      </div>
+                      <div class="key-value-pair-group">
+                        <div class="key-value-pair key-value-pair-featured">
+                          <div class="key">Total</div>
+                          <div class="value">$109.90</div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-2 ecommerce-product-image">
+                  <img src="//placehold.it/300x300"/>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-10">
+                  <div class="row">
+                    <div class="col-xs-12 ecommerce-product-title">
+                      <h4><a href="#">Planning Magazine</a></h4>
+                    </div>
+                    <div class="col-xs-12 ecommerce-product-meta">
+                      <h5>Subscription</h5>
+
+                      <div class="key-value-pair-group">
+                        <div class="key-value-pair">
+                          <div class="key">List Price</div>
+                          <div class="value">$85.95</div>
+                        </div>
+                        <div class="key-value-pair">
+                          <div class="key">Tax</div>
+                          <div class="value">$9.95</div>
+                        </div>
+                      </div>
+                      <div class="key-value-pair-group">
+                        <div class="key-value-pair key-value-pair-featured">
+                          <div class="key">Total</div>
+                          <div class="value">$109.90</div>
+                        </div>
+                      </div>
+
+                      <br/>
+                      <p>
+                        Your subscription includes both Print and Digital Editions.
+                        <a href="#" class="standalone-link">Access the Digital Edition Online</a>
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="form-section form-section-enclosed-dark">
+          <h2 class="form-section-title headline-underline">Your Order Will Be Shipped To</h2>
+
+          <div class="section-icon section-icon-marker">
+            <p class="sans-serif">
+              1234 Any St.<br/>
+              Chicago, IL 60647
+            </p>
+          </div>
+        </div>
+
+        <div class="form-section form-section-enclosed-dark">
+          <h2 class="form-section-title headline-underline">Registration Summary</h2>
+
+          <div class="section-icon section-icon-calendar">
+            <p>Your registration for [event name] is complete. A confirmation email has been sent. You can also view your registration by logging in to <a href="#">MyAPA.</a></p>
+            <div class="key-value-pair-group">
+              <div class="key-value-pair">
+                <div class="key">Price</div>
+                <div class="value">$100</div>
+              </div>
+              <div class="key-value-pair">
+                <div class="key">Registration Details</div>
+                <div class="value">3 day pass APA member</div>
+              </div>
+              <div class="key-value-pair">
+                <div class="key">Confirmation Number</div>
+                <div class="value">1234567</div>
+              </div>
+            </div>
+
+            <br/>
+            <div class="content-preview-item">
+              <h6 class="content-preview-item-superheadline">Event Details</h6>
+              <h4 class="content-preview-item-headline">
+                <a href="#">2016 National Planning Conference &ndash; Phoenix</a>
+              </h4>
+              <div class="content-preview-item-summary">
+                April 2 - 6, 2016<br/>
+                [Venue]
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr/>
+
+{% endblock %}

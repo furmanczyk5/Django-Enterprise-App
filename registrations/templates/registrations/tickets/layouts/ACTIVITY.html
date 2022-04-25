@@ -1,0 +1,10 @@
+{% load tz %}
+
+<div class="chapterconference-activity">
+	<div class="activity-title" {% if ticket_margin_top %}style="margin-top:{{ticket_margin_top}}in"{% endif %}>{{ticket.event.title}}</div>
+	{% localtime off %}
+	<div class="activity-time">{{ticket.event.begin_time_astimezone|date:"fA e - l, F j"}}</div>
+	{% endlocaltime %}
+	<div class="activity-price">${{ticket.purchase.product_price.price|floatformat:2}}</div>
+	<div class="bottom-line">{{ticket.attendee.contact.title}} | {{ticket.attendee.contact.user.username}} | {{ ticket.attendee.contact.member_type }}</div>
+</div>

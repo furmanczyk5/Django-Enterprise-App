@@ -1,0 +1,23 @@
+{% extends extends_template|default:'myapa/newtheme/login.html' %}
+
+{% block login_join_links %}
+<div class="form-section form-section-limit-width">
+<div class="list-of-links text-center">
+  <h3>Trouble logging in?</h3>
+  <h6>I am an APA member <i>or</i> I already created an APA web account</h6>
+  <a class="btn btn-default btn-sm" href="/login/help.htm" style="margin-bottom:24px;">
+    Login Help
+  </a>
+  <br/>
+  <h6>I am not an APA member, but I would like to join APA</h6>
+  <a class="btn btn-primary btn-sm" href="/join/" style="margin-bottom:24px;">
+    Join APA
+  </a>
+  <br/>
+  <h6>I am not an APA member and have not created an APA web account</h6>
+  <a class="btn btn-primary btn-sm" href="{% url 'nonmember_join' %}{% if encoded_next %}?next={{encoded_next}}{% endif %}" style="margin-bottom:24px;">
+    Create a New Nonmember Account
+  </a>
+</div>
+</div>
+{% endblock %}

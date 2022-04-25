@@ -1,0 +1,71 @@
+@section-icon-indentation-amount: 40px;
+
+.section-icon {
+  display: block;
+  padding-left: @section-icon-indentation-amount;
+  padding-bottom:0.3em;
+
+  .strip-edge-margins();
+}
+
+.section-icon {
+  &:before {
+    display: inline-block;
+    margin-left: -1 * (@section-icon-indentation-amount - 2px); //2px offset
+    position: absolute;
+    color: @color-bahama-blue;
+
+    //icomoon
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.section-icon.section-icon-marker {
+  &:before {
+    content: @icon-marker;
+    font-size: 20px;
+  }
+}
+
+.section-icon.section-icon-calendar {
+  &:before {
+    content: @icon-calendar;
+    font-size: 22px;
+  }
+}
+
+.section-icon.section-icon-ticket {
+  &:before {
+    color: #165788;
+    // color: #1ca2e7;
+    content: @icon-ticket;
+    font-size: 18px;
+  }
+}
+
+// APA Blue: RGB 22 87 136 into hex = 165788
+.section-icon.section-icon-spoon-knife {
+  &:before {
+    color: #165788;
+    content: @icon-spoon-knife;
+    font-size: 18px;
+  }
+}
+
+//Todo: replace .alert-attention with this
+.section-icon.section-icon-attention {
+  margin-bottom:1em;
+  &:before {
+    color: @color-form-error;
+    content: @icon-alert-triangle;
+    font-size: 22px;
+  }
+}

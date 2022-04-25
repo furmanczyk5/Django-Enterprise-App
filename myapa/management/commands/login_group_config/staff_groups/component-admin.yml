@@ -1,0 +1,30 @@
+---
+
+# Django model admin permissions for the staff-store-admin group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+# This is set by the staff_teams field, do not directly assign any here
+staff_users:
+  -
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+  - auth_user
+  - myapa_contact
+  - myapa_individualcontact
+  - registrations_attendee
+  - store_order
+  - store_payment
+  - store_product
+  - store_productcart
+  - store_productchapter
+  - store_productdivision
+  - store_productdonation
+  - store_productoption
+  - store_productprice
+  - store_purchase
+  - jobs_job
+  - jobs_wagtailjob

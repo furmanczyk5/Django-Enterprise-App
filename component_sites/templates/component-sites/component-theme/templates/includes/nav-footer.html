@@ -1,0 +1,23 @@
+{% for m in navigation %}
+<div class="pull-left footer-nav-sitemap-section">
+  <h4>
+    {{ m.title }}
+  </h4>
+  <ul>
+    <li>
+      <a href="{{ m.url }}">
+        {{ m.title }} Overview
+      </a>
+    </li>
+    {% if m.children %}
+    {% for sm in m.children %}
+    <li>
+      <a href="{{ sm.url }}">
+        {{ sm.title }}
+      </a>
+    </li>
+    {% endfor %}
+    {% endif %}
+  </ul>
+</div>
+{% endfor %}

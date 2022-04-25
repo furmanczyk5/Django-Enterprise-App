@@ -1,0 +1,148 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">Student Membership</h1>
+    <h4 class="page-subtitle">
+      Please review or complete your APA account information.<br>
+      This will help us offer you the best customer service.
+    </h4>
+  </div>
+
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+
+      <div class="form-head" {% if prompt_duplicate %}style="display:none"{% endif %}>
+        <h2>Account Information</h2>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-9 col-lg-8">
+
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            <div id="account-information-fields" {% if prompt_duplicate %}style="display:none"{% endif %}>
+              <div class="form-section form-section-enclosed-dark">
+              
+                <h3 class="form-section-title">Name</h3>
+
+                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.prefix_name %}
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.first_name %}
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.middle_name %}
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.last_name %}
+                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.suffix_name %}
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.informal_name %}
+
+              </div>
+
+              <div class="form-section form-section-enclosed-dark">
+                <h3 class="form-section-title">Email</h3>
+
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %}
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.verify_email %}
+
+              </div>
+
+              <div class="form-section form-section-enclosed-dark">
+                <h3 class="form-section-title">Create a Password</h3>
+
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.password %}
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.verify_password %}
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.password_hint %}
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.password_answer %}
+
+              </div>
+
+              <div class="form-actions">
+                <input type="submit" name="submit" class="btn btn-primary" value="Continue" />
+              </div>
+            </div>
+
+            {% if prompt_duplicate %}
+            <div id="duplicate-account-prompt" class="form-section form-section-enclosed-dark">
+
+                <h2>Potential Duplicate Account</h2>
+                <p>It looks like you may already have an APA account, based on the information that you provided. Do you recognize the account below?</p>
+
+                <div style="margin:24px 0px 12px 40px">
+                  <img width="120" src="https://planning-org-uploaded-media.s3.amazonaws.com/legacy_resources/apaataglance/leadership/img/markferguson.jpg" style="float:left;margin:0 12px 12px 0px">
+                  <div><b>Mark Ferguson</b></div>
+                  <div><b>mfer******@plan******.org</b></div>
+                  <div>...(other info? APA ID if they decide to contact customer service? probably not show image)</div>
+                  <div style="clear:both"></div>
+                </div>
+
+                <p>If you believe this is your account. Here are the suggested actions to take:</p>
+                <ul>
+                  <li>If you remember the password for this account, <a href="">log in using your email and password.</a></li>
+                  <li>If you don't remember your password, <a href="">reset your password</a> so that you can access this account.</li>
+                  <li>If you are unsure that this is your account or you have any questions about this warning, <a href="">contact customer service</a></li>
+                  <li>You may also <a href="javascript:;" onclick="hideDuplicatePrompt()">edit the information you provided</a></li>
+                </ul>
+                </ul>
+
+                <p>If this is not you, please ignore this warning and continue anyway.</p>
+                  <div style="margin-left:40px;">
+                    <div class="form-group">
+                      <button type="submit" name="submit" class="btn btn-primary" value="duplicate_continue" style="width:auto;">Continue Anyway</button>
+                    </div>
+                  </div>
+
+            </div>
+            {% endif %}
+
+          </form>
+        </div>
+
+        {% block create_account_login %}
+        <div class="col-xs-12 col-sm-6 col-lg-5 col-lg-offset-2">
+          {% if not user.is_authenticated %}
+          <div class="section">
+            <div class="action">
+              <form method="post" action=" ">
+                {% csrf_token %}
+
+                <div class="form-section form-section-limit-width form-section-enclosed-light">
+                  <h2 class="form-section-title">Already a Member?</h2>
+                  <a class="btn btn-lg btn-full btn-default member-login" href="/login/?next=/myapa/join/account/">Log In</a>
+                  <div class="list-of-links-small">
+                    <h4>
+                      <a href="https://www.planning.org/login/help.htm" class="login-help">Login Help</a>
+                    </h4>
+                  </div>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script>
+
+function hideDuplicatePrompt(){
+  $("#duplicate-account-prompt").hide();
+  $(".form-head").show();
+  $("#account-information-fields").show();
+}
+
+</script>
+{% endblock %}

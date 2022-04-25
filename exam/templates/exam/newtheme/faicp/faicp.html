@@ -1,0 +1,98 @@
+{% extends 'cm/newtheme/aicp-page-sidebar.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+
+{% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+    <div class="page-head">
+      {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+      <h1 class="page-title">{{content.title}}</h1>
+    </div>
+
+    <div class="layout-tracery">
+        <div class="layout-column">
+
+            {{ content.text|safe }}
+        </div>
+    </div>
+
+<h2 class="headline-underline">Fellows of AICP</h2>
+
+<div class="col-xs-12 col-sm-4">
+  {% for letter in fellows1 %}
+  <h3>{{letter.0}}</h3>
+  {% for fellow in letter.1 %}
+  {% with ec=fellow.member_type|is_deceased %}
+  {% with sharing=fellow.individualprofile.share_profile %}
+  {% with member_fellow=fellow.user|has_group:"member" %}
+  {% if sharing == "PUBLIC" and member_fellow and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% elif sharing == "MEMBER" and member_fellow and logged_in_user and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% else %}
+  <p><a href="{% url 'faicp_statement' username=fellow.user.username %}"
+    style="text-decoration:none">{{fellow.full_title}}{{ec}}</a></p>
+  {% endif %}
+  {% endwith %}
+  {% endwith %}
+  {% endwith %}
+  {% endfor %}
+  {% endfor %}
+</div>
+
+<div class="col-xs-12 col-sm-4">
+  {% for letter in fellows2 %}
+  <h3>{{letter.0}}</h3>
+  {% for fellow in letter.1 %}
+  {% with ec=fellow.member_type|is_deceased %}
+  {% with sharing=fellow.individualprofile.share_profile %}
+  {% with member_fellow=fellow.user|has_group:"member" %}
+  {% if sharing == "PUBLIC" and member_fellow and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% elif sharing == "MEMBER" and member_fellow and logged_in_user and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% else %}
+  <p><a href="{% url 'faicp_statement' username=fellow.user.username %}"
+    style="text-decoration:none">{{fellow.full_title}}{{ec}}</a></p>
+  {% endif %}
+  {% endwith %}
+  {% endwith %}
+  {% endwith %}
+  {% endfor %}
+  {% endfor %}
+</div>
+
+<div class="col-xs-12 col-sm-4">
+  {% for letter in fellows3 %}
+  <h3>{{letter.0}}</h3>
+  {% for fellow in letter.1 %}
+  {% with ec=fellow.member_type|is_deceased %}
+  {% with sharing=fellow.individualprofile.share_profile %}
+  {% with member_fellow=fellow.user|has_group:"member" %}
+  {% if sharing == "PUBLIC" and member_fellow and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% elif sharing == "MEMBER" and member_fellow and logged_in_user and fellow.individualprofile.slug %}
+  <a href="{% url 'public_profile' slug=fellow.individualprofile.slug %}" target="_blank"><p>{{ fellow.full_title}}{{ec}}</p></a>
+  {% else %}
+  <p><a href="{% url 'faicp_statement' username=fellow.user.username %}"
+    style="text-decoration:none">{{fellow.full_title}}{{ec}}</a></p>
+  {% endif %}
+  {% endwith %}
+  {% endwith %}
+  {% endwith %}
+  {% endfor %}
+  {% endfor %}
+  <br><br>
+  <small><p>* denotes deceased Fellow</p></small>
+  <br><br>
+</div>
+
+{% endblock %}

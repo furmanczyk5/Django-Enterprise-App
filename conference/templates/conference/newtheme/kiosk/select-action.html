@@ -1,0 +1,21 @@
+{% extends "conference/newtheme/kiosk/base.html" %}
+
+{% load event_tags %}
+
+{% block content_main %}
+
+<div class="layout-tracery">
+	<div class="layout-column layout-column-balanced-padding">
+		<div class="row">
+			<h1>Select an Action</h2>
+		</div>
+	</div>
+</div>
+
+<div class="layout-tracery">
+	<div class="layout-column layout-column-balanced-padding">
+		{% event_register_link register_url=register_url activities_url=activities_url reprint_url=reprint_url location="CONFERENCE_KIOSK" %}
+	</div>
+</div>
+
+{% endblock %}

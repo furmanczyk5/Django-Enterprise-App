@@ -1,0 +1,54 @@
+{% if product %}
+  {% if user %}
+    {% if has_parent_event_registration and is_open %}{% comment %}<!-- Assuming that a price applies event if product is sold out -->{% endcomment %}
+      {% if is_ordered %}
+        <h4>MAXIMUM ADDED</h4>
+      {% elif is_waitlist %}
+          <h4>ON WAITLIST</h4>
+      {% elif purchase_info.user_allowed_to_add <= 0 %}
+          {% if purchase_info.product_sale_status == "Waitlist" %}
+                {% if kiosk %}
+                SOLD OUT
+                {% else %}
+                  <a type="button" class="btn btn-primary popover-link" data-container="body" data-toggle="popover"
+                  data-trigger="focus" tabindex="0" role="button" data-placement="top"
+                  data-title="<a class='exit-button' href='{{ join_waitlist_url }}?master_id={{activity.master_id}}&username={{user.username}}'>Join Waitlist</a> <a type='button' class='exit-button' onClick='$(&quot;.popover-link&quot;).popover(&quot;hide&quot;)'>Cancel</a>"
+                  data-content="Session '{{ product.content.title }}' is currently at capacity. Click above to join the waitlist. You will not be charged at this time. You can manage your waitlisted activities under 'My Schedule'. <a href='/conference/information#waitlist' target='_blank'>Learn more.</a>">
+                  Join Waitlist
+                  </a>
+                {% endif %}
+          {% else %}
+            <h4>MAXIMUM ADDED</h4>
+          {% endif %}
+      {% elif purchase_info.user_total == purchase_info.max_quantity_per_person %}
+        <h4>MAXIMUM ADDED</h4>
+      {% elif purchase_info.user_total_in_cart >= purchase_info.user_allowed_to_purchase %}
+        <h4>MAXIMUM ADDED</h4>
+      {% else %}
+          <form style="display: inline;" action="{% url 'store:cart_add' %}" method="post" class="planning-form registration-add_to_cart">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{product.id}}" />
+            <p class="add-to-cart-quantity-wrap">
+              <span>${{price}} </span>
+              <span class="select-facade" style="vertical-align:middle;">
+                <span class="sr-only">1</span>
+                <select name="quantity">
+                  {% comment %}Found this gem on stackoverflow, answer by Żyźniewski...genius! http://stackoverflow.com/questions/1107737/numeric-for-loop-in-django-templates{% endcomment %}
+                  {% with ''|center:purchase_info.user_allowed_to_add as range %}
+                  {% for _ in range %}
+                  <option value="{{forloop.counter}}">{{forloop.counter}}</option>
+                  {% endfor %}
+                  {% endwith %}
+                </select>
+              </span>
+            </p>
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+          </form>
+      {% endif %}
+    {% endif %}
+  {% else %}
+      <button disabled class="btn btn-primary">{% if purchase_info.product_sale_status == "Waitlist" %}Join Waitlist{% endif %}Add to Cart</button>
+  {% endif %}
+{% else %}
+    <button disabled class="btn btn-primary">{% if purchase_info.product_sale_status == "Waitlist" %}Join Waitlist{% endif %}Add to Cart</button>
+{% endif %}

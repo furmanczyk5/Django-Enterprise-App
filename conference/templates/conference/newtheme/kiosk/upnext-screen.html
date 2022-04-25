@@ -1,0 +1,143 @@
+{% load content_extras %}
+{% load tz %}
+{% load staticfiles %}
+<!--{% load compress %}-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=yes">
+		<link type="text/css" rel="stylesheet" href="{% static 'content/css/icomoon/style.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'content/css/style.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'content/css/conference/upnext.css' %}" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		{% comment %}
+		<!--
+		<script src="{% static 'content/js/conference/upnext.js' %}"></script>
+	-->
+		{% endcomment %}
+		<title>{% block title %}{{ title }}{% endblock %}</title>
+		}
+	</head>
+	<body style="min-width:inherit; background-color:black" {% if request.detect_mobile_app.is_mobileapp %}class="mobileapp"{% endif %}>
+
+		<div class="upnext-widget invert-colors airport" style="font-size:1.3em">
+
+<div>
+
+	<div class="upnext-header">
+		<!--<span class="upnext-header-logo icon-APA-box-logo"></span> -->
+		<div class="backdrop">
+			<h1 class="upnext-header-title">Up Next</h1>
+			<h3 class="upnext-header-time">{{ current_time }}</h3>
+			<div class="upnext-message">{{"MOBILEAPP_CONFERENCE_FEED_SHORT"|content_text|safe}}</div>
+		</div>
+	</div>
+
+	<div class="upnext">
+		<!-- SEARCH RESULTS -->
+		{% for result in results.response.docs %}
+
+      {% with timezone=result.timezone|default:"US/Central" %}
+        {% with begin_time=result.begin_time|datetime_with_zone_from_json:timezone %}
+          {% localtime off %}
+            {% ifchanged begin_time|date %}
+        			<div class="separator shell">
+        				<div>
+        					{{result.begin_time_weekday}},
+        					{{result.begin_time_month}}
+        					{{result.begin_time_day}}
+        				</div>
+        			</div>
+      			{% endifchanged %}
+          {% endlocaltime %}
+        {% endwith %}
+      {% endwith %}
+
+			{# <a href="/events/activity/{{ result.id|split_on_period:1 }}/">#}
+
+				<div class="record{% cycle '' ' alt' %}" data-master="{{ result.id|split_on_period:1 }}">
+
+					<div class="record-top">
+
+						<div class="record-right">
+
+							<div class="ticket">
+
+								{% if result.tags_EVENTS_NATIONAL_TYPE|any_contains_any:".TRAINING_WORKSHOP.,.INSTITUTE.,.MOBILE_WORKSHOP.,.ORIENTATION_TOUR.,.SPECIAL_EVENT." %}
+								<span class="icon-ticket" title="Ticketed Activity"></span> <span>Ticketed</span>
+								{% endif %}
+
+							</div>
+
+							<div class="cm_line">
+
+								{% if result.cm_approved and not result.cm_approved == 0 %}
+								<span class="cm">CM | </span><span class="cmpoints">{{result.cm_approved|floatformat:"-2"}}</span>
+
+								{% if result.cm_law_approved and not result.cm_law_approved == 0 %}
+								<span class="cmlawethics">L</span>
+								{% elif result.cm_ethics_approved and not result.cm_ethics_approved == 0 %}
+								<span class="cmlawethics">E</span>
+								{% endif %}
+
+								{% endif %}
+
+							</div>
+
+						</div>
+
+						<div class="record-left">
+
+							<div class="time">
+                {% with timezone=result.timezone|default:"US/Central" %}
+                {% with begin_time=result.begin_time|datetime_with_zone_from_json:timezone %}
+								{% localtime off %}
+                {{begin_time|date:"P e"}}
+								{% endlocaltime %}
+                {% endwith %}
+                {% endwith %}
+							</div>
+
+							<div class="room">
+
+								{% if result.tags_ROOM %}
+								<span>{{ result.tags_ROOM.0|split_on_period:2 }}</span>
+								{% endif %}
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="record-bottom">
+
+						<div class="title">{{ result.title }}</div>
+
+					</div>
+
+				</div>
+			{#</a>#}
+
+		{% empty %}
+
+		{% endfor %}
+	</div>
+
+</div>
+
+		</div>
+
+<script>
+$(function(){
+	setInterval(function(){
+		$("#available-tickets").addClass("loading");
+		location.reload();
+	}, 300000);
+});
+</script>
+
+	</body>
+</html>

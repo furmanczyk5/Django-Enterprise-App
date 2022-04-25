@@ -1,0 +1,150 @@
+{% load content_extras %}
+
+<li class="content-preview-item">
+
+  {% comment %}<span style="background-color:yellow;">{{result.score}}</span><!-- remove later, for checking relevancy scores -->{% endcomment %}
+
+      <h6 class="content-preview-item-superheadline">
+{#        {% if result.content_type == "JOB" %} #}
+          {# Job or anything to exclude from breadcrumbs #}
+        {% if result.breadcrumb %}
+          <ol class="breadcrumb">
+            {% for crumb in result.breadcrumb %}
+            {% with crumb|split_on_line:1 as display_crumb %}
+            {% if display_crumb != "planning.org" %}
+              <li>{{display_crumb}}</li>
+            {% else %}
+            {% endif %}
+            {% endwith %}
+            {# <li><a href="{{crumb|split_on_line:0}}">{{crumb|split_on_line:1}}</a></li> #}
+            {% endfor %}
+          </ol>
+        {% else %}
+          {% comment %}
+            {% for format in result.tags_FORMAT %}
+            {{ format|split_on_period:2 }}&nbsp;
+            {% endfor %}
+          {% endcomment %}
+        {% endif %}
+      </h6>
+      {% if result.content_type == "IMAGE" and result.thumbnail_url %}
+      <div class="content-preview-item-image-floated">
+        <a href="{{result|solr_record_to_details_path_filter}}">
+          <img src="{{result.thumbnail_url}}" />
+        </a>
+      </div>
+      {% endif %}
+      {% if result.thumbnail %}
+      <div class="content-preview-item-image-floated">
+        <a href="{{result|solr_record_to_details_path_filter}}">
+          <img src="{{result.thumbnail}}" />
+        </a>
+      </div>
+      {% endif %}
+
+      <div class="content-preview-item-center-block">
+        <h4 class="content-preview-item-headline">
+          {% if result.permission_groups|is_member_only %}
+              <span class="members-only">Members Only</span>
+          {% elif result.permission_groups|is_aicpmember_only %}
+              <span class="members-only">AICP Members Only</span>
+          {% elif result.permission_groups|is_subscription_only %}
+              <span class="subscription-only">Subscribers Only</span>
+          {% endif %}
+          <a href="{{result|solr_record_to_details_path_filter}}">{{ result.title }}</a>
+        </h4>
+
+        {% if result.subtitle %}
+        <div class="content-preview-item-subheadline">{{result.subtitle}}</div>
+        {% endif %}
+
+        {% if result.contact_roles_PROVIDER and result.content_type != "JOB" %}
+        <div class="content-preview-item-subheadline">
+          <a class="arrowlink" href="/cm/provider/{{result.contact_roles_PROVIDER.0|split_on_line:0}}/details/">{{result.contact_roles_PROVIDER.0|split_on_line:1 }}</a>
+        </div>
+        {% endif %}
+
+        {% if result.contact_roles_AUTHOR and result.content_type != "JOB" %}
+        <div class="content-preview-item-subheadline">by:
+        {% for author in result.contact_roles_AUTHOR %}
+        {{author|split_on_line:1}}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        <!-- FLAGGED FOR REFACTORING: PLANNING MAG SEARCH DISPLAY -->
+          <!-- if author and is_pub, date to right of author on same line -->
+          {% if result.content_type == "PUBLICATION" %}
+            {% if result.date_text %}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {{result.date_text|full_date_from_json_datetime}}
+            {% elif result.resource_published_date %}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {{result.resource_published_date|full_date_from_json_datetime}}
+            {% endif %}
+          {% endif %}
+        </div>
+        {% else %}
+          <div class="content-preview-item-subheadline">
+          <!-- if no author and is_pub, then just date -->
+          {% if result.content_type == "PUBLICATION" %}
+            {% if result.date_text %}
+              {{result.date_text|full_date_from_json_datetime}}
+            {% elif result.resource_published_date %}
+              {{result.resource_published_date|full_date_from_json_datetime}}
+            {% endif %}
+          {% endif %}
+          </div>
+        {% endif %}
+
+
+        {% if result.description %}
+        <div class="content-preview-item-summary">{{result.description}}</div>
+        {% endif %}
+
+        {% if result.places %}
+          <div class="content-preview-item-summary">
+            {% if result.places.0|length_is:"1" %}
+              {{result.places}}
+            {% else %}
+              {% for place in result.places %}
+                {{ place }}  {% if not forloop.first %}<br/>{% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if result.prices %}
+        <div class="content-preview-item-summary">
+          <div class="key-value-pair-group">
+            {% for price in result.prices %}
+            <div class="key-value-pair">
+              <div class="key">{{ price|split_on_line:2 }}</div>
+              <div class="value">${{ price|split_on_line:0 }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if result.content_type == "JOB" %}
+        <div class="key-value-pair-group">
+         <!-- {% if result.contact_roles_AUTHOR %}
+          <div class="key-value-pair">
+            <div class="key">posted by</div>
+            <div class="value">{{result.contact_roles_AUTHOR.0|split_on_line:1 }}</div>
+          </div>
+          {% endif %}-->
+          <div class="key-value-pair">
+            <div class="key">Company</div>
+            <div class="value">{{result.company}}</div>
+          </div>
+          <div class="key-value-pair">
+            <div class="key">Location</div>
+            <div class="value">{{result.address_city}}, {{result.address_state}} {% if result.address_country != "United States" %}{{result.address_country}}{% endif %}</div>
+          </div>
+          <div class="key-value-pair">
+            <div class="key">Posted</div>
+            <div class="value">{{result.published_time|datetime_from_json|age_in_days}}</div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+</li>

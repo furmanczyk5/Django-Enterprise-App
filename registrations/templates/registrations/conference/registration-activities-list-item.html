@@ -1,0 +1,142 @@
+{% load tz %}
+{% load content_extras %}
+
+{% with timezone=result.timezone|default:"US/Central" %}
+{% with begin_time=result.begin_time|datetime_with_zone_from_json:timezone end_time=result.end_time|datetime_with_zone_from_json:timezone  %}
+
+{% localtime off %}
+  {% ifchanged begin_time %}
+    {% ifchanged begin_time|date:"omd" %}
+    <li class="conference-search-item conference-search-item-day">
+      <a class="conference-result-day-anchor" name="{{ begin_time|date:'lNjY'}}" title="{{begin_time|date:'l n/j'}}"></a>
+      <h2>{{begin_time|date:"l, N j, Y"}}</h2>
+    </li>
+    {% endifchanged %}
+  {% endifchanged %}
+{% endlocaltime %}
+
+<li class="clearfix conference-search-item{% if result.has_product %} conference-search-item-ticketed{% endif %}">
+  {% if result.has_product %}
+  <div class="section-icon section-icon-ticket">
+    <h3>Ticket Required</h3>
+  </div>
+  {% endif %}
+  {% if "Food Included" in result.tags %}
+  <div class="section-icon section-icon-ticket">
+    <h3>Food Included</h3>
+  </div>
+  {% endif %}
+
+  {% if result.featured %}
+  <div>
+    <h3>Featured</h3>
+  </div>
+  {% endif %}
+  <div>
+    <!-- title -->
+    <h4 class="search-result-title">
+      {{ result.title }}
+    </h4>
+    <!-- sub title -->
+    {% if result.subtitle %}
+      {{result.subtitle}}
+    {% endif %}
+  </div>
+  <div class="clearfix">
+    <div>
+      <!-- Date and time -->
+      {% localtime off %}
+      <!-- Date -->
+      <span class="search-result-description">
+        <strong>Date:</strong>&nbsp;
+        <!-- start and end same day -->
+        {% ifequal begin_time|date:"omd" end_time|date:"omd" %}
+          {{ begin_time|date:"N j, Y" }}
+        {% else %}
+        <!-- extends through multiple days -->
+          {{begin_time|date:"N j, Y" }} - {{end_time|date:"N j, Y" }}
+        {% endifequal %}
+      </span>
+
+      <!-- Time -->
+      <span class="search-result-description">
+        <strong>Time:</strong>&nbsp;
+        {% ifequal begin_time|date:"omd" end_time|date:"omd" %}
+        <!-- start and end same day -->
+          {{begin_time|date:"f A" }} - {{end_time|date:"f A e" }}
+        {% else %}
+        <!-- extends through multiple days -->
+          {{begin_time|date:"N j, Y | f A" }} - {{end_time|date:"N j, Y | f A e" }}
+        {% endifequal %}
+      </span>
+      {% endlocaltime %}
+    </div>
+    <div class="search-left">
+      <!-- Room -->
+      {% if result.tags_ROOM %}
+      <div class="search-result-description">
+        <strong>Room:</strong>&nbsp;
+        {{ result.tags_ROOM.0|split_on_period:2 }}
+      </div>
+      {% endif %}
+
+      <!-- Prices -->
+      <div class="content-preview-item-summary">
+        <div class="key-value-pair-group">
+        {% if result.prices %}
+          {% for price in result.prices %}
+          <div class="key-value-pair">
+            <div class="key">{{ price|split_on_line:2 }}</div>
+            <div class="value">${{ price|split_on_line:0 }}</div>
+          </div>
+          {% endfor %}
+        {% endif %}
+        </div>
+      </div>
+
+      <br>
+      <div class="search-result-description">{{result.description}}</div>
+    </div>
+    <div class="search-right">
+      <div class="clearfix">
+        <span class="search-id">{{ result.code }}</span>
+        <span class="cm-credits">
+        {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=result %}
+        </span>
+      </div>
+      <br>
+
+      {% if result.has_product %}
+        <a class="btn btn-primary" href="/conference/nationalconferenceactivity/{{ result.id|split_on_period:1 }}/">
+          Add to Cart
+        </a>
+      {% else %}
+        <!-- FLAGGED FOR REFACTORING: NPC21 -->
+        {#{% if show_schedule_stuff %}#}
+        <a class="btn btn-default" title="Remove from My Schedule" id="activity-remove-{{result.id|split_on_period:1 }}"
+          {% if result.id not in scheduled_solr_ids %}style="display:none;"{% endif %}
+          onclick="{
+            $.get('/conference/api/0.1/schedule/remove/{{result.id|split_on_period:1 }}/');
+            $('#activity-add-{{result.id|split_on_period:1 }},#activity-remove-{{result.id|split_on_period:1 }}').toggle();
+            return false;
+          }">
+          Remove from My Schedule
+        </a>
+        <a class="btn btn-primary" id="activity-add-{{result.id|split_on_period:1 }}" title="Add to Schedule"
+          {% if result.id in scheduled_solr_ids %}style="display:none"{% endif %}
+          onclick="{
+            $.get('/conference/api/0.1/schedule/add/{{result.id|split_on_period:1 }}/');
+            $('#activity-add-{{result.id|split_on_period:1 }},#activity-remove-{{result.id|split_on_period:1 }}').toggle();
+            return false;
+          }">
+          Add to My Schedule
+        </a>
+        {#{% endif %}#}
+      {% endif %}
+
+    </div>
+  </div>
+</li>
+
+{% endwith %}
+{% endwith %}

@@ -1,0 +1,370 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">AICP Candidate Pilot Program Enrollment</h1><br>
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+      <div class="row">
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+            <div class="form-section form-section-enclosed-dark">
+              <h3 class="form-section-title">AICP CODE OF ETHICS AND PROFESSIONAL CONDUCT</h3>
+              <!-- TO DO... MOVE THIS INTO A MESSAGE INSTANCE... -->
+              <p>Before you begin, read the <a href="/ethics/" target="_blank">“AICP Candidate Pilot Program Code of Ethics Guidelines.”</a></p>
+
+<div class="layout_content">
+<div class="section">
+<p><strong>Adopted March 19, 2005<br />
+Effective June 1, 2005<br />
+Revised April 1, 2016</strong></p>
+<!--<p><em>The Executive Director of APA/AICP is the Ethics Officer as referenced in the following.</em></p>-->
+
+<p>We, professional planners, who are members of the American Institute of Certified Planners, subscribe to our Institute&#39;s Code of Ethics and Professional Conduct. Our Code is divided into five sections:</p>
+
+<blockquote>
+<p>Section A contains a statement of aspirational principles that constitute the ideals to which we are committed. We shall strive to act in accordance with our stated principles. However, an allegation that we failed to achieve our aspirational principles cannot be the subject of a misconduct charge or be a cause for disciplinary action.</p>
+
+<p>Section B contains rules of conduct to which we are held accountable. If we violate any of these rules, we can be the object of a charge of misconduct and shall have the responsibility of responding to and cooperating with the investigation and enforcement procedures. If we are found to be blameworthy by the AICP Ethics Committee, we shall be subject to the imposition of sanctions that may include loss of our certification.</p>
+
+<p>Section C contains the procedural provisions of the Code that describe how one may obtain either a formal or informal advisory ruling, as well as the requirements for an annual report.</p>
+
+<p>Section D contains the procedural provisions that detail how a complaint of misconduct can be filed, as well as how these complaints are investigated and adjudicated.</p>
+
+<p>Section E contains procedural provisions regarding the forms of disciplinary actions against a planner, including those situations where a planner is convicted of a serious crime or other conduct inconsistent with the responsibilities of a certified planner.</p>
+</blockquote>
+
+<p>The principles to which we subscribe in Sections A and B of the Code derive from the special responsibility of our profession to serve the public interest with compassion for the welfare of all people and, as professionals, to our obligation to act with high integrity.</p>
+
+<p>As the basic values of society can come into competition with each other, so can the aspirational principles we espouse under this Code. An ethical judgment often requires a conscientious balancing, based on the facts and context of a particular situation and on the precepts of the entire Code.</p>
+
+<p>As Certified Planners, all of us are also members of the American Planning Association and share in the goal of building better, more inclusive communities. We want the public to be aware of the principles by which we practice our profession in the quest of that goal. We sincerely hope that the public will respect the commitments we make to our employers and clients, our fellow professionals, and all other persons whose interests we affect.</p>
+
+<h2>A: Principles to Which We Aspire</h2>
+
+<p><strong>1. Our Overall Responsibility to the Public</strong></p>
+
+<p>Our primary obligation is to serve the public interest and we, therefore, owe our allegiance to a conscientiously attained concept of the public interest that is formulated through continuous and open debate. We shall achieve high standards of professional integrity, proficiency, and knowledge. To comply with our obligation to the public, we aspire to the following principles:</p>
+
+<blockquote>
+<p>a) We shall always be conscious of the rights of others.</p>
+
+<p>b) We shall have special concern for the long-range consequences of present actions.</p>
+
+<p>c) We shall pay special attention to the interrelatedness of decisions.</p>
+
+<p>d) We shall provide timely, adequate, clear, and accurate information on planning issues to all affected persons and to governmental decision makers.</p>
+
+<p>e) We shall give people the opportunity to have a meaningful impact on the development of plans and programs that may affect them. Participation should be broad enough to include those who lack formal organization or influence.</p>
+
+<p>f) We shall seek social justice by working to expand choice and opportunity for all persons, recognizing a special responsibility to plan for the needs of the disadvantaged and to promote racial and economic integration. We shall urge the alteration of policies, institutions, and decisions that oppose such needs.</p>
+
+<p>g) We shall promote excellence of design and endeavor to conserve and preserve the integrity and heritage of the natural and built environment.</p>
+
+<p>h) We shall deal fairly with all participants in the planning process. Those of us who are public officials or employees shall also deal evenhandedly with all planning process participants.</p>
+</blockquote>
+
+<p><strong>2. Our Responsibility to Our Clients and Employers</strong></p>
+
+<p>We owe diligent, creative, and competent performance of the work we do in pursuit of our client or employer&#39;s interest. Such performance, however, shall always be consistent with our faithful service to the public interest.</p>
+
+<blockquote>
+<p>a) We shall exercise independent professional judgment on behalf of our clients and employers.</p>
+
+<p>b) We shall accept the decisions of our client or employer concerning the objectives and nature of the professional services we perform unless the course of action is illegal or plainly inconsistent with our primary obligation to the public interest.</p>
+
+<p>c) We shall avoid a conflict of interest or even the appearance of a conflict of interest in accepting assignments from clients or employers.</p>
+</blockquote>
+
+<p><strong>3. Our Responsibility to Our Profession and Colleagues</strong></p>
+
+<p>We shall contribute to the development of, and respect for, our profession by improving knowledge and techniques, making work relevant to solutions of community problems, and increasing public understanding of planning activities.</p>
+
+<blockquote>
+<p>a) We shall protect and enhance the integrity of our profession.</p>
+
+<p>b) We shall educate the public about planning issues and their relevance to our everyday lives.</p>
+
+<p>c) We shall describe and comment on the work and views of other professionals in a fair and professional manner.</p>
+
+<p>d) We shall share the results of experience and research that contribute to the body of planning knowledge.</p>
+
+<p>e) We shall examine the applicability of planning theories, methods, research and practice and standards to the facts and analysis of each particular situation and shall not accept the applicability of a customary solution without first establishing its appropriateness to the situation.</p>
+
+<p>f) We shall contribute time and resources to the professional development of students, interns, beginning professionals, and other colleagues.</p>
+
+<p>g) We shall increase the opportunities for members of underrepresented groups to become professional planners and help them advance in the profession.</p>
+
+<p>h) We shall continue to enhance our professional education and training.</p>
+
+<p>i) We shall systematically and critically analyze ethical issues in the practice of planning.</p>
+
+<p>j) We shall contribute time and effort to groups lacking in adequate planning resources and to voluntary professional activities.</p>
+</blockquote>
+
+<h2>B: Our Rules of Conduct</h2>
+
+<p>We adhere to the following Rules of Conduct, and we understand that our Institute will enforce compliance with them. If we fail to adhere to these Rules, we could receive sanctions, the ultimate being the loss of our certification:</p>
+
+<p>1. We shall not deliberately or with reckless indifference fail to provide adequate, timely, clear and accurate information on planning issues.</p>
+
+<p>2. We shall not accept an assignment from a client or employer when the services to be performed involve conduct that we know to be illegal or in violation of these rules.</p>
+
+<p>3. We shall not accept an assignment from a client or employer to publicly advocate a position on a planning issue that is indistinguishably adverse to a position we publicly advocated for a previous client or employer within the past three years unless (1) we determine in good faith after consultation with other qualified professionals that our change of position will not cause present detriment to our previous client or employer, and (2) we make full written disclosure of the conflict to our current client or employer and receive written permission to proceed with the assignment.</p>
+
+<p>4. We shall not, as salaried employees, undertake other employment in planning or a related profession, whether or not for pay, without having made full written disclosure to the employer who furnishes our salary and having received subsequent written permission to undertake additional employment, unless our employer has a written policy which expressly dispenses with a need to obtain such consent.</p>
+
+<p>5. We shall not, as public officials or employees, accept from anyone other than our public employer any compensation, commission, rebate, or other advantage that may be perceived as related to our public office or employment.</p>
+
+<p>6. We shall not perform work on a project for a client or employer if, in addition to the agreed upon compensation from our client or employer, there is a possibility for direct personal or financial gain to us, our family members, or persons living in our household, unless our client or employer, after full written disclosure from us, consents in writing to the arrangement.</p>
+
+<p>7. We shall not use to our personal advantage, nor that of a subsequent client or employer, information gained in a professional relationship that the client or employer has requested be held inviolate or that we should recognize as confidential because its disclosure could result in embarrassment or other detriment to the client or employer. Nor shall we disclose such confidential information except when (1) required by process of law, or (2) required to prevent a clear violation of law, or (3) required to prevent a substantial injury to the public. Disclosure pursuant to (2) and (3) shall not be made until after we have verified the facts and issues involved and, when practicable, exhausted efforts to obtain reconsideration of the matter and have sought separate opinions on the issue from other qualified professionals employed by our client or employer.</p>
+
+<p>8. We shall not, as public officials or employees, engage in private communications with planning process participants if the discussions relate to a matter over which we have authority to make a binding, final determination if such private communications are prohibited by law or by agency rules, procedures, or custom.</p>
+
+<p>9. We shall not engage in private discussions with decision makers in the planning process in any manner prohibited by law or by agency rules, procedures, or custom.</p>
+
+<p>10. We shall neither deliberately, nor with reckless indifference, misrepresent the qualifications, views and findings of other professionals.</p>
+
+<p>11. We shall not solicit prospective clients or employment through use of false or misleading claims, harassment, or duress.</p>
+
+<p>12. We shall not misstate our education, experience, training, or any other facts which are relevant to our professional qualifications.</p>
+
+<p>13. We shall not sell, or offer to sell, services by stating or implying an ability to influence decisions by improper means.</p>
+
+<p>14. We shall not use the power of any office to seek or obtain a special advantage that is not a matter of public knowledge or is not in the public interest.</p>
+
+<p>15. We shall not accept work beyond our professional competence unless the client or employer understands and agrees that such work will be performed by another professional competent to perform the work and acceptable to the client or employer.</p>
+
+<p>16. We shall not accept work for a fee, or pro bono, that we know cannot be performed with the promptness required by the prospective client, or that is required by the circumstances of the assignment.<br />
+<br />
+17. We shall not use the product of others&#39; efforts to seek professional recognition or acclaim intended for producers of original work.</p>
+
+<p>18. We shall not direct or coerce other professionals to make analyses or reach findings not supported by available evidence.</p>
+
+<p>19. We shall not fail to disclose the interests of our client or employer when participating in the planning process. Nor shall we participate in an effort to conceal the true interests of our client or employer.</p>
+
+<p>20. We shall not unlawfully discriminate against another person.</p>
+
+<p>21. We shall not withhold cooperation or information from the AICP Ethics Officer or the AICP Ethics Committee if a charge of ethical misconduct has been filed against us.</p>
+
+<p>22. We shall not retaliate or threaten retaliation against a person who has filed a charge of ethical misconduct against us or another planner, or who is cooperating in the Ethics Officer&#39;s investigation of an ethics charge.</p>
+
+<p>23. We shall not use the threat of filing an ethics charge in order to gain, or attempt to gain, an advantage in dealings with another planner.</p>
+
+<p>24. We shall not file a frivolous charge of ethical misconduct against another planner.</p>
+
+<p>25. We shall neither deliberately, nor with reckless indifference, commit any wrongful act, whether or not specified in the Rules of Conduct, that reflects adversely on our professional fitness.</p>
+
+<p>26. We shall not fail to immediately notify the Ethics Officer by both receipted Certified and Regular First Class Mail if we are convicted of a &quot;serious crime&quot; as defined in Section D of the Code; nor immediately following such conviction shall we represent ourselves as Certified Planners or Members of AICP until our membership is reinstated by the AICP Ethics Committee pursuant to the procedures in Section D of the Code.</p>
+
+<h2>C: Advisory Opinions</h2>
+
+<p><strong>1. Introduction</strong></p>
+
+<p>Any person, whether or not an AICP member, may seek informal advice from the Ethics Officer, and any AICP member may seek a formal opinion from the Ethics Committee, on any matter relating to the Code of Ethics and Professional Conduct.&nbsp; In addition, the Ethics Committee may, from time to time, issue opinions applying the Code to ethical matters relating to planning.</p>
+
+<p><strong>2. Informal Advice</strong></p>
+
+<p style="margin-left: 40px;">a)&nbsp; Any person with a question about whether specific conduct conforms to the Code of Ethics and Professional Conduct may seek informal advice from the Ethics Officer.&nbsp; Any such person should contact the Ethics Officer to arrange a time to discuss the issue.<br />
+The Ethics Officer will endeavor to schedule a call promptly and to provide the advice promptly.</p>
+
+<p style="margin-left: 40px;">b)&nbsp; Informal advice will be given orally.&nbsp; However, the Ethics Officer will keep a record of the issue raised and the advice given.</p>
+
+<p style="margin-left: 40px;">c)&nbsp; Informal advice is intended to assist the person who seeks it, but it is not binding on AICP.&nbsp;&nbsp; Nevertheless, the Ethics Committee will take it into consideration if the Committee is subsequently called upon to consider a charge of misconduct against a Certified Planner who relied on the advice.</p>
+
+<p><strong>3. Formal Advisory Opinions Requested By A Member</strong></p>
+
+<p style="margin-left: 40px;">a)&nbsp; Any AICP member with a question about whether specific conduct conforms to the Code of Ethics and Professional Conduct may seek a formal opinion from the Ethics Committee.&nbsp; Any such member should send a detailed description of the relevant facts and a clear statement of the question to the Ethics Officer.</p>
+
+<p style="margin-left: 40px;">b)&nbsp; The Ethics Officer shall review each such request and determine whether there is sufficient information to permit a fully informed response or whether additional information is required.</p>
+
+<p style="margin-left: 40px;">c)&nbsp; The Ethics Committee will not issue an Advisory Opinion if it determines that the request concerns past conduct that may be the subject of a charge of misconduct.&nbsp; It may also decline to issue an Advisory Opinion for any other reason.&nbsp; The Committee may, but is not required to, provide a reason for a decision not to issue an opinion.</p>
+
+<p style="margin-left: 40px;">d)&nbsp; If the Ethics Committee determines to issue an Advisory Opinion, it will endeavor to do so within ninety (90) days after receiving all information necessary to the provision of the opinion.&nbsp; Every Advisory Opinion will be in writing.</p>
+
+<p style="margin-left: 40px;">e)&nbsp; Any member who acts in compliance with a formal Advisory Opinion will have a defense to a charge of misconduct that is based on conduct permitted by the Opinion.</p>
+
+<p style="margin-left: 40px;">f ) The Ethics Committee, in its sole discretion, shall determine whether, and how, to publish any formal Advisory Opinion.&nbsp; If the Committee determines to publish an Advisory Opinion, the published Opinion will not, without appropriate consent, include the name or other identifying information of any person except to the extent that identifying information is helpful in setting forth the issue or in explaining the Committee&#39;s decision.</p>
+
+<p style="margin-left: 40px;">g) Any AICP member who believes that a published formal Advisory Opinion is incorrect or incomplete may write to the Ethics Officer explaining the member&#39;s thinking and requesting reconsideration.&nbsp; The Ethics Officer shall transmit all such communications to the Ethics Committee.&nbsp; That Committee shall review such communications and determine what, if any, changes to make.&nbsp; The decision of the Committee shall be final.</p>
+
+<p><strong>4. Formal Advisory Opinions Issued Without Request Of A Member</strong></p>
+
+<p style="margin-left: 40px;">a<strong>) </strong>The Ethics Committee may from time to time issue, without a request from a member, formal Advisory Opinions relating to the Code of Ethics and Professional Conduct when it believes that an Opinion will provide useful guidance to members.</p>
+
+<p style="margin-left: 40px;">b<strong>) </strong>All formal Advisory Opinions issued under this paragraph shall be in writing and shall be published to the entire membership.</p>
+
+<p style="margin-left: 40px;">c) Any AICP member who believes that a formal Advisory Opinion issued under this paragraph is incorrect or incomplete may write to the Ethics Officer explaining the member&#39;s thinking and requesting reconsideration.&nbsp; The Ethics Officer shall transmit all such communications to the Ethics Committee.&nbsp; That Committee shall review such communications and determine what, if any, changes to make.&nbsp; The decision of the Committee shall be final.</p>
+
+<p><strong>5</strong>. <strong>Annual Report of the Ethics Officer</strong></p>
+
+<p style="margin-left: 40px;">a) Prior to January 31 of each year, the Ethics Officer shall provide to the AICP Commission and to the Ethics Committee an Annual Report of all formal Advisory Opinions and all interpretations of the Code issued during the preceding calendar year. That report need not contain the full text of each formal Advisory Opinion and interpretation of the Code.</p>
+
+<p style="margin-left: 40px;">b) The AICP Commission shall publish an Annual Report on ethics matters to the membership.</p>
+
+<p>&nbsp;</p>
+
+<h2>D: Adjudication of Complaints of Misconduct</h2>
+
+<p><strong>1</strong>. <strong>Filing a Complaint.</strong></p>
+
+<p style="margin-left: 40px;">a) Any person, whether or not an AICP member, may file an ethics complaint against a Certified Planner. An ethics complaint shall be sent to the AICP Ethics Officer on a form developed by the Ethics Officer and posted on the AICP website. The complaint must be signed and include contact information so that the Ethics Committee and the Ethics Officer will know with whom to follow up if questions arise or if the situation otherwise requires follow up. The person making the complaint (&quot;the complainant&quot;) may request confidentiality.&nbsp; The AICP will attempt to honor that request.&nbsp; However, it cannot guarantee confidentiality and will disclose the identity of the complainant if disclosure is needed in order to reach an informed result or otherwise to advance the thoughtful consideration of the complaint.&nbsp; The complaint may be accompanied by a brief cover letter.</p>
+
+<p style="margin-left: 40px;">b) The complaint shall identify the Certified Planner against whom the complaint is brought, describe the conduct at issue, cite the relevant provision(s) of the Code of Ethics and Professional Conduct, and explain the reasons that the conduct is thought to violate the Code.</p>
+
+<p style="margin-left: 40px;">c) The complaint should be accompanied by all relevant documentation available to the complainant.</p>
+
+<p style="margin-left: 40px;">d) The Ethics Officer shall determine whether the complaint contains all information necessary to making a fully informed decision.&nbsp; If the complaint does not contain all such information, the Ethics Officer shall contact the complainant to try to obtain the information.</p>
+
+<p style="margin-left: 40px;">e) The Ethics Officer shall maintain, for use by the Ethics Committee, a log of all complaints against Certified Planners.</p>
+
+<p><strong>2</strong>.&nbsp; <strong>Preliminary Review</strong>.</p>
+
+<p style="margin-left: 40px;">a) The Ethics Officer shall review each complaint, together with any supporting documentation, to make a preliminary determination of whether a violation may have occurred.&nbsp; Before making this determination, the Ethics Officer may request from the complainant any additional information that the Officer deems relevant.</p>
+
+<p style="margin-left: 40px;">b) Within thirty (30) days after receiving all information that the Ethics Officer deems necessary to make a preliminary determination, the Ethics Officer shall make a preliminary determination whether a violation may have occurred.</p>
+
+<p style="margin-left: 40px;">c) If the preliminary determination of the Ethics Officer is that it is clear that no violation has occurred, the complaint shall be dismissed.&nbsp; The complainant shall be so notified.&nbsp; The complainant shall have twenty (20) days from the date of notification to appeal the dismissal of the complaint to the Ethics Committee.</p>
+
+<p style="margin-left: 40px;">d) If the preliminary determination of the Ethics Officer is that a violation may have occurred &mdash; or if, on appeal, the Ethics Committee reverses a preliminary dismissal, the Ethics Officer shall, within thirty (30)&nbsp; days, provide the complaint to the Certified Planner against whom the complaint was made (&quot;the respondent&quot;).&nbsp;&nbsp; The Ethics Officer shall request from the respondent a detailed response to the complaint, and any supporting documentation.</p>
+
+<p><strong>3.</strong>&nbsp; <strong>Fact Gathering</strong></p>
+
+<p style="margin-left: 40px;">a) The respondent shall have thirty (30) days from the date of notification from the Ethics Officer to provide a response to the complaint, as well as any supporting documentation.&nbsp; The Ethics Officer may extend this time, for good cause shown, for a period not to exceed fourteen (14)&nbsp;days.</p>
+
+<p style="margin-left: 40px;">b) The Ethics Officer shall provide the response of the respondent to the complainant and shall give the complainant an opportunity to comment on the response within fourteen (14) days.</p>
+
+<p style="margin-left: 40px;">c) If the Ethics Officer determines that additional information is needed from either the complainant or the respondent, the Ethics Officer shall attempt to obtain such information. The parties shall have fifteen (15) days to provide the requested additional information, with up to a fifteen (15) day extension at the discretion of the Ethics Officer if a request is made for additional time.</p>
+
+<p><strong>4.&nbsp; Exploration of Settlement</strong></p>
+
+<p style="margin-left: 40px;">a)&nbsp; At any point in the process, the Ethics Officer may, after consultation with the Ethics Committee, attempt to negotiate a settlement of the complaint in accordance with the Code of Ethics and Professional Conduct.</p>
+
+<p style="margin-left: 40px;">b) The Ethics Committee shall be notified of &mdash; and permitted to comment on &mdash; any potential settlement at an early stage. Any settlement must be approved by the Ethics Committee before becoming final. Upon approval by the Ethics Committee, a settlement agreement shall be signed by the respondent and, where appropriate, by the complainant.</p>
+
+<p style="margin-left: 40px;">c) If a negotiated settlement is approved by the Ethics Committee and is signed in accordance with paragraph 4-b, the matter will be concluded, and no further action will be taken by AICP.</p>
+
+<p><strong>5. Decision</strong></p>
+
+<p style="margin-left: 40px;">a) If neither the Ethics Officer nor the Ethics Committee determines to explore settlement &mdash; or if the parties are unwilling to engage in settlement discussions or if a settlement is not reached, the Ethics Officer shall, after considering timely input from the parties, issue a written decision on the complaint.&nbsp; The Ethics Officer, at his or her sole discretion, may determine whether a hearing needs to be held.&nbsp; A hearing will be held by telephone or other electronic means unless all parties and the Ethics Officer agree that it should be held in person.&nbsp;The expenses of each party in connection with any hearing, such as transcripts, travel, and attorneys&#39; fees, will be borne by that party.</p>
+
+<p style="margin-left: 40px;">b) The Ethics Officer may determine that there is inadequate evidence of an ethics violation and therefore dismiss the complaint.&nbsp; Alternatively, the Ethics Officer may find that there has been an ethics violation.&nbsp; In either situation, the Ethics Officer shall explain the basis for the decision in a written opinion that cites and discusses the relevant provision(s) of the Code of Ethics and Professional Conduct.</p>
+
+<p style="margin-left: 40px;">c) If the decision is that there has been a violation, the Ethics Officer shall impose such discipline as that Officer deems appropriate.&nbsp; The discipline may be: (1) a confidential letter of admonition, (2) a public reprimand, (3) suspension of AICP membership, or (4) expulsion from AICP.&nbsp; The Ethics Officer shall explain the basis for the discipline imposed and may attach such conditions, <em>e.g.</em> requirement to get additional ethics training, as the Officer deems just.</p>
+
+<p style="margin-left: 40px;">d) The Ethics Officer shall transmit the decision to the Ethics Committee and shall notify the parties of the decision. However, the Ethics Officer may determine not to disclose the remedy to a complainant who is not a member of AICP.</p>
+
+<p><strong>6</strong>. <strong>Appeal</strong></p>
+
+<p style="margin-left: 40px;">a) Within thirty (30)&nbsp;days after issuance of the written decision of the Ethics Officer, either the complainant or respondent may appeal the decision to the Ethics Committee by filing a timely written notice of appeal with the Ethics Officer.</p>
+
+<p style="margin-left: 40px;">b) If an appeal is timely filed, the party filing the appeal shall, within fourteen (14)&nbsp;days, provide the Ethics Officer with a written statement as to the basis for the appeal.&nbsp; The Ethics Officer shall, within ten (10) days, transmit that document to the party against whom the appeal is filed.&nbsp; That party shall have thirty (30) days to provide the Ethics Officer with a written statement of his or her position on the appeal.&nbsp; The Ethics Officer shall transmit all written statements of the parties to the Ethics Committee within ten (10)&nbsp;days after the record is complete.</p>
+
+<p style="margin-left: 40px;">c) After receiving any timely filed statements of the parties, the Ethics Committee shall issue a written decision on the appeal.&nbsp; Before issuing a decision, the Ethics Committee, in its sole discretion, may consult with the Ethics Officer.&nbsp;The Ethics Committee may also, in its sole discretion, determine whether to hold a hearing at which the parties may present their positions and answer questions posed by the Committee. A hearing will be held by telephone or other electronic means unless all parties and the Ethics Committee agree that it should be held in person. The expenses of each party in connection with any hearing, such as transcripts, travel, and attorneys&#39; fees, will be borne by that party.</p>
+
+<p style="margin-left: 40px;">d) The Ethics Committee may (1) affirm the decision of the Ethics Officer; (2) affirm the decision but impose a different remedy; (3) vacate the decision of the Ethics Officer and return the case to the Ethics Officer for additional investigation, consideration of different Code sections or issues, or any other follow up; or (4) vacate the decision of the Ethics Officer and issue its own decision.</p>
+
+<p style="margin-left: 40px;">e) A decision to affirm the decision of the Ethics Officer, to impose a different remedy, or to vacate that decision and to issue the Ethics Committee&#39;s own decision shall be final.</p>
+
+<p style="margin-left: 40px;">f) If the decision is to return the case to the Ethics Officer for follow up, the Ethics Officer may seek to explore settlement or may issue a decision consistent with the decision of the Ethics Committee.&nbsp; Before issuing such a decision, the Ethics Officer may seek additional input from the parties in a manner and format consistent with the Code of Ethics and Professional Conduct.</p>
+
+<p><strong>7. Effect of Dropping of Charges by Complainant or Resignation by Respondent</strong></p>
+
+<p style="margin-left: 40px;">a) If charges are dropped by the complainant, the Ethics Committee may, at its sole discretion, either terminate the ethics proceeding or continue the process without the complainant.</p>
+
+<p style="margin-left: 40px;">b) If the respondent resigns from AICP or lets membership lapse after a complaint is filed but before the case is finalized, the Ethics Committee may, at its sole discretion, either terminate the ethics proceeding or continue the process.&nbsp; As in any situation, the Ethics Committee may also determine to file a complaint with the appropriate law enforcement authority if it believes that a violation of law may have occurred.</p>
+
+<p><strong>8. Reporting</strong></p>
+
+<p style="margin-left: 40px;">a)<strong> </strong>Any written decision of the Ethics Committee may, at the discretion of the Committee, be published and titled &quot;Opinion of the AICP Ethics Committee&quot;.</p>
+
+<p style="margin-left: 40px;">b) Any written decision of the Ethics Officer shall be referenced in the Annual Report of the Ethics Officer.</p>
+
+<h2>E: Discipline of Members</h2>
+
+<p><strong>1. General</strong></p>
+
+<p>AICP members are subject to discipline for certain conduct.&nbsp; This conduct includes (a) conviction of a serious crime as defined in paragraph 3; (b) conviction of other crimes as set forth in paragraph 4; (c) a finding by the Ethics Committee or Ethics Officer that the member has engaged in unethical conduct;&nbsp; (d) loss, suspension, or restriction of state or other governmental professional licensure; (e) failure to make disclosure to AICP of any conviction of a serious crime or adverse professional licensure action; or (f) such other action as the Ethics Committee or the Ethics Officer, in the exercise of reasonable judgment, determines to be inconsistent with the professional responsibilities of a Certified Planner.</p>
+
+<p><strong>2. Forms of Discipline</strong></p>
+
+<p>The discipline available under this Policy includes: (a) a confidential letter of admonition, (b) a public letter of censure, (c) suspension of AICP membership, or (d) revocation from AICP. The Ethics Officer or the Ethics Committee may attach conditions to these disciplinary actions, such as the writing of a letter of apology, the correction of a false statement or statements, the taking of an ethics course, the refunding of money, or any other conditions deemed just in light of the conduct in question.</p>
+
+<p><strong>3. Conviction of a Serious Crime</strong></p>
+
+<p style="margin-left: 40px;">a) The membership of a Certified Planner shall be revoked if the Planner has been convicted of a &quot;serious crime&quot;.&nbsp; Membership shall be revoked whether the conviction resulted from a plea of guilty or nolo contendere, from a verdict after trial, or otherwise.&nbsp; Membership shall be revoked even if the Planner is appealing a conviction, but it will be reinstated if the conviction is overturned upon appeal.</p>
+
+<p style="margin-left: 40px;">b) For purposes of this Policy, the term &quot;serious crime&quot; shall mean any crime that, in the judgment of the Ethics Committee or the Ethics Officer, involves false swearing, misrepresentation, fraud, failure to file income tax returns or to pay tax, deceit, bribery, extortion, misappropriation, theft, or physical harm to another.</p>
+
+<p><strong>4. Conviction of Other Crimes</strong></p>
+
+<p style="margin-left: 40px;">a) Discipline may also be imposed if a Certified Planner has been convicted of a crime not included within the definition of &quot;serious crime,&quot; including an action determined by the Ethics Committee or the Ethics Officer to be inconsistent with the professional responsibilities of a Certified Planner.</p>
+
+<p style="margin-left: 40px;">b) Before any discipline is imposed under this section, the member shall have a right to set forth his or her position in writing to the Ethics Officer.&nbsp; The Ethics Officer shall, in that Officer&#39;s sole discretion, determine whether or not to give the member a hearing.&nbsp; The Ethics Officer shall notify the member of the decision.</p>
+
+<p style="margin-left: 40px;">c) A member who has had discipline imposed by the Ethics Officer shall have thirty (30) days from the date of notification of the adverse decision to file an appeal to the Ethics Committee.&nbsp; The member may do so by filing a timely notice of appeal with the Ethics Officer. The notice shall be accompanied by a statement of the basis for the appeal.&nbsp; The Ethics Officer will transmit any appeal and accompanying notice to the Ethics Committee.&nbsp; That Committee shall determine, in its sole discretion, whether or not to grant a hearing.&nbsp; The Ethics Committee shall, after considering the relevant information, issue a written opinion on the appeal.</p>
+
+<p><strong>5. Unethical Conduct</strong></p>
+
+<p>The forms of discipline set forth in paragraph 2 shall apply to any member who is found to have engaged in unethical conduct in accordance with the procedures established in the Policy on Adjudication of Complaints of Misconduct.</p>
+
+<p><strong>6. Revocation, Suspension, or Restriction of Licensure</strong></p>
+
+<p style="margin-left: 40px;">a) The Ethics Committee or Ethics Officer shall impose such discipline as the Committee or Officer regards as just if a state or other governmentally-issued professional license of a Certified Planner has been revoked, suspended, or restricted for any reason relating to improper conduct by the Planner.</p>
+
+<p style="margin-left: 40px;">b) Before any discipline is imposed under this section, the provisions of section 4 (b) and (c) shall apply.</p>
+
+<p><strong>7. Duty to Notify Ethics Officer</strong></p>
+
+<p style="margin-left: 40px;">a)&nbsp; A member who has been convicted of a serious crime or who has had his or her state or other governmentally-issued professional license revoked, suspended, or restricted for any reason relating to improper conduct by the member shall promptly report the relevant development to the Ethics Officer.</p>
+
+<p style="margin-left: 40px;">b) Failure of a member to report that he or she has been convicted of a serious crime or has had a professional license revoked, suspended, or restricted for a reason relating to improper conduct by that member may itself result in discipline of that member.</p>
+
+<p><strong>8. Other Conduct Inconsistent with the Responsibilities of a Certified Planner</strong></p>
+
+<p style="margin-left: 40px;">a) The Ethics Officer shall have the right to discipline any member for any conduct not otherwise covered by this Policy that the Officer determines to be inconsistent with the responsibilities of a Certified Planner.</p>
+
+<p style="margin-left: 40px;">b) Conduct covered by this section shall include, but not be limited to, a finding in a civil case that the member has engaged in defamation or similar unlawful action, has knowingly infringed the copyright or other intellectual property of another, or has engaged in perjury.</p>
+
+<p style="margin-left: 40px;">c)&nbsp; Before any discipline is imposed under this section, the provisions of section 4-b and 4-c shall apply.</p>
+
+<p><strong>9. Petition for Reinstatement</strong></p>
+
+<p style="margin-left: 40px;">a) Any Certified Planner whose membership or certification is revoked may petition the Ethics Committee for reinstatement no sooner than five years from the time of revocation. The Ethics Committee shall determine, in its sole discretion, whether to afford the petitioner a hearing and/or whether to seek additional information.&nbsp; The Committee shall determine, in its sole judgment, whether reinstatement is appropriate and what, if any, conditions should be applied to any such reinstatement. The Ethics Officer shall transmit the reinstatement determination to the Planner.</p>
+
+<p style="margin-left: 40px;">b) If the Ethics Committee denies the Petition, that Officer shall advise the Planner of the opportunity to file a subsequent petition after twelve (12) months have elapsed from the date of the determination.</p>
+
+<p><strong>10. Publication of Disciplinary Actions</strong></p>
+
+<p>The Ethics Committee, in its sole discretion, may publish the names of members who have had disciplinary action imposed and to state the nature of the discipline that was imposed. The authority to publish shall survive the voluntary or involuntary termination or suspension of AICP membership and certification. The Ethics Committee, in its sole discretion, may also determine not to publish such information or to publish only so much of that information as it deems appropriate.</p>
+</div>
+</div>
+              <hr/>
+
+              {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.code_of_ethics %}
+
+            </div>
+            {% if app_status != "EN" %}
+            <div class="form-actions">
+              <input type="submit" name="purchase" class="btn btn-primary" value="Proceed to Checkout" />
+            </div>
+            {% else %}
+            <div class="form-actions">
+              <input type="submit" name="update" class="btn btn-primary" value="Submit Updated Enrollment" />
+            </div>
+            {% endif %}
+          </form>
+        
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

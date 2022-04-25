@@ -1,0 +1,49 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+
+
+{% block title %}My Exam Application Reviews{% endblock %}
+
+{% block content_main %}
+
+<div class="section">
+    <h1>My Completed Exam Application Reviews: {{ user.first_name }} {{ user.last_name }}</h1><br>
+<a href="/certification/exam/application/reviewer/" name="in_progress_review_list" class="btn btn-primary">Go To In-Progress Review List</a><hr>
+<h3>Reviews Completed:</h3><br>
+    {% if reviews %}
+
+            {% for review in reviews %}
+                <p>
+                {% if review.review_time %}
+                    <a href="/certification/exam/application/{{review.content.master_id}}/{{review.review_round}}/reviewer/" name="edit_review_round_1" class="btn btn-primary">Edit/Resubmit Review</a>
+
+                {% if is_staff %}
+                    | APPLICANT: {{ review.content.examapplication.contact }}
+                {% endif %}
+                | APPLICANT ID: {{ review.content.examapplication.contact.user.username }}
+                | EXAM: {{ review.content.examapplication.exam }}
+                | APPLICATION TYPE: {{ review.content.examapplication.application_type }}
+                | APPLICATION STATUS: {{ review.content.examapplication.application_status }}<br>
+                <div><strong>Reviewer:</strong> {{ review.contact }}
+                | <strong>Review Type:</strong> {{ review.review_type }}
+                | <strong>Review Round:</strong> {{ review.review_round }}</div>
+                <div><strong>Assigned Time:</strong> {{ review.assigned_time }}
+                <strong>Deadline Time:</strong> {{ review.deadline_time }}
+                {% if review.review_time %}
+                    <strong>This Review most recently edited and submitted on:</strong> {{ review.review_time }}</div>
+                {% endif %}
+                </p>
+                <hr/>
+                {% else %}
+                {% endif %}                
+            {% endfor %}
+
+    {% else %}
+        <h3>There are currently no exam applications assigned.</h3>
+    {% endif %}
+    <br/>
+    
+</div>
+
+{% endblock %}

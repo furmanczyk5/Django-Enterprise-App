@@ -1,0 +1,105 @@
+{% extends extends_template|default:'myapa/newtheme/account/account-information.html' %}
+
+{% load static %}
+{% load myapa_tags %}
+
+{% block join_title %}APA Membership{% endblock %}
+
+{% block join_subtitle %}
+<h4 class="page-subtitle">
+  Please be sure the information in your APA Profile is complete and accurate. This will help APA know and serve you better. You may update or revise your APA Profile at any time.
+</h4>
+{% endblock %}
+
+{% block join_addresses_section %}
+
+ <div class="form-section form-section-enclosed-dark">
+
+    <div class="form-section form-section-limit-width">
+      <h3>Home Address</h3>
+      <div class="help-block">All fields are required unless labeled as optional</div>
+
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address1 %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address2 %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.zip_code %}
+    </div>
+
+    <div class="form-actions">
+      <a type="button" id="additional_address_button" href="javascript:;">
+        + Add Work Address
+      </a>
+    </div>
+
+    <div id="additional_fields" class="form-section form-section-limit-width hidden">
+      <h3>Work Address (Optional)</h3>
+
+      {% if form.additional_user_address_num.value %}
+      <a class="btn btn-danger" href="{% url 'additional_address_del'%}">Delete</a>
+      {% endif %}
+
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_address1 %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_address2 %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_country %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_state %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_city %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_zip_code %}
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_company %}
+
+    </div>
+
+</div>
+
+ <div class="form-section form-section-enclosed-dark">
+
+    <div class="form-section form-section-limit-width">
+      <h3 class="form-section-title">Address Preferences and Chapter Assignment</h3>
+
+      {% block join_addresses_description %}
+      <div class="form-group">
+        <p>All APA members in the United States must belong to a local chapter. Your chapter membership is based on your Mailing address.</p>
+      </div>
+      {% endblock %}
+
+      {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=form.mailing_preferences %}
+      {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=form.billing_preferences %}
+
+    </div>
+ </div>
+
+{% endblock %}
+
+{% block form_submit_button %}
+<div class="form-actions">
+  <input type="submit" name="submit" class="btn btn-primary" value="Continue" />
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script>
+
+function showAdditionalAddressFields() {
+  $("#additional_address_button").addClass("hidden");
+  $('#additional_fields').removeClass('hidden');
+}
+
+function hideDuplicatePrompt(){
+    $("#duplicate-account-prompt").hide();
+    $(".form-head").show();
+    $("#account-information-fields").show();
+}
+
+$(function(){
+    $("#additional_address_button").on("click", showAdditionalAddressFields);
+    var additional_address1_value = $("[name='additional_address1']").val();
+    if(additional_address1_value) {
+        showAdditionalAddressFields();
+    }
+});
+
+</script>
+{% endblock %}

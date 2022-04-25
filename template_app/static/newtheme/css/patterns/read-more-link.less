@@ -1,0 +1,88 @@
+/* //////////////////
+// READ MORE LINK
+////////////////// */
+@read-more-link-spacing-from-lines: 8px;
+
+div.read-more-link,
+a.read-more-link {
+  &:extend(.clearfix all);
+  display: block;
+  clear: both;
+  line-height: 1.2em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+div.read-more-link {
+
+  text-align: right;
+
+  border-top: @color-content-borders solid 1px;
+
+  background-image: url('/static/newtheme/image/rule-line.png');
+  background-position: 0 18px;
+  background-size: 4px 12px;
+  background-repeat: repeat-x;
+
+  padding-top: 18px;
+
+  &.no-top-border {
+    border-top: 0;
+  }
+
+
+  & a {
+    top: -0.2em;
+    display: inline;
+    background-color: #fff;
+    position: relative;
+    padding: 0 0 0 @read-more-link-spacing-from-lines;
+    font-family: @font-family-sans-serif;
+    font-weight: bold;
+  }
+
+  //SLABS
+  .slab-blue,
+  .slab-green,
+  .slab-orange & {
+    background-image: url('/static/newtheme/image/rule-line-ondark.png');
+  }
+
+  .well & a {
+    background-color: #fafafa;
+  }
+
+  .slab-gray & a {
+    background-color: @color-bg-gray;
+  }
+
+  .slab-blue & a {
+    background-color: @color-bg-blue;
+  }
+
+  .slab-green & a {
+    background-color: @color-bg-green;
+  }
+
+  .slab-orange & a {
+    background-color: @color-bg-orange;
+  }
+
+}
+
+a.read-more-link {
+  font-family: @font-family-sans-serif;
+  font-weight: bold;
+}
+
+//Todo: is this really a new pattern???
+div.read-more-link-centered {
+  display: block;
+  text-align: center;
+
+  & a {
+    font-family: @font-family-serif;
+    font-weight: normal;
+    text-decoration: underline;
+  }
+}

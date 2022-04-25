@@ -1,0 +1,97 @@
+{% extends 'newtheme/templates/conference/base.html' %}
+
+{% load static %}
+{% load ui_tags %}
+
+{% block leader_ad %}
+  {% include microsite.header_ad with outside_content='true' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="container-fluid content-wrap">
+  <div class="layout-hero-image-conference layout-hero-image-conference-home layout-hero-image-conference-breakout">
+
+    <div class="visible-xs mobile-wrap">
+      <div class="layout-hero-image-conference-image-wrap">
+        <img class="layout-hero-image-conference-image" src="{% static microsite.hero_image_path %}"/>
+        <div class="visible-xs mobile-conference-home-date-place">
+            <h1>{{ microsite.event_master.content_live.event.begin_time_astimezone|date:"F j" }} - {{ microsite.event_master.content_live.event.end_time_astimezone|date:"F j, Y" }} | {{microsite.event_master.content_live.event.city}}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="visible-lg visible-md visible-sm desktop-wrap">
+      <div class="layout-hero-image-conference-image-wrap">
+        <img class="layout-hero-image-conference-image" src="{% static microsite.hero_image_path %}"/>
+      </div>
+    </div>
+
+    <div class="layout-hero-image-conference-content">
+      <div class="visible-lg visible-md visible-sm">
+        <div class="conference-home-date-place">
+          <h1>{{ microsite.event_master.content_live.event.begin_time_astimezone|date:"F j" }} - {{ microsite.event_master.content_live.event.end_time_astimezone|date:"F j, Y" }} | {{microsite.event_master.content_live.event.city }}</h1>
+        </div>
+        <div class="conference-home-title">
+            <h1>{{ microsite.event_master.content_live.title }}</h1>
+        </div>
+      </div>
+
+      {% comment %}
+      {% include "newtheme/templates/includes/conference-countdown.html" %}
+      {% endcomment %}
+
+      <div class="visible-xs mobile-body">
+        <div class="homepage-conference-cta">
+          <div class="homepage-conference-cta-body">
+            <div class="home-summary-blurb">
+              {{microsite.home_summary_blurb|safe}}
+            </div>
+            <div class="mobile-body signpost-logo">
+              <img class="homepage-conference-cta-logo" src="{% static microsite.signpost_logo_image_path %}"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="visible-lg visible-md visible-sm desktop-countdown-body">
+        <div class="homepage-conference-cta">
+          <div class="homepage-conference-cta-body">
+            <div class="home-summary-blurb">
+              {{microsite.home_summary_blurb|safe}}
+            </div>
+            <div class="signpost-logo">
+              <img class="homepage-conference-cta-logo" src="{% static microsite.signpost_logo_image_path %}"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  <div class="visible-lg visible-md visible-sm">
+    <div class="homepage-featured-content-secondary homepage-featured-content-secondary-conference color-green">
+      <div class="homepage-featured-content-secondary-body">
+            {{microsite.program_blurb|safe}}
+      </div>
+    </div>
+  </div>
+  <div class="visible-xs mobile-secondary">
+    <div class="homepage-featured-content-secondary homepage-featured-content-secondary-conference color-green">
+      <div class="homepage-featured-content-secondary-body">
+            {{microsite.program_blurb|safe}}
+      </div>
+    </div>
+  </div>
+<div class="container">
+  <div class="content-managed-html">
+    {{ content.text|render_planning_shortcodes|safe }}
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'newtheme/js/conference-countdown.js' %}"></script>
+<script src="{% static 'newtheme/js/sponsor-carousel.js' %}"></script>
+{% endblock %}

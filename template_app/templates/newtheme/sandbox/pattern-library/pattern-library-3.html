@@ -1,0 +1,338 @@
+{% extends 'newtheme/templates/layout-pattern-library.html' %}
+
+{% block title %}APA Pattern Library Level 3: Forms{% endblock %}
+
+{% block introduction %}{% endblock %}
+
+{% block patterns %}
+
+<section class="pl-section">  
+  <h1 class="pl-h1">Forms</h1>
+  <h2 class="pl-h2">Inputs</h2>
+
+  <h3 class="pl-h3">description:</h3>
+  <div class="pl-description">
+    <p>The input tag specifies an input field where the user can enter data.</p>
+  </div>
+
+  <h3 class="pl-h3">examples:</h3>
+  <hr />
+
+  <h3 class="pl-h3">Text Input</h3>
+  <div class="form-group">
+    <input type="text" class="form-control" value="Regular" />
+  </div>
+
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">&lt;input type=&quot;text&quot; class=&quot;form-control&quot; value=&quot;Regular&quot;&gt;...&lt;/input&gt;
+  </code></pre>
+
+  <div class="form-group has-error">
+    <input type="text" class="form-control" value="Error" />
+  </div>
+
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">&lt;input type=&quot;text&quot; class=&quot;form-control&quot; value=&quot;Error&quot;&gt;...&lt;/input&gt;
+  </code></pre>
+
+  <div class="form-group">
+    <input type="text" class="form-control" value="Disabled" disabled="disabled" />
+  </div>
+
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">&lt;input type="text" class="form-control" value="Disabled" disabled="disabled"&gt;...&lt;/input&gt;
+  </code></pre>
+
+  <h3 class="pl-h3">Textarea</h3>
+  <div class="form-group">
+    <textarea class="form-control">Regular</textarea>
+  </div>
+
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">&lt;textarea class=&quot;form-control&quot;>Regular&lt;/textarea&gt;
+  </code></pre>
+
+  <div class="form-group has-error">
+    <textarea class="form-control">Error</textarea>
+  </div>
+
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">&lt;textarea class=&quot;form-control&quot;>Error&lt;/textarea&gt;
+  </code></pre>
+
+  <div class="form-group">
+    <textarea class="form-control" disabled="disabled">Disabled</textarea>
+  </div>
+
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">&lt;textarea class=&quot;form-control&quot; disabled=&quot;disabled&quot;&gt;Disabled&lt;/textarea&gt;
+  </code></pre>
+
+  <h3 class="pl-h3">Select/Dropdown</h3>
+  <div class="form-group">
+    <select class="form-control">
+      <option>Regular</option>
+      <option>Option2</option>
+    </select>
+  </div>
+
+  <h3 class="pl-h3">code:</h3>
+  <pre><code class="html">&lt;select class=&quot;form-control&quot;&gt;&lt;option&gt;Regular&lt;/option&gt;&lt;option&gt;Option2&lt;/option&gt;&lt;/select>
+  </code></pre>
+
+  <div class="form-group has-error">
+    <select class="form-control">
+      <option>Error</option>
+      <option>Option2</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <select class="form-control" disabled="disabled">
+      <option>Disabled</option>
+      <option>Option2</option>
+    </select>
+  </div>
+
+  <h3 class="pl-h3">Checkboxes</h3>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" value="">
+      Option one is this and that&mdash;be sure to include why it's great
+    </label>
+  </div>
+  <div class="checkbox disabled">
+    <label>
+      <input type="checkbox" value="" disabled>
+      Option two is disabled
+    </label>
+  </div>
+
+  <h3 class="pl-h3">Checkboxes- inline</h3>
+  <div>
+    <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+    </label>
+    <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+    </label>
+    <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+    </label>
+  </div>
+
+  <h3 class="pl-h3">Radios</h3>
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+      Option one is this and that&mdash;be sure to include why it's great
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+      Option two can be something else and selecting it will deselect option one
+    </label>
+  </div>
+  <div class="radio disabled">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+      Option three is disabled
+    </label>
+  </div>
+
+  <h3 class="pl-h3">Radios- inline</h3>
+  <div>
+    <label class="radio-inline">
+      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+    </label>
+  </div>
+</section>
+
+
+<h2 class="pl-h2">Multiple Checkboxes</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Multiple choices are split into multiple columns at wider breakpoints. The columns are designated manually.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="multiple-choices">
+  <div class="multiple-choices-row">
+    <div class="multiple-choices-column">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="inlineCheckbox1" value="option1" />
+          I prefer not to answer
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="inlineCheckbox2" value="option2" />
+          White
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="inlineCheckbox3" value="option3" />
+          Black or African American
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="inlineCheckbox1" value="option1" />
+          American Indian or Alaskan Native
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="inlineCheckbox2" value="option2" />
+          Black or African American
+        </label>
+      </div>
+    </div>
+    <div class="multiple-choices-column">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="inlineCheckbox3" value="option3" />
+          White
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="inlineCheckbox1" value="option1" />
+          Black or African American
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="inlineCheckbox2" value="option2" />
+          White
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="inlineCheckbox3" value="option3" />
+          American Indian or Alaskan Native
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="pl-h2">Multiple Checkboxes - Prices</h2>
+<div class="form-group">
+  <label>MultipleChoiceLabel</label>
+  <div class="multiple-choices">
+    <div class="multiple-choices-row">
+      <div class="multiple-choices-column">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" id="inlineCheckbox1" value="option1" />
+            City Planning &amp; Management Division
+            <div class="price-field">$100</div>
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" id="inlineCheckbox2" value="option2" />
+            County Planning Division
+            <div class="price-field">$100</div>
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" id="inlineCheckbox3" value="option3" />
+            Economic Development Division
+            <div class="price-field">$100</div>
+          </label>
+        </div>
+      </div>
+      <div class="multiple-choices-column">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" id="inlineCheckbox1" value="option1" />
+            City Planning &amp; Management Division
+            <div class="price-field">$100</div>
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" id="inlineCheckbox2" value="option2" />
+            County Planning Division
+            <div class="price-field">$100</div>
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" id="inlineCheckbox3" value="option3" />
+            Economic Development Division
+            <div class="price-field">$100</div>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+
+  <form class="validate-form">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" placeholder="Name here" name="name_is_a_must_1" required />
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control validate-field-email" name="name_is_a_must_2" placeholder="Email" required />
+    </div>
+
+    <div class="form-group">
+      <label>Confirm Email</label>
+      <input type="email" class="form-control validate-field-email-confirm" name="name_is_a_must_3" placeholder="Email" required />
+    </div>
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="name_is_a_must_4" required />
+          Check yourself
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Password </label>
+      <input class="form-control validate-field-password" type="password" name="name_is_a_must_5" required />
+      <div class="help-block">8-16 characters</div>
+    </div>
+
+    <div class="form-group">
+      <label>Confirm Password </label>
+      <input class="form-control validate-field-password-confirm" required type="password" name="name_is_a_must_6" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <script>
+
+  $( "#validateForm" ).validate({
+    rules: {
+      password: {
+        required: true,
+        minlength: 8,
+        maxlength: 16,
+      }
+    }
+  });
+  </script>
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load change_list_hierarchy %}
+
+{% for result in results %}
+
+{% if result.form.non_field_errors %}
+    <tr><td colspan="{{ result|length }}">{{ result.form.non_field_errors }}</td></tr>
+{% endif %}
+
+<tr class="grp-row grp-row-odd {% if result.ancestry %}hidden {% for x in result.ancestry %}cl_tree_{{x}} {% endfor %}{% endif %}" {% if parent_id %} data-hidden-by=".cl_tree_{{parent_id}}"{% endif %}>
+	{% for item in result.node %}{% with cell=item|hierarchy_cell:result %}{{ cell|safe }}{% endwith %}{% endfor %}
+
+</tr>
+
+{% if result.children %}
+	{% with results=result.children parent_id=result.id tree_level=tree_level|add:1 template_name="admin/content/taxotopictag/change_list_results_tree.html" %}
+	   {% include template_name %}
+	{% endwith %}
+{% endif %}
+
+{% endfor %}

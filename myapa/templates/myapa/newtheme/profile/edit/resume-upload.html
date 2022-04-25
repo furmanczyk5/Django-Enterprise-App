@@ -1,0 +1,28 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+
+<div class="page-head">
+  <h1 class="page-title">Resume Upload</h1>
+  <h4 class="page-subtitle">PDF format only; maximum 30MB</h4>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <div class="form-section-limit-width">
+          {{ form.uploaded_file }}
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-sm btn-primary" value="Upload"/>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

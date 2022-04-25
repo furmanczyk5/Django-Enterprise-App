@@ -1,0 +1,53 @@
+.view-schedule-widget {
+  margin-top: @grid-gutter-width;
+  width: 100%;
+  max-width: 230px;
+  // padding-right: 16px;
+  border-top: solid 5px @color-limeade;
+
+  & h3 {
+    font-size: 16px;
+  }
+
+  & .view-schedule-widget-links {
+    text-align: left;
+    float: left;
+    font-family: @font-family-sans-serif;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+
+    & .view-schedule-widget-link {
+//      margin-left: auto;
+//      margin-right: auto;
+    }
+
+    & .view-schedule-widget-links-account-block {
+      &:extend(.small all);
+      display: inline-block;
+      margin-top: 18px;
+      margin-left: @grid-gutter-width;
+      text-align: left;
+    }
+  }
+}
+
+@media screen and (max-width: @screen-xs-min) {
+
+  .view-schedule-widget {
+    max-width: 100%;
+
+    & .view-schedule-widget-links {
+
+      & .view-schedule-widget-links-account-block {
+        margin-left: 9px; //match button padding
+      }
+
+      & .btn {
+        margin-left: 0;
+        width: auto;
+      }
+    }
+  }
+
+}

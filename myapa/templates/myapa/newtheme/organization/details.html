@@ -1,0 +1,74 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+{% if code == "ROSTER" %}
+	<div class="page-head">
+	    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+	  <h1 class="page-title">{% if company.company %}{{ company.company }} Roster{% else %}Your Company Roster{% endif %}</h1>
+	  <p>List of all the contacts associated with {% if company.company %}{{ company.company }}{% else %}your organization{% endif %}.</p>
+	</div>
+
+	{% if contact_list %}
+	  <h2>Organization Roster:</h2>
+	   <div class="results-items">
+	        <div class="content-preview-list layout-tracery no-bottom-border">
+	    	<ul>
+		    {% for contact_obj in contact_list %}
+		    <li class="content-preview-item">
+				<h4 class="form-section-title">{{ contact_obj.first_name }}{% if contact_obj.middle_name %} {{ contact_obj.middle_name }} {% endif %} {{ contact_obj.last_name }}</h4>
+				<p>
+                    <a class="btn btn-danger btn-sm" href="{% url 'subscribe_contact_delete' co_id=company.user.username %}?username={{ contact_obj.id }}" style="float: right;">Delete</a>
+                </p>
+				{% if contact_obj.full_address %}<b>Address:</b><br>{{ contact_obj.full_address }}<br>{% endif %}
+				{% if contact_obj.email %}<b>Email: </b><a class="small button" href="mailto:{{ contact_obj.email }}">Click here to email</a><br>{% endif %}
+				{% if contact_obj.work_phone %}<b>Phone: </b>{{ contact_obj.work_phone }}<br>{% endif %}
+	        	{% if contact_obj.company_sort %}<b>Company: </b>{{ contact_obj.company_sort }}<br>{% endif %}
+	    	{% endfor %}
+	   		</ul>
+			</div>
+		</div>	
+	{% endif %}
+
+{% elif code == "SUBSCRIPTIONS"%}
+	<div class="page-head">
+	    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+	  <h1 class="page-title">{% if company.company %}{{ company.company }} Subscriptions{% else %}Your Company Subscriptions{% endif %}</h1>
+	  <p>List of all the subscriptions associated with {% if company %}{{company}}{% else %}your organization{% endif %}.</p>
+	</div>
+
+	{% if subscriptions %}
+	<div class="results-items">
+	        <div class="content-preview-list layout-tracery no-bottom-border">
+	        <ul>
+	        {% for subscription in subscriptions %}
+	        <li class="content-preview-item">
+		    	<h4 class="form-section-title">{{ contact }}</h4>
+			    	{% if contact.phone %}<b>Phone: </b>{{contact.phone}}<br>{% endif %}
+			        {% if contact.email %}<b>Email: </b><a class="small button" href="mailto:{{contact.email}}">Click here to email</a><br>{% endif %}
+			        {% if contact.address1 %}
+			            <b>Address: </b><br>
+			            {{contact.address1}}<br>
+			            {% if contact.address2 %}{{contact.address2}}<br>{% endif %}
+			            {% if contact.city %}{{contact.city}}, {% endif %}
+			            {% if contact.state %}{{contact.state}} {% endif %}
+			            {% if contact.zip_code %}{{contact.zip_code}}<br>{% endif %}
+			            {% if contact.country %}{{contact.country}}{% endif %}
+			        {% endif %}
+			    </li>
+			    {% endfor %}
+			</ul>
+			</div>
+		</div>
+
+	{% else %}
+		<p>Your company subscriptions are not found. Please contact <a href="/customerservice/contact-us/">APA Customer Service</a> for more details.</p>
+		<b>Note that only organization administrator can view the organization details.</b>
+	{% endif %}
+
+{% endif %}
+
+{% endblock %}

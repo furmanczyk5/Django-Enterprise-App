@@ -1,0 +1,153 @@
+{% extends 'newtheme/templates/conference/layout-nosidebar.html' %}
+
+{% load tz %}
+{% load content_extras %}
+{% load static %}
+{% load compress %}
+
+{% block additional_head_css %}
+{{block.super}}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+{% endblock additional_head_css %}
+
+{% block content_main %}
+<div class="layout-tracery">
+  <div class="layout-column">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="page-head search-bar no-border-bottom">
+          {% if breadcrumb %}
+            {% include 'newtheme/templates/includes/breadcrumbs.html' with breadcrumb=breadcrumb%}
+          {% endif %}
+
+          {% block searchHeader %}
+            <h1 class="page-title list-of-links">Search Results {% if filter_form.keyword.value %}for &ldquo;<strong>{{filter_form.keyword.value}}</strong>&rdquo;{% endif %}</h1>
+          {% endblock searchHeader %}
+
+          <div class="results-items">
+
+            <div class="search-pagination">
+              {% include "content/newtheme/search/includes/pagination.html" with p=pagination %}
+            </div>
+
+          </div>
+        </div>
+
+          <br />
+          <form id="sort-facet-form" action="#search-results-start">
+            <div class="search-options">
+              <div class="sort-facet-form-disabled"></div>
+              <div class="input-group form-section form-section-limit-width header-search-form">
+                <label class="control-label sr-only" for="keyword">Search by keyword</label>
+                {{ filter_form.keyword }}
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                  </span>
+              </div>
+              <div class="form-section">
+                <button{% block disable_filters %}{% if not facet_results and not filter_form.cm %}
+                  disabled="disabled"{% endif %}{% endblock %} class="btn btn-sm btn-default collapsed"
+                  id="filter-button" type="button" data-toggle="collapse" data-target="#filtersWrap"
+                  aria-expanded="false" aria-controls="filtersWrap">PROGRAM FILTER {% if selected_tag_count %}(
+                  {{ selected_tag_count }}){% endif %}</button>
+                <div class="form-section-enclosed-light form-section-no-border-top">
+                  <div class="filter-results-wrap">
+                    <div id="filtersWrap" class="filters-wrap">
+
+                      {% for field in filter_form.hidden_fields %}
+                        {{ field }}
+                      {% endfor %}
+
+                      <div class="conference-search-filter-group">
+                        <div class="col-sm-3">
+                          <label>Days</label>
+                        </div>
+                        <div class="col-sm-9">
+                          {{ filter_form.date }}
+                        </div>
+                      </div>
+
+                      {% if microsite %}
+                        {% for field in filter_form %}
+                          {% if field|is_filter_field %}
+                            <div class="conference-search-filter-group">
+                              <div class="col-sm-3">
+                                <label>{{ field|convert_field_name }}</label>
+                              </div>
+                              <div class="col-sm-9">
+                                {{ field }}
+                              </div>
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+
+                      {% with search_filter_codes=microsite.get_program_search_filter_codes %}
+                        {% if "CM_FILTER" in search_filter_codes %}
+                          <div class="conference-search-filter-group">
+                            <div class="col-sm-3">
+                              <label for="">CM Filter</label>
+                            </div>
+                            <div class="col-sm-9">
+                              {{ filter_form.cm }}
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endwith %}
+
+                    </div>
+                  </div>
+                </div>
+
+                {# xx results and tags #}
+                <br>
+                {% include "conference/newtheme/program/includes/results-information.html" with results=results tag_lists=tag_lists request=request speaker=speaker form=form %}
+                <div class="conference-day-anchors">
+                  <!-- content -->
+                </div>
+
+
+              </div>
+            </div>
+          </form>
+
+        <br />
+        <a id="search-results-start"></a>
+
+        {% block searchList %}
+        {% include "content/newtheme/search/includes/results-list.html" with results=results.response.docs timeout=results.responseHeader.timeout %}
+        {% endblock searchList %}
+
+        <!-- Pagination -->
+
+        <div class="layout-tracery no-top-border no-bottom-border">
+          <div class="layout-column col-md-12 ">
+            <div class="search-pagination">
+            {% include "content/newtheme/search/includes/pagination.html" with p=pagination %}
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="col-lg-3">
+        <div class="banner-ads-container">
+          {% include 'newtheme/sandbox/banner-ad/layout-banner-ad-small-3up-vertical.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block additional_body_js %}
+{{ block.super }}
+<script src="{% static 'newtheme/vendor/bootstrap/js/transition.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/collapse.js' %}"></script>
+<script src="{% static 'rome/rome.min.js' %}"></script>
+<script src="{% static 'rome/rome_setup.js' %}"></script>
+<script src="{% static 'newtheme/js/conference-search-filter-control.js' %}"></script>
+{% endblock additional_body_js%}

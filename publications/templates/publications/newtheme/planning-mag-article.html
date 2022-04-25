@@ -1,0 +1,196 @@
+{% extends 'newtheme/templates/layout-planning-magazine.html' %}
+{% load static %}
+{% load content_extras %}
+{% load ui_tags %}
+
+{% block content_main %}
+<div class="planning_article">
+
+  <!-- Breadcrumbs -->
+<!--   <div class="row breadcrumbs">
+    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-9"> -->
+  <ol class="breadcrumb">
+      {% for crumb in ancestors|slice:":-1" %}
+      <li>
+          {% if crumb.url %}
+              <a href="{{crumb.url}}">{{crumb}}</a>
+          {% else %}
+              {{crumb}}
+          {% endif %}
+      </li>
+      {% endfor %}
+  </ol>
+<!--     </div>
+  </div> -->
+
+  <!-- Title -->
+  <div class="row top_title articles single-article-title">
+    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
+      <h6>Planning Magazine</h6>
+      <h1>{{ title }}</h1>
+      <h3>{{ subtitle }}</h3>
+    </div>
+  </div>
+
+  <!-- share + category -->
+  <div class="row share-category share-top">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 social-col">
+        <h6>Share This Article</h6>
+        <div class="addthis_inline_share_toolbox_4afs">
+          {% include "newtheme/templates/includes/social-sharing-widget.html" with url=post_url title=content.title %}
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 article-type-col">
+        <p>
+          <!-- section and slug? -->
+          <a href="/planning/section/{{planning_mag_sections.first.title}}/">{{planning_mag_sections.first}}</a> {{planning_mag_slugs.first}}
+        </p>
+    </div>
+  </div>
+
+  <!-- hero image + caption  -->
+  <div class="row hero-row">
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 remove-outside-gutter-mobile">
+      <div class="image-block">
+        <!-- <img src="//placehold.it/1165x655" alt="Article Hero Image" class="img-responsive"/> -->
+        <img src="{{content.featured_image.content_live.media.image_file.url}}" alt="Article Hero Image" class="img-responsive"/>
+        <div class="caption text-center">
+          <p>{{content.featured_image_caption}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- article content -->
+  <div class="row article-content">
+
+    <div class="inner-content col-lg-10 col-lg-offset-1">
+
+      {% if planning_mag_series %}
+        <div class="content-preview-item content-preview-item-data-block part-of-row">
+          <div class="content-preview-item-summary">
+              <div class="content-preview-item-image-floated">
+                <img src="{% static 'newtheme/image/disruptor_article_icon_black.png' %}" class="img-responsive" />
+                <!-- <img src="//placehold.it/35" class="img-responsive"/> -->
+              </div>
+            <p>
+              Part of the <a href="/planning/series/{{planning_mag_series.first.title}}">{{planning_mag_series.first}} Series</a>
+            </p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if content.publication.date_text %}
+        <p class="article-date">{{content.publication.date_text}}</p>
+      {% elif content.resource_published_date %}
+        <p class="article-date">{{content.resource_published_date}}</p>
+      {% endif %}
+      <!-- THE FIRST CHOICE HERE IS CONTACT_ROLE.CONTACT.FULL_NAME? -->
+      {% if planning_mag_authors %}
+        <p class="article-byline"><i>By</i>
+          <span>{{planning_mag_authors}}</span>
+        </p>
+      {% endif %}
+
+      {{ content.text|render_planning_shortcodes|safe }}
+
+      <!-- Bottom social -->
+      <div class="layout-tracery author-bottom-row">
+        <div class="layout-column">
+          <div class="row author-bio-row">
+            <div class="col-sm-12 col-md-12">
+              <p>{{ content.publication.author_bios|safe }}</p>
+            </div>
+          </div>
+          <div class="row share-category share-bottom">
+            <div class="col-md-12 col-sm-12 col-xs-12 social-col">
+                <h6>Share This Article</h6>
+                {% include "newtheme/templates/includes/social-sharing-widget.html" with url=post_url title=content.title %}
+                <div class="addthis_inline_share_toolbox_4afs"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended articles -->
+      {% if planning_mag_recommended %}
+      <h4>RECOMMENDED ARTICLES</h4>
+        <div class="row recommended-articles">
+          {% for rec in planning_mag_recommended %}
+            <div class="col-md-6 col-sm-6 column-1 content-preview-item content-preview-item-data-block">
+              <div class="content-preview-item-image-floated">
+                {% if rec.thumbnail.name %}
+                  <img src="{{rec.thumbnail.url}}" class="img-responsive"/>
+                {% else %}
+                  <img src="//placehold.it/144" class="img-responsive"/>
+                {% endif %}
+              </div>
+              <div class="content-preview-item-headline">
+                {% with section=rec|planning_mag_section %}
+                  {% if section %}
+                    <h6 class="content-preview-item-superheadline">{{section}}</h6>
+                  {% else %}
+                    <h6 class="content-preview-item-superheadline">Intersections</h6>
+                  {% endif %}
+                {% endwith %}
+                <div class="content-preview-item-title"><a href="{{rec.url}}">{{rec.title}}</a></div>
+                {% if rec.publication.date_text %}
+                  <div class="content-preview-item-postline"><strong>{{rec.publication.date_text}}</strong></div>
+                {% elif rec.resource_published_date %}
+                  <div class="content-preview-item-postline"><strong>{{rec.resource_published_date}}</strong></div>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- Pre-footer CTA -->
+  <div class="homepage-featured-content-secondary-row row prefooter_cta prefooter-cta-articles">
+    <div class="homepage-featured-content-secondary">
+      <div class="homepage-featured-content-secondary-body">
+        <h4 class="homepage-featured-content-secondary-title">Sign up for Planning emails</h4>
+        <p>Receive Planning featured articles and recent content in your inbox</p>
+        <a href="/myapa/contactpreferences/update/" class="btn btn-primary btn-sub">Subscribe</a>
+      </div>
+    </div>
+    <div class="homepage-featured-content-secondary img-col">
+      <div class="homepage-featured-content-secondary-body">
+        <div class="row nested-row">
+          <div class="col-md-4 col-sm-12 text-center">
+            <!-- this will need to be pulled from some natural place where this image lives; need to query for some content -->
+            <!-- record tied to the cover image and then pull its thumbnail? -->
+            <!-- <img class="img-responsive" src="//placehold.it/113x143" alt="Planning magazine image"/> -->
+            <img class="img-responsive" src="https://planning-org-uploaded-media.s3.amazonaws.com/image/Planning-2021-07-image08.jpg" alt="Planning magazine image"/>
+          </div>
+          <div class="col-md-8 col-sm-12 text-col">
+            <h4 class="homepage-featured-content-secondary-title">Download Planning Magazine</h4>
+            <p>Access the most recent issue. Download the digital version now.</p>
+            <a href="/publications/document/9217914/" class="btn btn-primary btn-download">Log in to download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- prefooter long ad -->
+  <div class="row prefooter_lng_ad visible-xs">
+    <div class="col-md-12 col-sm-12 text-center">
+      <div class="banner-ad banner-ad-leaderboard banner-ad-footer">
+        {% block footer_ad %}
+          {% include "newtheme/sandbox/banner-ad/planning-mag-footer-ad.html" %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

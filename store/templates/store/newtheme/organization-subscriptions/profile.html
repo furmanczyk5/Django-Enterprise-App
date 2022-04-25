@@ -1,0 +1,149 @@
+{% extends extends_template|default:'newtheme/templates/layout-sidebar.html' %}
+
+{% block content_main %}
+
+{% if company %}
+
+  {% if product.code == "SUB_CMSR10" %}
+
+    <h1>Get <i>The Commissioner</i> for everyone!</h1>
+    {{ product.content.text }}
+    <h5>{{ contact }} | APA ID: #{{ contact.user.username }} | {{ contact.company }}</h5>
+
+    {% if is_administrator %}
+    <p>You are subscribing to <i>The Commissioner</i> as the administrator for your organization.</p>
+    <p>Identify up to 10 individuals to receive <i>The Commissioner</i>. A bundle of 10 recipients is $150. For groups larger than 10, contact subscriptions@planning.org.</p>
+    
+    {% elif company_admin_relationships and not has_any_admin_relationship %}
+    {% with admin=company_admin_relationships.0.target %}
+    <p>
+      It looks as if you’re trying to subscribe to <i>The Commissioner</i>, but you aren't listed as your organization’s administrator. Only administrators can buy group subscriptions. To get <i>The Commissioner</i>, please contact your administrator, <strong>{{ admin.first_name }} {{admin.last_name }}</strong> at  <strong>{{ admin.email }}</strong>.
+    </p>
+    {% endwith %}
+
+    {% else %}
+    <p>
+      It looks as if you’re trying to subscribe to <i>The Commissioner</i>, but you aren't listed as your organization’s administrator. Please contact APA customer service at customerservice@planning.org.
+    </p>
+
+    {% endif %}
+
+  {% else %}
+
+    <h1>Subscribe to {{ product.content.title }}</h1> 
+    {{ product.content.text }}
+    <h5>{{ contact.title }} | APA ID: #{{ contact.user.username }} | {{ contact.company }}</h5>
+
+    {% if is_administrator %}
+      <p>You are subscribing to {{ product.content.title }} as the administrator for your organization.</p>
+      <p>Your subscription gives all the employees in your office access to PAS.</p>
+
+    {% elif company_admin_relationships and not has_any_admin_relationship %}
+    {% with admin=company_admin_relationships.0.target %}
+    <p>
+      It looks as if you’re trying to subscribe to {{ product.content.title }}, but you aren't listed as your organization’s administrator. Only administrators can buy {{ product.content.title }} subscriptions. To get the benefits of {{ product.content.title }}, please contact your administrator, <strong>{{ admin.first_name }} {{admin.last_name }}</strong> at <strong>{{ admin.email }}</strong>.
+    </p>
+    {% endwith %}
+
+    {% else %}
+    <p>
+      It looks as if you’re trying to subscribe to {{ product.content.title }}, but you aren't listed as your organization’s administrator. Please contact APA Customer Service at customerservice@planning.org.
+    </p>
+    {% endif %}
+
+  {% endif %}
+
+  {% include "ui/newtheme/forms/includes/display-errors.html" %}    
+  
+  {% if is_administrator %}
+
+    {% if company_contact_list %}
+    <h2>Subscribed Users:</h2>
+    <div class="results-items">
+      <div class="content-preview-list layout-tracery no-bottom-border">
+        <ul>
+        {% for contact_obj in company_contact_list %}
+          <li class="content-preview-item" id="user_{{contact_obj.ID}}">
+            <h4 class="form-section-title">{{ contact_obj.FIRST_NAME }}{% if contact_obj.MIDDLE_NAME %} {{ contact_obj.MIDDLE_NAME }} {% endif %} {{ contact_obj.LAST_NAME }}</h4>
+            <p>
+                <a class="btn btn-danger btn-sm delete_contact" data-username="{{contact_obj.ID}}" href="javascript:;" style="float: right;">Delete</a>
+                <img src="/static/content/image/ajax-loader.svg" id="loading_user_{{contact_obj.ID}}" style="display:none; float:right;"/>
+            </p>
+            {% if contact_obj.ID %}<b>APA ID:</b> #{{ contact_obj.ID }}<br>{% endif %}
+            {% if contact_obj.COMPANY_SORT %}<b>Company: </b>{{ contact_obj.COMPANY_SORT }}<br>{% endif %}
+            {% if contact_obj.FULL_ADDRESS %}<b>Address:</b><br>{{ contact_obj.FULL_ADDRESS }}<br>{% endif %}
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div> 
+    <hr> 
+    {% endif %}
+
+    <div class="content-preview-list layout-tracery no-bottom-border">
+      <ul>
+        <form method="post" class="planning-form action" id="roster_email_form">
+          {% csrf_token %}
+
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.pas_type %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.roster_emails %}
+          {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.employee_verify %}
+          
+          <br><br>          
+          <button class="btn btn-sm btn-primary" type="submit">Continue</button>
+          <br><br>
+
+        </form>
+      </ul>
+    </div>
+  {% endif %}
+
+{% else %}
+<h1>Subscribe to {{ product.content.title }}</h1>
+<h5>{{ contact.title }} | APA ID: #{{ contact.user.username }}</h5>
+<p>You are trying to subscribe to {{ product.content.title }}, but you are not linked to an organization yet. <a href="{% url 'store:subscribe_organization_link' product_id=product.id %}">Start Here</a></p>
+{% endif %}
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+{% if contact_company %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".delete_contact").click(function(event){
+      var button = $(this);
+      var username = button.attr("data-username");
+      var url = "{% url 'subscribe_contact_delete' co_id=contact_company.user.username %}";
+      console.log(username);
+      console.log(url);
+
+      // show loading, hide button
+      button.hide();
+      $("#loading_user_"+username).show();
+
+      $.ajax({
+        "url":"{% url 'subscribe_contact_delete' co_id=contact_company.user.username %}",
+        method:"get",
+        data:"username="+username,
+        success:function(obj,status){
+          if(obj.success){
+            $("#user_"+username).remove();
+          }else{
+            button.show();
+            $("#loading_user_"+username).hide();
+            alert("Failed to remove subscribed user.");
+          }
+        },
+        error:function(){
+          console.log("failed to remove subscribed user.");
+        }
+      });
+    });
+  });
+</script>
+{% endif %}
+{% endblock %}
+
+
+

@@ -1,0 +1,106 @@
+{% load static %}
+
+<header class="container-fluid header">
+  <div class="row">
+    <div class="logo col-xs-4 col-md-6">
+	{% block header_logo %}
+	<a href="/" title="Chapter/Division Home">
+{% load wagtailsettings_tags %}
+{% get_settings %}
+{% load wagtailimages_tags %}
+
+    {% image settings.component_sites.AppearanceSettings.logo_wide original as wide_logo %}
+	  {% image settings.component_sites.AppearanceSettings.logo_small original as small_logo %}
+    <img src="{{wide_logo.url }}" height="108" alt="{{wide_logo.alt_text}}" class="hidden-xs hidden-sm">
+    <img src="{{small_logo.url }}" height="90" alt="{{small_logo.alt_text}}" class="visible-xs visible-sm pull-left">
+  </a>
+	{% endblock %}
+    </div>
+    <div class="col-xs-8 col-md-6">
+      <nav class="nav-super clearfix">
+        <ul class="pull-right">
+          <li class="hidden-xs">
+            <a href="https://www.planning.org/aboutapa/" title="About APA" target="_blank">About APA</a>
+          </li>
+
+          {% if request.user.is_authenticated %}
+          {# Logged in #}
+          <li>
+            <a href="https://www.planning.org/myapa/" title="My APA" target="_blank">My APA</a>
+          </li>
+          {% comment %}
+          <!--
+          <li>
+            <a href="/foundation/" title="Donate">Donate</a>
+          </li>
+          -->
+          {% endcomment %}
+          <li>
+            <a href="/logout/" title="Log Out">Log Out</a>
+          </li>
+          {% else %}
+          {# not logged in #}
+          <li>
+            <a href="https://www.planning.org/join/" title="Join">Join</a>
+          </li>
+          {% comment %}
+          <!--
+          <li>
+            <a href="/foundation/" title="Donate">Donate</a>
+          </li>
+          -->
+          {% endcomment %}
+          <li>
+            <a href="/login/?next={{request.path|urlencode}}" title="Log In">Log In</a>
+          </li>
+          {% endif %}
+
+          <li class="hidden-xs">
+            <a href="/store/cart/" title="Cart">
+              <span class="sr-only">Cart</span>
+              <span class="icon-cart-icon"></span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <div class="row">
+        <!-- Search toggle, menu toggle -->
+        <div class="header-toggle-wrap col-xs-12 col-sm-8 pull-right">
+
+          <button type="button" class="visible-xs pull-right header-mobile-menu-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="header-mobile-menu-toggle-label">Menu</div>
+          </button>
+
+          <button type="button" class="visible-xs pull-right header-mobile-search-toggle">
+            <span class="sr-only">Toggle Search</span>
+            <span class="icon-search-icon"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 pull-right header-search-form-wrap">
+        <!-- Search form -->
+        <form action="/search/" method="GET">
+          <div class="input-group header-search-form">
+            <label class="control-label sr-only" for="keyword">Search by keyword</label>
+            <input type="text" class="form-control" placeholder="Enter keyword or phrase" name="keyword" {% if keyword %}value="{{ keyword }}" {% endif %} required />
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </span>
+          </div>
+        </form>
+        <!-- Search form /\ -->
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

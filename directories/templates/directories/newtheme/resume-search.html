@@ -1,0 +1,82 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load staticfiles %}
+{% load compress %}
+{% load content_extras %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+    <div class="page-head">
+      {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+      <h1 class="page-title">Resume Search</h1>
+    </div>
+
+    <div class="layout-tracery">
+        <div class="layout-column">
+            <p>You do not have to fill in all the search fields. Sometimes entering less information returns better results.</p>
+        </div>
+    </div>
+
+    <div class="form-section form-section-enclosed-dark">
+        <form class="planning-form">
+            {% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.keyword %}
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.school %}
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.functional_title %}
+            {% if is_aicp %}{% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.faicp_only %}
+            {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.aicp_only %}{% endif %}
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %}
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %}
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %}
+            <br>
+            <input class="btn btn-primary" type="submit" name="submit" value="Search" />
+        </form>
+    </div>
+    {% if search or page %}
+    {% if results|length > 0 %}
+    <h2>Search Results:</h2>
+
+    <div class="results-items">
+        <div class="content-preview-list layout-tracery no-bottom-border">
+            <ul>
+                {% for result in results %}
+                <li class="content-preview-item">
+                    <h4>{{result.contact}}</h4>
+                    {% if result.contact.company %}<b>Organization: </b>{{result.contact.company}}<br>{% endif %}
+                    {% if result.contact.city %}<b>City: </b>{{result.contact.city}}<br>{% endif %}
+                    {% if result.contact.phone %}<b>Phone: </b>{{result.contact.phone}}<br>{% endif %}
+                    {% if result.contact.state %}<b>State: </b>{{result.contact.state}}<br>{% endif %}
+                    <a class="small button" href="{% if school %}{{result.contact.individualprofile.resume.uploaded_file.url}}{% else %}{{ result.resume.uploaded_file.url }}{% endif %}" target="_blank">View/Download</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="search-pagination" align="center">
+        <span class="step-links">
+            {% if results.has_previous %}
+                <a href="?page={{ results.previous_page_number }}" class="pull-left"><b> < Previous </b></a>
+            {% endif %}
+            <span class="pagination-results">
+            Page {{ results.number }} of {{ results.paginator.num_pages }}
+            </span>
+            {% if results.has_next %}
+                <a href="?page={{ results.next_page_number }}" class="pull-right"><b> Next > </b></a>
+            {% endif %}
+        </span>
+    </div>
+    {% else %}
+    <h2>Search Results:</h2>
+    <p><b>Your search returned no results.</b> Please try again with some different keywords.</p>
+    {% endif %}
+    {% endif %}
+{% endblock %}
+{% block additional_body_js %}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'newtheme/templates/content-page-sidebar.html' %}
+
+{% load template_app_extras %}
+
+{% block content_sidebar_wrap %}
+<div class="column-sidebar content-sidebar no-top-spacing">
+	<div>
+		<span class="aicp-logo"></span>
+	</div>
+
+	{% block content_sidebar %}
+	{# would rather use /cm/ than /cm/log/, third level menu does not open #}
+	{% sidenav for_url='/cm/' current_page_url=request.path %}
+	{% endblock %}
+
+</div>
+{% endblock %}
+
+{% block content_main %}
+<div class="layout-tracery page-head search-bar no-bottom-border">
+	<div class="layout-column">
+		<h1>{{title}}</h1>
+		<div class="action">
+			<form class="planning-form">
+				<input type="text" name="keyword" value="{{provider_search.keyword}}" placeholder="Search by Name or Location" />
+				<button type="submit">Go</button>
+			</form>
+
+			<div class="section">
+				{% for provider in providers %}
+				<div class="search-doc">
+					<div class="search-doc-right">
+
+						{% comment %}
+						<!-- GETTING THE STAR_RATINGS FOR EVERY PROVIDER WAS CREATING LARGE QUERY TIMES -->
+						<div style="font-size:0.9em; margin-top:12px">
+							{% star_rating provider.avg_rating|default:0|floatformat:2 %}
+						</div>
+						{% endcomment %}
+						
+					</div>
+					<div class="search-doc-left">
+						<h3 class="details-title"><a href="/cm/provider/{{provider.id}}/details/">{{provider.title}}</a></h3>
+						{% if provider.city or provider.state or provider.country %}
+						<p>{{provider.city}}{%if provider.state %}, {{provider.state}}{% endif %}{% if provider.country and provider.country != "United States" %}, {{provider.country}}{% endif %}</p>
+						{% endif %}
+						{% if provider.bio %}
+						<p class="text-grey">{{provider.bio|truncatewords:30}}</p>
+						{% endif %}
+					</div>
+
+				</div>
+				{% empty %}
+				<div class="search-doc">
+					<p>No providers matching your search</p>
+				</div>
+				{% endfor %}
+			</br>
+
+			<p>
+				Disclaimer: Certification Maintenance (CM) credit assigned to an educational program means AICP recognizes that the CM Provider has committed to meet CM criteria for length, subject matter, and instructors. Program descriptions and details are the responsibility of the programs’ providers, and APA is not responsible for the content.
+			</p>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}

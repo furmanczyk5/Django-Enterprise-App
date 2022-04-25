@@ -1,0 +1,31 @@
+{% extends "pages/newtheme/default.html" %}
+
+{% load ui_tags %}
+
+{% block content_main %}
+
+	<h2 class="details-title">{{content.title}}</h2>
+
+	{% for place in places %}
+		<h4 class="details-subtitle">{{ place }}</h4>
+	{% endfor %}
+
+	{% if content.resource_url %}
+	<h5>
+		<a href="{{ content.resource_url }}">{{ content.resource_url }}</a>
+	</h5>
+	{% endif %}
+
+	<div class="content-managed-html">
+    {{ content.text|render_planning_shortcodes|safe }}
+	</div>
+
+	<hr/>
+
+	{% for ctt in content.contenttagtype.all %}
+		{{ ctt.tag_type.title }}: {% for tag in ctt.tags.all %}
+			<strong>{{ tag.title }}</strong>
+		{% endfor %}
+	{% endfor %}
+
+{% endblock content_main %}

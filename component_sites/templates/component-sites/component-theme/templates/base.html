@@ -1,0 +1,128 @@
+{% extends 'newtheme/templates/base.html' %}
+
+<!-- NEED TO BE ABLE TO OVERRIDE MORE, like stlye.css. consider not extending this template-->
+
+{% load compress %}
+{% load static %}
+{% load wagtailuserbar %}
+{% load wagtailcore_tags %}
+{% load component_sites_tags %}
+
+{% block meta_tags %}
+  {% include 'content/newtheme/includes/seo-meta-tags.html' with content=content %}
+  <meta property="og:url" content="{{ abs_url }}" />
+  <meta property="og:type" content="{{page.og_type}}" />
+  <meta property="og:title" content="{{page.title}}" />
+  <meta property="og:description" content="{{page.og_description|default_if_none:""}}" />
+  {% load wagtailimages_tags %}
+  {% load wagtailsettings_tags %}
+  {% get_settings %}
+  {% image page.og_image fill-1200x630 as og_img %}
+  {% image settings.component_sites.SocialMediaSettings.default_og_image fill-1200x630 as def_og_img %}
+  <meta property="og:image" content="{% firstof og_img.url def_og_img.url '' %}" />
+{% endblock %}
+
+
+
+{% block additional_head_css %}
+
+
+<link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet">
+
+{% compress css %}
+<link type="text/less" rel="stylesheet" href="{% static 'component-sites/css/style.less' %}" />
+{% endcompress %}
+
+{% load wagtailsettings_tags %}
+{% get_settings %}
+{% load wagtailimages_tags %}
+
+
+
+{% with rgb=settings.component_sites.AppearanceSettings.rgb_string %}
+{% with color_lighter=rgb|scale_rgb:.5 %}
+{% with color_darker=rgb|scale_rgb:-0.25 %}
+<style>
+.homepage-featured-content-primary-wrapper:before {
+  background:rgba({{rgb}}, 0.65);
+}
+.content-container-background {
+  background:rgba({{rgb}}, 0.35);
+}
+.content-main-wrap {
+  background:white;
+}
+.local-navigation ul.local-navigation-list {
+  border-color:rgba({{rgb}},1);
+}
+
+.navbar-nav li:hover, .navbar-nav li.active {
+  /*border-top-color:rgba({{rgb|scale_rgb:.5}}, 1);*/
+  border-top-color:rgba({{color_lighter}}, 1);
+}
+a:hover,
+a:focus {
+  color: rgba({{color_lighter}}, 1);
+}
+.homepage-featured-content-secondary:before {
+  background-color: rgba({{color_darker}}, .65);
+}
+
+.content-preview-item .content-preview-item-headline a:hover {
+  color: rgba({{color_darker}}, .65);
+}
+.btn-icon:hover {
+    color: rgba({{color_lighter}}, 1);
+}
+
+.btn-default:focus, .btn-default:hover {
+    color: rgba({{color_lighter}}, 1);
+    border-color: rgba({{color_lighter}}, 1);
+    background-color: rgba(0, 0, 0, 0.03);
+}
+</style>
+{% endwith %}
+{% endwith %}
+{% endwith %}
+
+{% endblock %}
+
+{% block body_start %}
+{% wagtailuserbar %}
+{% endblock %}
+
+{% block header %}
+  {% include "component-sites/component-theme/templates/includes/header.html" %}
+{% endblock header %}
+
+{% block nav %}
+{% globalnav page %}
+{% endblock %}
+
+{% block content_wrap %}
+<div class="content-container-background">
+  <div class="container content-wrap content-borders content-main-wrap">
+    <div class="content-main">
+      {% include "newtheme/templates/includes/django-message.html" %}
+    	{% block content_main_access %}
+      	{{ block.super }}
+    	{% endblock %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+  {% include "component-sites/component-theme/templates/includes/footer.html" %}
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'lightbox/js/lightbox.js' %}"></script>
+<script>
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+</script>
+{% endblock %}

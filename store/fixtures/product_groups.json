@@ -1,0 +1,562 @@
+[
+  {
+    "model": "auth.group",
+    "pk": 106,
+    "fields": {
+      "name": "aicpexam-previousapplicant",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 120,
+    "fields": {
+      "name": "foreignmember",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 20,
+    "fields": {
+      "name": "HOUSING",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 213,
+    "fields": {
+      "name": "reinstatement-cm",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 137,
+    "fields": {
+      "name": "CHAPT_KS",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 230,
+    "fields": {
+      "name": "18CONF",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 149,
+    "fields": {
+      "name": "PLAN_BLACK",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 11,
+    "fields": {
+      "name": "JAPA",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 228,
+    "fields": {
+      "name": "new-member",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 135,
+    "fields": {
+      "name": "member-pas",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 252,
+    "fields": {
+      "name": "planningboard-nonmember",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 131,
+    "fields": {
+      "name": "LAP",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 17,
+    "fields": {
+      "name": "INTL",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 31,
+    "fields": {
+      "name": "planningboardmember",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 18,
+    "fields": {
+      "name": "SCD",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 143,
+    "fields": {
+      "name": "INFO_TECH",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 104,
+    "fields": {
+      "name": "NEW_URB",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 102,
+    "fields": {
+      "name": "WOMEN",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 71,
+    "fields": {
+      "name": "studentmember",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "planning",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 47,
+    "fields": {
+      "name": "PAS",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 46,
+    "fields": {
+      "name": "PDO",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 83,
+    "fields": {
+      "name": "nonmember",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 125,
+    "fields": {
+      "name": "mwc",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 77,
+    "fields": {
+      "name": "aicpmember",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 140,
+    "fields": {
+      "name": "CHAPT_NV",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 261,
+    "fields": {
+      "name": "staff-reviewer",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 226,
+    "fields": {
+      "name": "candidate-cm",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 91,
+    "fields": {
+      "name": "ZONING",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 5,
+    "fields": {
+      "name": "webuser",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 254,
+    "fields": {
+      "name": "CHAPT_FL",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 96,
+    "fields": {
+      "name": "freestudentadmin",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 258,
+    "fields": {
+      "name": "member-chapter",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 133,
+    "fields": {
+      "name": "CHAPT_VA",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 172,
+    "fields": {
+      "name": "16CONF",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 68,
+    "fields": {
+      "name": "TRANS",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 216,
+    "fields": {
+      "name": "17CONF",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 8,
+    "fields": {
+      "name": "ENVIRON",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 80,
+    "fields": {
+      "name": "URBAN_DES",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 99,
+    "fields": {
+      "name": "CITY_PLAN",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 28,
+    "fields": {
+      "name": "GALIP",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 262,
+    "fields": {
+      "name": "advocacy-network",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 122,
+    "fields": {
+      "name": "leadership",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 114,
+    "fields": {
+      "name": "chapter",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 126,
+    "fields": {
+      "name": "CPD",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 132,
+    "fields": {
+      "name": "PRIVATE",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 69,
+    "fields": {
+      "name": "LAW",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 74,
+    "fields": {
+      "name": "aicp-cm",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 41,
+    "fields": {
+      "name": "lifemember",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 148,
+    "fields": {
+      "name": "HMDR",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 257,
+    "fields": {
+      "name": "19CONF",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 53,
+    "fields": {
+      "name": "SMALL_TOWN",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 92,
+    "fields": {
+      "name": "FAICP",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 23,
+    "fields": {
+      "name": "chapterconferenceadmin",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 58,
+    "fields": {
+      "name": "CHAPT_MD",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 22,
+    "fields": {
+      "name": "chapterconferencerep",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 70,
+    "fields": {
+      "name": "FED_PLAN",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 45,
+    "fields": {
+      "name": "aicpexam-newapplicant",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 199,
+    "fields": {
+      "name": "CHAPT_NE",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 60,
+    "fields": {
+      "name": "ECON",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 75,
+    "fields": {
+      "name": "speaker",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 229,
+    "fields": {
+      "name": "staff-cms-editor",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 43,
+    "fields": {
+      "name": "INTER_GOV",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 259,
+    "fields": {
+      "name": "LEGIS_POLICY",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 3,
+    "fields": {
+      "name": "member",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 14,
+    "fields": {
+      "name": "commissioner",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 121,
+    "fields": {
+      "name": "CHAPT_AK",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 260,
+    "fields": {
+      "name": "LEG_LIAIS",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 118,
+    "fields": {
+      "name": "cldr",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 144,
+    "fields": {
+      "name": "retiredmember",
+      "permissions": []
+    }
+  }
+]

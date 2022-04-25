@@ -1,0 +1,15 @@
+<ol class="breadcrumb conference-breadcrumb">
+    {% for crumb in ancestors %}
+    <!-- {# this condition prevents the breadcrumb from repeating the landing page itself on landing pages #} -->
+        {% if crumb.url != content.url and crumb.title != "Home" %}
+            <li>
+                {% if crumb.url %}
+                    <a href="{{crumb.url}}">{{crumb}}</a>
+                {% else %}
+                    {{crumb}}
+                {% endif %}
+            </li>
+        {% endif %}
+    {% endfor %}
+    {% if title %}<li class="current-crumb">{{ title }}</li>{% endif %}
+</ol>

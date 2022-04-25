@@ -1,0 +1,206 @@
+/**
+ * dependencies: slab
+ */
+
+.accordion {
+
+  & {
+    border-width: 1px;
+    border-style: solid;
+    border-color: @color-content-borders;
+  }
+
+  & + & {
+    margin-top: -1px; //overlap borders when two accordions are directly adjacent
+  }
+
+
+  & .accordion-handle,
+  & .accordion-content {
+    padding-left: @padding-level-2-xs;
+    padding-right: @padding-level-2-xs;
+
+    @media screen and (min-width: @padding-breakpoint) {
+      padding-left: @padding-level-2-md;
+      padding-right: @padding-level-2-md;
+    }
+  }
+
+  & .accordion-handle {
+    padding-left: @padding-level-2-xs / 2;
+    &:extend(.slab-gray all);
+    cursor: pointer; //This whole element is clickable
+    color: @color-sycamore;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.1em;
+    font-size: 22px;
+    font-weight: 400;
+    padding-top: 13px;
+    padding-bottom: 13px;
+
+    //icon
+    &:before {
+      font-family: 'icomoon' !important;
+      content: "\e908";
+      // content: "\002b"; //glyphicon-plus;
+      // font-family: "Glyphicons Halflings";
+      float: left;
+      @click-target-adjustment-size: 10px;
+      display: inline-block;
+      font-size: 10px;
+      line-height: 1em;
+      padding: @click-target-adjustment-size 20px;
+      margin-top: -1px;
+      margin-left: (-1 * @click-target-adjustment-size);
+
+      transform: rotate(0deg);
+
+      transition: transform 300ms;
+      -webkit-transition: transform 300ms;
+      -moz-transition: transform 300ms;
+    }
+  }
+
+  & .accordion-content {
+    &:extend(.slab-gray all);
+    background-color: #fbfbfb; //Slightly different color than slab gray, but close enough to extend pattern for form colors, etc.
+
+    padding-top: @padding-vertical-inner;
+    padding-bottom: @padding-vertical-inner;
+
+    display: none;
+    .strip-edge-margins(); //Remove outer-edge margin from first and last children of this element
+  }
+}
+
+//Placeholder
+.accordion-handle-active {
+  .slab-green();
+  .slab-whitetext();
+
+  &:before {
+    transform: rotate(180deg);
+  }
+}
+
+.accordion-handle-hide {
+  display: none;
+}
+
+//Placeholder
+.accordion-content-active {
+  display: block;
+}
+
+.accordion.open {
+  & .accordion-handle {
+    .accordion-handle-active();
+  }
+
+  & .accordion-content {
+    .accordion-content-active();
+  }
+}
+
+.accordion.always-open-sm {
+  @media screen and (min-width: @screen-sm-min) {
+    & .accordion-handle {
+      .accordion-handle-active();
+      & {
+        cursor: default;
+      }
+      &:before {
+        display: none;
+      }
+    }
+
+    & .accordion-content {
+      .accordion-content-active();
+    }
+  }
+}
+
+/// MyAPA
+
+.on-demand-education {
+
+  .accordion-handle {
+    //padding-left: 30px;
+  }
+
+  .accordion-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    h4 {
+      margin-top: 13px;
+      margin-bottom: 20px;
+    }
+
+    h5 {
+      margin-bottom: 3px;
+    }
+
+    .launch {
+      float: right;
+      width: 218px;
+      margin-right: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .read-more-link {
+      border-top: none;
+    }
+
+    .education-image {
+      padding-right: 0px;
+    }
+  }
+}
+
+.exam-application {
+  .accordion-handle {
+    //padding-left: 30px;
+  }
+
+  .accordion-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .application-details {
+      margin-bottom: 25px;
+    }
+
+    .application-status {
+      font-size: 14px;
+
+      .letter-rating {
+        color: #e0963c;
+      }
+    }
+
+    .download-exam {
+      margin-bottom: 10px;
+    }
+
+    .read-more-link {
+      border-top: none;
+    }
+
+    .application-information-wrapper {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+
+@media screen and (min-width: @screen-sm-min) {
+
+  .on-demand-education, .exam-application {
+    .accordion-handle {
+      padding-left: 30px;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+You received this email because you asked to reset the password for your APA account at planning.org.
+
+You may create a new password on this page:
+{% block reset_link %}{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}{% endblock %}
+
+This link may be used only once.
+
+If you did not ask to reset your APA web account password, please call APA Customer Service immediately at 312-431-9100.
+
+For future reference, your APA ID is {{ user.username }}
+
+Thank you for using your APA web account.
+
+American Planning Association
+Customer Service
+312.431.9100 | customerservice@planning.org | planning.org

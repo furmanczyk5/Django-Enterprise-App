@@ -1,0 +1,122 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% load static %}
+
+{% block content_main %}
+<div>
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">For PDOs: Search for Exam Registrations</h1>
+		<p>Use the form below to find an applicant or create a custom report. If you do not find the results you are looking for, please try a more specific search.</p>
+
+		<p>The list of new applicants (who have completed at least one page or the entire form) is updated to this database in real time. This allows you to select applications received before and up the each submission deadline.  Applications received after the submission deadline will be reviewed for the next testing window.</p>
+
+		<p>Applications from previous periods have been archived in order to guarantee that previously approved applicants, with remaining exam invitations, pay the correct exam fee should they return to take the exam.</p>
+
+  </div>
+
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+
+
+          <form id="exam_registration_search" align="left" class="planning-form">
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            <div class="form-section form-section-enclosed-dark">
+
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.exam %}
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.show_rates %}
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.pass_only %}
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.chapter %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.first_name %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.last_name %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.username %}  
+            </div>
+
+            <div class="form-actions">
+              <input type="submit" name="submit" class="btn btn-primary" value="Search" />
+            </div>
+          </form>
+        </div>
+        </div>
+        </div>
+
+{% if pass_rate %}
+<div class="layout-tracery">
+    <div class="layout-column">
+        <div class="form-section form-section-enclosed-dark">
+            <h2>Pass Rates:</h2>
+            <h5>National Rates</h5>
+            Total passed: <strong>{{ pass_count }}</strong><br/>
+            Total failed: <strong>{{ fail_count }}</strong><br/>
+            Pass rate: <strong>{{ pass_rate }}%</strong><br/>
+        {% if pass_rate_chapter %}
+            <h5>Selected Chapter Rates</h5>
+            Total passed: <strong>{{ pass_count_chapter }}</strong><br/>
+            Total failed: <strong>{{ fail_count_chapter }}</strong><br/>
+            Pass rate: <strong>{{ pass_rate_chapter }}%</strong><br/>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+ {% if search or page %}
+    {% if results|length > 0 %}
+    <h2>Search Results:</h2>
+
+    <div class="results-items">
+        <div class="content-preview-list layout-tracery no-bottom-border">
+            <ul>
+            {% for result in results %}
+                <li class="content-preview-item">
+                    <div class="column1major">
+                    <h4>{{result.contact}}</h4>
+                    	<b> Exam: </b>{{result.exam.code}} |
+                    	{% if result.contact.chapter %}<b> Chapter: </b>{{result.contact.chapter}}<br/>{% endif %}
+                        {% if result.contact.phone %}<b>Phone: </b>{{result.contact.phone}}<br>{% endif %}
+                        {% if result.contact.address1 %}
+                            {{result.contact.address1}}<br>
+                            {% if result.contact.address2 %}{{result.contact.address2}}<br>{% endif %}
+                            {% if result.contact.city %}{{result.contact.city}}, {% endif %}
+                            {% if result.contact.state %}{{result.contact.state}} {% endif %}
+                            {% if result.contact.zip_code %}{{result.contact.zip_code}}<br>{% endif %}
+                            {% if result.contact.country and result.contact.country != 'United States' %}{{result.contact.country}}<br>{% endif %}
+                        {% endif %}
+						{% if result.contact.email %}<b><a class="small button" href="mailto:{{result.contact.email}}">Click here to email</a></b>{% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="search-pagination" align="center">
+        <span class="step-links">
+            {% if results.has_previous %}
+                <a href="?page={{ results.previous_page_number }}" class="pull-left"><b> < Previous </b></a>
+            {% endif %}
+            <span class="pagination-results">
+            Page {{ results.number }} of {{ results.paginator.num_pages }}
+            </span>
+            {% if results.has_next %}
+                <a href="?page={{ results.next_page_number }}" class="pull-right"><b> Next > </b></a>
+            {% endif %}
+        </span>
+    </div>
+    {% else %}
+    <h2>Search Results:</h2>
+    <p><b>Your search returned no results.</b> Please try again with some different keywords.</p>
+    {% endif %}
+    {% endif %}
+
+{% endblock %}
+

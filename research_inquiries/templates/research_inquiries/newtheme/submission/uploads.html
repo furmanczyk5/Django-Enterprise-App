@@ -1,0 +1,5 @@
+{% extends 'submissions/newtheme/forms/uploads.html' %}
+
+{% block uploads_list %}
+{% include "research_inquiries/newtheme/includes/uploads-table.html" with uploads=upload_type.the_uploads editable=True %}
+{% endblock %}

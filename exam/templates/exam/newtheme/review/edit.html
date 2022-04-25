@@ -1,0 +1,330 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+{% load exam_extras %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">Exam Application Reviewer</h1>
+
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+    <strong>Current Review Round: {{ current_review_round }}</strong><br>
+    <p>Previous reviewer recommendations shown here. Fill out your round {{ current_review_round }} review form below.</p><hr>
+
+      {% for review_form in review_forms %}
+          <h3 class="featured-item-title">Round {{ forloop.counter }} Reviewer Recommendations:</h3><br>
+        <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+
+        {% for field in review_form %}
+          <div class="key-value-pair">
+            <div class="key">{{ field.label }}</div>
+            <div class="value">
+              {% if field.name == "rating_2" %}
+                {{ field.value|approval_filter }}
+              {% else %}
+                {{ field.value|safe }}
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        {% endfor %}
+
+      <div class="row">
+
+
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+            <!-- {{ degree_formset.as_table }} -->
+            <!-- {{ job_formset.as_table }} -->
+            <!-- {{ criteria_formset.as_table }} -->
+            <!-- {{ ethics_formset.as_table }} -->
+
+            <!-- {{ degree_formset.management_form }} -->
+            {{ job_formset.management_form }}
+            {{ criteria_formset.management_form }}
+            {{ ethics_formset.management_form }}
+            {{ answer_review_formset.management_form }}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=application_review_form %}
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=application_answer_review_form_1 %}
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=application_answer_review_form_2 %}
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=application_answer_review_form_3 %}
+
+            <div class="form-section form-section-enclosed-dark">
+              <h1 class="form-section-title">Exam Application Reviewer - Start Your Review Here</h1>
+
+              Add your ratings/comments in the fields below.<br><br>
+
+              <!-- {% comment %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form_obj.rating_1 %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form_obj.rating_2 %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form_obj.rating_3 %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form_obj.rating_4 %}
+              {% endcomment %} -->
+
+              <h3>General Information:</h3>
+              {% if is_staff %}
+              <strong>Applicant:</strong> {{ contact }}<br>
+              {% endif %}
+              <strong>Exam:</strong> {{ exam }}<br>
+              <strong>Application Type:</strong> {{ application_type }}<br>
+              <strong>Application Status:</strong> {{ application_status }}<br>
+              <strong>Agreed to Code of Ethics?</strong> {{ code_of_ethics }}<br><br>
+
+              <h3>Applicant Degrees:</h3>
+              {% for degree in degrees %}
+                <strong>Educational Institution: </strong>
+                {% if degree.school %}
+                  <em>{{ degree.school }}</em><br>
+                {% elif degree.other_school %}
+                  <em>{{ degree.other_school }}</em><br>
+                {% endif %}
+
+                <strong>Graduation Date: </strong>
+                <em>{{ degree.graduation_date }}</em><br>
+                <strong>Education Level: </strong>
+                {% if degree.level == 'B' %}
+                  <em>{{ bachelor }}</em><br>
+                {% elif degree.level == 'M' %}
+                  <em>{{ master }}</em><br>
+                {% elif degree.level == 'P' %}
+                  <em>{{ doctorate }}</em><br>
+                {% elif degree.level == 'O' %}
+                  <em>{{ other_degree }}</em><br>
+                {% endif %}
+                  <!-- <em>{{ degree.level }}</em><br> -->
+                <strong>Planning Degree?: </strong>
+                <em>{{ degree.is_planning }}</em><br>
+                <strong>PAB Accredited Degree?: </strong>
+                <em>{{ degree.pab_accredited }}</em><br>
+                {% if is_staff or is_staff_reviewer %}
+                <strong>Education Verification Document Download Link: </strong>
+                <a href="{{ degree.verification_document.uploaded_file.url }}" target="_blank"><em>{{ degree.verification_document }}</em></a>
+                <hr>
+                {% endif %}
+
+              {% endfor %}
+              <!-- <table>{{ review_degree_formset }}</table> -->
+
+              <h3>Applicant Jobs:</h3>
+              <h4>Required Planning Experience for This Application: <strong>{{ required_planning_experience }} years</strong></h4>
+              <h4>Total Planning Experience Entered So Far: <strong>{{ planning_experience }} years</strong></h4><br>
+
+              {% for job in jobs %}
+                <strong>Job Title: </strong><em>{{ job.title|default:"No Title" }}</em><br>
+                <strong>Organization: </strong><em>{{ job.company }}</em> <br>
+                <strong>Phone: </strong><em>{{ job.phone }}</em><br>
+                <strong>Start Date: </strong><em>{{ job.start_date }}</em>&nbsp<strong>End Date: </strong><em>{{ job.end_date }}</em><br>
+                <strong>This is your current job: </strong><em>{{ job.is_current }}</em><br><strong>This is a part-time job: </strong><em>{{ job.is_part_time }}</em><br>
+                <strong>Professional Planning Experience Equivalent: </strong><em>{{ job.get_planning_experience.days|year_filter }} years</em><br>
+                {% if is_staff or is_staff_reviewer %}
+                  <strong>We may contact your employer: </strong><em>{{ job.contact_employer }}</em><br><strong>Supervisor Name: </strong><em>{{ job.supervisor_name }}
+                </em><br>
+                  <strong>Employment Verification Document Download Link: </strong>
+                  <a href="{{ job.verification_document.uploaded_file.url }}" target="_blank"><em>{{ job.verification_document }}</em></a><hr>
+
+                {% endif %}
+
+              {% endfor %}
+              <!-- <table>{{ job_formset }}</table> -->
+
+              <h1 class="form-section-title">Application Criteria Responses:</h1><br>
+              <h4 style="color:#0000FF">Notes to Reviewers:</h4>
+              <div style="color:#0000FF">{{ view.application.editorial_comments }}</div>
+
+              <!-- =================================================================== -->
+              <hr/>
+              <h3>{{ answer_1.question.title  }}</h3>
+              <h2>Criteria 1 category selection: {{ criteria_1_tag }}</h2>
+              {% if current_review_round|in_range:4 or answer_1_old.text %}
+              <p><strong>Most Recently Denied Answer: </strong></p>
+              <p>
+                {{ answer_1_old.text|safe }}
+              </p>
+              <p><strong>Current Answer: </strong></p>
+              {% endif %}
+              <p>
+                {{ answer_1.text|safe }}
+              </p>
+              <strong>Criteria 1 Word Count (Current Answer): {{ answer_word_count_1 }}</strong><br><br>
+
+              {% for cri1_answer_review_form in cri1_answer_review_forms %}
+                <h5 class="featured-item-title">Round {{ forloop.counter }} Criteria 1 Review:</h5>
+                <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+                <div class="key-value-pair">
+                  <div class="key">{{ cri1_answer_review_form.rating.label }}</div>
+                  <div class="value">{{ cri1_answer_review_form.rating.value|criteria_filter }}</div>
+                </div>
+                <div class="key-value-pair">
+                  <div class="key">{{ cri1_answer_review_form.comments.label }}</div>
+                  <div class="value">{{ cri1_answer_review_form.comments.value|safe }}</div>
+                </div>
+              {% endfor %}<hr>
+              <h5 class="featured-item-title">Current Round ({{ current_review_round }}) Criteria 1 Review:</h5>
+
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_answer_review_form_1.rating %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_answer_review_form_1.comments %}
+              {% comment %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_answer_review_form_1.answered_successfully %}
+              {% endcomment %}
+              {{ application_answer_review_form_1.review }}
+              {{ application_answer_review_form_1.answer }}
+
+              <!-- =================================================================== -->
+              <hr/>
+              <h3>{{ answer_2.question.title  }}</h3>
+              {% if current_review_round|in_range:4 or answer_2_old.text %}
+              <p><strong>Most Recently Denied Answer: </strong></p>
+              <p>
+                {{ answer_2_old.text }}
+              </p>
+              <p><strong>Current Answer: </strong></p>
+              {% endif %}
+              <p>
+                {{ answer_2.text }}
+              </p>
+              <strong>Criteria 2 Word Count (Current Answer): {{ answer_word_count_2 }}</strong><br><br>
+
+              {% for cri2_answer_review_form in cri2_answer_review_forms %}
+                <h5 class="featured-item-title">Round {{ forloop.counter }} Criteria 2 Review:</h5>
+                <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+                <div class="key-value-pair">
+                  <div class="key">{{ cri2_answer_review_form.rating.label }}</div>
+                  <div class="value">{{ cri2_answer_review_form.rating.value|criteria_filter }}</div>
+                </div>
+                <div class="key-value-pair">
+                  <div class="key">{{ cri2_answer_review_form.comments.label }}</div>
+                  <div class="value">{{ cri2_answer_review_form.comments.value|safe }}</div>
+                </div>
+              {% endfor %}<hr>
+              <h5 class="featured-item-title">Current Round ({{ current_review_round }}) Criteria 2 Review:</h5>
+
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_answer_review_form_2.rating %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_answer_review_form_2.comments %}
+              {% comment %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_answer_review_form_2.answered_successfully %}
+              {% endcomment %}
+              {{ application_answer_review_form_2.review }}
+              {{ application_answer_review_form_2.answer }}
+
+              <hr/>
+              <h3>{{ answer_3.question.title  }}</h3>
+              {% if current_review_round|in_range:4 or answer_3_old.text %}
+              <p><strong>Most Recently Denied Answer: </strong></p>
+              <p>
+                {{ answer_3_old.text|safe }}
+              </p>
+              <p><strong>Current Answer: </strong></p>
+              {% endif %}
+              <p>
+                {{ answer_3.text|safe }}
+              </p>
+              <strong>Criteria 3 Word Count (Current Answer): {{ answer_word_count_3 }}</strong><br><br>
+
+              {% for cri3_answer_review_form in cri3_answer_review_forms %}
+                <h5 class="featured-item-title">Round {{ forloop.counter }} Criteria 3 Review:</h5>
+                <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+                <div class="key-value-pair">
+                  <div class="key">{{ cri3_answer_review_form.rating.label }}</div>
+                  <div class="value">{{ cri3_answer_review_form.rating.value|criteria_filter }}</div>
+                </div>
+                <div class="key-value-pair">
+                  <div class="key">{{ cri3_answer_review_form.comments.label }}</div>
+                  <div class="value">{{ cri3_answer_review_form.comments.value|safe }}</div>
+                </div>
+              {% endfor %}<hr>
+              <h5 class="featured-item-title">Current Round ({{ current_review_round }}) Criteria 3 Review:</h5>
+
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_answer_review_form_3.rating %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_answer_review_form_3.comments %}
+              {% comment %}
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_answer_review_form_3.answered_successfully.as_hidden %}
+              {% endcomment %}
+              {{ application_answer_review_form_3.review }}
+              {{ application_answer_review_form_3.answer }}
+              <hr/>
+
+              <hr/><hr/>
+              <h1 class="form-section-title">Application Review Summary: </h1>
+              <br/>
+              <br/>
+
+              {{ application_review_form.id }}
+              {{ application_review_form.contact }}
+              {{ application_review_form.content }}
+              {{ application_review_form.role }}
+
+              {% for review_form in review_forms %}
+                <h5 class="featured-item-title">Round {{ forloop.counter }} Overall Review:</h5>
+                <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+                <div class="key-value-pair">
+                  <div class="key">{{ review_form.rating_1.label }}</div>
+                  <div class="value">{{ review_form.rating_1.value }}</div>
+                </div>
+                <div class="key-value-pair">
+                  <div class="key">{{ review_form.comments.label }}</div>
+                  <div class="value">{{ review_form.comments.value|safe }}</div>
+                </div>
+              {% endfor %}<hr>
+              <h5 class="featured-item-title">Current Round ({{ current_review_round }}) Overall Review:</h5>
+
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_review_form.rating_1 %}
+
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_review_form.comments %}
+
+              {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_review_form.rating_2 %}
+
+              {% if is_staff %}
+              <p>
+                <br/>
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_review_form.custom_text_1 %}
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_review_form.rating_3 %}
+                </p>
+
+              {% else %}
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_review_form.custom_text_2 %}
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_review_form.custom_boolean_1 %}
+                <br>
+                <strong>"Denial Letter Option" for staff reviewers only:</strong>
+                {% include "newtheme/sandbox/forms/includes/input-select.html" with field=application_review_form.rating_3 %}
+                {% comment %}
+                {{ application_review_form.rating_3.as_hidden }}
+                {% endcomment %}
+              {% endif %}
+            </div>
+            <div class="form-actions">
+              {% if review.review_time %}
+              <input type="submit" name="submit_review" class="btn btn-primary" value="Resubmit Edited Review"/>
+              {% else %}
+              <input type="submit" name="submit_review" class="btn btn-primary" value="Submit Review"/>
+              {% endif %}
+              <input type="submit" name="save_and_continue" class="btn btn-primary" value="Save and Continue"/>
+
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{ block.super }}
+<script src="{% static 'content/ckeditor-content/ckeditor.js' %}"></script>
+<script>
+  CKEDITOR.replace('id_answer_review_1-comments');
+  CKEDITOR.replace('id_answer_review_2-comments');
+  CKEDITOR.replace('id_answer_review_3-comments');
+  CKEDITOR.replace('id_application_review-comments');
+  CKEDITOR.replace('id_application_review-custom_text_1');
+  CKEDITOR.replace('id_application_review-custom_text_2');
+</script>
+{% endblock %}

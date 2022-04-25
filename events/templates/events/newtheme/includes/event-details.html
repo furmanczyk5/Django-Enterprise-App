@@ -1,0 +1,123 @@
+{% load tz %}
+
+{% block details %}
+
+{% with event=content %}
+
+<div class="page-head">
+	{% include 'newtheme/templates/includes/breadcrumbs.html' %}
+	<h1 class="page-title">{{ event.title }}</h1>
+</div>
+
+<div class="layout-tracery">
+	<div class="layout-column">
+
+	{% if event.provider_roles %}
+		<h2 class="details-subtitle">
+			<a href="/cm/provider/{{event.provider_roles.0.contact.id}}/details/">
+			{{event.provider_roles.0.contact.title}}
+			</a>
+		</h2>
+	{% endif %}
+
+    	<p class="small">#{{ event.master.id }}</p>
+
+    	<p class="address">
+	{% localtime off %}
+	{% ifequal event.begin_time|date:"SHORT_DATE_FORMAT" event.end_time|date:"SHORT_DATE_FORMAT"%}
+		{{event.begin_time_astimezone|date:"l, F j, Y"}}<br>
+		{{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+	{% else %}
+		{{event.begin_time_astimezone|date:"l, F j, Y, P"}}<br>{{event.end_time_astimezone|date:"l, F j, Y, P e"}}
+	{% endifequal %}
+	{% endlocaltime %}
+		</p>
+
+	{% if event.city or event.state or event.country %}
+		<p class="address">
+			{{event.city}}, {{event.state}}, {{event.country}}
+		</p>
+	{% endif %}
+
+	{% if event.cm_approved and event.event_type != "EVENT_MULTI" %}
+
+		<p>
+			<span class="cm">CM | </span><span class="cmpoints">{{event.cm_approved|floatformat:"-2"}}</span>
+
+		{% if event.cm_law_approved %}
+			<br>
+			<span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_law_approved|floatformat:"-2"}}</span>
+		{% endif %}
+
+		{% if event.cm_ethics_approved %}
+			<br>
+			<span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_ethics_approved|floatformat:"-2"}}</span>
+		{% endif %}
+
+    <!-- FLAGGED FOR REFACTORING: CM CREDITS DISPLAY -->
+    {% if event.cm_equity_credits %}
+      <br>
+      <span class="cmlawethics">Eq</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_equity_credits|floatformat:"-2"}}</span>
+    {% endif %}
+
+    {% if event.cm_targeted_credits %}
+      <br>
+      <span class="cmlawethics">SR</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_targeted_credits|floatformat:"-2"}}</span>
+    {% endif %}
+
+		</p>
+
+	{% endif %}
+
+	{% if event.text %}
+		<h3>Overview</h3>
+		<div class="content-managed-html">
+			<p>
+				{{ event.text|safe }}
+			</p>
+		</div>
+	{% endif %}
+
+	{% if event.resource_url %}
+		<h3>Resource URL</h3>
+		{% if resource %}
+		<p>{{event.resource_url}}</p>
+		{% else %}
+	   	<p><a class="text" target="_BLANK" href="{{event.resource_url}}">view resource</a></p>
+		{% endif %}
+	{% endif %}
+
+	{% include "events/newtheme/includes/event-details-speakers.html" with speaker_roles=event.speaker_roles %}
+	
+
+	{% comment %}
+	<p>
+	{% if event.event_type == "ACTIVITY" %}
+	  {% activity_ticket_link activity=event %}
+	{% else %}
+	  {% event_register_link %}
+	{% endif %}
+	</p>
+	{% endcomment %}
+
+	{% block events_multi %}{% endblock events_multi %}
+
+	</div>
+</div>
+
+{% block disclaimer %}
+{% if event.cm_approved and event.event_type != "EVENT_MULTI" %}
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h4>Disclaimer</h4>
+			<p>
+				<em>Certification Maintenance (CM) credit assigned to an educational program means AICP recognizes that the CM Provider has committed to meet CM criteria for length, subject matter, and instructors. Program descriptions and details are the responsibility of the programs’ providers, and APA is not responsible for the content.</em>
+			</p>
+	</div>
+</div>
+{% endif %}
+{% endblock disclaimer %}
+
+{% endwith %}
+
+{% endblock %}

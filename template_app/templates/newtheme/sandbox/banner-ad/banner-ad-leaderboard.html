@@ -1,0 +1,21 @@
+{% if not request.detect_mobile_app.is_mobileapp %}
+<div class="banner-ad banner-ad-leaderboard {% if outside_content %}banner-ad-leaderboard-outside-content{% endif %}">
+  {# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+  <div id="sas_34984"></div>
+  <script type="application/javascript">
+      sas.cmd.push(function() {
+          sas.call("std", {
+              siteId: 80676, //
+              pageId: 584791, // Page : Planning.org/apa
+              formatId: 34984, // Format : APA - Leaderboard (728x90) 728x90
+              target: '' // Targeting
+          });
+      });
+  </script>
+  <noscript>
+      <a href="https://www5.smartadserver.com/ac?jump=1&nwid=1541&siteid=80676&pgname=apa&fmtid=34984&visit=m&tmstp=[timestamp]&out=nonrich" target="_blank">
+          <img src="https://www5.smartadserver.com/ac?out=nonrich&nwid=1541&siteid=80676&pgname=apa&fmtid=34984&visit=m&tmstp=[timestamp]" border="0" alt="" />
+      </a>
+  </noscript>
+</div>
+{% endif %}

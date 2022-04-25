@@ -1,0 +1,78 @@
+// Always hide for mobile
+#conference-countdown {
+  display: none;
+}
+
+// Show larger than tablet
+@media screen and (min-width: @screen-sm-min) {
+
+  #conference-countdown {
+    display: block; // undo hide
+
+    margin: 0 auto;
+    width: 500px;
+    top: 0px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .conference-countdown-heading {
+    padding: @grid-gutter-width / 4 @grid-gutter-width / 2;
+    font-family: @font-family-sans-serif;
+    font-size: 18px;
+    text-align: center;
+    background: black;
+    color: white;
+  }
+  // 700
+  // 16, 16
+  // 150
+  // 182
+  .conference-countdown-body {
+    &:extend(.clearfix all);
+    padding: @grid-gutter-width / 2 0;
+    min-height: 97px;
+    background: #333333;
+  }
+
+  .conference-countdown-counts,
+  .conference-countdown-btn-wrap {
+    float: left
+  }
+
+  .conference-countdown-counts {
+    padding-right: @grid-gutter-width / 2;
+    ul {
+      margin: 0;
+      padding: 0;
+      width: 500px;
+      display: table;
+
+      li {
+        width: 25%;
+        display: table-cell;
+        list-style: none;
+        text-align: center;
+
+        color: white;
+      }
+    }
+
+    .count,
+    .unit {
+      display: block;
+    }
+    .count {
+      font-size: 32px;
+    }
+
+    .unit {
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+  }
+
+  .conference-countdown-btn-wrap {
+    padding-top: 12px;
+  }
+}

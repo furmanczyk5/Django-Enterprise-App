@@ -1,0 +1,18 @@
+{% extends "newtheme/templates/layout-nosidebar.html" %}
+
+{% block content_main %}
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Thank You!</h1>
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+  	<h3>
+  		PAS has received your inquiry. You may monitor the status of your inquiry from the PAS Inquiry Dashboard. Thank you for using PAS!
+  	</h3>
+  	<p>
+  		<a class="btn btn-primary" href="{% url "inquiry:inquiry_dashboard" %}">Back to the PAS Inquiry Dashboard</a>
+  	</p>
+  </div>
+</div> 
+{% endblock %}

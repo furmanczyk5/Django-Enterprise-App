@@ -1,0 +1,266 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Self-Reporting CM Credits{% endblock %}
+
+{% block additional_head_css %}
+{# date picker #}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+{% endblock additional_head_css %}
+
+<!-- NOTE... perhaps better to create a standard form, and then inherit the CM form from that? -->
+
+{% block content_main %}
+<div class="page-head">
+  <h1 class="page-title">Self-Reporting CM Credits</h1>
+  <br>
+  <p class="featured">
+    You have self-reported a total of <strong>{{ log_overview.self_reported }}</strong>  credits for this reporting period. 
+    Up to 8 self-reported credits within any one reporting period may count towards your required CM credits.
+  </p>
+</div>
+{% if log_overview.self_reported >= 8 and not claim %}
+<div class="section-icon section-icon-attention">
+  <h3>Attention</h3>
+  <p>
+    You have already logged the maximum number of self-reported credits for this CM reporting period.
+  </p>
+</div>
+{% else %}
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+  <form method="post" class="planning-form validate-form">
+    {% csrf_token %}
+    {% include "ui/newtheme/forms/includes/display-errors.html" with form=claim_form %}
+    <div class="form-section form-section-enclosed-dark">
+      <div class="help-block">All fields are required unless labeled as optional</div>
+      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=claim_form.provider_name %}
+
+      <div class="form-group{%if claim_form.title.errors %} has-error {% endif %}">
+        <label for="{{ claim_form.title.id_for_label }}">Service or Event Name:</label>
+        {{ claim_form.title }}
+        {% if claim_form.title.help_text %}
+        <div class="help-block">{{ claim_form.title.help_text|safe }}</div>
+        {% endif %}
+        {% if claim_form.title.errors %}
+        <div class="form-error">
+          {% for error in claim_form.title.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-4">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=claim_form.begin_time %}
+          </div>
+          <div class="col-sm-4">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=claim_form.end_time %}
+          </div>
+          <div class="col-sm-4">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=claim_form.timezone %}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group{%if claim_form.description.errors %} has-error {% endif %}">
+        <label for="{{ claim_form.description.id_for_label }}">Service or Event Description:</label> 
+
+        <!--<p class="help-block" style="margin-top:5px; float:left;">Optional</p> -->
+
+        {{ claim_form.description }}
+        {% if claim_form.description.help_text %}
+       
+
+        <div class="help-block">{{ claim_form.description.help_text|safe }}</div>
+        {% endif %}
+        {% if claim_form.description.errors %}
+        <div class="form-error">
+          {% for error in claim_form.description.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group{%if claim_form.learning_objective.errors %} has-error {% endif %}">
+        <label for="{{ claim_form.learning_objectives.id_for_label }}">What did you learn from this service or by attending this event? List a minimum of three learning/training objectives:</label> 
+        {{ claim_form.learning_objectives }}
+        {% if claim_form.learning_objectives.help_text %}
+        <div class="help-block">{{ claim_form.learning_objectives.help_text|safe }}</div>
+        {% endif %}
+        {% if claim_form.learning_objectives.errors %}
+        <div class="form-error">
+          {% for error in claim_form.learning_objectives.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-4">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=claim_form.country %}
+          </div>
+          <div class="col-sm-4">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=claim_form.state %}
+          </div>
+          <div class="col-sm-4">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=claim_form.city %}
+          </div>
+        </div>
+      </div>
+
+
+      {# <div class="form-group"> #}
+        {# <label for="{{ entry_form.description.id_for_label }}">Other State</label> #}
+        {# {{ claim_form.other_state.errors }} #}
+        {# {{ claim_form.state_other }} #}
+      {# </div> #}
+
+      <div class="form-group{%if claim_form.is_speaker.errors %} has-error {% endif %}">
+
+        <div class="checkbox">
+          <label>
+            {{ claim_form.is_speaker }}
+            I was a speaker/instructor
+          </label>
+        </div>
+
+        {% if claim_form.is_speaker.help_text %}
+        <div class="help-block">{{ claim_form.is_speaker.help_text|safe }}</div>
+        {% endif %}
+        {% if claim_form.is_speaker.errors %}
+        <div class="form-error">
+          {% for error in claim_form.is_speaker.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <p class="hidden">Speakers or instructors who attend an event in its entirety may claim CM credits for the event length plus 1 hour (CM) credit for preparation time. Speakers or instructors who stay only for their part of the program (one hour minimum) should claim CM credits for the time they attended plus 1 hour (CM) for preparation time.</p>
+      </div>
+
+      
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group{%if claim_form.credits.errors %} has-error {% endif %}">
+              <label for="{{ claim_form.credits.id_for_label }}">Credits requested:</label>
+              {{ claim_form.credits }}
+              <div class="help-block">CM credits for pro bono service must be claimed in one-hour increments. One hour of pro bono service will equal one CM credit (1 hour of service = 1 CM credit). Increments less than an hour should not be selected, for example, members may not claim service CM credits for one hour and 15 minutes (1.25 CM credits).</div>
+              {% if claim_form.credits.errors %}
+              <div class="form-error">
+                {% for error in claim_form.credits.errors %}
+                <p>{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group{%if claim_form.law_credits.errors %} has-error {% endif %}">
+              <label for="{{ claim_form.law_credits.id_for_label }}">Law Credits Requested (excludes pro bono service):</label>
+              {{ claim_form.law_credits }}
+              <div class="help-block">To include law credits, the event must demonstrate that the content of the activity is related to planning law, such as environmental law, land use law, redevelopment law, administrative law, housing law, etc. The event must be closely related to recently (within the last 10-years) enacted planning laws or recent case decisions or trends in existing planning laws or case decisions. Please note that events related to local-level regulations, policies and ordinances (including zoning), political movements, policy recommendations, and policy initiatives are not eligible for law credit. Training on law must constitute a majority of the content of the activity.</div>
+              {% if claim_form.law_credits.errors %}
+              <div class="form-error">
+                {% for error in claim_form.law_credits.errors %}
+                <p>{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group{%if claim_form.ethics_credits.errors %} has-error {% endif %}">
+              <label for="{{ claim_form.ethics_credits.id_for_label }}">Ethics Credits Requested (excludes pro bono service):</label>
+              {{ claim_form.ethics_credits }}
+              <div class="help-block">
+                To include ethics credits, the event must focus on training planners on the standards of ethical behavior according to the AICP Code of Ethics and Professional Conduct. While general ethics courses, local ethics laws, and ethics codes from other professions can introduce relevant issues as well, the AICP Code focuses on a system of moral principles specific to professional planners.
+              </div>
+              {% if claim_form.ethics_credits.errors %}
+              <div class="form-error">
+                {% for error in claim_form.ethics_credits.errors %}
+                <p>{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Pro Bono #}
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            {{ claim_form.is_pro_bono }}
+            This activity is pro bono
+          </label>
+        </div>
+        <p>
+          By clicking this box, I confirm that I have reviewed the web-based tutorial prior to claiming pro bono CM credit.
+        </p>
+
+      </div>
+
+      <div class="form-group{%if claim_form.verified.errors %} has-error {% endif %}">
+
+        <div class="checkbox">
+          <label>
+            {{ claim_form.verified }}
+            Agree
+          </label>
+        </div>
+
+        {# {% if claim_form.verified.help_text %} #}
+        {# <div class="help-block">{{ claim_form.verified.help_text|safe }}</div> #}
+        {# {% endif %} #}
+        <p class="small">
+          By clicking this box, I confirm that I have read and understood the CM eligibility, and agree that the event I am submitting meets these criteria. Through my ethical obligations, as governed by the AICP Code of Ethics and Professional Conduct, I verify that I attended this event in full (or for the amount of time speaking or instructing).
+        </p>
+        {% if claim_form.verified.errors %}
+        <div class="form-error">
+          {% for error in claim_form.verified.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      {{ claim_form.contact }}
+      {{ claim_form.log }}
+      {{ claim_form.claim }}
+      {{ claim_form.self_reported }}
+    </div>
+    <br>
+    <div>
+      <button class="btn btn-primary" type="submit" name="submitButton" value="claim_form_submit">Submit</button>
+    </div>
+  </form>
+
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+{% block additional_body_js %}
+<script src="{% static 'rome/rome.min.js' %}"></script>
+<script src="{% static 'rome/rome_setup.js' %}"></script>
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<!-- best place to put this javascript? -->
+<script language="javascript">
+  $(function () {
+    $('#{{ claim_form.is_speaker.id_for_label }}').change(function () {                
+       $('#speaker_fields').toggle(this.checked);
+    }).change(); //ensure visible state matches initially
+  });
+</script>
+{% endblock %}

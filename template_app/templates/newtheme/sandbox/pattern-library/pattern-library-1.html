@@ -1,0 +1,762 @@
+{% extends 'newtheme/templates/layout-pattern-library.html' %}
+
+{% block title %}APA Pattern Library Level 1: Basic content patterns{% endblock %}
+
+{% block introduction %}This pattern library contains basic content patterns for use with APA content pages.{% endblock %}
+
+{% block patterns %}
+<h1 class="pl-h1">Typography</h1>
+
+<h2 class="pl-h2">Headlines - Standard</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Basic headlines without modifiers.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<h1>h1: Sample Header</h1>
+<h2>h2: Sample Header</h2>
+<h3>h3: Sample Header</h3>
+<h4>h4: Sample Header</h4>
+<h5>h5: Sample Header</h5>
+<h6>h6: Sample Header</h6>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;h1&gt;...&lt;/h1&gt;
+&lt;h2&gt;...&lt;/h2&gt;
+&lt;h3&gt;...&lt;/h3&gt;
+&lt;h4&gt;...&lt;/h4&gt;
+&lt;h5&gt;...&lt;/h5&gt;
+&lt;h6&gt;...&lt;/h6&gt;
+</code></pre>
+
+<h2 class="pl-h2">Headlines - Blue</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A modifier class to make any headline blue.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<h2 class="blue">h2: Sample Header</h2>
+<h3 class="blue">h3: Sample Header</h3>
+<h4 class="blue">h4: Sample Header</h4>
+<h5 class="blue">h5: Sample Header</h5>
+<h6 class="blue">h6: Sample Header</h6>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;h2 class=&quot;blue&quot;&gt;...&lt;/h2&gt;
+&lt;h3 class=&quot;blue&quot;&gt;...&lt;/h3&gt;
+&lt;h4 class=&quot;blue&quot;&gt;...&lt;/h4&gt;
+&lt;h5 class=&quot;blue&quot;&gt;...&lt;/h5&gt;
+&lt;h6 class=&quot;blue&quot;&gt;...&lt;/h6&gt;
+</code></pre>
+
+<h2 class="pl-h2">Headlines - Underlined</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A modifier class to add an underline to any headline.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<h1 class="headline-underline">h1: Sample Header</h1>
+<h2 class="headline-underline">h2: Sample Header</h2>
+<h3 class="headline-underline">h3: Sample Header</h3>
+<h4 class="headline-underline">h4: Sample Header</h4>
+<h5 class="headline-underline">h5: Sample Header</h5>
+<h6 class="headline-underline">h6: Sample Header</h6>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;h1 class=&quot;headline-underline&quot;&gt;...&lt;/h1&gt;
+&lt;h2 class=&quot;headline-underline&quot;&gt;...&lt;/h2&gt;
+&lt;h3 class=&quot;headline-underline&quot;&gt;...&lt;/h3&gt;
+&lt;h4 class=&quot;headline-underline&quot;&gt;...&lt;/h4&gt;
+&lt;h5 class=&quot;headline-underline&quot;&gt;...&lt;/h5&gt;
+&lt;h6 class=&quot;headline-underline&quot;&gt;...&lt;/h6&gt;
+</code></pre>
+
+<h2 class="pl-h2">Featured Item Title Headline</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A special headline, mostly used on section overview pages.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<h3 class="featured-item-title">h3.featured-item-title</h3>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;h3 class=&quot;featured-item-title&quot;&gt;...&lt;/h3&gt;
+</code></pre>
+
+
+
+<h2 class="pl-h2">Body Copy - Standard</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Basic body copy. Standard page text should be this.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget cursus nulla. Nam sed diam metus. Sed posuere viverra dignissim. <a href="#fpo">Sed arcu est</a>, condimentum sit amet faucibus ac, <b>convallis id velit.</b> Quisque lacinia feugiat libero, vulputate fringilla lectus lobortis in. <strong>Duis in malesuada dui. Duis ut accumsan quam. Mauris arcu est, dictum ac aliquam vitae, <a href="#fpo">ullamcorper eget odio</a>. Donec quis ex in ligula viverra suscipit commodo sed urna.</strong> Pellentesque varius libero eget augue pellentesque, vel lacinia sem feugiat. Sed accumsan ac nibh id aliquam. In eget maximus diam, vitae lobortis ipsum.</p>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;p&gt;...&lt;/p&gt;
+</code></pre>
+
+<h2 class="pl-h2">Body Copy - Featured</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Featured body copy, such as for the first paragraph on a page or other specific uses.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<p class="featured">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget cursus nulla. Nam sed diam metus. Sed posuere viverra dignissim. <a href="#fpo">Sed arcu est</a>, condimentum sit amet faucibus ac, <b>convallis id velit.</b> Quisque lacinia feugiat libero, vulputate fringilla lectus lobortis in. <strong>Duis in malesuada dui. Duis ut accumsan quam. Mauris arcu est, dictum ac aliquam vitae, <a href="#fpo">ullamcorper eget odio</a>. Donec quis ex in ligula viverra suscipit commodo sed urna.</strong> Pellentesque varius libero eget augue pellentesque, vel lacinia sem feugiat. Sed accumsan ac nibh id aliquam. In eget maximus diam, vitae lobortis ipsum.</p>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;p class=&quot;featured&quot;&gt;...&lt;/p&gt;
+</code></pre>
+
+<h2 class="pl-h2">Body Copy - Small</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Small body copy for specific uses. Don't apply this to every tag on a page just because you like smaller text!</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<p class="small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget cursus nulla. Nam sed diam metus. Sed posuere viverra dignissim. <a href="#fpo">Sed arcu est</a>, condimentum sit amet faucibus ac, <b>convallis id velit.</b> Quisque lacinia feugiat libero, vulputate fringilla lectus lobortis in. <strong>Duis in malesuada dui. Duis ut accumsan quam. Mauris arcu est, dictum ac aliquam vitae, <a href="#fpo">ullamcorper eget odio</a>. Donec quis ex in ligula viverra suscipit commodo sed urna.</strong> Pellentesque varius libero eget augue pellentesque, vel lacinia sem feugiat. Sed accumsan ac nibh id aliquam. In eget maximus diam, vitae lobortis ipsum.</p>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;p class=&quot;small&quot;&gt;...&lt;/p&gt;
+</code></pre>
+
+<h2 class="pl-h2">Blockquote with Border</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>This is a called out quote taken from the page content. It is signified by a vertical blue line on the left side.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+<blockquote class="border-on-left">Praesent dignissim tristique ante at euismod. Integer at sodales mauris. Fusce at ipsum nulla. Vivamus et ante vel risus suscipit vulputate in vitae dui. Sed dui elit, molestie sed molestie nec, fringilla in mi. <a href="#">Maecenas in eros eros. Vestibulum sed lobortis nunc. Nulla lobortis magna eget turpis egestas, in blandit</a> mauris commodo. Nam pretium lobortis elit, et rutrum tellus lacinia sit amet. Nunc euismod at tortor eget vulputate. In hac habitasse platea dictumst. Mauris id magna sed ante molestie scelerisque ac eu massa.</blockquote>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;blockquote class=&quot;border-on-left&quot;&gt;...&lt;/blockquote&gt;
+</code></pre>
+
+<h2 class="pl-h2">Well - Standard</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Use the well on an element to give it an inset effect.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="well">
+  <h2 class="headline-underline">Featured Content Header</h2>
+  <h3>Sub-header Example</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua, consectetur adipisicing elit, sed do eiusmod.</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;well&quot;&gt;
+  &lt;h2 class=&quot;headline-underline&quot;&gt;...&lt;/h2&gt;
+  &lt;h3&gt;...&lt;/h3&gt;
+  &lt;p&gt;...&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Well - With Image</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A well with an image contained inside. Uses bootstrap grid classes to establish columns.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+<div class="well">
+  <h2 class="headline-underline">Featured Content Header</h2>
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 col-lg-2">
+      <img src="//placehold.it/400x400" class="img-responsive" />
+    </div>
+    <div class="col-xs-12 col-sm-9 col-lg-10">
+      <h3>Sub-header Example</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua, consectetur adipisicing elit, sed do eiusmod.</p>
+    </div>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;well&quot;&gt;
+  &lt;h2 class=&quot;headline-underline&quot;&gt;...&lt;/h2&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-xs-12 col-sm-3 col-lg-2&quot;&gt;
+      &lt;img src=&quot;...&quot; class=&quot;img-responsive&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-xs-12 col-sm-9 col-lg-10&quot;&gt;
+      &lt;h3&gt;...&lt;/h3&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Well Basic Page - With Image</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A well with an image contained inside for use on basic pages. Uses bootstrap grid classes to establish columns.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+<div class="well">
+  <h2 class="headline-underline">Featured Content Header</h2>
+  <div class="row">
+    <div class="col-xs-12 col-sm-5 col-lg-4">
+      <img src="//placehold.it/400x400" class="img-responsive" />
+    </div>
+    <div class="col-xs-12 col-sm-7 col-lg-8">
+      <h3>Sub-header Example</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua, consectetur adipisicing elit, sed do eiusmod.</p>
+    </div>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;well&quot;&gt;
+  &lt;h2 class=&quot;headline-underline&quot;&gt;...&lt;/h2&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-xs-12 col-sm-5 col-lg-4&quot;&gt;
+      &lt;img src=&quot;...&quot; class=&quot;img-responsive&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-xs-12 col-sm-7 col-lg-8&quot;&gt;
+      &lt;h3&gt;...&lt;/h3&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Address</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A paragraph element used to display a street address.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<p class="address">
+  205 N Michigan Ave<br/>
+  #1200<br/>
+  Chicago, IL 60601
+</p>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;p class=&quot;address&quot;&gt;
+  ...&lt;br/&gt;
+  ...&lt;br/&gt;
+  ...
+&lt;/p&gt;\
+</code></pre>
+
+<h2 class="pl-h2">Photo Credit</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A modifier class used specifically for image attribution.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<p class="photo-credit">Photo of the Pedestrian Bridge in Millennium Park, Chicago. Photo courtesy of Chicago Park District, Caroline O'Boyle.</p>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;p class=&quot;photo-credit&quot;&gt;...&lt;/p&gt;
+</code></pre>
+
+<h2 class="pl-h2">Bullet List</h3>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A basic unordered bullet list.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<ul>
+  <li>Morbi non dolor sed elit gravida elementum sit amet congue quam.</li>
+  <li>Aenean interdum felis a sollicitudin cursus.</li>
+  <li>Nam condimentum est ac ultrices congue.</li>
+</ul>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;ul&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<h2 class="pl-h2">Numbered List</h3>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A basic ordered numbered list.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<ol>
+  <li>Morbi non dolor sed elit gravida elementum sit amet congue quam.</li>
+  <li>Aenean interdum felis a sollicitudin cursus.</li>
+  <li>Nam condimentum est ac ultrices congue.</li>
+</ol>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;ol&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li&gt;...&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+
+<h2 class="pl-h2">Mixed/Nested Lists</h3>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>You can nest lists indefinitely.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<ul>
+  <li>Morbi non dolor sed elit gravida elementum sit amet congue quam.</li>
+  <li>
+    Aenean interdum felis a sollicitudin cursus.
+    <ol>
+      <li>Morbi non dolor sed elit gravida elementum sit amet congue quam.</li>
+      <li>Aenean interdum felis a sollicitudin cursus.</li>
+      <li>Nam condimentum est ac ultrices congue.</li>
+    </ol>
+  </li>
+  <li>Nam condimentum est ac ultrices congue.</li>
+</ul>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;ul&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li&gt;
+    ...
+    &lt;ol&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<h1 class="pl-h1">Buttons</h1>
+
+<h2 class="pl-h2">Button Colors</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>There are two button colors to select from.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="btn btn-primary">Primary (.btn-primary)</a>
+<a href="#" class="btn btn-default">Default (.btn-default)</a>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;btn btn-primary&quot;&gt;...&lt;/a&gt;
+&lt;a href=&quot;...&quot; class=&quot;btn btn-default&quot;&gt;...&lt;/a&gt;
+</code></pre>
+
+<h2 class="pl-h2">Button Sizes</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>There are multiple button sizes to select from.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="btn btn-primary btn-sm">Small (.btn-sm)</a>
+<a href="#" class="btn btn-primary">Regular</a><br/><br/>
+<a href="#" class="btn btn-primary btn-lg">Large (.btn-lg)</a><br/><br/>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;btn btn-primary btn-sm&quot;&gt;...&lt;/a&gt;
+&lt;a href=&quot;...&quot; class=&quot;btn btn-primary&quot;&gt;...&lt;/a&gt;
+&lt;a href=&quot;...&quot; class=&quot;btn btn-primary btn-lg&quot;&gt;...&lt;/a&gt;
+
+</code></pre>
+
+<h2 class="pl-h2">Button Extras</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p> You can apply bold font weight - mostly used on the conference site</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="btn btn-primary btn-strong">&lt;a&gt;</a>
+<button type="button" class="btn btn-primary btn-strong">&lt;button&gt;</button>
+<input type="submit" class="btn btn-primary btn-strong" value="&lt;input&gt;" />
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;btn btn-primary btn-strong&quot;&gt;...&lt;/a&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-strong&quot;&gt;...&lt;/button&gt;
+&lt;input type=&quot;submit&quot; class=&quot;btn btn-primary btn-strong&quot; value=&quot;...&quot; /&gt;
+</code></pre>
+
+<h2 class="pl-h2">Button Supported Elements</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p> You can apply button classes to many different HTML element types depending on what is contextually appropriate.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="btn btn-primary">&lt;a&gt;</a>
+<button type="button" class="btn btn-primary">&lt;button&gt;</button>
+<input type="submit" class="btn btn-primary" value="&lt;input&gt;" />
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;btn btn-primary&quot;&gt;...&lt;/a&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;...&lt;/button&gt;
+&lt;input type=&quot;submit&quot; class=&quot;btn btn-primary&quot; value=&quot;...&quot; /&gt;
+</code></pre>
+
+<h1 class="pl-h1">Rules (Horizontal Lines)</h1>
+
+<h2 class="pl-h2">Basic Rule</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A basic divider line.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<hr />
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;hr /&gt;
+</code></pre>
+
+<h2 class="pl-h2">Dashed Rule</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A thicker, dashed rule.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<hr class="dashed" />
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;hr class=&quot;dashed&quot; /&gt;
+</code></pre>
+
+<h2 class="pl-h2">Double Rule</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A double line rule.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<hr class="double" />
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;hr class=&quot;double&quot; /&gt;
+</code></pre>
+
+<h1 class="pl-h1">Images</h1>
+
+<h2 class="pl-h2">Image Block (Normal)</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A full-width image block.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="image-block">
+  <img src="//placehold.it/1000x400" />
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;image-block&quot;&gt;
+  &lt;img src=&quot;...&quot; /&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<h2 class="pl-h2">Image Block with Caption</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A full width image block with a caption included.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="image-block">
+  <img src="//placehold.it/1000x400" />
+  <div class="caption">
+    <p>
+      <strong>Image:</strong> Aerial view of the port of Redwood City in San Mateo County, California. Photo from U.S. Army Corps of Engineers Digital Visual Library.
+    </p>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;image-block&quot;&gt;
+  &lt;img src=&quot;...&quot; /&gt;
+  &lt;div class=&quot;caption&quot;&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Image Block Float</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>An image block which floats to the right or left of its container at larger breakpoints at 50% width, for use in blocks of text. Works with captions or without.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+<div class="clearfix">
+  <div class="image-block image-block-float-right">
+    <img src="//placehold.it/1000x400" />
+    <div class="caption">
+      <p>
+        Praesent sed hendrerit urna. Proin tempor est vitae erat mattis, quis imperdiet neque ornare. 
+      </p>
+    </div>
+  </div>
+  <p class="full-width">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula non lacus quis aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum elementum tellus, ut blandit ex vehicula sed. Morbi ornare id risus placerat varius. Vestibulum vel lectus volutpat, elementum risus ac, elementum lectus. Sed auctor ligula magna, nec ultrices dolor ultricies id. Nulla blandit quis leo ac mollis. Cras luctus lacus ac ipsum elementum blandit. Pellentesque ullamcorper ultricies euismod. Sed feugiat massa elit, quis venenatis leo ornare vitae. Vestibulum ut libero quis orci facilisis ultrices. Sed dictum arcu tincidunt ipsum aliquet feugiat. Vivamus ipsum odio, scelerisque finibus bibendum malesuada, ultrices et risus. Donec pulvinar nulla eu est blandit faucibus. Ut dignissim laoreet elit, ut faucibus risus consequat in.
+  </p>
+  <p class="full-width">
+  Integer ullamcorper posuere tortor ac tristique. Curabitur vel diam fermentum nisl vestibulum vestibulum. In hac habitasse platea dictumst. In dolor nulla, ultrices at suscipit at, fermentum in massa. Donec vel erat mi. Donec congue tortor non lorem maximus feugiat. Nulla nec sodales tellus. Quisque ullamcorper ex quis lacus laoreet auctor. Curabitur at magna eget nisl aliquam tincidunt in vel neque.
+  </p>
+  <div class="image-block image-block-float-left">
+    <img src="//placehold.it/1000x400" />
+    <div class="caption">
+      <p>
+        Praesent sed hendrerit urna. Proin tempor est vitae erat mattis, quis imperdiet neque ornare. 
+      </p>
+    </div>
+  </div>
+  <p class="full-width">
+  Mauris finibus, libero non porta commodo, lorem velit ullamcorper metus, at fermentum diam tortor vel quam. Praesent gravida lorem et pellentesque iaculis. Integer porttitor nibh dolor, in varius metus faucibus ut. Duis bibendum nulla ut varius ullamcorper. Maecenas cursus nisl ac est facilisis maximus. Etiam consectetur nisl nibh, non pulvinar erat accumsan ut. Donec sed est sed turpis auctor venenatis non sed nunc. Morbi ut ante posuere, accumsan neque eu, imperdiet mi. Praesent scelerisque eleifend augue ac bibendum. Maecenas enim dolor, ultrices laoreet pharetra sit amet, tempus ut nisi.
+  </p>
+  <p class="full-width">
+  Morbi sollicitudin, mi ac volutpat malesuada, ligula justo pretium nunc, quis hendrerit velit nibh vel dolor. Praesent maximus faucibus lectus, in mattis justo scelerisque eu. Nunc maximus justo nisi, quis pharetra turpis condimentum sit amet. Morbi augue tellus, iaculis quis lectus a, pellentesque imperdiet justo. Vestibulum fringilla suscipit metus, ut sagittis lectus condimentum sed. Morbi placerat nisi nec turpis tincidunt, non ullamcorper felis accumsan. Suspendisse varius urna a posuere mollis. Nunc tortor est, dictum id molestie malesuada, tincidunt nec velit. Morbi vehicula dignissim molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris gravida mattis felis sit amet congue. Nullam sit amet dui in arcu sagittis convallis in faucibus nulla. Aliquam id neque libero.
+  </p>
+  <div class="image-block image-block-float-right">
+    <img src="//placehold.it/1000x400" />
+  </div>
+  <p class="full-width">
+  Aenean pharetra luctus ante, quis maximus lacus elementum et. Integer non sodales risus. Etiam viverra vel lacus nec consectetur. Suspendisse nec feugiat tellus. Aenean eget tincidunt felis, vel finibus augue. Proin sit amet lobortis nunc. Aliquam erat volutpat. Praesent luctus, libero porta tristique lacinia, magna sem semper velit, ut varius nulla justo id lectus. Cras vel enim accumsan, ullamcorper velit eu, facilisis dui. Aliquam erat volutpat. Pellentesque vulputate mi nec ultricies mollis. Aliquam sit amet nulla vitae nibh blandit suscipit. Ut sit amet tincidunt ante, non porta massa.
+  </p>
+</div>
+
+
+
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;!-- Float Left, Caption--&gt;
+&lt;div class=&quot;image-block image-block-float-left&quot;&gt;
+  &lt;img src=&quot;//placehold.it/1000x400&quot; /&gt;
+  &lt;div class=&quot;caption&quot;&gt;
+    &lt;p&gt;
+      Praesent sed hendrerit urna. Proin tempor est vitae erat mattis, quis imperdiet neque ornare. 
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- Float Left, No Caption --&gt;
+&lt;div class=&quot;image-block image-block-float-left&quot;&gt;
+  &lt;img src=&quot;//placehold.it/1000x400&quot; /&gt;
+&lt;/div&gt;
+&lt;!-- Float Right, Caption--&gt;
+&lt;div class=&quot;image-block image-block-float-right&quot;&gt;
+  &lt;img src=&quot;//placehold.it/1000x400&quot; /&gt;
+  &lt;div class=&quot;caption&quot;&gt;
+    &lt;p&gt;
+      Praesent sed hendrerit urna. Proin tempor est vitae erat mattis, quis imperdiet neque ornare. 
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- Float Right, No Caption --&gt;
+&lt;div class=&quot;image-block image-block-float-right&quot;&gt;
+  &lt;img src=&quot;//placehold.it/1000x400&quot; /&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Image Block (Breakout)</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Add the .image-breakout class to .image-block to have it "break out" to the layout edges under certain conditions.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="layout-tracery">
+  <div class="layout-column">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet feugiat tortor. Etiam vestibulum mauris sed leo vehicula posuere. In hac habitasse platea dictumst. Etiam leo tortor, mollis vitae neque eu, faucibus finibus arcu. Vivamus eget neque dolor. Aenean placerat metus sed imperdiet pretium. Proin luctus ligula sed magna congue viverra. Pellentesque convallis quis urna quis hendrerit. Pellentesque laoreet euismod condimentum.</p>
+    <div class="image-block image-breakout">
+      <img src="//placehold.it/1000x400" />
+    </div>
+    <p>Etiam vel nisl egestas eros laoreet ultricies ut ac libero. Nulla congue nibh ut convallis ornare. Integer convallis nisi lorem, sit amet euismod ipsum mollis imperdiet. Donec in orci pretium, scelerisque dolor sit amet, gravida ex. Donec nec lectus neque. Nulla vel nunc ut orci finibus dapibus vel nec velit. Duis eget nibh eu odio dapibus sagittis. Nunc vitae vulputate arcu. Integer a magna felis.</p>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;image-block image-breakout&quot;&gt;
+  &lt;img src=&quot;...&quot; /&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<h1 class="pl-h1">Videos</h1>
+
+<h2 class="pl-h2">Video Block (Normal)</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A full-width video block. Video stacks on top of caption at all breakpoints. Better for video-focused sections</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="video-block">
+  <div class="video">
+    <video class="planning-media" data-content-id="283823" style="max-width:100%" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" controls>
+      <source src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="caption">
+    <h2>The Future Belongs To Those Who Prepare For It</h2>
+    <p>
+      You are the future of planning and tomorrow's leaders. 
+    </p>
+    <div class="read-more-link no-top-border">
+      <a href="#">Find Out More</a>
+    </div>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;video-block&quot;&gt;
+  &lt;div class=&quot;video&quot;&gt;
+    [&lt;video&gt; or &lt;iframe&gt; embed]
+  &lt;/div&gt;
+  &lt;div class=&quot;caption&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Video Block (Horizontal)</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A full-width video block, where the caption floats to the left at wider breakpoints. Better for content-focused sections.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="video-block video-block-horizontal">
+  <video class="planning-media" data-content-id="283823" style="max-width:100%" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" controls>
+    <source src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="caption">
+    <h2>The Future Belongs To Those Who Prepare For It</h2>
+    <p>
+      You are the future of planning and tomorrow's leaders. 
+    </p>
+    <div class="read-more-link no-top-border">
+      <a href="#">Find Out More</a>
+    </div>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;video-block video-block-horizontal&quot;&gt;
+  &lt;div class=&quot;video&quot;&gt;
+    [&lt;video&gt; or &lt;iframe&gt; embed]
+  &lt;/div&gt;
+  &lt;div class=&quot;caption&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+
+<h2 class="pl-h2">Video Thumbnail</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Similar to the video block, but with a simpler, title-oriented layout in the caption.</p>
+</div>
+
+<h3 class="pl-h3">example (blue):</h3>
+<div class="video-thumbnail">
+  <video class="planning-media" data-content-id="283823" style="max-width:100%" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" controls>
+    <source src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="caption">
+    <p>The Future Belongs To Those Who Prepare For It</p>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;video-thumbnail&quot;&gt;
+  &lt;div class=&quot;video&quot;&gt;
+    [&lt;video&gt; or &lt;iframe&gt; embed]
+  &lt;/div&gt;
+  &lt;div class=&quot;caption&quot;&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3 class="pl-h3">example (orange):</h3>
+
+<div class="video-thumbnail color-orange">
+  <video class="planning-media" data-content-id="283823" style="max-width:100%" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" controls>
+    <source src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="caption">
+    <p>The Future Belongs To Those Who Prepare For It</p>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;video-thumbnail color-orange&quot;&gt;
+  &lt;div class=&quot;video&quot;&gt;
+    [&lt;video&gt; or &lt;iframe&gt; embed]
+  &lt;/div&gt;
+  &lt;div class=&quot;caption&quot;&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+{% endblock %}
+
+

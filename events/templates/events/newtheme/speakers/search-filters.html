@@ -1,0 +1,70 @@
+{% extends 'content/newtheme/search/includes/filter-sort-control.html' %}
+
+{% block disable_filters %}{% endblock %}
+
+{% block custom_search_filters %}
+<div class="container-fluid cm-filters" style="border: solid #e4e7eb 1px;">
+
+  {% comment %}
+  <!-- COMMENTED OUT UNTIL WE WANT TO INCLUDE DATE RANGE FILTERS -->
+  <!--
+  <div class="container-fluid">
+
+    <h6 class="cm-filters-row-heading">Time</h6>
+    <div class="row">
+
+      <div class="col-sm-4 form-group form-group-horizontal">
+        {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=filter_form.range_after %}
+      </div>
+
+      <div class="col-sm-4 form-group form-group-horizontal">
+        {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=filter_form.range_before %}
+      </div>
+
+      <div class="col-sm-4 form-group form-group-horizontal">
+        {% include 'newtheme/sandbox/forms/includes/input-select.html' with field=filter_form.npc hide_optional=True %}
+      </div>
+    
+    </div>
+  </div> 
+  -->
+  {% endcomment %}
+
+  <div class="container-fluid">
+    <h6 class="cm-filters-row-heading">Location</h6>
+    <div class="row">
+      <div class="col-sm-4 form-group form-group-horizontal">
+        {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=filter_form.city %}
+      </div>
+      <div class="col-sm-4 form-group form-group-horizontal">
+        {% include 'newtheme/sandbox/forms/includes/input-select.html' with field=filter_form.state hide_optional=True %}
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <h6 class="cm-filters-row-heading">Other Filters</h6>
+    <div class="row">
+      <div class="col-sm-4 form-group form-group-horizontal">
+        {% include 'newtheme/sandbox/forms/includes/input-select.html' with field=filter_form.npc hide_optional=True %}
+      </div>
+      <div class="col-sm-4 form-group form-group-horizontal">
+        {% include 'newtheme/sandbox/forms/includes/input-boolean.html' with field=filter_form.is_member %}
+      </div>
+      <div class="col-sm-4 form-group form-group-horizontal">
+        {% include 'newtheme/sandbox/forms/includes/input-select.html' with field=filter_form.designation hide_optional=True %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br />
+
+<div class="container-fluid">
+  <div class="row">
+    <button class="btn btn-primary">Apply Filters</button>
+  </div>
+</div>
+
+{% endblock %}

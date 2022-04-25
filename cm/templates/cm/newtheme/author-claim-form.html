@@ -1,0 +1,168 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Log CM Credits for Authoring an Article{% endblock %}
+
+{% block additional_head_css %}
+{# date picker #}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+{% endblock additional_head_css %}
+
+<!-- NOTE... perhaps better to create a standard form, and then inherit the CM form from that? -->
+
+{% block content_main %}
+<div class="page-head">
+  <h1 class="page-title">CM Credits for Authoring an Article</h1>
+  <br>
+  <p class="featured">
+    You have claimed a total of <strong>{{ log_overview.is_author }}</strong> authoring credits for this reporting period. Up to 16 credits for authoring an article or book within any one reporting period may count towards your required CM credits.
+  </p>
+</div>
+{% if log_overview.is_author >= 16 and not claim %}
+<div class="section-icon section-icon-attention">
+  <h3>Attention</h3>
+  <p>
+    You have already logged the maximum number of authoring credits for this CM reporting period.
+  </p>
+</div>
+{% else %}
+<div class="layout-tracery">
+  <div class="layout-column">
+    <form method="post" class="validate-form">
+    {% csrf_token %}
+    {% include "ui/newtheme/forms/includes/display-errors.html" with form=claim_form %}
+    <div class="form-section form-section-enclosed-dark form-section-limit-width">
+
+      <div class="form-group{%if claim_form.provider_name.errors %} has-error {% endif %}">
+        <div class="help-block">All fields are required unless labeled as optional</div>
+        <div class="help-block">Book: 16 credits, Journal Article: 8 credits, Article: 4 credits</div>
+        <label for="{{ claim_form.author_type.id_for_label }}">Publication Type:</label>
+        {{ claim_form.author_type }}
+        {% if claim_form.author_type.help_text %}
+        <div class="help-block">{{ claim_form.author_type.help_text|safe }}</div>
+        {% endif %}
+        {% if claim_form.author_type.errors %}
+        <div class="form-error">
+          {% for error in claim_form.author_type.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group{%if claim_form.provider_name.errors %} has-error {% endif %}">
+        <label for="{{ claim_form.provider_name.id_for_label }}">Journal Title or Book Publisher:</label>
+        {{ claim_form.provider_name }}
+        {% if claim_form.provider_name.help_text %}
+        <div class="help-block">{{ claim_form.provider_name.help_text|safe }}</div>
+        {% endif %}
+        {% if claim_form.provider_name.errors %}
+        <div class="form-error">
+          {% for error in claim_form.provider_name.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group{%if claim_form.begin_time.errors %} has-error {% endif %}">
+        <label for="{{ claim_form.begin_time.id_for_label }}">Publish Date:</label>
+        {{ claim_form.begin_time }}
+        {# {% if claim_form.begin_time.help_text %} #}
+        {# <div class="help-block">{{ claim_form.begin_time.help_text|safe }}</div> #}
+        {# {% endif %} #}
+        <div class="help-block">
+          If the day is not applicable, you may enter the first of the month for the published date.
+        </div>
+        {% if claim_form.begin_time.errors %}
+        <div class="form-error">
+          {% for error in claim_form.begin_time.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group{%if claim_form.title.errors %} has-error {% endif %}">
+        <label for="{{ claim_form.title.id_for_label }}">Article Name or Book Title:</label>
+        {{ claim_form.title }}
+        <!--{# {% if claim_form.title.help_text %} #}
+        {# <div class="help-block">{{ claim_form.title.help_text|safe }}</div> #}
+        {# {% endif %} #}-->
+        <div class="help-block">
+          Include issue or volume number, if applicable.
+        </div>
+        <!--{% if claim_form.title.errors %}
+        <div class="form-error">
+          {% for error in claim_form.title.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}-->
+      </div>
+
+      <div class="form-group{%if claim_form.description.errors %} has-error {% endif %}">
+        <label for="{{ claim_form.description.id_for_label }}">Article or Book Description:</label>
+        {{ claim_form.description }}
+        {# {% if claim_form.description.help_text %} #}
+        {# <div class="help-block">{{ claim_form.description.help_text|safe }}</div> #}
+        {# {% endif %} #}
+        {% comment %}
+        <div class="help-block">
+          Optional. Please list additional authors if applicable
+        </div>
+        {% endcomment %}
+        {% if claim_form.description.errors %}
+        <div class="form-error">
+          {% for error in claim_form.description.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group{%if claim_form.verified.errors %} has-error {% endif %}">
+
+        <div class="checkbox">
+          <label>
+            {{ claim_form.verified }}
+            Agree
+          </label>
+        </div>
+
+        {# {% if claim_form.verified.help_text %} #}
+        {# <div class="help-block">{{ claim_form.verified.help_text|safe }}</div> #}
+        {# {% endif %} #}
+        <p class="small">
+          By clicking this box, I verify that the information I am submitting is accurate and true through my ethical obligations, as governed by the AICP Code of Ethics and Professional Conduct.
+        </p>
+        {% if claim_form.verified.errors %}
+        <div class="form-error">
+          {% for error in claim_form.verified.errors %}
+          <p>{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      {{ claim_form.credits }}
+      {{ claim_form.contact }}
+      {{ claim_form.log }}
+      {{ claim_form.claim }}
+      {{ claim_form.is_author }}
+    </div>
+    <br>
+      <button class="btn btn-primary" type="submit" name="submitButton" value="claim_form_submit">Submit</button>
+    </form>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'rome/rome.min.js' %}"></script>
+<script src="{% static 'rome/rome_setup.js' %}"></script>
+{% endblock %}

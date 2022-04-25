@@ -1,0 +1,179 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load tz %}
+
+{% block title %}CM Claim Details{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">CM Claim Details</h1>
+</div>
+
+{% if claim.event %}
+
+<div class="layout-tracery no-bottom-border">
+	<div class="layout-column">
+		{% with event=claim.event%}
+
+		<h2 class="h-flush">{{ event }}</h2>
+
+		<br/>
+
+	    <h3>Event Info</h3>
+		{% if provider_roles %}
+		<div>
+			<b>Provider: </b>
+			<a href="/cm/provider/{{event.provider_roles.0.contact.id}}/details/">
+			{{event.provider_roles.0.contact.title}}
+			</a>
+		</div>
+		{% endif %}
+
+		{% if event.city or event.state or event.country %}
+		<div><b>Location: </b> {{event.city}}, {{event.state}} {% if event.country and event.country != "United States" %}, {{event.country}}{% endif %}</div>
+		{% endif %}
+
+		{% localtime off %}
+		<div><b>Start Time: </b> {{event.begin_time_astimezone|date:"l, F j, Y, P"}}</div>
+		<div><b>End Time: </b> {{event.end_time_astimezone|date:"l, F j, Y, P e"}}</div>
+		{% endlocaltime %}
+		
+	    <p class="cm-credits-stacked">
+	      <div>
+	        {% if event.cm_approved and not event.cm_approved == 0 %}
+	        <span class="cm">CM | </span><span class="cmpoints">{{event.cm_approved|floatformat:"-2"}}</span>
+	        {% endif %}
+	      </div>
+	      <div>
+	        {% if event.cm_law_approved and not event.cm_law_approved == 0 %}
+	        <span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_law_approved|floatformat:"-2"}}</span>
+	        {% endif %}
+	      </div>
+	      <div>
+	        {% if event.cm_ethics_approved and not event.cm_ethics_approved == 0 %}
+	        <span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_ethics_approved|floatformat:"-2"}}</span>
+	        {% endif %}
+	      </div>
+        <!-- FLAGGED FOR REFACTORING: CM CREDITS DISPLAY -->
+        <div>
+          {% if event.cm_equity_credits and not event.cm_equity_credits == 0 %}
+          <span class="cmlawethics">Eq</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_equity_credits|floatformat:"-2"}}</span>
+          {% endif %}
+        </div>
+        <div>
+          {% if event.cm_targeted_credits and not event.cm_targeted_credits == 0 %}
+          <span class="cmlawethics">SR</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_targeted_credits|floatformat:"-2"}}</span>
+          {% endif %}
+        </div>
+	    </p>
+
+	    <br/>
+	
+		<h3>Claim Details</h3>
+		<p class="featured">
+	      This event was logged into your {{ claim.log.period.title }} CM reporting period.
+	    </p>
+	    <div><b>Submitted Time: </b>{{claim.submitted_time}}</div>
+	    {% if claim.is_speaker%}
+	    <div><b>You we're a speaker at this event.</b></div>
+	    {% endif %}
+
+	    <br/>
+
+	    <h3>Ratings and Commentary</h3>
+	    {% if claim.comment.publish %}
+	    <p class="featured">You have given APA the permission to publish these comments, along with your name.</p>
+	    {% else %}
+	    <p class="featured">You have not given APA the permission to publish these comments, along with your name.</p>
+	    {% endif %}
+		<div><b>Event Rating: </b> {{claim.comment.rating}}</div>
+		<div><b>Event Commentary: </b> {{claim.comment.commentary}}</div>
+
+		<br/>
+		{% endwith %}{# with event=claim.event #}
+	</div>
+</div>
+
+{% elif claim.self_reported %}
+
+<div class="layout-tracery no-bottom-border">
+	<div class="layout-column">
+
+		<h2 class="h-flush">{{ claim.title }}</h2>
+
+		<br/>
+
+	    <h3>Service/Event Info</h3>
+		{% if claim.provider_name %}
+		<div>
+			<b>Provider: </b>
+			<a>
+			{{claim.provider_name}}
+			</a>
+		</div>
+		{% endif %}
+
+		{% if claim.city or claim.state or claim.country %}
+		<div><b>Location: </b> {{claim.city}}, {{claim.state}} {% if claim.country and claim.country != "United States" %}, {{claim.country}}{% endif %}</div>
+		{% endif %}
+
+		{% localtime off %}
+		<div><b>Start Time: </b> {{claim.begin_time_astimezone|date:"l, F j, Y, P"}}</div>
+		<div><b>End Time: </b> {{claim.end_time_astimezone|date:"l, F j, Y, P e"}}</div>
+		{% endlocaltime %}
+
+		<div><b>Description: </b>{{claim.description}}</div>
+		<div><b>Learning Objectivez: </b>{{claim.learning_objectives}}</div>
+
+		<br/>
+
+		<h3>Claim Details</h3>
+		<p class="featured">
+	      This self-reported event was logged into your {{ claim.log.period.title }} CM reporting period.
+	    </p>
+	    <div><b>Submitted Time: </b>{{claim.submitted_time}}</div>
+	    {% if claim.is_pro_bono %}
+		<div><b>This activity is pro bono</b></div>
+		{% endif %}
+	    {% if claim.is_speaker%}
+	    <div><b>You we're a speaker at this event.</b></div>
+	    {% endif %}
+	    <div><b>CM Credits Claimed: </b>{{claim.credits}}</div>
+	    <div><b>CM Law Credits Claimed: </b>{{claim.law_credits}}</div>
+	    <div><b>CM Ethics Credits Claimed: </b>{{claim.ethics_credits}}</div>
+
+	</div>
+</div>
+
+{% elif claim.is_author %}
+
+<div class="layout-tracery no-bottom-border">
+	<div class="layout-column">
+		<h2>CM Credits for Authoring an Article</h2>
+
+		<br/>
+
+		<h3>Article Details</h3>
+		<div><b>Journal Title: </b>{{claim.provider_name}}</div>
+		<div><b>Publish Date: </b>{{claim.begin_time}}</div>
+		<div><b>Article Name: </b>{{claim.title}}</div>
+		<div><b>Article Description: </b>{{claim.description}}</div>
+
+		<br/>
+
+		<h3>Claim Details</h3>
+		<p class="featured">
+	      This article was logged into your {{ claim.log.period.title }} CM reporting period.
+	    </p>
+	    <div><b>CM Credits Claimed: </b>{{claim.credits}}</div>
+	</div>
+</div>
+
+{% endif %}
+
+<a class="btn btn-primary" href="/cm/log/">Back to CM Log Dashboard</a>
+
+
+{% endblock %}

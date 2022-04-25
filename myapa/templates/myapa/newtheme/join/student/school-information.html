@@ -1,0 +1,152 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+
+{% block content_main %}
+
+  <div class="page-head">
+    <h1 class="page-title">APA Student Membership</h1>
+  </div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <div class="form-head">
+      <h2>Current School Information</h2>
+      <p></p>
+    </div>
+
+    <form method="post" class="planning-form" novalidate>
+
+      {% csrf_token %}
+
+      {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Verify Student Status</h3>
+
+        {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.verify %}
+
+        <p>OR</p>
+
+          <p>I am not a current student, but I would like to <a href="/join/account">join now as a regular member</a></p>
+
+      </div>
+
+      <div class="form-section form-section-enclosed-light">
+        <h3 class="form-section-title">School Information</h3>
+
+        <div class="form-section-limit-width form-group">
+
+          {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.school %}
+
+          <div class="degree-program-other form-group" style="display:none">
+          {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.degree_program %}
+          </div>
+
+          <div class="other-school-fields form-group" style="display:none">
+            <div class="school-other form-group" style="display:none">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.other_school %}
+            </div>
+
+            {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.degree_type_choice %}
+            <div class="degreetype-other form-group" style="display:none">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.degree_type_other %}
+            </div>
+
+            {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.level %}
+            <div class="degreelevel-other form-group" style="display:none">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.level_other %}
+            </div>
+          </div>
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.student_id %}
+        </div>
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.graduation_date %}
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Continue</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script>
+$(function(){
+
+  function initSchoolInfoForm(container_selector) {
+
+    container_selector = container_selector || document;
+    $container = $(container_selector);
+
+    var $school = $("select[name='school']", $container);
+    var $degreeProgram = $("select[name='degree_program']");
+    var $degreeType = $("select[name='degree_type_choice']", $container);
+    var $degreeLevel = $("select[name='level']", $container);
+
+    var $degreeProgramContainer = $(".degree-program-other", $container);
+
+    var $otherFieldsContainer = $(".other-school-fields", $container);
+    var $schoolOtherContainer = $(".school-other", $container);
+    var $degreeTypeOtherContainer = $(".degreetype-other", $container);
+    var $degreeLevelOtherContainer= $(".degreelevel-other", $container);
+
+
+    function showHideFields() {
+
+      var school_val = $school.val();
+      var degreeProgram_val = $degreeProgram.val();
+      var degreeType_val = $degreeType.val();
+      var degreeLevel_val = $degreeLevel.val();
+
+      // show/hide degree program and school other
+      if (school_val == "OTHER") {
+        $degreeProgramContainer.slideUp();
+        $schoolOtherContainer.slideDown();
+      }else{
+        $degreeProgramContainer.slideDown();
+        $schoolOtherContainer.slideUp();
+      }
+
+      // show/hide other fields
+      if (school_val == "OTHER" || degreeProgram_val == "OTHER") {
+        $otherFieldsContainer.slideDown();
+      }else{
+        $otherFieldsContainer.slideUp();
+      }
+
+      // show/hide degreetype other
+      if(degreeType_val == "OTHER") {
+        $degreeTypeOtherContainer.slideDown();
+      }else{
+        $degreeTypeOtherContainer.slideUp();
+      }
+
+      // show/hide degree level other
+      if(degreeLevel_val == "N") {
+        $degreeLevelOtherContainer.slideDown();
+      }else{
+        $degreeLevelOtherContainer.slideUp();
+      }
+
+    }
+
+    showHideFields();
+
+    $school.on("change", showHideFields);
+    $degreeProgram.on("change", showHideFields);
+    $degreeType.on("change", showHideFields);
+    $degreeLevel.on("change", showHideFields)
+
+  }
+
+  initSchoolInfoForm();
+
+});
+</script>
+{% endblock %}

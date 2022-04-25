@@ -1,0 +1,58 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+{% load content_extras %}
+{% load myapa_tags %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">AICP Candidate Pilot Program Enrollment</h1><br>
+    {% if enroll_type == "student_enroll" %}
+      <h2 class="page-title">STUDENTS: EDUCATION</h2>
+    {% else %}
+      <h2 class="page-title">GRADUATES: EDUCATION</h2>
+    {% endif %}
+  </div>
+  <div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+      <div class="row">
+<form method="post" class="planning-form" enctype="multipart/form-data" novalidate="true" onsubmit="return formsubmitcheck()">
+  {% csrf_token %}
+  {% include "ui/newtheme/forms/includes/display-errors.html" %}
+  {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+        {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.degree_school %}
+        <div class="degree-program-other form-group">
+            {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.degree_program %}
+        </div>
+          {% if enroll_type == "student_enroll" %}
+          <br>
+          {% endif %}
+          <br>
+          {% if enroll_type == "full_enroll" %}
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.graduation_date %}<br>
+            <h6>Upload a document that verifies your degree status:</h6>
+            <font size="2"><p>APA will accept any of the following documents; please submit only one.</p>
+              <ul>
+              <li>Official transcripts (Open sealed transcripts, scan them, and save multiple pages as a single PDF.)</li>
+              <li>Notarized photocopy of diploma (The notary must certify that the copy is a true replica of the original document.)</li>
+              <li>Letter from school dean, registrar, or program director confirming that the degree was conferred (The letter must be printed on the college or university’s letterhead and include the writer’s title and contact information.)</li>
+              </ul></font>
+            <p class="small" id="file_field">{{ form.uploaded_file }}</p>
+          {% endif %}
+            <div class="form-actions">
+              <input id="file_upload" type="submit" name="save_and_exit" class="btn btn-primary" value="Save and exit"/>
+              <input id="file_upload" type="submit" name="save_and_continue" class="btn btn-primary" value="Save and continue" />
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+{% endblock %}

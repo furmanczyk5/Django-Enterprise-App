@@ -1,0 +1,34 @@
+{% load staticfiles %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=yes">
+		<title>{% block title %}{{ title }}{% endblock %}</title>
+	</head>
+	<body>
+		<div class="pdf-content letter">
+			{% for attendee_group in grouped_attendees %}
+			<div class="page" {% if page_style %}style="{{page_style}}"{% endif %}>
+				<div class="tickets">
+				{% for attendee in attendee_group %}
+					<div class="ticket">
+						{% if attendee.event.event_type == "EVENT_MULTI" %}
+							{% include "registrations/tickets/layouts/EVENT-MULTI.html" with attendee=attendee %}
+						{% elif attendee.event.event_type == "ACTIVITY" %}
+							{% include "registrations/tickets/layouts/ACTIVITY.html" with attendee=attendee %}
+						{% elif attendee.unsold_ticket %}
+							{% include "registrations/tickets/layouts/ACTIVITY-UNSOLD.html" with attendee=attendee %}
+						{% else %}
+							<div>No Ticket</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</body>
+</html>

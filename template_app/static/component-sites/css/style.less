@@ -1,0 +1,221 @@
+@import "../../newtheme/css/style.less"; //Replaces bootstrap's variables file.
+
+@color-btn-primary-background: @color-bahama-blue;
+@color-btn-primary-background-hover: lighten(@color-bahama-blue, 10);
+@color-btn-primary-background-active: darken(@color-bahama-blue, 10);
+
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.flex-row-wrap {
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+.flex-align-center {
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.header {
+    margin-bottom:15px;
+}
+
+.layout-tracery {
+    &.layout-tracery-flex {
+
+    	.flex();
+
+        -webkit-flex-direction: column;
+        flex-direction: column;
+
+        @media (min-width: @layout-tracery-columns-breakpoint) {
+    	    -webkit-flex-direction: row;
+            flex-direction: row;
+    	}
+
+        .layout-column {
+        	flex:1;
+        }
+
+        .layout-column-span2 {
+        	flex:2;
+        }
+    }
+
+    &.no-side-spacing {
+        .layout-column {
+            padding-left:0px;
+            padding-right:0px;
+        }
+    }
+}
+
+
+.tiled-images-flex {
+
+    .flex();
+    .flex-row-wrap();
+    .flex-align-center();
+
+    .image {
+        padding:0px 12px 24px 12px;
+        .col-xs-4();
+
+        img {
+            width:100%;
+        }
+    }
+}
+
+html.flexbox .homepage-featured-content-secondary-row .homepage-featured-content-secondary {
+    &.chapter-homepage-featured-content-secondary-1 {
+        flex:1;
+
+        @media (min-width: @screen-sm-min) {
+            flex:7;
+        }
+
+        @media (min-width: @screen-md-min) {
+            flex:2;
+        }
+
+        @media (min-width: @screen-lg-min) {
+            flex:3;
+        }
+
+    }
+
+    &.chapter-homepage-featured-content-secondary-2 {
+        flex:1;
+
+        @media (min-width: @screen-sm-min) {
+            flex:5;
+        }
+
+        @media (min-width: @screen-md-min) {
+            flex:1;
+        }
+
+        @media (min-width: @screen-lg-min) {
+            flex:1;
+        }
+    }
+}
+
+
+// home hero image and nav bar
+.layout-hero-image-with-nav {
+    position:relative;
+    
+    .layout-hero-image-with-nav-image {
+        width:100%;
+    }
+
+    .nav-container {
+        position:absolute;
+        margin:0;
+        top:0px;
+        width:100%;
+    }
+    
+}
+
+// nav bar coloring
+.nav-container {
+    background: rgba(25, 25, 25, 0.9);
+
+    .navbar-nav {
+        background:rgba(25, 25, 25, 0);
+
+        .navbar-nav-link-wrap:after {
+            background:rgba(81, 81, 81, 0.9);
+        }
+    }
+}
+
+
+// footer
+.footer-social-container {
+    background:rgba(54, 54, 54, 1);
+
+    .social-media-icons {
+        background:rgba(54, 54, 54, 1);
+    }
+}
+
+
+
+// buttons and links
+.btn-primary {
+//    Navy blue -- old theme?
+//    background:rgba(0, 95, 146, 1);
+// current green in line with newtheme:
+    background:rgba(129, 188, 0, 1);
+}
+
+a {
+    &, .content-preview-item .content-preview-item-headline & {
+        color:rgba(0, 95, 146, 1);
+    } 
+    &:hover, &:focus {
+        &, .content-preview-item .content-preview-item-headline & {
+            color:rgba(0, 255, 195, 1); //255=140
+        }
+    }
+}
+
+
+.mainrow {
+
+    margin-left:0px;
+    margin-right:0px;
+    
+    @media (min-width: @screen-md-min) {
+        margin-left:5px;
+        margin-right:5px;
+    }
+}
+
+.navbar-nav-link-wrap a {
+    color:white;
+}
+
+.btn-primary {
+  background-color: @color-btn-primary-background;
+  color: #fff;
+  border-color: #005595;
+
+  &:focus,
+  &:hover {
+    background-color: @color-btn-primary-background-hover;
+  }
+
+  &:active {
+    background-color: @color-btn-primary-background-active;
+  }
+}
+
+.btn-default {
+    color: #005595;
+    border-color: #005595;
+    background-color: transparent;
+}
+.responsive-object {
+  padding-bottom: 5% !important;
+}
+
+.wt-responsive-img{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto !important;
+    width: 100% !important;
+  }

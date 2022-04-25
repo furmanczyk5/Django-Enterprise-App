@@ -1,0 +1,25 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load content_extras %}
+
+{% block content_main %}
+
+<div class="layout-tracery no-top-border no-bottom-border">
+  <div class="layout-column">
+    <div class="form-section form-section-limit-width form-section-enclosed-light login-wrapper">
+      <form id="test" action={{action_url}} method="post">
+
+        {% csrf_token %}
+
+        <h2 class="form-section-title">Secure Voting Portal</h2>
+        <div class="form-group login-button">
+          <input type="submit" value="Vote Now" class="btn btn-primary full-width-button" />
+        </div>
+        <input type="hidden" id="token" name="token" value={{token}} />
+        <input type="hidden" id="login" name="login" value={{username}} />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

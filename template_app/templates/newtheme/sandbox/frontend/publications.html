@@ -1,0 +1,228 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+{% load static %}
+
+{% block content_sidebar %}
+{% include 'newtheme/sandbox/frontend/local-navigation.html' %}
+{% endblock %}
+
+{% block content_main %}
+<div class="page-head">
+  <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Knowledge Center</a></li>
+  </ol>
+
+  <h1 class="page-title">Publications</h1>
+</div>
+
+<div class="layout-hero-image">
+  <img class="layout-hero-image-image" src="//placehold.it/970x370/3e3918" />
+  <div class="layout-hero-image-content">
+    <h3 class="featured-item-title">APA Quality Assurance Dept.</h3>
+    <div class="layout-tracery no-top-border slab-gray">
+
+      <!-- Demo: Rural by Design -->
+
+      <div class="layout-column section-overview-featured-item">
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <img src="//placehold.it/240x320" class="img-responsive"/>
+          </div>
+          <div class="col-sm-6 col-md-8 col-lg-9">
+            <h2 class="headline-underline">Rural By Design</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud sed do eiusmod.</p>
+          </div>
+        </div>
+        <div class="read-more-link"><a href="#">Read more about Rural by Design</a></div>
+      </div>
+
+    </div>
+
+    <div class="layout-tracery slab-gray">
+      <!-- Demo: Planning Magazine -->
+
+      <div class="layout-column">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="//placehold.it/240x320" class="img-responsive" />
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
+            <h2 class="headline-underline">Planning Magazine</h2>
+            <div class="row">
+              <div class="col-xs-12 col-md-12 col-lg-8">
+                <div>
+                  <p>APA's member magazine shows how innovative planning programs and techniques are reshaping America's communities.</p>
+                  <p><a class="btn btn-primary" href="#fpo">Subscribe to Planning Magazine</a></p>
+                  <br/>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-12 col-lg-4">
+                <h5>In This Issue</h5>
+                <div class="list-of-links list-of-links-small">
+                  <h4><a href="#fpo">A Rising Tide of Engagement</a></h4>
+                  <h4><a href="#fpo">Water Warrior</a></h4>
+                  <h4><a href="#fpo">Preparing for the Next Big One</a></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="read-more-link"><a href="#">Learn More About The Magazine</a></div>
+        <hr/>
+        <!-- Demo: Get the app -->
+        <div class="section-get-the-planning-app">
+          <div class="row">
+            <div class="col-sm-7 col-md-4">
+              <h5>Get The Planning App</h5>
+              <p>Get Planning Magazine on your mobile device or tablet.</p>
+            </div>
+            <div class="col-sm-5 col-md-8">
+              <div class="app-badges-container">
+                <a href="#" class="app-badge app-badge-apple">
+                  <img src="{% static 'newtheme/image/app-badge-apple.png' %}"/>
+                </a
+                ><a href="#" class="app-badge app-badge-google">
+                  <img src="{% static 'newtheme/image/app-badge-google.png' %}"/>
+                </a
+                ><a href="#" class="app-badge app-badge-amazon">
+                  <img src="{% static 'newtheme/image/app-badge-amazon.png' %}"/>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="layout-tracery layout-tracery-2col">
+
+  <!-- Demo: JAPA -->
+  <div class="layout-column">
+    <h2>Journal of the American Planning Association</h2>
+    <p>JAPA is the quarterly, peer-reviewed journal of record for the planning profession.</p>
+    <br/>
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-12 col-md-6">
+        <img src="//placehold.it/260x320" class="img-responsive" />
+      </div>
+      <div class="col-xs-6 col-sm-12 col-md-6">
+        <h5>In This Issue</h5>
+        <div class="list-of-links list-of-links-small">
+          <h4><a href="#">Article 1<span class="free-tag">Free!</span></a></h4>
+          <h4><a href="#">Article 2</a></h4>
+          <h4><a href="#">Article 3</a></h4>
+        </div>
+        <br/>
+        <p><a href="#" class="btn btn-primary">Subscribe to JAPA</a></p>
+      </div>
+    </div>
+    <div class="read-more-link"><a href="#">Learn More About The Journal</a></div>
+
+  </div>
+
+  <!-- Demo: PAS Research -->
+  <div class="layout-column">
+    <h2>PAS Research</h2>
+    <p>Each quarter APA's Planning Advisory Service publishes a new PAS Report providing authoritative guidance on current issues and innovative practices.</p>
+    <br/>
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-12 col-md-6">
+        <img src="//placehold.it/260x320" class="img-responsive" />
+      </div>
+      <div class="col-xs-6 col-sm-12 col-md-6">
+        <h5>Latest Report</h5>
+        <div class="list-of-links list-of-links-small">
+          <h4><a href="#">Street Graphics and the Law, Fourth Edition</a></h4>
+        </div>
+      </div>
+    </div>
+    <div class="read-more-link"><a href="#">Learn More About PAS Research</a></div>
+
+  </div>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column layout-column-balanced-padding">
+    {% include 'newtheme/sandbox/banner-ad/layout-banner-ad-small-3up.html' %}
+  </div>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2>Books</h2>
+
+    <!-- Books (carousel?) -->
+    <div class="books-carousel">
+      <!-- Book 1 -->
+      <div class="books-carousel-slide">
+        {% include "newtheme/sandbox/frontend/book-card.html" %}
+      </div>
+
+      <!-- Book 2 -->
+      <div class="books-carousel-slide">
+        {% include "newtheme/sandbox/frontend/book-card.html" %}
+      </div>
+
+      <!-- Book 3 -->
+      <div class="books-carousel-slide">
+        {% include "newtheme/sandbox/frontend/book-card.html" %}
+      </div>
+
+      <!-- Book 4 -->
+      <div class="books-carousel-slide">
+        {% include "newtheme/sandbox/frontend/book-card.html" %}
+      </div>
+
+      <!-- Book 5 -->
+      <div class="books-carousel-slide">
+        {% include "newtheme/sandbox/frontend/book-card.html" %}
+      </div>
+
+      <!-- Book 6 -->
+      <div class="books-carousel-slide">
+        {% include "newtheme/sandbox/frontend/book-card.html" %}
+      </div>
+
+    </div>
+
+    <div class="read-more-link"><a href="/books/">View All Books</a></div>
+
+  </div>
+</div>
+
+<div class="layout-tracery layout-tracery-2col">
+  <div class="layout-column">
+    <h2>Other Publications</h2>
+    <div class="list-of-links">
+      <h4><a href="#">Zoning Practice</a></h4>
+      <p>Zoning Practice helps guide you as you write and administer smart development codes.</p>
+      <h4><a href="#">The Commissioner</a></h4>
+      <p>The Commissioner is full of features and practical tips that will help you make critical decisions in the best interest of your community.</p>
+      <h4><a href="#">APA Interact</a></h4>
+      <p>Some descriptive text needed here.</p>
+      <h4><a href="#">CPAT Report</a></h4>
+      <p>Some descriptive text needed here.</p>
+      <h4><a href="#">Publications Archive</a></h4>
+      <p>Access vintage APA publications that are no longer in print.</p>
+    </div>
+  </div>
+  <div class="layout-column">
+    {% include 'newtheme/sandbox/banner-ad/banner-ad-small.html' %}
+  </div>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column layout-column-balanced-padding">
+    {% include 'newtheme/sandbox/banner-ad/banner-ad-leaderboard.html' %}
+  </div>
+</div>
+
+<hr/>
+
+{% endblock %}

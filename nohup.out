@@ -1,0 +1,51 @@
+/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/_bootstrap.py:321: RemovedInDjango19Warning: django.utils.importlib will be removed in Django 1.9.
+  return f(*args, **kwds)
+
+/Users/tjohnson/code/venv/planningenv/lib/python3.4/site-packages/django/db/models/base.py:309: RuntimeWarning: Model 'events.nationalconferenceeval' was already registered. Reloading models is not advised as it can lead to inconsistencies, most notably with related models.
+  new_class._meta.apps.register_model(new_class._meta.app_label, new_class)
+
+Python 3.4.3 (v3.4.3:9b73f1c3e601, Feb 23 2015, 02:52:03) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> >>> >>> >>> >>> >>> >>> >>> >>> ... ... ... ... ... ... ... ... ... >>> ... ... ... ... ... ...   File "<console>", line 7
+    if self.end_time:
+                    ^
+TabError: inconsistent use of tabs and spaces in indentation
+>>>   File "<console>", line 1
+    self.archive_time = self.end_time + three_years
+    ^
+IndentationError: unexpected indent
+>>>   File "<console>", line 1
+    event.save()
+    ^
+IndentationError: unexpected indent
+>>>   File "<console>", line 1
+    elif self.begin_time:
+    ^
+IndentationError: unexpected indent
+>>>   File "<console>", line 1
+    self.archive_time = self.begin_time + three_years
+    ^
+IndentationError: unexpected indent
+>>>   File "<console>", line 1
+    event.save()
+    ^
+IndentationError: unexpected indent
+>>>   File "<console>", line 1
+    else:
+    ^
+IndentationError: unexpected indent
+>>>   File "<console>", line 1
+    print("no begin or end time for: ", event)
+    ^
+IndentationError: unexpected indent
+>>> >>> Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'archive_newbies' is not defined
+>>> NEWBIES DONE!
+>>> Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: archive_oldies() missing 1 required positional argument: 'oldies'
+>>> OLDIES DONE!
+>>> 

@@ -1,0 +1,221 @@
+{% extends 'newtheme/templates/base.html' %}
+
+{% load template_app_extras %}
+{% load compress %}
+{% load static %}
+
+{% block additional_head_css %}
+
+<link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet">
+
+{% compress css %}
+<link type="text/less" rel="stylesheet" href="{% static 'conference/css/style.less' %}" />
+{% endcompress %}
+
+{% with rgb=microsite.custom_color|hex_to_rgb %}
+
+<style>
+.homepage-conference-cta {
+  background:rgba({{rgb}}, 0.65);
+}
+.content-header-conference-image-breakout-wrap{
+  background:rgba({{rgb}}, 1.65);
+  width: 100%;
+}
+.conference-home-date-place h1 {
+  font-size: 2.9em;
+  color: lightgrey;
+  text-align: center;
+  width:100%;
+  /*border: 5px solid;*/
+  margin-top: 40px;
+  margin-bottom: 0px;
+}
+.mobile-conference-home-date-place h1 {
+  position: absolute;
+  top: 40px;
+  font-size: 2.0em;
+  color: lightgrey;
+  text-align: center;
+  width:100%;
+  /*border: 5px solid;*/
+  margin-top: -0px;
+  margin-bottom: 0px;
+  background: transparent;
+}
+.conference-home-title h1 {
+  font-size: 3.2em;
+  /*font-weight: bold;*/
+  color: white;
+  text-align: center;
+  width:100%;
+  /*border: 5px solid;*/
+  margin-top: 0px;
+  padding-bottom: 10px;
+}
+.home-summary-blurb {
+  width: 80%;
+  padding-right: 0px;
+  padding-left: 0px;
+  /*border: 5px solid red;*/
+  position: relative;
+  min-height: 1px;
+  float: left;
+}
+.signpost-logo {
+  width: 20%;
+  padding-left: 0px;
+  padding-right: 0px;
+  /*border: 5px solid green;*/
+  position: relative;
+  min-height: 1px;
+  float: left;
+}
+.signpost-logo img {
+  width: 100%;
+}
+.mobile-body .signpost-logo {
+  display: inline-block;
+  width: 100%;
+}
+.mobile-body .signpost-logo img {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.mobile-wrap .layout-hero-image-conference-image-wrap {
+  min-height: 1000px;
+}
+.mobile-wrap img {
+  height: 250px;
+}
+.desktop-wrap .layout-hero-image-conference-image-wrap {
+  min-height: 200px;
+  max-height: 620px;
+}
+.layout-hero-image-conference-image-wrap img {
+  filter: brightness(50%);
+}
+.mobile-body .homepage-conference-cta {
+  /*margin-bottom: 60px;*/
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 75%;
+}
+.mobile-body .home-summary-blurb {
+  width: 100%;
+}
+/*not if they're stacked:*/
+/*.mobile-body .btn {
+  width: 50%;
+}
+*/
+/* if countdown top:250px, if no countdown top: 150px */
+.desktop-countdown-body .homepage-conference-cta {
+  margin-bottom: 0px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  top: 280px;
+  /*no, use a fixed top and 0 bottom*/
+  /*height: 65%;*/
+}
+.mobile-secondary .homepage-featured-content-secondary-conference {
+  margin-top: -20px;
+}
+.visible-xs .mobile-home-summary-links {
+  display: inline-block;
+}
+.visible-xs .mobile-home-summary-links a {
+  display: table;
+  width: 100%;
+}
+/*for conf details page: */
+/*.content-header-conference-image-breakout-title h1 {
+  position: absolute;
+  height: 100%;
+  top: 25%;
+  left: 0;
+  text-align: left;
+  border: 5px solid red;
+}
+
+.conf-clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}*/
+</style>
+
+{% endwith %}
+{% endblock %}
+
+{% block leader_ad %}
+  {# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+  {% if not request.detect_mobile_app.is_mobileapp %}
+    {% if microsite and microsite.header_ad %}
+      <div class="banner-ad banner-ad-leaderboard">
+        {{ microsite.header_ad|safe }}
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+<!-- need to do this like the header ad (from the microsite) and get rid of the new conference interstitial template -->
+{% comment %}
+{% block interstitial_ad %}
+  {% include "newtheme/sandbox/banner-ad/banner-ad-interstitial-conference.html" with outside_content='true' %}
+{% endblock %}
+{% endcomment %}
+
+{# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+{% block interstitial_ad %}
+  {% if not request.detect_mobile_app.is_mobileapp %}
+    {% if microsite and microsite.interstitial_ad %}
+      <!-- not sure what css class to use for interstitial -->
+      {#<div class="banner-ad banner-ad-leaderboard banner-ad-footer">#}
+        {{ microsite.interstitial_ad|safe }}
+      {#</div>#}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block badge_login %}
+  {% if request.user.is_authenticated and not request.detect_mobile_app.is_mobileapp %}
+  <div class="container-fluid badge-logged-in">
+    <span class="pull-right">
+      <span class="badge-logged-in-label">Hello {{ request.contact.first_name }}</span>
+      <a href="/myapa/"><span class="icon-user-icon" aria-hidden="true"></span></a>
+    </span>
+  </div>
+  {% endif %}
+{% endblock %}
+
+{% block header %}
+  {% include "newtheme/templates/conference/includes/header.html" with microsite=microsite %}
+{% endblock header %}
+
+{% block nav %}
+  {% include "newtheme/templates/conference/includes/nav.html" %}
+{% endblock %}
+
+{# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+<!-- this sidebar_ad block may be needed for planning mag if it ends up as a microsite -->
+{% block sidebar_ad %}{% endblock %}
+
+{% block footer_ad %}
+  {% if not request.detect_mobile_app.is_mobileapp %}
+    {% if microsite and microsite.footer_ad %}
+      <div class="banner-ad banner-ad-leaderboard banner-ad-footer">
+        {{ microsite.footer_ad|safe }}
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block footer %}
+  {% include "newtheme/templates/conference/includes/footer.html" %}
+{% endblock %}

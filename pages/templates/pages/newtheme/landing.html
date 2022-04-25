@@ -1,0 +1,16 @@
+{% extends 'newtheme/templates/content-page-sidebar.html' %}
+
+{% load content_extras %}
+
+{% block content_main %}
+{{block.super}}
+
+{% if content.show_search_results %}
+<div class="content-preview-list layout-tracery no-bottom-border">
+	<ul>
+		{% solr_results filters=content.search_query rows=content.search_max sort=content.sort_field %}
+	</ul>
+</div>
+{% endif %}
+
+{% endblock %}

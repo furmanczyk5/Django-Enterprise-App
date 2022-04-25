@@ -1,0 +1,3598 @@
+[
+{
+  "pk": 1,
+  "model": "auth.group",
+  "fields": {
+    "permissions": [],
+    "name": "elite_political_member"
+  }
+},
+{
+  "pk": 2,
+  "model": "auth.group",
+  "fields": {
+    "permissions": [],
+    "name": "regular_member"
+  }
+},
+{
+  "pk": 3,
+  "model": "auth.group",
+  "fields": {
+    "permissions": [],
+    "name": "discount_member"
+  }
+},
+{
+  "pk": 1,
+  "model": "auth.user",
+  "fields": {
+    "last_name": "",
+    "date_joined": "2015-06-02T20:17:12.075Z",
+    "groups": [],
+    "email": "giovanni@gmail.com",
+    "password": "pbkdf2_sha256$15000$H0nvdHcE7SLl$FMaw0MIrUgb26Nlx1skdl705lOefzG0sDUPErJoYwJQ=",
+    "username": "giovanni",
+    "is_staff": true,
+    "last_login": "2015-06-09T20:12:41.401Z",
+    "user_permissions": [],
+    "is_superuser": true,
+    "first_name": "",
+    "is_active": true
+  }
+},
+{
+  "pk": 2,
+  "model": "auth.user",
+  "fields": {
+    "last_name": "Butler",
+    "date_joined": "2015-06-05T20:57:15Z",
+    "groups": [],
+    "email": "jbutler@gmail.com",
+    "password": "pbkdf2_sha256$15000$nb3i6dXqdQIB$TZUHR+WYYE8/V3mW3dFmlxkLAp1F/h+CJDa6ace79ZQ=",
+    "username": "jimmy",
+    "is_staff": false,
+    "last_login": "2015-06-05T20:57:15Z",
+    "user_permissions": [],
+    "is_superuser": false,
+    "first_name": "Jimmy",
+    "is_active": true
+  }
+},
+{
+  "pk": "3t10ruy2u2g51zsqumsftoxlvaqh2jhy",
+  "model": "sessions.session",
+  "fields": {
+    "session_data": "MjQwN2MyMTRmMmQ2Zjg0NjYwMWU0ZWM2MGQ4NDM5YjY3NzY1YmQwOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjU0MDJlY2VkOTc3MmY0NDNhM2VhZWEzNDI3MGVjOTRjMTc4ZTFiZTEiLCJldmVudF9pZCI6IjciLCJyZWdpc3RyYXRpb25fcHJvZHVjdF9vcHRpb24iOjEsIl9hdXRoX3VzZXJfaWQiOjEsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwic2Vzc2lvbl9wcm9kdWN0X3ByaWNlcyI6W1siMjAiLDZdLFsiMjEiLDFdXSwicmVnaXN0cmF0aW9uX3Byb2R1Y3Rfb3B0aW9uX2lkIjo5fQ==",
+    "expire_date": "2015-06-26T21:47:53.213Z"
+  }
+},
+{
+  "pk": "7qaa3m7d8u9mkdyzn8z8xge5lclwxvcq",
+  "model": "sessions.session",
+  "fields": {
+    "session_data": "M2QyNjc0MDZjZDM2NjQ2M2U0M2EzYzZkMDM2YzJmMjhiZTA4YmRkODp7fQ==",
+    "expire_date": "2015-06-16T15:36:11.551Z"
+  }
+},
+{
+  "pk": "a3tewr30mauqwzvbaum69k1fz8qumkl7",
+  "model": "sessions.session",
+  "fields": {
+    "session_data": "M2QyNjc0MDZjZDM2NjQ2M2U0M2EzYzZkMDM2YzJmMjhiZTA4YmRkODp7fQ==",
+    "expire_date": "2015-06-16T15:21:01.027Z"
+  }
+},
+{
+  "pk": "g8jfv1zarp4znpco3504wu3dd5kn94il",
+  "model": "sessions.session",
+  "fields": {
+    "session_data": "ZjdhMzI4NGEyNzQ4ZTYyYWY0Y2Y3NWExNDcwMjk0NDZkNWYwYThhZTp7Il9hdXRoX3VzZXJfaWQiOjEsImV2ZW50X2lkIjoiNCIsIl9hdXRoX3VzZXJfaGFzaCI6IjU0MDJlY2VkOTc3MmY0NDNhM2VhZWEzNDI3MGVjOTRjMTc4ZTFiZTEiLCJzZXNzaW9uX3Byb2R1Y3RfcHJpY2VzIjpbWyIxMSIsN10sWyIxMiIsNl0sWyIxMyIsN11dLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsInJlZ2lzdHJhdGlvbl9wcm9kdWN0X29wdGlvbl9pZCI6NSwicmVnaXN0cmF0aW9uX3Byb2R1Y3Rfb3B0aW9uIjoxfQ==",
+    "expire_date": "2015-06-26T19:00:40.013Z"
+  }
+},
+{
+  "pk": 1,
+  "model": "content.mastercontent",
+  "fields": {
+    "content_draft": 1,
+    "published_time": null,
+    "content_live": null
+  }
+},
+{
+  "pk": 2,
+  "model": "content.mastercontent",
+  "fields": {
+    "content_draft": 2,
+    "published_time": null,
+    "content_live": null
+  }
+},
+{
+  "pk": 3,
+  "model": "content.mastercontent",
+  "fields": {
+    "content_draft": 3,
+    "published_time": null,
+    "content_live": null
+  }
+},
+{
+  "pk": 4,
+  "model": "content.mastercontent",
+  "fields": {
+    "content_draft": 4,
+    "published_time": null,
+    "content_live": null
+  }
+},
+{
+  "pk": 5,
+  "model": "content.mastercontent",
+  "fields": {
+    "content_draft": 5,
+    "published_time": null,
+    "content_live": null
+  }
+},
+{
+  "pk": 6,
+  "model": "content.mastercontent",
+  "fields": {
+    "content_draft": 6,
+    "published_time": null,
+    "content_live": null
+  }
+},
+{
+  "pk": 7,
+  "model": "content.mastercontent",
+  "fields": {
+    "content_draft": 7,
+    "published_time": null,
+    "content_live": null
+  }
+},
+{
+  "pk": 8,
+  "model": "content.mastercontent",
+  "fields": {
+    "content_draft": 8,
+    "published_time": null,
+    "content_live": null
+  }
+},
+{
+  "pk": 9,
+  "model": "content.mastercontent",
+  "fields": {
+    "content_draft": 9,
+    "published_time": null,
+    "content_live": null
+  }
+},
+{
+  "pk": 1,
+  "model": "content.content",
+  "fields": {
+    "publish_status": "DRAFT",
+    "volume_number": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": "",
+    "has_xhtml": false,
+    "subtitle": "",
+    "created_time": "2015-06-02T20:30:01.661Z",
+    "parent": 3027311,
+    "updated_time": "2015-06-02T20:31:09.929Z",
+    "url": "",
+    "resource_url": "",
+    "publish_time": null,
+    "copyright_date": null,
+    "file_path": "",
+    "code": "2311",
+    "copyright_statement": "",
+    "isbn": null,
+    "issue_number": null,
+    "serial_pub": null,
+    "content_type": "EVENT",
+    "language": null,
+    "description": "fun ",
+    "resource_published_date": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "resource_type": null,
+    "taxo_topics": [],
+    "title": "annual conference",
+    "submission_data": null,
+    "permission_groups": [],
+    "text": "",
+    "master": 1,
+    "archive_time": null,
+    "abstract": "",
+    "status": "A"
+  }
+},
+{
+  "pk": 2,
+  "model": "content.content",
+  "fields": {
+    "publish_status": "DRAFT",
+    "volume_number": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": "",
+    "has_xhtml": false,
+    "subtitle": "I am a subtitle I come from the content class",
+    "created_time": "2015-06-02T21:05:11.763Z",
+    "parent": 3027311,
+    "updated_time": "2015-06-08T21:50:38.655Z",
+    "url": "",
+    "resource_url": "",
+    "publish_time": null,
+    "copyright_date": null,
+    "file_path": "",
+    "code": "12345",
+    "copyright_statement": "",
+    "isbn": null,
+    "issue_number": null,
+    "serial_pub": null,
+    "content_type": "EVENT",
+    "language": null,
+    "description": "This greatest APA event of your life",
+    "resource_published_date": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "resource_type": null,
+    "taxo_topics": [],
+    "title": "2015 APA extravaganza",
+    "submission_data": null,
+    "permission_groups": [],
+    "text": "<p>I was created becuase I subclass the content class</p>",
+    "master": 2,
+    "archive_time": null,
+    "abstract": "",
+    "status": "A"
+  }
+},
+{
+  "pk": 3,
+  "model": "content.content",
+  "fields": {
+    "publish_status": "DRAFT",
+    "volume_number": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": "",
+    "has_xhtml": false,
+    "subtitle": "",
+    "created_time": "2015-06-04T20:01:58.302Z",
+    "parent": 4,
+    "updated_time": "2015-06-10T15:28:06.557Z",
+    "url": "",
+    "resource_url": "",
+    "publish_time": null,
+    "copyright_date": null,
+    "file_path": "",
+    "code": "",
+    "copyright_statement": "",
+    "isbn": null,
+    "issue_number": null,
+    "serial_pub": null,
+    "content_type": "EVENT",
+    "language": null,
+    "description": "Learn what goes into planning a park",
+    "resource_published_date": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "resource_type": null,
+    "taxo_topics": [],
+    "title": "Park Design",
+    "submission_data": null,
+    "permission_groups": [],
+    "text": "",
+    "master": 3,
+    "archive_time": null,
+    "abstract": "",
+    "status": "A"
+  }
+},
+{
+  "pk": 4,
+  "model": "content.content",
+  "fields": {
+    "publish_status": "DRAFT",
+    "volume_number": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": "",
+    "has_xhtml": false,
+    "subtitle": "",
+    "created_time": "2015-06-08T18:59:06.128Z",
+    "parent": 4,
+    "updated_time": "2015-06-10T15:01:00.173Z",
+    "url": "",
+    "resource_url": "",
+    "publish_time": "2015-06-10T00:00:00Z",
+    "copyright_date": null,
+    "file_path": "",
+    "code": "CHICAGO_2015",
+    "copyright_statement": "",
+    "isbn": null,
+    "issue_number": null,
+    "serial_pub": null,
+    "content_type": "EVENT",
+    "language": null,
+    "description": "Chicago's annual APA conference",
+    "resource_published_date": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "resource_type": null,
+    "taxo_topics": [],
+    "title": "2015 APA Chicago Conference",
+    "submission_data": null,
+    "permission_groups": [],
+    "text": "",
+    "master": 4,
+    "archive_time": null,
+    "abstract": "",
+    "status": "A"
+  }
+},
+{
+  "pk": 5,
+  "model": "content.content",
+  "fields": {
+    "publish_status": "DRAFT",
+    "volume_number": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": "",
+    "has_xhtml": false,
+    "subtitle": "",
+    "created_time": "2015-06-10T18:05:54.909Z",
+    "parent": 4,
+    "updated_time": "2015-06-11T21:08:48.963Z",
+    "url": "",
+    "resource_url": "",
+    "publish_time": null,
+    "copyright_date": null,
+    "file_path": "",
+    "code": "",
+    "copyright_statement": "",
+    "isbn": null,
+    "issue_number": null,
+    "serial_pub": null,
+    "content_type": "EVENT",
+    "language": null,
+    "description": "Becoming a planner shouldn't mean taking a vow of silence",
+    "resource_published_date": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "resource_type": null,
+    "taxo_topics": [],
+    "title": "Why Planners Should Be Opinion Leaders",
+    "submission_data": null,
+    "permission_groups": [],
+    "text": "",
+    "master": 5,
+    "archive_time": null,
+    "abstract": "",
+    "status": "A"
+  }
+},
+{
+  "pk": 6,
+  "model": "content.content",
+  "fields": {
+    "publish_status": "DRAFT",
+    "volume_number": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": "",
+    "has_xhtml": false,
+    "subtitle": "",
+    "created_time": "2015-06-10T18:11:35.192Z",
+    "parent": 4,
+    "updated_time": "2015-06-11T21:10:20.348Z",
+    "url": "",
+    "resource_url": "",
+    "publish_time": null,
+    "copyright_date": null,
+    "file_path": "",
+    "code": "",
+    "copyright_statement": "",
+    "isbn": null,
+    "issue_number": null,
+    "serial_pub": null,
+    "content_type": "EVENT",
+    "language": null,
+    "description": "The share economy has had an enormous impact on cities",
+    "resource_published_date": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "resource_type": null,
+    "taxo_topics": [],
+    "title": "Regulating the Home-Sharing Industry",
+    "submission_data": null,
+    "permission_groups": [],
+    "text": "",
+    "master": 6,
+    "archive_time": null,
+    "abstract": "",
+    "status": "A"
+  }
+},
+{
+  "pk": 7,
+  "model": "content.content",
+  "fields": {
+    "publish_status": "DRAFT",
+    "volume_number": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": "",
+    "has_xhtml": false,
+    "subtitle": "",
+    "created_time": "2015-06-12T20:28:36.808Z",
+    "parent": null,
+    "updated_time": "2015-06-12T20:35:02.642Z",
+    "url": "",
+    "resource_url": "",
+    "publish_time": null,
+    "copyright_date": null,
+    "file_path": "",
+    "code": "",
+    "copyright_statement": "",
+    "isbn": null,
+    "issue_number": null,
+    "serial_pub": null,
+    "content_type": "EVENT",
+    "language": null,
+    "description": "",
+    "resource_published_date": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "resource_type": null,
+    "taxo_topics": [],
+    "title": "2015 APA NATIONAL CONFERENCE",
+    "submission_data": null,
+    "permission_groups": [],
+    "text": "",
+    "master": 7,
+    "archive_time": null,
+    "abstract": "",
+    "status": "A"
+  }
+},
+{
+  "pk": 8,
+  "model": "content.content",
+  "fields": {
+    "publish_status": "DRAFT",
+    "volume_number": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": "",
+    "has_xhtml": false,
+    "subtitle": "",
+    "created_time": "2015-06-12T21:33:40.760Z",
+    "parent": 7,
+    "updated_time": "2015-06-12T21:38:02.322Z",
+    "url": "",
+    "resource_url": "",
+    "publish_time": null,
+    "copyright_date": null,
+    "file_path": "",
+    "code": "",
+    "copyright_statement": "",
+    "isbn": null,
+    "issue_number": null,
+    "serial_pub": null,
+    "content_type": "EVENT",
+    "language": null,
+    "description": "How to plan a school",
+    "resource_published_date": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "resource_type": null,
+    "taxo_topics": [],
+    "title": "Planning A School",
+    "submission_data": null,
+    "permission_groups": [],
+    "text": "",
+    "master": 8,
+    "archive_time": null,
+    "abstract": "",
+    "status": "A"
+  }
+},
+{
+  "pk": 9,
+  "model": "content.content",
+  "fields": {
+    "publish_status": "DRAFT",
+    "volume_number": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": "",
+    "has_xhtml": false,
+    "subtitle": "",
+    "created_time": "2015-06-12T21:43:08.878Z",
+    "parent": 7,
+    "updated_time": "2015-06-12T21:46:16.236Z",
+    "url": "",
+    "resource_url": "",
+    "publish_time": null,
+    "copyright_date": null,
+    "file_path": "",
+    "code": "",
+    "copyright_statement": "",
+    "isbn": null,
+    "issue_number": null,
+    "serial_pub": null,
+    "content_type": "EVENT",
+    "language": null,
+    "description": "",
+    "resource_published_date": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "resource_type": null,
+    "taxo_topics": [],
+    "title": "Planning a Community Center",
+    "submission_data": null,
+    "permission_groups": [],
+    "text": "",
+    "master": 9,
+    "archive_time": null,
+    "abstract": "",
+    "status": "A"
+  }
+},
+{
+  "pk": 81,
+  "model": "store.purchase",
+  "fields": {
+    "address1": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "quantity": "1",
+    "slug": null,
+    "amount": "50",
+    "imis_trans_number": null,
+    "order": 69,
+    "agreement_response_1": false,
+    "gl_account": "",
+    "question_response_1": null,
+    "updated_time": "2015-06-12T21:47:52.807Z",
+    "country": null,
+    "product_price": 1,
+    "user": null,
+    "product": 2,
+    "submitted_time": null,
+    "submitted_product_price_amount": "50",
+    "imis_batch_time": null,
+    "code": null,
+    "agreement_response_3": false,
+    "question_response_3": null,
+    "imis_batch": null,
+    "address2": null,
+    "created_time": "2015-06-12T21:47:52.807Z",
+    "user_address_num": null,
+    "state": null,
+    "description": null,
+    "question_response_2": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "agreement_response_2": false,
+    "title": null,
+    "city": null,
+    "imis_trans_line_number": null,
+    "zip_code": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 82,
+  "model": "store.purchase",
+  "fields": {
+    "address1": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "quantity": "1",
+    "slug": null,
+    "amount": "120",
+    "imis_trans_number": null,
+    "order": 69,
+    "agreement_response_1": false,
+    "gl_account": "",
+    "question_response_1": null,
+    "updated_time": "2015-06-12T21:47:52.934Z",
+    "country": null,
+    "product_price": 20,
+    "user": null,
+    "product": 8,
+    "submitted_time": null,
+    "submitted_product_price_amount": "20",
+    "imis_batch_time": null,
+    "code": null,
+    "agreement_response_3": false,
+    "question_response_3": null,
+    "imis_batch": null,
+    "address2": null,
+    "created_time": "2015-06-12T21:47:52.934Z",
+    "user_address_num": null,
+    "state": null,
+    "description": null,
+    "question_response_2": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "agreement_response_2": false,
+    "title": null,
+    "city": null,
+    "imis_trans_line_number": null,
+    "zip_code": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 83,
+  "model": "store.purchase",
+  "fields": {
+    "address1": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "quantity": "1",
+    "slug": null,
+    "amount": "70",
+    "imis_trans_number": null,
+    "order": 69,
+    "agreement_response_1": false,
+    "gl_account": "",
+    "question_response_1": null,
+    "updated_time": "2015-06-12T21:47:53.069Z",
+    "country": null,
+    "product_price": 21,
+    "user": null,
+    "product": 9,
+    "submitted_time": null,
+    "submitted_product_price_amount": "70",
+    "imis_batch_time": null,
+    "code": null,
+    "agreement_response_3": false,
+    "question_response_3": null,
+    "imis_batch": null,
+    "address2": null,
+    "created_time": "2015-06-12T21:47:53.069Z",
+    "user_address_num": null,
+    "state": null,
+    "description": null,
+    "question_response_2": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "agreement_response_2": false,
+    "title": null,
+    "city": null,
+    "imis_trans_line_number": null,
+    "zip_code": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 69,
+  "model": "store.order",
+  "fields": {
+    "user": [
+      "giovanni"
+    ],
+    "submitted_user_id": "",
+    "is_manual": false,
+    "submitted_time": "2015-06-12T21:47:52.697Z"
+  }
+},
+{
+  "pk": 1,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 1,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": "2015-06-01T00:00:00Z",
+    "updated_time": "2015-06-05T21:53:29.873Z",
+    "required_product": 2,
+    "description": "$50 by May 1st",
+    "price": "50",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": "2015-06-30T00:00:00Z",
+    "exclude_groups": [],
+    "created_time": "2015-06-02T21:42:44.351Z",
+    "required_groups": [
+      [
+        "discount_member"
+      ]
+    ],
+    "imis_reg_class": "",
+    "title": "discount member price",
+    "required_product_option": 1,
+    "product": 2,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 2,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": "2015-06-01T00:00:00Z",
+    "updated_time": "2015-06-05T21:56:45.503Z",
+    "required_product": 2,
+    "description": "$100 by June 1st",
+    "price": "100",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": "2015-06-30T00:00:00Z",
+    "exclude_groups": [],
+    "created_time": "2015-06-03T17:21:53.573Z",
+    "required_groups": [
+      [
+        "discount_member"
+      ]
+    ],
+    "imis_reg_class": "",
+    "title": "discount member price",
+    "required_product_option": 1,
+    "product": 2,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 3,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": "2015-07-01T00:00:00Z",
+    "updated_time": "2015-06-05T21:58:44.122Z",
+    "required_product": 2,
+    "description": "We love all our member of congress",
+    "price": "10",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": "2015-07-31T00:00:00Z",
+    "exclude_groups": [],
+    "created_time": "2015-06-03T17:23:36.445Z",
+    "required_groups": [
+      [
+        "elite_political_member"
+      ]
+    ],
+    "imis_reg_class": "",
+    "title": "because your in congress $10 by June 1st",
+    "required_product_option": 1,
+    "product": 2,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 4,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-09T20:32:35.948Z",
+    "required_product": 3,
+    "description": "",
+    "price": "50",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-08T22:01:07.494Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Early Bird",
+    "required_product_option": 4,
+    "product": 3,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 5,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-09T20:32:35.967Z",
+    "required_product": 3,
+    "description": "",
+    "price": "100",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-09T20:32:35.967Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Just In Time",
+    "required_product_option": 4,
+    "product": 3,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 6,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-09T20:33:44.097Z",
+    "required_product": null,
+    "description": "",
+    "price": "200",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-09T20:33:44.097Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Procrastinator",
+    "required_product_option": 4,
+    "product": 3,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 7,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-09T20:44:55.147Z",
+    "required_product": null,
+    "description": "",
+    "price": "150",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-09T20:43:52.159Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Regular Early Bird",
+    "required_product_option": 5,
+    "product": 3,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 8,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-09T20:52:37.466Z",
+    "required_product": null,
+    "description": "",
+    "price": "250",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-09T20:51:40.740Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Regular Just In Time",
+    "required_product_option": 5,
+    "product": 3,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 9,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-09T20:52:48.040Z",
+    "required_product": null,
+    "description": "",
+    "price": "500",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-09T20:52:17.946Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Take Your Time",
+    "required_product_option": 6,
+    "product": 3,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 10,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-09T20:54:37.281Z",
+    "required_product": null,
+    "description": "",
+    "price": "400",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-09T20:54:37.281Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Regular Procrastinator",
+    "required_product_option": 5,
+    "product": 3,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 11,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-10T15:34:14.384Z",
+    "required_product": 3,
+    "description": "",
+    "price": "20",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-10T15:34:14.384Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "regular registration price",
+    "required_product_option": 5,
+    "product": 4,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 12,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-11T21:09:32.304Z",
+    "required_product": null,
+    "description": "",
+    "price": "40",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-11T21:09:32.304Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "cool price",
+    "required_product_option": 4,
+    "product": 5,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 13,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-11T21:10:41.490Z",
+    "required_product": null,
+    "description": "",
+    "price": "50",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-11T21:10:41.490Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "not cool price",
+    "required_product_option": null,
+    "product": 6,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 14,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-12T21:13:14.629Z",
+    "required_product": 7,
+    "description": "",
+    "price": "100",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-12T21:11:57.379Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Early Bird",
+    "required_product_option": 7,
+    "product": 7,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 15,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-12T21:14:25.049Z",
+    "required_product": 7,
+    "description": "",
+    "price": "150",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-12T21:13:37.602Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Just In Time",
+    "required_product_option": 7,
+    "product": 7,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 16,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-12T21:14:14.058Z",
+    "required_product": 7,
+    "description": "",
+    "price": "200",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-12T21:14:14.058Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Procrastinator",
+    "required_product_option": 7,
+    "product": 7,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 17,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-12T21:16:41.307Z",
+    "required_product": 7,
+    "description": "",
+    "price": "150",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-12T21:16:41.307Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Silver Early Bird",
+    "required_product_option": 8,
+    "product": 7,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 18,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-12T21:17:54.350Z",
+    "required_product": 7,
+    "description": "",
+    "price": "200",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-12T21:17:54.350Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Silver Just In Time",
+    "required_product_option": 8,
+    "product": 7,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 19,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-12T21:18:38.814Z",
+    "required_product": 7,
+    "description": "",
+    "price": "300",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-12T21:18:38.814Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "Take your Tiem",
+    "required_product_option": 9,
+    "product": 7,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 20,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-12T21:35:06.384Z",
+    "required_product": 7,
+    "description": "",
+    "price": "20",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-12T21:35:06.384Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "regular price",
+    "required_product_option": null,
+    "product": 8,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 21,
+  "model": "store.productprice",
+  "fields": {
+    "priority": 0,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "begin_time": null,
+    "updated_time": "2015-06-12T21:47:28.278Z",
+    "required_product": 8,
+    "description": "",
+    "price": "70",
+    "created_by": [
+      "giovanni"
+    ],
+    "end_time": null,
+    "exclude_groups": [],
+    "created_time": "2015-06-12T21:47:28.278Z",
+    "required_groups": [],
+    "imis_reg_class": "",
+    "title": "FOR VIPs only",
+    "required_product_option": 9,
+    "product": 9,
+    "status": "A",
+    "code": null
+  }
+},
+{
+  "pk": 1,
+  "model": "store.productoption",
+  "fields": {
+    "created_time": "2015-06-03T15:31:24.926Z",
+    "updated_by": [
+      "giovanni"
+    ],
+    "title": "Full Registration",
+    "slug": "",
+    "updated_time": "2015-06-08T18:54:37.559Z",
+    "code": "3425",
+    "product": 2,
+    "description": "Full Registration is okay, but you should get a better package",
+    "created_by": [
+      "giovanni"
+    ],
+    "status": "A"
+  }
+},
+{
+  "pk": 2,
+  "model": "store.productoption",
+  "fields": {
+    "created_time": "2015-06-03T16:07:11.171Z",
+    "updated_by": [
+      "giovanni"
+    ],
+    "title": "Weekend Registration",
+    "slug": "",
+    "updated_time": "2015-06-03T16:07:11.171Z",
+    "code": "2314",
+    "product": 2,
+    "description": "Just go for the weekend. This package is definitely not worth it.",
+    "created_by": [
+      "giovanni"
+    ],
+    "status": "A"
+  }
+},
+{
+  "pk": 3,
+  "model": "store.productoption",
+  "fields": {
+    "created_time": "2015-06-03T16:09:10.383Z",
+    "updated_by": [
+      "giovanni"
+    ],
+    "title": "2015 Extravaganza package",
+    "slug": "",
+    "updated_time": "2015-06-03T16:09:10.383Z",
+    "code": "3425",
+    "product": 2,
+    "description": "This package is the real deal. just ignore the other options on this page.",
+    "created_by": [
+      "giovanni"
+    ],
+    "status": "A"
+  }
+},
+{
+  "pk": 4,
+  "model": "store.productoption",
+  "fields": {
+    "created_time": "2015-06-08T22:01:34.677Z",
+    "updated_by": [
+      "giovanni"
+    ],
+    "title": "Cheapskate Registration",
+    "slug": "",
+    "updated_time": "2015-06-09T20:22:28.284Z",
+    "code": "",
+    "product": 3,
+    "description": "You won't have as much fun as everyone else.",
+    "created_by": [
+      "giovanni"
+    ],
+    "status": "A"
+  }
+},
+{
+  "pk": 5,
+  "model": "store.productoption",
+  "fields": {
+    "created_time": "2015-06-09T20:40:15.877Z",
+    "updated_by": [
+      "giovanni"
+    ],
+    "title": "Regular Registration",
+    "slug": "",
+    "updated_time": "2015-06-09T20:40:29.705Z",
+    "code": "",
+    "product": 3,
+    "description": "If you spend a bit more, it will probably the greatest conference of your life",
+    "created_by": [
+      "giovanni"
+    ],
+    "status": "A"
+  }
+},
+{
+  "pk": 6,
+  "model": "store.productoption",
+  "fields": {
+    "created_time": "2015-06-09T20:42:10.510Z",
+    "updated_by": [
+      "giovanni"
+    ],
+    "title": "Big Spender Registration",
+    "slug": "",
+    "updated_time": "2015-06-09T20:42:10.510Z",
+    "code": "",
+    "product": 3,
+    "description": "We will pull out all the stops for you. You will be treated like royalty",
+    "created_by": [
+      "giovanni"
+    ],
+    "status": "A"
+  }
+},
+{
+  "pk": 7,
+  "model": "store.productoption",
+  "fields": {
+    "created_time": "2015-06-12T20:42:12.078Z",
+    "updated_by": [
+      "giovanni"
+    ],
+    "title": "Regular Registration",
+    "slug": "",
+    "updated_time": "2015-06-12T20:42:12.078Z",
+    "code": "",
+    "product": 7,
+    "description": "Access to all free session, meal not included, NO ACCESS to VIP sessions",
+    "created_by": [
+      "giovanni"
+    ],
+    "status": "A"
+  }
+},
+{
+  "pk": 8,
+  "model": "store.productoption",
+  "fields": {
+    "created_time": "2015-06-12T21:05:06.997Z",
+    "updated_by": [
+      "giovanni"
+    ],
+    "title": "Silver Registration",
+    "slug": "",
+    "updated_time": "2015-06-12T21:05:06.997Z",
+    "code": "",
+    "product": 7,
+    "description": "Access to all free sessions, meal included, Can buy access to VIP sessions",
+    "created_by": [
+      "giovanni"
+    ],
+    "status": "A"
+  }
+},
+{
+  "pk": 9,
+  "model": "store.productoption",
+  "fields": {
+    "created_time": "2015-06-12T21:08:52.277Z",
+    "updated_by": [
+      "giovanni"
+    ],
+    "title": "VIP Registration",
+    "slug": "",
+    "updated_time": "2015-06-12T21:08:52.277Z",
+    "code": "",
+    "product": 7,
+    "description": "Includes Some VIP sessions. Access to buffet.",
+    "created_by": [
+      "giovanni"
+    ],
+    "status": "A"
+  }
+},
+{
+  "pk": 1,
+  "model": "store.product",
+  "fields": {
+    "agreement_statement_1": null,
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "question_1": null,
+    "question_3": null,
+    "content": 1,
+    "max_quantity_standby": null,
+    "gl_account": "",
+    "updated_time": "2015-06-02T20:31:09.938Z",
+    "future_groups": [],
+    "agreement_statement_3": null,
+    "code": "2312",
+    "agreement_statement_2": null,
+    "created_time": "2015-06-02T20:31:09.938Z",
+    "description": "",
+    "question_2": null,
+    "created_by": [
+      "giovanni"
+    ],
+    "product_type": "",
+    "max_quantity": null,
+    "title": "fun p",
+    "imis_code": "",
+    "max_quantity_per_person": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 2,
+  "model": "store.product",
+  "fields": {
+    "agreement_statement_1": "Do you need a vegetarian option?",
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "question_1": "Why are you interested in planning?",
+    "question_3": "Are you for real?",
+    "content": 2,
+    "max_quantity_standby": null,
+    "gl_account": "12",
+    "updated_time": "2015-06-08T21:50:38.668Z",
+    "future_groups": [],
+    "agreement_statement_3": "Do you need wheelchair access?",
+    "code": "12345",
+    "agreement_statement_2": "Are you a VIP?",
+    "created_time": "2015-06-02T21:11:58.208Z",
+    "description": "The more you spend, the more fun and benefits you get!",
+    "question_2": "Who deserves a planning awards and why?",
+    "created_by": [
+      "giovanni"
+    ],
+    "product_type": "ACTIVITY_TICKET",
+    "max_quantity": null,
+    "title": "Registration Type",
+    "imis_code": "12",
+    "max_quantity_per_person": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 3,
+  "model": "store.product",
+  "fields": {
+    "agreement_statement_1": "Do you need a vegetarian option?",
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "question_1": "Why are you interested in planning?",
+    "question_3": "",
+    "content": 4,
+    "max_quantity_standby": null,
+    "gl_account": "123",
+    "updated_time": "2015-06-09T20:54:37.273Z",
+    "future_groups": [],
+    "agreement_statement_3": "",
+    "code": "CHICAGO_2015_REGISTRATION_TYPE",
+    "agreement_statement_2": "Do you need wheelchair access to the building?",
+    "created_time": "2015-06-08T19:04:48.763Z",
+    "description": "",
+    "question_2": "Describe a community that needs to planning",
+    "created_by": [
+      "giovanni"
+    ],
+    "product_type": "EVENT_REGISTRATION",
+    "max_quantity": null,
+    "title": "Conference Registration Type",
+    "imis_code": "123",
+    "max_quantity_per_person": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 4,
+  "model": "store.product",
+  "fields": {
+    "agreement_statement_1": "",
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "question_1": "",
+    "question_3": "",
+    "content": 3,
+    "max_quantity_standby": null,
+    "gl_account": "asdfsdf",
+    "updated_time": "2015-06-10T15:34:14.379Z",
+    "future_groups": [],
+    "agreement_statement_3": "",
+    "code": "",
+    "agreement_statement_2": "",
+    "created_time": "2015-06-10T15:28:06.567Z",
+    "description": "",
+    "question_2": "",
+    "created_by": [
+      "giovanni"
+    ],
+    "product_type": "ACTIVITY_TICKET",
+    "max_quantity": null,
+    "title": "Park Design Ticket",
+    "imis_code": "asefef",
+    "max_quantity_per_person": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 5,
+  "model": "store.product",
+  "fields": {
+    "agreement_statement_1": "",
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "question_1": "",
+    "question_3": "",
+    "content": 5,
+    "max_quantity_standby": null,
+    "gl_account": "sdfd",
+    "updated_time": "2015-06-11T21:09:32.298Z",
+    "future_groups": [],
+    "agreement_statement_3": "",
+    "code": "",
+    "agreement_statement_2": "",
+    "created_time": "2015-06-11T21:08:48.993Z",
+    "description": "",
+    "question_2": "",
+    "created_by": [
+      "giovanni"
+    ],
+    "product_type": "ACTIVITY_TICKET",
+    "max_quantity": null,
+    "title": "",
+    "imis_code": "sdf",
+    "max_quantity_per_person": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 6,
+  "model": "store.product",
+  "fields": {
+    "agreement_statement_1": "",
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "question_1": "",
+    "question_3": "",
+    "content": 6,
+    "max_quantity_standby": null,
+    "gl_account": "5234",
+    "updated_time": "2015-06-11T21:10:41.484Z",
+    "future_groups": [],
+    "agreement_statement_3": "",
+    "code": "",
+    "agreement_statement_2": "",
+    "created_time": "2015-06-11T21:10:20.358Z",
+    "description": "",
+    "question_2": "",
+    "created_by": [
+      "giovanni"
+    ],
+    "product_type": "ACTIVITY_TICKET",
+    "max_quantity": null,
+    "title": "",
+    "imis_code": "234234",
+    "max_quantity_per_person": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 7,
+  "model": "store.product",
+  "fields": {
+    "agreement_statement_1": "Do you need a vegetarian option?",
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "question_1": "Why are you interested in planning?",
+    "question_3": "Is there any specific community issues you are interested in bringing attention too?",
+    "content": 7,
+    "max_quantity_standby": null,
+    "gl_account": "NOT_SET",
+    "updated_time": "2015-06-12T21:18:38.806Z",
+    "future_groups": [],
+    "agreement_statement_3": "",
+    "code": "2015_NAT_CONF",
+    "agreement_statement_2": "Do you required wheelchair access?",
+    "created_time": "2015-06-12T20:35:02.652Z",
+    "description": "",
+    "question_2": "What do you hope to achieve in this conference?",
+    "created_by": [
+      "giovanni"
+    ],
+    "product_type": "EVENT_REGISTRATION",
+    "max_quantity": null,
+    "title": "2014 Registration Options",
+    "imis_code": "NOT_SET",
+    "max_quantity_per_person": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 8,
+  "model": "store.product",
+  "fields": {
+    "agreement_statement_1": "",
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "question_1": "",
+    "question_3": "",
+    "content": 8,
+    "max_quantity_standby": null,
+    "gl_account": "not",
+    "updated_time": "2015-06-12T21:35:06.379Z",
+    "future_groups": [],
+    "agreement_statement_3": "",
+    "code": "",
+    "agreement_statement_2": "",
+    "created_time": "2015-06-12T21:34:11.959Z",
+    "description": "",
+    "question_2": "",
+    "created_by": [
+      "giovanni"
+    ],
+    "product_type": "EVENT_REGISTRATION",
+    "max_quantity": null,
+    "title": "Planning a school",
+    "imis_code": "not",
+    "max_quantity_per_person": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 9,
+  "model": "store.product",
+  "fields": {
+    "agreement_statement_1": "",
+    "updated_by": [
+      "giovanni"
+    ],
+    "slug": null,
+    "question_1": "",
+    "question_3": "",
+    "content": 9,
+    "max_quantity_standby": null,
+    "gl_account": "not",
+    "updated_time": "2015-06-12T21:47:28.272Z",
+    "future_groups": [],
+    "agreement_statement_3": "",
+    "code": "",
+    "agreement_statement_2": "",
+    "created_time": "2015-06-12T21:46:16.246Z",
+    "description": "",
+    "question_2": "",
+    "created_by": [
+      "giovanni"
+    ],
+    "product_type": "ACTIVITY_TICKET",
+    "max_quantity": null,
+    "title": "Planning a community Center",
+    "imis_code": "not",
+    "max_quantity_per_person": null,
+    "status": "A"
+  }
+},
+{
+  "pk": 1,
+  "model": "events.event",
+  "fields": {
+    "address1": null,
+    "cm_ethics_approved": null,
+    "address2": null,
+    "city": null,
+    "user_address_num": null,
+    "state": null,
+    "begin_time": null,
+    "end_time": null,
+    "cm_ethics_requested": null,
+    "price_default": null,
+    "country": null,
+    "cm_approved": null,
+    "event_type": "ACTIVITY",
+    "permission_groups": [],
+    "cm_requested": null,
+    "cm_law_requested": null,
+    "cm_status": "A",
+    "cm_law_approved": null,
+    "zip_code": null,
+    "taxo_topics": []
+  }
+},
+{
+  "pk": 2,
+  "model": "events.event",
+  "fields": {
+    "address1": null,
+    "cm_ethics_approved": null,
+    "address2": null,
+    "city": null,
+    "user_address_num": null,
+    "state": null,
+    "begin_time": null,
+    "end_time": null,
+    "cm_ethics_requested": null,
+    "price_default": null,
+    "country": null,
+    "cm_approved": null,
+    "event_type": "ACTIVITY",
+    "permission_groups": [],
+    "cm_requested": null,
+    "cm_law_requested": null,
+    "cm_status": "A",
+    "cm_law_approved": null,
+    "zip_code": null,
+    "taxo_topics": []
+  }
+},
+{
+  "pk": 3,
+  "model": "events.event",
+  "fields": {
+    "address1": null,
+    "cm_ethics_approved": null,
+    "address2": null,
+    "city": null,
+    "user_address_num": null,
+    "state": null,
+    "begin_time": null,
+    "end_time": null,
+    "cm_ethics_requested": null,
+    "price_default": null,
+    "country": null,
+    "cm_approved": null,
+    "event_type": "ACTIVITY",
+    "permission_groups": [],
+    "cm_requested": null,
+    "cm_law_requested": null,
+    "cm_status": "A",
+    "cm_law_approved": null,
+    "zip_code": null,
+    "taxo_topics": []
+  }
+},
+{
+  "pk": 4,
+  "model": "events.event",
+  "fields": {
+    "address1": null,
+    "cm_ethics_approved": null,
+    "address2": null,
+    "city": null,
+    "user_address_num": null,
+    "state": null,
+    "begin_time": null,
+    "end_time": null,
+    "cm_ethics_requested": null,
+    "price_default": null,
+    "country": null,
+    "cm_approved": null,
+    "event_type": "EVENT_MULTI",
+    "permission_groups": [],
+    "cm_requested": null,
+    "cm_law_requested": null,
+    "cm_status": "A",
+    "cm_law_approved": null,
+    "zip_code": null,
+    "taxo_topics": []
+  }
+},
+{
+  "pk": 5,
+  "model": "events.event",
+  "fields": {
+    "address1": null,
+    "cm_ethics_approved": null,
+    "address2": null,
+    "city": null,
+    "user_address_num": null,
+    "state": null,
+    "begin_time": null,
+    "end_time": null,
+    "cm_ethics_requested": null,
+    "price_default": null,
+    "country": null,
+    "cm_approved": null,
+    "event_type": "ACTIVITY",
+    "permission_groups": [],
+    "cm_requested": null,
+    "cm_law_requested": null,
+    "cm_status": "A",
+    "cm_law_approved": null,
+    "zip_code": null,
+    "taxo_topics": []
+  }
+},
+{
+  "pk": 6,
+  "model": "events.event",
+  "fields": {
+    "address1": null,
+    "cm_ethics_approved": null,
+    "address2": null,
+    "city": null,
+    "user_address_num": null,
+    "state": null,
+    "begin_time": null,
+    "end_time": null,
+    "cm_ethics_requested": null,
+    "price_default": null,
+    "country": null,
+    "cm_approved": null,
+    "event_type": "ACTIVITY",
+    "permission_groups": [],
+    "cm_requested": null,
+    "cm_law_requested": null,
+    "cm_status": "A",
+    "cm_law_approved": null,
+    "zip_code": null,
+    "taxo_topics": []
+  }
+},
+{
+  "pk": 7,
+  "model": "events.event",
+  "fields": {
+    "address1": null,
+    "cm_ethics_approved": null,
+    "address2": null,
+    "city": null,
+    "user_address_num": null,
+    "state": null,
+    "begin_time": null,
+    "end_time": null,
+    "cm_ethics_requested": null,
+    "price_default": null,
+    "country": null,
+    "cm_approved": null,
+    "event_type": "EVENT_MULTI",
+    "permission_groups": [],
+    "cm_requested": null,
+    "cm_law_requested": null,
+    "cm_status": "A",
+    "cm_law_approved": null,
+    "zip_code": null,
+    "taxo_topics": []
+  }
+},
+{
+  "pk": 8,
+  "model": "events.event",
+  "fields": {
+    "address1": null,
+    "cm_ethics_approved": null,
+    "address2": null,
+    "city": null,
+    "user_address_num": null,
+    "state": null,
+    "begin_time": null,
+    "end_time": null,
+    "cm_ethics_requested": null,
+    "price_default": null,
+    "country": null,
+    "cm_approved": null,
+    "event_type": "ACTIVITY",
+    "permission_groups": [],
+    "cm_requested": null,
+    "cm_law_requested": null,
+    "cm_status": "A",
+    "cm_law_approved": null,
+    "zip_code": null,
+    "taxo_topics": []
+  }
+},
+{
+  "pk": 9,
+  "model": "events.event",
+  "fields": {
+    "address1": null,
+    "cm_ethics_approved": null,
+    "address2": null,
+    "city": null,
+    "user_address_num": null,
+    "state": null,
+    "begin_time": null,
+    "end_time": null,
+    "cm_ethics_requested": null,
+    "price_default": null,
+    "country": null,
+    "cm_approved": null,
+    "event_type": "ACTIVITY",
+    "permission_groups": [],
+    "cm_requested": null,
+    "cm_law_requested": null,
+    "cm_status": "A",
+    "cm_law_approved": null,
+    "zip_code": null,
+    "taxo_topics": []
+  }
+},
+{
+  "pk": 1,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "1",
+    "object_repr": "annual conference",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-02T20:30:01.673Z",
+    "content_type": [
+      "events",
+      "nationalconferenceactivity"
+    ]
+  }
+},
+{
+  "pk": 2,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed parent. Added product \"fun p\".",
+    "action_flag": 2,
+    "object_id": "1",
+    "object_repr": "annual conference",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-02T20:31:09.941Z",
+    "content_type": [
+      "events",
+      "nationalconferenceactivity"
+    ]
+  }
+},
+{
+  "pk": 3,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "2",
+    "object_repr": "2015 APA extravaganza",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-02T21:05:11.773Z",
+    "content_type": [
+      "events",
+      "nationalconferenceactivity"
+    ]
+  }
+},
+{
+  "pk": 4,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed parent. Added product \"Full Registration\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "2015 APA extravaganza",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-02T21:11:58.210Z",
+    "content_type": [
+      "events",
+      "nationalconferenceactivity"
+    ]
+  }
+},
+{
+  "pk": 5,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed title and description.",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-02T21:15:09.598Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 6,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"$50 by May 1\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-02T21:42:44.358Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 7,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "No fields changed.",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-03T15:29:58.946Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 8,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product option \"Full Registratoin\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-03T15:31:24.928Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 9,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product option \"Weekend Registration\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-03T16:07:11.173Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 10,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product option \"2015 Extravaganza package\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-03T16:09:10.385Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 11,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed required_product_option for product price \"$50 by May 1\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-03T17:20:12.151Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 12,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed required_product for product price \"$50 by May 1\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-03T17:20:25.504Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 13,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"$100 by June1\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-03T17:21:53.583Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 14,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"$200 by July 1\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "Registration Type",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-03T17:23:36.452Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 15,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "3",
+    "object_repr": "session",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-04T20:01:58.368Z",
+    "content_type": [
+      "events",
+      "nationalconferenceactivity"
+    ]
+  }
+},
+{
+  "pk": 16,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed parent.",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "session",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-04T20:02:40.110Z",
+    "content_type": [
+      "events",
+      "nationalconferenceactivity"
+    ]
+  }
+},
+{
+  "pk": 17,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "2",
+    "object_repr": "jimmy",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T20:57:15.277Z",
+    "content_type": [
+      "auth",
+      "user"
+    ]
+  }
+},
+{
+  "pk": 18,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed first_name, last_name and email.",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "jimmy",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T20:58:48.774Z",
+    "content_type": [
+      "auth",
+      "user"
+    ]
+  }
+},
+{
+  "pk": 19,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "1",
+    "object_repr": "Elite Political People",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T21:40:03.061Z",
+    "content_type": [
+      "auth",
+      "group"
+    ]
+  }
+},
+{
+  "pk": 20,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "2",
+    "object_repr": "regular_people",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T21:40:38.982Z",
+    "content_type": [
+      "auth",
+      "group"
+    ]
+  }
+},
+{
+  "pk": 21,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed name.",
+    "action_flag": 2,
+    "object_id": "1",
+    "object_repr": "elite_political_people",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T21:40:54.206Z",
+    "content_type": [
+      "auth",
+      "group"
+    ]
+  }
+},
+{
+  "pk": 22,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "3",
+    "object_repr": "discount_member",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T21:41:14.734Z",
+    "content_type": [
+      "auth",
+      "group"
+    ]
+  }
+},
+{
+  "pk": 23,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed name.",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "regular_member",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T21:41:30.048Z",
+    "content_type": [
+      "auth",
+      "group"
+    ]
+  }
+},
+{
+  "pk": 24,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed name.",
+    "action_flag": 2,
+    "object_id": "1",
+    "object_repr": "elite_political_member",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T21:41:43.975Z",
+    "content_type": [
+      "auth",
+      "group"
+    ]
+  }
+},
+{
+  "pk": 25,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed imis_code and gl_account. Changed title, required_groups and description for product price \"discount member price: $50 | A | 1\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "12345",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T21:53:29.883Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 26,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed title, required_groups and description for product price \"discount member price: $100 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "12345",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T21:56:45.513Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 27,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed title, price, required_groups and description for product price \"because your in congress $10 by June 1st: $10 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "12345",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-05T21:58:44.133Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 28,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed parent. Changed question_1, question_2, agreement_statement_1, agreement_statement_2 and agreement_statement_3 for product \"12345\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "2015 APA extravaganza",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-08T18:51:08.786Z",
+    "content_type": [
+      "events",
+      "nationalconferenceactivity"
+    ]
+  }
+},
+{
+  "pk": 29,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed title for product option \"Full Registration\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "12345",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-08T18:54:37.561Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 30,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "4",
+    "object_repr": "2015 APA Chicago Conference",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-08T18:59:06.138Z",
+    "content_type": [
+      "events",
+      "eventmulti"
+    ]
+  }
+},
+{
+  "pk": 31,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product \"CHICAGO_2015_REGISTRATION_TYPE\".",
+    "action_flag": 2,
+    "object_id": "4",
+    "object_repr": "2015 APA Chicago Conference",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-08T19:04:48.767Z",
+    "content_type": [
+      "events",
+      "eventmulti"
+    ]
+  }
+},
+{
+  "pk": 32,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed question_1, question_2, agreement_statement_1 and agreement_statement_2 for product \"CHICAGO_2015_REGISTRATION_TYPE\".",
+    "action_flag": 2,
+    "object_id": "4",
+    "object_repr": "2015 APA Chicago Conference",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-08T19:08:18.463Z",
+    "content_type": [
+      "events",
+      "eventmulti"
+    ]
+  }
+},
+{
+  "pk": 33,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed parent. Changed question_3 for product \"12345\".",
+    "action_flag": 2,
+    "object_id": "2",
+    "object_repr": "2015 APA extravaganza",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-08T21:50:38.673Z",
+    "content_type": [
+      "events",
+      "nationalconferenceactivity"
+    ]
+  }
+},
+{
+  "pk": 34,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"chicago price: $100 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-08T22:01:07.503Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 35,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product option \"full registration\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-08T22:01:34.679Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 36,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed required_product and required_product_option for product price \"chicago price: $100 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-08T22:02:06.959Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 37,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed title and description for product option \"Cheapskate registration\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:21:23.613Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 38,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed title for product option \"Cheapskate Registration\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:22:28.286Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 39,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Just In Time: $100 | A | 0\". Changed title and price for product price \"Early Bird: $50 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:32:35.976Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 40,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Procrastinator: $200 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:33:44.104Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 41,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product option \"\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:40:15.879Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 42,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed code and title for product option \"Regular Registration\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:40:29.707Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 43,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product option \"Big Spender Registration\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:42:10.512Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 44,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Regular Early Bird: $150 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:43:52.167Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 45,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed required_product_option for product price \"Regular Early Bird: $150 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:44:55.155Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 46,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Regular Just In Time: $250 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:51:40.748Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 47,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Take Your Time: $500 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:52:17.953Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 48,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed required_product_option for product price \"Regular Just In Time: $250 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:52:37.476Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 49,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed required_product_option for product price \"Take Your Time: $500 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:52:48.048Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 50,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Regular Procrastinator: $400 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "CHICAGO_2015_REGISTRATION_TYPE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T20:54:37.288Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 51,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed title, description and parent.",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "Special Session #1",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-09T21:06:11.521Z",
+    "content_type": [
+      "events",
+      "nationalconferenceactivity"
+    ]
+  }
+},
+{
+  "pk": 52,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed parent.",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "Special Session #1",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T14:15:45.323Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 53,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed parent.",
+    "action_flag": 2,
+    "object_id": "4",
+    "object_repr": "2015 APA Chicago Conference",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T14:45:52.940Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 54,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "No fields changed.",
+    "action_flag": 2,
+    "object_id": "4",
+    "object_repr": "2015 APA Chicago Conference",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T14:48:44.912Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 55,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed publish_time.",
+    "action_flag": 2,
+    "object_id": "4",
+    "object_repr": "2015 APA Chicago Conference",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T15:01:00.186Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 56,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed title and description.",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "Park Design",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T15:26:45.118Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 57,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product \"\".",
+    "action_flag": 2,
+    "object_id": "3",
+    "object_repr": "Park Design",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T15:28:06.571Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 58,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"regular registration price: $20 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "4",
+    "object_repr": "",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T15:34:14.394Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 59,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "5",
+    "object_repr": "Why Planners Should Be Opinion Leaders",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T18:05:54.923Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 60,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed event_type and parent.",
+    "action_flag": 2,
+    "object_id": "5",
+    "object_repr": "Why Planners Should Be Opinion Leaders",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T18:06:28.224Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 61,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "6",
+    "object_repr": "Regulating the Home-Sharing Industry",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-10T18:11:35.202Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 62,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product \"\".",
+    "action_flag": 2,
+    "object_id": "5",
+    "object_repr": "Why Planners Should Be Opinion Leaders",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-11T21:08:48.998Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 63,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"cool price: $40 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "5",
+    "object_repr": "",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-11T21:09:32.313Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 64,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product \"\".",
+    "action_flag": 2,
+    "object_id": "6",
+    "object_repr": "Regulating the Home-Sharing Industry",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-11T21:10:20.362Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 65,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"not cool price: $50 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "6",
+    "object_repr": "",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-11T21:10:41.496Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 66,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "7",
+    "object_repr": "2015 APA NATIONAL CONFERENCE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T20:28:36.857Z",
+    "content_type": [
+      "events",
+      "eventmulti"
+    ]
+  }
+},
+{
+  "pk": 67,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product \"2015_NAT_CONF\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015 APA NATIONAL CONFERENCE",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T20:35:02.657Z",
+    "content_type": [
+      "events",
+      "eventmulti"
+    ]
+  }
+},
+{
+  "pk": 68,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product option \"Regular Registration\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T20:42:12.080Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 69,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product option \"Silver Registration\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:05:07.000Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 70,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product option \"VIP Registration\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:08:52.279Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 71,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Early Bird: $50 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:11:57.390Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 72,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed price for product price \"Early Bird: $100 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:13:14.637Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 73,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Early Bird: $150 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:13:37.610Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 74,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Procrastinator: $200 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:14:14.066Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 75,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed title for product price \"Just In Time: $150 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:14:25.056Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 76,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Silver Early Bird: $150 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:16:41.316Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 77,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Silver Just In Time: $200 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:17:54.358Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 78,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"Take your Tiem: $300 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "7",
+    "object_repr": "2015_NAT_CONF",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:18:38.822Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 79,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "8",
+    "object_repr": "Planning A School",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:33:40.771Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 80,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product \"\".",
+    "action_flag": 2,
+    "object_id": "8",
+    "object_repr": "Planning A School",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:34:11.962Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 81,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"regular price: $20 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "8",
+    "object_repr": "",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:35:06.390Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+},
+{
+  "pk": 82,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed parent.",
+    "action_flag": 2,
+    "object_id": "8",
+    "object_repr": "Planning A School",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:37:18.294Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 83,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Changed event_type.",
+    "action_flag": 2,
+    "object_id": "8",
+    "object_repr": "Planning A School",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:38:02.334Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 84,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "",
+    "action_flag": 1,
+    "object_id": "9",
+    "object_repr": "Planning a Community Center",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:43:08.888Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 85,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product \"\".",
+    "action_flag": 2,
+    "object_id": "9",
+    "object_repr": "Planning a Community Center",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:46:16.250Z",
+    "content_type": [
+      "events",
+      "event"
+    ]
+  }
+},
+{
+  "pk": 86,
+  "model": "admin.logentry",
+  "fields": {
+    "change_message": "Added product price \"FOR VIPs only: $70 | A | 0\".",
+    "action_flag": 2,
+    "object_id": "9",
+    "object_repr": "",
+    "user": [
+      "giovanni"
+    ],
+    "action_time": "2015-06-12T21:47:28.285Z",
+    "content_type": [
+      "store",
+      "product"
+    ]
+  }
+}
+]

@@ -1,0 +1,15 @@
+<div class="video-block video-block-horizontal">
+    <div class="video">
+        {{video.to_html|safe}}
+    </div>
+    <div class="caption">
+        {% if video.title %}
+        <h2>{{video.title}}</h2>
+        {% endif %}
+        {% if video.description %}
+        <div>
+            {{video.description}}
+        </div>
+        {% endif %}
+    </div>
+</div>

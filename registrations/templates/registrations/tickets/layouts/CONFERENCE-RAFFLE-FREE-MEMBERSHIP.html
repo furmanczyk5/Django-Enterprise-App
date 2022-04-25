@@ -1,0 +1,11 @@
+<div class="conference-raffle-ticket">
+	<div class="text-large margin-bottom">{{attendee.contact.user.username}} - {{attendee.contact.title}}</div>
+
+	<div class="text-large bold margin-bottom">Enter to win a FREE year of membership!</div>
+
+	<div class="text-large margin-bottom">Bring this ticket to the APA Pavilion in the Planning Expo for a chance to win.</div>
+
+	<div class="text-small">The drawing will be held on Tuesday after the Planning Expo closes. You don’t need to be present to win. You will be contacted by the e-mail or phone number you have listed in My APA if you win.</div>
+
+	<div class="bottom-line">{{attendee.contact.title}} | {{attendee.contact.user.username}} {{attendee.contact.member_type|default_if_none:""}} | {{attendee.purchase.product_price.imis_reg_class}}</div>
+</div>

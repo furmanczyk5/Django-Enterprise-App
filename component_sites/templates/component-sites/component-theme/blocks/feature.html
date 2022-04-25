@@ -1,0 +1,25 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<div class="homepage-featured-content-primary-wrapper">
+	<div class="homepage-featured-content-primary">
+		<div class="row">
+			<div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+				<h2 class="h1 headline-underline">
+					<small>{{value.Featured_Text}}</small>
+					{{value.Headline}}					
+				</h2>
+				<p class="featured">
+					{{value.Intro_Text}}
+				</p>
+				{% if value.link %}
+				{% include_block value.link %}
+				{% endif %}
+			</div>
+			<div class="hidden-xs col-sm-5 col-md-4 col-lg-3">
+				{% image value.Inset_Image width-600 as ins_img %}
+        <img src="{{ins_img.url}}" alt="{{value.Inset_Image.alt_text}}" class="layout-hero-image-with-nav-image" style="width:100%;height:auto;">
+      </div>
+		</div>
+	</div>
+</div>

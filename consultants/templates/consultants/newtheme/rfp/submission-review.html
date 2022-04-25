@@ -1,0 +1,22 @@
+{% extends 'submissions/newtheme/forms/review.html' %}
+
+{% block preview_details_wrapper %}
+<a class="btn btn-sm btn-icon pull-right btn-inline" href="{{edit_url}}">
+    Edit
+    <span class="icon-apa-edit"></span>
+</a>
+
+{% include "consultants/newtheme/rfp/includes/details.html" with rfp=content %}
+
+{% endblock %}
+
+{% block verification_statement %}
+	<p>I verify that the this submission is complete.</p>
+
+ 	<p>APA provides this service to its members and the public without charge.</p>
+
+  	<p>APA is not affiliated with the parties listed here, and the fact that they are listed should not be taken as an endorsement, guarantee, or warranty by APA. APA assumes no responsibility or liability for any acts or omissions by persons or entities who use this service. APA reserves the right to edit Requests for formatting and to correct grammar, punctuation, and spelling errors.</p>
+
+  	<p>APA reserves the right to reject postings that are not planning-related or that are actually job postings</p>
+  	
+{% endblock %}

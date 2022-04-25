@@ -1,0 +1,35 @@
+{% if microsite.is_npc %}
+<div class="view-schedule-widget">
+  <br>
+  <div class="view-schedule-widget-links">
+    <a href="{{ microsite.program_search_url }}" class="view-schedule-widget-link">View the Full Program</a>
+  </div>
+
+  {% comment %}
+  <p>&nbsp;</p>
+  <div class="view-schedule-widget-links">
+    <p class="small">You must be logged in to view, add to, or edit My Schedule.</p>
+    <a href="{{ microsite.glossary_url }}" class="view-schedule-widget-link">View Program Glossary</a>
+    <a href="{{ microsite.schedule_url }}" class="view-schedule-widget-link">View My Schedule</a>
+  </div>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+
+  <h3>Ready to create your schedule?</h3>
+  <div class="view-schedule-widget-links">
+    {% if is_authenticated %}
+    <p class="small">See the entire conference program and create your schedule</p>
+    <a href="{{ microsite.schedule_url }}" class="btn btn-primary view-schedule-widget-link">View Your Schedule</a>
+    {% else %}
+    <p class="small">Log in to see the entire conference program and create your schedule</p>
+    <a href="/login/?next={{ microsite.schedule_url }}" class="btn btn-primary view-schedule-widget-link">Log In to Your Schedule</a>
+    <div class="view-schedule-widget-links-account-block view-schedule-widget-link">
+      <div>Don't have an account?</div>
+      <a href="/join/">Create one now.</a>
+    </div>
+    {% endif %}
+  </div>
+  {% endcomment %}
+
+</div>
+{% endif %}

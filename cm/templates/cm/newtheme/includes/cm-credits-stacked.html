@@ -1,0 +1,90 @@
+{% if event.event_type == "EVENT_MULTI" or event.cm_approved %}
+<div class="cm-credits-stacked">
+
+  {% comment %}
+  <!-- FLAGGED FOR REFACTORING: CM CREDITS DISPLAY -->
+  <!-- DISPLAY CHANGES ON HOLD UNTIL JAN 2022 -->
+	<div class="cmcreditmargins">
+		<span class="cm">CM  | </span><span class="cmpoints">
+		{% if event.event_type == "EVENT_MULTI" %}
+		MULTI
+		{% else %}
+			{{event.cm_approved|floatformat:"-2"}}
+		{% endif %}
+		</span>
+	</div>
+  {% endcomment %}
+
+  <div>
+    <span class="cm">CM  | </span><span class="cmpoints">
+    {% if event.event_type == "EVENT_MULTI" %}
+    MULTI
+    {% else %}
+      {{event.cm_approved|floatformat:"-2"}}
+    {% endif %}
+    </span>
+  </div>
+
+	{% if event.event_type != "EVENT_MULTI" %}
+
+  {% comment %}
+  <!-- FLAGGED FOR REFACTORING: CM CREDITS DISPLAY -->
+  <!-- DISPLAY CHANGES ON HOLD UNTIL JAN 2022 -->
+    <div>
+    {% if event.cm_law_approved %}
+      <div class="cmcreditmargins">
+        <span><span class="cm">CM | </span><span class="cmpoints">{{ event.cm_law_approved|floatformat:"-2" }}</span></span>
+        <br>
+        <span class="cmcredittype">Law</span>
+        {#<span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{ event.cm_law_approved|floatformat:"-2" }}</span>#}
+      </div>
+    {% endif %}
+    {% if event.cm_ethics_approved %}
+      <div class="cmcreditmargins">
+        <span><span class="cm">CM | </span><span class="cmpoints">{{ event.cm_ethics_approved|floatformat:"-2" }}</span></span>
+        <br>
+        <span class="cmcredittype">Ethics</span>
+        {#<span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{ event.cm_ethics_approved|floatformat:"-2" }}</span>#}
+      </div>
+    {% endif %}
+    {% if event.cm_equity_credits %}
+      <div class="cmcreditmargins">
+        <span><span class="cm">CM | </span><span class="cmpoints">{{ event.cm_equity_credits|floatformat:"-2" }}</span></span>
+        <br>
+        <span class="cmcredittype">Equity</span>
+      </div>
+    {% endif %}
+    {% if event.cm_targeted_credits %}
+      <div class="cmcreditmargins">
+        <span><span class="cm">CM | </span><span class="cmpoints">{{ event.cm_targeted_credits|floatformat:"-2" }}</span></span>
+        <br>
+        <span class="cmcredittype">Sustainability & Resilience</span>
+      </div>
+    {% endif %}
+    </div>
+  {% endcomment %}
+
+	<div>
+		{% if event.cm_law_approved %}
+		<span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_law_approved|floatformat:"-2"}}</span>
+		{% endif %}
+	</div>
+	<div>
+		{% if event.cm_ethics_approved %}
+		<span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_ethics_approved|floatformat:"-2"}}</span>
+		{% endif %}
+	</div>
+  <div>
+    {% if event.cm_equity_credits %}
+    <span class="cmlawethics">Eq</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_equity_credits|floatformat:"-2"}}</span>
+    {% endif %}
+  </div>
+  <div>
+    {% if event.cm_targeted_credits %}
+    <span class="cmlawethics">SR</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_targeted_credits|floatformat:"-2"}}</span>
+    {% endif %}
+  </div>
+
+	{% endif %}
+</div>
+{% endif %}

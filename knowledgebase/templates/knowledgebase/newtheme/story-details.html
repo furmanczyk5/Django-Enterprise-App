@@ -1,0 +1,28 @@
+{% extends "pages/newtheme/default.html" %}
+
+{% load ui_tags %}
+
+{% block content_main %}
+    <h2 class="details-title">{{content.title}}</h2>
+    <div class="form-section form-section-enclosed-light">
+        <h2>Full Story</h2>
+        {{content.text|render_planning_shortcodes|safe}}
+    </div>
+
+    <div class="form-section form-section-enclosed-light">
+        <h2>Story Summary</h2>
+        {{content.description}}
+    </div>
+
+    <div class="form-section form-section-enclosed-light">
+        <h2>Associated Collection</h2>
+        {{collection_titles}}
+    </div>
+
+    {% if content.editorial_comments %}
+        <div class="form-section form-section-enclosed-light">
+            <h2>Notes to APA Staff</h2>
+            {{content.editorial_comments}}
+        </div>
+    {% endif %}
+{% endblock %}

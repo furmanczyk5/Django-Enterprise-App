@@ -1,0 +1,9 @@
+{% if is_staff and not request.detect_mobile_app.is_mobileapp %}
+<div class="layout-tracery" style="background-color:#f7f7f7;padding:8px;text-align:right;">
+	<a class="btn btn-primary btn-sm" href="{{edit_link}}" target="_blank">Edit This Content</a>
+	{% if content.landingpage %}
+		<a class="btn btn-primary btn-sm" href="{{ content.landingpage.get_child_add_url }}">Add a New Page Under This One</a>
+	{% endif %}
+	<a class="btn btn-default btn-sm" href="/admin/">Go To Django Admin Site</a>
+</div>
+{% endif %}

@@ -1,0 +1,19 @@
+{% extends 'newtheme/templates/base.html' %}
+
+{% block content_wrap %}
+<div class="container content-wrap content-borders">
+  <div class="content-main">
+    {% include "newtheme/templates/includes/django-message.html" %}
+      {% block content_main_access %}
+        {{ block.super }}
+      {% endblock %}
+
+      {% if home %}
+        {% include "newtheme/sandbox/banner-ad/banner-ad-footer-home.html" %}
+      {% else %}
+        {% include "newtheme/sandbox/banner-ad/banner-ad-footer.html" %}
+      {% endif %}
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends 'store/newtheme/foundation/page-sidenav.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+
+{% block content_details %}
+    {% comment %}
+    <div class="layout-tracery">
+        <div class="layout-column">
+            {{ content.text|safe }}
+        </div>
+    </div>
+    {% endcomment %}
+    <div class="layout-tracery">
+        <div class="layout-column">
+        <h2>Thank You to our {{current_donation_year}} Annual Fund Donors!</h2>
+          <dipv class="row highlight">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+              <img class="planning-media img-responsive" src="{% static 'content/image/Foundation_chapterchampion_20.png' %}" title="APA Chapter Champion" alt="Winners Seal" />
+            </div>
+					<div class="col-lg-9 col-md-8 col-sm-6">
+						<p style="padding-top: 10px;">
+              Special thanks to the APA Texas Chapter, winner of the 2020 APA Foundation Chapter Challenge! APA Texas raised the most funds of all participating chapters to benefit the APA Foundation.
+            </p>
+          </div>
+          </dipv>
+        {% for group in grouped_donor_list %}
+            <div class="row">
+                <h3><strong>{{group.level}}</strong></h3>
+                <h4 style="border-bottom: 2px solid #8b7500;">{{group.range}}</h4>
+                <div class="col-xs-12 col-sm-6">
+                {% for donor in group.donors.0 %}
+                    <p>{{donor}}</p>
+                {% endfor %}
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                {% for donor in group.donors.1 %}
+                    <p>{{donor}}</p>
+                {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

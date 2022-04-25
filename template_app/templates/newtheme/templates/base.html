@@ -1,0 +1,265 @@
+{% load staticfiles %}
+{% load compress %}
+{% load static %}
+{% load cache %}
+
+{% load content_extras %} {# from the base content app #}
+{% load template_app_extras %} {# anything custom needed for the template app #}
+
+{% get_global_nav root_menu as root_menu %}{# for nav bar and footer #}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+  {% if is_wagtail_site %}
+    {% load wagtailsettings_tags %}
+    {% get_settings %}
+    {% load wagtailimages_tags %}
+    {% image settings.component_sites.AppearanceSettings.logo_small fill-16x16 as favicon %}
+    <link rel="shortcut icon" href="{{favicon.url}}"/>
+  {% else %}
+  <link rel="shortcut icon" href="{%  static 'content/image/favicon.ico' %}"/>
+  {% endif %}
+
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+
+  <title>
+    {% block title %}
+      {% if title %}
+        {{ title }}
+      {% else %}
+        American Planning Association
+      {% endif %}
+    {% endblock title %}
+  </title>
+
+  {% block meta_tags %}
+  {% include 'content/newtheme/includes/seo-meta-tags.html' with content=content %}
+  {% endblock %}
+
+  {# <!-- Google Tag Manager --> #}
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+  {'gtm.start': new Date().getTime(),event:'gtm.js'}
+  );var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TSGR2Z5');</script>
+  {# <!-- End Google Tag Manager --> #}
+
+  {# <!-- Google AdSense --> #}
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>  (adsbygoogle = window.adsbygoogle || []).push(
+
+  {    google_ad_client: "ca-pub-6932638812679119",    enable_page_level_ads: true  }
+
+  );</script>
+  {# <!--End Google AdSense --> #}
+
+  {# change to custom modernizr build when we know which tests we need #}
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+  <script type="text/javascript" xmlns="">
+    //var _gaq=_gaq || [];_gaq.push(['_setAccount', 'UA-564661-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src='https://ssl.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);})();
+  </script>
+
+  <script type="text/javascript" src="https://tracking.magnetmail.net/MagnetLeads.js"></script>
+  <script type="text/javascript">
+    com.realmagnet.MagnetLeads.init('D1LYSNOsDUOZCfZw0oOHfw'); com.realmagnet.MagnetLeads.visitPage();
+  </script>
+
+  {# new adserver block July 2021 spreadsheet #}
+  <script type="application/javascript" src="https://ced.sascdn.com/tag/1541/smart.js" async></script>
+  <script type="application/javascript">
+      var sas = sas || {};
+      sas.cmd = sas.cmd || [];
+      sas.cmd.push(function() {
+          sas.setup({ networkid: 1541, domain: "https://www5.smartadserver.com", async: true });
+      });
+  </script>
+
+  {% comment %}
+  {# Old Spreadsheet #}
+  <script type="application/javascript" src="//ced.sascdn.com/tag/1541/smart.js" async></script>
+  <script type="application/javascript">
+      var sas = sas || {};
+      sas.cmd = sas.cmd || [];
+      sas.cmd.push(function() {
+          sas.setup({ networkid: 1541, domain: "//www5.smartadserver.com", async: true });
+      });
+  </script>
+
+  {# old adserver block #}
+
+  <script src='//www5.smartadserver.com/config.js?nwid=1541' type="text/javascript"></script>
+  <script type="text/javascript">
+      sas.setup({ domain: '//www5.smartadserver.com', async: true, renderMode: 0});
+   //  renderMode define when ads must be rendered :
+   //   - DEFAULT  (0) : as soon as ad is ready
+   //   - READY   (1) : render ads when document is ready
+   //  - ON_DEMAND  (2) : user must call sas.callAds()
+  </script>
+  {% endcomment %}
+
+  {% block additional_head_js %}{% endblock %}
+
+  {% cache 600 compress_css_cache %}
+  {% compress css %}
+  <link type="text/less" rel="stylesheet" href="{% static 'newtheme/css/style.less' %}" />
+  {% endcompress %}
+  {% endcache %}
+
+  <link type="text/css" rel="stylesheet" href="{% static 'content/css/icomoon/style.css' %}?v=1" />
+
+  {% ferguson %}
+
+  {% block additional_head_css %}{% endblock %}
+  {# <!-- Facebook Pixel Code --> #}
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function()
+    {n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1679341449003337');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1679341449003337&ev=PageView&noscript=1" /></noscript>
+  {# <!-- End Facebook Pixel Code --> #}
+
+  {% if content.structured_data_markup %}
+    {{content.structured_data_markup | safe}}
+  {% else %}
+  {% endif %}
+
+</head>
+
+<body>
+  {# <!-- Google Tag Manager (noscript) --> #}
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSGR2Z5"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  {#<!-- End Google Tag Manager (noscript) -->#}
+  {#<!-- Google Tag Manager -->#}
+  <noscript>
+  <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WPCTQG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WPCTQG');</script>
+  {#<!-- End Google Tag Manager -->#}
+  {# maybe replace below with in_body_script #}
+  {% block body_start %}{% endblock %}
+
+  {% include "content/newtheme/includes/admin-toolbar.html" %}
+
+  {% block messages %}
+  {% comment %}
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert-wrap">
+      <div class="alert {% if message.tags %}{{ message.tags }}{% endif %} alert-flat alert-dismissible alert-custom-close" role="alert">
+        <p class="alert-text">
+          {{ message|safe }}
+        </p>
+        <div class="dismiss-button-wrap">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">Dismiss&nbsp;<span aria-hidden="true" class="icon-close"></span></button>
+        </div>
+      </div>
+    </div>
+    {% endfor%}
+  {% endif%}
+  {% endcomment %}
+  {% endblock %}
+
+  {% block leader_ad %}
+    {% include "newtheme/sandbox/banner-ad/banner-ad-leaderboard.html" with outside_content='true' %}
+  {% endblock %}
+
+  {# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+  {% block interstitial_ad %}
+    {% include "newtheme/sandbox/banner-ad/banner-ad-interstitial.html" %}
+  {% endblock %}
+
+  {% block badge_login %}
+  {% if request.user.is_authenticated and not request.detect_mobile_app.is_mobileapp %}
+  {% cache 0 hello_user request.user.username %}
+  <div class="badge-logged-in">
+    <p class="pull-right">
+      <span class="badge-logged-in-label">Hello {{ request.contact.first_name }}</span>
+      <a href="/myapa/"><span class="icon-user-icon" aria-hidden="true"></span></a>
+    </p>
+  </div>
+  {% endcache %}
+  {% endif %}
+  {% endblock %}
+
+  {% block header %}
+    {% include "newtheme/templates/includes/header.html" %}
+  {% endblock header %}
+
+  {% block nav %}
+    {% include "newtheme/templates/includes/nav-static.html" %}
+  {% endblock %}
+
+    {% block content_wrap %}
+        {% block content_main_access %}
+          {% if access_denied %}
+              <!-- NOTE... case only applies if user is logged in, so we will show login not allowed message -->
+
+                  <div class="page-head">
+                    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+                  </div>
+
+                    <h1 class="page-title">{{content.title}}</h1>
+
+                <div class="layout-tracery">
+                  <div class="layout-column">
+                    {{ access_denied_message|safe  }}
+                  </div>
+
+              </div>
+            {% else %}
+                {% block content_main %} {% endblock %}
+            {% endif %}
+        {% endblock %}
+    {% endblock content_wrap %}
+
+
+  {% block footer %}
+    {% include "newtheme/templates/includes/footer-static.html" %}
+  {% endblock %}
+
+
+  {# Vendor JS #}
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-601828de9fee1898"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="{% static 'newtheme/vendor/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+  <script src="{% static 'newtheme/vendor/bootstrap/js/dropdown.js' %}"></script>
+  <script src="{% static 'newtheme/vendor/bootstrap/js/tab.js' %}"></script>
+  <script src="{% static 'newtheme/vendor/bootstrap/js/alert.js' %}"></script>
+  <script src="{% static 'newtheme/vendor/slick-carousel/slick/slick.min.js' %}"></script>
+  <script src="{% static 'newtheme/vendor/clamp-js/clamp.min.js' %}"></script>
+  <script src="{% static 'newtheme/vendor/object-fit-images/ofi.min.js' %}"></script>
+
+  <script src="{% static 'newtheme/vendor/icheck/icheck.min.js' %}"></script>
+  <script src="{% static 'newtheme/js/base.js' %}"></script>
+  <script src="{% static 'newtheme/js/accordions.js' %}"></script>
+  <script src="{% static 'newtheme/js/ads-carousel.js' %}"></script>
+  <script src="{% static 'newtheme/js/books-carousel.js' %}"></script>
+  <script src="{% static 'newtheme/js/clamp-content.js' %}"></script>
+  <script src="{% static 'newtheme/js/custom-checkboxes-radios.js' %}"></script>
+  <script src="{% static 'newtheme/js/nav.js' %}"></script>
+  <script src="{% static 'newtheme/js/read-more-expandable.js' %}"></script>
+  <script src="{% static 'newtheme/js/validation.js' %}"></script>
+  <script src="{% static 'newtheme/js/social-sharing.js' %}"></script>
+  <script src="{% static 'newtheme/js/myapa-bookmark.js' %}"></script>
+  <script src="{% static 'newtheme/js/planning-magazine-carousel.js' %}"></script>
+  <script src="{% static 'newtheme/js/object-fit-polyfill.js' %}"></script>
+
+  {% block additional_body_js %}{% endblock %}
+
+</body>
+</html>

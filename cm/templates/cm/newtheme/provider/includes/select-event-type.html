@@ -1,0 +1,58 @@
+
+<h2>Events</h2>
+
+<p><i class="small">
+     APA reserves the right to edit event descriptions for formatting and to correct grammar, punctuation, and spelling errors.
+      </i></p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="popover-btn-group">
+      <a href="/cm/provider/events/single/add/" class="btn btn-lg btn-primary">New Single Event - Live In Person</a>
+      <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New Single Event - Live In Person" data-content='A single, live in person event is held from a specific location, one-time on a specific date. Single events include workshops, lectures, symposiums, or webinars, and webcasts. The participant and instructor are participating at the same time and participants cannot choose among multiple activities. All participants at a single event attend the same activities and earn the same number of credits. If your event is designed for attendees to choose between a variety of activities and a portion of the event, you should consider the "multipart" event option.'>
+        <span class="icon-help"></span>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="popover-btn-group">
+      <a href="/cm/provider/events/online/add/" class="btn btn-lg btn-primary">New Single Event - Live Online</a>
+      <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New Single Event - Live Online" data-content="A single, live online event is held one-time on a specific date, and follows the same definition as a single in person event.">
+        <span class="icon-help"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="popover-btn-group">
+      <a href="/cm/provider/events/multi/add/" class="btn btn-lg btn-primary">New Multipart Event</a>
+      <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New Multipart Event" data-content="A multi-part event is defined as a live event with multiple activities, such as a conference with several sessions or multiple registration options. Participants at a multi-part event choose between a variety of activities and a portion of the event and individual participants may earn different numbers of credits.">
+        <span class="icon-help"></span>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="popover-btn-group">
+      <a href="/cm/provider/events/course/add/" class="btn btn-lg btn-primary">New On-Demand Course</a>
+      <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New On-Demand Course" data-content="Providers may enter CM credit for recorded educational products – such as webinars, podcasts, etc.  The recorded products for CM credit allow the flexibility of quality training anytime and anywhere. The provider must include a link to the materials (i.e. PowerPoint, PDF presentation, survey, etc.) for this CM eligible product. APA National does not post materials or recordings to its website for registered providers.">
+        <span class="icon-help"></span>
+      </a>
+    </div>
+  </div>
+</div>
+{# {% comment %} #}
+{% if is_apa_affiliated_admin %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="popover-btn-group">
+      <a href="/cm/provider/events/info/add/" class="btn btn-lg btn-primary">New Information-Only Event</a>
+      <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New Information-Only Event" data-content="An information-only event is defined as an event posted on a chapter calendar by a chapter admin for informational purposes only. The chapter need not be the provider of the event, and the event will not enable website funcationality such as cm logging.">
+        <span class="icon-help"></span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endif %}
+{# {% endcomment %} #}
+<div class="hidden">
+</div>

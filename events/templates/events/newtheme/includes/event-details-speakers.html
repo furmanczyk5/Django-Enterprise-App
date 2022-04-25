@@ -1,0 +1,51 @@
+{% if event.speaker_roles %}
+
+{% for speaker in event.speaker_roles %}
+	{% if forloop.first %}
+		<h3>Speakers</h3>
+		<div class="list-of-speakers">
+	{% endif %}
+    {% if speaker.contact %}
+		<h4>{{ speaker.contact.first_name }} {{ speaker.contact.last_name}}{%if speaker.contact.designation%}, {{speaker.contact.designation}}{% endif %}</h4>
+		{% if speaker.confirmed %} 
+			<p><em>Confirmed Speaker</em></p>
+		{% elif speaker.invitation_sent %}
+			<p><em>Invited Speaker</em></p>
+		{% endif %}
+
+		{% if speaker.contact.bio|length > 50 %}
+			<div class="section" id="bio_text_short_{{speaker.id}}">
+				{{ speaker.contact.bio|truncatewords_html:50|safe }} <span class="link" onClick="document.getElementById('bio_text_short_{{speaker.id}}').style.display='none';document.getElementById('bio_text_all_{{speaker.id}}').style.display='block';"><a href="javascript:void()" class="read-more-expandable-toggle-product">Read More</a></span>
+			</div>
+			<div class="section" id="bio_text_all_{{speaker.id}}" style="display:none;">
+				{{speaker.contact.bio|safe }} <span class="link" onClick="document.getElementById('bio_text_all_{{speaker.id}}').style.display='none';document.getElementById('bio_text_short_{{speaker.id}}').style.display='block';"><a href="javascript:void()" class="read-more-expandable-toggle-product">Read Less</a></span>
+			</div>
+		{% else %}
+			{{ speaker.contact.bio }}
+		{% endif %}
+
+    {% else %}
+        <h4>{{ speaker.first_name }} {{ speaker.last_name }}</h4>
+        {% if speaker.confirmed %} 
+            <p><em>Confirmed Speaker</em></p>
+        {% elif speaker.invitation_sent %}
+            <p><em>Invited Speaker</em></p>
+        {% endif %}
+        
+       {% if speaker.bio|length > 50 %}
+			<div class="section" id="bio_text_short_{{speaker.id}}">
+				{{ speaker.bio|truncatewords_html:50|safe }} <span class="link" onClick="document.getElementById('bio_text_short_{{speaker.id}}').style.display='none';document.getElementById('bio_text_all_{{speaker.id}}').style.display='block';"><a href="javascript:void()" class="read-more-expandable-toggle-product">Read More</a></span>
+			</div>
+			<div class="section" id="bio_text_all_{{speaker.id}}" style="display:none;">
+				{{speaker.bio|safe }} <span class="link" onClick="document.getElementById('bio_text_all_{{speaker.id}}').style.display='none';document.getElementById('bio_text_short_{{speaker.id}}').style.display='block';"><a href="javascript:void()" class="read-more-expandable-toggle-product">Read Less</a></span>
+			</div>
+		{% else %}
+			{{ speaker.bio }}
+		{% endif %}
+    {% endif %}
+    {% if forloop.last %}
+		</div>
+	{% endif %}
+{% endfor %}
+
+{% endif %}

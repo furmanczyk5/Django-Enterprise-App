@@ -1,0 +1,228 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+{% load compress %}
+
+{% with result.id|split_on_period:1 as blog_id %}
+{% block leader_ad %}
+{% include "newtheme/sandbox/banner-ad/banner-ad-leaderboard-home.html" %}
+{% endblock %}
+
+{# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+{% block interstitial_ad %}
+{% include "newtheme/sandbox/banner-ad/banner-ad-interstitial-home.html" %}
+{% endblock %}
+
+{% block content_main %}
+
+{% if content.get_featured_image_media.image_file.url %}
+<div class="layout-hero-image layout-hero-image-home">
+  <img class="layout-hero-image-image" src="{{ content.get_featured_image_media.image_file.url }}" title="{{ content.get_featured_image_media.title }}" alt="{{ content.get_featured_image_media.description }}" />
+  <div class="layout-hero-image-content">
+    <!-- BEGIN CMS -->
+    {{ content.text|safe }}
+    <!-- END CMS -->
+    </div>
+</div>
+{% else %}
+<div class="layout-tracery">
+    <div class="layout-column">
+        <!-- BEGIN CMS -->
+        {{ content.text|safe }}
+        <!-- END CMS -->
+    </div>
+</div>
+{% endif %}
+<div class="layout-tracery layout-tracery-3col">
+
+    <div class="layout-column">
+
+        <h2>APA News &amp; Updates</h2>
+        <div class="content-preview-list no-top-spacing no-top-border no-bottom-border">
+            <ul>
+                {% for result in blogs_news.response.docs %}
+
+                <li class="content-preview-item">
+                    <h6 class="content-preview-item-superheadline">
+                        {{ result.begin_time|datetime_from_json|date:"F j, Y" }}
+                    </h6>
+                    <h4 class="content-preview-item-headline">
+                        <a href="{{result|solr_record_to_details_path_filter}}">
+                            {{ result.title }}
+                        </a>
+                    </h4>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="read-more-link">
+            <a href="/apanews/">View All APA News</a>
+        </div>
+
+    </div>
+
+    <div class="layout-column">
+
+
+
+        {# replace events block with random display of APA Learn Courses #}
+
+        {# <h2>Upcoming Events</h2> #}
+        <h2>Featured APA Learn Courses</h2>
+
+        <div class="content-preview-list no-top-border no-top-spacing no-bottom-border">
+            <ul>
+                {# {% for result in upcoming_events.response.docs|slice:":1" %} #}
+                {% for result in learn_courses.response.docs|slice:":1" %}
+                <!-- Featured -->
+                <li class="content-preview-item content-preview-item-featured">
+                    <div class="content-preview-item-image-block">
+                        <img src="{% static 'newtheme/image/Events-2016-03-21.jpg' %}" title="Featured Content" alt="Featured Content" />
+                    </div>
+                    <h6 class="content-preview-item-superheadline">{{ result.search_topics|join:" | " }}</h6>
+                    <h4 class="content-preview-item-headline"><a href="{{result|solr_record_to_details_path_filter}}">{{result.title}}</a></h4>
+                    <div class="content-preview-item-tags">
+                        {{result.description}}
+                    </div>
+
+                </li>
+                {% endfor %}
+
+                {# {% for result in upcoming_events.response.docs|slice:"1:4" %} #}
+                {% for result in learn_courses.response.docs|slice:"1:4" %}
+
+                <li class="content-preview-item">
+                    <h6 class="content-preview-item-superheadline">{{ result.search_topics|join:" | " }}</h6>
+                    <h4 class="content-preview-item-headline"><a href="{{result|solr_record_to_details_path_filter}}">{{result.title}}</a></h4>
+                    <div class="content-preview-item-tags">
+                        {{result.description}}
+                    </div>
+
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="read-more-link">
+                {# <a href="/events/#calendar">View All Events</a> #}
+                <a href="https://learn.planning.org/catalog/">View All APA Learn Courses</a>
+            </div>
+        </div>
+
+    </div>
+
+    {# replace to here with Learn Course Feature block #}
+
+    <div class="layout-column">
+
+        <h2>Blogs</h2>
+        <div class="content-preview-list no-top-border no-top-spacing no-bottom-border">
+            <ul>
+                {% for result in blogs.response.docs|slice:":1" %}
+                <li class="content-preview-item content-preview-item-featured">
+                    <div class="content-preview-item-image-block">
+                        <img src="{% static 'newtheme/image/Blog-2016-03-21.jpg' %}" title="Blogs" alt="Blogs"/>
+                    </div>
+                    <h6 class="content-preview-item-superheadline">{{result.begin_time|datetime_from_json|date:"F j, Y"}}</h6>
+                    <h4 class="content-preview-item-headline"><a href="{{result|solr_record_to_details_path_filter}}">{{result.title}}</a></h4>
+
+                    <!-- HIDING BLOG POSTS FOR NOW -->
+                    <!-- {% comment %}
+                    {% if result.tags|length > 0 %}
+                    <ul class="content-preview-item-tags">
+                        {% for tag in result.tags %}
+                        <li>{{tag}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endcomment %} -->
+
+
+                </li>
+                {% endfor %}
+
+                {% for result in blogs.response.docs|slice:"1:4" %}
+                <li class="content-preview-item">
+
+                    <h6 class="content-preview-item-superheadline">{{result.begin_time|datetime_from_json|date:"F j, Y"}}</h6>
+                    <h4 class="content-preview-item-headline"><a href="{{result|solr_record_to_details_path_filter}}">{{result.title}}</a></h4>
+
+                    <!-- HIDING BLOG POSTS FOR NOW -->
+                    <!-- {% comment %}
+                    {% if result.tags|length > 0 %}
+                    <ul class="content-preview-item-tags">
+                        {% for tag in result.tags %}
+                        <li>{{tag}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endcomment %} -->
+
+                </li>
+                {% endfor %}
+
+            </ul>
+            <div class="read-more-link">
+                <a href="/blog/">View Blog Posts</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="layout-tracery layout-tracery-3col">
+
+    <div class="layout-column layout-column-span2">
+
+        <!-- Featured_Video -->
+        <h2>Featured Video</h2>
+        {% include "newtheme/templates/includes/video-block-vertical.html" with video=featured_video %}
+    </div>
+
+    <div class="layout-column">
+
+        <h2>Most Popular</h2>
+
+        <div class="popularity-tabs">
+
+          <div class="popularity-tabs-label">View:</div>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#most-popular" aria-controls="most-popular" role="tab" data-toggle="tab">Most Popular</a></li>
+            <li role="presentation"><a href="#most-shared" aria-controls="most-shared" role="tab" data-toggle="tab">Most Shared</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="most-popular">
+                <!-- MOST POPULAR -->
+                <div class="content-preview-list no-bottom-border">
+                    <ul>
+                        {% for result in most_popular.response.docs %}
+                        {% include "content/newtheme/search/record_templates/simple.html" with result=result %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="most-shared">
+                <!-- MOST SHARED -->
+                <div class="content-preview-list no-bottom-border">
+                    <ul>
+                        {% for result in most_shared.response.docs %}
+                        {% include "content/newtheme/search/record_templates/simple.html" with result=result %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+</div>
+<hr/>
+
+{% endblock %}
+
+
+
+{% endwith %}

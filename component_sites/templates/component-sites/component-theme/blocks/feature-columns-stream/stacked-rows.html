@@ -1,0 +1,15 @@
+{% load wagtailcore_tags %}
+
+{% for row in rows %}
+<div class="layout-tracery layout-tracery-flex">
+	{% for column in row %}
+	{% if column %}
+	<div class="layout-column">
+		{% for item in column %}
+		{% include_block item %}
+		{% endfor %}
+	</div>
+	{% endif %}
+	{% endfor %}
+</div>
+{% endfor %}

@@ -1,0 +1,111 @@
+{% extends "pages/newtheme/default.html" %}
+
+{% load static %}
+
+{% load template_app_extras %}
+
+{% block content_sidebar %}
+{% sidenav for_url="/salary/worksheet/" %}
+{% endblock %}
+
+{% block additional_head_js %}
+<script type="text/javascript" language="JavaScript" src="{% static 'jobs/2018worksheet.js' %}"></script>
+{% endblock %}
+
+{% block content_main %}
+
+
+	<h1 class="details-title">Salary Worksheet</h1>
+
+		 {{ content_messages.SALARY_WORKSHEET.text|safe }}
+	<div class="layout-tracery">
+		<div class="layout-column">
+			<div class="form-section form-section-enclosed-dark">
+				<form method="get" name="f" id="f">
+				    
+				    <div class="form-group">
+		                <label for="ed">Highest Degree:</label>
+		                <select class="form-control" name="ed">
+			                <option selected="selected" value="-1">&lt;select one&gt;</option>
+			                <option value="1" >high school diploma or equivalent</option>
+			                <option value="2" >Associate's degree</option>
+			                <option value="3" >Bachelor's degree</option>
+			                <option value="4" >Master's degree</option>
+			                <option value="5" >Doctorate (includes law)</option>
+		                </select>
+		            </div>
+	               	
+				    <div class="form-group">    
+		                <label>AICP?</label>
+		                <input class="form-control" type="radio" name="aicp" value="1">yes</br>
+		                <input class="form-control" type="radio" name="aicp" value="0">no
+					</div>
+				        
+				    <div class="form-group">
+		                <label for="exp">Years in Field:</label>
+		                <select class="form-control" name="exp">
+		                    <option selected="selected" value="-1">&lt;select one&gt;</option>
+		                    <option value="2" >less than 1 year</option>
+		                    <option value="3" >1 - 2 years</option>
+		                    <option value="4" >3 - 4 years</option>
+		                    <option value="5" >5 - 9 years</option>
+		                    <option value="6">10 - 14 years</option>
+		                    <option value="7">15 - 19 years</option>
+		                    <option value="8">20 - 24 years</option>
+		                    <option value="9">25 - 29 years</option>
+		                    <option value="10">30 years or more</option>
+		                </select>
+	            	</div>
+
+	            	<div class="form-group">
+		                <label for="emp">Employment Setting:</label>
+		                <select class="form-control" name="emp">
+		                    <option selected="selected" value="-1">&lt;select one&gt;</option>
+		                    <option value="1.1" >city planning agency (&lt;$10M budget)</option>
+		                    <option value="1.3" >city planning agency ($10-$99M)</option>
+		                    <option value="1.4" >city planning agency ($100M+)</option>
+		                    <option value="2.1" >county planning agency (&lt;$100M)</option>
+		                    <option value="2.4" >county planning agency ($100M+)</option>
+		                    <option value="4" >metropolitan or regional planning agency</option>
+		                    <option value="5">state agency</option>
+		                    <option value="11">private consulting firm</option>
+		                    <option value="" >other</option>
+		                </select>
+		            </div>
+	            
+	            	<div class="form-group">
+		                <label for="sup">Number Supervised:</label>
+		                <select class="form-control" name="sup">
+		                    <option selected="selected" value="-1">&lt;select one&gt;</option>
+		                    <option value="1" >none</option>
+		                    <option value="2" >1</option>
+		                    <option value="3" >2</option>
+		                    <option value="4" >3 - 4</option>
+		                    <option value="5" >5 - 9</option>
+		                    <option value="6">10 - 24</option>
+		                    <option value="7">25 - 49</option>
+		                    <option value="8">50 or more</option>
+		                </select>
+		            </div>
+	            
+	            	<div class="form-group">
+		                <label for="dir">Agency Director?</label>
+		                <input class="form-control" type="radio" name="dir" value="1">yes</br>
+		                <input class="form-control" type="radio" name="dir" value="0">no
+		            </div>
+	            
+	            	<div class="form-group">
+	                	<input class="btn btn-primary" type="button" value="CALCULATE" onclick="calc()" / id=button1 name=button1>
+	            	</div>
+
+	            	<div class="form-group">
+	                	<input class="form-control" type="text" name="result" value="" size="12" disabled="disabled" style="color: green; font-size: larger; font-weight: bold" />
+	                </div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+{% endblock content_main %}

@@ -1,0 +1,22 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}Staff checkout{% endblock %}
+
+{% block banner %}{% endblock %}
+
+{% load static %}
+
+{% block content_main %}
+
+<div class="section">
+	<h2>Add Payment for {{ user.first_name }} {{ user.last_name }}</h2>
+	<h3>Order ID: {{ order.id }} </h3>
+
+	<a href="/store/manage/{{ order.id }}/checkout/">Back to checkout</a>
+	
+	<div class="action">
+		TOTAL: {{ final_amount }}
+	    <iframe src='https://payflowlink.paypal.com?SECURETOKEN={{ secure_token }}&SECURETOKENID={{ secure_token_id }}&MODE={{ payment_mode}}&USER1={{ USER1 }}&COMMENT2={{ COMMENT2 }}&USER2={{ USER2 }}&USER3= {{ USER3 }}&USER4= {{ USER4 }}' width='490' height='565' border='0' frameborder='0' scrolling='no' allowtransparency='true'></iframe>
+	</div>
+</div>
+{% endblock%}

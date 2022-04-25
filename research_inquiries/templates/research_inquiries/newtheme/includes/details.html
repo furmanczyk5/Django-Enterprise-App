@@ -1,0 +1,64 @@
+<h2 class="details-title">{{inquiry.title}}</h2>
+
+<div class="content-managed-html">
+    {{ inquiry.text|safe }}
+</div>
+
+<br/>
+
+<div class="form-section form-section-enclosed-light">
+	<div class="layout-tracery">
+		<div class="layout-column">
+			{% include "research_inquiries/newtheme/includes/uploads-table.html" with uploads=inquiry_uploads %}
+	 	</div> <!-- layout column -->
+	 </div> <!-- layout tracery -->
+</div>
+
+<div class="form-section form-section-enclosed-light">
+
+    <h3 class="section-title">Contact Information</h3>
+
+	<h5>Contact</h5>
+	<div>{{inquiry_contact.first_name}} {{inquiry_contact.last_name}}</div>
+
+	<h5>Contact Email</h5>
+	<div>{{inquiry_contact.email}}</div>
+
+</div>
+
+{% if inquiry.review_status == "COMPLETED" %}
+<hr class="dashed" />
+
+<h2 class="details-title">Response</h2>
+
+<div class="form-section form-section-enclosed-dark">
+	<div class="layout-tracery">
+		<div class="layout-column">
+    		{{ inquiry.response_text|safe }}
+    	</div> <!-- layout column -->
+	 </div> <!-- layout tracery -->
+</div>
+
+<div class="form-section form-section-enclosed-dark">
+	<div class="layout-tracery">
+		<div class="layout-column">
+			{% include "research_inquiries/newtheme/includes/uploads-table.html" with uploads=response_uploads %}
+	 	</div> <!-- layout column -->
+	 </div> <!-- layout tracery -->
+</div>
+
+{% if reviewers %}
+<div class="form-section form-section-enclosed-dark">
+
+    <h3 class="section-title">Reviewers</h3>
+
+    {% for reviewer in reviewers %}
+    <h5>{{reviewer.title}}</h5>
+    <div>{{reviewer.email}}</div>
+    {% endfor %}
+
+</div>
+{% endif %}
+
+
+{% endif %}

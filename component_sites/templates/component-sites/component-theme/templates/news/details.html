@@ -1,0 +1,28 @@
+{% extends 'component-sites/component-theme/templates/base.html' %}
+
+{% load wagtailimages_tags %}
+{% load content_extras %}
+
+{% block leader_ad %}{% endblock %}
+
+{% block nav %}
+<div class="layout-hero-image-with-nav">
+    {% image page.featured_image width-1200 as feat_img %}
+    <img src="{{feat_img.url}}" alt="{{page.featured_image.alt_text}}" class="layout-hero-image-with-nav-image" style="height:auto">
+    {% include "newtheme/templates/includes/nav.html" %}
+</div>
+{% endblock %}
+
+{% block content_main %}
+<div>
+<h1></h1><h1></h1>
+<h2 class="details-title">{{news_page.title}}</h2>
+</div>
+
+<div class="content-managed-html">
+    {{ news_page.body.render_as_block|safe }}
+	</div>
+
+{% endblock content_main %}
+
+{% block footer_ad %}{% endblock %}

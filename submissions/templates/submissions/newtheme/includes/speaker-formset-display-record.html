@@ -1,0 +1,37 @@
+{% if speaker.contact %}
+  <div>
+    <h4>
+    {{speaker.contact}}
+      {% if speaker.contact.company %}
+      <br>
+      <span class="small">
+        {{speaker.contact.company}}
+      </span>
+      {% endif %}
+    </h4>
+    {% if speaker.contact.city or speaker.contact.state %}
+    <p class="small">
+      {{speaker.contact.city|default_if_none:""}}{% if speaker.contact.city and speaker.contact.state %},{% endif %} {{speaker.contact.state|default_if_none:""}}
+    </p>
+    {% endif %}
+    {% if speaker.contact.email %}
+    <p class="small">
+      {{speaker.contact.email|default_if_none:""}}
+    </p>
+    {% endif %}
+    <p>
+      {{speaker.bio|default_if_none:'No Bio Available'}}
+    </p>
+  </div>
+{% else %}
+  <div>
+    <h4>
+    {{speaker.first_name|default_if_none:""}} {{speaker.last_name|default_if_none:""}}
+    </h4>
+    <p>
+      {{speaker.bio|default_if_none:'No Bio Available'}}
+    </p>
+  </div>
+{% endif %}
+
+{% block extra_speaker_info %}{% endblock %}

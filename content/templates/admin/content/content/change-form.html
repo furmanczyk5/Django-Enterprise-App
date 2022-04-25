@@ -1,0 +1,46 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+{% load content_extras %}
+{% load static %}
+
+{% block object-tools-items %}
+{{block.super}}
+<li><a class="prettydiff-compare-to-published" href="/content/{{original.master_id}}/json/">{% trans "Compare to Published" %}</a></li>
+{% endblock %}
+
+{% block content %}
+	
+	<!-- Used for tracking changes with different users in ckeditor. -->
+	<script>
+	    var current_user = "{{ request.user.first_name }} {{ request.user.last_name }}";
+	    var page_template = "{{ original.template }}";
+	    {% if request.GET.preview == "DRAFT" %}
+	    {% with preview_path=original.get_draft_preview_path %}
+	    {% if preview_path %}
+	    window.open('{{ preview_path }}');
+	    {% endif %}
+	    {% endwith %}
+	    {% endif %}
+	</script>
+
+	<div class="grp-module">
+		{% block admin_custom_header %}
+		<h2> 
+			{% if original.master %} Master ID: {{ original.master_id }} {% endif %}
+		</h2> 
+		{% if original.parent_landing_master %}
+		<div class="grp-row">
+			<p>
+			Under: {{ original.get_landing_ancestors_admin_links | safe }}
+			</p>
+		</div>
+		{% endif %}
+		{% endblock %}
+	</div>
+	
+
+	{{ block.super }}
+
+{% endblock %}
+
+{% block submit_buttons_bottom %}{% submit_row_content_content %}{% endblock %}

@@ -1,0 +1,32 @@
+{% if form.cm_approved %}
+
+  <div class="row" style="padding-bottom: 25px">
+    <div class="col-sm-4">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.cm_approved %}
+    </div>
+    {% if form.cm_law_approved and form.cm_ethics_approved %}
+    <div class="col-sm-4">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.cm_law_approved %}
+    </div>
+
+    <div class="col-sm-4">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.cm_ethics_approved %}
+    </div>
+    {% endif %}
+  </div>
+  <!-- FLAGGED FOR REFACTORING: CM DISPLAY CHANGES -->
+  <div class="row">
+    {% if form.cm_equity_credits and form.cm_targeted_credits and form.cm_targeted_credits_topic %}
+      <div class="col-sm-4">
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.cm_equity_credits %}
+      </div>
+      <div class="col-sm-4">
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.cm_targeted_credits %}
+      </div>
+      <div class="col-sm-4">
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.cm_targeted_credits_topic %}
+      </div>
+    {% endif %}
+  </div>
+
+{% endif %}

@@ -1,0 +1,182 @@
+/**
+ * dependencies: bootstrap buttons, bootstrap tables
+ */
+// We have no way to differentiate between "legacy" content and new content, so we just hope that these selectors will not interfere too much.
+@legacy-gutter-width: 60px;
+
+body.cke_editable,
+.content-managed-html {
+  /* ////////////////////////
+  // LEGACY IMAGES
+  //////////////////////// */
+  & img[width="570"],
+  & img[width="560"],
+  & img[width="375"] {
+    height: auto!important;
+    width: 100%!important;
+    max-width: 100%;
+  }
+
+  & img.floatleft,
+  & img.floatright {
+    float: none;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  & img.floatleft {
+    @media screen and (min-width: @screen-sm-min) {
+      float: left;
+      margin-right: 10px; //Todo: evaluate whether this is adequate for padding
+      margin-bottom: 10px;
+    }
+  }
+
+  & img.floatright {
+    float: none;
+    display: block;
+    margin-bottom: 10px;
+
+    @media screen and (min-width: @screen-sm-min) {
+      float: right;
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  /* ////////////////////////
+  // LEGACY COLUMNS
+  //////////////////////// */
+
+  .columns {
+    .make-row(@legacy-gutter-width);
+  }
+
+  .columns .column1major {
+    .make-xs-column(12, @legacy-gutter-width);
+    .make-md-column(7, @legacy-gutter-width);
+    .make-lg-column(8, @legacy-gutter-width);
+  }
+
+  .columns .column2minor {
+    .make-xs-column(12, @legacy-gutter-width);
+    .make-md-column(5, @legacy-gutter-width);
+    .make-lg-column(4, @legacy-gutter-width);
+  }
+
+  .columns .column1,
+  .columns .column2 {
+    .make-xs-column(12, @legacy-gutter-width);
+    .make-md-column(6, @legacy-gutter-width);
+  }
+
+  /* ////////////////////////
+  // LEGACY IFRAME EMBEDS
+  //////////////////////// */
+
+  //YOUTUBE IFRAMES
+  & iframe[src*="youtube.com"],
+  & iframe[src*="youtu.be"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 290px !important;
+    height: 163px !important;
+    border: none !important;
+
+    @media screen and (min-width: 520px) {
+      width: 450px !important;
+      height: 253px !important;
+    }
+
+    @media screen and (min-width: @screen-md-min) {
+      width: 560px !important;
+      height: 315px !important;
+    }
+  }
+  & .video-block {
+    & iframe[src*="youtube.com"],
+    & iframe[src*="youtu.be"] {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100% !important;
+      width: 100% !important;
+    }
+  }
+
+  //STITCHER IFRAMES
+  & iframe[src*="stitcher.com"] {
+    width: 100% !important;
+    height: 150px !important;
+    border: solid 1px #dedede !important;
+  }
+
+  //Remove BRs after HRs
+  & hr + br {
+    display: none;
+  }
+
+  /* ///////////////////////
+  // Legacy "side article"
+  /////////////////////// */
+  .table {
+    &:extend(.table-responsive); //legacy tables
+  }
+  table.content {
+    &,
+    & thead,
+    & tbody,
+    & tr,
+    & td,
+    & th {
+      //removing this, some tabular data has class of content it seems
+      // display: block;
+    }
+
+    & tr.head td,
+    & tr.alt td,
+    & tr td { // all tds
+      padding: 10px 30px; //todo: Variable side padding
+    }
+
+    & tr.head td {
+      background-color: #e0963d;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    & tr.alt td {
+      background-color: #f7f7f7;
+    }
+  }
+
+  .button {
+    &:extend(.btn all);
+    &:extend(.btn-primary all);
+  }
+
+  .button.red {
+    &:extend(.btn-danger all);
+  }
+
+  a.button {
+    &:extend(a.btn all); //underline fix
+  }
+
+  .button.small {
+    &:extend(.btn-sm all);
+  }
+}
+
+.content-managed-html {
+  ul li {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 20px;
+    }
+  }
+}
+

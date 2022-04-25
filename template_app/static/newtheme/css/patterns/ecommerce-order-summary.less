@@ -1,0 +1,48 @@
+ul.ecommerce-order-summary-list,
+ol.ecommerce-order-summary-list {
+
+  //reset list styles
+  &,
+  & > li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  & > li {
+    border-top: @color-content-borders solid 1px;
+
+    padding: 35px 0 10px 0;
+
+    &:first-child {
+      padding-top: 18px; //35px - 17px from h2
+      border-top: none;
+    }
+
+
+  }
+
+  & h4 {
+    max-width: 500px; //Limit widths of titles
+  }
+
+  & .ecommerce-product-image {
+    text-align: center;
+
+    & img {
+      display: inline-block;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 180px;
+      margin-bottom: 15px;
+
+      @media screen and (min-width: @screen-sm-min) {
+        margin-bottom: 0;
+      }
+    }
+
+  }
+
+
+}

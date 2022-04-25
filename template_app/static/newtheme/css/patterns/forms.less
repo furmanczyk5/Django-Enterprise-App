@@ -1,0 +1,374 @@
+/**
+ * dependencies: bootstrap forms
+ */
+/* //////////////////
+// iCheck overrides
+////////////////// */
+.icheckbox,
+.iradio {
+  &:extend(input[type="radio"] all); //extend bootstrap native input positioning
+
+  //Size and positioning
+  position: relative;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  padding: 0;
+  width: 14px;
+  height: 14px;
+  border: none;
+  cursor: pointer;
+
+  background-color: #fafafa;
+  border-color: #ccc;
+  border-width: 1px;
+  border-style: solid;
+
+  &.disabled {
+    opacity: 0.5;
+  }
+
+  .slab-gray & {
+    background-color: #fff;
+  }
+
+  .slab-white & {
+    background-color: #fafafa;
+  }
+
+  .big-radio & {
+      width: 28px;
+      height: 28px;
+  }
+}
+
+.icheckbox {
+  //Unchecked styles
+  & {
+    text-align: center;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  &:before {
+    content: "\e60d";
+    font-family: 'icomoon' !important;
+    color: @color-limeade;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 10px;
+    position: relative;
+    top: -5px;
+
+    display: none;
+  }
+
+  //Checked styles
+  &.checked:before {
+    display: inline;
+  }
+}
+
+//Todo:
+.iradio {
+  border-radius: 50%;
+  margin: 4px 0 0;
+
+  &:after {
+    content: '';
+    height: 8px;
+    width: 8px;
+    position: absolute;
+    border-color: #ccc;
+    background-color: @color-limeade;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    display: none;
+  }
+
+  &.checked:after {
+    display: block;
+  }
+}
+
+.radio label,
+.checkbox label {
+  padding-left: 31px;
+}
+
+.radio .iradio,
+.radio-inline .iradio,
+.checkbox .icheckbox,
+.checkbox-inline .icheckbox {
+  &:extend(.radio input[type="radio"] all); //extend bootstrap native input positioning
+  margin-top: 5px;
+  margin-left: -31px;
+}
+
+.radio label,
+.checkbox label {
+  font-size: 1em;
+  font-family: @font-family-sans-serif;
+  text-transform: none;
+  font-weight: normal;
+}
+
+.checkbox-inline,
+.radio-inline {
+  font-size: 1em;
+}
+
+.checkbox-inline .icheckbox {
+  margin-top: 4.5px;
+}
+
+.checkbox,
+.radio {
+  margin: 10px 0 15px 0;
+  p {
+     margin: 10px 0 15px 0;
+  }
+}
+
+/// Multiple Checkboxes, radios
+.multiple-choices {
+  .checkbox,
+  .radio {
+    .clearfix();
+
+    margin: 0 0 10px;
+
+    // &:last-child {
+    //   margin: 0;
+    // }
+  }
+}
+
+.multiple-choices {
+  &:extend(.slab-white all);
+  border: @color-content-borders solid 1px;
+
+  border-radius: @border-radius-base;
+
+  padding: @padding-level-2-xs;
+
+  @media screen and (min-width: @screen-md-min) {
+    padding: @padding-level-2-md;
+  }
+
+}
+
+.multiple-choices .multiple-choices-row {
+  .make-row(80px);
+}
+
+.multiple-choices .multiple-choices-row .multiple-choices-column {
+  .make-md-column(6, 80px);
+
+  @media screen and (min-width: @screen-md-min) {
+    //Overlapping borders
+    border-color: @color-content-borders;
+    border-style: solid;
+    border-width: 0 1px;
+    margin-left: -1px;
+
+    &:first-child {
+      margin-left: 0;
+      border-left: 0;
+    }
+
+    &:last-child {
+      border-right: 0;
+    }
+
+  }
+}
+
+.checkbox .price-field {
+  float: right;
+  margin-left: 10px;
+}
+
+/// Validation Section
+
+.validation-section {
+  clear: both;
+}
+
+/* //////////////////
+// Site form styles
+////////////////// */
+
+.form-control {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  font-family: @font-family-sans-serif;
+  font-size: 14px;
+
+  background-color: #fafafa;
+
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+  .slab-gray & {
+    background-color: #fff;
+
+    &:focus {
+      border: 1px solid #ddd;
+      background-color: #fdfdfd;
+    }
+  }
+
+  .slab-white & {
+    background-color: #fafafa;
+  }
+
+  &:focus {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    background: #f6f6f6;
+    color: #666;
+  }
+}
+
+.form-control-2-col {
+  width: 45%;
+  display: inline-block;
+}
+
+.form-control-3-col {
+  width: 30%;
+  display: inline-block;
+}
+
+.form-control-static {
+  font-family: @font-family-sans-serif;
+  font-size: 16px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+label {
+  font-size: 12px;
+  font-family: @font-family-sans-serif;
+  font-weight: 600;
+  display: block;
+  text-transform: uppercase;
+  // margin-bottom: 10px;
+
+  .has-error & {
+    color: @color-form-error;
+  }
+}
+
+
+
+//Change form-group margin pattern
+.form-group {
+  margin-bottom: 0;
+  & + & {
+    margin-top: 30px;
+  }
+}
+@media screen and (min-width: @screen-sm-min) {
+  .form-group-horizontal {
+    & + & {
+      margin-top: 0;
+    }
+  }
+}
+.help-block {
+  max-width: 600px;
+  font-family: @font-family-sans-serif;
+  font-style: italic;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 5px 0 0;
+
+  &.help-block-align-left {
+    text-align: left;
+  }
+
+  .slab-gray & {
+    color: #888;
+  }
+}
+
+//If the help block comes after the label, transfer the margin
+label + .help-block {
+  // margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.form-error {
+  .strip-edge-margins();
+
+  margin: 5px 0 0;
+
+  font-family: @font-family-sans-serif;
+  font-style: italic;
+  text-align: left;
+  color: @color-form-error;
+  font-size: 13px;
+  font-weight: 400;
+
+  display: none;
+  .has-error & {
+    display: block;
+  }
+
+}
+
+.error {
+  color: @color-form-error;
+}
+
+input.form-control.loading-right {
+  background: rgba(255, 255, 255, 0.4) url("../../content/image/ajax-loader.svg") no-repeat right;
+}
+.select-facade.loading {
+  select {
+    background-image: url('https://planning-org-static-media-stg.s3.amazonaws.com:443/content/image/ajax-loader.svg');
+    background-repeat: no-repeat;
+    background-position-x: ~"calc(100% - 15px)";
+  }
+}
+
+
+.form-head {
+  & {
+    margin-bottom: 22px;
+  }
+
+  & h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+}
+
+//Useful for spacing buttons out from the rest of a form
+.form-actions {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.has-feedback label ~ .form-control-feedback {
+    top: 30px;
+}
+/// Event Search Magnifying Icon
+
+.input-group-addon {
+  background-color: #005595;
+  color: #ffffff;
+
+  .icon-search-icon {
+    font-weight: bolder;
+  }
+
+}

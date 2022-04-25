@@ -1,0 +1,11 @@
+
+<span class="tag-checkbox">
+	<label{% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %}>
+
+		{% include "django/forms/widgets/input.html" %}
+
+	<a class="btn btn-sm btn-dark btn-facet-tag-selected">{{ widget.label }}
+		<span class="icon-apa-close"></span>
+	</a></label>
+</span>
+

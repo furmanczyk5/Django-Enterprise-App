@@ -1,0 +1,25 @@
+{
+  "name": "apa-ui-django-app",
+  "version": "1.0.0",
+  "description": "A Django app for various front-end UI components on planning.org",
+  "main": "''",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/apa-dev/planning.git"
+  },
+  "author": "American Planning Association",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/apa-dev/planning/issues"
+  },
+  "homepage": "https://github.com/apa-dev/planning#readme",
+  "dependencies": {
+    "ckeditor4": "^4.13.1"
+  }
+}

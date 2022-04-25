@@ -1,0 +1,160 @@
+{% extends 'cm/newtheme/aicp-page-sidebar.html' %}
+
+{% load template_app_extras %}
+
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content_sidebar %}
+{# would rather use /cm/ than /cm/log/, third level menu does not open #}
+{% sidenav for_url='/cm/log/' current_page_url=request.path %}
+{% endblock %}
+
+{% block content_main %}
+<div class="page-head">
+  <h1 class="page-title">
+    {{ title }}
+  </h1>
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+    <p class="featured-family">
+      <b>Provider: </b>{{ provider.company }}
+      <br>
+      <b>Provider ID: </b>{{ provider.user.username }}
+    </p>
+
+    <form class="validate-form" method="post" enctype="multipart/form-data">
+      {% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+      {% csrf_token %}
+
+      <div>
+
+        <div class="form-section form-section-enclosed-dark">
+          <h3 class="form-section-title">Relevance to Planners</h3>
+          <p>
+            In this section, you will explain how your training is relevant to certified planners. You may focus on one training activity or describe different activities. An activity described could be a course, webinar, event, or other.
+          </p>
+          <hr class="dashed" />
+
+          {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=form.explain_topics %}
+
+          <div class="form-group">
+            <p class="small">
+              Learning/training objectives articulate the knowledge and skills you want participants to acquire by the end of the activity. Learning objectives should be concise and concrete.
+            </p>
+            {% include 'newtheme/sandbox/forms/includes/input-select.html' with field=form.objectives_status %}
+          </div>
+
+          <div class="form-group">
+            <p class="small">
+              If you answered “Always” or “Sometimes,” provide at least three examples of the planning-related learning/training objectives for three activities your organization has sponsored.
+            </p>
+            <p class="small">
+              If you answered “Never,” please develop and provide three learning/training objectives for three events you may have in the future.
+            </p>
+          </div>
+
+          {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=form.objectives_example_1 %}
+          {% if form.supporting_upload_1 %}
+          {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=form.supporting_upload_1 %}
+          {% endif %}
+
+          {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=form.objectives_example_2 %}
+          {% if form.supporting_upload_2 %}
+          {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=form.supporting_upload_2 %}
+          {% endif %}
+
+          {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=form.objectives_example_3 %}
+          {% if form.supporting_upload_3 %}
+          {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=form.supporting_upload_3 %}
+          {% endif %}
+
+        </div>
+
+        <div class="form-section form-section-enclosed-dark">
+          <h3 class="form-section-title">Planning-Expert Speakers</h3>
+          <p>
+            Activities must be led by one or more speakers who meet AICP’s definition of an expert: an individual who has contributed to the field of planning through practice, teaching, research, or publications; has completed work that exhibits a mastery of the principles of planning; and whose work demonstrates a commitment to outstanding quality and professionalism.
+          </p>
+          <hr class="dashed" />
+
+          {% include 'newtheme/sandbox/forms/includes/input-text.html' with field=form.how_determines_speakers %}
+
+        </div>
+
+        <div class="form-section form-section-enclosed-dark">
+          <h3 class="form-section-title">CM Provider Commitments</h3>
+          <div class="form-group">
+            <p>
+             To ensure the quality of CM education for our certified planners, all organizations agree to uphold the following:
+            </p>
+            <ol class="small">
+              <li>Providers shall provide all services competently. Providers shall not discriminate in the delivery of continuing educational activities or the conduct of research and scholarly courses on the basis of race or ethnicity, gender, age, religion, national origin, sexual orientation, or disability.</li>
+              <li>Providers shall not misrepresent the credentials of presenters, assistants, or personnel and shall inform those that are involved in the educational activities of the name of persons providing services.</li>
+              <li>Providers shall limit statements advertising, announcing, or marketing professional services or product promotion during the educational activity. A brief statement either at the beginning or end of the activity is permissible.</li>
+              <li>Providers shall ensure that their speakers reference the source when using other persons' ideas, research, courses, or products in written, oral, or any media presentation or summary.</li>
+              <li>Providers shall adhere to prevailing professional standards when referencing other professional entities, research results, and products.</li>
+              <li>Providers shall not demean any other provider and manufacturer by advertising, announcing, or marketing in any manner.</li>
+              <li>Providers shall not engage in dishonesty, fraud, deceit, or misrepresentation or any form of conduct that adversely reflects on the AICP CM provider system or on the profession of other manufacturers or AICP CM providers.</li>
+              <li>Providers shall ensure that information collected from AICP members shall be secure from unauthorized use.</li>
+              <li>Providers shall notify participants of any changes to the details of the event if it’s been changed from what was entered into and approved in the CM system.</li>
+              <li>Providers shall not charge AICP members any additional fee for earning CM credits, for example registration or a separate fee.</li>
+              <li>Providers shall follow the following partnership guidelines:</li>
+              </ol>
+            <div class="form-group">
+              <p>Providers are not allowed to share their assigned Provider Account Number with other agencies, firms, companies, organizations or individuals who are not approved by AICP CM to provide courses. AICP CM provider account numbers and approved status are solely for the purpose of providing high-quality continuing education to AICP members. By allowing others to use your provider number, the quality of the education provided is compromised.</p>
+            <ol class="small">
+              <p>An approved CM provider may be considered a primary partner in a program if the following conditions are met:</p>
+
+              <li>CM provider has shared the total direct costs of the program (not including consumables such as food and beverages) OR the activity is marketed under the registered provider's brand (i.e. logo);</li>
+              <li>CM provider has contributed significantly to the development of the program (e.g. topic and speaker identification); and</li>
+              <li>CM provider has participated in the marketing of the program.</li>
+            </ol>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <br>
+      <div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-default" type="submit" name="submit" value="continue_later">Save and Continue Later</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{ block.super }}
+<script src="{% static 'content/ckeditor-content/ckeditor.js' %}"></script>
+
+<script>
+  $(function(){
+    $("button[name='submit'][value='continue_later']").on("click", function(event){
+      newtheme.cancelValidation();
+    });
+  });
+  CKEDITOR.replace('id_explain_topics');
+  CKEDITOR.replace('id_objectives_example_1');
+  CKEDITOR.replace('id_objectives_example_2');
+  CKEDITOR.replace('id_objectives_example_3');
+  CKEDITOR.replace('how_determines_speakers');
+  CKEDITOR.replace('evaluation_procedures');
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+

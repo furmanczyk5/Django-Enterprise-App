@@ -1,0 +1,160 @@
+{% extends 'newtheme/templates/conference/layout-nosidebar.html' %}
+
+{% load tz %}
+{% load content_extras %}
+{% load static %}
+
+{% block messages %}{{ block.super }}{% endblock %}
+
+{% block content_main_access %}
+  {% if breadcrumb %}
+  {% include 'newtheme/templates/includes/breadcrumbs.html' with breadcrumb=breadcrumb%}
+  {% endif %}
+
+  {% block before_results %}
+
+
+
+  <div class="row hidden-print">
+    <!--
+    {% if content %}
+    {{ content.text|safe }}
+    {% endif %}
+    -->
+    <!-- temporarily hard-coding: -->
+    <h2>Your Conference Activities</h2>
+    <p>Browse the <a href="/conference/policy/program/search/">conference program</a> to find activities and build your personalized schedule. You can view all activities; search by keyword; or filter by CM, track, or type of activity to find exactly what you want.</p>
+    <p><strong>You must be logged in to view, add to, or edit My Schedule.</strong></p>
+{% comment %}
+  <!--
+      <div class="col-lg-9">
+
+    <h1>My Schedule</h1>
+
+    <p>
+      Make the most of NPC18’s hundreds of sessions, mobile workshops, and other activities. Use the My Schedule feature to manage the activities that interest you the most. Here you can view your activities, add more, or delete others if you change your mind. See below for more helpful info. View this information in the APA NPC18 app for easy access onsite!
+    </p>
+
+    <br><br>
+    <p class="section-icon section-icon-ticket">
+      <strong>
+        Be sure to check your cart for any tickets.
+      </strong>
+    </p>
+    <p class="section-icon section-icon-ticket">
+      <strong>
+        Some events have limited sign up.
+      </strong>
+    </p>
+    <br>
+    </div>
+  -->
+    {% endcomment %}
+     {# FIXME: Temporarily disabling this widget until PDF schedule issues are resolved #}
+    {% comment %}
+    {% if microsite and microsite.has_schedule_menuitem %}
+    <div class="col-lg-3">
+      <div class="view-schedule-widget">
+        <h3>Ways to View the Program</h3>
+        <p class="small"> <a href="{{ microsite.pdf_inline_url }}">Download/Print the Full Conference program (PDF)</a></p>
+        <p class="small"> <a href="{{ microsite.pdf_inline_url }}">Download/Print the Conference program as filtered (PDF)</a></p>
+      </div>
+    </div>
+  {% endif %}
+    {% endcomment %}
+    <br>
+      </div>
+    <div class="row hidden-print">
+
+
+{% comment %}
+      <!-- {% if results.response.docs %}
+      <div class="col-md-4">
+        <p>
+          <a class="btn btn-primary btn-full" href="/conference/schedule/pdf-inline/?{{request.META.QUERY_STRING}}" target="_blank">
+            Print Your Schedule
+          </a>
+        </p>
+      </div>
+      {% endif %} -->
+      {% endcomment %}
+    </div>
+
+  {% endblock %}
+
+  {% block searchList %}
+    {% if results.response.docs %}
+    <div class="content-preview-list layout-tracery">
+    {% include 'conference/newtheme/program/includes/my-schedule-results-list-item.html' with results=results.response.docs contact=contact timeout=results.responseHeader.timeout is_waitlist_block=False waitlisted_master_ids=waitlisted_master_ids %}
+    {% endif %}
+    {% if results.response.docs %}
+    </div>
+    {% endif %}
+  {% endblock searchList %}
+
+  {% block waitlist %}
+    {% if waitlisted_master_ids and show_schedule_stuff %}
+    <h3>Waitlisted Activities</h3>
+    <div>This is where you can view what activities you have joined the waitlist for. APA will reach out to you if space becomes available before conference. If you do not hear from APA before the conference, please come to the activity’s listed meeting location at least 15 minutes before the start of the activity to see if you can be accommodated.</div>
+    <div class="content-preview-list layout-tracery">
+    {% include 'conference/newtheme/program/includes/my-schedule-results-list-item.html' with results=results.response.docs contact=contact timeout=results.responseHeader.timeout is_waitlist_block=True waitlisted_master_ids=waitlisted_master_ids %}
+    {% endif %}
+    {% if waitlisted_master_ids %}
+    </div>
+    <div>If you would like to be removed from the waitlist for one of the above activities, please contact <a href="mailto:confregistration@planning.org">confregistration@planning.org.</a></div>
+    {% endif %}
+  {% endblock waitlist %}
+
+  <br><br>
+  {% if microsite and microsite.has_schedule_menuitem and show_schedule_stuff %}
+  <div class="row hidden-print">
+    <div class="col-md-4">
+      <p>
+        <a href="{{ microsite.program_search_url }}" class="btn btn-primary btn-full">
+          Build My Schedule
+        </a>
+      </p>
+    </div>
+    {% comment %}
+  <!--   {% if results.response.docs %}
+    <div class="col-md-4 hidden-print">
+      <p>
+        <a class="btn btn-primary btn-full" href="/conference/schedule/pdf-inline/?{{request.META.QUERY_STRING}}" target="_blank">
+          Print Your Schedule
+        </a>
+      </p>
+    </div>
+    {% endif %} -->
+    {% endcomment %}
+  </div>
+  {% endif %}
+{#   <div class="quick-links-block hidden-print">#}
+{#      <h2 class="headline-underline">Quick Links</h2>#}
+{#      <a href="/conference/registration/" class="btn btn-primary quick-links-button session-detail-footer-quick-links-button">Register for NPC18</a>#}
+{#      <div class="list-of-links list-of-links-small quick-links">#}
+{#        <h4><a href="/conference/search/">View Full Program</a></h4>#}
+{#        <h4><a href="/conference/tracks/">View Program Tracks</a></h4>#}
+{#        #}
+{#      </div>#}
+{#    </div>#}
+
+{% endblock content_main_access %}
+
+{% block additional_body_js %}
+  {{ block.super }}
+  <script>
+    // Defining the add/remove from My Schedule functionality here instead of trying to
+    // inline it in the button onclick in the results-list-item template...
+    function removeFromSchedule(activityId) {
+        $.get('/conference/api/0.1/schedule/remove/' + activityId + '/');
+        $('#activity-add-' + activityId + ',#activity-remove-' + activityId).toggle();
+        return false;
+    }
+
+    function addToSchedule(activityId) {
+        $.get('/conference/api/0.1/schedule/add/' + activityId + '/');
+        $('#activity-add-' + activityId + ',#activity-remove-' + activityId).toggle();
+        return false;
+    }
+  </script>
+{% endblock additional_body_js %}

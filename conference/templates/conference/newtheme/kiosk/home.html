@@ -1,0 +1,32 @@
+{% extends "myapa/newtheme/login.html" %}
+
+{% load compress %}
+{% load static %}
+
+{% block badge_login %}{% endblock %}
+
+{% block content_main %}
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h1>Register or Buy Tickets</h1>
+		<h3><strong>ASK FOR ASSISTANCE</strong> TO REPRINT BADGES/TICKETS, JOIN APA, OR RESET YOUR PASSWORD.</h3>
+	</div>
+</div>
+
+{{block.super}}
+
+{% endblock %}
+
+{% block login_remember_me %}{% endblock %}
+{% block login_join_links %}{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script>
+	$(function(){
+		$("form").submit(function(){
+			$(".login-wrapper").addClass("loading");
+		});
+	});
+</script>
+{% endblock %}

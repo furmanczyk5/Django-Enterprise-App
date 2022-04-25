@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="${SHPF_STATIC_PATH}/css/main.css" />
+  <title>APA Payment Page</title>
+</head>
+<body>
+
+<img class="responsive" src="${SHPF_STATIC_PATH}/images/APA_horizontal_647_med.png" alt="APA logo" />
+
+<form name="mainform" class="mainform" action="https://secure.bluepay.com/interfaces/bp10emu" method="post" >
+
+  <!-- MODE: "TEST" for local/staging -->
+  <input type="hidden" name="MODE" value="TEST" />
+
+  <!-- MERCHANT: Account ID -->
+  <input type="hidden" name="MERCHANT" value="100864977537" /> <!-- sandbox account -->
+
+  <!-- DBA: Doing Business As Name -->
+  <input type="hidden" name="DBA" value="American Planning Association" />
+
+  <!-- TRANSACTION_TYPE: -->
+  <input type="hidden" name="TRANSACTION_TYPE" value=${TRANSACTION_TYPE}" />
+
+  <!-- TAMPER_PROOF_SEAL: -->
+  <input type="hidden" name="TAMPER_PROOF_SEAL" value="${TAMPER_PROOF_SEAL}">
+
+  <!-- APPROVED_URL: -->
+  <input type="hidden" name="APPROVED_URL" value="${REDIRECT_URL}" />
+
+  <!-- DECLINED_URL: -->
+  <input type="hidden" name="DECLINED_URL" value="${REDIRECT_URL}" />
+
+  <!-- MISSING_URL: -->
+  <input type="hidden" name="MISSING_URL" value="${REDIRECT_URL}" />
+
+  <!-- CUSTOM_ID: -->
+  <input type="hidden" name="CUSTOM_ID" value="${CUSTOM_ID}" />
+
+  <!-- CUSTOM_ID2: -->
+  <input type="hidden" name="CUSTOM_ID2" value="${CUSTOM_ID2}" />
+
+  <!-- ORDER_ID: -->
+  <input type="hidden" name="ORDER_ID" value="${ORDER_ID}" />
+
+  <!-- INVOICE_ID: -->
+  <input type="hidden" name="INVOICE_ID" value="${INVOICE_ID}" />
+
+  <!-- COMMENT: -->
+  <input type="hidden" name="COMMENT" value="${COMMENT}" />
+
+  <!-- MODE: -->
+  <input type="hidden" name="MODE" value="${MODE}" />
+
+  <!-- REB_CYCLES: -->
+  <input type="hidden" name="REB_CYCLES" value="${REB_CYCLES}" />
+
+  <!-- REB_AMOUNT: -->
+  <input type="hidden" name="REB_AMOUNT" value="${REB_AMOUNT}" />
+
+  <!-- REB_FIRST_DATE: -->
+  <input type="hidden" name="REB_FIRST_DATE" value="${REB_FIRST_DATE}" />
+
+  <!-- TPS_DEF: -->
+  <input type="hidden" name="TPS_DEF" value="${TPS_DEF}" />
+
+  <!-- TPS_HASH_TYPE: -->
+  <input type="hidden" name="TPS_HASH_TYPE" value="${TPS_HASH_TYPE}" />
+
+  <!-- MERCHDATA shpf-form-id: our form ID provided by BluePay after we upload this form to their server -->
+  <input type="hidden" name="MERCHDATA shpf-form-id" value="" />
+
+  <!-- CAPTCHA_REQUIRED: Require a CAPTCHA on the page? -->
+  <input type="hidden" name="CAPTCHA_REQUIRED" value="0" />
+
+  <!-- CAPTCHA_TYPE: Which CAPTCHA type to use. I currently don't know of any option other than "recaptcha" -->
+  <input type="hidden" name="CAPTCHA_TYPE" value="recaptcha" />
+
+  <!-- MECHDATA_captcha: -->
+  <input type="hidden" name="MERCHDATA_captcha" value="NO" />
+
+  <fieldset data-credit-form>
+    <legend class="block">Credit Card Info</legend>
+    <ul class="fields">
+
+      <li>
+        <div class="block-01-push">
+          <div class="icons ${CARD_TYPES}" data-credit-card-type></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="CC_NUM">Credit Card Number</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="CC_NUM" id="CC_NUM" class="required creditcard" value="" autocomplete="off" data-credit-card-number />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="CVCCVV2">CVV2</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="CVCCVV2" id="CVCCVV2" value="" autocomplete="off" maxlength="4" />
+          <a href="#" class="tooltip icons help"
+             title="3 digit security code on the back of Visa, Mastercard &amp; Discover. 4 digit code on front of Amex.">'
+          </a>
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="CC_EXPIRES">Expiration Date</label>
+        </div>
+        <div class="block-02">
+          <div class="date-month">
+            <select name="CC_EXPIRES_MONTH" id="CC_EXPIRES" class="required">
+              <option value="" selected>Month</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <div class="select-error-01"></div>
+          </div>
+          <div class="date-year">
+            <select name="CC_EXPIRES_YEAR" class="required">
+              <option value="" selected>Year</option>
+              ${SHPF_YEARBLOCK}
+            </select>
+            <div class="select-error-02"></div>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </fieldset>
+
+  <fieldset>
+    <legend class="block">Billing Contact Info</legend>
+    <ul class="fields">
+
+      <li>
+        <div class="block-01">
+          <label for="NAME">Name</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="NAME" id="NAME" class="required" />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="ADDR1">Billing Address 1</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="ADDR1" id="ADDR1" class="required" />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="ADDR2">Billing Address 2</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="ADDR2" id="ADDR2" />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="CITY">City</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="CITY" id="CITY" />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="STATE">State/Province</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="STATE" id="STATE" />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="COUNTRY">Country</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="COUNTRY" id="COUNTRY"  />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="ZIPCODE">Postal Code</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="ZIPCODE" id="ZIPCODE" class="required" size="7" />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="PHONE">Phone</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="PHONE" id="PHONE" size="20" />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01">
+          <label for="EMAIL">Email</label>
+        </div>
+        <div class="block-02">
+          <input type="text" name="EMAIL" id="EMAIL" class="email" />
+        </div>
+      </li>
+
+      <li>
+        <div class="block-01-push">
+          <input type="submit" class="button--primary" value="Make Payment">
+        </div>
+      </li>
+
+    </ul>
+  </fieldset>
+
+</form>
+
+<div class="container brand">
+  <a href="https://www.bluepay.com" target="_blank">
+    <img src="images/bluepay.png" alt="bluepay secure payment processing" class="logo" />
+  </a>
+  <span class="tagline">Secure Payment Processing</span>
+</div>
+
+</body>
+</html>

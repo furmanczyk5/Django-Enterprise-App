@@ -1,0 +1,42 @@
+{% extends 'component-sites/component-theme/templates/base.html' %}
+
+{% load wagtailimages_tags %}
+{% load content_extras %}
+
+{% block leader_ad %}{% endblock %}
+
+{% block nav %}
+<div class="layout-hero-image-with-nav">
+    {% image page.featured_image width-1200 as feat_img %}
+    <img src="{{feat_img.url}}" alt="{{page.featured_image.alt_text}}" class="layout-hero-image-with-nav-image" style="height:auto">
+
+    {{block.super}}
+</div>
+{% endblock %}
+
+{% block content_main %}
+<div>
+<h1></h1><h1></h1>
+<h2 class="details-title">News Posts</h2>
+</div>
+
+<div class="content-preview-list no-top-border no-top-spacing no-bottom-border">
+    <ul>
+    {% for np in solr_news_page_results.response.docs %}
+        <li class="content-preview-item content-preview-item-featured">
+            {% if forloop.first %}
+            <div class="content-preview-item-image-block">
+              {% image page.news_image width-800 as news_img %}
+              <img src="{{news_img.url}}" alt="{{page.news_image.alt_text}}" style="height:auto">
+            </div>
+            {% endif %}
+            <h6 class="content-preview-item-superheadline">{{np.published_time|datetime_from_json|date:"F j, Y"}}</h6>
+            <h4 class="content-preview-item-headline"><a href="{{np|solr_record_to_details_path_filter}}">{{np.title}}</a></h4>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock content_main %}
+
+{% block footer_ad %}{% endblock %}

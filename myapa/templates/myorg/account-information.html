@@ -1,0 +1,128 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+      <p>
+        <a class="btn btn-default" href="{% url 'myorg' %}">Back to My Organization</a>
+      </p>
+    <h1 class="page-title">{% block join_title %} My Organization: Phone, Email &amp; Website {% endblock %}</h1>
+    {% block join_subtitle %}
+    <h4 class="page-subtitle">
+      Please be sure this information is complete, accurate, and up to date. This will help APA know and serve you better.
+    </h4>
+    {% endblock %}
+  </div>
+
+  {% block form_intro %}{% endblock %}
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+
+      <div class="form-head" {% if potential_duplicates %}style="display:none"{% endif %}>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-7 col-md-8">
+
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+
+            {% block join_name_section %}
+            <div id="account-information-fields" {% if potential_duplicates %}style="display:none"{% endif %}>
+
+              <div class="form-section form-section-enclosed-dark">
+              
+                <h3 class="form-section-title">Name</h3>
+                 <div class="form-group">
+                  <p>To update your organization's name, please submit a request using our <a href="/customerservice/contact-us/">customer service form</a>.</p>
+                </div>
+
+                {% block join_name_fields %}
+
+                <div class="form-group">
+                  <label>Organization Name: </label>
+                  <div class="form-control-static">
+                    {{ org.company }}
+                  </div>
+                </div>
+
+                {% endblock %}
+
+              </div>
+              {% endblock %}
+
+              {% block join_email_section %}
+              <div class="form-section form-section-enclosed-dark">
+                  <h3 class="form-section-title"> PRIMARY EMAIL </h3>
+                      <div class="form-group">
+                <div class="form-group">
+                  <p>Email is the primary way APA communicates with members. Please be sure your email address is always up to date. An alternative email helps to ensure that we can reach you.</p>
+                </div>
+                  </div>
+                      
+
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %}
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.verify_email %}
+
+                  <div class="form-group">
+                    <h3 class="form-section-title"> ALTERNATE EMAIL</h3>
+                  </div>
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_email %}
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_verify_email %}
+
+              </div>
+              {% endblock %}
+
+              {% block join_password_section %}{% endblock %}
+
+
+              {% block join_contact_info_section %}
+              <div class="form-section form-section-enclosed-dark">
+                <div class="form-section form-section-limit-width">
+                  <h3 class="form-section-title">PHONE NUMBER</h3>
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_phone %}
+                </div>
+              </div>
+              {% endblock %}
+
+              {% block join_website_section %}
+              <div class="form-section form-section-enclosed-dark">
+                <div class="form-section form-section-limit-width">
+                  <h3 class="form-section-title">Website</h3>
+                  {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.personal_url %}
+                </div>
+              </div>
+              {% endblock %}
+
+              {% block form_submit_button %}
+              <div class="form-actions">
+                <input type="submit" name="submit" class="btn btn-primary" value="Save" />
+              </div>
+              {% endblock %}
+            </div>
+
+          </form>
+        </div>
+
+        {% block create_account_login %}{% endblock %}
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+

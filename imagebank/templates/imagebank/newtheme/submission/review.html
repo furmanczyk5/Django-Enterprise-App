@@ -1,0 +1,32 @@
+{% extends 'submissions/newtheme/forms/review.html' %}
+
+{% block content_attributes %}class="col-lg-12"{% endblock %}
+
+{% block preview_details_wrapper %}
+<a class="btn btn-sm btn-icon pull-right btn-inline" href="{{edit_url}}">
+    Edit
+    <span class="icon-apa-edit"></span>
+</a>
+
+{% include "imagebank/newtheme/includes/image-details.html" with image=content %}
+
+{% endblock %}
+
+{% block verification_form %}
+<form method="post" id="event_submission_form">
+    {% csrf_token %}
+	{{form.submission_verified}}
+              
+    <div class="btn-toolbar">
+        {% if requires_checkout %}
+        <button type="submit" name="submitButton" value="checkout" class="btn btn-primary">Checkout</button>
+        {% else %}
+        <button type="submit" name="submitButton" value="submitfinal" class="btn btn-primary">Submit</button>
+        {% endif %}
+        <a class="btn btn-default" href="{{home_url}}">Continue Later</a>
+    </div>
+</form>
+{% endblock %}{# verificatio_form #}
+
+{% block sideads %}{% endblock %}
+

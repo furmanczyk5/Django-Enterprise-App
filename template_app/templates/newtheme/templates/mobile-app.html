@@ -1,0 +1,24 @@
+{% extends 'newtheme/templates/base.html' %}
+
+{% block leader_ad %}{% endblock %}
+
+{% block badge_login %}{% endblock %}
+
+{% block header %}{% endblock header %}
+
+{% block nav %}{% endblock %}
+
+{% block content_wrap %}
+<div class="container content-wrap content-borders">
+  	<div class="content-main">
+		{% include "newtheme/templates/includes/django-message.html" %}
+  		{% block content_main_access %}
+    		{{ block.super }}
+  		{% endblock %}
+  	</div>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block footer_ad %}{% endblock %}

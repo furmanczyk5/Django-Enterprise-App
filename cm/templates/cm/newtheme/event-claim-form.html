@@ -1,0 +1,192 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% load staticfiles %}
+{% load content_extras %}
+{% load ui_tags %}
+
+{% block additional_head_css %}
+<link href="{% static 'content/css/star-rating.min.css' %}" media="all" rel="stylesheet" type="text/css" />
+{% endblock additional_head_css %}
+
+{% block title %}Log &amp; Evaluate Education{% endblock %}
+<!-- NOTE... perhaps better to create a standard form, and then inherit the CM form from that? -->
+
+{% block content_main %}
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+{% if log.period.code == 'CAND' %}
+<h1 class="page-title">Track CM &amp; Evaluate Education</h1>
+{% else %}
+  <h1 class="page-title">Log &amp; Evaluate Education</h1>
+{% endif %}
+
+</div>
+
+{% if event %}
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <h2 class="h-flush">{{ event }}</h2>
+    <p class="cm-credits-stacked">
+      <div>
+        {% if event.cm_approved and not event.cm_approved == 0 %}
+        <span class="cm">CM | </span><span class="cmpoints">{{event.cm_approved|floatformat:"-2"}}</span>
+        {% endif %}
+      </div>
+      <div>
+        {% if event.cm_law_approved and not event.cm_law_approved == 0 %}
+        <span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_law_approved|floatformat:"-2"}}</span>
+        {% endif %}
+      </div>
+      <div>
+        {% if event.cm_ethics_approved and not event.cm_ethics_approved == 0 %}
+        <span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_ethics_approved|floatformat:"-2"}}</span>
+        {% endif %}
+      </div>
+      <!-- FLAGGED FOR REFACTORING: CM CREDITS DISPLAY -->
+      <div>
+        {% if event.cm_equity_credits and not event.cm_equity_credits == 0 %}
+        <span class="cmlawethics">Eq</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_equity_credits|floatformat:"-2"}}</span>
+        {% endif %}
+      </div>
+      <div>
+        {% if event.cm_targeted_credits and not event.cm_targeted_credits == 0 %}
+        <span class="cmlawethics">SR</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_targeted_credits|floatformat:"-2"}}</span>
+        {% endif %}
+      </div>
+    </p>
+    <p class="featured">
+      {% if log.period.code == 'CAND' %}
+      You are tracking CM credits to satisfy the requirements of the AICP Candidate Pilot Program.
+      {% else %}
+      You are logging for the {{ log.period.title }} reporting period.
+      {% endif %}
+    </p>
+    <div class="row">
+      <div class="col-sm-8">
+
+        {% block event_claim_form %}
+        <form method="post" novalidate>
+        <div class="form-section form-section-enclosed-dark">
+          {% csrf_token %}
+          {{ claim_form.non_field_errors }}
+
+          {% multiform_display_errors comment_form claim_form %}
+          {% if log.period.code == 'CAND' %}
+          {% else %}
+          <div class="form-group">
+            <div class="checkbox">
+              <label for="{{ claim_form.is_speaker.id_for_label }}">
+                {{ claim_form.is_speaker }}
+                I was a speaker/instructor
+              </label>
+            </div>
+          </div>
+          {% endif %}
+          <div class="form-group" id="speaker_fields" style="display:none;">
+
+            {% if log.period.code == 'CAND' %}
+            {% else %}
+            <p class="small">
+              Speakers or instructors who attend an event in its entirety may claim CM credits for the event length plus 1 hour (CM) credit for preparation time. Speakers or instructors who stay only for their part of the program (one hour minimum) should claim CM credits for the time they attended plus 1 hour (CM) for preparation time.
+            </p>
+            {% endif %}
+            <div class="form-group{%if claim_form.credits.errors %} has-error {% endif %}">
+              <label for="{{ claim_form.credits.id_for_label }}">{{ claim_form.credits.label }}:</label>
+              {{ claim_form.credits }}
+              {% if claim_form.credits.help_text %}
+              <div class="help-block">{{ claim_form.credits.help_text|safe }}</div>
+              {% endif %}
+              {% if claim_form.credits.errors %}
+              <div class="form-error">
+                {% for error in claim_form.credits.errors %}
+                <p class="form-error-server">{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          <!--FLAGGED: WCW EVAL UPDATE-->
+          {% comment %}
+          <div class="form-group">
+            <label for="{{ comment_form.rating.id_for_label }}">Rate this education: </label>
+            {{ comment_form.rating }}
+          </div>
+          <div class="form-group">
+            <label for="{{ comment_form.commentary.id_for_label }}"> Comments (optional):</label>
+            {{ comment_form.commentary }}
+          </div>
+          {% endcomment %}
+          <div class="form-group{%if claim_form.verified.errors %} has-error {% endif %}">
+            <div class="checkbox">
+              <label for="{{ claim_form.verified.id_for_label }}">
+                {{ claim_form.verified }}
+                Agree
+              </label>
+            </div>
+            {% if claim_form.verified.help_text %}
+            <div class="help-block">{{ claim_form.verified.help_text|safe }}</div>
+            {% endif %}
+            {% if claim_form.verified.errors %}
+            <div class="form-error">
+              {% for error in claim_form.verified.errors %}
+              <p class="form-error-server">{{ error|escape }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
+            <p class="small">
+              In accordance with my ethical obligations, as governed by the AICP Code of Ethics and Professional Conduct, I verify that I attended this session or listened to this course in full.
+            </p>
+          </div>
+        </div>
+        <br />
+          <br />
+
+        <div class="form-section form-section-enclosed-dark">
+          {# <h2>[--Agree to Publish Section Title--]</h2> #}
+          <div class="form-group">
+            <div class="checkbox">
+              <label for="{{ comment_form.publish.id_for_label }}">
+                {{ comment_form.publish }}
+                Agree
+              </label>
+            </div>
+            <p class="small">
+              APA may publish these comments, along with my name, on APA's website and social media; in APA publications; emails; and elsewhere, to help other AICP members judge the quality of this provider’s educational offerings.
+            </p>
+          </div>
+        </div>
+
+        {{ claim_form.contact }}
+        {{ claim_form.log }}
+        {{ claim_form.event }}
+
+        {{ comment_form.contact }}
+        {{ comment_form.content }}
+        <br>
+        <button class="btn btn-primary" type="submit" name="submitButton" value="claim_form_submit">Submit</button>
+        </form>
+        {% endblock %}{# event_claim_form #}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endif %}
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'content/js/star-rating.min.js' %}" type="text/javascript"></script>
+<script language="javascript">
+  $(function () {
+    $('#{{ claim_form.is_speaker.id_for_label }}').on('ifChanged', function(event){
+      $('#speaker_fields').toggle(this.checked);
+    });
+
+    $('select.star-rating').rating({'step':'1', 'size':'sm'});
+  });
+</script>
+{% endblock additional_body_js %}

@@ -1,0 +1,9 @@
+.rd-container {
+  z-index:100;
+}
+.rd-container th {
+  padding: 4px;
+}
+.rd-container td {
+  padding: 4px;
+}

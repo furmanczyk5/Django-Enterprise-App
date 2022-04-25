@@ -1,0 +1,45 @@
+{% extends 'submissions/newtheme/forms/edit.html' %}
+
+{% block form_fields %}
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">General Information</h3>
+    <p class="help-block">All fields are required unless labeled as optional</p><br/>
+
+    <p>PAS Subscribing Agency: <b>{{view.organization}}</b></p><br/>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+
+    <div class="form-group">
+    	<div class="row">
+    		<div class="col-sm-6">
+    			{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_first_name %}
+    		</div>
+    		<div class="col-sm-6">
+    			{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_last_name %}
+    		</div>
+    	</div>
+    </div>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_email %}
+
+</div>
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">Full Inquiry</h3>
+	<p class="small">
+	  Enter your inquiry below. Please be inclusive; the more we know about the specific circumstances, the better we will be able to focus our research and provide you with the results you need. Tell us if you are looking for particular types of information (e.g., background reports or examples of plans or regulatory language). 
+	</p>
+	<div class="form-group{%if form.text.errors %} has-error {% endif %}">
+	  {{ form.text }}
+	{% if form.text.errors %}
+	<div class="form-error">
+	  {% for error in form.text.errors %}
+	  <p class="form-error-server">{{ error|escape }}</p>
+	  {% endfor %}
+	</div>
+	{% endif %}
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">Sync All Conference Activities from Harvester</h1>
+  </div>
+
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-6 col-lg-5">
+
+          <form id="create_contact_form" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            <div class="form-section form-section-limit-width form-section-enclosed-dark">            
+            <div class="form-actions">
+              <input type="submit" name="submit" class="btn btn-primary" value="Sync All from Harvester" />
+            </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

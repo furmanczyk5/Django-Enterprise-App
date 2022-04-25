@@ -1,0 +1,81 @@
+/* Chrome, Safari, Opera */
+@-webkit-keyframes border-change {
+    0% {border-color: blue;}
+    50% {border-color: yellow;}
+    100% {border-color:blue;}
+}
+
+/* Standard syntax */
+@keyframes border-change {
+    0% {border-color: blue;}
+    50% {border-color: yellow;}
+    100% {border-color: blue;}
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes color-change {
+    0% {color: blue;}
+    50% {color: yellow;}
+    100% {color:blue;}
+}
+
+/* Standard syntax */
+@keyframes color-change {
+    0% {color: blue;}
+    50% {color: yellow;}
+    100% {color: blue;}
+}
+
+div[data-planning-shortcode] {
+	padding:6px;
+	background-color:black;
+	color:white;
+
+	border:1px solid yellow;
+    // -webkit-animation-name: border-change; /* Chrome, Safari, Opera */
+    // -webkit-animation-duration: 12s;  Chrome, Safari, Opera 
+    // animation-name: border-change;
+    // animation-duration: 12s;
+    // animation-iteration-count: infinite;
+}
+
+div[data-planning-shortcode]:before {
+	content: "\e90f";
+	font-family:"icomoon";
+	padding-right:12px;
+
+	color:yellow;
+    // -webkit-animation-name: color-change; /* Chrome, Safari, Opera */
+    // -webkit-animation-duration: 20s;  Chrome, Safari, Opera 
+    // animation-name: color-change;
+    // animation-duration: 20s;
+    // animation-iteration-count: infinite;
+}
+
+div[data-planning-shortcode] * {
+	display:none;
+}
+
+div[data-planning-shortcode] .planning-shortcode-title {
+	display:inline-block;
+	font-size:1.2em;
+	font-weight:bold;
+	color:yellow;
+}
+
+div[data-planning-shortcode] span[data-planning-shortcode-param] {
+	display:block;
+	padding:2px 6px;
+}
+
+div[data-planning-shortcode] span[data-planning-shortcode-param-name] {
+	display:inline-block;
+	padding:2px 0px;
+}
+
+div[data-planning-shortcode] span[data-planning-shortcode-param-value] {
+	display:inline-block;
+	padding:2px 6px;
+	background-color:#eeeeee;
+	color:#000;
+}

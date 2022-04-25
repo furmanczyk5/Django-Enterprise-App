@@ -1,0 +1,43 @@
+.popularity-tabs {
+
+}
+
+.popularity-tabs .popularity-tabs-label {
+  font-size: 14px;
+  font-family: @font-family-sans-serif;
+  margin-bottom: 5px;
+}
+
+.popularity-tabs .nav-tabs {
+  & {
+    border: 0;
+    margin-bottom: 16px;
+  }
+
+  & > li > a {
+    border-radius: 0;
+    border: @color-content-borders solid 1px;
+    background-color: @color-alabaster;
+    color: @color-sycamore;
+    margin-right: 0;
+
+    font-family: @font-family-sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  & > li:first-child > a {
+    border-radius: @border-radius-base 0 0 @border-radius-base;
+  }
+
+  & > li:last-child > a {
+    border-radius: 0 @border-radius-base @border-radius-base 0;
+  }
+
+
+  & > li.active > a {
+    border-color: transparent;
+    background-color: @color-sycamore;
+    color: #fff;
+  }
+}

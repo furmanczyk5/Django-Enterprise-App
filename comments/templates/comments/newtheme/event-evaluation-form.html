@@ -1,0 +1,102 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% load staticfiles %}
+{% load content_extras %}
+
+{% block additional_head_css %}
+<link href="{% static 'content/css/star-rating.min.css' %}" media="all" rel="stylesheet" type="text/css" />
+{% endblock additional_head_css %}
+
+{% block title %}Evaluate Education{% endblock %}
+<!-- NOTE... perhaps better to create a standard form, and then inherit the CM form from that? -->
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+  <h1 class="page-title">Evaluate Education</h1>
+
+</div>
+
+{% if event %}
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <h2>{{ event }}</h2>
+    <div class="row">
+      <div>
+
+      {% block event_claim_form %}
+        <form method="post" novalidate>
+        <div class="form-section form-section-enclosed-dark">
+          {% csrf_token %}
+          <h2>Education Evaluation</h2>
+
+          {% include "ui/newtheme/forms/includes/display-errors.html" with form=comment_form %}
+
+          <div class="form-group">
+            <label for="{{ comment_form.rating.id_for_label }}">Rate this education: </label>
+            {{ comment_form.rating }}
+          </div>
+          <div class="form-group">
+            <label for="{{ comment_form.commentary.id_for_label }}">Comments (optional):</label>
+            {{ comment_form.commentary }}
+          </div>
+        </div>
+
+        <br/>
+        <br />
+
+        <div class="form-section form-section-enclosed-dark">
+          {# <h2>[--Agree to Publish Section Title--]</h2>--> #}
+          <div class="form-group">
+            <div class="checkbox">
+              <label for="{{ comment_form.publish.id_for_label }}">
+                {{ comment_form.publish }}
+                Agree
+              </label>
+            </div>
+            <p class="small">
+              APA may publish these comments, along with my name, on APA's website and social media; in APA publications; emails; and elsewhere, to help other AICP members judge the quality of this provider’s educational offerings.
+            </p>
+          </div>
+        </div>
+
+        {{ comment_form.contact }}
+        {{ comment_form.content }}
+        <br>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <p>
+              <button class="btn btn-primary" type="submit" name="submitButton" value="claim_form_submit">Submit</button>
+            </p>
+          </div>
+          <div class="col-sm-6" align="right">
+            {% if comment %}
+            <p>
+              <a class="btn btn-dark" href="/events/{{event.master_id}}/evaluation/delete/">Delete Evaluation</a>
+            </p>
+            {% endif%}
+          </div>
+        </div>
+
+        </form>
+        {% endblock %}{# event_claim_form #}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'content/js/star-rating.min.js' %}" type="text/javascript"></script>
+<script language="javascript">
+  $(function () {
+    $('select.star-rating').rating({'step':'1', 'size':'sm'});
+  });
+</script>
+{% endblock additional_body_js %}

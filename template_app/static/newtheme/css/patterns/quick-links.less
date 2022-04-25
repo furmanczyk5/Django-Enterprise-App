@@ -1,0 +1,76 @@
+/**
+ * dependencies:
+ */
+
+.quick-links-block {
+  position: relative;
+  padding-bottom: 0;
+
+  & .btn {
+    width: auto;
+  }
+
+  & .quick-links-button {
+    float: right;
+    margin-top: -25px;
+  }
+
+  & .quick-links {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.6875em;
+
+    & h4 {
+      margin-top: .4em;
+      margin-right: 6em;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and  (max-width: @screen-sm-max) and (min-width: @screen-xs-min) {
+
+  .quick-links-block {
+
+    .quick-links {
+
+      & h4 {
+        margin-right: 2em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: @screen-xs-min) {
+
+  .quick-links-block {
+    padding-bottom: 69px;
+
+    & .quick-links-button {
+      float: none;
+      position: absolute;
+      bottom: 0;
+      margin-left: 25%;
+      margin-right: 25%;
+    }
+
+    & .quick-links {
+      display: flex;
+      flex-direction: column;
+      margin-top: @grid-gutter-width;
+
+      & h4 {
+        margin-top: 35px;
+        margin-right: 0;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,25 @@
+{% extends 'myapa/newtheme/join/account-information-newuser.html' %}
+
+{% block title %}Create a New Account{% endblock %}
+{% block join_title %}Create a New Account{% endblock %}
+{% block join_subtitle %}{% endblock %}
+
+{% block form_intro %}
+{% if not is_admin %}
+<div class="layout-tracery">
+  <div class="layout-column">
+      <div class="form-head">
+        <p>
+        	Create an account to submit information or make purchases.
+        </p>
+        <p>
+			Get member savings and benefits by joining APA. Interested in APA membership? 
+			<a href="/join/account/">Join here.</a>
+		</p>
+      </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block join_addresses_description %}{% endblock %}

@@ -1,0 +1,231 @@
+{
+  "bp_stamp_def_response": "RRNO ISSUE_DATE Result",
+  "amount_response": "19.00",
+  "next_date_response": "",
+  "payment_type_response": "CREDIT",
+  "card_type_response": "VISA",
+  "bp_stamp_response": "AEE8B77E857A5713DBFD121A9BEFFBA3AD121E8BADBC4045BB667A92F363BB553F87315E2014088694ACEF14E1EA354ADFBF08CC1C32730F6C9D72A3B19080EA",
+  "reb_id_response": "100934415788",
+  "message_response": "Approved Sale",
+  "cvv2_code_response": "_",
+  "cust_token_response": "",
+  "tps_hash_type_response": "HMAC_SHA512",
+  "auth_code_response": "SQVEOS",
+  "name1_response": "Cory",
+  "rebill_amount_response": "",
+  "trans_id_response": "100934415787",
+  "avs_code_response": "2",
+  "creation_date_response": "",
+  "masked_account_response": "xxxxxxxxxxxx1111",
+  "response": {
+    "REMOTE_IP": [
+      "98.32.174.243"
+    ],
+    "RESPONSEVERSION": [
+      "5"
+    ],
+    "PROCESSOR_ID": [
+      "100864977571"
+    ],
+    "CVV2": [
+      "_"
+    ],
+    "AUTH_CODE": [
+      "SQVEOS"
+    ],
+    "FLAGS": [
+      "TW"
+    ],
+    "CARD_TYPE": [
+      "VISA"
+    ],
+    "AVS_RESULT": [
+      "2"
+    ],
+    "ID": [
+      "100934415787"
+    ],
+    "ZIPCODE": [
+      "60601-3009"
+    ],
+    "AVS": [
+      "2"
+    ],
+    "REBILLING_ID": [
+      "100934415788"
+    ],
+    "PAYMENT_TYPE": [
+      "CREDIT"
+    ],
+    "BIN": [
+      "411111"
+    ],
+    "F_UNHELD": [
+      "0"
+    ],
+    "F_REBILL_MASTER": [
+      "1"
+    ],
+    "NAME2": [
+      "Mollet"
+    ],
+    "TPS_HASH_TYPE": [
+      "HMAC_SHA512"
+    ],
+    "SOURCE_ID": [
+      "100934415787"
+    ],
+    "REB_EXPR": [
+      "1 MONTH"
+    ],
+    "TRANS_ID": [
+      "100934415787"
+    ],
+    "FRAUD_SCORE": [
+      "0"
+    ],
+    "ORIGIN": [
+      "bp10emu"
+    ],
+    "TRANSACTION_TYPE": [
+      "SALE"
+    ],
+    "PAYMENT_ACCOUNT": [
+      "xxxxxxxxxxxx1111"
+    ],
+    "SHPF_FORM_ID": [
+      "bluepay01"
+    ],
+    "CITY": [
+      "Chicago"
+    ],
+    "BP_STAMP": [
+      "AEE8B77E857A5713DBFD121A9BEFFBA3AD121E8BADBC4045BB667A92F363BB553F87315E2014088694ACEF14E1EA354ADFBF08CC1C32730F6C9D72A3B19080EA"
+    ],
+    "TRANS_TYPE": [
+      "SALE"
+    ],
+    "BACKEND_ID": [
+      "262527463510"
+    ],
+    "ZIP": [
+      "60601-3009"
+    ],
+    "DBA": [
+      "DEMO-planning"
+    ],
+    "LOGIN_ACCOUNT_ID": [
+      "100864977537"
+    ],
+    "ORIG_IS_SETTLED": [
+      "0"
+    ],
+    "MODE": [
+      "TEST"
+    ],
+    "REBID": [
+      "100934415788"
+    ],
+    "F_WILL_CAPTURE": [
+      "0"
+    ],
+    "ISSUE_DATE": [
+      "2020-08-25 18:51:33.979179"
+    ],
+    "ACCOUNT_NAME": [
+      "DEMO-planning"
+    ],
+    "CC_EXPIRES": [
+      "0822"
+    ],
+    "COUNTRY": [
+      "United States"
+    ],
+    "REB_AMOUNT": [
+      "19.00"
+    ],
+    "NAME1": [
+      "Cory"
+    ],
+    "CUSTOMER_CODE": [
+      "100934415787"
+    ],
+    "ADDR1": [
+      "205 N Michigan Ave. Ste 1200"
+    ],
+    "CVV2_STATUS": [
+      "1"
+    ],
+    "RRNO": [
+      "100934415787"
+    ],
+    "FANCY_STATUS": [
+      "Approved"
+    ],
+    "F_CARD_PRESENT": [
+      "0"
+    ],
+    "OWNER_USER_ID": [
+      "100864977538"
+    ],
+    "REB_CYCLES": [
+      "10"
+    ],
+    "INVOICE_ID": [
+      "100934415787"
+    ],
+    "REBILLING": [
+      "1"
+    ],
+    "ORDER_ID": [
+      "100934415787"
+    ],
+    "PHONE": [
+      "(312) 431-9100"
+    ],
+    "MERCHANT": [
+      "100864977537"
+    ],
+    "STATE": [
+      "IL"
+    ],
+    "CARD_EXPIRE": [
+      "0822"
+    ],
+    "CONNECTED_IP": [
+      "98.32.174.243"
+    ],
+    "AMOUNT": [
+      "19.00"
+    ],
+    "MESSAGE": [
+      "Approved Sale"
+    ],
+    "Result": [
+      "APPROVED"
+    ],
+    "BP_STAMP_DEF": [
+      "RRNO ISSUE_DATE Result"
+    ],
+    "CVV2_RESULT": [
+      "_"
+    ],
+    "STATUS": [
+      "1"
+    ],
+    "REB_FIRST_DATE": [
+      "2020-08-25"
+    ]
+  },
+  "rebill_id_response": "",
+  "bank_name_response": "",
+  "sched_expression_response": "",
+  "next_amount_response": "",
+  "last_date_response": "",
+  "status_response": "APPROVED",
+  "rebill_status_response": "1",
+  "name2_response": "Mollet",
+  "trans_type_response": "SALE",
+  "cycles_remaining_response": "",
+  "id_response": "100934415787"
+}

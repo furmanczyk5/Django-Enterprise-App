@@ -1,0 +1,286 @@
+// for printing TICKETS
+@width-letter:8.5in;
+@height-letter:11in;
+
+@width-sato:5in; //it's actually 4in but wkhtmltopdf is doing something funnny with this
+@height-sato:5in; //it's actually 4in but wkhtmltopdf is doing something funnny with this
+
+@width-address-labels:4.7in;
+@height-address-labels:3.13in;
+
+.letter {
+
+	// .page {
+	// 	background-color:#cccccc;
+	// }
+	// .ticket {
+	// 	background-color:#eeeeee;
+	// }
+	// .ticket:nth-child(even) {
+	// 	background-color:#ffffff;
+	// }
+
+	.page {
+		width:@width-letter;
+		height:@height-letter;
+		padding:0.25in 0.1875in 1.75in 0.1875in;
+	}
+
+	.ticket {
+		width:50%;
+		height:33.333333%;
+		padding:0.375in 0.10in 0.25in 0.10in;
+	}	
+}
+
+.sato {
+	.page {
+		width:@width-sato;
+		height:@height-sato;
+		padding:0.0785in;
+		//background-color:black;
+
+		&.multiple {
+			height:auto;
+			min-height:@height-sato;
+		}
+	}
+
+	.ticket {
+		width:100%;
+		height:100%;
+		// padding:0.4375in 0in 1.095in 0in;
+		padding:0.4375in 0in 0in 0in;
+		//border:1px dotted black;
+
+		//background-color:lightblue;
+	}
+}
+
+.address-labels {
+
+	.page {
+		width:@width-address-labels;
+		height:@height-address-labels;
+		padding:0.5in 0.25in 0.25in 0.5in;
+		font-size:1.5em;
+	}
+
+	.address-label {
+		width:100%;
+		height:100%;
+		//border:1px dashed black;
+	}
+
+}
+
+.conference-badge, .conference-activity, .conference-receipt, .conference-drink-ticket, .conference-wifi-card, .conference-raffle-ticket, .conference-ticket {
+	height:100%;
+	position:relative;
+	//background-color:white;
+	text-align: left;
+	padding-left: 115px;
+	padding-right: 10px;
+
+	.bottom-line {
+		position:absolute;
+		bottom:0.6em;
+		border-top:2px solid black;
+		padding:2px;
+		font-size:0.7em;
+		width:100%;
+		// text-align:left;
+	}
+}
+
+.conference-badge {
+
+	.badge-name {
+		font-size:2.2em;
+		text-transform: uppercase;
+		font-weight:bold;
+		margin-bottom:0.35em;
+	}
+
+	.full-name {
+		font-size:1.6em;
+		margin-bottom:0.35em;
+	}
+
+	.company, .location {
+		font-size:1.5em;
+		margin-bottom:0.35em;
+	}
+
+	.twitter {
+		font-size:1.6em;
+		margin:1.5em 0em;
+	}
+
+	.bottom {
+		// position:absolute;// for absolute positionig
+		// bottom:0px;// for absolute positionig
+		// width:100%;// for absolute positionig
+
+		.member-type {
+			font-size:1.8em;
+			text-transform: uppercase;
+			font-weight:bold;
+		}
+
+		.id-and-reg-type {
+			margin:1.25em 0em;
+
+			font-size:0.8em;
+			text-transform: uppercase;
+			font-weight:bold;
+		}
+	}
+	
+}
+
+.chapterconference-badge, .chapterconference-activity {
+	.bottom-line {
+		padding:2px;
+		font-size:0.7em;
+	}
+}
+
+.chapterconference-badge {
+
+	.badge-name {
+		font-size:2.4em;
+		// text-transform: uppercase;
+		font-weight:bold;
+		// margin-top:1em; // possibly remove this after EVENT_NC16 conference?
+		margin-bottom:0.25em;
+	}
+
+	.full-name, .company, .location {
+		margin-bottom:0.25em;
+	}
+
+	.full-name {
+		font-size:1.5em;
+	}
+
+	.company {
+		font-size:1.2em;
+	}
+
+	.location {
+		font-size:1.2em;
+	}
+
+	.twitter {
+		font-size:1.5em;
+		margin:1.0em 0em;
+	}
+	
+}
+
+.chapterconference-activity {
+	.activity-title, .activity-time, .activity-price {
+		margin-bottom:6px;
+	}
+	.activity-title {
+		font-weight:bold;
+		font-size:1.2em;
+	}
+	.activity-number {
+		margin-top:24px;
+	}
+}
+
+.conference-drink-ticket, .conference-activity {
+
+	.title {
+		font-size:1.5em;
+		margin-bottom:0.5em;
+	}
+
+	.event, .time, .location {
+		font-size:1.2em;
+	}
+
+	.help-text, .price {
+		margin:1em 0em;
+	}
+
+}
+
+.conference-receipt {
+	text-align:left;
+
+	.indent {
+		padding-left:4px;
+	}
+}
+
+.page {
+	background-color:white;
+	page-break-before: always;
+	page-break-inside: avoid;
+	overflow: hidden;
+	position:relative;
+}
+
+.tickets {
+	position:relative;
+	width:100%;
+	height:100%;
+}
+
+.ticket {
+	float:left;
+	position:relative;
+	text-align:center;
+
+	.bottom-title {
+		position:absolute;
+		bottom:0.25in;
+		left:0in;
+		width:100%;
+		text-align:center;
+		font-weight:bold;
+	}
+
+}
+
+.text-huge {
+	font-size:2.0em;
+}
+
+.text-larger {
+	font-size:1.6em;
+}
+
+.text-large {
+	font-size:1.2em;
+	letter-spacing:-0.025em;
+}
+
+.text-small {
+	font-size:0.8em;
+}
+
+.text-smaller {
+	font-size:0.7em;
+}
+
+.text-bold {
+	font-weight:bold;
+}
+
+.text-light {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight:lighter;
+}
+
+.text-italic {
+	font-style: italic;
+}
+
+.text-center {
+	text-align: center
+}

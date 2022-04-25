@@ -1,0 +1,42 @@
+
+{% load template_app_extras %} {# anything custom needed for the template app #}
+{% get_conference_nav conference_menu as conference_menu %}{# for npc nav bar and footer #}
+
+<!-- FOR PROOF OF CONCEPT ONLY: -->
+<div class="container-fluid nav-container nav-container-conference">
+  <div class="nav-wrap">
+    <nav class="desktop-navbar">
+      <ul class="nav navbar-nav nav-size-{{conference_menu.count}}">
+        {% for m in conference_menu %}
+{# {% if m.get_url == '/conference/registration/' %} #}
+          {% if m.get_url|test_for_reg_url %}
+          <li class="navbar-nav-link-wrap-breakout-wrap">
+            <span class="navbar-nav-link-wrap navbar-nav-link-wrap-breakout">
+              <a href="{{ m.get_url }}">
+                {{ m.title }}
+              </a>
+            </span>
+          </li>
+          {% elif m.get_url and m.title %}
+          <li>
+            <span class="navbar-nav-link-wrap">
+              {% if m.get_child_menuitems %}
+              <a href="#" class="nav-mega-menu-toggle" data-child="mega-menu-section-{{m.id}}">
+                {{ m.title }}<span class="icon-keyboard-arrow-right pull-right"></span>
+              </a>
+              {% else %}
+              <a href="{{ m.get_url }}">
+                {{ m.title }}
+              </a>
+              {% endif %}
+            </span>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+    {# Dummy data template, existing template could be used #}
+    {% include 'newtheme/templates/conference/includes/nav-mega-menu.html' %}
+    {% include 'newtheme/templates/conference/includes/nav-mobile.html' %}
+  </div>
+</div>

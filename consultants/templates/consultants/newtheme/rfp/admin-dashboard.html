@@ -1,0 +1,100 @@
+{% extends "newtheme/templates/layout-sidebar.html" %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">RFP/RFQ Admin Dashboard </h1>
+</div>
+
+<div class="layout-tracery">
+  	<div class="layout-column">
+		<p><a class="btn btn-primary" href="{% url "consultants:rfp_create" %}">Post a New RFP/RFQ</a></p>
+		<p>APA invites your organization to post an RFP or RFQ on the APA website free of charge.</p>
+		<p>Once your RFP or RFQ is posted, it will remain on our website through the specified deadline.</p>
+		<p>APA reserves the right to edit Requests for formatting and to correct grammar, punctuation, and spelling errors.</p>
+		<p>APA provides this service to its members and the public without charge. APA is not affiliated with the parties listed here, and the fact that they are listed should not be taken as an endorsement, guarantee, or warranty by APA. APA assumes no responsibility or liability for any acts or omissions by persons or entities who use this service.</p>
+	</div>
+</div>
+	
+<div class="layout-tracery">
+  	<div class="layout-column">
+  		<h2>My RFP/RFQ Posts</h2>
+    	<div class="admin-list">
+
+	    	<div class="row hidden-xs hidden-sm">
+		        <div class="col-md-4">
+		         	<h3>Title</h3>
+		        </div>
+		     	<div class="col-md-2">
+		     		<h3>Type</h3>
+		     	</div>
+		        <div class="col-md-2">
+		        	<h3>Deadline</h3>
+		        </div>
+		        <div class="col-md-2">
+		          	<h3>Status</h3>
+		        </div>
+		        <div class="col-md-2">
+		        </div>
+	      	</div>
+
+	      	<div class="admin-list-group-wrap">
+	  		{% for rfp in rfps %}
+
+		    	<div class="col-md-4 admin-list-group">
+		          	<div class="h3 h-flush visible-xs-block visible-sm-block">
+		            	Title
+		          	</div>
+					{% if rfp.is_published %}
+					<a href="/consultants/rfp/{{rfp.master_id}}/">{{rfp.title}}</a>
+					{% else %}
+					<span>{{ rfp.title }}</span>
+					{% endif %}
+		        </div>
+
+		        <div class="col-md-2 admin-list-group">
+		          	<div class="h3 h-flush visible-xs-block visible-sm-block">
+		            	Type
+		          	</div>
+	            	<span>{{rfp.rfp_type}}</span>
+		        </div>
+
+		        <div class="col-md-2 admin-list-group">
+					<div class="h3 h-flush visible-xs-block visible-sm-block">
+					Deadline
+					</div>
+	            	<span>{{ rfp.deadline|date:"l, F j, Y" }}</span>
+		        </div>
+
+		        <div class="col-md-2 admin-list-group">
+		          	<div class="h3 h-flush visible-xs-block visible-sm-block">
+		            	Status
+		          	</div>
+		          	
+		          	{{ rfp.status_text }}
+
+		        </div>
+		        
+		        <div class="col-md-2 admin-list-controls">
+	            	{% if rfp.is_editable %}
+						<a class="btn btn-sm btn-icon" href="{% url 'consultants:rfp_update' master_id=rfp.master_id %}">Edit<span class="icon-apa-edit"></span></a>
+					{% elif rfp.is_complete %}
+						<a class="btn btn-sm btn-primary" href="/consultants/rfp/{{rfp.master_id}}/" target="_blank">View</a>
+					{% else %}
+						<a class="btn btn-sm btn-default" href="{% url 'consultants:rfp_preview' master_id=rfp.master_id %}" target="_blank">View</a>
+					{% endif %}
+		        </div>
+
+		        <div class="clearfix"></div>
+
+	        {% empty %}
+	    		<p><i>You have not started any RFP/RFQ posts</i></p>
+	      	{% endfor %}
+
+			</div>
+    	</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,541 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load tz %}
+{% load compress %}
+{% load humanize %}
+{% load staticfiles %}
+{% load myapa_tags %}
+{% load content_extras %}
+{% load cm_tags %}
+{% load event_tags %}
+
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">My Organization</h1>
+</div>
+
+<div class="layout-hero-image">
+    <img class="layout-hero-image-image" src="{% static 'images/My-Organization-2019-05-28.jpg' %}" alt="My Org hero image"/>
+  <div class="layout-hero-image-content">
+    <h3 class="featured-item-title">
+      <span>
+        {{ company }}
+      </span>
+    </h3>
+    <div class="layout-tracery no-top-border">
+      <div class="layout-column slab-gray featured-family">
+        <div class="row">
+          <div class="col-sm-4 col-lg-4 section-overview-featured-item">
+            <h2 class="accordion-handle">
+              Logo
+              <a class="btn btn-inline btn-icon" href="{% url 'myorg_logo' %}">
+                Edit
+                <span class="icon-apa-edit"></span>
+              </a>
+              {% if profile.image.image_file.url %}
+               <a
+                  class="btn btn-inline btn-icon btn-icon-danger btn-dashboard-events"
+                  href="{% url 'org_logo_delete' %}"
+                  onclick="return confirm('Are you sure you want to remove your organization logo?')">
+                  Remove
+                  <span class="icon-apa-close"></span>
+                </a>
+              {% endif %}
+            </h2>
+
+            <div style="max-height: 400px !important; overflow: hidden;">
+              {% if profile.image.image_file.url %}
+                <img
+                  src="{{ profile.image.image_file.url }}"
+                  class="img-responsive"
+                  alt="Organization Logo" />
+              {% else %}
+              <p class="small">Get noticed! Add your organization's logo (optional). Your logo will appear on your <a href="/cm/provider/{{ provider.id }}/details/">CM Provider Page</a>.</p>
+              {% endif %}
+            </div>
+
+            <hr class="visible-xs">
+          </div>
+
+          <div class="col-sm-6 col-lg-8">
+            <h2>Short Description
+              <a class="btn btn-inline btn-icon" href="{% url 'myorg_org_bio' %}">
+                Edit
+                <span class="icon-apa-edit"></span>
+              </a>
+            </h2>
+            {% if org.bio %}
+            <p>{{ org.bio }}</p>
+            {% else %}
+            <p class="small">Tell AICP members a little about your organization and the types of continuing professional education you offer that will help them work better and fulfill Certification Maintenance requirements. This information will appear on your <a href="/cm/provider/{{ provider.id }}/details/">CM Provider Page.</a></p>
+            {% endif %}
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="layout-tracery">
+    <div class="layout-column">
+      <h2>Administrators</h2>
+      <div class="small">
+        <p>
+          To remove an administrator, click on <strong>'Remove x'.</strong>
+        </p>
+        <p>
+          To add an administrator, enter the new administrator's email address in the search box below and select the appropriate search result.
+        </p>
+        <p>
+          Note: every APA member has an APA account. If your search for a member's email address is unsuccessful, please ascertain and use the address that is associated with the member's APA account.
+        </p>
+        <p>
+          If there is no record with that email address, <a href="{% url 'nonmember_join' %}">create a free nonmember account</a>. When you're finished, you will be directed back to the current page (My Organization). Search again using the email address for the account you just created.
+        </p>
+      </div>
+      <div class="form-group">
+        <div class="autocomplete"
+             data-url-path="/myorg/admins/autocomplete/"
+             data-search-target="#admin_search_target">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <span class="icon-search-icon"></span>
+            </span>
+            <input class="input form-control" type="text" id="select_speaker_id" placeholder="Email" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="selectable-search" id="admin_search_target"></div>
+        </div>
+      </div>
+      <div class="admin-list">
+        <div class="row hidden-xs hidden-sm">
+          <div class="col-md-4">
+            <h3>Name</h3>
+          </div>
+          <div class="col-md-4">
+            <h3>Company</h3>
+          </div>
+          <div class="col-md-2">
+            <h3>Location</h3>
+          </div>
+        </div>
+        <div class="admin-list-group-wrap">
+          {% for admin in all_admins %}
+            <div class="row">
+              <div class="col-md-4 admin-list-group">
+                <div class="h3 h-flush visible-xs-block visible-sm-block">
+                  Name
+                </div>
+                {{ admin.title }}
+              </div>
+              <div class="col-md-4 admin-list-group">
+                <div class="h3 h-flush visible-xs-block visible-sm-block">
+                  Company
+                </div>
+                {{ company }}
+              </div>
+              <div class="col-md-2 admin-list-group">
+                <div class="h3 h-flush visible-xs-block visible-sm-block">
+                  Location
+                </div>
+                {{ admin.city }}, {{ admin.state }}
+              </div>
+
+              <div class="col-md-2 admin-list-controls">
+                <form class="clearfix" method="post" action="/myorg/admins/delete/">
+                  {% csrf_token %}
+                  <input type="hidden" name="username" value="{{ admin.user.username }}"/>
+                  <input type="hidden" name="title" value="{{ admin.title }}" />
+                  <button type="submit" name="submit" value="delete"
+                          class="btn btn-sm btn-icon pull-right"
+                          onclick="return confirm('Are you sure you want to remove this admin?')">
+                    Remove
+                    <span class="icon-apa-close"></span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+
+    {% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+    <div class="directory-page-grid">
+      {% if org_purchases %}
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">Transaction History</h2>
+          <div class="accordion-content">
+            <h4 class="h-flush"><strong>Recent Transactions</strong></h4>
+            <div class="list-of-links list-of-links-small">
+              <ul class="list-unstyled">
+                {% for purchase in org_purchases %}
+                <li><strong>{{ purchase.order.submitted_time|date:"o-m-d" }}</strong></li>
+                <li><a href="/store/order_confirmation/?order_id={{ purchase.order.id }}">Order #{{ purchase.order.id }}</a></li>
+                <li>{{ purchase.product_type_label }}</li>
+                {% if not forloop.last %}
+                  <hr />
+                {% endif %}
+              {% endfor %}
+              </ul>
+              <hr />
+            </div>
+
+            <div>
+              <p><a href="{% url 'myorg_orders' %}">View all</a></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">CM Provider Overview</h2>
+          <div class="accordion-content">
+
+            <div class="list-of-links list-of-links-small">
+              <h4><strong>Provider ID:</strong> {{ org.user.username }} </h4>
+              <h4><a href="{% url 'myorg_addresses' %}">Addresses</a></h4>
+              <h4><a href="{% url 'myorg_contacts' %}">Phone, Email, &amp; Website</a></h4>
+              <h4><strong>Organization Type:</strong> {{ org_type }}</h4>
+              <h4><strong>EIN Number:</strong> {{ ein_number }}</h4>
+              <h4><strong>Rating: </strong> <a href="/cm/provider/{{ org.id }}/details/">{{ rating_stats.rating_avg|floatformat }} out of 5 </a> ({{ rating_stats.rating_count|intcomma }} reviewed) </h4>
+              {% if most_recent_app %}
+                <h4><strong>Application Status:</strong> {{ app_label }} {% if most_recent_app.status == 'A' %} (through {{ app_expiration_date|date:"N j, Y" }}) {% endif %}</h4>
+                {% if most_recent_app.status == 'I' %}
+                  <h4><a href="/cm/provider/application/{{ most_recent_app.id }}/edit/">Edit your in-progress application</a></h4>
+                  {% if most_recent_active_app %}
+                    <h4><a href="/cm/provider/application/{{ most_recent_active_app.id }}/">View your most recent application</a></h4>
+                  {% endif %}
+                {% else %}
+                  <h4><a href="/cm/provider/application/{{ most_recent_app.id }}">View your application</a></h4>
+                {% endif %}
+              {% endif %}
+              <h4><strong>Registration Year:</strong> {{ most_recent_registration.0.year }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">CM Provider Resources</h2>
+          <div class="accordion-content">
+
+            <div class="list-of-links list-of-links-small">
+              <h4><a href="/media/document/9113612/">CM Provider Toolkit</a></h4>
+              <h4><a href="/media/document/9104127/">CM Graphic Toolkit</a></h4>
+              <h4><a href="/media/document/9101328/">AICP Ethics Toolkit</a></h4>
+              <h4><a href="/media/document/9198523/">CM Logging Evaluation Questions</a></h4>
+              <h4><a href="/eval-data-download/">Download Event Evaluation Data</a></h4>
+              <h4><a href="mailto:amoore@planning.org">Contact APA</a></h4>
+              {% if provider.has_apa_event %}
+              <h4><a href="https://components.planning.org">Chapter/Division Event Reporting and Management Portal</a></h4>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">CM Registrations</h2>
+          <div class="accordion-content">
+
+            <p>
+              If eligible, you may purchase or renew Annual Unlimited Registration here.
+            </p>
+            <p>
+              All annual payment plans begin January 1, and expire December 31, regardless of when you become an approved provider.
+            </p>
+
+            <p>
+              Click <a href="/cm/activities/payment/">here</a> for more information on payment plans.
+            </p>
+            {% if provider.available_registration_years %}
+            <p>
+              <a class="btn btn-primary" href="/cm/provider/registration/">Purchase Unlimited Registration
+              </a>
+
+            </p>
+            <p>
+              <strong>If you have a Per-Credit Registration:</strong>
+            </p>
+            <p>
+              Add new events in the “CM Provider Events” section (at right). </p>
+            <p>
+              You may upgrade to Annual Unlimited Registration by clicking the green box above. Note, however, that APA will neither refund previous per-credit purchases nor apply them to the price of the upgrade.
+            </p>
+            {% endif %}
+            <hr />
+
+            <h4 class="h-flush">Your registration plans</h4>
+
+            <div class="form-group">
+              <p>
+              {% for reg in registrations_initial %}
+                {% if reg.status == "A" %}
+                  {% if reg.is_unlimited %}
+                  <i>{{ reg.year }} unlimited</i><br>
+                  {% else %}
+                  <i>{{ reg.year }} per-credit</i><br>
+                  {% endif %}
+                {% elif reg.status == "P" %}
+                  <i>{{ reg.year }} <strong>pending payment: <a href="/store/cart/">Go to my cart</a> </strong></i><br>
+                {% endif %}
+              {% endfor %}
+              </p>
+
+              {% if registrations_remaining %}
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingOne">
+                    <h5 class="panel-title">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        View All
+                      </a>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" style="background: #fbfbfb;">
+                    <div class="panel-body">
+                    {% for reg in registrations_remaining %}
+                    {% if reg.status == "A" %}
+                      {% if reg.is_unlimited %}
+                      <i>{{ reg.year }} unlimited</i><br>
+                      {% else %}
+                      <i>{{ reg.year }} per-credit</i><br>
+                      {% endif %}
+                    {% elif reg.status == "P" %}
+                      <i>{{ reg.year }} <strong>pending payment: <a href="/store/cart/">Go to my cart</a> </strong></i><br>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">CM Provider Events</h2>
+          <div class="accordion-content">
+            {% if upcoming_events %}
+            <h4 class="h-flush"><strong>Upcoming Events</strong></h4>
+            <div class="list-of-links list-of-links-small">
+              <ul class="list-unstyled">
+                {% for event in upcoming_events %}
+                <li>
+                  {% if event.is_published %}
+                  <a href="{{ event|get_event_details_link }}">{{ event.title }}</a>
+                  {% else %}
+                  {{ event.title }}
+                  {% endif %}
+                </li>
+                <li>#{{ event.master_id }}</li>
+                <li>{{ event.begin_time|date:"l, F j, Y, P e" }}</li>
+                <li>{% include "cm/newtheme/includes/cm-credits-stacked.html" with event=event %}</li>
+                <li>
+                  {% if event.avg_rating_tuple and event.is_past %}
+                    {% if event.event_type == "EVENT_MULTI" %}
+                        <a class="see-event-reviews" id="see-event-reviews-{{event.master_id}}">See Activity Reviews</a>
+                      {% else %}
+                        <span>{% star_rating event.avg_rating_tuple.0|floatformat:2 event.avg_rating_tuple.1 %}</span>
+                        {% if event.avg_rating_tuple.1 %}
+                          <a class="see-event-reviews" id="see-event-reviews-{{event.master_id}}">See Reviews</a>
+                        {% endif%}
+                    {% endif %}
+                  {% endif %}
+                </li>
+                {% if not forloop.last %}
+                  <hr />
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            {% elif recent_events %}
+            <h4 class="h-flush"><strong>Recent Events</strong></h4>
+            <div class="list-of-links list-of-links-small">
+              <ul class="list-unstyled">
+                {% for event in recent_events %}
+                <li>
+                  {% if event.is_published %}
+                  <a href="{{ event|get_event_details_link }}">{{ event.title }}</a>
+                  {% else %}
+                  {{ event.title }}
+                  {% endif %}
+                </li>
+                <li>#{{ event.master_id }}</li>
+                <li>{{ event.begin_time|date:"l, F j, Y, g a" }}</li>
+                {% if not forloop.last %}
+                  <hr />
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            {% else %}
+            <h4 class="h-flush"><strong>No Upcoming or Recent Events</strong></h4>
+            {% endif %}
+            <hr />
+
+            <h4 class="h-flush"><a href="{% url 'myorg_events' %}">View All Events</a></h4>
+            <p>
+              Click on "View All Events" to see and edit or delete any past or future event.
+            </p>
+
+            <hr />
+            <h4 class="h-flush">Add New Events</h4>
+            <p>
+              Choose the type of event you want to enter. Click "?" for detailed information about any event type.
+            </p>
+
+            <p>
+              <div class="popover-btn-group">
+                <a class="btn btn-lg btn-primary full-width-button" href="/cm/provider/events/single/add/">Add Single Event - Live In Person</a>
+                <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New Single Event - Live In Person" data-content='A single, live in person event is held from a specific location, one-time on a specific date. Single events include workshops, lectures, symposiums, or webinars, and webcasts. The participant and instructor are participating at the same time and participants cannot choose among multiple activities. All participants at a single event attend the same activities and earn the same number of credits. If your event is designed for attendees to choose between a variety of activities and a portion of the event, you should consider the "multipart" event option.'>
+                  <span class="icon-help"></span>
+                </a>
+              </div>
+            </p>
+
+            <p>
+              <div class="popover-btn-group">
+                <a class="btn btn-lg btn-primary full-width-button" href="/cm/provider/events/online/add/">Add Single Event - Live Online</a>
+                <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New Single Event - Live Online" data-content="A single, live online event is held one-time on a specific date, and follows the same definition as a single in person event.">
+                  <span class="icon-help"></span>
+                </a>
+              </div>
+            </p>
+
+            <p>
+              <div class="popover-btn-group">
+                <a class="btn btn-lg btn-primary full-width-button" href="/cm/provider/events/multi/add/">Add Multipart Event</a>
+                <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New Multipart Event" data-content="A multi-part event is defined as a live event with multiple activities, such as a conference with several sessions or multiple registration options. Participants at a multi-part event choose between a variety of activities and a portion of the event and individual participants may earn different numbers of credits.">
+                <span class="icon-help"></span>
+                </a>
+              </div>
+            </p>
+
+            <p>
+              <div class="popover-btn-group">
+                <a class="btn btn-lg btn-primary full-width-button" href="/cm/provider/events/course/add/">Add On-Demand Course</a>
+                <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New On-Demand Course" data-content="Providers may enter CM credit for recorded educational products – such as webinars, podcasts, etc.  The recorded products for CM credit allow the flexibility of quality training anytime and anywhere. The provider must include a link to the materials (i.e. PowerPoint, PDF presentation, survey, etc.) for this CM eligible product. APA National does not post materials or recordings to its website for registered providers.">
+                  <span class="icon-help"></span>
+                </a>
+              </div>
+            </p>
+
+            <p>
+              <div class="popover-btn-group">
+                <a class="btn btn-lg btn-primary full-width-button" href="/cm/provider/events/info/add/">Add Information-Only Event</a>
+                <a type="button" class="btn" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" role="button" data-placement="bottom" data-title="New Information-Only Event" data-content="An information-only event is defined as an event posted on the CM Search webpage for informational purposes only (e.g. promotion).  This event type is not CM-eligible and will not be available to log for CM credit.">
+                  <span class="icon-help"></span>
+                </a>
+              </div>
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">Partner Providers</h2>
+          <div class="accordion-content">
+           <p>You are linked to the following partner organizations based on your EIN number.</p>
+            <ul class="list-unstyled">
+              {% for partner in partners %}
+              <li>{{ partner }}</li>
+              {% endfor %}
+            </ul>
+            {% if partner_count > 3 %}
+            <p>
+              <h4 class="h-flush"><a href="{% url 'myorg_partners' %}">View all</a></h4>
+            </p>
+            {% endif %}
+            <p>
+              To have a company linked to yours, please <a href="/customerservice/contact-us/">contact Customer Service</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+
+      {% comment "Disabling Featured Jobs for now" %}
+
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">Employer Overview</h2>
+          <div class="accordion-content">
+            <h4 class="h-flush">Active Job Postings</h4>
+            <div class="list-of-links list-of-links-small">
+              <ul class="list-unstyled">
+                {% if jobs %}
+                  {% for job in jobs %}
+                  <li><a href="/jobs/ad/{{ job.content.master_id }}/">{{ job.content.title }}</a></li>
+                  <li><strong>Expires: </strong>{{ job.content.make_inactive_time|date:"M j, Y g:i a" }}</li>
+                  <li><strong>Receipt: </strong><a href="/store/order_confirmation/?order_id={{ job.purchase.order.id }}"/>{{ job.purchase.order.id }}</a></li>
+                  <li><strong>Job ID: </strong>{{ job.content.master_id }}</li>
+                  {% if not forloop.last %}
+                  <hr />
+                  {% endif %}
+                  {% endfor %}
+                {% else %}
+                <h4 class="h-flush">No Active Jobs</h4>
+                {% endif %}
+              </ul>
+              <hr />
+            </div>
+
+            <div>
+              <p><a href="{% url 'myorg_jobs' %}">View All Job Postings</a></p>
+              <p><a href="{% url 'myorg_employer_bio' %}">Employer Bio</a></p>
+              <p><a href="/jobs/post/type/">Post a Job</a></p>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {% endcomment %}
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'newtheme/autocomplete/js/autocomplete.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/collapse.js' %}"></script>
+
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+
+
+  });
+</script>
+{% endblock %}

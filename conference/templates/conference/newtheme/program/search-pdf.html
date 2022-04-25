@@ -1,0 +1,341 @@
+ {% load tz %}
+{% load content_extras %}
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=yes">
+		<title>{% block title %}{{ title }}{% endblock %}</title>
+	</head>
+	<body class="pdf">
+
+		<div class="content">
+
+			<div class="section" id="conference-program">
+
+				<img class="header-image" src="{{'conference/image/NPC20Printheader.jpg'|system_file_path}}" title="NPC20"/>
+
+				<!-- SEARCH INFO -->
+				<div class="search-info">
+
+					<h1 class="pdf-title">{{title}}</h1>
+          {% if filter_form.date.value or filter_form.filter_events_national_type.value or filter_form.filter_events_national_track_21.value or filter_form.cm.value %}
+					<span class="filter-display">Filters:
+					<!-- DATE FILTER -->
+					{% if filter_form.date.value %}
+					{% for choice in filter_form.date.field.choices %}
+					{% if choice.0 == filter_form.date.value %}
+
+					<span class="tag">
+						{{choice.1}}
+					</span>
+            <span class="divider">|</span>
+					{% endif %}
+					{% endfor %}
+					{% endif %}
+
+           <!-- ACTIVITY TYPE FILTER -->
+					{% if filter_form.filter_events_national_type.value %}
+					{% for choice in filter_form.filter_events_national_type.field.choices %}
+					{% if choice.0 == filter_form.filter_events_national_type.value %}
+					<span class="tag">
+						Type: {{choice.1}}
+					</span>
+            <span class="divider">|</span>
+					{% endif %}
+					{% endfor %}
+					{% endif %}
+
+					<!-- TRACKS FILTER -->
+					{% if filter_form.filter_events_national_track_21.value %}
+					{% for choice in filter_form.filter_events_national_track_21.field.choices %}
+					{% if choice.0 == filter_form.filter_events_national_track_21.value %}
+					<span class="tag">
+						Track: {{choice.1}}
+					</span>
+            					<span class="divider">|</span>
+					{% endif %}
+					{% endfor %}
+					{% endif %}
+
+					<!-- CM Filter -->
+					{% if filter_form.cm.value %}
+					{% for choice in filter_form.cm.field.choices %}
+					{% if choice.0 == filter_form.cm.value %}
+
+					<span class="tag">
+						{{choice.1}}
+					</span>
+            <span class="divider">|</span>
+					{% endif %}
+					{% endfor %}
+					{% endif %}
+
+					<!-- ALL OTHER TAGS -->
+					{% for tag_list in tag_lists %}
+					<span class="divider">|</span>
+					<span class="tag">
+						{% for tag_code in tag_list %}
+						{{ tag_dict|getattr:tag_code }}
+						{% if not forloop.last %} + {% endif%}
+						{% endfor %}
+					</span>
+					{% endfor %}
+            {% endif %}
+
+					<!-- KEYWORD SEARCH FILTER -->
+					{% if filter_form.keyword.value or request.GET.keyword%}
+					<span class="divider">|</span>
+					<span class="keyword">
+					"{{filter_form.keyword.value|default:request.GET.keyword}}"
+					</span>
+					{% endif %}
+
+					</span>
+
+				</div>
+
+				<!-- TAG DESCRIPTIONS -->
+				{% if tag_descriptions %}
+				<div>
+					{% for tag_description in tag_descriptions %}
+					<p style="margin-top:0px;">
+						<b>{{tag_description.title}}</b><br/>
+						{{tag_description.description}}
+					</p>
+					{% endfor %}
+				</div>
+				{% endif %}
+
+				<!-- SEARCH RESULTS -->
+				{% for result in results.response.docs %}
+				{% with timezone=result.timezone|default:"US/Central" %}
+				{% with begin_time=result.begin_time|datetime_with_zone_from_json:timezone end_time=result.end_time|datetime_with_zone_from_json:timezone  %}
+
+
+					<div class="avoid-pagebreak-inside">
+					{% localtime off %}
+					{% ifchanged begin_time %}
+					{% ifchanged begin_time|date:"omd" %}
+					<div class="separator">{{begin_time|date:"l, N j"}}</div>
+					{% endifchanged %}
+					<div class="sub-separator">{{begin_time|date:"l, N j | P"}}</div>
+					{% endifchanged %}
+					{% endlocaltime %}
+
+					<div class="search-doc">
+
+
+						<div class="search-doc-right">
+
+							<!-- CODE -->
+							<div class="search-doc-id">
+								{% if result.code %}
+								<span>{{ result.code }}</span>
+								{% endif%}
+							</div>
+
+							<!-- CM -->
+							{% if result.cm_approved and not result.cm_approved == 0 %}
+							<div class="search-doc-cm">
+								<div>
+									{% if result.cm_approved and not result.cm_approved == 0 %}
+									<span class="cm">CM  | </span><span class="cmpoints">{{result.cm_approved|floatformat:"-2"}}</span>
+									{% endif %}
+								</div>
+								<div>
+									{% if result.cm_law_approved and not result.cm_law_approved == 0 %}
+									<span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{result.cm_law_approved|floatformat:"-2"}}</span>
+									{% endif %}
+								</div>
+								<div>
+									{% if result.cm_ethics_approved and not result.cm_ethics_approved == 0 %}
+									<span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{result.cm_ethics_approved|floatformat:"-2"}}</span>
+									{% endif %}
+								</div>
+							</div>
+							{% endif %}
+
+							<!-- MOBILE WORKSHOP ICONS -->
+							{% if result.tags_EVENTS_NATIONAL_TYPE|any_contains_any:".MOBILE_WORKSHOP.,.ORIENTATION_TOUR." %}
+							<div class="search-doc-mobileworkshop">
+								{% if result.tags_TRANSIT|any_contains_any:".WALK." %}
+								<span class="icon-directions-walk search-doc-icon" title="Mobile Workshop - Walk"></span>
+								{% endif %}
+								{% if result.tags_TRANSIT|any_contains_any:".BIKE." %}
+								<span class="icon-directions-bike search-doc-icon" title="Mobile Workshop - Bike"></span>
+								{% endif %}
+								{% if result.tags_TRANSIT|any_contains_any:".MOTORCOACH." %}
+								<span class="icon-directions-bus search-doc-icon" title="Mobile Workshop - Motorcoach"></span>
+								{% endif %}
+								{% if result.tags_TRANSIT|any_contains_any:".PUBLIC." %}
+								<span class="icon-directions-train search-doc-icon" title="Mobile Workshop - Public Transportation"></span>
+								{% endif %}
+								{% if result.tags_TRANSIT|any_contains_any:".BOAT." %}
+								<span class="icon-directions-ferry search-doc-icon" title="Mobile Workshop - Boat"></span>
+								{% endif %}
+							</div>
+							{% endif %}
+
+						</div>
+
+						<span class="search-doc-left">
+
+							<div class="search-doc-top">
+								<!-- Title -->
+								<div>
+									<h4 class="content-preview-item-headline">
+										<a href="https://www.planning.org/events/activity/{{ result.id|split_on_period:1 }}/">{{ result.title }}</a>
+										<span class="search-doc-subtitle">{{ result.subtitle }}</span>
+        							</h4>
+								</div>
+
+								<!-- Description -->
+							<div class="search-doc-description">
+								{{ result.description }}
+							</div>
+
+
+
+								<!-- Time-->
+								<span class="search-doc-time">
+									{% if begin_time%}
+									{% localtime off %}
+									{% ifequal begin_time|date:"omd" end_time|date:"omd" %}
+									{{ begin_time|date:"F j, P" }} to {{end_time|date:"P" }}
+									{% else %}
+									{{begin_time|date:"F j, P" }} to {{end_time|date:"F j" }}
+									{% endifequal %}
+									{% endlocaltime %}
+									{% endif%}
+								</span>
+
+								<!-- Room -->
+								{% if result.tags_ROOM %}
+								<span class="details-room">Room: {{ result.tags_ROOM.0|split_on_period:2 }}</span>
+								{% endif %}
+							</div>
+              <!-- Location -->
+								{% if result.location %}
+								<span class="details-room">Location: {{ result.location }}</span>
+								{% endif %}
+							</div>
+
+								<!-- PRODUCT AND PRICING -->
+							{% if result.has_product %}
+							<div>
+								<span class="icon-ticket search-doc-icon"></span><span>Ticket Required</span>
+							</div>
+              {% endif %}
+              {% if "Food Included" in result.tags %}
+              <div>
+              <span class="search-doc-icon"></span><span>Food Included</span>
+              </div>
+        {% endif %}
+							{% if result.has_product and result.prices  %}
+				        	<div class="search-doc-pricing">
+				          	{% for price in result.prices %}
+				          		<div class="key-value-pair">
+				            		<span class="key">{{ price|split_on_line:2 }}</span>
+				            		<span class="value">${{ price|split_on_line:0 }}</span>
+				          		</div>
+				          	{% endfor %}
+				        	</div>
+					     	{% endif %}
+
+							<!-- Speakers -->
+							<div class="search-doc-speakers">
+							{% for speaker in result.contact_roles_SPEAKER %}
+								<span>{{ speaker|split_on_line:1 }}</span>
+								{% if not forloop.last %}<span style="margin:0px 6px"> | </span>{% endif %}
+              {% endfor %}
+
+              {% if result.contact_roles_ORGANIZER_SPEAKER %}
+                {% if result.contact_roles_SPEAKER %}
+                <span style="margin:0px 6px"> | </span>
+                {% endif %}
+							  {% for org_speaker in result.contact_roles_ORGANIZER_SPEAKER %}
+								  <span>{{ org_speaker|split_on_line:1 }}</span>
+                  {% if not forloop.last %} <span style="margin:0px 6px"> | </span> {% endif %}
+							  {% endfor %}
+              {% endif %}
+
+              {% if result.contact_roles_MODERATOR %}
+                {% if result.contact_roles_SPEAKER or result.contact_roles_ORGANIZER_SPEAKER %}
+                  <span style="margin:0px 6px"> | </span>
+                {% endif %}
+							  {% for mod in result.contact_roles_MODERATOR %}
+								  <span>{{ mod|split_on_line:1 }}</span>
+                  {% if not forloop.last %} <span style="margin:0px 6px"> | </span> {% endif %}
+							  {% endfor %}
+              {% endif %}
+
+              {% if result.contact_roles_ORGANIZER_MODERATOR %}
+                {% if result.contact_roles_SPEAKER or result.contact_roles_ORGANIZER_SPEAKER or result.contact_roles_MODERATOR%}
+                  <span style="margin:0px 6px"> | </span>
+							  {% endif %}
+                {% for org_mod in result.contact_roles_ORGANIZER_MODERATOR %}
+								  <span>{{ org_mod|split_on_line:1 }}</span>
+                  {% if not forloop.last %} <span style="margin:0px 6px"> | </span> {% endif %}
+							  {% endfor %}
+              {% endif %}
+
+              {% if result.contact_roles_MOBILEWORKSHOPGUIDE %}
+                {% if result.contact_roles_SPEAKER or result.contact_roles_ORGANIZER_SPEAKER or result.contact_roles_MODERATOR or result.contact_roles_ORGANIZER_MODERATOR%}
+                  <span style="margin:0px 6px"> | </span>
+							  {% endif %}
+                {% for mw_guide in result.contact_roles_MOBILEWORKSHOPGUIDE %}
+								  <span>{{ mw_guide|split_on_line:1 }}</span>
+                  {% if not forloop.last %} <span style="margin:0px 6px"> | </span> {% endif %}
+							  {% endfor %}
+              {% endif %}
+
+              {% if result.contact_roles_LEADMOBILEWORKSHOPCOORDINATOR %}
+                {% if result.contact_roles_SPEAKER or result.contact_roles_ORGANIZER_SPEAKER or result.contact_roles_MODERATOR or result.contact_roles_ORGANIZER_MODERATOR or result.contact_roles_MOBILEWORKSHOPGUIDE %}
+                <span style="margin:0px 6px"> | </span>
+							  {% endif %}
+                {% for lws_coord in result.contact_roles_LEADMOBILEWORKSHOPCOORDINATOR %}
+								  <span>{{ lws_coord|split_on_line:1 }}</span>
+                  {% if not forloop.last %} <span style="margin:0px 6px"> | </span> {% endif %}
+							  {% endfor %}
+              {% endif %}
+
+              {% if result.contact_roles_MOBILEWORKSHOPCOORDINATOR %}
+                {% if result.contact_roles_SPEAKER or result.contact_roles_ORGANIZER_SPEAKER or result.contact_roles_MODERATOR or result.contact_roles_ORGANIZER_MODERATOR or result.contact_roles_MOBILEWORKSHOPGUIDE or result.contact_roles_LEADMOBILEWORKSHOPCOORDINATOR%}
+                <span style="margin:0px 6px"> | </span>
+                {% endif %}
+							  {% for ws_coord in result.contact_roles_MOBILEWORKSHOPCOORDINATOR %}
+								  <span>{{ ws_coord|split_on_line:1 }}</span>
+                  {% if not forloop.last %} <span style="margin:0px 6px"> | </span> {% endif %}
+							  {% endfor %}
+              {% endif %}
+
+              </div>
+
+						</div>
+
+					</div>
+
+					</div>
+
+				{% endwith %}
+				{% endwith %}
+
+				{% empty %}
+
+					{% block empty_results %}
+					<h3>There are no results matching your search</h3>
+					{% endblock %}
+
+				{% endfor %}
+
+			</div>
+
+		</div>
+
+	</body>
+</html>
+
+

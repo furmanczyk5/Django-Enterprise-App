@@ -1,0 +1,32 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+
+
+<div class="page-head">
+
+  <h1 class="page-title">Social Links</h1>
+  <h4 class="page-subtitle">Stay connected. Add links to your social media profiles.</h4>
+
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+        <form method="post">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            <div class="form-section form-section-limit-width form-section-enclosed-dark">
+                <h3 class="form-section-title">Your Social Media Pages</h3>
+                {% for field in form %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=field %}
+                {% endfor %}
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Continue</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

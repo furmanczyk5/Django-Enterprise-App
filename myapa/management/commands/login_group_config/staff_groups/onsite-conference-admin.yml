@@ -1,0 +1,50 @@
+---
+
+# Django model admin permissions for the onsite-conference-admin group.
+
+# This will be solely determined by the staff_teams field on a Contact
+# Do not directly assign any users here.
+staff_users:
+  -
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+
+  - auth_user
+  - conference_conferenceactivity
+  - conference_conferenceattendee
+  - conference_conferencecontact
+  - conference_conferenceparticipant
+  - conference_microsite
+  - conference_micrositeactivity
+  - conference_micrositeattendee
+  - conference_micrositecontributor
+  - conference_nationalconferenceactivity
+  - conference_nationalconferenceattendee
+  - conference_nationalconferencecontributor
+  - events_activity
+  - events_event
+  - events_eventinfo
+  - events_eventmulti
+  - events_eventsingle
+  - events_nationalconferenceactivity
+  - events_nationalconferenceparticipant
+  - events_nationalconferenceproposal
+  - events_speaker
+  - myapa_contactcontentadded
+  - myapa_contactrelationship
+  - myapa_contactrole
+  - myapa_contacttagtype
+  - myapa_individualcontact
+  - myapa_organization
+  - registrations_attendee
+  - registrations_nationalconferenceattendee
+  - store_order
+  - store_payment
+  - store_product
+  - store_productcart
+  - store_productoption
+  - store_productprice
+  - store_purchase

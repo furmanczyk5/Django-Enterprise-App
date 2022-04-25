@@ -1,0 +1,44 @@
+{% extends 'newtheme/templates/conference/layout-nosidebar.html' %}
+
+{% load ui_tags %}
+
+{% load static %}
+
+{% block content_main %}
+{% include 'newtheme/templates/conference/includes/page-head.html' %}
+  <div class="row">
+    <div class="col-md-9">
+      <div class="content-managed-html">
+        {% block content_details %}
+          {{ content.text|render_planning_shortcodes|safe }}
+        {% endblock %}
+      </div>
+    </div>
+    <div class="col-md-3">
+
+      {% block conference_sidebar %}
+      {% endblock %}
+
+      {# FLAGGED FOR REFACTORING: SMART ADSERVER #}
+      {# comment #}
+      {% block conference_sidebar_ads %}
+        {% if microsite and microsite.sidebar_ad %}
+          {{ microsite.sidebar_ad|safe }}
+        {% endif %}
+      {% endblock %}
+      {# endcomment #}
+
+      {% block sidebar_ad %}
+        {% if not request.detect_mobile_app.is_mobileapp %}
+          <div class="layout-banner-ad-small-3up layout-banner-ad-small-3up-vertical">
+            {% if microsite and microsite.internal_sidebar_ad %}
+              {{ microsite.internal_sidebar_ad|safe }}
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+    </div>
+  </div>
+
+{% endblock %}

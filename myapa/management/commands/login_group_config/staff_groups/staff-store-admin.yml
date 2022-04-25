@@ -1,0 +1,82 @@
+---
+
+# Django model admin permissions for the staff-store-admin group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "081605"  # Ralph Jassen
+  - "119585"  # Cynthia Cheski
+  - "126856"  # Rosemary Regalado
+  - "126862"  # Carlos Parra
+  - "183154"  # David Morley
+  - "228137"  # Alisa Moore
+  - "232910"  # Jennifer Rolla
+  - "259188"  # William French
+  - "268322"  # Karl Schmidt
+  - "284708"  # Milagros Marrero
+  - "288069"  # Kelly Wilson
+  - "294383"  # Eric Roach
+  - "309833"  # Kathleen Gems
+  - "324918"  # Kerry Kamsiuk
+  - "334372"  # Rylee Sullivan
+  - "335276"  # Araceli Jimenez
+  - "355413"  # Bekki Missaggia
+  - "360649"  # Rachel Hoffman
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+  - auth_user
+  - events_course
+  - myapa_contact
+  - myapa_contactcommittee
+  - myapa_contactcontentadded
+  - myapa_contactrelationship
+  - myapa_contactrole
+  - myapa_contacttagtype
+  - myapa_educationaldegree
+  - myapa_jobhistory
+  - myapa_organization
+  - myapa_organizationprofile
+  - myapa_provider
+  - myapa_school
+  - registrations_attendee
+  - registrations_nationalconferenceattendee
+  - store_bookcontent
+  - store_cart
+  - store_cartitem
+  - store_contentproduct
+  - store_donation
+  - store_order
+  - store_payment
+  - store_product
+  - store_productawardnomination
+  - store_productbook
+  - store_productcandidateenrollment
+  - store_productcart
+  - store_productchapter
+  - store_productcmpercredit
+  - store_productcmregistration
+  - store_productdigitalpublication
+  - store_productdivision
+  - store_productdonation
+  - store_productdues
+  - store_productebook
+  - store_productevent
+  - store_productexamapplication
+  - store_productexamregistration
+  - store_productjobad
+  - store_productlearncourse
+  - store_productoption
+  - store_productprice
+  - store_productpublished
+  - store_productresearchinquiry
+  - store_productshipping
+  - store_productstreaming
+  - store_productsubscription
+  - store_producttax
+  - store_purchase
+  - store_subscription
+

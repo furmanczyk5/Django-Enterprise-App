@@ -1,0 +1,29 @@
+<div class="menu">
+{% if is_search %}
+	<div class="menu-header">
+		<a class="clear-search right">clear</a>
+		<div>{{results|length}} of {{results_total}} results showing</div>
+	</div>
+{%endif%}
+{% if results %}
+<div class="records">
+{% for record in results %}
+
+	<a href="/event/{{kwargs.event_master_id}}/register/{{record.user.username}}/"><!-- or put user id in a query string if you like -->
+
+	    <div class="menu-item selectable" data-values="contact:{{record.id}}">
+	        <div><span>{{record.title}}</span></div>
+	        {% if record.company %}<div><span class="text-green">{{record.company}}</span></div>{% endif %}
+	        <div><span class="text-grey">{{record.city}}{% if record.city and record.state %},{% endif %}  {{record.state}}</span></div>
+	    </div>
+	</a>
+{% endfor %}
+</div>
+{% else %}
+    <div class="menu-item not-selectable">no results</div>
+{% endif %}
+	<div class="menu-footer">
+		<a href="/myapa/contact/new/" target="_blank">Add New Contact</a>
+		{% if not is_search and results_total > results|length %}<a class="view-more right">View More Results</a>{% endif %}
+	</div>
+</div>

@@ -1,0 +1,27 @@
+{% extends "newtheme/templates/layout-sidebar.html" %}
+
+{% load template_app_extras %}
+
+{% block content_sidebar %}
+{% sidenav for_url="/consultants/" %}
+{% endblock %}
+
+
+{% block content_main %}
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Your Consultant Profile Is Posted</h1>
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+  <p>Congratulations – you have successfully submitted your Consultant Profile! Thank you for using this service.</p>
+  	<strong>
+  		APA will send you an immediate notification of any RFP/RFQ submissions we receive.
+  	</strong><br>
+    <p>To see your Consultant Profile on the live site go to the Consultants List page and click on your organization's link:</p>
+  	<p>
+  		<a class="btn btn-primary" href="/consultants/list/">Go to Consultants List Page</a>
+  	</p>
+  </div>
+</div> 
+{% endblock %}

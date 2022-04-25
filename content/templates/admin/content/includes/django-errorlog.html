@@ -1,0 +1,12 @@
+{% for o in context %}
+<table>
+    <td>[Django] Date: %(asctime)s Level: %(levelname)s Username: %(user)s Line Number: %(lineno)d Path: %(pathname)s Message: %(message)s'
+        <tr>Date</tr>
+        <tr>Level</tr>
+        <tr>User</tr>
+        <tr>Message</tr>
+    </td>
+    {% for o in context %}
+
+
+    {% endfor %}

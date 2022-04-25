@@ -1,0 +1,60 @@
+{% if imageroles %}
+<div class="form-section form-section-enclosed-light">
+  <h3>Approved Images</h3>
+  <p>
+    These images have been approved and are currently available in the APA Image Library. If you would like us to remove an image that's been approved, please email <a href="mailto:imagelibrary@planning.org">imagelibrary@planning.org</a>.
+  </p>
+  <div class="admin-list">
+
+  	<div class="row hidden-xs hidden-sm">
+          <div class="col-md-2">
+           	<h3>Thumbnail</h3>
+          </div>
+          <div class="col-md-5">
+          	<h3>Title</h3>
+          </div>
+          <div class="col-md-3">
+            	<h3>Submitted On</h3>
+          </div>
+          <div class="col-md-2">
+          </div>
+    	</div>
+
+    	<div class="admin-list-group-wrap">
+  	{% for imagerole in imageroles %}
+  	{% with image=imagerole.content.image %}
+
+      	<div class="col-md-2 admin-list-group">
+            	<div class="h3 h-flush visible-xs-block visible-sm-block">
+              	Thumbnail
+            	</div>
+  			<span>{{ image.img_thumbnail_html|safe }}</span>
+          </div>
+
+          <div class="col-md-5 admin-list-group">
+            	<div class="h3 h-flush visible-xs-block visible-sm-block">
+              	Title
+            	</div>
+            	<span>{{image.title}}</span><br/>
+        	</div>
+
+        	<div class="col-md-3 admin-list-group">
+        		<div class="h3 h-flush visible-xs-block visible-sm-block">
+              	Submitted On
+            	</div>
+            	<span>{{image.submission_time|date:"F j, Y"}}</span><br/>
+        	</div>
+          
+          <div class="col-md-2 admin-list-controls">
+  			<a class="btn btn-sm btn-primary" href="{% url 'imagebank:image-details' master_id=image.master_id %}" target="_blank">View</a>
+          </div>
+
+          <div class="clearfix"></div>
+
+      {% endwith %}
+    	{% endfor %}
+
+  	</div>
+  </div>
+</div>
+{% endif %}

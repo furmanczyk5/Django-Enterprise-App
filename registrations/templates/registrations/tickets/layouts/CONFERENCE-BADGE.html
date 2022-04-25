@@ -1,0 +1,20 @@
+{% load content_extras %}
+{% load badge_tags %}
+
+<div class="conference-badge" {% if badge_margin_top %}style="margin-top:{{badge_margin_top}}in"{% endif %}>
+	<div class="badge-name">{{ticket.badge_name}}</div>
+	<div class="full-name">{{ticket|get_full_name}}</div>
+	<div class="company">{{ticket.badge_company}}</div>
+	<div class="location">{{ticket.badge_location}}</div>
+	{% if badge_include_twitter and ticket.purchase|getattr:badge_include_twitter_attribute %}
+	<div class="twitter">{{ ticket.purchase|getattr:badge_include_twitter_attribute }}</div>
+	{% endif %}
+	<br/><br/>
+	<div class="bottom">
+		{% get_display_member_type ticket as member_type %}
+		{% if member_type %}
+			<div class="member-type">{{member_type}}</div>
+		{% endif %}
+		<div class="id-and-reg-type">{{ticket.username}} | {{ticket.purchase.product_price.imis_reg_class}}</div>
+	</div>
+</div>

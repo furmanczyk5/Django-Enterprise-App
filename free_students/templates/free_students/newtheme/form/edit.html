@@ -1,0 +1,216 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load content_extras %}
+
+{% load static %}
+
+{% block additional_head_css %}
+{# date picker #}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'ui/modal/css/modal.css' %}?v=0" />
+{% endblock %}
+
+
+{% block content_main %}
+
+<div class="page-head">
+  <a class="btn btn-sm btn-default back-button" href="{{home_url}}">Back</a>
+  <h1 class="page-title">Free Student Enrollment Form</h1>
+  <h2 class="page-title">School : {{ school.company }}</h2>
+  
+  <br/>
+
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+    <p>Enter information from the student’s completed application. All fields are required unless labeled “Optional.” At the end, choose either “Upload Enrollment to APA” or “Save Information and Return Later.” Note: In order to save, you must enter at least the student’s first and last names and degree type. Choosing either button will return you to the enrollment portal. </p>
+    <p>Note: Clicking “Back” from this page will return you to the enrollment portal without saving the information you have entered.</p>
+  </div>
+</div>
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <form class="planning-form validate-form" method="post" id="submission_form">
+      {% csrf_token %}
+
+      {% include "ui/newtheme/forms/includes/display-errors.html" with form=form %}
+
+      {% block form_fields %}
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">General Information</h3>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+        <br/>
+        <div class="form-group">
+            <div class="row">
+              <div class="col-sm-5">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.first_name %}
+              </div>
+               <div class="col-sm-2">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.middle_name %}
+              </div>
+              <div class="col-sm-5">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.last_name %}
+              </div>
+            </div>
+            <br>
+             <div class="row">
+              <div class="col-sm-12">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.expected_graduation_date %}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-12">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.degree_type %}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-12">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.student_id %}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-12">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.birth_date %}
+              </div>
+            </div>
+            <br>
+        </div>
+
+      </div>
+     
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Primary Address</h3>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+        <br/>
+        <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address1 %}
+              </div>
+               <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address2 %}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %}
+              </div>
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %}
+              </div>
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.zip_code %}
+              </div>
+            </div>
+            <br>
+        </div>
+
+      </div>
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Secondary Address (optional)</h3>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+        <br/>
+        <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_address1 %}
+              </div>
+               <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_address2 %}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_city %}
+              </div>
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_state %}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_country %}
+              </div>
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_zip_code %}
+              </div>
+            </div>
+            <br>
+        </div>
+      </div>
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Contact Information</h3>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+        <br/>
+        <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.phone %}
+              </div>
+               <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_phone %}
+              </div>
+              <div class="col-sm-6">
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_email %}
+              </div>
+            </div>
+
+           </div>
+       </div>
+      {% endblock %}
+      <br >
+      <div class="layout-tracery">
+        <div class="layout-column">
+        <p>Clicking “Upload Enrollment to APA” will send the student’s information to APA and create a membership record with an APA ID number. You will not be able to edit or delete this student record. </p>
+        </div>
+      </div>
+      <div class="clearfix btn-toolbar btn-mobile">
+      <button type="submit" name="submitButton" value="submit" class="btn btn-primary">Upload Enrollment to APA</button>
+      <button type="submit" name="submitButton" value="save" class="btn btn-default">Save Information and Return Later</button>
+      <a class="btn btn-default pull-right button-float" href="{{home_url}}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'ui/modal/js/modal.js' %}?v=0"></script>
+<script src="{% static 'submissions/js/event_edit.js' %}?v=0"></script>
+<script src="{% static 'content/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'newtheme/ui/forms/js/formset.js' %}"></script>
+<script src="{% static 'newtheme/autocomplete/js/autocomplete.js' %}"></script>
+<script src="{% static 'rome/rome.min.js' %}"></script>
+<script src="{% static 'rome/rome_setup.js' %}"></script>
+<script src="{% static 'content/js/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'content/js/tinymce/tinymce_setup.js' %}"></script>
+
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script>
+  $(function () {
+    $('.empty_form').find('input[type="radio"],input[type="checkbox"]').iCheck('destroy');
+    $('[data-toggle="popover"]').popover()
+  });
+</script>
+
+{% endblock %}

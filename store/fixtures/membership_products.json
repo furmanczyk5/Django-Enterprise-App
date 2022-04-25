@@ -1,0 +1,99 @@
+[
+  {
+    "model": "store.productcart",
+    "pk": 139,
+    "fields": {
+      "publish_status": "PUBLISHED",
+      "code": "MEMBERSHIP_AICP",
+      "title": "AICP Membership",
+      "status": "A",
+      "created_time": "2015-11-18T16:21:08.837Z",
+      "updated_time": "2017-12-01T15:16:32.047Z",
+      "content": 260863,
+      "product_type": "DUES",
+      "imis_code": "AICP",
+      "max_quantity": null,
+      "max_quantity_per_person": "0.00",
+      "max_quantity_standby": null,
+      "individuals_can_purchase": true,
+      "gl_account": "410100-IA6200",
+      "future_groups": [],
+      "created_by": 1,
+      "updated_by": 1
+    }
+  },
+  {
+    "model": "store.productcart",
+    "pk": 7029,
+    "fields": {
+      "publish_status": "PUBLISHED",
+      "code": "MEMBERSHIP_AICP_PRORATE",
+      "title": "",
+      "status": "A",
+      "created_time": "2017-02-11T01:10:32.159Z",
+      "updated_time": "2018-12-28T20:02:00.102Z",
+      "content": 490586,
+      "product_type": "DUES",
+      "imis_code": "AICP_PRORATE",
+      "max_quantity": null,
+      "max_quantity_per_person": null,
+      "max_quantity_standby": null,
+      "individuals_can_purchase": true,
+      "gl_account": "410101-IA6200",
+      "future_groups": [],
+      "created_by": 1,
+      "updated_by": 1
+    }
+  },
+  {
+    "model": "store.productcart",
+    "pk": 134,
+    "fields": {
+      "publish_status": "PUBLISHED",
+      "code": "MEMBERSHIP_MEM",
+      "title": "APA Professional Membership",
+      "status": "A",
+      "created_time": "2015-11-18T15:51:28.995Z",
+      "updated_time": "2019-10-03T14:27:26.014Z",
+      "content": 260854,
+      "product_type": "DUES",
+      "imis_code": "APA",
+      "max_quantity": "0.00",
+      "max_quantity_per_person": "0.00",
+      "max_quantity_standby": "0.00",
+      "individuals_can_purchase": true,
+      "gl_account": "410100-IM4010",
+      "future_groups": [
+        3
+      ],
+      "created_by": 1,
+      "updated_by": 1
+    }
+  },
+  {
+    "model": "store.productcart",
+    "pk": 137,
+    "fields": {
+      "publish_status": "PUBLISHED",
+      "code": "MEMBERSHIP_STU",
+      "title": "APA Student Membership",
+      "status": "A",
+      "created_time": "2015-11-18T16:06:59.594Z",
+      "updated_time": "2017-12-01T15:16:30.157Z",
+      "content": 260878,
+      "product_type": "DUES",
+      "imis_code": "APA",
+      "max_quantity": null,
+      "max_quantity_per_person": "0.00",
+      "max_quantity_standby": null,
+      "individuals_can_purchase": true,
+      "gl_account": "410100-IM4010",
+      "future_groups": [
+        3,
+        71
+      ],
+      "created_by": 1,
+      "updated_by": 1
+    }
+  }
+]

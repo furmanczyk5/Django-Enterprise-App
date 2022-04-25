@@ -1,0 +1,11 @@
+<form method="post" name="provider_logo" action="/cm/provider/{{provider.user.username}}/logo/" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% include "ui/newtheme/forms/includes/display-errors.html" with form=form %}
+  <div class="form-group">
+    {{form.image_file}}
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit" name="submitButton" value="provider_logo">Submit</button>
+    <a class="btn btn-default" id="provider_logo_cancel">Cancel</a>
+  </div>
+</form>

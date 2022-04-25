@@ -1,0 +1,30 @@
+{% extends extends_template|default:'newtheme/templates/layout-sidebar.html' %}
+
+{% load staticfiles %}
+{% load compress %}
+{% load content_extras %}
+{% load knowledgebase_tags %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+	<div class="page-head">
+	  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+		<h1 class="page-title">{{content.title|safe|linebreaks}}</h1>
+	</div>
+<div class="layout-tracery">
+	<div class="layout-column">{{content.text|safe}}</div></div>
+				<div class="layout-tracery"><div class="layout-column">
+		{% include "knowledgebase/newtheme/submission/tables/story-table.html" with submissions=submissions %}
+
+		{% include "knowledgebase/newtheme/submission/tables/resource-table.html" with submissions=submissions %}
+				</div></div>
+
+</div>
+</div>
+{% endblock %}
+

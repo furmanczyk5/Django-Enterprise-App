@@ -1,0 +1,82 @@
+{% load content_extras %}
+<!-- <h6>top of da old log tabs</h6> -->
+<div class="layout-tracery">
+<div class="layout-column">
+<div class="form-section form-section-enclosed-dark">
+  <div class="tab-wrap">
+    {% for possible_log in all_logs %}
+    <a class="tab h5{% if possible_log == log %} selected {% endif %}" href="/cm/log/{{possible_log.period.code}}/">
+    {% if is_candidate %}
+      AICP Candidate Pilot Program CM Tracker
+    {% else %}
+      {{ possible_log.period.title }}
+    {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+  <h2 class="h-flush">
+    {% if is_candidate %}
+    {% else %}
+    {{ log.period.title }} Reporting Period
+{% endif %}
+    {% if log.is_current and not is_candidate %}
+    &nbsp;(current)
+    {% endif %}
+  </h2>
+  <p class="h4">
+    {% if is_candidate %}
+    {% else %}
+    {{log.period.begin_time|date:"F j, Y"}} - {{log.period.end_time|date:"F j, Y"}}
+    {% endif %}
+  </p>
+  <div class="row featured-family">
+    <div class="col-sm-4">
+      <div class="dashboard-overview-row">
+        <b>CM Status</b>: {{ log.get_status_display }}
+      </div>
+      <div class="dashboard-overview-row">
+        <b>{{ log.credits_required|floatformat:"2" }}</b> Credits required
+      </div>
+      <div class="dashboard-overview-row">
+        <b>{{ log_overview.general|floatformat:"2" }}</b> Credits earned
+      </div>
+      <hr>
+      {% if log_overview.carry_over > 0 %}
+      {% if not is_candidate %}
+      <div class="dashboard-overview-row">
+        <span class="h4 blue"><b>{{ log_overview.carry_over|floatformat:"2" }}</b> for carry over</span>
+      </div>
+      {% else %}
+      {% endif %}
+      {% elif log.is_current %}
+        <div class="dashboard-overview-row">
+          <span class="h4 blue"><b>{{ log.credits_required|subtract:log_overview.general|floatformat:"2" }}</b> Remaining credits needed</span>
+        </div>
+        <div class="dashboard-overview-row">
+          <span class="h4 blue"><b>{{ log.law_credits_required|subtract:log_overview.law|floatformat:"2" }}</b> Law credits needed</span>
+        </div>
+        <div class="dashboard-overview-row">
+          <span class="h4 blue"><b>{{ log.ethics_credits_required|subtract:log_overview.ethics|floatformat:"2" }}</b> Ethics credits needed</span>
+        </div>
+      {% endif %}
+    </div>
+    <div class="col-sm-6 col-sm-offset-2">
+      <div class="dashboard-overview-row">
+        <b class="dashboard-overview-label">{{ log_overview.law |floatformat:"2" }} Law credits</b> earned of {{ log.law_credits_required }} required
+      </div>
+      <div class="dashboard-overview-row">
+        <b class="dashboard-overview-label">{{ log_overview.ethics |floatformat:"2" }} Ethics credits</b> earned of {{ log.ethics_credits_required }} required
+      </div>
+      {% if not is_candidate %}
+      <div class="dashboard-overview-row">
+        <b class="dashboard-overview-label">{{ log_overview.self_reported |floatformat:"2" }} Self-reported</b> applied of 8.00 available
+      </div>
+      <div class="dashboard-overview-row">
+        <b class="dashboard-overview-label">{{ log_overview.is_author|floatformat:"2" }} Authored</b> applied of 16.00 available
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,96 @@
+@import "../../newtheme/css/style.less"; //Replaces bootstrap's variables file.
+
+@color-btn-primary-background: @color-bahama-blue;
+@color-btn-primary-background-hover: lighten(@color-bahama-blue, 10);
+@color-btn-primary-background-active: darken(@color-bahama-blue, 10);
+
+// footer
+.footer-social-container {
+    background:rgba(153, 204, 204, 1);
+
+    .social-media-icons {
+        background:rgba(153, 204, 204, 1);
+    }
+}
+
+
+.nav-container-conference {
+  margin-top: 0;
+  background-color: rgba(153, 204, 204, 1);
+  .navbar-nav {
+    background-color: transparent;
+    // Applying nav size to prevent css bug
+    // if the home button isn't added to the
+    // menu yet
+
+    // six nav items (no home link)
+    &.nav-size-6 {
+      li {
+        width: 16.666%; // 100 / 6 items
+      }
+    }
+    // seven nav items (with home link)
+    &.nav-size-7 {
+      li {
+        width: 14.2857%; // 100 / 7 items
+      }
+    }
+  }
+}
+
+// buttons and links
+.btn-primary {
+//    Navy blue -- old theme?
+//    background:rgba(0, 95, 146, 1);
+// current green in line with newtheme:
+    background:rgba(129, 188, 0, 1);
+}
+
+a {
+    &, .content-preview-item .content-preview-item-headline & {
+        color:rgba(0, 95, 146, 1);
+    } 
+    &:hover, &:focus {
+        &, .content-preview-item .content-preview-item-headline & {
+            color:rgba(0, 95, 146, 0.4); //255=140
+        }
+    }
+}
+
+.btn-primary {
+  background-color: @color-btn-primary-background;
+  color: #fff;
+  border-color: #005595;
+
+  &:focus,
+  &:hover {
+    background-color: @color-btn-primary-background-hover;
+  }
+
+  &:active {
+    background-color: @color-btn-primary-background-active;
+  }
+}
+
+.btn-default {
+    color: #005595;
+    border-color: #005595;
+    background-color: transparent;
+}
+
+.mainrow {
+
+    margin-left:0px;
+    margin-right:0px;
+    
+    @media (min-width: @screen-md-min) {
+        margin-left:5px;
+        margin-right:5px;
+    }
+}
+
+.navbar-nav-link-wrap a {
+    color:white;
+}
+
+

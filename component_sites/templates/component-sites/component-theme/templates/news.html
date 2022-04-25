@@ -1,0 +1,59 @@
+{% extends 'component-sites/component-theme/templates/base.html' %}
+
+{% load wagtailimages_tags %}
+{% load component_sites_tags %}
+{% load wagtailcore_tags %}
+
+{% block content_wrap %}
+<div class="content-container-background">
+<div class="container content-wrap content-main-wrap">
+  <div class="mainrow">
+
+    {% block content_sidebar_wrap %}
+    <div class="column-sidebar content-sidebar">
+    <!-- Page Sidebar -->
+    {% block content_sidebar %}
+    {% sidenav page %}
+    {% endblock %}
+    </div>
+    {% endblock %}
+
+    <div class="column-maincontent content-main content-borders">
+      {% include "newtheme/templates/includes/django-message.html" %}
+      
+      <div class="page-head">
+        {% breadcrumb page %}
+        <h1 class="page-title">{{page.title}}</h1>
+      </div>
+
+      <div class="content-managed-html">
+
+        <div class="layout-tracery">
+          <div class="layout-column">
+
+            <div class="row">
+              <div class="col-lg-9">
+                  {% include_block page.body %}
+              </div>
+              {% comment %}
+                  {# THIS IS TURNED OFF UNTIL FUTURE #}
+              <div class="col-lg-3">
+                <div class="banner-ads-container">
+                  {% include 'newtheme/sandbox/banner-ad/layout-banner-ad-small-3up-vertical.html' %}
+                </div>
+              </div>
+              {% endcomment %}
+            </div>
+            
+          </div>
+        </div>
+
+      </div>
+
+      {% include "newtheme/sandbox/banner-ad/banner-ad-footer.html" %}
+    </div>
+
+  </div>
+</div>
+</div>
+{% endblock %}

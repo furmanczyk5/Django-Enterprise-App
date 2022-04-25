@@ -1,0 +1,171 @@
+{% load staticfiles %}
+{% load compress %}
+
+{% load content_extras %}
+{% load template_app_extras %}
+{% load wagtailuserbar %}
+
+{% get_global_nav root_menu as root_menu %}{# for nav bar and footer #}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="{%  static 'content/image/favicon.ico' %}"/>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="format-detection" content="telephone=no">
+
+    {# change to custom modernizr build when we know which tests we need #}
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+    <script type="text/javascript" src="https://tracking.magnetmail.net/MagnetLeads.js"></script>
+    <script type="text/javascript">
+      com.realmagnet.MagnetLeads.init('D1LYSNOsDUOZCfZw0oOHfw'); com.realmagnet.MagnetLeads.visitPage();
+    </script>
+
+    <script src='//www5.smartadserver.com/config.js?nwid=1541' type="text/javascript"></script>
+    <script type="text/javascript">
+      sas.setup({ domain: '//www5.smartadserver.com', async: true, renderMode: 0});
+      //  renderMode define when ads must be rendered :
+      //   - DEFAULT  (0) : as soon as ad is ready
+      //   - READY   (1) : render ads when document is ready
+      //  - ON_DEMAND  (2) : user must call sas.callAds()
+    </script>
+
+    {% block additional_head_js %}{% endblock %}
+
+    {% compress css %}
+    <link type="text/less" rel="stylesheet" href="{% static 'newtheme/css/style.less' %}" />
+    <link type="text/less" rel="stylesheet" href="{% static 'component-sites/css/style.less' %}" />
+    {% endcompress %}
+
+    <link type="text/css" rel="stylesheet" href="{% static 'content/css/icomoon/style.css' %}?v=1" />
+    <link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet">
+
+    {% block additional_head_css %}{% endblock %}
+
+    <title> 
+      {% block title %}
+        {% if title %}{{ title }}{% else %}American Planning Association{% endif %}
+      {% endblock title %}
+    </title>
+
+  </head>
+
+  <body>
+
+    <!-- Google Tag Manager -->
+    <noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WPCTQG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WPCTQG');</script>
+    <!-- End Google Tag Manager -->
+
+    {% wagtailuserbar %}
+    
+    {% block body_start %}{% endblock %}
+
+    {% include "content/newtheme/includes/admin-toolbar.html" %}
+
+    {% block messages %}
+    {% comment %}
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert-wrap">
+        <div class="alert {% if message.tags %}{{ message.tags }}{% endif %} alert-flat alert-dismissible alert-custom-close" role="alert">
+          <p class="alert-text">
+            {{ message|safe }}
+          </p>
+          <div class="dismiss-button-wrap">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">Dismiss&nbsp;<span aria-hidden="true" class="icon-close"></span></button>
+          </div>
+        </div>
+      </div>
+      {% endfor%}
+    {% endif%}
+    {% endcomment %}
+    {% endblock %}
+
+
+    {% block leader_ad %}
+      {% include "newtheme/sandbox/banner-ad/banner-ad-leaderboard.html" with outside_content='true' %}
+    {% endblock %}
+
+
+    {% block badge_login %}
+    {% if request.user.is_authenticated %}
+    <div class="badge-logged-in">
+      <p class="pull-right">
+        <span class="badge-logged-in-label">Hello {{ request.contact.first_name }}</span>
+        <a href="/myapa/"><span class="icon-user-icon" aria-hidden="true"></span></a>
+      </p>
+    </div>
+    {% endif %}
+    {% endblock %}
+
+
+    {% block header %}
+      {% include "newtheme/templates/includes/header.html" %}
+    {% endblock header %}
+
+
+    {% block nav %}
+      {% include "newtheme/templates/includes/nav.html" %}
+    {% endblock %}
+
+
+    {% block content_wrap %}
+    {% block content_main_access %}
+      {% if access_denied %}
+      <!-- NOTE... case only applies if user is logged in, so we will show login not allowed message -->
+      <div class="page-head">
+        {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+      </div>
+
+      <h1 class="page-title">{{content.title}}</h1>
+
+      <div class="layout-tracery">
+        <div class="layout-column">
+          {{ access_denied_message|safe  }}
+        </div>
+      </div>
+      {% else %}
+        {% block content_main %} {% endblock %}
+      {% endif %}
+    {% endblock %}
+    {% endblock content_wrap %}
+
+
+    {% block footer %}
+      {% include "newtheme/templates/includes/footer.html" %}
+    {% endblock %}
+
+
+    {# Vendor JS #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static 'newtheme/vendor/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'newtheme/vendor/bootstrap/js/dropdown.js' %}"></script>
+    <script src="{% static 'newtheme/vendor/bootstrap/js/tab.js' %}"></script>
+    <script src="{% static 'newtheme/vendor/bootstrap/js/alert.js' %}"></script>
+    <script src="{% static 'newtheme/vendor/slick-carousel/slick/slick.min.js' %}"></script>
+    <script src="{% static 'newtheme/vendor/clamp-js/clamp.min.js' %}"></script>
+
+    <script src="{% static 'newtheme/vendor/icheck/icheck.min.js' %}"></script>
+    <script src="{% static 'newtheme/js/base.js' %}"></script>
+    <script src="{% static 'newtheme/js/accordions.js' %}"></script>
+    <script src="{% static 'newtheme/js/ads-carousel.js' %}"></script>
+    <script src="{% static 'newtheme/js/books-carousel.js' %}"></script>
+    <script src="{% static 'newtheme/js/clamp-content.js' %}"></script>
+    <script src="{% static 'newtheme/js/custom-checkboxes-radios.js' %}"></script>
+    <script src="{% static 'newtheme/js/nav.js' %}"></script>
+    <script src="{% static 'newtheme/js/read-more-expandable.js' %}"></script>
+    <script src="{% static 'newtheme/js/validation.js' %}"></script>
+    <script src="{% static 'newtheme/js/social-sharing.js' %}"></script>
+    <script src="{% static 'newtheme/js/myapa-bookmark.js' %}"></script>
+
+    {% block additional_body_js %}{% endblock %}
+
+  </body>
+</html>

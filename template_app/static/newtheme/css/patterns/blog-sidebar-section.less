@@ -1,0 +1,36 @@
+// A special sidebar used only on the blog (for now)
+
+.blog-sidebar-section {
+  & {
+    .strip-edge-margins;
+  }
+
+  //Note: has col-xs-12 and col-lg-4
+  @media screen and (min-width: @screen-lg-min) {
+    & {
+      padding-left: 60px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      position: relative;
+    }
+
+    & + & {
+      margin-top: 112px; //spacing between sections
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 30px;
+      height: 100%;
+      width: 0;
+      border-right: @color-content-borders solid 1px;
+    }
+  }
+}
+@media screen and (max-width: @screen-md-max) {
+ .layout-column [class*="col-"] > .blog-sidebar-section {
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,29 @@
+{% if directory %}
+    <div class="content-preview-list">
+    <ul>
+    {% for result in results %}
+    	<li class="content-preview-item">
+           
+
+            <!--{% comment %} TO DO: THIS IS REALLY TACKY AND SHOULD BE REFACTORED... shouldn't have to loop through all committees for a contact just to get the position title of the one for this directory {% endcomment %}-->
+            {% if result.committees %}
+                {% for committee in result.committees.all %}
+                    {% if committee.code in directory_committee_codes %}<h3>{{committee.position_title}}</h3>{% endif %}
+                {% endfor %}
+            {% endif %}
+
+            <h4>{{result.full_title}}</h4>
+            {% if result.company %}<b>Organization: </b>{{result.company}}<br>{% endif %}
+            {% if result.phone %}<b>Phone: </b>{{result.phone}}<br>{% endif %}
+            {% if result.email %}<a href="mailto::{{result.email}}">Click here to email</a><br>{% endif %}
+            {% if result.city %}{{result.city}}, {% endif %}
+            {% if result.state %}{{result.state}} {% endif %}
+            {% if result.zip_code %}{{result.zip_code}}<br>{% endif %}
+            {% if result.country %}{{result.country}}{% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+    </div>
+{% else %}
+    <h4>ERROR: directory not found.</h4>
+{% endif %}

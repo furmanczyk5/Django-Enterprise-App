@@ -1,0 +1,35 @@
+{% load content_extras %}
+<div class="form-group{%if field.errors %} has-error {% endif %}">
+  {% if field.label %}
+  <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+  {% endif %}
+  {% if field.errors %}
+  <div class="form-error">
+    {% for error in field.errors %}
+    <p>{{ error|escape }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if field.help_text %}
+  <div class="help-block help-block-align-left">{{ field.help_text|safe }}</div>
+  {% endif %}
+
+  <div class="multiple-choices">
+    <div class="multiple-choices-row">
+      {% for column in field|columns_alternate:2 %}
+      <div class="multiple-choices-column">
+        {% for the_value, the_label in column %}
+        <div class="checkbox">
+          <label>
+            <input type="radio" name="{{ field.html_name }}" value="{{ the_value }}">
+            {{ the_label }}
+          </label>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+</div>

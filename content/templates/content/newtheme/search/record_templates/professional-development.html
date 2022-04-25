@@ -1,0 +1,262 @@
+{% load content_extras %}
+{% load tz %}
+
+<li class="content-preview-item">
+
+  {% comment %}<span style="background-color:yellow;">{{result.score}}</span><!-- remove later, for checking relevancy scores -->{% endcomment %}
+
+  <div class="row">
+    <div class="col-sm-9">
+
+      {% if result.contact_roles_PROVIDER %}
+        {% with provider_id=result.contact_roles_PROVIDER.0|split_on_line:0 %}
+          {% if provider_id %}
+            {% if provider_id == "99562" %}
+            {% else %}
+              <h6 class="content-preview-item-superheadline">
+                <a class="arrowlink"
+                   href="{{ request.component_site_host.planning_home }}/cm/provider/{{ result.contact_roles_PROVIDER.0|split_on_line:0 }}/details/">
+                  {{ result.contact_roles_PROVIDER.0|split_on_line:1 }}
+                </a>
+              </h6>
+            {% endif %}
+          {% endif %}
+        {% endwith %}
+      {% endif %}
+
+      {% if is_cm_search_result %}
+        <h6 class="content-preview-item-superheadline">
+          {% if result.event_type == 'LEARN_COURSE' or result.event_type == 'LEARN_COURSE_BUNDLE' %}
+            APA LEARN&nbsp;
+          {% else %}
+            {% for format in result.tags_FORMAT %}
+            {{ format|split_on_period:2 }}&nbsp;
+            {% endfor %}
+          {% endif %}
+        </h6>
+      {% endif %}
+
+      {% if result.thumbnail %}
+        <div class="content-preview-item-image-floated">
+          <a href="{{ result|solr_record_to_details_path_filter }}">
+            <img src="{{ result.thumbnail }}"/>
+          </a>
+        </div>
+      {% endif %}
+
+      <div class="content-preview-item-center-block">
+        <h4 class="content-preview-item-headline">
+          <a href="{{ result|solr_record_to_details_path_filter }}">{{ result.title }}</a>
+        </h4>
+
+        {% if result.subtitle %}
+          <div class="content-preview-item-subheadline">
+            {{ result.subtitle }}
+          </div>
+        {% endif %}
+
+        {% if result.contact_roles_AUTHOR %}
+          <div class="content-preview-item-subheadline">
+            <p class="small">by: <a href="#">{{ result.contact_roles_AUTHOR.0|split_on_line:1 }}</a></p>
+          </div>
+        {% endif %}
+
+        {% if result.description %}
+          <div class="content-preview-item-summary">{{ result.description }}</div>
+        {% endif %}
+
+        {% if result.content_type == "EVENT" %}
+          {% if result.event_type != "LEARN_COURSE" and result.event_type != "LEARN_COURSE_BUNDLE" %}
+            {% if result.begin_time and result.end_time %}
+              {% localtime off %}
+                {% if result.timezone %}
+                  <div class="content-preview-item-summary">
+                    {% date_range_with_zone_from_json result.begin_time result.end_time result.timezone %} </div>
+                {% else %}
+                  <div
+                      class="content-preview-item-summary"> {{ result.begin_time|date_range_from_json_datetimes:result.end_time }} </div>
+                {% endif %}
+              {% endlocaltime %}
+            {% endif %}
+          {% endif %}
+
+          {% if result.address_city or result.address_state or result.address_country %}
+            <div class="content-preview-item-summary">
+              {{ result.address_city }}{% if result.address_state %}, {{ result.address_state }}{% endif %}
+              {% if result.address_country and result.address_country != "United States" %},
+                {{ result.address_country }} {% endif %}
+            </div>
+          {% endif %}
+
+          {% comment %}
+          {% if result.tags_ROOM %}
+          <div class="content-preview-item-summary">{{ result.tags_ROOM.0|split_on_period:2 }}</div>
+          {% endif %}
+          {% endcomment %}
+
+          {% if result.contact_roles_SPEAKER %}
+            <ul class="content-preview-item-speaker-list">
+              {% for speaker in result.contact_roles_SPEAKER %}
+                <li>
+                  {{ speaker|split_on_line:1 }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if result.contact_roles_ORGANIZER_SPEAKER %}
+            <ul class="content-preview-item-speaker-list">
+              {% for speaker in result.contact_roles_ORGANIZER_SPEAKER %}
+                <li>
+                  {{ speaker|split_on_line:1 }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if result.contact_roles_MODERATOR %}
+            <ul class="content-preview-item-speaker-list">
+              {% for speaker in result.contact_roles_MODERATOR %}
+                <li>
+                  {{ speaker|split_on_line:1 }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if result.contact_roles_ORGANIZER_MODERATOR %}
+            <ul class="content-preview-item-speaker-list">
+              {% for speaker in result.contact_roles_ORGANIZER_MODERATOR %}
+                <li>
+                  {{ speaker|split_on_line:1 }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="content-preview-item-cm-info">
+
+        {% if result.event_type == "ACTIVITY" %}
+          {# TODO: Get confirmation of which value to use, code or id #}
+          {# <span>#{{result.code|split_on_period:1}}</span>#}
+          <span>#{{ result.id|split_on_period:1 }}</span>
+        {% else %}
+          <span>#{{ result.id|split_on_period:1 }}</span>
+        {% endif %}
+        <span>
+        {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=result %}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    {% localtime off %}
+      {% if result.timezone %}
+
+        {% with begin_time=result.begin_time|datetime_with_zone_from_json:result.timezone %}
+          {% if begin_time and begin_time|datetime_with_zone_is_past %}
+
+            {% if is_aicp_cm or is_reinstatement_cm or not request.user.is_authenticated %}
+              {% if log_begin and log_begin <= begin_time %}
+                {% if result.event_type == "EVENT_MULTI" %}
+                  <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                                href="/events/eventmulti/{{ result.id|split_on_period:1 }}/">Add
+                    Activities to My Log</a></div>
+                {% elif result.cm_approved %}
+                    <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                                  href="/cm/log/claim/event/{{ result.id|split_on_period:1 }}/">Add to My
+                      Log</a></div>
+                {% endif %}
+              {% else %}
+                {% if result.event_type == "EVENT_MULTI" %}
+                  <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                                href="/events/eventmulti/{{ result.id|split_on_period:1 }}/">Evaluate
+                    Activities</a></div>
+                {% else %}
+                  <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                                href="/events/{{ result.id|split_on_period:1 }}/evaluation/">Evaluate</a>
+                  </div>
+                {% endif %}
+              {% endif %}
+
+            {% elif is_candidate %}
+              {% if log_begin and log_begin <= begin_time %}
+                {% if result.event_type == "EVENT_MULTI" %}
+                  <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                                href="/events/eventmulti/{{ result.id|split_on_period:1 }}/">Add
+                    Activities to My CM Tracker</a></div>
+                {% elif result.cm_approved %}
+                  <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                                href="/cm/log/claim/event/{{ result.id|split_on_period:1 }}/">Add to My
+                    CM Tracker</a></div>
+                {% endif %}
+              {% else %}
+                {% if result.event_type == "EVENT_MULTI" %}
+                  <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                                href="/events/eventmulti/{{ result.id|split_on_period:1 }}/">Evaluate
+                    Activities</a></div>
+                {% else %}
+                  <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                                href="/events/{{ result.id|split_on_period:1 }}/evaluation/">Evaluate</a>
+                  </div>
+                {% endif %}
+              {% endif %}
+
+            {% else %}
+              {% if result.event_type == "EVENT_MULTI" %}
+                <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                              href="/events/eventmulti/{{ result.id|split_on_period:1 }}/">Evaluate
+                  Activities</a></div>
+              {% else %}
+                <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                              href="/events/{{ result.id|split_on_period:1 }}/evaluation/">Evaluate</a>
+                </div>
+              {% endif %}
+            {% endif %}
+
+          {% endif %}
+        {% endwith %}
+
+      {% else %}
+
+        {% with begin_time=result.begin_time|datetime_from_json %}
+          {% if begin_time and begin_time|datetime_is_past %}
+
+            {% if is_aicp_cm or is_reinstatement_cm or not request.user.is_authenticated or is_candidate %}
+              {% if result.event_type == "EVENT_MULTI" %}
+                <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                              href="/events/eventmulti/{{ result.id|split_on_period:1 }}/">
+                  {% if is_candidate %}
+                    Add Activities to My CM Tracker
+                  {% else %}
+                    Add Activities to My Log</a></div>
+                  {% endif %}
+              {% elif result.cm_approved %}
+                  <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                                href="/cm/log/claim/event/{{ result.id|split_on_period:1 }}/">
+                  {% if is_candidate %}
+                    Add to My CM Tracker</a></div>
+                  {% else %}
+                    Add to My Log</a></div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% else %}
+              {% if result.event_type == "EVENT_MULTI" %}
+                <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                              href="/events/eventmulti/{{ result.id|split_on_period:1 }}/">Evaluate
+                  Activities</a></div>
+              {% else %}
+                <div class="col-xs-12"><br><a class="btn btn-sm btn-icon pull-right"
+                                              href="/events/{{ result.id|split_on_period:1 }}/evaluation/">Evaluate</a>
+                </div>
+              {% endif %}
+            {% endif %}
+
+          {% endif %}
+        {% endwith %}
+
+      {% endif %}
+    {% endlocaltime %}
+</li>

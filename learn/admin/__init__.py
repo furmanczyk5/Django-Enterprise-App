@@ -1,0 +1,2 @@
+from .learn_course_admin import LearnCourseAdmin
+from .group_license_admin import GroupLicenseAdmin

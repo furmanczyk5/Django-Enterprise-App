@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic,700italic');
+
+@font-family-sans-serif: "Source Sans Pro", arial, sans-serif;
+@text-color: #666;
+@color-bahama-blue: #005595;
+
+body {
+	padding:1em;
+	margin:0em;
+	position:relative;
+	height:100vh;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    font-family: @font-family-sans-serif;
+	font-weight: 400;
+}
+
+.foundation-message {
+	
+	margin:3em 2em;
+	color: @text-color;
+	text-align:center;
+
+	span {
+		font-size:2em;
+		font-weight:300;
+	}
+}
+
+.foundation-content {
+	position:relative;
+	top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#donation-data {
+	margin:3em 2em;
+	color: @color-bahama-blue;
+
+	* {
+		font-weight:300;
+	}
+}
+
+#donation-count, #donation-amount {
+	font-size:5em;
+	text-align:center;
+}
+
+#donation-donor {
+	text-align:right;
+	margin:3em 2em;
+	color: @text-color;
+
+	span {
+		font-size:2.6em;
+		min-height:3em;
+		display:block;
+
+		font-weight:300;
+	}
+}
+
+.foundation-logo:before {
+	content:'';
+	display:block;
+	background-image: url('/static/store/image/foundation-logo.svg');
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    height:8em;
+    margin-bottom:2em;
+}
+
+.foundation-webpage {
+	.foundation-logo:before {
+		height:5.8em;
+	}
+
+	.foundation-message {
+		span {
+			font-size:1.3em;
+		}
+	}
+
+	#donation-count, #donation-amount {
+		font-size:2.4em;
+	}
+
+	#donation-donor {
+		span {
+			font-size:1.3em;
+		}
+	}
+
+	#donation-data {
+		margin:3em 1em;
+	}
+}	

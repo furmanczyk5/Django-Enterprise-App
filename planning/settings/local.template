@@ -1,0 +1,118 @@
+from planning.settings.base import *
+
+## Set your secret key here
+SECRET_KEY = "<set secret key here>"
+
+# This requires that the WebUserId cookie be set.
+# If it is not, the user will be logged out. 
+# True for Prod / False for Dev
+REQUIRE_WEBUSERID_COOKIE_FOR_ACCESS=False
+
+###################################################################
+## EMAIL CONFIGURATION
+
+## Set to the desired admin email group
+ADMINS += (
+    ('Andy', 'akrakos@planning.org'),
+    ('Matt', 'moconnor@planning.org'),
+    ('Ran', 'rwest@planning.org'),
+    ('Phillip', 'plowe@planning.org'),
+    ('Tom', 'tfurmanczyk@planning.org'),
+    ('Deepak', 'dthota@planning.org'),
+)
+
+## Set to the desired managers email group
+MANAGERS += (
+    ('Phillip', 'plowe@planning.org'),
+)
+
+
+###################################################################
+## DATABASE CONFIGURATION
+## Use this for single server (staging, or development)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'planning',
+        'USER': 'planning',
+        'PASSWORD': '<set password here>',
+        'HOST': '<set host here>',
+        'PORT': '7432',
+    }
+}
+
+
+SOLR = "http://localhost:8983/solr/"
+
+## For production, use this configuration for load-balanced requests
+##
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'planning',
+#         'USER': 'planning',
+#         'PASSWORD': '<set password here>',
+#         'HOST': '<set host here>',
+#         'PORT': '6432', # Port that Master Pgbouncer listens on
+#     },
+#     'slave1': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'planning',
+#         'USER': 'planning',
+#         'PASSWORD': '<set password here>',
+#         'HOST': '<set host here>',
+#         'PORT': '7432', # Port that slave Pgbouncer listens on
+#     },
+# }
+# DATABASE_ROUTERS = ['planning.database_routers.MasterSlaveRouter']
+
+###################################################################
+## MISC CONFIGURATION
+
+PAYPAL_PARTNER = "PayPal"
+PAYPAL_MODE = "TEST" # or "LIVE"
+PAYPAL_USER = ""
+PAYPAL_VENDOR = ""
+PAYPAL_PASSWORD = ""
+
+# can be set to "PROD", "STAGING", or "LOCAL"
+ENVIRONMENT_NAME = 'LOCAL'
+
+## disable for staging / prod
+DEBUG = True
+
+#### Uncomment or modify the correct service urls
+## Example Prod Environment Config
+# RESTIFY_SERVER_ADDRESS = 'https://conference.planning.org:8080'
+
+## Example Staging Environment Config
+#RESTIFY_SERVER_ADDRESS = 'https://conference-staging.planning.org:8080'
+
+## Example Development Environment Config
+RESTIFY_SERVER_ADDRESS = 'https://conference-staging.planning.org:8080'
+
+## Uncomment to remove mail logging from local debugging
+#LOGGING['loggers']['django.request']['handlers'] = ['file']
+
+
+## Comment out to disable debug toolbar
+INSTALLED_APPS += (
+    "debug_toolbar",
+)
+
+## Comment out for staging / prod
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+
+## NEEDED ?
+STORE_STAFF = ""
+
+AWS_S3_ACCESS_KEY_ID = ''
+AWS_S3_SECRET_ACCESS_KEY = ''
+
+## Comment out for staging / prod
+AWS_STORAGE_BUCKET_NAME = 'planning-org-uploaded-media-stg'
+AWS_STATIC_STORAGE_BUCKET_NAME = 'planning-org-static-media-stg'
+COMPRESS_URL = "https://%s.s3.amazonaws.com:443/" % AWS_STATIC_STORAGE_BUCKET_NAME
+
+

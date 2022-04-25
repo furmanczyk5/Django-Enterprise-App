@@ -1,0 +1,23 @@
+{% extends "admin/content/content/change-form.html" %}
+{% load i18n admin_urls %}
+{% load event_tags %}
+{% load static %}
+
+{% block admin_custom_header %}
+
+    {{ block.super }}
+    
+    {% if original.event_type == "EVENT_MULTI" %}
+        <h3><a href="/admin/events/activity/?parent__id={{ original.master.id }}">SEE ALL ACTIVITIES AT THIS EVENT</a></h3>
+    {% endif %}
+
+{% endblock %}
+
+{% block object-tools-items %}
+{{block.super}}
+{% if original %}
+{% include 'admin/pages/page/includes/planning-admin-checkin-tool-item.html' %}
+{% endif %}
+{% endblock %}
+
+{% block submit_buttons_bottom %}{% submit_row_events_event %}{% endblock %}

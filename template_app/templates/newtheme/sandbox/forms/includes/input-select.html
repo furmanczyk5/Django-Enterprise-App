@@ -1,0 +1,5 @@
+{% extends "newtheme/sandbox/forms/includes/input-text.html" %}
+
+{% block label_text %}
+{{block.super}}{% if not field.field.required and not hide_optional %}<span> (Optional)</span>{% endif %}
+{% endblock %}

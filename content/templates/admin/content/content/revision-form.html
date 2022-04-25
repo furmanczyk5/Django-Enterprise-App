@@ -1,0 +1,12 @@
+{% extends "reversion/revision_form.html" %}
+
+{% block content %}
+
+	<!-- Used for tracking changes with different users in ckeditor. -->
+	<script>
+	    var current_user = "{{ request.user.first_name }} {{ request.user.last_name }}";
+	</script>
+
+	{{block.super}}
+
+{% endblock %}

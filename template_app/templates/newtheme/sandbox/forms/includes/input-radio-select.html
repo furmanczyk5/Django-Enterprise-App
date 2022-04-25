@@ -1,0 +1,26 @@
+<div class="form-group{% if field.errors %} has-error {% endif %}">
+  {% if field.label %}
+  <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+  {% endif %}
+
+  {% for the_value, the_label in field.field.choices %}
+  <div class="radio">
+    <label>
+      <input type="radio" name="{{ field.html_name }}" value="{{ the_value }}" {% if field.value == the_value %}checked="checked"{% endif %}>
+      {{ the_label }}
+    </label>
+  </div>
+  {% endfor %}
+
+  {% if field.errors %}
+  <div class="form-error">
+    {% for error in field.errors %}
+    <p>{{ error|escape }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if field.help_text %}
+  <div class="help-block">{{ field.help_text|safe }}</div>
+  {% endif %}
+
+</div>

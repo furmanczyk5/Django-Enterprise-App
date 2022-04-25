@@ -1,0 +1,80 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load template_app_extras %} {# anything custom needed for the template app #}
+{% block additional_head_css %}
+<style type="text/css">
+
+</style>
+{% endblock %}
+
+{% block content_main %}
+<br><br>
+
+
+<form method="post">
+  {% csrf_token %}
+
+  {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+  {% for field in form %}
+    <div class="form-group{%if field.errors %} has-error {% endif %}">
+        {{ field.label_tag }}
+
+        {{ field }}
+
+        {% if field.help_text %}
+        <div class="help-block">{{ field.help_text|safe }}</div>
+        {% endif %}
+
+        {% if field.errors %}
+        {% for error in field.errors %}
+        <div class="form-error">{{ error|escape }}</div>
+        {% endfor %}
+        {% endif %}
+
+        {#  #}
+    </div>
+  {% endfor %}
+
+
+  {# BASIC NON LOOP #}
+  <div class="form-group{%if form.name.errors %} has-error {% endif %}">
+    <label for="{{ form.name.id_for_label }}">name:</label>
+    {{ form.name }}
+    {# errors #}
+    {% if form.name.errors %}
+      {% for error in form.name.errors %}
+      <div class="form-error">{{ error|escape }}</div>
+      {% endfor %}
+    {% endif %}
+    {% if form.name.help_text %}
+    <div class="help-block">{{ form.name.help_text|safe }}</div>
+    {% endif %}
+  </div>
+
+
+  <div class="form-group{%if form.prefix_name.errors %} has-error {% endif %}">
+    <label for="{{ form.prefix_name.id_for_label }}">name prefix:</label>
+    {{ form.prefix_name }}
+    {# errors #}
+    {% if form.prefix_name.errors %}
+      {% for error in form.prefix_name.errors %}
+      <div class="form-error">{{ error|escape }}</div>
+      {% endfor %}
+    {% endif %}
+    {% if form.prefix_name.help_text %}
+    <div class="help-block">{{ form.prefix_name.help_text|safe }}</div>
+    {% endif %}
+  </div>
+
+
+  {# race #}
+
+  {% include "newtheme/sandbox/forms/includes/input-multiple-checkbox.html" with field=form.race %}
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+
+<br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

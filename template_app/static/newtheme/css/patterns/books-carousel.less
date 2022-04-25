@@ -1,0 +1,137 @@
+/* ///////////////////////
+// BOOKS CAROUSEL
+/////////////////////// */
+@books-carousel-gutter: @padding-level-1-xs;
+.books-carousel {
+  margin: 0 (-1 * (@books-carousel-gutter / 2));
+  position: relative;
+}
+
+.books-carousel .books-carousel-slide {
+  margin: 0 (@books-carousel-gutter / 2);
+}
+
+.books-carousel .slick-slide:focus {
+  outline: none; //disable outline after click
+}
+
+//Begin edge fade effects
+.books-carousel .slick-list:before,
+.books-carousel .slick-list:after {
+
+  content: '';
+  height: 100%;
+  width: (@books-carousel-gutter / 2);
+  position: absolute;
+  z-index: 5;
+}
+
+/*
+//Fade gradients for non-hard-edge when scrolling. Removed due to lack of support for slab-* backgrounds
+.books-carousel .slick-list:before {
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to right,
+    fade(#fff, 100%),
+    fade(#fff, 0%)
+  );
+}
+
+.books-carousel .slick-list:after {
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(
+    to left,
+    fade(#fff, 100%),
+    fade(#fff, 0%)
+  );
+}
+*/
+
+//End edge fade effects
+
+// Navigation arrows
+.books-carousel {
+
+}
+
+@carousel-nav-button-height: 50px;
+@carousel-nav-button-width: 20px;
+
+.books-carousel .slick-prev,
+.books-carousel .slick-next {
+  /* reset button styles */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+
+  font-size: 20px;
+
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  background-image: none;
+
+  height: @carousel-nav-button-height;
+  width: 20px;
+  line-height: @carousel-nav-button-height;
+  text-align: center;
+
+  position: absolute;
+  z-index: 6;
+
+  top: 50%;
+  margin-top: -1 * (@carousel-nav-button-height / 2);
+
+  -webkit-transition: transform @primary-transition-duration @primary-transition-easing,
+    color  @primary-transition-duration @primary-transition-easing;
+  -moz-transition: transform @primary-transition-duration @primary-transition-easing,
+    color  @primary-transition-duration @primary-transition-easing;
+  -ms-transition: transform @primary-transition-duration @primary-transition-easing,
+    color  @primary-transition-duration @primary-transition-easing;
+  -o-transition: transform @primary-transition-duration @primary-transition-easing,
+    color  @primary-transition-duration @primary-transition-easing;
+  transition: transform @primary-transition-duration @primary-transition-easing,
+    color  @primary-transition-duration @primary-transition-easing;
+
+  &:hover,
+  &:focus {
+    color: #888;
+    outline: none;
+  }
+}
+
+.books-carousel .slick-prev {
+  left: -1 * @carousel-nav-button-width;
+
+    webkit-transform: translateX(0px) rotate(180deg);
+    -moz-transform: translateX(0px) rotate(180deg);
+    -ms-transform: translateX(0px) rotate(180deg);
+    -o-transform: translateX(0px) rotate(180deg);
+    transform: translateX(0px) rotate(180deg);
+
+  &:hover,
+  &:focus {
+    -webkit-transform: translateX(-2px) rotate(180deg);
+    -moz-transform: translateX(-2px) rotate(180deg);
+    -ms-transform: translateX(-2px) rotate(180deg);
+    -o-transform: translateX(-2px) rotate(180deg);
+    transform: translateX(-2px) rotate(180deg);
+  }
+}
+
+.books-carousel .slick-next {
+  right: -1 * @carousel-nav-button-width;
+
+  &:hover,
+  &:focus {
+    -webkit-transform: translateX(2px);
+    -moz-transform: translateX(2px);
+    -ms-transform: translateX(2px);
+    -o-transform: translateX(2px);
+    transform: translateX(2px);
+  }
+}

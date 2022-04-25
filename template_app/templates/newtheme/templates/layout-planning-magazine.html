@@ -1,0 +1,21 @@
+{% extends 'newtheme/templates/base.html' %}
+{% load static %}
+
+{% block leader_ad %}
+{% include "newtheme/sandbox/banner-ad/planning-mag-leader-ad.html" %}
+{% endblock %}
+
+{% block interstitial_ad %}
+{% include "newtheme/sandbox/banner-ad/planning-mag-interstitial-ad.html" %}
+{% endblock %}
+
+{% block content_wrap %}
+<div class="container content-wrap container-planning-magazine">
+  <div class="content-main">
+    {% include "newtheme/templates/includes/django-message.html" %}
+    {% block content_main_access %}
+    {{ block.super }}
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}

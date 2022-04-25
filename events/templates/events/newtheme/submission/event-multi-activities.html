@@ -1,0 +1,53 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+<div class="page-head">
+  <h1 class="page-title">
+    Activities
+  </h1>
+  <br>
+  <p class="featured">
+    Activities are the sessions, workshops, or other such programs that make up your multi-part event. Each activity is accredited individually, and is logged individually by AICP members.
+  </p>
+</div>
+<div class="layout-tracery">
+  <div class="layout-column cm-criteria">
+
+    <h3>
+      Criteria for CM Approval
+    </h3>
+    <p>
+      Please ensure that you have read and understand the following delivery and administrative criteria.
+      <ol>
+        <li>
+          Criteria for the content of CM activities: Activities must (a) meet a planning related objective, (b) be unbiased and non-promotional and (c) communicate a clearly identified educational purpose or objective.
+        </li>
+        <li>
+          Criteria for the delivery of CM activities: Activities must (a) be lead by one or more experts on the subject matter discussed, (b) use learning methodologies and formats that are appropriate to the activity's educational purpose, (c) involve the use of materials that do not include proprietary information, (d) be timed in a manner consistent with the time for which the activity was registered for CM credit (75 minutes = 1.25 CM credits) and that only the portion of the activity meeting CM criteria is registered for CM credit.
+        </li>
+        <li>
+          Criteria for the administration of CM activities: Activities must (a) use mechanisms to record attendance and evaluate the content, (b) have a point of contact that is responsible for the proper administration of the CM activity.
+        </li>
+      </ol>
+    </p>
+  </div>
+</div>
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <h2>
+      Activities
+    </h2>
+    {% include "cm/newtheme/provider/includes/event-multi-activity-list.html" with event=event activities=activities %}
+    <hr/>
+  </div>
+</div>
+
+
+<div class="form-actions">
+  <div class="clearfix btn-toolbar btn-mobile">
+  <a class="btn btn-default" href="/cm/provider/events/{{event.master_id}}/activity/add/?next={{request.path}}">Add an Activity</a>
+  <a class="btn btn-primary right" href="{% url 'cm:event_submission_review' master_id=event.master_id %}">Continue to Next Step</a>
+  </div>
+</div>
+
+{% endblock %}

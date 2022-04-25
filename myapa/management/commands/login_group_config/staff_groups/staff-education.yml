@@ -1,0 +1,54 @@
+---
+
+# Django model admin permissions for the staff-education group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "183154"  # David Morley
+  - "333834"  # Kimberley Jacques
+  - "335276"  # Araceli Jimenez
+  - "344730"  # Molly Walsh
+  - "355413"  # Bekki Missaggia
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+
+  - content_contentrelationship
+  - content_taxotopictag
+  - content_tag
+  - content_tagtype
+  - content_content
+  - content_contentrelationship
+  - content_contenttagtype
+  - content_taxotopictagflat
+  - events_activity
+  - events_event
+  - events_eventinfo
+  - events_eventlogentry
+  - events_eventmulti
+  - events_eventsingle
+  - events_nationalconferenceactivity
+  - events_nationalconferenceeval
+  - events_nationalconferenceparticipant
+  - events_nationalconferenceproposal
+  - events_speaker
+  - events_speakereval
+  - free_students_accreditation
+  - free_students_accreditedschool
+  - free_students_student
+  - learn_grouplicense
+  - learn_learncourse
+  - learn_learncoursebundle
+  - learn_learncourseevaluation
+  - learn_learncourseinfo
+  - myapa_contact
+  - myapa_contactrelationship
+  - myapa_contactrole
+  - myapa_school
+  - pages_knowledgecenterpage
+  - pages_outreachpage
+  - registrations_attendee
+  - registrations_nationalconferenceattendee

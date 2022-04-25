@@ -1,0 +1,411 @@
+/**
+ * dependencies: typography
+ */
+.content-preview-item {
+  & {
+    &:extend(.clearfix all);
+    .strip-edge-margins();
+    display: block;
+  }
+
+  &&, //This double is a cheat to add specificity to our strip edge margins rule.
+  & .row > * {
+    .strip-edge-margins();
+  }
+
+  //Styles if .content-preview-item is applied to <a>
+  a& {
+    cursor: pointer;
+  }
+
+  a&:hover,
+  a&:focus {
+    text-decoration: none;
+  }
+}
+
+.content-preview-item-speaker {
+  margin-bottom: 20px;
+  @media screen and (min-width: @screen-xs-max) {
+    &:nth-child(2n+1){
+      clear: left;
+    }
+  }
+}
+
+//Nested
+.content-preview-item {
+  & .content-preview-item-image-block {
+    & img {
+      width: 100%;
+      margin-bottom: 26px; //todo: em
+    }
+  }
+
+  & .content-preview-item-center-block {
+    width:auto;
+    overflow:hidden;
+  }
+
+  & .content-preview-item-superheadline {
+    &:extend(.h6 all);
+    clear: both; //in case image is floated below
+    margin-top: 0;
+    margin-bottom: 6px;
+  }
+
+  &.content-preview-item-featured .content-preview-item-superheadline {
+    font-size: 14px;
+  }
+
+  & .content-preview-item-image-floated {
+    @image-width-small: 90px;
+    @image-padding-small: 10px;
+
+    @image-width-large: 120px;
+    @image-padding-large: 20px;
+
+    float: left;
+    width: 100px;
+    margin-bottom: 0.5em; //Spaces description out
+
+    @media screen and (min-width: @search-result-layout-breakpoint) {
+      width: 140px;
+    }
+
+    & img {
+      display: inline-block;
+      width: 100%;
+      max-width: @image-width-small;
+      @media screen and (min-width: @search-result-layout-breakpoint) {
+        max-width: @image-width-large;
+      }
+    }
+
+  }
+
+  & .content-preview-item-image-floated + .content-preview-item-superheadline {
+    clear: none; //cancel clear on superheadline if image comes first
+  }
+
+  & .content-preview-item-headline {
+    &:extend(.h4 all);
+    margin-top: 0;
+    margin-bottom: 13px;
+
+
+    & .members-only {
+      font-size: 10px; //em units are relative to this
+      background-color: @color-anzac;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: bold;
+      float: left;
+      margin-right: 0.65em;
+      padding: 0.5em 0.65em 0.35em;
+      position: relative;
+      top: 0.2em;
+      line-height: 1em;
+    }
+
+    & .members-or-subscribers {
+      font-size: 10px; //em units are relative to this
+      background-color: @color-monarch-orange;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: bold;
+      float: left;
+      margin-right: 0.65em;
+      padding: 0.5em 0.65em 0.35em;
+      position: relative;
+      top: 0.2em;
+      line-height: 1em;
+    }
+
+    & .subscription-only {
+      font-size: 10px; //em units are relative to this
+      background-color: @color-chocolate-red;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: bold;
+      float: left;
+      margin-right: 0.65em;
+      padding: 0.5em 0.65em 0.35em;
+      position: relative;
+      top: 0.2em;
+      line-height: 1em;
+    }
+
+    //Styles if .content-preview-item is applied to <a>
+    a&,
+    & a {
+      text-decoration: none;
+      color: @link-color;
+    }
+
+    a:hover&,
+    a:focus&,
+    & a:hover,
+    & a:focus {
+      text-decoration: none;
+      color: @link-hover-color;
+    }
+  }
+
+  &.content-preview-item-featured .content-preview-item-headline {
+    font-size: 22px;
+
+    & .members-only {
+      //Might need special styles here
+    }
+  }
+
+
+  //EG. author
+  & .content-preview-item-subheadline {
+    margin-bottom: 10px;
+
+    //Styles if .content-preview-item is applied to <a>
+    a& {
+      color: @text-color;
+    }
+  }
+
+  & .content-preview-item-summary {
+    margin-bottom: 10px;
+    font-size: 14px;
+
+    //Styles if .content-preview-item is applied to <a>
+    a& {
+      color: @text-color;
+    }
+  }
+
+  &.content-preview-item-featured .content-preview-item-summary {
+    font-size: 16px;
+  }
+
+
+  & .content-preview-item-postline {
+    font-family: @font-family-sans-serif;
+    font-size: 14px;
+    //Styles if .content-preview-item is applied to <a>
+    a& {
+      color: @text-color;
+    }
+  }
+
+
+  &.content-preview-item-featured .content-preview-item-postline {
+    font-size: 16px;
+  }
+
+  & ul.content-preview-item-speaker-list,
+  & ol.content-preview-item-speaker-list {
+    &,
+    & > li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    & {
+      font-size: 14px;
+    }
+
+    & > li {
+      display: inline;
+
+      &:before {
+        content: '|';
+        padding: 0 5px;
+      }
+
+      &:first-child:before {
+        content: '';
+        display: none;
+      }
+    }
+
+    & > li a {
+      color: @color-anzac;
+
+      &:hover,
+      &:focus {
+        color: lighten(@color-anzac, 10%);
+      }
+    }
+  }
+
+  & .content-preview-item-cm-info {
+    margin-top: 16px;
+
+    @media screen and (min-width: @screen-sm-min) {
+      margin-top: 0;
+      text-align: right;
+    }
+  }
+
+  //Begin Tags, Speakers
+  & ul.content-preview-item-tags,
+  & ol.content-preview-item-tags,
+  & ul.content-preview-item-speaker-list,
+  & ol.content-preview-item-speaker-list {
+    &,
+    & > li {
+      //reset lists
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    & {
+      font-size: 14px;
+      font-family: @font-family-serif;
+    }
+
+    & > li {
+      display: inline;
+
+      &:before {
+        content: ' | ';
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      &:first-child:before {
+        display: none;
+      }
+    }
+
+    //Currently, only speakers have links. But that may change.
+    & > li a {
+      color: @color-anzac;
+
+      &:hover,
+      &:focus {
+        color: lighten(@color-anzac, 10%);
+      }
+    }
+  }
+
+  //Speaker names are sans-serif
+  & ul.content-preview-item-speaker-list,
+  & ol.content-preview-item-speaker-list {
+    font-family: @font-family-sans-serif;
+  }
+
+  //Increase font size for featured
+  &.content-preview-item-featured ul.content-preview-item-tags,
+  &.content-preview-item-featured ol.content-preview-item-tags,
+  &.content-preview-item-featured ul.content-preview-item-speaker-list,
+  &.content-preview-item-featured ol.content-preview-item-speaker-list {
+    font-size: 16px;
+  }
+  //End Tags, Speakers
+
+
+  & .content-preview-item-cm-info {
+    margin-top: 16px;
+
+    @media screen and (min-width: @screen-sm-min) {
+      margin-top: 0;
+      text-align: right;
+    }
+  }
+
+  & .content-preview-item-social {
+    & {
+      @media screen and (min-width: @screen-sm-min) {
+        margin-top: 50px;
+
+        & .myapa-bookmark-widget {
+          text-align: right;
+        }
+      }
+    }
+
+    & .social-sharing-widget {
+      margin-bottom: 10px;
+    }
+
+  }
+
+
+
+}
+
+
+/* ///////////////////////
+// CONTENT PREVIEW LIST
+/////////////////////// */
+
+
+.content-preview-list > ul,
+.content-preview-list > ol {
+  //Reset list styles
+  &,
+  & > li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  //UL, OL styles
+  & {
+
+  }
+
+  //LI Styles
+  //Todo: Very similar design to layout-tracery, opportunity for refactor here?
+  & > li {
+    border-width: 0 0 1px;
+    &:first-child {
+      border-width: 1px 0 1px;
+    }
+    border-style: solid;
+    border-color: @color-content-borders;
+  }
+
+  & > li {
+    padding-top: 15px; //todo: finalize
+    padding-bottom: 15px; //todo: finalize
+  }
+}
+
+.content-preview-list.no-top-border {
+  & > ul,
+  & > ol {
+    & > li:first-child {
+      border-top: 0;
+    }
+  }
+}
+
+.content-preview-list.no-bottom-border {
+  & > ul,
+  & > ol {
+    & > li:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+
+.content-preview-list.no-top-spacing {
+  & > ul,
+  & > ol {
+    & > li:first-child {
+      padding-top: 0;
+    }
+  }
+}
+
+.content-preview-list.no-inner-borders {
+  & > ul,
+  & > ol {
+    & > li {
+      border: 0;
+    }
+  }
+}

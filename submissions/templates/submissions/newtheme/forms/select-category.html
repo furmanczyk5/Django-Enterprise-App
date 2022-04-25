@@ -1,0 +1,14 @@
+{% extends "newtheme/templates/layout-sidebar.html" %}
+
+{% block content_main %}
+
+<div class="page-head">
+  	{% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  	<a class="btn btn-sm btn-default back-button" href="{{home_url}}">Back</a>
+  	<h1 class="page-title">Submission Category</h1>
+  	<h2 class="page-subtitle">Select a submission category to get started</h2>
+</div>
+
+{% include "submissions/newtheme/includes/select-category.html" with open_categories=open_categories past_categories=past_categories next_path=next_path%}
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% load store_tags %}
+
+{% if request.user.is_authenticated %}
+{% cart user=request.user remove_is_form=remove_is_form %}
+{% else %}
+<div class="attention"><a href="/login/?next={{request.path|urlencode}}">Log In</a> to view your cart</div>
+{% endif %}

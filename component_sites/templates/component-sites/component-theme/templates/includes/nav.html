@@ -1,0 +1,27 @@
+<div class="container-fluid nav-container">
+  <div class="nav-wrap">
+    <nav class="desktop-navbar">
+      <ul class="nav navbar-nav">
+
+        {% for m in navigation %}
+          <li>
+            <span class="navbar-nav-link-wrap">
+              {% if m.children %}
+              <a href="#" class="nav-mega-menu-toggle" data-child="mega-menu-section-{{m.id}}">
+                {{ m.title }}<span class="icon-keyboard-arrow-right pull-right"></span>
+              </a>
+              {% else %}
+              <a href="{{ m.url }}">
+                {{ m.title }}
+              </a>
+              {% endif %}
+            </span>
+          </li>
+        {% endfor %}
+
+      </ul>
+    </nav>
+    {% include 'component-sites/component-theme/templates/includes/nav-mega-menu.html' %}
+    {% include 'component-sites/component-theme/templates/includes/nav-mobile.html' %}
+  </div>
+</div>

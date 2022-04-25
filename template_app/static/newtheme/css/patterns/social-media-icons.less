@@ -1,0 +1,47 @@
+.social-media-icons {
+  display: block;
+  background-color: @color-limeade;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    opacity: 1;
+    transition: opacity .2s ease;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}
+
+.social-media-icon {
+  padding: 12px;
+  display: inline-block;
+  font-size: 25px;
+  color: #fff;
+}
+
+.at-icon-wrapper {
+  opacity: .75;
+  transition: opacity .15s ease;
+}
+
+.at-icon-wrapper:hover {
+  opacity: 1;
+}
+
+@media screen and (min-width: @screen-sm-min) {
+
+  .social-media-icons {
+    display: inline-block;
+  }
+
+  .social-media-icon {
+    &:before {
+      position: relative;
+      top: 4px;
+    }
+  }
+
+}

@@ -1,0 +1,20 @@
+---
+
+# Django model admin permissions for the staff-leadership group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "117086"  # Lynn Jorgenson
+  - "123377"  # Mike Welch
+  - "317273"  # Renee Kronon-Schertz
+  - "332580"  # Maggie Kraus
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+  - content_content  # for taxo topic tag inline
+  - pages_aboutpage
+  - pages_connectpage
+  - pages_outreachpage

@@ -1,0 +1,19 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}Create a New Nonmember Account{% endblock %}
+
+{% block content_main %}
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Create a New Nonmember Account</h1>
+</div>
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <h2>Welcome: {{ user.first_name }}</h2>
+    <p>Thank you for creating a planning.org account.</p>
+    <p>Your APA ID is: <b>{{ user.username }}</b></p>
+    <p> You may use this ID or email and password to log in whenever you return to planning.org.</p>
+    {% if not is_kiosk %}<p><a class="btn btn-primary" href="/myapa/">Continue</a></p>{% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% if content %}
+	{% include 'content/newtheme/includes/seo-meta-tags-context.html' with title=content.title description=content.description keywords=content.keywords og_title=content.og_title og_description=content.og_description og_type=content.og_type og_url=content.og_url og_image=content.og_image.content_live.media.image_file.url %}
+{% else %}
+	{% include 'content/newtheme/includes/seo-meta-tags-context.html' %}{# using the global context #}
+{% endif %}

@@ -1,0 +1,31 @@
+{% load content_extras %}
+<div class="conference-results-info">
+  <p><strong>{{ results.response.numFound }} Search Results</strong></p>
+
+  {% for tag_list in tag_lists %}
+    {% for tag_code in tag_list %}
+      <a href="?{{ request.META.QUERY_STRING|remove_querystring_param:'tags' }}"
+         class="btn btn-default btn-sm btn-facet-tag-selected">
+        {{ tag_dict|getattr:tag_code }}
+        <span class="icon-apa-close"></span>
+      </a>
+    {% endfor %}
+  {% endfor %}
+
+  {% if speaker %}
+    <a href="?{{ request.META.QUERY_STRING|remove_querystring_param:'speakers' }}"
+       class="btn btn-default btn-sm btn-facet-tag-selected">
+      {{ speaker.title }}
+      <span class="icon-apa-close"></span>
+    </a>
+  {% endif %}
+
+  {% if form.keyword.value or request.GET.keyword %}
+    <a href="?{{ request.META.QUERY_STRING|remove_querystring_param:'keyword' }}"
+       class="btn btn-default btn-sm btn-facet-tag-selected"
+       title="{{ form.keyword.value|default:request.GET.keyword }}">
+      {{ form.keyword.value|default:request.GET.keyword }}
+      <span class="icon-apa-close"></span>
+    </a>
+  {% endif %}
+</div>

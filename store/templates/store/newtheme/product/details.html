@@ -1,0 +1,344 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load store_tags %}
+{% load cm_tags %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+
+{% block content_main %}
+
+<div class="page-head no-border-bottom no-spacing-bottom">
+  {% include "newtheme/templates/includes/social-sharing-widget.html" %}
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+  <h1 class="page-title">{{ content.title }}</h1>
+
+  {% if content.subtitle %}
+    <h4 class="page-subtitle">{{ content.subtitle }}</h4>
+  {% endif %}
+
+  {% if authors %}
+  <h4>By {% for contactrole in authors %}
+    {% if contactrole.contact %}
+    {{ contactrole.contact.title }}{% if not forloop.last %}, {% endif %}
+    {% else %}
+    {{contactrole.first_name}} {{contactrole.last_name}}{% if not forloop.last %}, {% endif %}
+    {% endif %}
+    {% endfor %}</h4>
+  {% endif %}
+</div>
+
+<div class="layout-tracery no-border">
+  <div class="layout-column">
+    <div class="row content-managed-html">
+
+      {% if content.content_type == 'MEDIA' and content.image_file %}
+      <div class="col-xs-12 col-sm-4 col-lg-3">
+        <img src="{{content.image_file.url}}" class="product-image featured" alt="Product Image"/>
+      </div>
+      {% elif content.thumbnail %}
+      <div class="col-xs-12 col-sm-4 col-lg-3">
+        <img src="{{content.thumbnail.url}}" class="product-image featured" alt="Product Image"/>
+      </div>
+      {% endif %}
+      <div class="col-xs-12 col-sm-8 col-lg-9">
+
+        <!-- add to cart -->
+        {% if purchase %}
+        <br/>
+
+        <p>
+          {% if str_exam3_url %}
+          <a class="btn btn-primary" href="{{ str_exam3_url }}">Launch Now</a>
+          {% elif content.product.product_type == 'STREAMING' %}
+          <a class="btn btn-primary" href="{{ content.resource_url }}">Launch Now</a>
+          {% elif content.product.product_type == 'EBOOK' %}
+          <a class="btn btn-primary" href="{{ content.publication_download.url }}">Launch Now</a>
+          {% elif content.product.product_type == 'DIGITAL_PUBLICATION' and content.publication_download %}
+          <a class="btn btn-primary" href="{{ content.publication_download.url }}">Download</a>
+          {% elif content.product.product_type == 'DIGITAL_PUBLICATION' and content.uploaded_file %}
+          <a class="btn btn-primary" href="{{ content.uploaded_file.url }}">Download</a>
+          {% elif content.product.code == 'STR_EXAM3' %}
+          <a class="btn btn-primary" href="/enter/url/for/exam/prep/here">Launch Now</a>
+          {% endif %}
+        </p>
+        {% else %}
+
+
+        <br/>
+        {% for price in content.product.prices.all|dictsort:"price" %}
+        {% if price.status == 'A' %}
+        <div class="key-value-pair {% if my_price == price %}bold-text{% endif %}">
+          <div class="key">{{price.title}}</div>
+          <div class="value">${{price.price}}</div>
+        </div>
+        {% elif price.status == 'H' and my_price == price %}
+        <div class="key-value-pair bold-text">
+          <div class="key">{{price.title}}</div>
+          <div class="value">${{price.price}}</div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% if content|has_learn_course %}
+           <h3 class="form-section-title">Now Available from APA Learn</h3>
+            <hr />
+            <p>This course is now offered on the APA Learn educational platform.</p>
+            <p>
+              <a class="btn btn-primary" href="{{ content.digital_product_url }}">Open in APA Learn</a>
+              <a class="btn btn-default" href="https://{{ LEARN_DOMAIN }}/catalog/">Browse APA Learn catalog</a>
+            </p>
+        {% else %}
+          {% if product.options.all %}
+            {# <!-- TO DO... it's rather wonky to hard-code this form here without using django forms --> #}
+            <form method="POST" action="/store/cart/add/">
+              {% csrf_token %}
+              <h5>Select one option:</h5>
+              {% for option in product.options.all %}
+                {% if option.my_price %}
+                  <div class="radio">
+                    <input type="hidden" name="product_id" value="{{ product.id }}"/>
+                    <label for="radio-{{ option.id }}">
+                      <input type="radio" name="option_id" id="radio-{{ option.id }}" value="{{ option.id }}"/>
+                      {{ option.my_price.title }}: ${{ option.my_price.price }}
+                    </label>
+                    {% if option.my_price.description %}
+                      <div class="help-block help-block-align-left">{{ option.my_price.description }}</div>
+                    {% endif %} {# option.my_price.description #}
+                  </div>
+                {% endif %} {# option.my_price #}
+              {% endfor %}
+              {% if product|has_price %}
+                <input class="btn btn-primary" type="submit" value="Add to Cart"/>
+              {% else %}
+                <h6>NOT CURRENTLY AVAILABLE FOR PURCHASE</h6>
+              {% endif %} {# product|has_price #}
+            </form>
+          {% endif %}
+        {% endif %}
+        {% if not content|has_learn_course and not content|is_od_course %}
+          <div class="form-actions">
+            {% if request.user.is_authenticated %}
+              <a class="btn btn-primary" href="/store/cart/add/?product_code={{ product.code }}">Add to Cart</a>
+            {% elif content.product.product_type == 'DIGITAL_PUBLICATION' %}
+              <a class="btn btn-primary" href="/login/?next={{request.path|urlencode}}">Sign In &amp; Download</a>
+
+              <p><br>Not a member but want to buy a copy? You'll need to create a free My APA account to purchase.
+                <a href="https://www.planning.org/myapa/account/create/">Create account</a></p>
+            {% else %}
+              <a class="btn btn-primary" href="/login/?next={{request.path|urlencode}}">Sign In to Add to Cart</a>
+            {% endif %}
+          </div>
+        {% endif %} {# if not content|has_learn_course #}
+      {% endif %}{# if purchase #}
+
+        {% if content.content_type == "EVENT" %}
+          {% with event=content.event %}
+              <br/>
+              <br/>
+              <h3 class="form-section-title">Certification Maintenance</h3>
+              <hr/>
+              <div class="row">
+                <div class="col-xs-8">
+                  {% if event.cm_approved %}
+                    {% evaluate_event_button event request.user.contact extra_class="btn-default" %}
+                  {% else %}
+                    <a class="btn btn-primary" href="/events/{{event.master_id}}/evaluation/">Evaluate</a>
+                  {% endif %}
+                </div>
+                <div class="col-xs-4" align="right">
+                  {% if event.cm_approved and event.event_type != "EVENT_MULTI" %}
+                    <span align="left" style="display:inline-block">
+                      <span class="cm">CM | </span><span class="cmpoints">{{event.cm_approved|floatformat:"-2"}}</span>
+                      {% if event.cm_law_approved %}
+                        <br />
+                        <span class="cmlawethics" style="margin-left:4px;">L</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_law_approved|floatformat:"-2"}}</span>
+                      {% endif %}
+                      {% if event.cm_ethics_approved %}
+                        <br />
+                        <span class="cmlawethics" style="margin-left:4px;">E</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_ethics_approved|floatformat:"-2"}}</span>
+                      {% endif %}
+                      <!-- FLAGGED FOR REFACTORING: CM CREDITS DISPLAY -->
+                      {% if event.cm_equity_credits %}
+                        <br />
+                        <span class="cmlawethics" style="margin-left:4px;">Eq</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_equity_credits|floatformat:"-2"}}</span>
+                      {% endif %}
+                      {% if event.cm_targeted_credits %}
+                        <br />
+                        <span class="cmlawethics" style="margin-left:4px;">SR</span><span class="cmpoints"><span class="cm"> | </span>{{event.cm_targeted_credits|floatformat:"-2"}}</span>
+                      {% endif %}
+                    </span>
+                  {% endif %}
+                </div>
+              </div>
+          {% endwith %}
+        {% endif %}
+
+        <hr/>
+
+        {{ content.text|safe }}
+
+        <hr/>
+
+        {% if product.product_type in product_details_list %}
+        <h2>Product Details</h2>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+              {% if cm_approved %}
+              <div class="key-value-pair">
+                <div class="key">CM Approved</div>
+                <div class="value">{{ cm_approved }}</div>
+              </div>
+              {% endif %}
+
+              {% if cm_law_approved %}
+              <div class="key-value-pair">
+                <div class="key">Law Approved</div>
+                <div class="value">{{ cm_law_approved }}</div>
+              </div>
+              {% endif %}
+
+              {% if cm_ethics_approved %}
+              <div class="key-value-pair">
+                <div class="key">Ethics Approved</div>
+                <div class="value">{{ cm_ethics_approved }}</div>
+              </div>
+              {% endif %}
+
+              {% if content.length_in_minutes %}
+              <div class="key-value-pair">
+                <div class="key">Duration</div>
+                <div class="value">{{content.length_in_minutes }} minutes</div>
+              </div>
+              {% endif %}
+
+              {% if content.page_count %}
+              <div class="key-value-pair">
+                <div class="key">Page Count</div>
+                <div class="value">{{ content.page_count }}</div>
+              </div>
+              {% endif %}
+
+              {% if content.resource_published_date %}
+              <div class="key-value-pair">
+                <div class="key">Date Published</div>
+                <div class="value">{{ content.resource_published_date }}</div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+              {% if content.isbn %}
+              <div class="key-value-pair">
+                <div class="key">ISBN</div>
+                <div class="value">{{ content.isbn }}</div>
+              </div>
+              {% endif %}
+
+              {% if content.publication_format %}
+              <div class="key-value-pair">
+                <div class="key">Format</div>
+                <div class="value">{{content.get_publication_format_display}}</div>
+              </div>
+              {% endif %}
+
+              {% if publishers %}
+              <div class="key-value-pair">
+                <div class="key">{{publishers|length|pluralize:"Publisher,Publishers"}}</div>
+                <div class="value">
+                  {% for publisher in publishers %}
+                  {{publisher.company}}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <br/>
+
+        {% comment %}
+        <!--
+        {% if authors %}
+          <div class="accordion">
+            <h2 class="accordion-handle">About the {{authors|length|pluralize:"Author,Authors"}}</h2>
+            <div class="accordion-content">
+            {% for contact in authors %}
+              <p>
+                {% if contact.first_name or contact.last_name %}
+                  <b>{{contact.first_name}} {{contact.last_name}}</b><br/>
+                {% else %}
+                  <b>{{contact.contact.title}}</b><br/>
+                {% endif %}
+
+                {% if contact.bio %}
+                  {{contact.bio}}
+                {% elif contact.contact and contact.contact.bio %}
+                  {{contact.contact.bio}}
+                {% endif %}
+              </p>
+            {% endfor %}
+            </div>
+          </div>
+        {% endif %} -->
+        {% endcomment %}
+
+        {% if speakers %}
+        <div class="accordion">
+          <h2 class="accordion-handle">About the {{speakers|length|pluralize:"Speaker,Speakers"}}</h2>
+          <div class="accordion-content">
+            {% for contactrole in speakers %}
+            <p>
+              {% if contactrole.first_name or contactrole.last_name %}
+              <b>{{contactrole.first_name}} {{contactrole.last_name}}</b><br/>
+              {% else %}
+              <b>{{contactrole.contact.first_name}} {{contactrole.contact.last_name}}</b><br/>
+              {% endif %}
+
+              {% if contactrole.bio %}
+              {{contactrole.bio}}
+              {% elif contactrole.contact.bio %}
+              {{contactrole.contact.bio}}
+              {% else %}
+              No Bio Available
+              {% endif %}
+            </p>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if content.table_of_contents and content.table_of_contents != '' %}
+        <div class="accordion">
+          <h2 class="accordion-handle">Table of Contents</h2>
+          <div class="accordion-content">
+            {{ content.table_of_contents|safe}}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if product.reviews and product.reviews != ''%}
+        <div class="accordion">
+          <h2 class="accordion-handle">Reviews</h2>
+          <div class="accordion-content">
+            {{ product.reviews|safe }}
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

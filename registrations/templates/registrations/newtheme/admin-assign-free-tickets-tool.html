@@ -1,0 +1,75 @@
+{% extends extends_template|default:"newtheme/templates/layout-nosidebar.html"  %}
+
+{% load static %}
+
+{% block content_main %}
+
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h1>Assign Free Tickets Form</h1>
+	</div>
+</div>
+
+<div class="layout-tracery">
+	<div class="layout-column">
+		<form method="post" id="assign-free-tickets-form">
+			{% csrf_token %}
+			<div class="form-group">
+		        <div class="row">
+		          	<div class="col-sm-6">
+		          	{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.event_code %}
+		          	</div>
+	          	</div>
+	        </div>
+	        <div class="form-group">
+				
+				<div id="assign-free-tickets-form-progress" style="display:none">
+					<div style="float:right;"><a style="color:red;" href="javascript:;" id="assign-free-tickets-revoke">Cancel</a></div>
+					<div class="assign-free-tickets-message"></div>
+					<div style="position:relative;
+								height:1em;
+								width:100%;
+								clear:both;
+								box-sizing:border-box;
+								border:1px solid grey;" id="assign-free-tickets-progressbar">
+						<div style="width:0%;
+									height:100%;
+									background-color:
+									lightblue;
+									transition:width 0.5s;" id="assign-free-tickets-progress"></div>
+					</div>
+				</div>
+				<div id="assign-free-tickets-form-ready">
+    				<button type="submit" class="btn btn-primary">Assign Tickets</button>
+    				<span class="assign-free-tickets-message"></span>
+    			</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% if assigned_tickets %}
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h3>Assigned tickets...</h3>
+		{% for at in assigned_tickets %}
+		<div>{{at.0}} tickets for {{at.1}}</div>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+{% if failed_assigned_tickets  %}
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h3>Failed to assign tickets...</h3>
+		{% for fat in failed_assigned_tickets %}
+		<div>{{fat.0}} tickets for {{fat.1}}</div>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'registrations/js/assign-free-tickets.js' %}"></script>
+{% endblock %}

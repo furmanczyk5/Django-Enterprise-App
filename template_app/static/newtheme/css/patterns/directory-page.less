@@ -1,0 +1,49 @@
+/**
+ * dependencies: accordion
+ */
+// DirectoryPage pattern
+
+//Grid styles
+.directory-page-grid {
+  .make-row();
+}
+
+.directory-page-grid-item {
+  .make-sm-column(6);
+  .make-md-column(4);
+
+  &:nth-child(2n+1) {
+    @media screen and (min-width: @screen-sm-min) {
+      clear: left;
+    }
+    @media screen and (min-width: @screen-md-min) {
+      clear: none;
+    }
+  }
+
+  &:nth-child(3n+1) {
+    @media screen and (min-width: @screen-md-min) {
+      clear: left;
+    }
+  }
+
+}
+
+
+//Accordions styles
+.directory-page-grid {
+  & .accordion {
+    &:extend(.accordion.always-open-sm all);
+  }
+
+  //Spacing between accordions
+  //The accordion pattern is supposed to do this with .accordion + .accordion, but since these accordions are contained inside columns, they aren't directly adjacent so we have to re-do it here.
+  & .accordion {
+    margin-top: -1px !important; //Overriding strip-edge-margins logic. Todo: fix
+
+    @media screen and (min-width: @screen-sm-min) {
+      margin-top: 0; 
+      margin-bottom: 42px; //todo: variable?
+    }
+  }
+}

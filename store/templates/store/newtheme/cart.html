@@ -1,0 +1,248 @@
+{% extends extends_template|default:'newtheme/templates/layout-sidebar.html' %}
+
+{% load store_tags %}
+
+{% block content_main %}
+
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1>Check Out</h1>
+  </div>
+
+  <div class="layout-tracery">
+  <div class="layout-column">
+
+
+  <!-- NOTE: LEAVE THIS HERE TO QUICKLY DISABLE E-COMMERCE IF NEEDED...  -->
+    {% comment %}
+    <h2>Shopping Cart Unavailable</h2>
+    <div class="section-icon section-icon-attention"></div><br/>
+    <p>We are currently experiencing a disruption to our online payment system due to an issue with our payment gateway provider. We are unable to process any payments until the issue is resolved. We apologize for the inconvenience and will provide updates as they become available.
+</p>
+    {% endcomment %}
+
+  <div>
+    {% include "ui/newtheme/forms/includes/display-errors.html" with form=form %}
+  </div>
+
+
+{% if credit_balance > 0 %}
+  <h3>Credit Available</h3>
+  <p>
+      Our records indicate that you have a credit on your account for <strong>${{ credit_balance|floatformat:2 }}</strong>.  If you wish to apply this credit to this purchase, please email <a href="mailto:registrationchanges@planning.org">registrationchanges@planning.org</a>.
+  </p>
+  <hr/>
+{% endif %}
+
+    <!-- comment out here -->
+  {% if not recurring_frequency %}
+    {% block donation_form %}
+    {% if not has_donation_purchase %}
+    <div id="DonationPrompt">
+    {% donation_form request=request %}
+    </div>
+    {% endif %}
+    {% endblock %}
+  {% endif %}
+    <!-- endcomment out here -->
+
+  <h5>{{ contact }} | APA ID: #{{ contact.user.username }}</h5>
+
+
+  {% if purchases %}
+    <form method="post" id="complete_order_form">
+    {% csrf_token %}
+
+    <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <td><strong>Item</strong></td>
+        <td><strong>Price</strong></td>
+        <td><strong>Quantity</strong></td>
+        <td><strong>Total</strong></td>
+        <td> </td>
+      </tr>
+
+      {% for purchase in purchases %}
+
+          <tr>
+            <td>{{ purchase.product.content.title }}{% if purchase.option %} | {{purchase.option.title}}{% endif %}
+            {% if purchase.is_waitlist %}<br/><span class="bold">WAITLIST</span>{% endif %}
+            {% comment %}
+            {% if purchase.is_standby %}<br/><span class="bold">STANDBY</span>{% endif %}
+            {% endcomment %}
+            {% if purchase.product_price.comped %}<br/><span class="bold">COMPLIMENTARY</span>{% endif %}
+
+            {% if purchase.contact.contact_type == "ORGANIZATION" %} <br/><span class="bold">company purchase</span> {% endif %}
+            </td>
+            <td>{% if purchase.product_price.price %}${{ purchase.product_price.price|floatformat:"2" }}{% endif %}</td>
+
+            <td>
+              {% if purchase.product.product_type == "LEARN_COURSE" or purchase.product.product_type == "ACTIVITY_TICKET" %}
+                {% if purchase.total_remaining == 0 %}
+                  SOLD OUT
+                {% elif purchase.user_total_purchased >= purchase.user_allowed_to_purchase %}
+                  MAXIMUM PURCHASED
+                {% else %}
+                  <select name="{{purchase.product.code}}_quantity" onChange="this.form.submit()">
+                    {% for i in purchase.quantity_dropdown %}
+                      {% if forloop.counter %}
+                        {% if purchase.quantity == forloop.counter %}
+                          <option value="{{ forloop.counter }}" selected="selected">{{ forloop.counter }}</option>
+                        {% else %}
+                          <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                {% endif %}
+              {% else %}
+                <input name="{{purchase.product.code}}_quantity" type="hidden" value="{{ purchase.quantity }}"/>
+                {% if purchase.product_price.price %}{{ purchase.quantity }}{% endif %}
+              {% endif %}
+            </td>
+
+            <td> ${{ purchase.amount|floatformat:"2" }} </td>
+            {% if purchase.product.product_type == 'EVENT_REGISTRATION'%}
+              <td> <a href="?delete={{ purchase.id }}"
+                      class="button small"
+                      onclick="return confirm('Deleting conference registeration will delete all conference related tickets.\n\nWould you like to continue?')">
+                      Remove</a>
+            {% else %}
+              <td>
+                {% if recurring_frequency %}
+                  <a href="?delete={{ purchase.id }}&recurring={{  recurring_frequency }}" class="button small">Remove</a>
+                {% else %}
+                  <a href="?delete={{ purchase.id }}" class="button small">Remove</a>
+                {% endif %}
+            {% endif %}
+            </td>
+          </tr>
+
+      {% endfor %}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>Total: ${{ purchase_total|floatformat:"2" }}</b></td>
+            <td></td>
+          </tr>
+    </table>
+    </div>
+
+      {% if has_learn_purchase %}
+          <p>
+            <a href="/apalearn/agreement/">View Digital Agreement</a>
+          </p>
+          <p>
+            <a href="/refunds/">View Refund Policy</a>
+          </p>
+      {% endif %}
+
+      {% if shipping_purchase %}
+      <div class='action'>
+          <h5>Shipping Address</h5>
+          <p>
+          {{ shipping_purchase.first_name }} {{shipping_purchase.last_name }}<br/>
+          {{ shipping_purchase.address1 }}<br/>
+          {% if shipping_purchase.address2%}
+          {{ shipping_purchase.address2 }}<br/>
+          {% endif %}
+          {{ shipping_purchase.city }}, {{ shipping_purchase.state }} {{ shipping_purchase.zip_code }} <br/>
+          {{ shipping_purchase.country }}<br/>
+          </p>
+          <a href="/store/checkout/shipping/">modify shipping</a>
+      </div>
+      {% endif %}
+
+      <!-- comment out here -->
+      {% block payment_options %}
+      {% if allow_checks and purchase_total %}
+      <div class="action">
+        <h3>Payment Method: </h3>
+        <p><input type="radio" name="payment_method" value="CC" checked="checked"/>Pay Online Via Credit Card</p>
+        <p><input type="radio" name="payment_method" value="CHECK"/>Pay Via Check</p>
+      </div>
+      {% endif %}
+      {% endblock %}
+
+      {% block checkout_or_complete %}
+      <div align="right">
+        <button type="submit" name="submitButton" value="no_payment_order" class="btn btn-primary btn-lg">{{ purchase_total|yesno:"Next, Complete Order" }}</button>
+      </div>
+      {% endblock %}
+      <!-- endcomment out here -->
+    </form>
+
+  {% else %}
+    <p><em>There are no items in your cart.</em></p>
+  {% endif %}
+
+
+
+  </div>
+  </div>
+
+
+
+{% endblock %}
+
+
+{% block additional_body_js %}
+{{block.super}}
+<script>
+$(function(){
+
+  $("#DonationPrompt form").submit(function(event){
+    var $donationform = $(this);
+    var $is_anonymous = $donationform.find("[name=is_anonymous]");
+    var $name = $donationform.find("[name=name]");
+
+    var form_is_valid = true;
+
+    $name_form_group = $name.closest(".form-group");
+    $name_form_group.removeClass("has-error");
+    $name_form_group.find(".form-error").remove();
+
+    if (!$is_anonymous.prop("checked") && !$name.val() ) {
+      $name_form_group.append("<div class='form-error'><p class='form-error-server'>" +
+        "Please enter a person/organization to be recognized for this donation, or choose to remain anonymous." +
+        "</div></div>")
+      $name_form_group.addClass("has-error");
+      form_is_valid = false;
+    }
+
+    return form_is_valid;
+  });
+
+
+  $(".foundation-toggle-form-link", "#DonationPrompt").click(function(event){
+    var $toggleFormLink = $("#ToggleFormButton");
+    var $donationForm = $("#DonationFormSection");
+
+    if($donationForm.is(":visible")) {
+      $donationForm.slideUp();
+      $toggleFormLink.addClass("btn-primary");
+      $toggleFormLink.removeClass("btn-default");
+      $toggleFormLink.text("Donate Now");
+    }else{
+      $donationForm.slideDown();
+      $toggleFormLink.addClass("btn-default");
+      $toggleFormLink.removeClass("btn-primary");
+      $toggleFormLink.text("Donate Later");
+    }
+
+  });
+
+
+
+});
+</script>
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+<h2 class="details-title">{{nomination.title}}</h2>
+
+<div class="content-managed-html">
+    {{ nomination.city }}, {{nomination.state}}, {{nomination.country}}
+</div>
+
+<br/>
+
+<div class="form-section form-section-enclosed-light">
+  <h2>Responses</h2>
+  {% for question in submission_questions %}
+  <p>
+    {{ question.title }}<br/>
+    <b>{{ question.the_answer.0.get_value }}</b>
+    <br/>
+  </p>
+  {% endfor %}
+</div>
+
+<br/>
+
+<div class="form-section form-section-enclosed-light">
+	<div class="layout-tracery">
+		<div class="layout-column">
+			<h3>Letters of Support</h3>
+			{% include "awards/newtheme/includes/submission-uploads-letters.html" with uploads=uploads.letters %}
+	 	</div> <!-- layout column -->
+	 </div> <!-- layout tracery -->
+</div>
+
+<div class="form-section form-section-enclosed-light">
+	<div class="layout-tracery">
+		<div class="layout-column">
+			<h3>Supporting Materials</h3>
+			{% include "awards/newtheme/includes/submission-uploads-supporting.html" with uploads=uploads.supporting %}
+	 	</div> <!-- layout column -->
+	 </div> <!-- layout tracery -->
+</div>
+
+<div class="form-section form-section-enclosed-light">
+	<div class="layout-tracery">
+		<div class="layout-column">
+			<h3>Supplemental Materials</h3>
+			{% include "awards/newtheme/includes/submission-uploads-supplemental.html" with uploads=uploads.supplemental %}
+	 	</div> <!-- layout column -->
+	 </div> <!-- layout tracery -->
+</div>
+

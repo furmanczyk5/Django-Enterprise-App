@@ -1,0 +1,223 @@
+
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block javascripts %}
+{{block.super}}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+$(function(){
+	grappelli.initDateAndTimePicker();
+});
+</script>
+<script src="{% static 'registrations/js/custom-ticket-printing.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<header id="grp-content-title">
+	<h1>Select Printing Options</h1>
+</header>
+
+<form action="" method="post" target="_blank" id="adhoc-ticket-form">
+	{% csrf_token %}
+
+	{% for field in form.hidden_fields %}
+	{{field}}
+	{% endfor %}
+
+	<fieldset class="grp-module">
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.ticket_template.label_tag }}</div>
+				<div class="c-2">{{ form.ticket_template }}
+				{% if form.ticket_template.help_text %}<p class="grp-help">{{form.ticket_template.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset class="grp-module" data-ticket-fields="badge">
+		<!-- BADGE
+			Badge Name
+			Full Name
+			Company
+			Location
+
+			Member Type
+
+			User ID
+			Registration Class
+		-->
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.badge_name.label_tag }}</div>
+				<div class="c-2">{{ form.badge_name }}
+				{% if form.badge_name.help_text %}<p class="grp-help">{{form.badge_name.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.badge_fullname.label_tag }}</div>
+				<div class="c-2">{{ form.badge_fullname }}
+				{% if form.badge_fullname.help_text %}<p class="grp-help">{{form.badge_fullname.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.badge_company.label_tag }}</div>
+				<div class="c-2">{{ form.badge_company }}
+				{% if form.badge_company.help_text %}<p class="grp-help">{{form.badge_company.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.badge_location.label_tag }}</div>
+				<div class="c-2">{{ form.badge_location }}
+				{% if form.badge_location.help_text %}<p class="grp-help">{{form.badge_location.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.badge_membertype.label_tag }}</div>
+				<div class="c-2">{{ form.badge_membertype }}
+				{% if form.badge_membertype.help_text %}<p class="grp-help">{{form.badge_membertype.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-2 grp-cells">
+			<div class="grp-cell l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.badge_userid.label_tag }}</div>
+				<div class="c-2">{{ form.badge_userid }}
+				{% if form.badge_userid.help_text %}<p class="grp-help">{{form.badge_userid.help_text}}</p>{% endif %}
+				</div>
+			</div>
+			<div class="grp-cell l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.badge_regclass.label_tag }}</div>
+				<div class="c-2">{{ form.badge_regclass }}
+				{% if form.badge_regclass.help_text %}<p class="grp-help">{{form.badge_regclass.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset class="grp-module" data-ticket-fields="session">
+		<!-- TICKET
+			Session Code
+			Session Title
+			Is Standby
+			Begin Time
+			Location
+			Price
+			Description
+		-->
+		<div class="grp-row grp-cells-2 grp-cells">
+			<div class="grp-cell l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.session_code.label_tag }}</div>
+				<div class="c-2">{{ form.session_code }}
+				{% if form.session_code.help_text %}<p class="grp-help">{{form.session_code.help_text}}</p>{% endif %}
+				</div>
+			</div>
+			<div class="grp-cell l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.session_title.label_tag }}</div>
+				<div class="c-2">{{ form.session_title }}
+				{% if form.session_title.help_text %}<p class="grp-help">{{form.session_title.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.session_standby.label_tag }}</div>
+				<div class="c-2">{{ form.session_standby }}
+				{% if form.session_standby.help_text %}<p class="grp-help">{{form.session_standby.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.session_begintime.label_tag }}</div>
+				<div class="c-2">{{ form.session_begintime }}
+				{% if form.session_begintime.help_text %}<p class="grp-help">{{form.session_begintime.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.session_location.label_tag }}</div>
+				<div class="c-2">{{ form.session_location }}
+				{% if form.session_location.help_text %}<p class="grp-help">{{form.session_location.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.session_price.label_tag }}</div>
+				<div class="c-2">{{ form.session_price }}
+				{% if form.session_price.help_text %}<p class="grp-help">{{form.session_price.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-1">
+			<div class="l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.session_description.label_tag }}</div>
+				<div class="c-2">{{ form.session_description }}
+				{% if form.session_description.help_text %}<p class="grp-help">{{form.session_description.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset class="grp-module" data-ticket-fields="nonbadge">
+		<!-- TICKET + OTHERS
+			Full Name
+			User ID
+			Member Type
+			Registration Class
+		-->
+		<div class="grp-row grp-cells-2 grp-cells">
+			<div class="grp-cell l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.nonbadge_fullname.label_tag }}</div>
+				<div class="c-2">{{ form.nonbadge_fullname }}
+				{% if form.nonbadge_fullname.help_text %}<p class="grp-help">{{form.nonbadge_fullname.help_text}}</p>{% endif %}
+				</div>
+			</div>
+			<div class="grp-cell l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.nonbadge_userid.label_tag }}</div>
+				<div class="c-2">{{ form.nonbadge_userid }}
+				{% if form.nonbadge_userid.help_text %}<p class="grp-help">{{form.nonbadge_userid.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="grp-row grp-cells-2 grp-cells">
+			<div class="grp-cell l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.nonbadge_membertype.label_tag }}</div>
+				<div class="c-2">{{ form.nonbadge_membertype }}
+				{% if form.nonbadge_membertype.help_text %}<p class="grp-help">{{form.nonbadge_membertype.help_text}}</p>{% endif %}
+				</div>
+			</div>
+			<div class="grp-cell l-2c-fluid l-d-4">
+				<div class="c-1">{{ form.nonbadge_regclass.label_tag }}</div>
+				<div class="c-2">{{ form.nonbadge_regclass }}
+				{% if form.nonbadge_regclass.help_text %}<p class="grp-help">{{form.nonbadge_regclass.help_text}}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="grp-row grp-cells-1 code ">
+		<div class="l-2c-fluid l-d-4">
+			<div class="c-2">
+				<input type="submit" value="Print Ticket"/>
+    		</div>
+		</div>
+	</div>
+	
+    </fieldset>
+    
+</form>
+
+{% endblock %}

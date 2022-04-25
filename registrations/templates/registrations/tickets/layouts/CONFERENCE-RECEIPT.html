@@ -1,0 +1,15 @@
+{% load humanize %}
+<div class="conference-receipt">
+	<div class="indent">
+		<div><b>{{ticket.receipt_title|default:"Receipt for all Registration Purchases"}}</b></div>
+		{% for purchase in ticket.purchases %}
+		<div class="text-small">{% include "registrations/tickets/includes/conference-receipt-lineitem.html" with purchase=purchase %}</div>
+		{% endfor %}
+		{% if ticket.purchases_not_visible %}<div class="text-small bold">{{ticket.purchases_not_visible}} additional purchases not included on receipt</div>{% endif %}
+		<br/>
+		<!--<div><b>Total: </b>${{ticket.purchase_total|floatformat:2|intcomma}}</div>-->
+		<div><b>Payment(s): </b>${{ticket.payment_total|floatformat:2|intcomma}}</div>
+	</div>
+	
+	<div class="bottom-line">{{ticket.multipart_attendee.contact.title}} | {{ticket.multipart_attendee.contact.user.username}} {{ticket.multipart_attendee.contact.member_type|default_if_none:""}} | {{ticket.multipart_attendee.purchase.product_price.imis_reg_class}}</div>
+</div>

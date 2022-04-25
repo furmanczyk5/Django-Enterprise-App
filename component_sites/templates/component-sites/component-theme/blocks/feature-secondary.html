@@ -1,0 +1,10 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+<div class="homepage-featured-content-secondary has-read-more-link {{classname}}">
+	<div class="homepage-featured-content-secondary-body">
+		<h2>{{value.heading}}</h2>
+		<p>{{value.paragraph}}</p>
+		{% include_block value.link %}
+	</div>
+</div>

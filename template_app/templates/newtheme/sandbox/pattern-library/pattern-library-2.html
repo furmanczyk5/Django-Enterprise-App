@@ -1,0 +1,1202 @@
+{% extends 'newtheme/templates/layout-pattern-library.html' %}
+
+{% block title %}APA Pattern Library Level 2: Advanced patterns{% endblock %}
+
+{% block introduction %}This pattern library contains more advanced content patterns for use with APA content and section overview pages.{% endblock %}
+
+{% block patterns %}
+
+<h1 class="pl-h1">List of Links</h1>
+
+<h2 class="pl-h2">List of Links - Regular</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A list of links.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="list-of-links">
+  <h4><a href="#fpo">A Rising Tide of Engagement</a></h4>
+  <h4><a href="#fpo">Water Warrior</a></h4>
+  <h4><a href="#fpo">Preparing for the Next Big One</a></h4>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;list-of-links&quot;&gt;
+  &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">List of Links - With Text</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Use a &lt;p&gt; tag after the &lt;h4&gt; tag to add descriptive text for each link.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="list-of-links">
+  <h4><a href="#fpo">A Rising Tide of Engagement</a></h4>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit arcu, molestie ac molestie et, ultricies nec sapien. Duis rhoncus lectus malesuada dictum blandit.</p>
+  <h4><a href="#fpo">Water Warrior</a></h4>
+  <p>Ut hendrerit, nibh eu posuere vulputate, eros ex vestibulum enim, sed ullamcorper neque leo in leo.</p>
+  <h4><a href="#fpo">Preparing for the Next Big One</a></h4>
+  <p>Donec ligula dui, mattis non laoreet id, rhoncus sed elit. Curabitur mattis pulvinar odio ac convallis. Vivamus sodales lacinia nulla ac tincidunt.</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;list-of-links&quot;&gt;
+  &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+
+<h2 class="pl-h2">List of Links - Small</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A smaller font-size for List of Links that blends in better with body copy.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="list-of-links list-of-links-small">
+  <h4><a href="#fpo">A Rising Tide of Engagement</a></h4>
+  <h4><a href="#fpo">Water Warrior</a></h4>
+  <h4><a href="#fpo">Preparing for the Next Big One</a></h4>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;list-of-links list-of-links-small&quot;&gt;
+  &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+<h1 class="pl-h1">Book Card</h1>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A rectangular "card" to show details of a publication at a glance.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div style="max-width: 300px;">
+  <div class="book-card">
+    <a href="#fpo">
+      <img class="book-image" src="//placehold.it/600x400" />
+      <h4 class="book-title">Where the wild things are</h4>
+    </a>
+    <div class="book-prices">
+      <div class="book-price">
+        <span class="book-price-label">List Price:</span>
+        <span class="book-price-value">$109.95</span>
+      </div>
+      <div class="book-price">
+        <span class="book-price-label">Member Price:</span>
+        <span class="book-price-value">$109.95</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;book-card&quot;&gt;
+  &lt;a href=&quot;...&quot;&gt;
+    &lt;div class=&quot;book-image-wrap&quot;&gt;
+      &lt;img class=&quot;book-image&quot; src=&quot;...&quot; /&gt;
+    &lt;/div&gt;
+    &lt;h4 class=&quot;book-title&quot;&gt;...&lt;/h4&gt;
+  &lt;/a&gt;
+  &lt;div class=&quot;book-prices&quot;&gt;
+    &lt;div class=&quot;book-price&quot;&gt;
+      &lt;span class=&quot;book-price-label&quot;&gt;List Price:&lt;/span&gt;
+      &lt;span class=&quot;book-price-value&quot;&gt;$000.00&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;book-price&quot;&gt;
+      &lt;span class=&quot;book-price-label&quot;&gt;Member Price:&lt;/span&gt;
+      &lt;span class=&quot;book-price-value&quot;&gt;$000.00&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h1 class="pl-h1">Books Carousel</h1>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A carousel to browse through book cards.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div style="margin: 0 50px;">
+  <div class="books-carousel">
+    <div class="books-carousel-slide">
+      <div class="book-card">
+        <a href="#">
+          <div class="book-image-wrap">
+            <img class="book-image" src="//placehold.it/600x400" />
+          </div>
+          <h4 class="book-title">Where the wild things are</h4>
+        </a>
+        <div class="book-prices">
+          <div class="book-price">
+            <span class="book-price-label">List Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+          <div class="book-price">
+            <span class="book-price-label">Member Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="books-carousel-slide">
+      <div class="book-card">
+        <a href="#">
+          <div class="book-image-wrap">
+            <img class="book-image" src="//placehold.it/600x400" />
+          </div>
+          <h4 class="book-title">Where the wild things are</h4>
+        </a>
+        <div class="book-prices">
+          <div class="book-price">
+            <span class="book-price-label">List Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+          <div class="book-price">
+            <span class="book-price-label">Member Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="books-carousel-slide">
+      <div class="book-card">
+        <a href="#">
+          <div class="book-image-wrap">
+            <img class="book-image" src="//placehold.it/600x400" />
+          </div>
+          <h4 class="book-title">Where the wild things are</h4>
+        </a>
+        <div class="book-prices">
+          <div class="book-price">
+            <span class="book-price-label">List Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+          <div class="book-price">
+            <span class="book-price-label">Member Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="books-carousel-slide">
+      <div class="book-card">
+        <a href="#">
+          <div class="book-image-wrap">
+            <img class="book-image" src="//placehold.it/600x400" />
+          </div>
+          <h4 class="book-title">Where the wild things are</h4>
+        </a>
+        <div class="book-prices">
+          <div class="book-price">
+            <span class="book-price-label">List Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+          <div class="book-price">
+            <span class="book-price-label">Member Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="books-carousel-slide">
+      <div class="book-card">
+        <a href="#">
+          <div class="book-image-wrap">
+            <img class="book-image" src="//placehold.it/600x400" />
+          </div>
+          <h4 class="book-title">Where the wild things are</h4>
+        </a>
+        <div class="book-prices">
+          <div class="book-price">
+            <span class="book-price-label">List Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+          <div class="book-price">
+            <span class="book-price-label">Member Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="books-carousel-slide">
+      <div class="book-card">
+        <a href="#">
+          <div class="book-image-wrap">
+            <img class="book-image" src="//placehold.it/600x400" />
+          </div>
+          <h4 class="book-title">Where the wild things are</h4>
+        </a>
+        <div class="book-prices">
+          <div class="book-price">
+            <span class="book-price-label">List Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+          <div class="book-price">
+            <span class="book-price-label">Member Price:</span>
+            <span class="book-price-value">$109.95</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;books-carousel&quot;&gt;
+  &lt;div class=&quot;books-carousel-slide&quot;&gt;
+    &lt;div class=&quot;book-card&quot;&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;books-carousel-slide&quot;&gt;
+    &lt;div class=&quot;book-card&quot;&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;books-carousel-slide&quot;&gt;
+    &lt;div class=&quot;book-card&quot;&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;books-carousel-slide&quot;&gt;
+    &lt;div class=&quot;book-card&quot;&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;books-carousel-slide&quot;&gt;
+    &lt;div class=&quot;book-card&quot;&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;books-carousel-slide&quot;&gt;
+    &lt;div class=&quot;book-card&quot;&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+
+<h1 class="pl-h1">Read More Link</h1>
+<p>A link element with special styling to link out to another page of content.</p>
+
+<h2 class="pl-h2">Read More Link - Regular</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A simple "read more" link for consistent styling.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#fpo" class="read-more-link">Read more</a>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;read-more-link&quot;&gt;...&lt;/a&gt;
+</code></pre>
+
+<h2 class="pl-h2">Read More Link - Fancy</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A fancy "read more" link with a graphical line rule effect.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="read-more-link">
+  <a href="#fpo">Read more</a>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;read-more-link&quot;&gt;
+  &lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<h2 class="pl-h2">Standalone Link</h2>
+<p>A link element, like the read more link, but without vertical margins.</p>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#fpo" class="standalone-link">A link out to another page</a>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;standalone-link&quot;&gt;...&lt;/a&gt;
+</code></pre>
+
+<h1 class="pl-h1">LayoutTracery</h1>
+<div class="pl-description">
+  <p>The "tracery" layout is used to separate content with subtle borders. When you use two or more together, you will start to see the distinctive double-line design between them.</p>
+</div>
+<p></p>
+
+<h2 class="pl-h2">LayoutTracery: Single Column</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A single, full width implementation of LayoutTracery</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2 class="headline-underline">Integer in finibus sapien.</h2>
+    <p>Morbi dignissim velit risus, a tristique eros ullamcorper sit amet. Etiam placerat malesuada leo ut dignissim. Vestibulum ultrices tortor fringilla, egestas augue ac, congue risus.</p>
+    <p>Quisque bibendum posuere dolor, vel tempor turpis sollicitudin quis. Proin eros odio, feugiat ut tempor eu, viverra sed turpis. Maecenas dignissim bibendum sodales. Vivamus sit amet condimentum libero, at faucibus neque.</p>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;layout-tracery&quot;&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">LayoutTracery: Two Columns</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A balanced, two-column implementation of LayoutTracery that collapses to one column at the smallest breakpoint.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="layout-tracery layout-tracery-2col">
+
+  <div class="layout-column">
+    <h2 class="headline-underline">Integer in finibus sapien</h2>
+    <p>Morbi dignissim velit risus, a tristique eros ullamcorper sit amet. Etiam placerat malesuada leo ut dignissim. Vestibulum ultrices tortor fringilla, egestas augue ac, congue risus.</p>
+    <p>Quisque bibendum posuere dolor, vel tempor turpis sollicitudin quis. Proin eros odio, feugiat ut tempor eu, viverra sed turpis. Maecenas dignissim bibendum sodales. Vivamus sit amet condimentum libero, at faucibus neque.</p>
+  </div>
+  <div class="layout-column">
+    <h2 class="headline-underline">Nulla non diam libero. Morbi eget velit tristique ipsum tristique bibendum vel ac mauris</h2>
+    <p>Aenean egestas vel nisi eu lobortis. Donec non turpis vitae orci consequat hendrerit eu vel nulla.</p>
+    <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi eget velit tristique ipsum tristique bibendum vel ac mauris. Morbi ultricies ante justo, sit amet porta elit euismod consequat. In est nisi, laoreet et ultricies quis, iaculis quis neque. Duis et neque sit amet dolor consectetur vulputate.</p>
+    <p>Quisque rutrum venenatis ante vitae semper. Praesent iaculis tristique quam, a aliquet massa interdum ac. Nullam vulputate sodales velit at vehicula.</p>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;layout-tracery layout-tracery-2col&quot;&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    ...
+  &lt;/div&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">LayoutTracery: Three Columns</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A balanced, three-column implementation of LayoutTracery that collapses to one column at the smallest breakpoint.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="layout-tracery layout-tracery-3col">
+
+  <div class="layout-column">
+    <h2 class="headline-underline">Integer in finibus sapien</h2>
+    <p>Morbi dignissim velit risus, a tristique eros ullamcorper sit amet. Etiam placerat malesuada leo ut dignissim. Vestibulum ultrices tortor fringilla, egestas augue ac, congue risus.</p>
+    <p>Quisque bibendum posuere dolor, vel tempor turpis sollicitudin quis. Proin eros odio, feugiat ut tempor eu, viverra sed turpis. Maecenas dignissim bibendum sodales. Vivamus sit amet condimentum libero, at faucibus neque.</p>
+  </div>
+  <div class="layout-column">
+    <h2 class="headline-underline">Nulla non diam libero. Morbi eget velit tristique ipsum tristique bibendum vel ac mauris</h2>
+    <p>Aenean egestas vel nisi eu lobortis. Donec non turpis vitae orci consequat hendrerit eu vel nulla.</p>
+    <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi eget velit tristique ipsum tristique bibendum vel ac mauris. Morbi ultricies ante justo, sit amet porta elit euismod consequat. In est nisi, laoreet et ultricies quis, iaculis quis neque. Duis et neque sit amet dolor consectetur vulputate.</p>
+    <p>Quisque rutrum venenatis ante vitae semper. Praesent iaculis tristique quam, a aliquet massa interdum ac. Nullam vulputate sodales velit at vehicula.</p>
+  </div>
+  <div class="layout-column">
+    <h2 class="headline-underline">Donec gravida, quam et congue iaculis, purus arcu bibendum augue</h2>
+    <p>Pellentesque id gravida nisl, id ullamcorper dui. Vivamus id ex ut eros dignissim aliquam interdum ut sem. Morbi mattis ipsum non mi commodo sagittis nec interdum ligula.</p>
+    <p>Nullam pellentesque lacus ut fermentum blandit. Nullam ut nisi sit amet libero pellentesque ultricies nec quis tellus. Etiam finibus sollicitudin orci, at posuere quam. </p>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;layout-tracery layout-tracery-3col&quot;&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    ...
+  &lt;/div&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    ...
+  &lt;/div&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">LayoutTracery: Border Modifiers</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>There are several border modifier classes available for LayoutTracery. They should be applied to the same element that has the "layout-tracery" class. Demonstrated here with a gray background to more clearly show element boundaries.</p>
+</div>
+
+<h3 class="pl-h3">examples:</h3>
+<div class="layout-tracery slab-gray no-top-border">
+  <div class="layout-column">
+    .layout-tracery .no-top-border
+  </div>
+</div>
+
+<div class="layout-tracery slab-gray no-bottom-border">
+  <div class="layout-column">
+    .layout-tracery .no-bottom-border
+  </div>
+</div>
+
+<div class="layout-tracery slab-gray no-border">
+  <div class="layout-column">
+    .layout-tracery .no-border
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;layout-tracery no-top-border&quot;&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;layout-tracery no-bottom-border&quot;&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;layout-tracery no-border&quot;&gt;
+  &lt;div class=&quot;layout-column&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h1 class="pl-h1">LayoutHeroImage</h1>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>The "hero image" layout is used at the top of section overview pages to overlay content over an image</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+
+<div class="layout-hero-image">
+  <img class="layout-hero-image-image" src="//placehold.it/970x370/3e3918" />
+  <div class="layout-hero-image-content">
+    <div class="layout-tracery slab-gray">
+      <div class="layout-column">
+        <h2 class="headline-underline">Accumsan eu Tincidunt Sed</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc est justo, posuere non eros id, consectetur eleifend dui. Praesent vitae purus ante. Curabitur sit amet odio augue. Vestibulum consequat pulvinar dui vitae tristique. Nulla ligula elit, posuere et ipsum quis, venenatis ultricies velit. Morbi consequat nulla molestie mauris pharetra, consequat sagittis metus vestibulum.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;layout-hero-image&quot;&gt;
+  &lt;img class=&quot;layout-hero-image-image&quot; src=&quot;...&quot; /&gt;
+  &lt;div class=&quot;layout-hero-image-content&quot;&gt;
+    &lt;div class=&quot;layout-tracery slab-gray&quot;&gt;
+      &lt;div class=&quot;layout-column&quot;&gt;
+        ...
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h1 class="pl-h1">Breadcrumb</h1>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A breadcrumb navigation trail.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<ol class="breadcrumb">
+  <li><a href="#fpo">Home</a></li>
+  <li><a href="#fpo">Knowledge Center</a></li>
+</ol>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;ol class=&quot;breadcrumb&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+</code></pre>
+
+<h1 class="pl-h1">Search Results List</h1>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A set of search results presented in list format.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="search-results-list">
+  <ul>
+    <li>
+      <div class="search-result">[.search-result]</div>
+    </li>
+    <li>
+      <div class="search-result">[.search-result]</div>
+    </li>
+    <li>
+      <div class="search-result">[.search-result]</div>
+    </li>
+  </ul>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;search-results-list&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;...&quot; class=&quot;search-result&quot;&gt;...&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;...&quot; class=&quot;search-result&quot;&gt;...&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;...&quot; class=&quot;search-result&quot;&gt;...&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h1 class="pl-h1">Search Result</h1>
+
+<h2 class="pl-h2">Search Result: Generic</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A generic search result, suitable for most content types.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="search-result">
+  <h6 class="search-result-category">Digital Education</h6>
+  <h4 class="search-result-title">Urban Design and Preservation</h4>
+  <div class="search-result-description">
+    Etiam maximus nunc quam, ut pretium justo auctor maximus. Suspendisse egestas magna mi, a rutrum ante blandit sed.
+  </div>
+</a>
+
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;search-result&quot;&gt;
+  &lt;h6 class=&quot;search-result-category&quot;&gt;...&lt;/h6&gt;
+  &lt;h4 class=&quot;search-result-title&quot;&gt;...&lt;/h4&gt;
+  &lt;div class=&quot;search-result-description&quot;&gt;...&lt;/div&gt;
+&lt;/a&gt;
+</code></pre>
+
+<h2 class="pl-h2">Search Result: (Members Only)</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>You can add an element span.members-only at the start of h4.search-result-title to tag a result as "MEMBERS ONLY"</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="search-result">
+  <h6 class="search-result-category">Digital Education</h6>
+  <h4 class="search-result-title">
+    <span class="members-only">Members Only</span>
+    Urban Design and Preservation
+  </h4>
+  <div class="search-result-description">
+    Etiam maximus nunc quam, ut pretium justo auctor maximus. Suspendisse egestas magna mi, a rutrum ante blandit sed.
+  </div>
+</a>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;search-result&quot;&gt;
+  &lt;h6 class=&quot;search-result-category&quot;&gt;...&lt;/h6&gt;
+  &lt;h4 class=&quot;search-result-title&quot;&gt;
+    &lt;span class=&quot;members-only&quot;&gt;Members Only&lt;/span&gt;
+    ...
+  &lt;/h4&gt;
+  &lt;div class=&quot;search-result-description&quot;&gt;...&lt;/div&gt;
+&lt;/a&gt;
+</code></pre>
+
+
+<h2 class="pl-h2">Search Result: Book</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A search result for a book, with an image of the cover.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="search-result search-result-book">
+  <h6 class="search-result-category">
+    Book
+  </h6>
+  <div class="search-result-image">
+    <img src="//placehold.it/200x260" />
+  </div>
+  <h4 class="search-result-title">Rural by Design</h4>
+  <div class="search-result-meta">by: Tom Daniels</div>
+  <div class="search-result-description">
+    When this planning classic by author Randall Arendt first appeared 20 years ago, it showed how creative, practical land-use planning can preserve open space and keep community character intact.
+  </div>
+</a>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;search-result search-result-book&quot;&gt;
+  &lt;h6 class=&quot;search-result-category&quot;&gt;...&lt;/h6&gt;
+  &lt;div class=&quot;search-result-image&quot;&gt;
+    &lt;img src=&quot;...&quot; /&gt;
+  &lt;/div&gt;
+  &lt;h4 class=&quot;search-result-title&quot;&gt;...&lt;/h4&gt;
+  &lt;div class=&quot;search-result-meta&quot;&gt;by: ...&lt;/div&gt;
+  &lt;div class=&quot;search-result-description&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/a&gt;
+</code></pre>
+
+<h1 class="pl-h1">SectionIcon Pattern</h1>
+<div class="pl-description">
+  <p>A section on the page with an icon featured prominently at the top left, and padding aligned to that icon.</p>
+</div>
+
+<h2 class="pl-h2">SectionIcon - Attention</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>An alert message to draw the user's attention to a block.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="section-icon section-icon-attention">
+  <h3>Important Header example</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua, consectetur adipisicing elit, sed do eiusmod.</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;section-icon section-icon-attention&quot;&gt;
+  &lt;h3&gt;...&lt;/h3&gt;
+  &lt;p&gt;...&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">SectionIcon - Other Icons</h2>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>There are many icons available to use with SectionIcon, here are a few:</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="section-icon section-icon-marker">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua, consectetur adipisicing elit, sed do eiusmod.</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;section-icon section-icon-marker&quot;&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+
+<h3 class="pl-h3">example:</h3>
+<div class="section-icon section-icon-calendar">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua, consectetur adipisicing elit, sed do eiusmod.</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;section-icon section-icon-calendar&quot;&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+
+<h1 class="pl-h1">List of Speakers</h1>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A list of speakers for an event.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="list-of-speakers">
+  <h4>Paula Conolly, AICP</h4>
+  <p>Policy Strategist, Green City, Clean Waters Program, Philadelphia Water Department</p>
+  <h4>Bethany Bezak, PE, LEED AP</h4>
+  <p>Green Infrastructure Manager, DC Water, DC Clean Rivers Project</p>
+  <h4>Mathy Stanislaus</h4>
+  <p>Assistant Administrator for the Office of Solid Waste and Emergency Response, U.S. EPA</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;list-of-speakers&quot;&gt;
+  &lt;h4&gt;...&lt;/h4&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  &lt;h4&gt;...&lt;/h4&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+<h1 class="pl-h1">Content Preview</h1>
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A ubiquitous pattern for displaying linked previews of content around the site. Extended by search results and other patterns.</p>
+</div>
+
+<h2 class="pl-h2">Content Preview - Basic Usage</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Making the containing .content-preview-item element a link.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="content-preview-item">
+  <h6 class="content-preview-item-superheadline">Superheadline</h6>
+  <div class="content-preview-item-subheadline">Subheadline</div>
+  <h4 class="content-preview-item-headline">
+    <span class="members-only">Members Only</span>
+    Headline: Maecenas urna libero, ornare a turpis ut, luctus vestibulum ex
+  </h4>
+  <div class="content-preview-item-summary">Summary: Phasellus sed justo ullamcorper, ultrices tortor et, fermentum tellus. Quisque consectetur, nisi in malesuada porta, tellus nulla vulputate eros, et rutrum augue diam in urna. Phasellus sed lectus nec velit interdum pharetra.</div>
+  <div class="content-preview-item-postline">Postline</div>
+</a>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;content-preview-item&quot;&gt;
+  &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...&lt;/h6&gt;
+  &lt;div class=&quot;content-preview-item-subheadline&quot;&gt;...&lt;/div&gt;
+  &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;
+    &lt;span class=&quot;members-only&quot;&gt;Members Only&lt;/span&gt;
+    ...
+  &lt;/h4&gt;
+  &lt;div class=&quot;content-preview-item-summary&quot;&gt;...&lt;/div&gt;
+  &lt;div class=&quot;content-preview-item-postline&quot;&gt;...&lt;/div&gt;
+&lt;/a&gt;
+</code></pre>
+
+<h2 class="pl-h2">Content Preview - Featured</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Adding the .content-preview-item-featured class will make the text larger.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="content-preview-item content-preview-item-featured">
+  <h6 class="content-preview-item-superheadline">Blog</h6>
+  <h4 class="content-preview-item-headline">Maecenas urna libero, ornare a turpis ut, luctus vestibulum ex</h4>
+  <div class="content-preview-item-summary">Phasellus sed justo ullamcorper, ultrices tortor et, fermentum tellus. Quisque consectetur, nisi in malesuada porta, tellus nulla vulputate eros, et rutrum augue diam in urna. Phasellus sed lectus nec velit interdum pharetra.</div>
+</a>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;content-preview-item content-preview-item-featured&quot;&gt;
+  ...
+&lt;/a&gt;
+</code></pre>
+
+<h2 class="pl-h2">Content Preview - Block Image</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Content preview with a block image, such as for the homepage</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="content-preview-item">
+  <div class="content-preview-item-image-block">
+    <img src="//placehold.it/400x200" />
+  </div>
+  <h6 class="content-preview-item-superheadline">Blog</h6>
+  <h4 class="content-preview-item-headline">Maecenas urna libero, ornare a turpis ut, luctus vestibulum ex</h4>
+  <div class="content-preview-item-summary">Phasellus sed justo ullamcorper, ultrices tortor et, fermentum tellus. Quisque consectetur, nisi in malesuada porta, tellus nulla vulputate eros, et rutrum augue diam in urna. Phasellus sed lectus nec velit interdum pharetra.</div>
+</a>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;content-preview-item&quot;&gt;
+  &lt;div class=&quot;content-preview-item-image-block&quot;&gt;
+    &lt;img src=&quot;...&quot; /&gt;
+  &lt;/div&gt;
+  ...
+&lt;/a&gt;
+</code></pre>
+
+
+<h2 class="pl-h2">Content Preview - Floated Image</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Content preview with a floated image. The image must come after the superheadline or the float won't work.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<a href="#" class="content-preview-item">
+  <h6 class="content-preview-item-superheadline">Blog</h6>
+  <div class="content-preview-item-image-floated">
+    <img src="//placehold.it/200x200" />
+  </div>
+  <h4 class="content-preview-item-headline">Maecenas urna libero, ornare a turpis ut, luctus vestibulum ex</h4>
+  <div class="content-preview-item-summary">Phasellus sed justo ullamcorper, ultrices tortor et, fermentum tellus. Quisque consectetur, nisi in malesuada porta, tellus nulla vulputate eros, et rutrum augue diam in urna. Phasellus sed lectus nec velit interdum pharetra.</div>
+</a>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;a href=&quot;...&quot; class=&quot;content-preview-item&quot;&gt;
+  &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;...&lt;/h6&gt;
+  &lt;div class=&quot;content-preview-item-image-floated&quot;&gt;
+    &lt;img src=&quot;...&quot; /&gt;
+  &lt;/div&gt;
+  ...
+&lt;/a&gt;
+</code></pre>
+
+
+<h1 class="pl-h1">Bios</h1>
+
+<h2 class="pl-h2">Bios - Bio Box</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>A single biography.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="content-preview-item">
+  <div class="content-preview-item-image-floated">
+    <img src="//placehold.it/200x200" />
+  </div>
+  <h6 class="content-preview-item-superheadline">APA President</h6>
+  <h4 class="content-preview-item-headline">Carol Reha, FAICP</h4>
+  <div class="content-preview-item-summary">Carol Rhea is a founding partner of the Orion Planning + Design, and previously created and staffed Rhea Consulting. In addition to her work as a consultant, Rhea has worked as a city, county, regional, and state planner. Her passion is helping local governments build planning capacity, and working with small to medium-sized communities to address planning challenges. She has a history of volunteer work that includes serving as a planning commissioner, on a historic foundation board, and in many leadership roles within APA.</div>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;content-preview-item&quot;&gt;
+  &lt;div class=&quot;content-preview-item-image-floated&quot;&gt;
+    &lt;img src=&quot;...&quot; /&gt;
+  &lt;/div&gt;
+  &lt;h6 class=&quot;content-preview-item-superheadline&quot;&gt;[Job Title]&lt;/h6&gt;
+  &lt;h4 class=&quot;content-preview-item-headline&quot;&gt;[Name]&lt;/h4&gt;
+  &lt;div class=&quot;content-preview-item-summary&quot;&gt;[Biography Text]&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Bios - List of Bios</h2>
+<div class="pl-description">
+  <p>A list of bios.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="content-preview-list">
+  <ul>
+    <li class="content-preview-item">
+      <div class="content-preview-item-image-floated">
+        <img src="//placehold.it/200x200" />
+      </div>
+      <h6 class="content-preview-item-superheadline">APA President</h6>
+      <h4 class="content-preview-item-headline">Carol Reha, FAICP</h4>
+      <div class="content-preview-item-summary">Carol Rhea is a founding partner of the Orion Planning + Design, and previously created and staffed Rhea Consulting. In addition to her work as a consultant, Rhea has worked as a city, county, regional, and state planner. Her passion is helping local governments build planning capacity, and working with small to medium-sized communities to address planning challenges. She has a history of volunteer work that includes serving as a planning commissioner, on a historic foundation board, and in many leadership roles within APA.</div>
+    </li>
+    <li class="content-preview-item">
+      <div class="content-preview-item-image-floated">
+        <img src="//placehold.it/200x200" />
+      </div>
+      <h6 class="content-preview-item-superheadline">President-Elect of APA</h6>
+      <h4 class="content-preview-item-headline">Cynthia Bowen, AICP</h4>
+      <div class="content-preview-item-summary">Cynthia Bowen is the Director of Planning for Rundell Ernstberger Associates (REA), a national planning, urban design and land architect firm founded in 1979. An active APA member, Bowen has held a number of leadership positions including president of the APA Indiana Chapter and vice chair and secretary/treasurer of the Chapter Presidents Council. Bowen is a graduate of Ball State University with degrees in urban and regional planning and environmental science and design. Within her community, Bowen has served on many boards and committees.</div>
+    </li>
+    <li class="content-preview-item">
+      <div class="content-preview-item-image-floated">
+        <img src="//placehold.it/200x200" />
+      </div>
+      <h6 class="content-preview-item-superheadline">AICP President</h6>
+      <h4 class="content-preview-item-headline">Valerie Hubbard, FAICP</h4>
+      <div class="content-preview-item-summary">Valerie Hubbard is the director of planning services for Akerman LLP, a national law firm. She provides consulting services to private and public sector clients on a wide variety of planning matters, including comprehensive planning, zoning, permitting, DRIs and land development regulations. Val has held key planning positions in several Florida jurisdictions and was director of community planning for the state land planning agency (2003-2007). Hubbard served as AICP Commissioner from Region III from 2008 until 2014, when she became President-Elect of the AICP Commission. She is current Chair of the AICP Ethics Committee and a past president of the Florida Chapter of APA. Hubbard is a member of the Sunrise Rotary Club in Tallahassee. She has a master's degree in Urban and Regional Planning from the University of Florida.</div>
+    </li>
+  </ul>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;content-preview-list&quot;&gt;
+  &lt;ul&gt;
+    &lt;li class=&quot;content-preview-item&quot;&gt;[Use Content Preview - Bio Box]&lt;/li&gt;
+    &lt;li class=&quot;content-preview-item&quot;&gt;[Use Content Preview - Bio Box]&lt;/li&gt;
+    &lt;li class=&quot;content-preview-item&quot;&gt;[Use Content Preview - Bio Box]&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<h1 class="pl-h1">Slab</h1>
+<div class="pl-description">
+  <p>Slabs give a different background color to a section, and invert the text color if needed. Use in conjunction with other patterns to get desired padding and layout. Used primarily as an extendable LESS class, but can be applied directly to elements as well.</p>
+</div>
+ 
+
+<h2 class="pl-h2">Slab Green</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>An element with a green background and light text.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="slab-green">
+  <h2>Quisque quis tristique ipsum</h2>
+  <p>Donec sit amet dolor tincidunt, ultricies metus quis, vestibulum arcu. Proin scelerisque urna lorem, <a href="#">elementum maximus</a> magna sagittis sed. Donec eget neque ullamcorper, ultrices risus nec, sagittis erat. Aliquam eu rhoncus lorem. In viverra a libero sed cursus.</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;slab-green&quot;&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Slab Blue</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>An element with a blue background and light text.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="slab-blue">
+  <h2>Quisque quis tristique ipsum</h2>
+  <p>Donec sit amet dolor tincidunt, ultricies metus quis, vestibulum arcu. Proin scelerisque urna lorem, <a href="#">elementum maximus</a> magna sagittis sed. Donec eget neque ullamcorper, ultrices risus nec, sagittis erat. Aliquam eu rhoncus lorem. In viverra a libero sed cursus.</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;slab-blue&quot;&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Slab Gray</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>An element with a light gray background and dark text.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="slab-gray">
+  <h2>Quisque quis tristique ipsum</h2>
+  <p>Donec sit amet dolor tincidunt, ultricies metus quis, vestibulum arcu. Proin scelerisque urna lorem, <a href="#">elementum maximus</a> magna sagittis sed. Donec eget neque ullamcorper, ultrices risus nec, sagittis erat. Aliquam eu rhoncus lorem. In viverra a libero sed cursus.</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;slab-gray&quot;&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+<h2 class="pl-h2">Slab DarkGray</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>An element with a dark gray background and light text.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="slab-darkgray">
+  <h2>Quisque quis tristique ipsum</h2>
+  <p>Donec sit amet dolor tincidunt, ultricies metus quis, vestibulum arcu. Proin scelerisque urna lorem, <a href="#">elementum maximus</a> magna sagittis sed. Donec eget neque ullamcorper, ultrices risus nec, sagittis erat. Aliquam eu rhoncus lorem. In viverra a libero sed cursus.</p>
+</div>
+
+<h2 class="pl-h2">Slab Orange</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>An element with an orange background and light text.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="slab-orange">
+  <h2>Quisque quis tristique ipsum</h2>
+  <p>Donec sit amet dolor tincidunt, ultricies metus quis, vestibulum arcu. Proin scelerisque urna lorem, <a href="#">elementum maximus</a> magna sagittis sed. Donec eget neque ullamcorper, ultrices risus nec, sagittis erat. Aliquam eu rhoncus lorem. In viverra a libero sed cursus.</p>
+</div>
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;slab-orange&quot;&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+<h1 class="pl-h1">Homepage Featured Content</h1>
+
+<h2 class="pl-h2">Homepage Featured Content Primary</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Primary featured content for the homepage.</p>
+</div>
+
+<h3 class="pl-h3">example:</h3>
+<div class="homepage-featured-content-primary-wrapper">
+    <div class="homepage-featured-content-primary">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+                <h2 class="h1 headline-underline">
+                    <small><strong>Featured event:</strong> AICP Symposium at National Building Museum, Washington, D.C.</small>
+                    <a href="#">Green Stormwater Infrastructure</a>
+                </h2>
+                <p class="featured">
+                    <strong>October 28, 2015</strong> – In urban areas, stormwater presents major challenges for water quality. Learn from the experiences of Washington, D.C. and Philadelphia in adopting green stormwater management approaches.
+                </p>
+                <br/>
+                <a href="#" class="btn btn-primary btn-lg">Register Now</a>
+                <span class="cm-wrapper">
+                    <span class="cm">CM | </span><span class="cmpoints">30</span>
+                </span>
+            </div>
+            <div class="hidden-xs col-sm-6 col-md-5 col-lg-4">
+                <div class="video-thumbnail color-orange">
+                  <div class="video">
+                    <video class="planning-media" data-content-id="283823" style="max-width:100%" src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" controls>
+                      <source src="https://planning-org-uploaded-media.s3.amazonaws.com:443/video/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                  <div class="caption">
+                    APA's 2015 National Planning Excellence Award for Implementation winner
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;homepage-featured-content-primary-wrapper&quot;&gt;
+    &lt;div class=&quot;homepage-featured-content-primary&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-xs-12 col-sm-6 col-md-7 col-lg-8&quot;&gt;
+                &lt;h2 class=&quot;h1 headline-underline&quot;&gt;
+                    &lt;small&gt;&lt;strong&gt;Featured event:&lt;/strong&gt; ...&lt;/small&gt;
+                    &lt;a href=&quot;#&quot;&gt;...&lt;/a&gt;
+                &lt;/h2&gt;
+                &lt;p class=&quot;featured&quot;&gt;
+                    &lt;strong&gt;...&lt;/strong&gt; &ndash; ...
+                &lt;/p&gt;
+                &lt;br/&gt;
+                &lt;a href=&quot;#&quot; class=&quot;btn btn-primary btn-lg&quot;&gt;...&lt;/a&gt;
+                &lt;span class=&quot;cm-wrapper&quot;&gt;
+                    &lt;span class=&quot;cm&quot;&gt;CM | &lt;/span&gt;&lt;span class=&quot;cmpoints&quot;&gt;30&lt;/span&gt;
+                &lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;hidden-xs col-sm-6 col-md-5 col-lg-4&quot;&gt;
+              [See Video Thumbnail pattern in library 1]
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<!-- END -->
+
+<h2 class="pl-h2">Homepage Featured Content Secondary</h2>
+
+<h3 class="pl-h3">description:</h3>
+<div class="pl-description">
+  <p>Secondary featured content for the homepage.</p>
+</div>
+
+
+<h3 class="pl-h3">example:</h3>
+
+<div class="homepage-featured-content-secondary-row">
+    <div class="homepage-featured-content-secondary color-orange has-read-more-link">
+      <div class="homepage-featured-content-secondary-image">
+        <img src="//placehold.it/800x360" />
+      </div>
+      <div class="homepage-featured-content-secondary-body">
+        <h2>Great Places In America</h2>
+        <p>More than half of the U.S. population currently resides on or near a coast, and over half of all economic...</p>
+        <div class="read-more-link no-top-border">
+          <a href="#">See More</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="homepage-featured-content-secondary color-orange has-read-more-link">
+      <div class="homepage-featured-content-secondary-image">
+        <img src="//placehold.it/800x360" />
+      </div>
+      <div class="homepage-featured-content-secondary-body">
+        <h2>Street Graphics and the Law</h2>
+        <p>More than half of the U.S. population currently resides on or near a coast, and over half of all economic...</p>
+        <div class="read-more-link no-top-border">
+          <a href="#">See More</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="homepage-featured-content-secondary color-blue">
+      <div class="homepage-featured-content-secondary-image">
+        <img src="//placehold.it/800x360" />
+      </div>
+      <div class="homepage-featured-content-secondary-body">
+
+        <h2>Students and New Planners</h2>
+        <p>Some introductory copy about how the APA supports professional planners in their career development.</p>
+        <div class="list-of-links list-of-links-small">
+          <h4><a href="#">Early Career Membership Program</a></h4>
+          <h4><a href="#">Planning Student Organizations</a></h4>
+          <h4><a href="#">Other Student Specific Content</a></h4>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+<!-- CODE -->
+<h3 class="pl-h3">code:</h3>
+<pre><code class="html">&lt;div class=&quot;homepage-featured-content-secondary-row&quot;&gt;
+
+  &lt;div class=&quot;homepage-featured-content-secondary has-read-more-link color-orange&quot;&gt;
+    &lt;div class=&quot;homepage-featured-content-secondary-image&quot;&gt;
+      &lt;img src=&quot;...&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;homepage-featured-content-secondary-body&quot;&gt;
+      &lt;h2&gt;...&lt;/h2&gt;
+      &lt;p&gt;...&lt;/p&gt;
+      &lt;div class=&quot;read-more-link no-top-border&quot;&gt;
+        &lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;homepage-featured-content-secondary has-read-more-link color-orange&quot;&gt;
+    &lt;div class=&quot;homepage-featured-content-secondary-image&quot;&gt;
+      &lt;img src=&quot;...&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;homepage-featured-content-secondary-body&quot;&gt;
+      &lt;h2&gt;...&lt;/h2&gt;
+      &lt;p&gt;...&lt;/p&gt;
+      &lt;div class=&quot;read-more-link no-top-border&quot;&gt;
+        &lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;homepage-featured-content-secondary color-blue&quot;&gt;
+    &lt;div class=&quot;homepage-featured-content-secondary-image&quot;&gt;
+      &lt;img src=&quot;...&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;homepage-featured-content-secondary-body&quot;&gt;
+      &lt;h2&gt;...&lt;/h2&gt;
+      &lt;p&gt;...&lt;/p&gt;
+      &lt;div class=&quot;list-of-links list-of-links-small&quot;&gt;
+        &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+        &lt;h4&gt;&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+{% endblock %}

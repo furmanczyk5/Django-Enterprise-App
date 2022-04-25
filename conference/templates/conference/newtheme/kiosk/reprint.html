@@ -1,0 +1,54 @@
+{% extends "conference/newtheme/kiosk/base.html" %}
+
+{% block content_main %}
+
+{% if success %}
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h1>Ready To Reprint!</h1>
+	</div>
+</div>
+
+<div class="layout-tracery">
+	<div class="layout-column no-bottom-border">
+		<h3>To receive your badge and tickets, Please notify the staff behind the counter that your order is ready to print. Please check that all of your purchased tickets are included. You may only perform this action once.</h3>
+	</div>
+</div>
+
+{% elif attendee %}
+
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h1>Could not reprint tickets.</h1>
+	</div>
+</div>
+
+<div class="layout-tracery">
+	<div class="layout-column no-bottom-border">
+		<h3>Our records indicate that you have already used your reprint. If you believe that this is an error, please notify the the staff behind the counter.</h3>
+	</div>
+</div>
+
+{% else %}
+
+<div class="layout-tracery">
+	<div class="layout-column">
+		<h1>Could not locate your attendee record</h1>
+	</div>
+</div>
+
+<div class="layout-tracery">
+	<div class="layout-column no-bottom-border">
+		<h3>If you have already registered for conference, please notify the staff behind the counter.</h3>
+	</div>
+</div>
+
+{% endif %}
+
+<div class="layout-tracery">
+	<div class="layout-column">
+		<a href="{% url 'kiosk:home' %}" class="btn btn-primary btn-lg">End Session</a>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load content_extras %}
+<!-- NO LONGER USED? -->
+<!-- nested row: -->
+<div class="row nested-row row-no-gutters">
+
+  <!-- left image -->
+  <div class="col-md-4 col-sm-4 col-xs-12 cust-xs-img">
+    {% if result.thumbnail_2 %}
+      <img src="{{result.thumbnail_2}}" alt="{{result.featured_image_caption}}" class="img-responsive"/>
+    {% else %}
+      <img src="//placehold.it/198x132" alt="recent article image" class="img-responsive"/>
+    {% endif %}
+  </div>
+  <!-- right column -->
+  <div class="col-md-8 col-sm-8 col-xs-12 cust-xs-text">
+    <div class="content-preview-item">
+      <div class="content-preview-item-headline">
+        {% if result.permission_groups|is_member_or_subscription %}
+        <div class="members-only">APA Member Content</div>
+        {% endif %}
+        {% if result.tags_SPONSORED %}
+        <div class="members-only sponsored-content">{{ result.tags_SPONSORED.0|split_on_period:2 }}</div>
+        {% endif %}
+        <h6 class="content-preview-item-superheadline">Innovations</h6>
+        {% if result.tags_PLANNING_MAG_SECTION %}
+        <h6 class="content-preview-item-superheadline">{{ result.tags_PLANNING_MAG_SECTION.0|split_on_period:2 }}</h6>
+        {% endif %}
+        <div class="content-preview-item-title"><a href="{{result|solr_record_to_details_path_filter}}">{{ result.title }}</a></div>
+      </div>
+      {% if result.date_text %}
+        <div class="content-preview-item-postline"><strong>{{result.date_text}}</strong></div>
+      {% elif result.resource_published_date %}
+        <div class="content-preview-item-postline"><strong>{{result.resource_published_date|full_date_from_json_datetime}}</strong></div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+

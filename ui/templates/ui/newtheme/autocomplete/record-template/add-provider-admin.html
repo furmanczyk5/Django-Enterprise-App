@@ -1,0 +1,39 @@
+<div class="menu">
+{% if is_search %}
+  <div class="menu-header menu-item clearfix">
+    <a class="clear-search pull-right btn btn-sm btn-default">clear</a>
+    <p class="small">{{results|length}} of {{results_total}} results showing</p>
+  </div>
+{%endif%}
+{% if results %}
+
+
+<div class="list-of-speakers records">
+{% for record in results %}
+  <div class="menu-item">
+    <h4>{{record.title}}</h4>
+    <p>
+      {% if record.company %}{{record.company}}<br>{% endif %}
+      {{record.city}}{% if record.city and record.state %},{% endif %}  {{record.state}}
+    </p>
+    <form method="post" action="/cm/provider/edit_admins/">
+      {% csrf_token %}
+      <input type="hidden" name="username" value="{{ record.user.username }}"/>
+
+      <button type="submit" name="submit" value="add" class="btn btn-sm btn-primary">Add</button>
+    </form>
+    {# <hr> #}
+  </div>
+{% endfor %}
+</div>
+{% else %}
+    <div class="menu-item not-selectable"><p>no results</p></div>
+{% endif %}
+
+{% if not is_search and results_total > results|length %}
+<div class="menu-item menu-footer clearfix">
+<a class="view-more btn btn-sm btn-default pull-right">View More Results</a>
+</div>
+{% endif %}
+
+</div>

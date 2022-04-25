@@ -1,0 +1,119 @@
+{% extends 'submissions/newtheme/forms/edit.html' %}
+
+{% load static %}
+
+{% block additional_head_css %}
+{{block.super}}
+<link type="text/css" rel="stylesheet" href="{% static 'ui/forms/css/wordcount.css' %}" />
+{% endblock %}
+
+{% block title_h1 %}Enter Image Information{% endblock %}
+
+{% block formattrs %}{{block.super}} enctype="multipart/form-data"{% endblock %}
+
+{% block form_fields %}
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">Image Thumbnail</h3>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-3">
+                <span>{{ form.instance.image.img_thumbnail_html|safe }}</span>
+            </div>
+            <div class="col-sm-9">
+                <label>current image:</label>
+                <a href="{{ form.instance.image.image_file.url }}" target="_blank">{{ form.instance.image.title }}</a>
+                <div class="help-block">
+                    If this is not the image you want to upload, hit "Cancel" below, delete this image from your "Unsubmitted Images,"" and begin the upload process again.
+                </div>
+                <div class="help-block">
+                    If your image appears rotated or skewed, click the link above to view your image in a new browser tab. If it appears as it should, it will display that way once it’s published, and you may continue with your submission. If it remains rotated or skewed, try uploading your image again.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">Image Information</h3>
+    <p class="help-block">All fields are required unless labeled as optional. APA reserves the right to edit image information for formatting and to correct grammar, punctuation, and spelling errors.</p><br/>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+    
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.description %}
+            </div>
+            <div class="col-sm-6">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.keywords label_extra=' (Optional)' %}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.copyright_date label_extra=' (Optional)' %}
+            </div>
+            <div class="col-sm-6">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.resolution label_extra=' (Optional)'%}
+            </div>
+        </div>
+    </div>
+    
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.copyright_statement %}
+    
+</div>
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">Additional Information</h3>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6">
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.tag_choice_IMAGE_COLOR %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.tag_choice_STATE label_extra=' (Optional)'%}
+            </div>
+            <div class="col-sm-6">
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.tag_choice_IMAGE_NUMBEROFPEOPLE %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.tag_choice_COMMUNITY_TYPE %}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6">
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.tag_choice_SEARCH_TOPIC %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">Photographer</h3>
+    <p class="help-block">Please note that the name you enter will display on APA’s website in image library search results and on the image’s individual page.</p><br/>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6">
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.photographer_first_name %}
+            </div>
+            <div class="col-sm-6">
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.photographer_last_name %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/wordcount.js' %}"></script>
+{% endblock %}
+
+

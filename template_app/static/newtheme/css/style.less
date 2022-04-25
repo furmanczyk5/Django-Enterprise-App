@@ -1,0 +1,309 @@
+/////////////////////////////
+/// I. CONFIGURATION
+/////////////////////////////
+@import "_fonts.less";
+@import "_colors.less";
+@import "_icons.less";
+@import "_mixins.less";
+@import "_config.less";
+@import "_bootstrap-variables.less"; //Replaces bootstrap's variables file.
+
+////////////////////////////
+/// II. BOOTSTRAP
+////////////////////////////
+@import "_bootstrap-loader.less";
+
+////////////////////////////
+/// III. OTHER LIBRARIES
+////////////////////////////
+
+@import (inline) "../vendor/slick-carousel/slick/slick.css";
+
+////////////////////////////
+/// IV. APA PATTERNS
+////////////////////////////
+
+//Atoms
+@import "patterns/base.less";
+@import "patterns/typography.less";
+@import "patterns/links.less";
+
+@import "patterns/social-media-icons.less";
+
+@import "patterns/header.less";
+@import "patterns/nav.less";
+@import "patterns/nav-mega-menu.less";
+@import "patterns/nav-mobile-menu.less";
+@import "patterns/footer.less";
+
+@import "patterns/forms.less";
+@import "patterns/form-section.less";
+@import "patterns/autocomplete.less";
+
+
+@import "patterns/buttons.less";
+@import "patterns/rules.less";
+@import "patterns/tables.less";
+
+@import "patterns/images.less";
+@import "patterns/videos.less";
+
+@import "patterns/tags.less";
+
+@import "patterns/section-icon.less";
+
+@import "patterns/key-value-pair.less";
+
+@import "patterns/social-sharing-widget.less";
+@import "patterns/myapa-bookmark-widget.less";
+
+//Legacy content patterns
+@import "patterns/cmpoints.less";
+@import "patterns/legacy-content.less";
+
+//More specific patterns
+@import "patterns/page-head.less";
+@import "patterns/page-subhead.less";
+@import "patterns/local-navigation.less";
+@import "patterns/banner-ad.less";
+@import "patterns/pager.less";
+
+@import "patterns/read-more-link.less";
+
+@import "patterns/slab.less";
+
+@import "patterns/well.less";
+
+@import "patterns/content-preview.less";
+@import "patterns/search-result.less";
+@import "patterns/search-results-list.less";
+@import "patterns/search-sort-control.less";
+
+@import "patterns/image-grid.less";
+
+@import "patterns/ecommerce-products-list.less";
+@import "patterns/ecommerce-order-summary.less";
+
+@import "patterns/layout-hero-image.less";
+@import "patterns/layout-tracery.less";
+
+@import "patterns/homepage-featured-content-primary.less";
+@import "patterns/homepage-featured-content-secondary.less";
+@import "patterns/homepage-featured-content-tertiary.less";
+
+@import "patterns/accordion.less";
+
+@import "patterns/format-picker.less";
+
+@import "patterns/books-carousel.less";
+
+@import "patterns/book-card.less";
+
+@import "patterns/get-the-planning-app.less";
+
+@import "patterns/badge-logged-in";
+
+@import "patterns/alert.less";
+
+@import "patterns/hamburger.less";
+
+@import "patterns/list-of-links.less";
+@import "patterns/list-of-speakers.less";
+
+@import "patterns/read-more-expandable.less";
+
+@import "patterns/popover.less";
+
+@import "patterns/star-rating.less";
+@import "patterns/horizontal-radio.less";
+@import "patterns/event-reviews.less";
+@import "patterns/bar-percentage.less";
+
+@import "patterns/tabs.less";
+@import "patterns/details-section.less";
+
+@import "patterns/expiration.less";
+@import "patterns/popularity-tabs.less";
+
+@import "patterns/myapa.less";
+
+@import "patterns/conference-event";
+@import "patterns/list-of-buttons";
+
+//Very High-level patterns
+@import "patterns/blog-sidebar-section.less";
+@import "patterns/blog-post.less";
+@import "patterns/directory-page.less";
+@import "patterns/dashboard.less";
+@import "patterns/admin-list.less";
+@import "patterns/cart.less";
+@import "patterns/planning-magazine-article-picker.less";
+@import "patterns/exam-record.less";
+@import "patterns/aicp-branding.less";
+@import "patterns/aicp-cert.less";
+@import "patterns/foundation-branding.less";
+@import "patterns/sponsor-carousel.less";
+
+// Conference
+@import "patterns/conference/header.less";
+@import "patterns/conference/page-head-conference.less";
+@import "patterns/conference/nav-conference.less";
+@import "patterns/conference/nav-mobile-menu-conference.less";
+@import "patterns/conference/footer-conference.less";
+@import "patterns/conference/content-header-conference-image-breakout";
+
+@import "patterns/conference/layout-hero-image-conference.less";
+@import "patterns/conference/homepage-conference-cta.less";
+@import "patterns/conference/conference-countdown.less";
+@import "patterns/conference/session-detail.less";
+@import "patterns/conference/registration-rates.less";
+@import "patterns/conference/career-zone.less";
+@import "patterns/conference/related-session-row.less";
+@import "patterns/conference/sponsorship.less";
+@import "patterns/conference/conference-search.less";
+@import "patterns/conference/registration.less";
+
+@import "patterns/conference-track.less";
+@import "patterns/quick-links.less";
+@import "patterns/view-schedule-widget.less";
+@import "patterns/contact-us.less";
+
+
+// PLANNING HOME
+@import "patterns/planning-home.less";
+
+// Magazine
+@import "planning-magazine.less";
+@import "planning-magazine-article.less";
+////////////////////////////
+/// V. MISCELLANEOUS (Needs cleanup)
+////////////////////////////
+
+nav ul li {
+  list-style: none;
+}
+
+/* //////////////////////
+// SIDEBAR LAYOUT
+////////////////////// */
+
+// We're using some hacks here to change the gutter width from mobile to desktop.
+@main-sidebar-gutter-width-xs: 30px;
+@main-sidebar-gutter-width-sm: 40px;
+.mainrow {
+  .make-row(@main-sidebar-gutter-width-xs);
+
+  @media screen and (min-width: @screen-sm-min) {
+    margin-left: @main-sidebar-gutter-width-sm / -2;
+    margin-right: @main-sidebar-gutter-width-sm / -2;
+  }
+}
+
+.column-sidebar {
+  .make-xs-column(12);
+  .make-sm-column(4);
+  .make-lg-column(3);
+
+  padding-left: @main-sidebar-gutter-width-xs / 2;
+  padding-right: @main-sidebar-gutter-width-xs / 2;
+
+  @media screen and (min-width: @screen-sm-min) {
+    padding-left: @main-sidebar-gutter-width-sm / 2;
+    padding-right: @main-sidebar-gutter-width-sm / 2;
+    padding-top: @grid-gutter-width * 2;
+  }
+
+  &.no-top-spacing {
+    padding-top:0px;
+  }
+}
+
+.column-maincontent {
+  .make-xs-column(12);
+  .make-sm-column(8);
+  .make-lg-column(9);
+
+  padding-left: @main-sidebar-gutter-width-xs / 2;
+  padding-right: @main-sidebar-gutter-width-xs / 2;
+
+  @media screen and (min-width: @screen-sm-min) {
+    padding-left: @main-sidebar-gutter-width-sm / 2;
+    padding-right: @main-sidebar-gutter-width-sm / 2;
+  }
+}
+
+.content-borders {
+  @media screen and (min-width: @screen-sm-min) {
+    border-color: @color-content-borders;
+    border-width: 0 1px;
+    border-style: solid;
+  }
+}
+
+.content-main {
+  //This is a container class for any CMS content on the site
+  padding-top: @grid-gutter-width;
+}
+
+.content-main,
+.content-sidebar {
+  padding-bottom: 40px;
+}
+
+.column-sidebar.content-sidebar {
+  display: none;
+}
+
+@media screen and (min-width: @screen-sm-min) {
+  .column-sidebar.content-sidebar {
+    display: block;
+  }
+}
+
+
+.featured-item-title {
+
+  text-transform: none;
+
+  //Note: this isn't slab-blue because the background color is applied using a pseudo element.
+  &:extend(.slab-whitetext all);
+  &:extend(.slab-blue);
+  font-size: 40px;
+
+  line-height: 0.9em;
+  margin-bottom: 0px;
+  @media screen and (min-width: @padding-breakpoint) {
+    font-size: 45px;
+  }
+  line-height: 1.2em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 300;
+  margin: 0;
+  position: relative;
+
+  padding-left: @padding-level-2-xs;
+  padding-right: @padding-level-2-xs;
+
+  @media screen and (min-width: @padding-breakpoint) {
+    padding-left: @padding-level-2-md;
+    padding-right: @padding-level-2-md;
+
+  }
+}
+
+.section-overview-featured-item {
+  & img {
+    box-shadow: 0 0 15px fade(#000, 20%);
+  }
+}
+
+//Todo: move to better location
+.in-stock-label {
+  font-family: @font-family-sans-serif;
+  color: @color-limeade;
+}
+
+div.rich-text iframe{
+    width:100%;
+}

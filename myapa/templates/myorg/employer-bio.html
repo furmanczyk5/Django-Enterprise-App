@@ -1,0 +1,28 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+
+<div class="page-head">
+  <p>
+    <a class="btn btn-default" href="{% url 'myorg' %}">Back to My Organization</a>
+  </p>
+  <h1 class="page-title">Employer Bio</h1>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="form-group">
+        {{ form }}
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-sm btn-primary" value="Submit"/>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

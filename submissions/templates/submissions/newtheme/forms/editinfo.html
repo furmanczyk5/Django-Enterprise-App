@@ -1,0 +1,170 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+{% load compress %}
+
+{% block additional_head_css %}
+{# date picker #}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'ui/modal/css/modal.css' %}?v=0" />
+{% compress css %}
+<link type="text/less" rel="stylesheet" href="{% static 'content/css/selectmultipletagswidget.less' %}" />
+{% endcompress %}
+{% endblock %}
+
+
+{% block content_main %}
+<div class="page-head">
+  <a class="btn btn-sm btn-default back-button" href="{{home_url}}">Back</a>
+  <h1 class="page-title">{% block title_h1 %}{{title}} - {{ form.submission_category}}{% endblock %}</h1>
+  <br/>
+   {% block submission_description %}
+    {% endblock %}
+
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <form {% block formattrs %}class="planning-form validate-form" method="post" id="submission_form"{% endblock %}>
+      {% csrf_token %}
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+
+      {% include "ui/newtheme/forms/includes/display-errors.html" with form=form %}
+
+      {% block form_fields %}
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">General Information</h3>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+
+        {% include "submissions/newtheme/includes/time-fields.html" with form=form %}
+
+        {% include "submissions/newtheme/includes/location-fields.html" with form=form %}
+
+        {% if form.description %}
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.description %}
+        {% endif %}
+
+        {% if form.is_free %}
+        {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.is_free %}
+        {% endif %}
+
+        {% if form.resource_url %}
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.resource_url %}
+        <div class="help-block">http://(link to event info / registration)</div>
+        <br>
+        {% endif %}
+
+        {% include "submissions/newtheme/includes/tag-fields.html" with form=form %}
+         <div class="help-block">At least one topic is required. You may select up to three. Use the Ctl key (or Command key on a mac) to select multiple.</div>
+        <br>
+        {# more efficient to put logic in the original edit.html? #}
+
+        {% comment %}
+        <div class="form-group">
+          {% include "submissions/newtheme/includes/cm-fields.html" with form=form %}
+        </div>{% endcomment %}
+      </div>
+      {% if form.text %}
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">General Description</h3>
+        <div class="form-group">
+
+            <p class="small">
+              Please clearly describe the objectives this activity will achieve (e.g. what AICP members will learn) by addressing the following:
+              <ol class="small">
+                <li>Be designed to meet a specific planning-related training objective. The educational purpose or objective must be clearly identified.</li>
+                <li>Be designed to teach subject matter in appropriate depth and scope for the following minimum level &mdash; a planner in current practice with at least four years of professional experience after earning a 2-year master's degree in planning; and</li>
+                <li>Address the demonstrated educational needs of AICP members as outlined in the <a href="/aicp/corecompetencies/">AICP Core Competencies</a>.</li>
+              </ol>
+            </p>
+            {# {{ form.text }} #}
+            <div class="form-group">
+              <div class="form-group{%if form.text.errors %} has-error {% endif %}">
+                  {{ form.text }}
+                {% if form.text.errors %}
+                <div class="form-error">
+                  {% for error in form.text.errors %}
+                  <p class="form-error-server">{{ error|escape }}</p>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if form.submission_category.the_questions %}
+      <div class="form-section form-section-enclosed-dark">
+        <div class="action">
+            {% include "submissions/newtheme/includes/category-question-fields.html" with form=form %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if form.contact_firstname and form.contact_lastname and form.contact_email %}
+      <div class="form-section form-section-enclosed-dark">
+          <h3 class="form-section-title">Contact Information</h3>
+          <p>Please provide the primary contact for this event. This information will be visible to users on APA's website.</p>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-4">
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_firstname %}
+              </div>
+              <div class="col-sm-4">
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_lastname %}
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_email %}
+          </div>
+      </div>
+      {% endif %}
+
+      {% endblock %}
+
+      <br >
+      <div class="clearfix btn-toolbar btn-mobile">
+      <button type="submit" name="submitButton" value="submit" class="btn btn-primary">Save and Continue</button>
+      <button type="submit" name="submitButton" value="save" class="btn btn-default">Save and Return Later</button>
+      <a class="btn btn-default pull-right button-float" href="{{home_url}}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'ui/modal/js/modal.js' %}?v=0"></script>
+<script src="{% static 'submissions/js/event_edit.js' %}?v=0"></script>
+<script src="{% static 'content/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'newtheme/ui/forms/js/formset.js' %}"></script>
+<script src="{% static 'newtheme/autocomplete/js/autocomplete.js' %}"></script>
+<script src="{% static 'rome/rome.min.js' %}"></script>
+<script src="{% static 'rome/rome_setup.js' %}?v=0"></script>
+<script src="{% static 'content/js/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'content/js/tinymce/tinymce_setup.js' %}"></script>
+
+<script src="{% static 'content/ckeditor-content/ckeditor.js' %}"></script>
+
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script src="{% static 'content/js/selectmultipletagswidget.js' %}"></script>
+<script>
+  $(function () {
+    $('.empty_form').find('input[type="radio"],input[type="checkbox"]').iCheck('destroy');
+    $('.selectmultipletagswidget').find('input[type="checkbox"]').iCheck('destroy');
+    $('[data-toggle="popover"]').popover()
+  });
+
+  CKEDITOR.replace('id_text');
+</script>
+
+{% endblock %}

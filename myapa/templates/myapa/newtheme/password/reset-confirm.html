@@ -1,0 +1,38 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}Setting New Password{% endblock %}
+
+{% block content_main %}
+{% if validlink %}
+<div class="layout-tracery no-bottom-border no-top-border">
+  <div class="layout-column">
+    <h2>Create New Password</h2>
+    {% include "ui/newtheme/forms/includes/display-errors.html" with form=form %}
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <p>Please enter and confirm your new password. Passwords must be between 8-16 characters in length.</p>
+
+      <form action="" method="post">
+        {% csrf_token %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.new_password1 %}
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.new_password2 %}
+        
+        <div class="form-group">
+          <input class="btn btn-primary" type="submit" value="Create New Password" />
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="layout-tracery no-bottom-border no-top-border">
+  <div class="layout-column">
+    <h2>Password reset unsuccessful</h2>
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      The password reset link was invalid, possibly because it has already been used. Please request a new password reset.
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,246 @@
+{% extends extends_template|default:"newtheme/templates/conference/page-nosidebar.html"  %}
+{#{% extends extends_template|default:"newtheme/templates/layout-nosidebar.html"  %}#}
+
+{% load tz %}
+{% load content_extras %}
+
+{% block content_main %}
+
+<style>
+  form ul {
+    margin: 0 0 0 2em;
+    padding: 0;
+    list-style-type: none;
+  }
+</style>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+  <h1>{{ event.title }}</h1>
+
+    <h2>
+      {% localtime off %}
+      {% ifequal event.begin_time|date:"SHORT_DATE_FORMAT" event.end_time|date:"SHORT_DATE_FORMAT"%}
+          <span>{{event.begin_time_astimezone|date:"l, F j, Y"}}</span><br/>
+          <span>
+            {{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+          </span>
+          {% else %}
+          <span>
+            {{event.begin_time_astimezone|date:"l, F j, P"}} - {{event.end_time_astimezone|date:"l, F j, Y, P e"}}
+          </span>
+        {% endifequal %}
+        {# {{ event.begin_time_astimezone|date:"F jS" }} - {{ event.end_time_astimezone|date:"F jS, Y" }} #}
+        {% endlocaltime %}
+    </h2>
+
+    {% if not already_purchased_registration %}
+
+    <hr/>
+    {# class="planning-form validate-form big-radio" #}
+    <form class="planning-form validate-form" method="post" novalidate>
+
+      {% csrf_token %}
+
+      {% if form.errors or display_errors %}
+      <div class="section-icon section-icon-attention">
+        <p class="error">
+        <b>
+          The operation could not be performed because one or more error(s) occurred.
+          <br />
+          Please resubmit the form after making the changes below.
+        </b>
+        </p>
+      </div>
+      {% endif %}
+
+      <div class="form-section">
+        {% for field in form.visible_fields %}
+        {% if field.name not in form_excludes %}
+        <div class="form-group">
+          <b>{{ field.label_tag }}</b>
+          {{field}}
+          <div class="help-block">
+            {{field.help_text|safe}}
+          </div>
+          <div class="error has-error">
+            <div class='form-error'>
+              <strong>{{field.errors.as_text}}</strong>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <br />
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Demographic Information</h3>
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.gender %}
+
+        <div class="form-group" id="gender_other_field_wrap" style="display:none">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.gender_other %}
+        </div>
+
+        <div class="form-group{%if form.race.errors %} has-error {% endif %}">
+          <label for="{{ form.race.id_for_label }}">{{ form.race.label }}:</label>
+          {% if form.race.errors %}
+          <div class="form-error">
+            {% for error in form.race.errors %}
+            <p>{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if form.race.help_text %}
+          <div class="help-block help-block-align-left">{{ form.race.help_text|safe }}</div>
+          {% endif %}
+
+          <div class="multiple-choices">
+            <div class="multiple-choices-row">
+              {% for column in form.race.field.choices|columns_alternate:2 %}
+              <div class="multiple-choices-column">
+                {% for the_value, the_label in column %}
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="{{ form.race.html_name }}" value="{{the_value}}" {% if the_value in form.race.value %}checked="checked"{% endif %}>
+                    {{ the_label }}
+                    {% with other=form.race_option_other|getattr:the_value %}
+                    {% if other %}
+                    {{form|getattr:other}}
+                    {% endif %}
+                    {% endwith %}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group{%if form.hispanic_origin.errors %} has-error {% endif %}">
+          <label for="{{ form.hispanic_origin.id_for_label }}">{{ form.hispanic_origin.label }}:</label>
+          {% if form.hispanic_origin.errors %}
+          <div class="form-error">
+            {% for error in form.hispanic_origin.errors %}
+            <p>{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if form.hispanic_origin.help_text %}
+          <div class="help-block help-block-align-left">{{ form.hispanic_origin.help_text|safe }}</div>
+          {% endif %}
+          <!-- -->
+          <div class="multiple-choices">
+            <div class="multiple-choices-row">
+              {% for column in form.hispanic_origin.field.choices|columns_alternate:2 %}
+              <div class="multiple-choices-column">
+                {% for the_value, the_label in column %}
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="{{ form.hispanic_origin.html_name }}" value="{{the_value}}" {% if the_value == form.hispanic_origin.value %}checked="checked"{% endif %}>
+                    {{ the_label }}
+                    {% with other=form.hispanic_origin_option_other|getattr:the_value %}
+                    {% if other %}
+                    {{form|getattr:other}}
+                    {% endif %}
+                    {% endwith %}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      </br>
+      {% block form_submit_buttons %}
+      {% if event.ticket_template %}
+      <div class="row">
+        <div class="col-sm-6">
+          <p>
+            <button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="edit_badge">Register</button>
+          </p>
+        </div>
+      </div>
+      {% elif event.event_type == "EVENT_MULTI" and has_ticketed_activities and event.master_id != 9198677 %}
+      <div class="row">
+        <div class="col-sm-6">
+          <p>
+            <button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="and_add_activities">Register and add ticketed activities</button>
+          </p>
+        </div>
+        <div class="col-sm-6">
+          <p>
+            <button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="just_register">Just Register</button>
+          </p>
+        </div>
+      </div>
+      {% else %}
+      <div class="row">
+        <div class="col-sm-9">
+          <p>
+            <button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="just_register">Register</button>
+          </p>
+        </div>
+      </div>
+      {% endif %}
+      {% endblock %}
+
+    </form>
+
+
+{% else %}
+
+  <h4>Thank you for registering!</h4>
+
+    {% if 'National Planning Conference' in event.title %}
+    <p><a href="/conference/">See event details</a></p>
+  {% elif event.event_type == "EVENT_SINGLE" %}
+  <p><a href="/events/eventsingle/{{event.master_id}}/">See event details</a></p>
+  {% elif event.event_type == "EVENT_MULTI" %}
+  <p><a href="/events/eventmulti/{{event.master_id}}/">See event details</a></p>
+  {% elif event.event_type == "COURSE" %}
+  <p><a href="/events/course/{{event.master_id}}/">See event details</a></p>
+  {% else %}
+  <p><a href="/events/event/{{event.master_id}}/">See event details</a></p>
+  {% endif %}
+
+
+{% endif %}
+
+  </div>
+</div>
+
+
+<br/>
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script>
+
+var $gender_select = $("[name=gender]");
+var $gender_other_field_wrap = $("#gender_other_field_wrap");
+
+function showHideGenderOther() {
+  if($gender_select.val() == "S") {
+    $gender_other_field_wrap.slideDown();
+  }else{
+    $gender_other_field_wrap.slideUp();
+  }
+}
+
+$(function(){
+  $gender_select.on("change", showHideGenderOther);
+  showHideGenderOther();
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+{% load myapa_tags %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">Branch Offices</h1><br>
+    <h2 class="page-title">Create or Update Your Organization's Branch Offices or Other Locations</h2>
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+      <div class="row">
+
+          <form align="left" id="new_user_reg" method="post" class="validate-form" onsubmit="return formsubmitcheck()" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Company Contact List: {{ contact_list }} -->
+            
+            <!-- MANAGEMENT FORM -->
+            {{ form_set.management_form }}
+            <!-- MANAGEMENT FORM -->
+
+            {% for form in form_set %}
+            <!-- {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %} -->
+              {% include "ui/newtheme/forms/includes/display-errors.html" %}
+  
+              {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+              {% endfor %}
+              
+              <div class="accordion">
+                  <h4 class="accordion-handle">
+                      {% if form.city.value %}
+                        {{ form.city.value }} Branch Office
+                      {% else %}
+                        Add New Branch Office for {{ view.organization.company }}
+                      {% endif %}
+                  </h4>
+                  <div class="accordion-content">
+                      <p>
+                          {% if form.city.value %}
+                          <a class="btn btn-danger btn-sm" href="{% url 'consultants:branch_delete' org_id=view.organization.id %}?branch_id={{form.id.value}}">Delete</a>
+                          {% endif %}
+                      </p>
+                      <!-- {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.parent_organization %} -->
+                      <!-- <p>{{ form.parent_organization.value }} Branch Office</p> -->
+                      <h3>{{ view.organization }} Branch Office</h3><br>
+                      <div class="help-block">All fields are required unless labeled as optional</div><br>
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address1 %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address2 %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.zip_code %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.phone %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %}
+                      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.website %}<br>
+                  </div>
+
+                </div>
+            {% endfor %}
+
+            <div class="form-actions">
+              <input id="file_upload" type="submit" name="save_and_return" class="btn btn-primary" value="Save and Return to Profile"/>
+              <input id="file_upload" type="submit" name="save_and_add_another" class="btn btn-primary" value="Save" />
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+<div class="layout-tracery no-bottom-border no-top-border">
+  <div class="layout-column">
+    {% with message_html=message|default:"You do not have permission to view this content." %}
+    <p>{{message_html|safe}}</p>
+    {% endwith %}
+</div>
+
+{% endblock %}

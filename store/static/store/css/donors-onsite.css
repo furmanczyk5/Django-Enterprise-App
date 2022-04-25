@@ -1,0 +1,21 @@
+html, body {
+    height: 100%;
+}
+
+.apa-blue {
+    color: rgba(22, 87, 136, 1);
+    font-size: 67.2px;
+}
+
+.donor-name {
+    font-size: 32.64px;
+    font-family: "Source Serif Pro", "Times New Roman", serif;
+}
+
+.col {
+    padding-bottom: 4rem;
+}
+
+.container-fluid {
+    padding-top: 10px;
+}

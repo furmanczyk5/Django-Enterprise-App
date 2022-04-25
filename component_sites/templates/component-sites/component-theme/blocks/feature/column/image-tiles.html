@@ -1,0 +1,17 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+<h2 class="headline-underline">{{value.heading}}</h2>
+
+<div class="tiled-images-flex">
+	{% for i in value.images %}
+	<div class="image">
+	<a href="{{i.url}}">
+    {% image i.image width-600 as tmp_img %}
+    <img src="{{tmp_img.url}}" alt="{{i.image.alt_text}}" style="height:auto">
+	</a>
+	</div>
+	{% endfor %}
+</div>
+
+{% include_block value.link %}

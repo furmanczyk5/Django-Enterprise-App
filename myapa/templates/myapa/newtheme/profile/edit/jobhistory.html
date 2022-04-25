@@ -1,0 +1,98 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load staticfiles %}
+{% load content_extras %}
+
+{% block content_main %}
+
+<script type="text/javascript">
+
+  function formsubmitcheck() {
+    var verified = $('#verifybox')
+      if (verified){
+        var status = verified.prop('checked');
+        var edit_status = $("#is_edit").val()
+        if (status || edit_status == "true"){
+          return true
+        }
+        else{
+          alert("Please verify the information you have provided is true.")
+          return false
+        }
+      }
+  }
+
+</script>
+
+<div class="page-head">
+    <h1 class="page-title">Job History</h1>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+        <div class="col-sm-9">
+
+            <form method="post" class="planning-form" onsubmit="return formsubmitcheck()">
+                {% csrf_token %}
+
+                <!-- MANAGEMENT FORM -->
+                {{ form_set.management_form }}
+                <!-- MANAGEMENT FORM -->
+
+                {% for form in form_set %}
+                {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+                <div class="accordion">
+                    <h4 class="accordion-handle">
+                        {% if form.title.value %}
+                        {{ form.title.value }}
+                        {% else %}
+                        Add new job
+                        {% endif %}
+                    </h4>
+                    <div class="accordion-content">
+                        {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                        {% endfor %}
+                        {% if form.id.value %}
+                        <p>
+                            <a class="btn btn-danger btn-sm" href="{% url 'details_delete'%}?job_id={{form.id.value}}">Delete</a>
+                        </p>
+                        {% endif %}
+                        {% for field in form.visible_fields %}
+                        {% if field|field_type == 'CheckboxInput' %}
+                            {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=field %}
+                        {% else %}
+                            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=field %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="form-group">
+                    <br>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="verifybox" value="check" id="verifybox">
+                            I verify that the information I have provided is true.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input class="btn btn-primary" type="submit" value="Save"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+ 
+  {% block additional_body_js %}
+  
+  <script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+
+{% endblock %}
+

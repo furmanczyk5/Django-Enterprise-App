@@ -1,0 +1,80 @@
+{% load static %}
+
+<div class="mega-menu-wrap">
+
+  {% for m in navigation %}
+    {% if m.children %}
+  <section id="mega-menu-section-{{ m.id }}" class="row mega-menu-section">
+
+    <div class="col-sm-3">
+      <h2 class="mega-menu-section-heading">{{ m.title }}</h2>
+
+      {% if m.url == "/aicp/" %}
+      <div><img src="{% static 'content/image/AICP_stacked_647-180.jpg' %}" width="287" height="210"/></div>
+      {% endif %}
+
+      {# {% if m.url == "/knowledgecenter/" %} #}
+      {# <h3 class="mega-menu-section-sub-heading"> #}
+        {# <a href="{{ m.url }}" class="mega-menu-section-link">{{ m.title }} Overview</a> #}
+      {# </h3> #}
+      {# {% endif %} #}
+    </div>
+
+    <div class="col-sm-9">
+      {# Special menu for knowledge center only #}
+      {% if m.url == "/knowledgecenter/" %}
+      <span class="mega-menu-section-border"></span>
+      <span class="mega-menu-section-border"></span>
+      <span class="mega-menu-section-border"></span>
+      <span class="mega-menu-section-border"></span>
+      <div class="row">
+        <div class="col-sm-4 col-md-3 mega-menu-list-wrap">
+          <ul class="mega-menu-list">
+            <li>
+              <h3 class="mega-menu-section-sub-heading">
+                <a href="{{ m.url }}">{{ m.title }} Overview</a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        {% for sm1 in m.children %}
+        <div class="col-sm-4 col-md-3 mega-menu-list-wrap">
+          <ul class="mega-menu-list">
+            <li>
+              <h3 class="mega-menu-section-sub-heading">
+                <a href="{{ sm1.url }}">{{ sm1.title }}</a>
+              </h3>
+            </li>
+            {% if sm1.children %}
+              {% for sm2 in sm1.children %}
+            <li><a href="{{ sm2.url }}" class="mega-menu-section-link">{{ sm2.title }}</a></li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        {% endfor %}
+
+      </div>
+      {% else %}
+      <ul class="mega-menu-list">
+      <li>
+        <h3 class="mega-menu-section-sub-heading">
+          <a href="{{ m.url }}">{{ m.title }} Overview</a>
+        </h3>
+      </li>
+      {% for sm1 in m.children %}
+        <li>
+          <h3 class="mega-menu-section-sub-heading">
+            <a href="{{ sm1.url }}">{{ sm1.title }}</a>
+          </h3>
+        </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+  </section>
+    {% endif %}
+  {% endfor %}
+
+</div>

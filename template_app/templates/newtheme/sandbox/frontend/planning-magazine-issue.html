@@ -1,0 +1,132 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+{% load static %}
+
+{% block content_sidebar %}
+{% include 'newtheme/sandbox/frontend/local-navigation.html' %}
+{% endblock %}
+
+{% block content_main %}
+<div class="page-head">
+  <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Knowledge Center</a></li>
+  </ol>
+
+  <h1 class="page-title">Planning Magazine</h1>
+  <h4 class="page-subtitle">Every month, thousands of people — professionals and interested laypeople alike — read Planning to learn how innovative planning programs and techniques are reshaping America's communities.</h4>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-3 col-lg-2">
+    <img src="//placehold.it/300x500" class="img-responsive" />
+  </div>
+  <div class="col-xs-12 col-sm-9 col-lg-10">
+    <h2>August/September 2015</h2>
+    <p>Possible to include some introductory copy about the issue OR additional images from the issue?</p>
+  </div>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h3 class="headline-underline">Featured Articles</h3>
+    <div class="row">
+      <div class="col-xs-12 col-lg-6">
+        <div class="content-preview-item">
+          <div class="content-preview-item-image-floated">
+            <img src="//placehold.it/200x200" />
+          </div>
+          <h4 class="content-preview-item-headline"><a href="#">A Rising Tide of Engagement</a></h4>
+          <div class="content-preview-item-summary">The profession leans in on climate change: a report and commentary by James Schwab.</div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <div class="content-preview-item">
+          <div class="content-preview-item-image-floated">
+            <img src="//placehold.it/200x200" />
+          </div>
+          <h4 class="content-preview-item-headline"><a href="#">Preparing for the Next Big One</a></h4>
+          <div class="content-preview-item-summary">Jon Davis describes places that put "resilience" in their future. With a sidebar by Stephan Schmidt.</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-lg-6">
+        <div class="content-preview-item">
+          <div class="content-preview-item-image-floated">
+            <img src="//placehold.it/200x200" />
+          </div>
+          <h4 class="content-preview-item-headline"><a href="#">A Rising Tide of Engagement</a></h4>
+          <div class="content-preview-item-summary">The profession leans in on climate change: a report and commentary by James Schwab.</div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <div class="content-preview-item">
+          <div class="content-preview-item-image-floated">
+            <img src="//placehold.it/200x200" />
+          </div>
+          <h4 class="content-preview-item-headline"><a href="#">Preparing for the Next Big One</a></h4>
+          <div class="content-preview-item-summary">Jon Davis describes places that put "resilience" in their future. With a sidebar by Stephan Schmidt.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="layout-tracery layout-tracery-2col">
+  <div class="layout-column">
+    <h2 class="headline-underline">
+      Ads
+    </h2>
+
+    <div class="list-of-links">
+      <h4><a href="#">Title</a></h4>
+      <p>Description</p>
+      <h4><a href="#">Title</a></h4>
+      <p>Description</p>
+      <h4><a href="#">Title</a></h4>
+      <p>Description</p>
+      <h4><a href="#">Title</a></h4>
+      <p>Description</p>
+      <h4><a href="#">Title</a></h4>
+      <p>Description</p>
+      <h4><a href="#">Title</a></h4>
+      <p>Description</p>
+    </div>
+  </div>
+
+  <div class="layout-column">
+    [ADS]
+  </div>
+</div>
+
+<div class="layout-tracery slab-gray col-md-10">
+  <div class="layout-column">
+    <div class="section-get-the-planning-app">
+      <div class="row">
+        <div class="col-sm-7 col-md-8">
+          <h5>GET THE PLANNING APP</h5>
+          <p>Get Planning Magazine on your mobile device or tablet.</p>
+        </div>
+        <div class="col-sm-5 col-md-7">
+          <div class="app-badges-container">
+            <a href="#" class="app-badge app-badge-apple">
+              <img src="{% static 'newtheme/image/app-badge-apple.png' %}"/>
+            </a>
+            <a href="#" class="app-badge app-badge-google">
+              <img src="{% static 'newtheme/image/app-badge-google.png' %}"/>
+            </a>
+            <a href="#" class="app-badge app-badge-amazon">
+              <img src="{% static 'newtheme/image/app-badge-amazon.png' %}"/>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+

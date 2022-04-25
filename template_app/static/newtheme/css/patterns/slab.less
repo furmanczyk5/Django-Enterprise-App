@@ -1,0 +1,48 @@
+.slab-whitetext {
+  &,
+  & a,
+  & p,
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6,
+  & .icon {
+    color: #fff;
+  }
+}
+
+.slab-gray {
+  background-color: @color-bg-gray;
+}
+
+.slab-darkgray {
+  background-color: @color-bg-darkgray;
+  &:extend(.slab-whitetext all);
+}
+
+.slab-blue {
+  background-color: @color-bg-blue;
+  &:extend(.slab-whitetext all);
+}
+
+.slab-green {
+  background-color: @color-bg-green;
+  &:extend(.slab-whitetext all);
+}
+
+.slab-orange {
+  background-color: @color-bg-orange;
+  &:extend(.slab-whitetext all);
+}
+
+//Use if a white slab is nested inside another slab.
+.slab-white {
+  background-color: #fff;
+}
+
+.slab-gray-bordered {
+    &:extend(.slab-gray all);
+    border: @color-content-borders solid 1px;
+}

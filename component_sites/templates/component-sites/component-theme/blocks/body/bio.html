@@ -1,0 +1,13 @@
+{% load wagtailimages_tags %}
+
+<div class="content-preview-item">
+  <div class="content-preview-item-image-floated">
+    {% image value.image width-120 as tmp_img %}
+  <img src="{{tmp_img.url}}" alt="{{value.image.alt_text}}" style="height:auto">
+  </div>
+  <div class="content-preview-item-center-block">
+    <h6 class="content-preview-item-superheadline">{{value.detail}}</h6>
+    <h4 class="content-preview-item-headline">{{value.name}}</h4>
+    <div class="content-preview-item-summary">{{value.description}}</div>
+  </div>
+</div>

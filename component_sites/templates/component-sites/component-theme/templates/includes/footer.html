@@ -1,0 +1,171 @@
+{% load component_sites_tags %}
+{% load wagtailsettings_tags %}
+{% get_settings %}
+
+<!-- Footer -->
+<div class="container-fluid footer">
+  <!-- Footer Social -->
+  <div class="container-fluid footer-social-container">
+    <div class="row footer-social-wrap">
+      {% with settings.component_sites.SocialMediaSettings.facebook as fb %}
+      {% with settings.component_sites.SocialMediaSettings.youtube as yt%}
+      {% with settings.component_sites.SocialMediaSettings.twitter as twt %}
+      {% with settings.component_sites.SocialMediaSettings.instagram as ig %}
+      {% with settings.component_sites.SocialMediaSettings.linkedin as lnk %}
+
+      {% if fb == "" and yt == "" and twt == "" and ig == "" and lnk == "" %}
+      <span class="hidden-xs footer-social-label"></span>
+      {% else %}
+      <span class="hidden-xs footer-social-label">Follow Us</span>
+      <div class="social-media-icons">
+
+        {% if org.facebook_url %}
+        <a target="_blank" href="{{org.facebook_url}}">
+          <span class="social-media-icon icon-facebook3"></span>
+        </a>
+        {% elif fb %}
+        <a target="_blank" href="https://www.facebook.com/{{fb}}">
+          <span class="social-media-icon icon-facebook3"></span>
+        </a>
+        {% endif %}
+
+        {% if yt %}
+        <a target="_blank" href="https://www.youtube.com/{{yt}}">
+          <span class="social-media-icon icon-youtube2"></span>
+        </a>
+        {% endif %}
+
+        {% if org.twitter_url %}
+        <a target="_blank" href="{{org.twitter_url}}">
+          <span class="social-media-icon icon-twitter3"></span>
+        </a>
+        {% elif twt %}
+        <a target="_blank" href="https://twitter.com/{{twt}}">
+          <span class="social-media-icon icon-twitter3"></span>
+        </a>
+        {% endif %}
+
+        {% if org.instagram_url %}
+        <a target="_blank" href="{{org.instagram_url}}">
+          <span class="social-media-icon icon-instagram2"></span>
+        </a>
+        {% elif ig %}
+        <a target="_blank" href="http://instagram.com/{{ig}}">
+          <span class="social-media-icon icon-instagram2"></span>
+        </a>
+        {% endif %}
+
+        {% if org.linkedin_url %}
+        <a target="_blank" href="{{org.linkedin_url}}">
+          <span class="social-media-icon icon-linkedin2"></span>
+        </a>
+        {% elif lnk %}
+        <a target="_blank" href="https://www.linkedin.com/{{lnk}}">
+          <span class="social-media-icon icon-linkedin2"></span>
+        </a>
+        {% endif %}
+
+        {# <a target="_blank" href="https://plus.google.com/115086455695210273594/posts"><span class="icon-googleplus"></span></a> #}
+
+        {# <a target="_blank" href="https://www.flickr.com/photos/75340746@N05/sets/"><span class="icon-flickr"></span></a> #}
+        {# <a target="_blank" href="https://www.planning.org/news/rss/"><span class="icon-feed"></span></a> #}
+        {# <a target="_blank" href="https://itunes.apple.com/us/podcast/american-planning-association/id194167978"><span class="icon-podcast"></span></a> #}
+
+      </div>
+      {% endif %}
+
+      {% endwith %}
+      {% endwith %}
+      {% endwith %}
+      {% endwith %}
+      {% endwith %}
+    </div>
+  </div>
+  <!-- Footer Logo and Back to Top-->
+  <div class="visible-xs row footer-nav-page">
+    <div class="col-xs-12">
+      <span class="pull-left icon-APA-box-logo"></span>
+      <a href="#" class="pull-right"><b>Back to Top</b></a>
+    </div>
+  </div>
+  <div class="row footer-nav-sitemap-core-wrap">
+    <!-- Footer Nav sitemap -->
+    <div class="col-md-9">
+      <div class="hidden-xs footer-nav-sitemap clearfix">
+
+        {% footernav page %}
+
+      </div>
+    </div>
+    <!-- Footer Nav sitemap /\ -->
+    <div class="col-md-3">
+      <hr class="visible-sm">
+      <!-- Footer Nav core -->
+      <ul class="row footer-nav-core">
+        <li class="hidden-xs col-md-5 col-md-push-5">
+          {% if request.user.is_authenticated %}
+          <a href="/logout/">Log Out</a>
+          {% else %}
+          <a href="/login/?next={{request.path|urlencode}}">Log In</a>
+          {% endif %}
+
+        </li>
+        <li class="col-md-5 col-md-pull-5">
+            Contact Us
+        </li>
+        <li class="visible-xs-inline-block col-sm-6">
+          <a href="/apaataglance/privacy.htm">
+            Privacy Policy
+          </a>
+        </li>
+      </ul>
+
+      <div class="row footer-locations">
+        <div class="float-left">
+          <p>
+            {{org.company}}<br>
+            {% if org.address1 %}
+              {{org.address1}}<br>
+            {% endif %}
+
+            {% if org.address2 %}
+              {{org.address2}}<br>
+            {% endif %}
+
+            {% if org.city %}
+              {{org.city}},&nbsp;
+            {% endif %}
+            {% if org.state %}
+              {{org.state}}&nbsp;
+            {% endif %}
+            {% if org.zip_code %}
+              {{org.zip_code}}
+            {% endif %}<br>
+          </p>
+          <!--use workphone if possible-->
+          {% if org.secondary_phone %}
+            <p><b>Phone</b>: {{org.secondary_phone}}<br></p>
+          {% elif org.phone %}
+            <p><b>Phone</b>: {{org.phone}}<br></p>
+          {% endif %}
+
+          {% if org.email %}
+            <p><b>Email</b>: <a href="mailto:{{org.email}}">{{org.email}}</a><br></p>
+          {% endif %}
+        </div>
+        <div class="col-sm-4 col-md-12">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="row footer-copy">
+    <div class="col-md-12">
+      <a href="/apaataglance/copyright.htm">
+      &copy; {% now "Y" %} APA. All Rights Reserved
+      </a>
+      |
+      <a href="https://planning.org/privacy/">Privacy Policy</a>
+    </div>
+  </div>
+</div>

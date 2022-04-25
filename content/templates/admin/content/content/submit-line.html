@@ -1,0 +1,56 @@
+{% load i18n %}
+{% load content_extras %}
+<footer class="grp-module grp-submit-row grp-fixed-footer">
+    <header style="display:none"><h1>Submit Options</h1></header>
+    <ul>
+
+        <!-- standard django buttons ... -->
+        {% if show_delete_link %}
+            <li class="grp-float-left"><a href="delete/" class="grp-button grp-delete-link">{% trans "Delete" %}</a></li>
+        {% endif %}
+
+        {% if show_save %}
+        	<li><input type="submit" value="{% trans 'Save' %}" class="grp-button grp-default" name="_save" /></li>
+        {% endif %}
+        {% if show_save_as_new %}
+        	<li><input type="submit" value="{% trans 'Save as new' %}" class="grp-button" name="_saveasnew" /></li>
+        {% endif %}
+        {% if show_save_and_add_another %}
+        	<li><input type="submit" value="{% trans 'Save and add another' %}" class="grp-button" name="_addanother" /></li>
+        {% endif %}
+        {% if show_save_and_continue %}
+        	<li><input type="submit" value="{% trans 'Save and continue editing' %}" class="grp-button" name="_continue" /></li>
+        {% endif %}
+
+        <!-- buttons for APA publishable content... -->
+        {% if show_create_draft %}
+            <li><input type="submit" value="{% trans 'Save and create/update draft copy' %}" class="grp-button" name="_create_draft" style="background:magenta; color:lime;" /></li>
+        {% endif %}
+
+        {% if show_provider_submit %}
+            <li><input type="submit" value="{% trans 'Save and full provider submit' %}" class="grp-button" name="_provider_submit" style="background:orange; color:black;" /></li>
+        {% endif %}
+
+        {% if show_preview %}
+            <li><a type="button" href="{{original|get_preview_url}}" target="_blank" class="grp-button grp-default" style="background:lightgreen; color:black;">Preview Saved Draft</a></li>
+        {% endif %}
+
+        {% if show_publish %}
+            <li><input type="submit" value="{% trans 'Publish' %}" class="grp-button" name="_publish" style="background:yellow; color:black;"/></li>
+        {% endif %}
+
+        {% if show_send_publish %}
+            <li><input type="submit" value="{% trans 'Send for Publication' %}" class="grp-button" name="_send_publish" style="background:yellow; color:black;"/></li>
+        {% endif %}
+
+        <!-- TO DO... remove? -->
+        {% if show_sync_imis %}
+             <li><input type="submit" value="{% trans 'Sync to imis' %}" class="grp-button" name="_sync_imis" style="background:aqua; color:black;" /></li>
+        {% endif %}
+
+        {% if show_sync_harvester %}
+        <li><input type="submit" value="{% trans 'Harvest' %}" class="grp-button" name="_sync_harvester" style="background:#EF9751; color:black;" /></li>
+        {% endif %}
+
+    </ul>
+</footer>

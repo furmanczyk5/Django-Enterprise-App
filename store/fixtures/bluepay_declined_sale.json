@@ -1,0 +1,222 @@
+{
+  "bp_stamp_def_response": "RRNO ISSUE_DATE Result",
+  "amount_response": "18.90",
+  "next_date_response": "",
+  "payment_type_response": "CREDIT",
+  "card_type_response": "VISA",
+  "creation_date_response": "",
+  "reb_id_response": "",
+  "message_response": "Declined Sale",
+  "cvv2_code_response": "_",
+  "cust_token_response": "",
+  "tps_hash_type_response": "HMAC_SHA512",
+  "auth_code_response": "",
+  "name1_response": "Cory",
+  "rebill_amount_response": "",
+  "trans_id_response": "100934414817",
+  "avs_code_response": "2",
+  "bp_stamp_response": "DEB5FF6D88B234410F922E9539D4DBFA322392DC471384404FCE9DBCDACB6CBBD7A323BDE01E0DC31BB05B4E0274E76F2DA3A59807AD33DA94827A413E06E839",
+  "masked_account_response": "xxxxxxxxxxxx1111",
+  "response": {
+    "REMOTE_IP": [
+      "98.32.174.243"
+    ],
+    "RESPONSEVERSION": [
+      "5"
+    ],
+    "PROCESSOR_ID": [
+      "100864977571"
+    ],
+    "AVS": [
+      "2"
+    ],
+    "FLAGS": [
+      "TW"
+    ],
+    "CARD_TYPE": [
+      "VISA"
+    ],
+    "AVS_RESULT": [
+      "2"
+    ],
+    "CVV2_STATUS": [
+      "1"
+    ],
+    "REB_FIRST_DATE": [
+      "2020-08-25"
+    ],
+    "CVV2": [
+      "_"
+    ],
+    "CARD_EXPIRE": [
+      "0822"
+    ],
+    "PAYMENT_TYPE": [
+      "CREDIT"
+    ],
+    "TRANSACTION_TYPE": [
+      "SALE"
+    ],
+    "BIN": [
+      "411111"
+    ],
+    "F_UNHELD": [
+      "0"
+    ],
+    "F_REBILL_MASTER": [
+      "1"
+    ],
+    "NAME2": [
+      "Mollet"
+    ],
+    "TPS_HASH_TYPE": [
+      "HMAC_SHA512"
+    ],
+    "SOURCE_ID": [
+      "100934414817"
+    ],
+    "REB_EXPR": [
+      "1 MONTH"
+    ],
+    "TRANS_ID": [
+      "100934414817"
+    ],
+    "FRAUD_SCORE": [
+      "0"
+    ],
+    "ORIGIN": [
+      "bp10emu"
+    ],
+    "STATE": [
+      "IL"
+    ],
+    "PAYMENT_ACCOUNT": [
+      "xxxxxxxxxxxx1111"
+    ],
+    "SHPF_FORM_ID": [
+      "bluepay01"
+    ],
+    "CITY": [
+      "Chicago"
+    ],
+    "BP_STAMP": [
+      "DEB5FF6D88B234410F922E9539D4DBFA322392DC471384404FCE9DBCDACB6CBBD7A323BDE01E0DC31BB05B4E0274E76F2DA3A59807AD33DA94827A413E06E839"
+    ],
+    "TRANS_TYPE": [
+      "SALE"
+    ],
+    "BACKEND_ID": [
+      "746668157262"
+    ],
+    "ZIP": [
+      "60601-3009"
+    ],
+    "DBA": [
+      "DEMO-planning"
+    ],
+    "AMOUNT": [
+      "18.90"
+    ],
+    "ORIG_IS_SETTLED": [
+      "0"
+    ],
+    "MODE": [
+      "TEST"
+    ],
+    "F_WILL_CAPTURE": [
+      "0"
+    ],
+    "ACCOUNT_NAME": [
+      "DEMO-planning"
+    ],
+    "CC_EXPIRES": [
+      "0822"
+    ],
+    "COUNTRY": [
+      "United States"
+    ],
+    "LOGIN_ACCOUNT_ID": [
+      "100864977537"
+    ],
+    "REB_AMOUNT": [
+      "18.90"
+    ],
+    "NAME1": [
+      "Cory"
+    ],
+    "CUSTOMER_CODE": [
+      "100934414817"
+    ],
+    "ADDR1": [
+      "205 N Michigan Ave. Ste 1200"
+    ],
+    "ID": [
+      "100934414817"
+    ],
+    "RRNO": [
+      "100934414817"
+    ],
+    "FANCY_STATUS": [
+      "Declined"
+    ],
+    "F_CARD_PRESENT": [
+      "0"
+    ],
+    "OWNER_USER_ID": [
+      "100864977538"
+    ],
+    "REB_CYCLES": [
+      "10"
+    ],
+    "INVOICE_ID": [
+      "100934414817"
+    ],
+    "REBILLING": [
+      "1"
+    ],
+    "ORDER_ID": [
+      "100934414817"
+    ],
+    "MERCHANT": [
+      "100864977537"
+    ],
+    "Result": [
+      "DECLINED"
+    ],
+    "CONNECTED_IP": [
+      "98.32.174.243"
+    ],
+    "PHONE": [
+      "(312) 431-9100"
+    ],
+    "MESSAGE": [
+      "Declined Sale"
+    ],
+    "ISSUE_DATE": [
+      "2020-08-25 18:47:50.250276"
+    ],
+    "BP_STAMP_DEF": [
+      "RRNO ISSUE_DATE Result"
+    ],
+    "CVV2_RESULT": [
+      "_"
+    ],
+    "STATUS": [
+      "0"
+    ],
+    "ZIPCODE": [
+      "60601-3009"
+    ]
+  },
+  "rebill_id_response": "",
+  "bank_name_response": "",
+  "sched_expression_response": "",
+  "next_amount_response": "",
+  "last_date_response": "",
+  "status_response": "DECLINED",
+  "rebill_status_response": "0",
+  "name2_response": "Mollet",
+  "trans_type_response": "SALE",
+  "cycles_remaining_response": "",
+  "id_response": "100934414817"
+}

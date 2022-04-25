@@ -1,0 +1,28 @@
+{% for ticket in attendee.conference_tickets %}
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-ACTIVITY.html" with attendee=attendee event=ticket.event purchase=ticket.purchase is_standby=ticket.is_standby %}
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+{% with reg_option_code=attendee.purchase.option.code %}
+<!-- RECEIPT -->
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-RECEIPT.html" with attendee=attendee receipt=attendee.conference_receipt receipt_title="Conference Additional Tickets Receipt" %}
+		</div>
+	</div>
+</div>
+<!-- RECEIPT (COPY) -->
+<div class="page">
+	<div class="tickets">
+		<div class="ticket">
+			{% include "registrations/tickets/layouts/CONFERENCE-RECEIPT.html" with attendee=attendee receipt=attendee.conference_receipt receipt_title="Conference Additional Tickets Receipt" %}
+		</div>
+	</div>
+</div>
+{% endwith %}

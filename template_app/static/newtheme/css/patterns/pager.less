@@ -1,0 +1,29 @@
+//Overrides bootstrap pager styles.
+.pager {
+
+}
+
+.pager li > a,
+.pager li > span {
+  padding: 0;
+  border: 0;
+  font-weight: bold;
+  font-family: @font-family-sans-serif;
+  border-radius: 0;
+}
+
+.pager li > a {
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: @link-hover-color;
+  }
+}
+
+.pager .disabled > a,
+.pager .disabled > a:hover,
+.pager .disabled > a:focus,
+.pager .disabled > span {
+  color: @text-color;
+  opacity: 0.5;
+}

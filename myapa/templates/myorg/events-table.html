@@ -1,0 +1,187 @@
+{% extends 'newtheme/templates/base.html' %}
+
+{% load tz %}
+{% load content_extras %}
+{% load cm_tags %}
+{% load event_tags %}
+{% load static %}
+
+
+{% block additional_head_css %}
+<link href="{% static 'myorg/css/datatables.min.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content_main_access %}
+
+{% include "newtheme/templates/includes/django-message.html" %}
+
+<div class="page-head" style="margin-top: 5rem;">
+  <p>
+    <a class="btn btn-default" href="{% url 'myorg' %}">Back to My Organization</a>
+  </p>
+  <h1 class="page-title">All Events for {{ company }}</h1>
+</div>
+
+<div class="container">
+
+  {% if events %}
+  <div class="table-responsive">
+
+    <table class="display table table-hover" id="events_datatable">
+      <thead>
+        <tr>
+          <th>
+            ID
+          </th>
+          <th>
+            Title
+          </th>
+          <th>
+            Type
+          </th>
+          <th class="col-begin-time">
+            Begin Time
+          </th>
+          <th>
+            Status
+          </th>
+          <th class="col-info">
+            CM
+          </th>
+          <th>
+            Edit
+          </th>
+        </tr>
+     </thead>
+
+      <tbody>
+        {% for event in events %}
+        <tr>
+          <td>{{ event.master_id }}</td>
+          <td>
+            <p>
+              {% if event.is_published %}
+              <a href="{{ event|get_event_details_link }}">{{ event.title }}</a>
+              {% else %}
+              {{ event.title }}
+              {% endif %}
+            </p>
+            <p>
+              {% if event.avg_rating_tuple and event.is_past %}
+                {% if event.event_type == "EVENT_MULTI" %}
+                  <a class="see-event-reviews" id="see-event-reviews-{{event.master_id}}">See Activity Reviews</a>
+                {% else %}
+                  <span>{% star_rating event.avg_rating_tuple.0|floatformat:2 event.avg_rating_tuple.1 %}</span>
+                  {% if event.avg_rating_tuple.1 %}
+                    <a class="see-event-reviews" id="see-event-reviews-{{event.master_id}}">See Reviews</a>
+                  {% endif%}
+                {% endif %}
+              <div class="event-reviews" style="display:none" id="event-reviews-{{event.master_id}}"></div>
+              {% endif %}
+            </p>
+          </td>
+          <td>{{ event|get_event_type_label }} </td>
+          <td data-order="{{ event.begin_time|date:'c' }}">
+            {% localtime off %}
+            {{ event.begin_time_astimezone|date:"l, F j, Y, P e" }}
+            {% endlocaltime %}
+          </td>
+          <td>
+            {{ event|get_event_status_label }}
+
+            {% if event.can_relist %}
+            <form method="post" action="/cm/provider/events/{{ event.master_id }}/relist/">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-xs btn-icon btn-dashboard-events">
+              Relist
+              </button>
+            </form>
+            {% endif %}
+
+          </td>
+          <td>
+            <span class="small">
+              {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=event %}
+            </span>
+          </td>
+          <td>
+            {% if event.is_editable %}
+              {% if event.is_submitted and not event.has_published_version %}
+              <span class="small">
+                Your entered event is being processed. This may take a few minutes. You may not edit this event until the publishing process is complete
+              </span>
+              {% else %}
+              <a class="btn btn-sm btn-icon btn-dashboard-events" href="/cm/provider/events/{{ event.master_id }}/update/">
+                <span class="small">
+                  Edit<span class="icon-apa-edit"></span>
+                </span>
+              </a>
+            {% if event.is_published and event.status == 'A' %}
+            <form method="post" action="/cm/provider/events/{{ event.master_id }}/cancel/">
+              {% csrf_token %}
+              <button
+                type="submit"
+                class="btn btn-sm btn-icon btn-icon-danger btn-dashboard-events"
+                onclick="return confirm('Are you sure you want to unpublish event #{{ event.master_id }}?')">
+                <span class="small">
+                  Cancel<span class="icon-apa-close"></span>
+                </span>
+              </button>
+            </form>
+            {% else %}
+            <form method="post" action="/cm/provider/events/{{ event.master_id }}/delete/">
+              {% csrf_token %}
+              <button
+                type="submit"
+                class="btn btn-sm btn-icon btn-icon-danger btn-dashboard-events"
+                onclick="return confirm('Are you sure you want to delete event #{{ event.master_id }} permanently?')">
+                <span class="small">
+                  Delete<span class="icon-apa-close"></span>
+                </span>
+
+              </button>
+            </form>
+            {% endif %}
+          {% endif %}
+          {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+  {% else %}
+    <h2>No events have been submitted</h2>
+  {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'myorg/js/datatables.min.js' %}"></script>
+<script src="{% static 'myorg/js/events-datatable.js' %}"></script>
+
+<script>
+  (function() {
+    $('.see-event-reviews').on('click', function(){
+		var the_button = $(this);
+		var event_master_id = the_button.attr('id').match(/(?!.*-)\d+/)[0];
+		var event_reviews = $("#event-reviews-"+event_master_id);
+		the_button.addClass("loading");
+		event_reviews.load("/cm/provider/event/"+event_master_id+"/comments/", function(){
+			the_button.removeClass("loading");
+			event_reviews.slideDown(100);
+		});
+	});
+
+    $(document).on('click', '.close-event-reviews', function(){
+      var event_reviews = $(this).closest(".event-reviews");
+      event_reviews.slideUp(100);
+    });
+  })()
+</script>
+
+{% endblock %}

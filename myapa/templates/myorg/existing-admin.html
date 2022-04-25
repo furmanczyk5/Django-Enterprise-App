@@ -1,0 +1,13 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+<div class="layout-tracery no-bottom-border no-top-border">
+  <div class="layout-column">
+    <h3>Existing Admin Relationship</h3>
+    <p>Our records indicate you are already an administrator for {{ org.company }}.</p>
+    <p>If you wish to create a new organization, you must first remove yourself as an administrator for {{ org.company }} at the <a href="{% url 'myorg' %}">{{ org.company }} My Organization dashboard</a>. Click the Remove (x) button next to your name in the list of Administrators. Then return to this page.</p>
+    <p>If you feel this is an error, or if you need additional assistance, please <a href="/customerservice/contact-us/">contact us.</a></p>
+  </div>
+</div>
+
+{% endblock %}

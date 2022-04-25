@@ -1,0 +1,467 @@
+{% extends 'cm/newtheme/aicp-page-sidebar.html' %}
+
+{% load staticfiles %}
+{% load compress %}
+{% load cm_tags %}
+{% load content_extras %}
+{% load template_app_extras %}
+{% block content_sidebar %}
+{# would rather use /cm/ than /cm/log/, third level menu does not open #}
+{% sidenav for_url='/cm/log/' current_page_url=request.path %} 
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+ <h1 class="page-title">CM Provider Dashboard</h1>
+  <h3><div class="key-value-pair">
+                <div class="key">Provider ID</div>
+                <div class="value">{{provider.user.username}}</div>
+              </div></h3>      
+
+</div>
+
+{{ content_messages.CM_PROVIDER_INTRO.text|safe }}
+
+<hr/>
+<div>
+
+    <h3 class="featured-item-title">{{provider.title}}</h3>
+
+    <div class="layout-tracery no-top-border slab-gray">
+      <div class="layout-column section-overview-featured-item featured-family dashboard-overview">
+        <div class="row">
+          <div class="col-xs-8 col-sm-6 col-lg-4">
+            <div class="key-value-pair">
+                <div class="key">Provider Logo</div>
+                <div class="value">
+                  <a id="provider_logo_edit" class="btn btn-inline btn-sm btn-icon pull-right" href="javascript:;">Edit
+                  <span class="icon-apa-edit"></span>
+                  </a>
+                </div>
+            </div>
+            <div class="image-block" id="provider_logo_display" style="margin-top:0px;{% if not provider_profile.image %}display:none;{% endif %}">
+              <img src="{{provider_profile.image.image_file.url}}" />
+            </div>
+            <div class="form-section form-section-enclosed-light" id="provider_logo_action" {% if provider_profile.image %}style="display:none;"{% endif %}>
+              <h2 class="form-section-title">Add your company logo</h2>
+              <p class="small"> As an approved CM provider, you may add a company logo - this is optional.  Accepted file types: .png and .jpg. <br/>
+              The logo will be visible to members on your <a href="/cm/provider/{{provider.id}}/details/">provider profile page</a>. </p>
+              <div class="form-group">
+                {% include "cm/newtheme/provider/form/includes/provider-logo-form.html" with form=provider_logo_form provider=provider %}
+              </div>
+            </div>
+            
+          </div>
+          <div class="col-xs-8 col-sm-8 col-md-7 col-lg-5">
+
+            <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+              <div class="key-value-pair">
+                <div class="key">Provider Description</div>
+                <div class="value">
+                  <a class="btn btn-inline btn-sm btn-icon pull-right" id="provider_bio_edit">
+                    Edit
+                    <span class="icon-apa-edit"></span>
+                  </a>
+                  {{ provider.bio }}
+                </div>
+              </div>
+              <div class="form-section form-section-enclosed-light" style="display:none" id="provider_bio_action">
+                <h2 class="form-section-title">Edit Provider Description</h2>
+                <p class="small"> This description will be visible to members on your provider profile page. </p>
+                <div class="form-group">
+                  {% include "cm/newtheme/provider/form/includes/provider-bio-form.html" with provider=provider %}
+                </div>
+              </div>
+              <div class="key-value-pair">
+                <div class="key">Rating</div>
+                <div class="value">{% star_rating provider.rating_stats.rating_avg|floatformat:2 provider.rating_stats.rating_count %}</div>
+              </div>
+              <div class="key-value-pair">
+                <div class="key">Organization Type</div>
+                <div class="value">{{ provider.get_organization_type_display }}</div>
+              </div>
+              <div class="key-value-pair">
+                <div class="key">Tax ID/EIN ending in</div>
+                <div class="value">*****{{ provider.ein_number|slice:"-4:" }}</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+<br/><hr/>
+
+{% if application_info.is_locked %}
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2>Your provider approval period has ended</h2>
+    <p>Only active CM providers may see their full dashboard and enter and post CM events.</p>
+    <p>To renew your provider approval, complete the periodic provider review form in <a href="https://planning-org-uploaded-media.s3.amazonaws.com/document/CM-Provider-Toolkit.pdf" target="_blank">Provider Applications</a>.</p>
+    
+  </div>
+</div>
+
+{% else %}
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2>Administrators</h2>
+     <div class="small"><p>To remove an administrator, click on <strong>‘Remove x’.</strong></p>
+      <p>To add an administrator. Enter the new administrator’s name in the search box and select the appropriate search result. If the search does not return a record for the person you named, you must create an APA login for the individual.</p>
+         <p>Go to the <a href="https://www.planning.org/"> APA homepage</a>, select <strong>‘Log In’</strong> (at upper right) and create a non-member account.
+         Return to your CM Provider Dashboard, enter the new administrator’s name in the search box, and select the appropriate search result.</p>
+         </div>
+         <br>
+    <div class="form-group">
+      <div class="autocomplete" data-url-path="/ui/autocomplete/add_provider_admin/" data-search-target="#admin_search_target">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="icon-search-icon"></span></span>
+          <input class="input form-control" type="text" id="select_speaker_id" placeholder="Contact Name"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="selectable-search" id="admin_search_target"></div>
+      </div>
+    </div>
+    <div id="admin_search_target" class="selectable-search"></div>
+    <div class="admin-list">
+      <div class="row hidden-xs hidden-sm">
+        <div class="col-md-4">
+          <h3>Name</h3>
+        </div>
+        <div class="col-md-4">
+          <h3>Company</h3>
+        </div>
+        <div class="col-md-2">
+          <h3>Location</h3>
+        </div>
+      </div>
+      <div class="admin-list-group-wrap">
+      {% for admin in provider.all_admins %}
+      <div class="row">
+        <div class="col-md-4 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Name
+          </div>
+          {{admin.title}}
+        </div>
+        <div class="col-md-4 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Company
+          </div>
+          {{admin.company}}
+        </div>
+        <div class="col-md-2 admin-list-group">
+          <div class="h3 h-flush visible-xs-block visible-sm-block">
+            Location
+          </div>
+          {{admin.city}}, {{admin.state}}
+        </div>
+        <div class="col-md-2 admin-list-controls">
+          <form class="clearfix" method="post" action="/cm/provider/edit_admins/">
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{admin.user.username}}"/>
+            <button type="submit" name="submit" value="delete" class="btn btn-sm btn-icon pull-right" onclick="return confirm('Are you sure you want to remove this admin?')">
+              Remove
+              <span class="icon-apa-close"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-section form-section-enclosed-dark featured-family">
+          <h2 class="form-section-title">Provider Applications</h2>
+          <div class="form-group">
+            Thank you for your interest in providing training and educational events and activities for members of the American Institute of Certified Planners. If you already applied for approval as a Certification Maintenance education provider, the status of your application(s) is displayed below.
+          </div>
+          <div class="form-group">
+            {% if not application_info.has_application %}
+              <p>
+                Submit an application to become an approved CM provider.
+              </p>
+              <a class="btn btn-primary" href="/cm/provider/application/">Start an Application</a>
+            {% else %}
+              
+              {% if application_info.approved_app %}
+              <p>
+                Your application expiring {{application_info.approved_app.end_date}} is <strong>Approved</strong>
+                <a class="btn btn-inline btn-sm btn-icon" href="/cm/provider/application/{{application_info.approved_app.id}}/">View your application</a>
+              </p>
+              {% endif %}
+
+              {% if application_info.progress_app %}
+              <p>
+                Your application is <strong>{{application_info.progress_app.status_userfriendly}}</strong><br>
+                
+                {% if application_info.progress_app.status == 'D' or application_info.progress_app.status == 'I' %}
+                <a class="btn btn-inline btn-sm btn-icon" href="/cm/provider/application/{{application_info.progress_app.id}}/edit/">Edit your application</a>
+                {% else %}
+                <a class="btn btn-inline btn-sm btn-icon" href="/cm/provider/application/{{application_info.progress_app.id}}/">View your application</a><br>
+                {% endif %}
+              </p>
+              {% endif %}
+              
+              <p>
+                Questions about your applications?
+                <br>
+                See the <a href="/static/_pdf/cm/activities/cmproviderhandbook.pdf">CM Provider Toolkit</a>.
+              </p>
+              <br>
+              
+            {% endif %}
+          </div>
+        </div>
+
+        {% if provider.has_approved_application %}
+        <div class="form-section form-section-enclosed-dark featured-family">
+          <h2 class="form-section-title">Registration</h2>
+
+           {% if provider.available_registration_years %}
+          <div class="form-group">
+            <p><a class="btn btn-primary"  href="/cm/provider/registration/">Purchase Unlimited Registration</a></p>
+          </div>
+          {% endif %}
+
+          <p>All payment plans purchased from January 1-September 30 in any calendar year are active through December 31 of that year.</p>
+
+            <p>After October 1, providers may purchase plans either for the remainder of the current calendar year or for the next full calendar year.</p>
+          <p><strong>If you choose the Per-Credit Plan:</strong><p>
+
+       <p><strong>Skip the list of annual unlimited plans below. Scroll down to “EVENTS,” select an event type, and proceed with event entry.</strong><p>
+     <p><strong>Be aware that if you upgrade later to an annual unlimited plan, APA will neither refund your previous per-credit purchases nor apply them to the price of the upgrade.</strong><p>
+          <div class="form-group">
+            <p>
+            {% for reg in provider.registrations.all|dictsort:"year" %}
+              {% if reg.status == "A" %}
+                {% if reg.is_unlimited %}
+                <i>{{ reg.year }} unlimited</i><br>
+                {% else %}
+                <i>{{ reg.year }} per-credit</i><br>
+                {% endif %}
+              {% elif reg.status == "P" %}
+                <i>{{ reg.year }} <strong>pending payment: <a href="/store/cart/">Go to my cart</a> </strong></i><br>
+              {% endif %}
+            {% endfor %}
+            </p>
+          </div>
+
+          {% if provider.partner_providers %}
+          <div class="form-group">
+            <p>
+            You are linked to the following partner organizations based on your EIN number.
+            </p>
+            <p>
+            {% for partner in provider.partner_providers %}
+                <strong>{{ partner.company }}</strong><br/>
+            {% endfor %}
+            </p>
+          </div>
+          {% endif  %}
+
+        </div>
+        {% endif %}{# if provider.has_approved_application #}
+      </div>
+
+      <div class="col-md-6">
+        {% if provider_purchases %}
+        <div class="form-section form-section-enclosed-dark featured-family">
+          <h2 class="form-section-title">Order History</h2>
+          <p> Click on any order to open a detailed receipt to review, save, or print.</p>
+          <div class="list-of-links list-of-links-tiny">
+          {% for purchase in provider_purchases|slice:":4" %}
+            <h4>
+              <a href="/store/order_confirmation/?order_id={{purchase.order.id}}">
+                <strong>Order #{{ purchase.order.id }}</strong><br/>
+                ${{ purchase.amount|floatformat:2 }}
+                {% if purchase.description %}: {{ purchase.description }} | {% endif %}
+                status: {{ purchase.order.order_status|lower }}<br/>
+                {% if purchase.provider_registration.all %}
+                  registration year: {{ purchase.provider_registration.all.first.year }}
+                {% else %}
+                {{purchase.order.submitted_time|date:"Y" }}
+                {% endif %}
+              </a>
+            </h4>
+            <hr/>
+          {% endfor %}
+            <div id="other_orders" style="display:none;">
+            {% for purchase in provider_purchases|slice:"4:" %}
+              <h4>
+                <a href="/store/order_confirmation/?order_id={{purchase.order.id}}">
+                  <strong>Order #{{ purchase.order.id }}</strong><br/>
+                  ${{ purchase.amount|floatformat:2 }}
+                  {% if purchase.description %}: {{ purchase.description }} | {% endif %}
+                  status: {{ purchase.order.order_status|lower }}<br/>
+                  {% if purchase.provider_registration.all %}
+                    registration year: {{ purchase.provider_registration.all.first.year }}
+                  {% else %}
+                  {{purchase.order.submitted_time|date:"Y" }}
+                  {% endif %}
+                </a>
+              </h4>
+              <hr/>
+            {% endfor %}
+            </div>
+          </div>
+          {% if provider_purchases|length > 4 %}
+          <p><a id="view_more_orders_link" href="javascript:$('#other_orders').show();$('#view_more_orders_link').hide();">View More</a></p>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% if application_info.under_review %}
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h2>Periodic Review</h2>
+    <p>
+      AICP must review every CM education provider’s eligibility at the end of the provider’s approval period. Your organization’s approval period ends — and your periodic eligibility review should be completed, submitted, and approved — no later than {{application_info.approved_app.end_date}}.
+    </p>
+    <p>
+      <a class="btn btn-inline btn-sm btn-icon" href="/cm/provider/application/{{application_info.progress_app.id}}/edit/">Begin your Certification Maintenance Provider Periodic Review Form</a>. NOTE: You may complete and submit the form all at once or stop part-way through, save your work, and finish and submit it later.
+    </p>
+  </div>
+</div>
+{% endif %}
+
+<div class="layout-tracery">
+  <div class="layout-column">
+  {% if provider.has_approved_application %}
+  {% include "cm/newtheme/provider/includes/select-event-type.html" %}
+  <!-- CAN USE THIS MESSAGING IF PROVIDER DASHBOARD UNDER MAINTENANCE -->
+  <!--
+  <div class="action">
+  <p class="attention">NOTE: annual registration and event entry is temporarily
+  unavailable due to system maintenance. We apologize for any inconvenience.
+  </p>
+  </div>
+  -->
+  {% else %}
+    <p><em>You may begin entering CM events once your provider application has been approved.</em></p>
+  {% endif %}
+  </div>
+</div>
+
+{% if provider.has_approved_application %}
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <p>
+      <i class="small">
+      NOTE: Event numbers now start with “30” (i.e. 3031544). Activities within a multi-part event now start with “4” (i.e. 4195117).
+      </i>
+    </p>
+    <form class="dashboard-search-form">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6 col-md-4 form-group form-group-horizontal{%if event_search_form.time.errors %} has-error {% endif %}">
+              <label for="{{ event_search_form.time.id_for_label }}">By {{ event_search_form.time.label }}:</label>
+              {{ event_search_form.time }}
+              {% if event_search_form.time.help_text %}
+              <div class="help-block">{{ event_search_form.time.help_text|safe }}</div>
+              {% endif %}
+              {% if event_search_form.time.errors %}
+              <div class="form-error">
+                {% for error in event_search_form.time.errors %}
+                <p>{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            {# {% include "newtheme/sandbox/forms/includes/input-select.html" with field=event_search_form.time %} #}
+          </div>
+          <div class="col-sm-3 form-group form-group-horizontal{%if event_search_form.type.errors %} has-error {% endif %}">
+              <label for="{{ event_search_form.type.id_for_label }}">By {{ event_search_form.type.label }}:</label>
+              {{ event_search_form.type }}
+              {% if event_search_form.type.help_text %}
+              <div class="help-block">{{ event_search_form.type.help_text|safe }}</div>
+              {% endif %}
+              {% if event_search_form.type.errors %}
+              <div class="form-error">
+                {% for error in event_search_form.type.errors %}
+                <p>{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            {# {% include "newtheme/sandbox/forms/includes/input-select.html" with field=event_search_form.type %} #}
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+            <label>&nbsp;</label>
+            <button class="btn btn-primary btn-sm" type="submit">Filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="dashboard-events">
+      <div class="row">
+        <div class="col-md-6 hidden-xs hidden-sm">
+          <h3>Title</h3>
+        </div>
+        <div class="col-md-2 hidden-xs hidden-sm">
+          <h3>Type</h3>
+        </div>
+        <div class="col-md-2 hidden-xs hidden-sm">
+          <h3>Status</h3>
+        </div>
+      </div>
+      <div class="search-results-list dashboard-events-list">
+      <ul class="">
+        {% for event in events %}
+          {% include "cm/newtheme/provider/includes/cm-result.html" with result=event %}
+
+        {% empty %}
+        <p class="small">
+          <br>
+          No results
+        </p>
+        {% endfor %}
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}{# if provider.has_approved_application #}
+
+</br>
+<div class="form-section-enclosed-dark">
+Disclaimer: Certification Maintenance (CM) credit assigned to an educational program means AICP recognizes that the CM Provider has committed to meet CM criteria for length, subject matter, and instructors. Program descriptions and details are the responsibility of the programs’ providers, and APA is not responsible for the content.
+</div> 
+
+{% endif %}{# if is_locked #}
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'cm/js/provider.js' %}?v=0.2"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script src="{% static 'newtheme/ui/forms/js/formset.js' %}"></script>
+<script src="{% static 'newtheme/autocomplete/js/autocomplete.js' %}"></script>
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+</script>
+{% endblock %}

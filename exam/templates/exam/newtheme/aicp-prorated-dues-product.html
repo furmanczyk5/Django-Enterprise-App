@@ -1,0 +1,75 @@
+{% extends 'newtheme/templates/content-page-sidebar.html' %}
+
+{% load content_extras %}
+{% load template_app_extras %}
+
+<!-- SAME AS For aicp base template -->
+{% block content_sidebar_wrap %}
+<div class="column-sidebar content-sidebar no-top-spacing">
+  <div>
+    <span class="aicp-logo"></span>
+  </div>
+
+  {% block content_sidebar %}
+  {# would rather use /cm/ than /cm/log/, third level menu does not open #}
+  {% comment %}
+  {% sidenav for_url='/certification/postexam.htm' current_page_url=request.path %}
+  {% endcomment %}
+  {% sidenav for_url='/certification/postexam/' %}
+  {% endblock %}
+
+</div>
+{% endblock %}
+
+{% block content_main %}
+
+{% if prorate_balance and member_sub or member_type == "STU" and not prorate_paid_thru %}
+
+<div class="layout-tracery">
+  	<div class="layout-column">
+ 
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}			
+
+  		{{ "AICP_PRORATED_DUES_INTRO"|message_text|safe }}
+		
+			<div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>AICP Initial Dues:</th>
+							<th>Last day of your current billing period:</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>${{prorate_balance|floatformat:"2"}}</td>
+							<td>{{prorate_bill_thru|date:"SHORT_DATE_FORMAT"}}</td>
+						</tr>
+					</tbody>
+				</table>
+        {% comment %}
+				{% if member_balance %}
+				<p><strong>It is time to renew your APA membership. Click the button below to begin. At the end of the renewal process, your APA, chapter, and AICP Initial Dues will appear in your shopping cart and you will be ready to check out.</strong></p>
+				{{form}}
+				<div class="form-actions">
+				<input class="btn btn-primary"  type="submit" name="join_renew" value="Renew Membership and Pay All Dues" />
+
+				{% else %}
+        {% endcomment %}
+				<input class="btn btn-primary"  type="submit" name="add_to_cart" value="PAY AICP INITIAL DUES" />
+
+				{#{% endif %}#}
+			
+				</div>
+			</div>
+		
+			</form>
+		
+	</div>
+</div>
+
+{% endif %}
+{% endblock %}

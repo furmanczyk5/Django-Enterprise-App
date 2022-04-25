@@ -1,0 +1,28 @@
+{% extends "submissions/newtheme/forms/edit.html" %}
+
+{% load static %}
+
+
+{% block submission_description %}
+	<p>Employer,<br>
+		Thank you for posting a job in APA’s Jobs Online.
+    You will have the opportunity to review and edit your ad before and after it is posted.
+    The job will be posted once you've verified the entry and completed payment(if necessary).
+    If you are having any trouble with your ad after it is published, please contact customer service through our
+    <a href="/customerservice/contact-us/JOBS/">customer service form</a> or call 312-431-9100.
+	</p>
+  <p>  {{ content_messages.JOBS_POST_INSTRUCTIONS.text|safe }}</p>
+  {{extends_template}}
+
+	{% endblock %}
+
+	{% block form_fields %}
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">General Information</h3>
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+		
+        {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=form.job_type %}
+     
+{% endblock %}
+

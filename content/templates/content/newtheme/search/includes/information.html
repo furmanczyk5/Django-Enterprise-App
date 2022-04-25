@@ -1,0 +1,6 @@
+{% if p.total != 0 %}
+Showing <span class="pagination-results"><b>{{p.start}} - {{p.end}}</b></span>
+of <b> {{p.total}} </b>
+{% else %}
+no results
+{% endif %}

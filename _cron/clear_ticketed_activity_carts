@@ -1,0 +1,2 @@
+@hourly /srv/sites/apa/envs/apa/bin/python /srv/sites/apa/proj/apa/manage.py clear_carts -t activities
+@daily /srv/sites/apa/envs/apa/bin/python /srv/sites/apa/proj/apa/manage.py clear_carts -t all

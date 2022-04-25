@@ -1,0 +1,23 @@
+<span class="star-rating">
+  <span class="star-rating-rating">
+    {{rating}}
+  </span>
+  <span class="star-rating-star-wrap">
+    <span class="star-rating-star-wrap-inner" style="width:{{width}}%;">
+      <span class="icon-star"></span>
+      <span class="icon-star"></span>
+      <span class="icon-star"></span>
+      <span class="icon-star"></span>
+      <span class="icon-star"></span>
+    </span>
+    <span class="icon-star2"></span>
+    <span class="icon-star2"></span>
+    <span class="icon-star2"></span>
+    <span class="icon-star2"></span>
+    <span class="icon-star2"></span>
+  </span>
+  {% if count != "N/A" %}
+
+  <div>({{count}} review{{count|pluralize}})</div>
+  {% endif %}
+</span>

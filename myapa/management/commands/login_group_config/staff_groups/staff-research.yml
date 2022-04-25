@@ -1,0 +1,70 @@
+---
+
+# Django model admin permissions for the staff-research group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "056453"  # David Rouse
+  - "181410"  # Ann Dillemuth
+  - "183154"  # David Morley
+  - "247903"  # Sagar Shah
+  - "336848"  # Troy Brundidge
+  - "339449"  # Johamary Pena
+  - "351986"  # Torrence Gardner
+  - "351988"  # William Bouman
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+  - content_content
+  - content_contentrelationship
+  - events_activity
+  - events_course
+  - events_event
+  - events_eventmulti
+  - events_eventsingle
+  - events_nationalconferenceactivity
+  - events_nationalconferenceparticipant
+  - events_nationalconferenceproposal
+  - events_speaker
+  - knowledgebase_collection
+  - knowledgebase_collectionrelationship
+  - knowledgebase_healthresource
+  - knowledgebase_resource
+  - knowledgebase_research
+  - knowledgebase_resourcesuggestion
+  - knowledgebase_resourcesuggestionreview
+  - knowledgebase_resourcesuggestionreviewrole
+  - knowledgebase_solarresource
+  - knowledgebase_story
+  - knowledgebase_storyreview
+  - knowledgebase_storyreviewrole
+  - knowledgebase_suggestionreviewrole
+  - myapa_contact
+  - myapa_contactrelationship
+  - myapa_contactrole
+  - pages_conferencespage
+  - pages_knowledgecenterpage
+  - publications_article
+  - publications_planningmagarticle
+  - publications_publication
+  - publications_report
+  - places_contentplace
+  - places_place
+  - places_placedata
+  - publications_article
+  - publications_planningmagarticle
+  - publications_publication
+  - publications_report
+  - researchinquiries_inquiry
+  - researchinquiries_inquiryreview
+  - researchinquiries_inquiryreviewrole
+  - submissions_review
+  - submissions_reviewrole
+  - uploads_documentupload
+  - uploads_filetype
+  - uploads_imageupload
+  - uploads_upload
+  - uploads_uploadtype

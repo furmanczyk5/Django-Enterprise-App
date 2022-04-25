@@ -1,0 +1,165 @@
+{% extends 'cm/newtheme/extended-event-claim-form.html' %}
+{# {% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %} #}
+
+{% load ui_tags %}
+<!--FLAGGED: WCW EVAL UPDATE-->
+{% block event_claim_form %}
+<form method="post" novalidate>
+
+    <div class="form-section form-section-enclosed-dark">
+      {% csrf_token %}
+      {{ claim_form.non_field_errors }}
+
+      {% multiform_display_errors claim_form %}
+
+      <div class="form-group">
+        <div class="checkbox">
+          <label for="{{ claim_form.is_speaker.id_for_label }}">
+            {{ claim_form.is_speaker }}
+            I was a speaker/instructor
+          </label>
+        </div>
+      </div>
+      <div class="form-group{% if claim_form.verified.errors %} has-error {% endif %}">
+        <div class="checkbox">
+          <label for="{{ claim_form.verified.id_for_label }}">
+            {{ claim_form.verified }}
+            Agree
+          </label>
+        </div>
+        {% if claim_form.verified.help_text %}
+        <div class="help-block">{{ claim_form.verified.help_text|safe }}</div>
+        {% endif %}
+        {% if claim_form.verified.errors %}
+        <div class="form-error">
+          {% for error in claim_form.verified.errors %}
+          <p class="form-error-server">{{ error|escape }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <p class="small">
+          In accordance with my ethical obligations, as governed by the AICP Code of Ethics and Professional Conduct, I verify that I attended this session or listened to this course in full.
+        </p>
+      </div>
+    </div>
+
+      <div class="form-group" id="speaker_fields" style="display:none;">
+
+        <p class="small">
+          Speakers or instructors who attend an event in its entirety may claim CM credits for the event length plus 1 hour (CM) credit for preparation time. Speakers or instructors who stay only for their part of the program (one hour minimum) should claim CM credits for the time they attended plus 1 hour (CM) for preparation time.
+        </p>
+        <div class="form-group{%if claim_form.credits.errors %} has-error {% endif %}">
+          <label for="{{ claim_form.credits.id_for_label }}">{{ claim_form.credits.label }}:</label>
+          {{ claim_form.credits }}
+          {% if claim_form.credits.help_text %}
+          <div class="help-block">{{ claim_form.credits.help_text|safe }}</div>
+          {% endif %}
+          {% if claim_form.credits.errors %}
+          <div class="form-error">
+            {% for error in claim_form.credits.errors %}
+            <p class="form-error-server">{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+    <br />
+
+    {{ speaker_comment_formset.management_form }}
+
+      <h2>Evaluation of: <strong>{{ event.title }}</strong> </h2>
+    {% if speakerroles %}
+    <div class="form-section form-section-enclosed-dark">
+      <h3>Speaker Ratings:</h3>
+      <p class="small">
+          Only speakers who are included in the APA Speaker Database will appear and may be evaluated.
+        </p>
+      {% for speaker_comment_form in speaker_comment_formset %}
+      <div class="form-group horizontal-radio">
+        <hr>
+        <strong><h2>{{speaker_comment_form.speaker_name.value}}</h2></strong>
+        {% include "ui/newtheme/forms/includes/display-errors.html" with error_instructions='Please resubmit the form after making the following corrections:' form=speaker_comment_form %}
+        {{ speaker_comment_form.speaker_name }}
+        {{ speaker_comment_form.comment_ptr }}
+        {{ speaker_comment_form.contact }}
+        {{ speaker_comment_form.contactrole }}
+        {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=speaker_comment_form.exempt_from_evaluation %}
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=speaker_comment_form.knowledge_rating %}
+
+{% comment %}
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=speaker_comment_form.presentation_rating %}
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=speaker_comment_form.rating %}
+{% endcomment %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=speaker_comment_form.commentary %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <br />
+
+    <div class="form-section form-section-enclosed-dark">
+        {% include "ui/newtheme/forms/includes/display-errors.html" with error_instructions='Please resubmit the form after making the following corrections:' form=comment_form %}
+      <h3>Session Rating:</h3>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.objective_rating %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.knowledge_rating %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.practice_rating %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.speaker_rating %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.value_rating %}
+      </div>  
+      {% comment %}
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.commentary_takeaways %}
+      </div>
+      <div class="form-group horizontal-radio">
+<!--         <label for="{{ comment_form.objective_rating.id_for_label }}">Rate the value of viewing this course: </label>        
+ -->        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.rating %}
+      </div>
+      <div class="form-group">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.commentary %}
+      </div>
+      <div class="form-group">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.commentary_takeaways %}
+      </div>
+      {% endcomment %}
+      <div class="form-group">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.commentary_suggestions %}
+      </div>
+      <div class="form-group horizontal-radio">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=comment_form.learn_more_choice %}
+      </div>
+      {# <h2>[--Agree to Publish Section Title--]</h2> #}
+      <div class="form-group">
+        <div class="checkbox">
+          <label for="{{ comment_form.publish.id_for_label }}">
+            {{ comment_form.publish }}
+            Agree
+          </label>
+        </div>
+        <p class="small">
+          APA may publish these comments, along with my name, on APA's website and social media; in APA publications; emails; and elsewhere, to help other AICP members judge the quality of this provider’s educational offerings.
+        </p>
+      </div>
+    </div>
+
+    {{ claim_form.contact }}
+    {{ claim_form.log }}
+    {{ claim_form.event }}
+
+    {{ comment_form.contact }}
+    {{ comment_form.content }}
+    <br>
+    <button class="btn btn-primary" type="submit" name="submitButton" value="claim_form_submit">Submit</button>
+</form>
+{% endblock %}

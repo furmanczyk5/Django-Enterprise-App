@@ -1,0 +1,38 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Upload</th>
+        <th>Resource Type</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for upload in uploads %}
+		<tr>
+			<td>{% include "uploads/newtheme/includes/listed-record.html" %}</td>
+			<td>{{upload.resource_class}}</td>
+			<td>{{upload.description}}</td>
+			<td>
+				{% if editable %}
+				<form method="post">
+					{% csrf_token %}
+					<input type="hidden" name="remove_id" value="{{upload.id}}"/>
+					<button type="submit" class="small right btn btn-sm btn-default" name="submit_button" value="remove" class="right">remove</button>
+				</form>
+				{% endif %}
+			</td>
+		</tr>
+    {% empty %}
+	    <tr>
+	    	<td colspan="4">
+				<p>
+					You have not uploaded anything yet.
+				</p>
+			</td>
+		</tr>
+	{% endfor %}
+    </tbody>
+  </table>
+</div>

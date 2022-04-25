@@ -1,0 +1,195 @@
+  {% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load tz %}
+{% load content_extras %}
+{% load event_tags %}
+{% load cm_tags %}
+
+{% block title %}{{ content.title }}{% endblock %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+{% with event=content %}
+
+
+{% with is_past=event|activity_is_past %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">{{ event.title }}</h1>
+</div>
+
+<div class="layout-tracery">
+
+  <div class="layout-column">
+
+  {% if event.provider_roles %}
+    <h2 class="details-subtitle">
+      <a href="{{ SITE_URL }}/cm/provider/{{ event.provider_roles.0.contact.id }}/details/">
+      {{ event.provider_roles.0.contact.title }}
+      </a>
+    </h2>
+  {% endif %}
+
+      <p class="small">#{{ event.master.id }}</p>
+
+      <p class="address">
+
+  {% localtime off %}
+
+    {% ifequal event.begin_time|date:"SHORT_DATE_FORMAT" event.end_time|date:"SHORT_DATE_FORMAT"%}
+      {{ event.begin_time_astimezone|date:"l, F j, Y" }}
+      <br>
+      {{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+    {% else %}
+      {{ event.begin_time_astimezone|date:"l, F j, Y, P" }}
+      <br>
+      {{ event.end_time_astimezone|date:"l, F j, Y, P e" }}
+    {% endifequal %}
+
+  {% endlocaltime %}
+
+    </p>
+
+
+  {% if event.city or event.state or event.country %}
+    <p class="address">
+      {{ event.city }}, {{ event.state }}, {{ event.country }}
+    </p>
+  {% endif %}
+
+  {% get_tags content=event tagtype_code="ROOM" as room_tags %}
+  {% if room_tags.0 %}
+  <p class="address">{{ room_tags.0.title }}</p>
+  {% endif %}
+
+{#  {% if event.cm_approved and event.event_type != "EVENT_MULTI" %} #}
+  {% if event.event_type != "EVENT_MULTI" and event.cm_status != "I" %}
+    <!-- FLAGGED FOR REFACTORING: CM CREDITS DISPLAY -->
+    <!-- DISPLAY CHANGES ON HOLD UNTIL JAN 2022 -->
+    <div>
+      {% comment %}
+      <div class="cmcreditmargins">
+        <span class="cm">CM | </span><span class="cmpoints">{{ event.cm_approved|floatformat:"-2" }}</span>
+      </div>
+      {% endcomment %}
+      <span class="cm">CM | </span><span class="cmpoints">{{ event.cm_approved|floatformat:"-2" }}</span>
+    {% if event.cm_law_approved %}
+      {% comment %}
+      <div class="cmcreditmargins">
+        <span><span class="cm">CM | </span><span class="cmpoints">{{ event.cm_law_approved|floatformat:"-2" }}</span></span>
+        <br>
+        <span class="cmcredittype">Law</span>
+      </div>
+      {% endcomment %}
+      <br>
+      <span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{ event.cm_law_approved|floatformat:"-2" }}</span>
+    {% endif %}
+    {% if event.cm_ethics_approved %}
+      {% comment %}
+      <div class="cmcreditmargins">
+        <span><span class="cm">CM | </span><span class="cmpoints">{{ event.cm_ethics_approved|floatformat:"-2" }}</span></span>
+        <br>
+        <span class="cmcredittype">Ethics</span>
+      </div>
+      {% endcomment %}
+      <br>
+      <span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{ event.cm_ethics_approved|floatformat:"-2" }}</span>
+    {% endif %}
+    {% if event.cm_equity_credits %}
+      {% comment %}
+      <div class="cmcreditmargins">
+        <span><span class="cm">CM | </span><span class="cmpoints">{{ event.cm_equity_credits|floatformat:"-2" }}</span></span>
+        <br>
+        <span class="cmcredittype">Equity</span>
+      </div>
+      {% endcomment %}
+      <br>
+      <span class="cmlawethics">Eq</span><span class="cmpoints"><span class="cm"> | </span>{{ event.cm_equity_credits|floatformat:"-2" }}</span>
+    {% endif %}
+    {% if event.cm_targeted_credits %}
+      {% comment %}
+      <div class="cmcreditmargins">
+        <span><span class="cm">CM | </span><span class="cmpoints">{{ event.cm_targeted_credits|floatformat:"-2" }}</span></span>
+        <br>
+        <span class="cmcredittype">Sustainability & Resilience</span>
+      </div>
+      {% endcomment %}
+      <br>
+      <span class="cmlawethics">SR</span><span class="cmpoints"><span class="cm"> | </span>{{ event.cm_targeted_credits|floatformat:"-2" }}</span>
+    {% endif %}
+    </div>
+
+    {% evaluate_event_button event request.user.contact %}
+
+  {% endif %}
+
+  {% if event.text %}
+    <h3>Overview</h3>
+    <div class="content-managed-html">
+      <p>
+        {{ event.text|safe }}
+      </p>
+    </div>
+  {% endif %}
+
+  {% if event.resource_url %}
+    <h3>Resource URL</h3>
+    {% if resource %}
+    <p><a class="text" target="_BLANK" href="{{event.resource_url}}">{{ event.resource_url }}</a></p>
+    {% else %}
+      <p><a class="text" target="_BLANK" href="{{event.resource_url}}">view resource</a></p>
+    {% endif %}
+  {% endif %}
+
+  {% include "events/newtheme/includes/event-details-speakers.html" with speaker_roles=event.speaker_roles %}
+
+
+  {% if event.provider_roles %}
+  {% with provider_role=event.provider_roles.0 %}
+  {% if provider_role.email and provider_role.first_name and provider_role.last_name %}
+  <h3>Contact Info</h3>
+  <p>{{ provider_role.first_name }} {{ provider_role.last_name }}, <a href="mailto:{{ provider_role.email }}">{{ provider_role.email }}</a>
+  {% endif %}
+  {% endwith %}
+  {% endif %}
+
+    <p>
+    {% if event.event_type == "ACTIVITY" %}
+      {% activity_ticket_link activity=event %}
+    {% else %}
+      {% event_register_link %}
+    {% endif %}
+    </p>
+
+
+
+
+    {% block events_multi %}{% endblock events_multi %}
+
+  </div>
+
+</div>
+
+<!--{% block disclaimer %}
+{% if event.cm_approved %}
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h4>Disclaimer</h4>
+      <p>
+        <em>Certification Maintenance (CM) credit assigned to an educational program means AICP recognizes that the CM Provider has committed to meet CM criteria for length, subject matter, and instructors. Program descriptions and details are the responsibility of the programs’ providers, and APA is not responsible for the content.</em>
+      </p>
+  </div>
+</div>
+{% endif %}
+{% endblock disclaimer %}-->
+
+{% endwith %}
+{% endwith %}
+
+
+{% endblock %}

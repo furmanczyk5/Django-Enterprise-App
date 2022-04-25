@@ -1,0 +1,113 @@
+{% extends 'cm/newtheme/aicp-page-sidebar.html' %}
+
+{% load template_app_extras %}
+
+{% block content_sidebar %}
+{# would rather use /cm/ than /cm/log/, third level menu does not open #}
+{% sidenav for_url='/cm/log/' current_page_url=request.path %} 
+{% endblock %}
+
+{% block content_main %}
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+ 	<h1 class="page-title">{{title}}</h1>
+	<h3>
+		<div class="key-value-pair">
+    		<div class="key">Provider ID</div>
+        	<div class="value">{{application.provider.user.username}}</div>
+      	</div>
+      	<div class="key-value-pair">
+    		<div class="key">Provider</div>
+        	<div class="value">{{application.provider.title}}</div>
+      	</div>
+    </h3>      
+
+</div>
+
+<div class="layout-tracery">
+	<div class="layout-column">
+		<div class="key-value-pair">
+    		<div class="key">Application ID</div>
+        	<div class="value">{{application.id}}</div>
+      	</div>
+      	<div class="key-value-pair">
+    		<div class="key">Status</div>
+        	<div class="value">{{application.status_userfriendly}}</div>
+      	</div>
+
+      	<div class="key-value-pair">
+    		<div class="key">Year</div>
+        	<div class="value">{{application.year}}</div>
+      	</div>
+
+      	<div class="key-value-pair">
+    		<div class="key">Submitted</div>
+        	<div class="value">{{application.submitted_time}}</div>
+      	</div>
+      	
+      	{% if application.status == "A" %}
+      	<div class="key-value-pair">
+    		<div class="key">Provider Approved Through</div>
+        	<div class="value">{{application.end_date}}</div>
+      	</div>
+      	{% endif %}
+
+        <br />
+
+        {% if application.status == "A" or application.status == "D" %}
+          {# only show notes to provider if review is complete #}
+        <div class="form-section form-section-enclosed-light">
+          <h3 class="form-section-title">Reviewer Notes</h3>
+          <div class="form-group">
+            {% if application.provider_notes %}
+            <p class="bold-text">{{ application.provider_notes }}</p>
+            {% else %}
+            <p>There are no notes from the reviewer</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+    	<br />
+      	
+  	 	<div class="form-section form-section-enclosed-dark">
+          <h3 class="form-section-title">Relevance to Planners</h3>
+
+          	<div class="form-group">
+				<p class="small">
+					Briefly explain how your organization ensures that the topics selected enhance and expand the skills, knowledge, and abilities of practicing planners.
+				</p>
+				<p class="bold-text">{{ application.explain_topics }}</p>
+			</div>
+
+			<div class="form-group">
+				<p class="small">Does your organization develop written learning/training objectives?</p>
+	            <p class="bold-text">{{ application.objectives_status }}</p>
+	        </div>
+
+	        <div class="form-group">
+	            <p class="small">
+	              If you answered “Always” or “Sometimes,” provide at least three examples of the planning-related learning/training objectives for three activities your organization has sponsored.
+	            </p>
+	            <p class="small">
+	              If you answered “Never,” please develop and provide three learning/training objectives for three events you may have in the future.
+	            </p>
+
+	            <p class="bold-text">{{ application.objectives_example_1|safe }}</p>
+	            <p class="bold-text">{{ application.objectives_example_2|safe }}</p>
+	        </div>
+
+      	</div>
+
+      	<div class="form-section form-section-enclosed-dark">
+  			<h3 class="form-section-title">Planning-Expert Speakers</h3>
+  			<div class="form-group">
+	      		<p class="small">How does your organization determine and evaluate the appropriate qualifications for speakers?</p>
+	      		<p class="bold-text">{{ application.how_determines_speakers }}</p>
+	      	</div>
+      	</div>
+
+	</div>
+</div>
+{% endblock %}

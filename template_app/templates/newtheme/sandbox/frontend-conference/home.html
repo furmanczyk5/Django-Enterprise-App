@@ -1,0 +1,179 @@
+{% extends 'newtheme/templates/conference/base.html' %}
+{% load static %}
+
+{% block content_main %}
+
+<div class="container-fluid content-wrap">
+  <div class="layout-hero-image-conference layout-hero-image-conference-home layout-hero-image-conference-breakout">
+    <div class="layout-hero-image-conference-image-wrap">
+      <img class="layout-hero-image-conference-image" src="{% static 'newtheme/image/fpo-conference-hero-bg.jpg' %}"/>
+  </div>
+    <div class="layout-hero-image-conference-content">
+      {% include "newtheme/templates/includes/conference-countdown.html" %}
+      <div class="homepage-conference-cta">
+        <div class="homepage-conference-cta-body">
+          <div class="col-sm-8 col-md-9">
+            <p class="featured-family strong">April 21–24, 2018, New Orleans – 2018 National Planning Conference.</p>
+            <p class="full-width">NPC18 is where planners, city officials and industry movers and shakers team up. Hear from industry leaders about the shifting landscape of urban planning and the stories that shape the future of urban planning. Enjoy three days of workshops, talks, and thoughtful extras in one of the most exciting cities, New Orleans, LA, USA.</p>
+            <br>
+            <p>
+              <a href="#" class="btn btn-primary btn-strong">Register for NPC18 Today</a>
+            </p>
+          </div>
+          <div class="col-sm-4 col-md-3">
+            <img class="homepage-conference-cta-logo" src="{% static 'newtheme/image/npc-sign.png' %}"/>
+<!--            <img class="img-responsive" src="//placehold.it/250x270/3e3918" />-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="homepage-featured-content-secondary homepage-featured-content-secondary-conference color-green">
+      <div class="homepage-featured-content-secondary-body">
+        <h2 class="green">Guided Tracks</h2>
+        <div class="row">
+          <div class="col-sm-7">
+            <p class="featured-family">
+              <strong>12 tracks, over 100 sessions, 16 workshops, and  5 general sessions</strong> will be offered throughout the meeting.
+            </p>
+          </div>
+          <div class="col-sm-5 text-center homepage-featured-content-secondary-conference-wrap">
+            <a href="#" class="btn btn-primary btn-strong">View the Full Program</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+
+  <p class="h2 serif-family full-center breathing-room">NPC18 Conference Highlights</p>
+
+  <div class="homepage-featured-content-secondary-row">
+    <!-- <div class="col-sm-4"> -->
+      <div class="homepage-featured-content-secondary color-blue">
+        <div class="homepage-featured-content-secondary-image">
+          <img src="//placehold.it/800x360" />
+        </div>
+        <div class="homepage-featured-content-secondary-body">
+          <h2 class="headline-underline">Guided Tracks</h2>
+          <h3>A conference within a conference</h3>
+          <p>Each track is a series of sessions focused on emerging issues and guides to planning practice.</p>
+          <a class="read-more-link" href="#">View All Guided Tracks</a>
+        </div>
+      </div>
+
+    <!-- </div> -->
+    <!-- <div class="col-sm-4"> -->
+      <div class="homepage-featured-content-secondary color-red">
+        <div class="homepage-featured-content-secondary-image">
+          <img src="//placehold.it/800x360" />
+        </div>
+        <div class="homepage-featured-content-secondary-body">
+          <h2 class="headline-underline">Featured Session</h2>
+          <h3>Advanced workshop</h3>
+          <p>
+            <a class="plain-link" href="#">
+              Modern Trends in GIS for Planners - Planning Sustainable Economic Development
+            </a>
+          </p>
+          <a class="read-more-link" href="#">View All Conference Sessions</a>
+        </div>
+      </div>
+
+    <!-- </div> -->
+    <!-- <div class="col-sm-4"> -->
+      <div class="homepage-featured-content-secondary color-orange">
+        <div class="homepage-featured-content-secondary-image">
+          <img src="//placehold.it/800x360" />
+        </div>
+        <div class="homepage-featured-content-secondary-body">
+
+          <h2 class="headline-underline">Featured Event</h2>
+          <h3>Date and time</h3>
+          <p class="strong">
+            Opening Keynote Speaker <a class="plain-link" href="#">Peter Leyden</a>
+          </p>
+          <p>
+            Peter will be talking about <a class="plain-link" href="#">The Reinvention of America</a>.
+          </p>
+          <a class="read-more-link" href="#">View All Featured Events</a>
+        </div>
+      </div>
+
+
+    <!-- </div> -->
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="homepage-featured-content-tertiary">
+        <h2 class="headline-underline">CM / CEU Credits</h2>
+        <p>
+          Find out more about how to get CM credits for attending sessions.
+        </p>
+        <a class="read-more-link" href="#">View CM/CEU Credits</a>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="homepage-featured-content-tertiary">
+        <h2 class="headline-underline">NPC18 APP</h2>
+        <p>
+          Callout for the NPC mobile app. (Placeholder)
+        </p>
+        <a class="read-more-link" href="#">Download the App</a>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="homepage-featured-content-tertiary">
+        <h2 class="headline-underline">Exhibitor Hall</h2>
+        <p>
+          Explore hundreds of new products, services, and technology applications — all in one place!
+        </p>
+        <a class="read-more-link" href="#">Visit the Exhibitor Hall</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sponsor-carousel-wrap">
+    <h2 class="sponsor-carousel-heading">Thanks to Our NPC18 Conference Sponsors</h2>
+
+    <div class="sponsor-carousel">
+      <div class="sponsor-carousel-slide">
+        <div class="sponsor-carousel-image-wrap">
+          <img class="sponsor-carousel-image" src="//placehold.it/600x400" />
+        </div>
+      </div>
+      <div class="sponsor-carousel-slide">
+        <div class="sponsor-carousel-image-wrap">
+          <img class="sponsor-carousel-image" src="//placehold.it/600x400" />
+        </div>
+      </div>
+      <div class="sponsor-carousel-slide">
+        <div class="sponsor-carousel-image-wrap">
+          <img class="sponsor-carousel-image" src="//placehold.it/600x400" />
+        </div>
+      </div>
+      <div class="sponsor-carousel-slide">
+        <div class="sponsor-carousel-image-wrap">
+          <img class="sponsor-carousel-image" src="//placehold.it/600x400" />
+        </div>
+      </div>
+      <div class="sponsor-carousel-slide">
+        <div class="sponsor-carousel-image-wrap">
+          <img class="sponsor-carousel-image" src="//placehold.it/600x400" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="full-center">
+    <a class="sponsor-carousel-read-more" href="#">Become a Sponsor</a>
+  </p>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'newtheme/js/conference-countdown.js' %}"></script>
+<script src="{% static 'newtheme/js/sponsor-carousel.js' %}"></script>
+{% endblock %}

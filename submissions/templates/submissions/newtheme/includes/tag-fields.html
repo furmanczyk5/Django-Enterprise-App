@@ -1,0 +1,17 @@
+{% load content_extras %}
+
+{% for code in form.tag_type_choices %}
+<div class="form-group">
+{% with tag_choice_field_name="tag_choice_"|add:code.code %}
+{% with tag_choice_field=form|getattr:tag_choice_field_name %}
+
+{% include 'newtheme/sandbox/forms/includes/input-select.html' with field=tag_choice_field %}
+
+{% if tag_choice_field.help_text %}
+<span class="tooltip" title="{{tag_choice_field.help_text}}">?</span>
+{% endif %}
+
+{% endwith %}
+{% endwith %}
+</div>
+{% endfor %}

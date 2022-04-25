@@ -1,0 +1,23 @@
+---
+
+# Django model admin permissions for the staff-careers group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "141400"  # Karen Kazmierczak
+  - "322392"  # Bobbie Albrecht
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+# sorted([i.model for i in ContentType.objects.filter(app_label='')])
+app_models_granted:
+  - free_students_accreditation
+  - free_students_accreditedschool
+  - free_students_student
+  - pages_careerpage
+  - pages_knowledgecenterpage
+  - jobs_job
+  - jobs_wagtailjob
+  - myapa_school

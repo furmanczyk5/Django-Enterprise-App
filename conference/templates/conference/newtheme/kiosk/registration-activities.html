@@ -1,0 +1,256 @@
+<div class="container">
+  {% extends "registrations/newtheme/registration-activities.html" %}
+
+{% load compress %}
+{% load store_tags %}
+{% load event_tags %}
+{% load static %}
+{% load tz %}
+
+
+{% block head_resources %}
+
+{{block.super}}
+
+{% compress css %}
+<link type="text/less" rel="stylesheet" href="{% static 'content/css/include/loading.less' %}" />
+{% endcompress %}
+
+<script>
+	$(function(){
+
+		function set_cart_count() {
+			var the_count = $(".cart-line-item").size();
+			$("#cart-number-of-items").text(the_count);
+		}
+
+		$(document).ajaxComplete(function(){
+			$("#cart-number-of-items").fadeOut(200);
+			set_cart_count();
+			$("#cart-number-of-items").fadeIn(200);
+		});
+
+		set_cart_count();
+
+		$(".sticky-proceed-to-checkout a.button").click(function(event){
+			$("body").addClass("loading");
+		});
+
+	    $(window).on("unload beforeunload", function() {
+	      $("body").after("<div class='loading-box'></div>");
+    	});
+	});
+</script>
+
+<style>
+.sticky-proceed-to-checkout {
+	bottom:0px;
+	width:100%;
+	position:fixed;
+	padding:1em;
+	border-top:1px solid black;
+	background-color:white;
+	z-index:99;
+	overflow:hidden;
+	box-sizing:border-box;
+}
+</style>
+
+{% endblock %}
+
+{% block add_tickets_header %}
+<div class="section">
+	<h1>Add Available Ticketed Activities</h1>
+	<h2>{{ event.title }}</h2>
+	<p>
+		Only activities with available tickets appear on the list.
+	</p>
+</div>
+{% endblock %}
+
+
+{% block content_main %}
+
+
+
+
+<h1>Add Ticketed Activities</h1>
+<h2>{{ event.title }}</h2>
+<h3>
+  {% localtime off %}
+  {% ifequal event.begin_time_astimezone|date:"SHORT_DATE_FORMAT" event.end_time_astimezone|date:"SHORT_DATE_FORMAT" %}
+    <span>{{event.begin_time_astimezone|date:"l, F j, Y"}}</span><br/>
+    <span>
+      {{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+    </span>
+    {% else %}
+    <span>
+      {{event.begin_time_astimezone|date:"l, F j, P"}} - {{event.end_time_astimezone|date:"l, F j, Y, P e"}}
+    </span>
+  {% endifequal %}
+  {# {{ event.begin_time_astimezone|date:"F jS" }} - {{ event.end_time_astimezone|date:"F jS, Y" }} #}
+  {% endlocaltime %}
+</h3>
+
+<br>
+
+<div class="well clearfix">
+  <h4>Your Cart</h4>
+  <div class="table-responsive conference-registration registration-the_cart">
+    {% cart user=user remove_is_form=True %}
+  </div>
+  <a href="{{cart_url}}" class="btn btn-primary btn-lg">Check Out</a>
+</div>
+
+<div class="well">
+  <h4>Browse Ticketed Activities</h4>
+
+  <div>
+    <label class="btn btn-sm btn-default">
+      <input type="checkbox" class="prevent-icheck filter_controller" data-filter-code="data-cm" />
+      <span>All CM</span>
+    </label>
+    <label class="btn btn-sm btn-default">
+      <input type="checkbox" class="prevent-icheck filter_controller" data-filter-code="data-cm_law" />
+      <span>CM Law</span>
+    </label>
+    <label class="btn btn-sm btn-default">
+      <input type="checkbox" class="prevent-icheck filter_controller" data-filter-code="data-cm_ethics" />
+      <span>CM Ethics</span>
+    </label>
+  </div>
+
+
+  <hr/>
+  {% localtime off %}
+  <div class="margin-top">
+    <label class="radio-facade btn btn-sm selected">
+      <input type="radio" name="ticket-filter-date" class="prevent-icheck filter_controller" data-filter-code="data-all" checked="checked" />
+      <span>All - {{ event.begin_time_astimezone|date:"M j" }} to {{ event.end_time_astimezone|date:"M j" }}</span>
+    </label>
+  </div>
+  <br />
+  <div>
+    {% for date in filter_dates %}
+    <!-- LOOP OVER FILTER DATES TO DISPLAY ALL FILTERS-->
+    <label class="radio-facade btn btn-sm">
+      <input type="radio" name="ticket-filter-date" class="prevent-icheck filter_controller" data-filter-code="data-date-{{date|date:'ymd'}}" />
+      <span>{{ date|date:"l, M j" }}</span>
+    </label>
+    {% endfor%}
+  </div>
+  {% endlocaltime %}
+
+</div>
+  <div class="well">
+ <h3>If you're interested in joining a waitlist for a sold out event, go to the mobile workshop departure area.</h3>
+  </div>
+<!--
+  WE SEEM TO USE THE CODE BELOW (or variations of it) ALOT WHEN LISTING EVENTS, ACTIVITIES, ETC...
+  MAYBE WE SHOULD REFACTOR INTO INCLUSION TAGS WITH A FEW OPTIONS? OR PARTS OF IT INTO INCLUSION TAGS
+-->
+
+<div class="content-preview-list layout-tracery">
+  <ul>
+  {% for activity in activities %}
+
+{% if activity.product_info.price %}
+  <div class="activity" data-all="true" data-date-{{activity.begin_time|date:"ymd"}}="true"
+    {% if activity.cm_approved %}data-cm="true"{% endif %}
+    {% if activity.cm_law_approved %}data-cm_law="true"{% endif %}
+    {% if activity.cm_ethics_approved %}data-cm_ethics="true"{% endif %}>
+
+    <div class="search-doc">
+      <div class="search-doc-right">
+        <div class="text-grey text-small margin-bottom">{{activity.code}}</div>
+
+        <!-- SHOW CM -->
+        {% if activity.cm_approved %}
+        <div class="margin-bottom">
+          <div>
+            <span class="cm">CM  | </span><span class="cmpoints">{{activity.cm_approved|floatformat:"-2"}}</span>
+          </div>
+          <div>
+            {% if activity.cm_law_approved %}
+            <span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{activity.cm_law_approved|floatformat:"-2"}}</span>
+            {% endif %}
+          </div>
+          <div>
+            {% if activity.cm_ethics_approved %}
+            <span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{activity.cm_ethics_approved|floatformat:"-2"}}</span>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+
+      <div class="search-doc-left">
+
+        <div class="margin-bottom">
+          <h3 class="details-title">{{ activity.title }}</h3>
+
+          {% if activity.provider_roles %}{{activity.provider_roles.0.contact.title }}{% endif %}
+
+        </div>
+
+
+        <div class="margin-bottom">
+          <div>
+            {% localtime off %}
+            {% ifequal activity.begin_time_astimezone|date:"SHORT_DATE_FORMAT" activity.end_time_astimezone|date:"SHORT_DATE_FORMAT"%}
+            <span>{{activity.begin_time_astimezone|date:"l, F j, Y"}}</span><br/>
+            <span>
+              {{ activity.begin_time_astimezone|date:"P" }} - {{ activity.end_time_astimezone|date:"P e" }}
+            </span>
+            {% else %}
+            <span>
+              {{activity.begin_time_astimezone|date:"l, F j, Y, P"}}</span><br />
+            <span>
+              {{activity.end_time_astimezone|date:"l, F j, Y, P e"}}
+            </span>
+            {% endifequal %}
+            {% endlocaltime %}
+          </div>
+        </div>
+
+        {% if activity.description and not view.is_kiosk %}
+        <div>
+          <p class="text-grey">
+            {{ activity.description|safe }}
+          </p>
+        </div>
+        {% endif %}
+
+        <div>
+          <p>
+          {% for speaker_role in activity.speaker_roles %}
+            <span><a href="/search/?speakers={{speaker_role.contact.id}}">{{speaker_role.contact.title}}</a></span>{% if not forloop.last %}<span style="margin:0px 12px"> | </span>{% endif %}
+          {% endfor %}
+          </p>
+        </div>
+
+        <div class="registration_add-ticket-widget" data-master-id="{{activity.master_id}}">
+          {% activity_ticket_link activity=activity product=activity.product_info.product product_price=activity.product_info.price purchase_info=activity.product_info.purchase_info has_registration=has_registration kiosk=True  %} <!-- update this-->
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+
+  {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}
+
+
+{% block footer %}
+<div class="sticky-proceed-to-checkout">
+	<a class="button right" href="{{cart_url}}">Check Out</a>
+	<span style="font-size:1.4em;" class="right margin-right"><span id="cart-number-of-items"></span> Items</span>
+</div>
+{% endblock %}
+</div>

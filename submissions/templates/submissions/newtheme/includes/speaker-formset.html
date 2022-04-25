@@ -1,0 +1,88 @@
+{% load myapa_tags %}
+<div class="form-section form-section-enclosed-dark">
+  <h3 class="form-section-title">Speakers</h3>
+
+  <div class="form-group">
+    <h4>
+      Choose Speakers from APA's Speaker Database
+      <span class="tooltip floatright" title="Activities must be led by one or more speaker who meets AICP’s definition of an expert: an individual who has contributed to the field of planning through practice, teaching, research, or publications; has completed work that exhibits a mastery of the principles of planning; and whose work demonstrates a commitment to outstanding quality and professionalism.">?</span>
+    </h4>
+    <p class="small">
+      Use the search below to find and select from APA's existing contact list. If you cannot find the person you are looking for, you may select "Add New Speaker" to invite the speaker to participate. Once you submit your event, the “added” speaker will be sent an invitation email inviting them to add their bio.
+    </p>
+  </div>
+  <div class="form-group">
+
+    <div class="form-group">
+      <div class="autocomplete" data-url-path="/ui/autocomplete/speaker_formset/" data-selection-type="formset" data-formset-prefix="speakers" data-search-target="#speakers_search_target" data-record-template-url="/events/submissions/speaker_formset/display_record/{contact}/">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="icon-search-icon"></span></span>
+          <input class="input form-control" type="text" id="select_speaker_id" placeholder="Speaker Name"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h4>
+      Or, Add Other Speakers
+    </h4>
+    <p class="small">
+      If you do not wish to use APA's existing speaker database (for example, if you do not wish your speakers to receive an invitation email), then enter the speaker information below. Note that your speaker's listing will not be connected with APA's speaker database, and will not be automatically updated if the speaker chooses to update his or her bio on the APA website.
+    </p>
+  </div>
+  {% include "submissions/newtheme/includes/additional-speaker.html" with form=additional_speaker_form %}
+
+
+</div>
+
+<div class="form-section form-section-enclosed-dark">
+  <h3 class="form-section-title">Added Speakers</h3>
+  <div class="form-group">
+    
+    <div class="formset list-of-speakers" id="{{speaker_formset.prefix}}_formset" data-prefix="{{speaker_formset.prefix}}">
+        {{ speaker_formset.management_form }}
+
+        {% for speaker_form in speaker_formset %}
+        {% with speaker=speaker_form.instance|conditional_get_contact_by_id:speaker_form.contact.value  %}<!-- either QUERY FOR NEWlY ADDED CONTACTS or ALWAYS ALLOW TO SAVE --><!-- ALSO NEED TO GENERATE CODE FOR EVENT -->
+
+        <div class="record" id="id_{{speaker_formset.prefix}}-{{forloop.counter0}}" data-index="{{forloop.counter0}}">
+        {{ speaker_form.id }}
+        {{ speaker_form.contact }}
+
+            {% if speaker_formset.can_delete %}
+              <div class="pull-right">
+                <div class="checkbox">
+                  <label>
+                    {{ speaker_form.DELETE }}
+                    Delete
+                  </label>
+                </div>
+              </div>
+            {% endif %}
+            {% include 'submissions/newtheme/includes/speaker-formset-display-record.html' with speaker=speaker%}
+
+        </div>
+        {% endwith %}
+        {% endfor %}
+
+
+        <div class="hidden empty_form">
+            {{ speaker_formset.empty_form.id }}
+            {{ speaker_formset.empty_form.contact }}
+            {% if speaker_formset.can_delete %}
+              <div class="pull-right">
+                <div class="checkbox">
+                  <label>
+                    {{ speaker_formset.empty_form.DELETE }}
+                    Delete
+                  </label>
+                </div>
+              </div>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="selectable-search" id="speakers_search_target"></div>
+  </div>
+</div>

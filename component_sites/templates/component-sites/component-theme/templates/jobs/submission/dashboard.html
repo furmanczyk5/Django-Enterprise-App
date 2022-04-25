@@ -1,0 +1,116 @@
+{% extends 'jobs/newtheme/submission/dashboard.html' %}
+
+{% block content_main %}
+	<div class="page-head">
+	  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+	  <h1 class="page-title">Job Admin Dashboard </h1>
+
+	</div>
+
+	<div class="layout-tracery">
+	  <div class="layout-column">
+		<p><a class="btn btn-primary" href="/jobs/post/type/">Post a Job Ad</a></p>
+	<p>
+		Employer,<br>
+Thank you for posting a job in the chapter's Jobs Online.
+
+Start here to post a new job ad or edit an earlier ad that is still active. You cannot edit an ad after its expiration date.
+
+You will have the opportunity to review and edit your new or revised ad before it is posted and visible to others.
+	</p>
+	</div>
+	</div>
+	
+	<div class="layout-tracery">
+	  <div class="layout-column">
+	  		<h2>Job Posts</h2>
+		    <div class="admin-list">
+		      <div class="row hidden-xs hidden-sm">
+		        <div class="col-md-4">
+		          <h3>Title</h3>
+		        </div>
+		        <div class="col-md-2">
+		          <h3>Status</h3>
+		        </div>
+		        <div class="col-md-2">
+		          <h3>Expires</h3>
+		        </div>
+		        <div class="col-md-2">
+		          <h3>Receipt</h3>
+		        </div>
+		      </div>
+		      <div class="admin-list-group-wrap">
+		      	{% for job in jobs %}
+			        <div class="col-md-4 admin-list-group">
+			          <div class="h3 h-flush visible-xs-block visible-sm-block">
+			            Title
+			          </div>
+			          {% if job.is_published and job.status != "CA" and job.status != "I"%}<a href="/jobs/ad/{{job.master_id}}/">{{job.title}}</a>{% else %} {{ job.title }} {% endif %}
+			        </div>
+			        <div class="col-md-2 admin-list-group">
+			          <div class="h3 h-flush visible-xs-block visible-sm-block">
+			            Status
+			          </div>
+			          <!-- TO DO... may want to color code this based on the status: -->
+			          {% if job.status == "N" %}
+	            		<span>Not Entered</span>
+	            		{% elif job.status == "P" %}
+						<span>Pending Review</span>
+						{% elif job.status == "A" %}
+						<span>Active</span>
+						{% elif job.status == "I" %}
+						<span>Expired</span>
+						{% elif job.status == "CA" %}
+						<span>Cancelled</span>
+						{% endif %}
+			        </div>
+			        <div class="col-md-2 admin-list-group">
+			          <div class="h3 h-flush visible-xs-block visible-sm-block">
+			            Expiration
+			          </div>
+		            	{% if job.make_inactive_time %}
+		            	{{ job.make_inactive_time|date:"M d Y P e" }}
+		            	{% else %}
+		            	--
+		            	{% endif %}
+			        </div>
+			        <div class="col-md-2 admin-list-group">
+			          <div class="h3 h-flush visible-xs-block visible-sm-block">
+			            Receipt
+			          </div>
+		            	{% if job.purchase %}
+		            		<a href="/store/order_confirmation/?order_id={{job.purchase.order.id}}">{{job.master_id}}</a>
+		            	{% else %}
+		            		--
+		            	{% endif %}
+			        </div>
+			        <div class="col-md-2 admin-list-controls">
+			        	{% if job.status != "CA" and job.status != "I"%}
+		                	{% if job.status == "N" %}
+								<a class="btn btn-sm btn-icon" href="/jobs/post/{{job.master_id}}/type/">Edit<span class="icon-apa-edit"></span></a>
+							{% else %}
+								<a class="btn btn-sm btn-icon" href="/jobs/post/{{job.master_id}}/details/">Edit<span class="icon-apa-edit"></span></a>
+							{% endif %}
+							{% if job.status == "N" %}
+		                       <form style="display:inline-block" method="post" action="/jobs/post/{{job.master_id}}/delete/">
+										{% csrf_token %}
+										<button type="submit" class="btn btn-sm btn-icon" onclick="return confirm('Are you sure you want to delete the job#{{job.master_id}} permanently?')">Delete
+											<span class="icon-apa-close"></span>
+										</button>
+								</form>
+							{% endif %}
+						{% endif %}
+			        </div>
+			        <div class="clearfix"></div>
+			    	{% empty %}
+			        <p><i>No jobs have been submitted.</i></p>
+			    {% endfor %}
+		      </div>
+		    </div>
+	 	</div>
+	 </div>
+
+
+
+{% endblock %}

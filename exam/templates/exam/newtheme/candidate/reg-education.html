@@ -1,0 +1,74 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+{% load content_extras %}
+{% load myapa_tags %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">AICP Candidate Program Registration for AICP Exam</h1><br>
+    <h2 class="page-title">SECTION 1: EDUCATION</h2>
+  </div>
+  <div class="layout-tracery no-bottom-border">
+                <h3><strong>AICP Candidate Program REGISTRATION</strong></h3>
+                <p><strong>Education History</strong></p>
+              <p>AICP Candidates registering for the AICP Exam must be graduates of a PAB planning program and have provided verification of graduation, as described in the <a href="https://www.planning.org/certification/eligible.htm" target="_blank">AICP Candidate Exam Registration Requirements</a></p>
+<p>Please enter your education details and upload your education verification document. APA will accept <em>one</em> of the following three forms of education verification: 
+</p>
+ <ul style="list-style-type:disc">
+  <li>Official transcript. Please open sealed transcripts, scan them, and save them as a PDF. </li>
+  <li>Notarized photocopy of diploma. (The Notary Public confirms that the copy is a true replica of the original diploma.) </li>
+  <li>Letter from school dean, registrar, or program director confirming that the degree was conferred. The letter must be printed on college/university letterhead and include the letter writer’s title and contact information.</li>
+</ul> 
+    <div class="layout-column">
+
+    {% if error %}
+      {% if error == 'registered' %}
+      <h4>You have already registered for the exam.</h4>
+      {% elif error == 'no_application' %}
+      <h4>We could not find an approved application for the open exam.  
+      <a href='https://planning.org/aicp/' target='_blank'>Click here to learn about applying for the AICP and ASC exams.</a></h4>
+      {% elif error == 'expired_approval' %}
+      <h4>We're sorry but your application approval has expired and you must re-apply for the exam.  
+      <a href='https://planning.org/aicp/' target='_blank'>Click here to learn about applying for the AICP and ASC exams.</a></h4>
+      {% elif error == 'registration_ended' %}
+      <h4>Registration for the exam is now closed.</h4>
+      {% endif %}
+
+    {% else %}
+
+      <div class="row">
+<form method="post" class="planning-form" enctype="multipart/form-data" novalidate="true">
+            {% csrf_token %}
+            {% include "ui/newtheme/forms/includes/display-errors.html" %}
+            {% for hidden in form.hidden_fields %}
+              {{ hidden }}
+            {% endfor %}
+                    {% if form.school.value %}
+                      {% get_school_name form.school.value %}
+                    {% elif form.other_school.value %}
+                      {{ form.other_school.value }}
+                    {% else %}
+                      <h4>Education Info</h4>
+                    {% endif %}
+                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.school %}
+{# {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.program %} #}
+                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.accredited_program %}
+                    {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.is_current %}
+                    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.graduation_date %}
+                    <br>
+                    <p class="small" id="file_field">Choose Education Verification Document (pdf only): {{ form.uploaded_file }} </p>
+            <div class="form-actions">
+              <input id="file_upload" type="submit" name="save_and_exit" class="btn btn-primary" value="Save and exit"/>
+              <input id="file_upload" type="submit" name="save_and_continue" class="btn btn-primary" value="Save and continue" />
+            </div>
+        </form>
+
+        </div>
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load tz %}
+
+<div class="conference-activity">
+	<div class="title" {% if ticket_margin_top %}style="margin-top:{{ticket_margin_top}}in"{% endif %}>
+		<div class="text-small"><b>{{ticket.event.code}} </b></div>
+		<span>{{ticket.event.title}} </span>
+		{% if ticket.attendee.is_standby %}<b> - STANDBY</b>{% endif %}
+	</div>
+	{% localtime off %}
+	<div class="time">{{ticket.event.begin_time_astimezone|date:"fA e - l, F j"}}</div>
+	{% endlocaltime %}
+	<div class="location">{{ticket.event.contenttagtype_room.0.tags.all.0.title}}</div>
+
+	{% if ticket.purchase and ticket.purchase.product_price %}
+	<div class="price">${{ticket.purchase.product_price.price|default_if_none:"0.00"}}</div>
+	<div class="help-text">{{ticket.purchase.product.description}}</div>
+	{% elif ticket.description %}
+	<div class="price">$0.00</div>
+	<div class="help-text">{{ticket.description}}</div>
+	{% else %} 
+	<div class="price">$0.00</div>
+	{% endif %}
+
+	<div class="bottom-line">{{ticket.multipart_attendee.contact.full_title}} | {{ticket.multipart_attendee.contact.user.username}} {{ticket.multipart_attendee.contact.member_type|default_if_none:""}} | {{ticket.multipart_attendee.purchase.product_price.imis_reg_class}}</div>
+</div>

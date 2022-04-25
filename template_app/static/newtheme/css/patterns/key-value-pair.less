@@ -1,0 +1,66 @@
+//Individual product price line items
+.key-value-pair {
+  display: block;
+
+  &.key-value-pair-featured {
+    color: @color-bahama-blue;
+    font-size: 1.125em; //18px on 16px
+  }
+}
+
+.key-value-pair {
+  & .key,
+  & .value {
+    display: inline;
+  }
+
+  & .key {
+    font-weight: bold;
+
+    //Add colon after label
+    &:after {
+      content: ':';
+    }
+  }
+}
+
+.key-value-pair em {
+  display: inline;
+  font-size: 0.875em; //14px on 16px
+  color: @color-anzac;
+  font-family: @font-family-sans-serif;
+}
+
+
+// A group of product prices. Use multiple containers for some visual separation between prices
+.key-value-pair-group {
+  margin-bottom: 10px; //match p
+}
+
+.key-value-pair-group-tags {
+  padding-top:20px;
+}
+
+//For special key value pair groups that need some more breathing room
+.key-value-pair-group-extra-spacing {
+  & .key-value-pair {
+    margin-bottom: 0.3125em; //5px on 16px
+  }
+}
+
+//Optional Table format
+table.key-value-pair-table {
+  &:extend(.key-value-pair-group all);
+
+  & tr {
+    &:extend(.key-value-pair all);
+  }
+
+  & tr td:nth-child(1) {
+    &:extend(.key-value-pair .key all);
+  }
+
+  & tr td:nth-child(2) {
+    &:extend(.key-value-pair .value all);
+  }
+}

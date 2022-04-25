@@ -1,0 +1,23 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load content_extras %}
+
+{% block content_main %}
+
+<div class="page-head">
+  <h1 class="page-title">{% block join_title %}APA Membership{% endblock %}</h1>
+
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+
+    <div class="form-head">
+      <h2>Your membership is current through {{ membership.paid_thru|datetime_from_json|date:"F j, Y" }} as you are enrolled in auto-renewal program.
+      If you have any questions, please contact <a href="/customerservice">customer service</a> for assistance.</h2>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

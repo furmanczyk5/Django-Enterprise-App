@@ -1,0 +1,30 @@
+{% extends 'submissions/newtheme/forms/edit.html' %}
+
+{% block title_h1 %}Agree to Terms of Use and Upload Image{% endblock %}
+
+{% block formattrs %}{{block.super}} enctype="multipart/form-data" class="validate-form" {% endblock %}
+
+{% block form_fields %}
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">Terms of Use</h3>
+    <div class="form-group">
+        {% include 'imagebank/newtheme/submission/includes/agreement.html' %}
+        <p>{% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.submission_verified %}</p>
+    </div>
+</div>
+
+<div class="form-section form-section-enclosed-dark">
+    <h3 class="form-section-title">Image Upload</h3>
+
+    <div class="form-group">
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.image_file %}
+    </div>
+
+
+    <div class="form-group">
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+    </div>
+</div>
+
+{% endblock %}

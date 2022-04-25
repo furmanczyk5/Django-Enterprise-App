@@ -1,0 +1,193 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+
+{% block content_main %}
+
+
+{% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+{% if share_profile %}
+
+  <!-- To display Image -->
+  <div class="row slab-blue">
+    <div class="col-xs-12">
+      {% if view_profile %}
+        <h1>{{profile_contact.first_name}} {{profile_contact.last_name}}{% if profile_contact.designation %}, {{profile_contact.designation}}{% endif %}</h1>
+      {% else %}
+        <h1>Profile</h1>
+      {% endif %}
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    {% if profile_contact.individualprofile.image %}
+    <div class="col-sm-4 col-lg-3">
+       <img class="img-responsive" src="{{ profile_contact.individualprofile.image.image_thumbnail.url }}" alt="Profile Image" />
+    </div>
+    {% endif %}
+    {% if is_member %}
+    <div class="col-sm-4">
+      {% if profile_contact.designation or subscribed_chapts or subscribed_divs %}
+
+        {% if contact.designation == "AICP" %}
+          <img src="{% static 'images/badges/AICP_renew.jpg' %}" height="86" width="86"/>
+        {% elif contact.designation == "FAICP" %}
+          <img src="{% static 'images/badges/AICP_Fellow_Badge.jpg' %}" height="86" width="86"/>
+        {% endif %}
+
+        {% for sub_chapter in subscribed_chapts %}
+          <img src="{% static 'images/badges/'|add:sub_chapter|add:'.jpg' %}" height="86" width="86"/>
+        {% endfor %}
+
+        {% if subscribed_divs %}
+          {% for division in subscribed_divs %}
+          <!--{{division}}-->
+          <!-- TO DO... get these division badges -->
+          {% endfor %}
+        {% endif %}
+
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+  <br>
+
+
+
+  {% if share_profile and share_contact %}
+  <div class="form-section form-section-limit-width form-section-enclosed-dark">
+    <h3 class="form-section-title">Contact Information</h3>
+    <div class="key-value-pair-group key-value-pair-group-extra-spacing">
+      {% if profile_contact.secondary_phone %}
+      <div class="key-value-pair">
+        <div class="key">Work Phone</div>
+        <div class="value">{{profile_contact.secondary_phone}}</div>
+      </div>
+      {% endif %}
+
+      <div class="key-value-pair">
+        <div class="key">E-mail</div>
+        <div class="value"><a href="mailto:{{profile_contact.email}}">Click here to e-mail</a></div>
+      </div>
+    </div>
+    <b>Address:</b>
+    <p class="address">
+      {{address_1}}<br>
+      {% if address_2 %}{{address_2}}<br>{% endif %}
+      {{city}}<br>
+      {{state}}<br>
+      {{zip}}<br>
+      {{country}}<br>
+    </p>
+  </div>
+  {% endif %}
+
+  {% if share_profile and share_bio %}
+    {% if profile_contact.individualprofile.statement %}
+      <div class="form-section form-section-limit-width form-section-enclosed-dark">
+          <h3 class="form-section-title">FAICP Statement</h2>
+          <p>{{profile_contact.individualprofile.statement}}</p>
+      </div>
+    {% endif %}
+    {% if profile_contact.individualprofile.experience and is_asc %}
+      <div class="form-section form-section-limit-width form-section-enclosed-dark">
+          <h3 class="form-section-title">ASC Expertise</h2>
+            <p>{{profile_contact.individualprofile.experience|safe}}</p>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if share_profile and share_bio %}
+    {% if profile_contact.bio or profile_contact.about_me %}
+      <div class="form-section form-section-limit-width form-section-enclosed-dark">
+        {% if profile_contact.about_me %}
+          <h3 class="form-section-title">About Me</h2>
+          <p>{{profile_contact.about_me|safe}}</p>
+        {% endif %}
+        {% if profile_contact.bio %}
+          <h3 class="form-section-title">Professional Biography</h2>
+          <p>{{profile_contact.bio|safe}}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if share_profile and share_education and profile_contact.educationaldegree_set.all %}
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <h3 class="form-section-title">Education</h3>
+      {% for school in profile_contact.educationaldegree_set.all %}
+        {% if school.school %}
+          <b>{{school.school}}</b>
+        {% else %}
+          <b>{{school.other_school}}</b>
+        {% endif %}
+        <br>
+        Graduation Date: {% if school.graduation_date %}{{school.graduation_date|date:"F"}}, {{school.graduation_date.year}}{% endif %}<br>
+        Degree Level: {{school.get_level_display}}<br>
+        {% if school.is_planning %} <i>Planning Degree</i><br>{% endif %}
+      <br>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if share_profile and share_jobs and profile_contact.jobhistory_set.all %}
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+      <h3 class="form-section-title">Job History</h3>
+      {% for job in profile_contact.jobhistory_set.all%}
+        <b>{{job.company}}</b><br>
+        <b>{{job.title}}</b><br>
+        {% if not job.is_current %}
+          {{job.start_date|date:"F"}},{{job.start_date.year}} - {{job.end_date|date:"F"}},{{job.end_date.year}}<br>
+        {% else %}
+          {{job.start_date|date:"F"}},{{job.start_date.year}} - Present<br>
+        {% endif %}
+        {% if job.is_part_time %}<i>Part time</i><br>{% endif %}
+        {{job.city}}, {{job.state}}<br>
+        {{job.zip_code}}<br>
+        {{job.country}}<br><br>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+
+
+  {% if share_profile and share_social %}
+    <div class="form-section form-section-limit-width form-section-enclosed-dark">
+    <h3 class="form-section-title">Social</h3>
+      {% if profile_contact.personal_url %}<b>Personal URL: </b><a href="{{profile_contact.personal_url}}" target="_blank">{{ profile_contact.personal_url }}</a><br>{% endif %}
+      {% if profile_contact.linkedin_url %}<b>LinkedIn URL: </b><a href="{{profile_contact.linkedin_url}}" target="_blank">{{ profile_contact.linkedin_url }}</a><br>{% endif %}
+      {% if profile_contact.facebook_url %}<b>Facebook URL: </b><a href="{{profile_contact.facebook_url}}" target="_blank">{{ profile_contact.facebook_url }}</a><br>{% endif %}
+      {% if profile_contact.twitter_url %}<b>Twitter URL: </b><a href="{{profile_contact.twitter_url}}" target="_blank">{{ profile_contact.twitter_url }}</a><br>{% endif %}
+      {% if profile_contact.instagram_url %}<b>Instagram URL: </b><a href="{{profile_contact.instagram_url}}" target="_blank">{{ profile_contact.instagram_url }}</a><br>{% endif %}
+    </div>
+  {% endif %}
+
+    <!-- NEED TO ADD CERTIFICATIONS SHARE CHECK -->
+    <!--
+    {% if share_profile and share_leadership %}
+    <div class="action">
+      <h4>Certifications</h4>
+      <p class="text-small text-grey">Include any certifications or designations here.</p>
+      <br>
+    </div>
+    <br/>
+    {% endif %}
+    -->
+
+  {% if share_profile and share_resume and profile_contact.individualprofile.resume %}
+    <h4>Resume</h4>
+    <p><img src="{% static 'images/badges/resume.png' %}" width="15" height="20"/> Resume</p>
+    <a class="small button" id="view_button" href="{{ profile_contact.individualprofile.resume.uploaded_file.url }}" target="_blank">
+      View/Download
+    </a>
+  {% endif %}
+
+
+
+{% else %}
+    <h2>User profile has been marked Private or For members only. </h2>
+{% endif %}
+
+{% endblock %}

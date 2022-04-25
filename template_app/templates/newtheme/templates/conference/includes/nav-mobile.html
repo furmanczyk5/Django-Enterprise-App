@@ -1,0 +1,52 @@
+{% load static %}
+
+<div class="mobile-menu-wrap">
+  <nav>
+    <ul class="mobile-menu-list depth0">
+      <li>
+        <span class="heading">Main Menu</span>
+      </li>
+
+      {% for m in conference_menu %}
+      {% if m.get_url and m.title and m.get_child_menuitems %}
+      <li>
+        <!-- BEGIN LEVEL 0 LINK -->
+        <a href="#">
+          {{ m.title }}
+          <span class="icon-keyboard-arrow-right pull-right"></span>
+        </a>
+        <!-- BEGIN LEVEL 0 LINK -->
+        <!-- BEGIN LEVEL 0 SUBNAV -->
+        <ul class="mobile-menu-child">
+          <li class="mobile-menu-btn-back-wrap">
+            <a href="#" class="mobile-menu-btn-back" data-depth="0">
+              <span class="icon-keyboard-arrow-right pull-left"></span>
+              Back to Main Menu
+            </a>
+          </li>
+          <li>
+            <span class="heading">{{ m.title }}</span>
+          </li>
+          <li>
+            <a href="{{ m.get_url }}">{{ m.title }} Overview</a>
+          </li>
+          {% for sm1 in m.get_child_menuitems %}
+          <li>
+            <a href="{{ sm1.get_url }}">
+              {{ sm1.title }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% elif m.get_url and m.title %}
+      <li>
+        <a href="{{ m.get_url }}">
+          {{ m.title }}
+        </a>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+</div>

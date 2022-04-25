@@ -1,0 +1,13 @@
+{% load wagtailimages_tags %}
+
+<div class="image-block {{value.image_style}}">
+  {% image value.image width-1200 as tmp_img %}
+  <img src="{{tmp_img.url}}" alt="{{value.image.alt_text}}" style="height:auto">
+  {% if value.caption %}
+  <div class="caption">
+    <p>{{value.caption}}</p>
+  </div>
+  {% endif %}
+</div>
+
+{{value.body}}

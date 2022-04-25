@@ -1,0 +1,98 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Events</h1>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+        {% if current_events %}
+
+        <h2>Current Events You Registered For:</h2>
+        <div class="row">
+            <div class="col-md-4">
+            {% for current_event in current_events %}
+                <div class="content-preview-item">
+                    <h4 class="content-preview-item-headline">{{ current_event.title }}</h4>
+                    <div class="content-preview-item-summary">{{ current_event.begin_time }} - {{ current_event.end_time }}</div>
+                    <span class="cm">CM  | </span><span class="cmpoints">{{ current_event.cm_approved }}</span>
+                </div>
+                <hr>
+            {% endfor %}
+            </div>
+        </div>
+
+        {% endif %}
+
+        <h2>Next Event You Are Registered For:</h2>
+        {% if upcoming_event %}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-preview-item">
+                    <h4 class="content-preview-item-headline">{{ upcoming_event.title }}</h4>
+                    <div class="content-preview-item-summary">{{ upcoming_event.begin_time }} - {{ upcoming_event.end_time }}</div>
+                    <span class="cm">CM  | </span><span class="cmpoints">{{ upcoming_event.cm_approved }}</span>
+                </div>
+                <hr>
+            </div>
+        </div>
+        {% else %}
+        <p><i> No upcoming events</i></p>
+        {% endif %}
+
+        <h2>Upcoming Events You Are Registered For:</h2>
+        {% if upcoming_events %}
+        <div class="row">
+            <div class="col-md-4">
+                {% for upcoming_event in upcoming_events %}
+                    <div class="content-preview-item">
+                        <h4 class="content-preview-item-headline">{{ upcoming_event.title }}</h4>
+                        <div class="content-preview-item-summary">{{ upcoming_event.begin_time }} - {{ upcoming_event.end_time }}</div>
+                        <span class="cm">CM  | </span><span class="cmpoints">{{ upcoming_event.cm_approved }}</span>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <p><i> No upcoming events</i></p>
+        {% endif %}
+
+        <div class="list-of-links list-of-links-small">
+            <h2 class="h-flush">National Planning Conference Schedule</h2>
+            <h4><a href="/conference/schedule/">register for another event</a></h4>
+        </div>
+
+        <div class="list-of-links list-of-links-small">
+            <h2 class="h-flush">Find More Events</h2>
+            <h4><a href="/cm/search">See all events, conferences, and meetings</a></h4>
+        </div>
+
+        <div class="action highlight">
+            <h5> Past Events You've Attended:</h5>
+            {% if completed_events%}
+                <div class="row">
+                    <div class="col-md-4">
+                        {% for completed_event in completed_events %}
+                            <div class="content-preview-item">
+                                <h4 class="content-preview-item-headline">{{ completed_event.title }}</h4>
+                                <div class="content-preview-item-summary">{{ completed_event.begin_time }} - {{ completed_event.end_time }}</div>
+                            </div>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <p><i>No completed events to show!</i></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+      <p>
+        <a class="btn btn-default" href="{% url 'myorg' %}">Back to My Organization</a>
+      </p>
+    <h1 class="page-title">{% block join_title %} My Organization: Download Evaluation Data {% endblock %}</h1>
+    {% block join_subtitle %}
+    {% comment %}
+    <h4 class="page-subtitle">
+      Here is where you can download all of your event evaluation data on behalf of your organization for a given CM Period
+    </h4>
+    {% endcomment %}
+    {% endblock %}
+  </div>
+
+  {% block form_intro %}{% endblock %}
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+
+      <div class="form-head" {% if potential_duplicates %}style="display:none"{% endif %}>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-7 col-md-8">
+
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+
+              {% block choose_cm_period_section %}
+                <div class="form-section form-section-enclosed-dark">
+                  {#<h3 class="form-section-title">Download {{org.company}} Eval Data</h3>#}
+                    <div class="form-group">
+                      <label>Organization Name: </label>
+                      <div class="form-control-static">
+                        {{ org.company }}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <p>Using the drop down, select the year to download.  Note: results prior to 2020 are based on different evaluation questions required during that period.</p>
+                      </div>
+                    </div>
+                    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.cm_period %}
+                </div>
+              {% endblock %}
+
+              {% block form_submit_button %}
+                <div class="form-actions">
+                  <input type="submit" name="submit" class="btn btn-primary" value="Download Eval Data" />
+                </div>
+              {% endblock %}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+

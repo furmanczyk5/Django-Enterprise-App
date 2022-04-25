@@ -1,0 +1,73 @@
+{% extends "newtheme/templates/layout-sidebar.html" %}
+
+{% load template_app_extras %}
+
+{% block content_sidebar %}
+{% sidenav for_url="/consultants/" %}
+{% endblock %}
+
+
+{% block content_main %}
+{% load static %}
+{% load myapa_tags %}
+
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">{{ organization.company }}</h1><br>
+
+  </div>
+  <div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+      <div class="row">
+
+    {% if profile.image %}<p><img src="{{image_file_url}}" height="{{image_height}}" width="{{image_width}}"/></p>{% endif %}
+    <h2>{{ organization.company }}</h2>
+        <h3>About This Firm</h3><p>{{ organization.about_me }}</p>
+    <h4><strong>Area of Expertise: </strong>
+    {% for tag in specialty_tags %}
+        {% if forloop.counter == specialty_tags|length %}
+            {{tag}}
+        {% else %}
+            {{tag}},
+        {% endif %}
+    {% endfor %}</h4>
+    <h4><strong>Firm Principals:</strong>&nbsp {{ profile.principals }}</h4>
+    <h4><strong>Staff Members: </strong>{{ profile.number_of_staff }}</h4>
+    {% if profile.number_of_planners %}<h4><strong>Professional Planners: </strong>{{ profile.number_of_planners }}</h4>{% endif %}
+    {% if profile.number_of_aicp_members %}<h4><strong>AICP Members: </strong>{{ profile.number_of_aicp_members }}</h4>{% endif %}
+    <h4><strong>Founded: </strong> {{ profile.date_founded }}</h4>
+    <h4><strong>Website:</strong> <a href="{{ organization.personal_url }}" target="_blank">{{ organization.personal_url }}</a></h4><hr>
+    <h3><strong>Main Office</strong></h3><br>
+    {% if organization.address1 %}{{ organization.address1 }}<br>{% endif %}
+    {% if organization.address2 %}{{ organization.address2 }}<br>{% endif %}
+    {{ organization.city }}, 
+    {{ organization.state }}
+    {{ organization.zip_code }}<br>
+    {% if organization.country and organization.country != "United States"%}<span>{{organization.country}}</span><br>{% endif %}
+    Phone: {{ organization.phone }}<br>
+
+    Email: <a href="mailto:{{ organization.email }}">{{ organization.email }}</a><br>
+    <hr>
+    <h3><strong>Branch Offices</strong></h3><br>
+    {% for branch in branch_offices %}
+        {{ branch.city }}: {{ branch.parent_organization.company }} Branch Office<br>
+        {% if branch.address1 %}{{ branch.address1 }}<br>{% endif %}{% if branch.address2 %}{{ branch.address2 }}<br>{% endif %}
+        {{ branch.city }}, {{ branch.state }} {{ branch.zip_code }}<br>
+        {{ branch.country }}<br>
+        Phone: {{ branch.phone }}<br>
+        {% if branch.email %}Email: <a href="mailto:{{ branch.email }}">{{ branch.email }}</a><br>{% endif %}
+        {% if branch.website %}Website: <a href="{{ branch.website }}" target="_blank">{{ branch.website }}</a>{% endif %}<hr>
+    {% endfor %}
+    <p>
+{% comment %}
+Change these to "submit RFP" ??
+    <a class="btn btn-primary" href="{% url 'consultants:profile_update' org_id=organization.id %}">Edit Profile</a>  
+      <a class="btn btn-primary" href="{% url 'consultants:consultant_submit' org_id=organization.id %}">Submit Profile</a>
+{% endcomment %}
+    </p>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

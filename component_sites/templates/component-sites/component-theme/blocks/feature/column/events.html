@@ -1,0 +1,33 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load content_extras %}
+
+<h2 class="headline-underline">{{value.heading}}</h2>
+
+<div class="content-preview-list no-top-spacing no-top-border no-bottom-border">
+    <ul> 
+        {% for e in events.response.docs %}
+            <li class="content-preview-item">
+                <h6 class="content-preview-item-superheadline">{{e.begin_time|datetime_from_json_nodecimal|date:"F j, Y"}}</h6>
+                <h4 class="content-preview-item-headline">
+                <a href="{{e|solr_record_to_details_path_filter}}">{{e.title}}</a></h4>
+                {% if e.tags|length > 0 %}
+                <ul class="content-preview-item-tags">
+                    {% for tag in e.tags %}
+                    <li>{{tag}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li class="content-preview-item">
+                There are no upcoming {{component_type}}-related events at this time.
+            </li>
+        {% endfor %}
+    </ul>
+            <div class="read-more-link">
+            <a href="/events/search/">View all {{component_type}} Events</a>
+        </div>
+</div>
+
+{% include_block value.link %}

@@ -1,0 +1,89 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">AICP Candidate Pilot Program Enrollment</h1>
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+    {% if error %}
+
+      <!-- TO DO... insert application errors here as needed... -->
+
+    {% else %}
+      <div class="row">
+
+
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            <div class="form-section form-section-enclosed-dark">
+            
+              <!-- <h3 class="form-section-title">Exam Application</h3> -->
+
+              <br><br>
+              <h3><strong>AICP Candidate Pilot Program Enrollment Overview</strong></h3>
+              <p>The AICP Candidate Pilot Program offers emerging planners the opportunity to get an early start on the path to certification by the American Institute of Certified Planners. Students enrolled in and graduates of <a href="http://www.planningaccreditationboard.org/index.php?id=30" target="_blank">programs accredited by the Planning Accreditation Board</a> (at the time of their graduation) are eligible to participate in the AICP Candidate Pilot Program.</p>
+              
+<p>These pages will guide you through the enrollment process. You will be asked to:</p>
+ <ul style="list-style-type:disc;">
+  <li>Verify your email address and APA chapter</li>
+  <li>Tell APA whether you are a student or a graduate</li>
+  <li>Enter and verify information about your educational status</li>
+  <li>Read and verify that you have read the AICP Code of Ethics and Professional Conduct</li>
+  <li>Review and approve your enrollment application</li>
+  <li>Pay a $20 enrollment fee</li>
+</ul> 
+
+<p>Please read the <a href="/media/document/9137038/" target="_blank">AICP Candidate Pilot Program Guide</a> before you begin.</p>
+
+<p>You may complete your enrollment or stop and save it part way through and return later. To update or check the status of your enrollment in the AICP Candidate Pilot Program, go to the AICP STATUS section of <a href="/myapa/" target="_blank">My APA.</a></p>
+
+        <ul style="list-style-type:none;">
+          <li><strong>Please verify your email address: (update in Account Settings of <a href="/myapa/" target="_blank">My APA.)</a></strong></li>
+          <li>{{contact.email}}</li><br>
+          <li><strong>Please verify your APA chapter: (contact customer service to update)</strong></li>
+          {% if contact.chapter %}
+          <li>{{contact.chapter}}</li>
+          {% else %}
+          <li>None found</li>
+          {% endif %}
+        </ul>
+{#          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %} #}
+{#          {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.chapter %} #}
+{#          {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.mentor_enroll %} #}
+          <!-- <p><input type="checkbox" name="mentor_enroll" value="Enroll in mentoring" /> Check here to enroll in the mentoring program.</p> -->
+            </div>
+            <div>
+              <div></div>
+            <div class="form-actions form-section form-section-enclosed-dark">
+              {% if not app_status or app_status == "N" %}
+                <h4>Please indicate whether you are a student in or a graduate of a PAB-accredited planning program.</h4><hr>
+                <h5>Students</h5>
+                <div>Students in PAB-accredited planning programs who enroll in the AICP Candidate Pilot Program may begin earning and tracking CM credits immediately. After graduation, they must return to the AICP Candidate Pilot Program Enrollment portal to enter their degree status and upload graduation documentation.</div><br>
+                <input type="submit" name="student_enroll" margin-right:"30px" class="btn btn-primary" value="Student Enroll" /><hr>
+              {% endif %}
+              {% if app_status == "EN" %}
+                <h5>Update your education information: submit verification</h5>
+              {% else %}
+                <h5>Graduates</h5>
+              {% endif %}
+              <div>Graduates of PAB-accredited planning programs who enroll in the AICP Candidate Pilot Program may verify their degree status and complete their enrollment now by uploading graduation documentation. When APA has approved their enrollment, they may register for the AICP Certification Exam during the next open registration window.</div><br>
+              <input type="submit" name="full_enroll" margin-left:"30" class="btn btn-primary" value="Upload Graduation Documentation" /><hr>
+            </div>
+          </div>
+          </form>
+        </div>
+    {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

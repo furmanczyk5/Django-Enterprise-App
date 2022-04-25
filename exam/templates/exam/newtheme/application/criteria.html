@@ -1,0 +1,244 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+
+{% block additional_head_css %}
+{# date picker #}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'ui/modal/css/modal.css' %}?v=0" />
+{% endblock %}
+
+
+{% block content_main %}
+{% if is_advanced %}
+<h1 class="page-title">ASC Application</h1><br>
+{% else %}
+<h1 class="page-title">AICP Certification Application</h1><br>
+{% endif %}
+<h2 class="page-title">SECTION 3: ELIGIBILITY CRITERIA RESPONSES</h2>
+
+<div class="page-head">
+  <!-- <a class="btn btn-sm btn-default back-button" href="{{home_url}}">Back</a> -->
+  <!-- <h1 class="page-title">{{title}} - {{ form.submission_category}}</h1> -->
+  <br>
+  {% block submission_description %}
+  {% if is_advanced %}
+    <a href="https://planning-org-uploaded-media.s3.amazonaws.com/legacy_resources/asc/pdf/ascbulletin.pdf" class="click-criteria" target="_blank">
+       Please click here for the ASC Exam Guide and read it before beginning this part of the application.
+    </a>
+
+    <h3>AICP ADVANCED SPECIALTY CERTIFICATION EXAM APPLICATION</h3>
+    <p>In addition to meeting employment eligibility requirements, individuals applying to take an ASC exam must demonstrate that they have engaged
+      in professional planning experience that qualifies them for specialty certification. Applicants do this by demonstrating that their qualifications
+      satisfy the established criteria that define professional planning experience.</p><br>
+
+    <p><strong>Eligibility Criteria Responses</strong></p>
+    <p>In this section, you are asked to describe how your professional planning experience fulfills APA requirements for specialty certification.</p>
+
+    <p><strong>General Instructions</strong></p>
+      <ul>
+        <li>Applicants must draw from experience verified on the application to address each ASC professional planning criterion.</li>
+        <li>Applicants must provide unique responses―with specific examples―that demonstrate how their planning experience satisfies each professional planning criterion. Identical responses for different criteria will not be accepted.</li>
+        <li>Applicants offering experience in narrowly focused places of work should take particular care in showing how that experience satisfies each criterion.</li>
+        <li>Applicants should specify their role and provide an example of work performed in each project or plan mentioned.</li>
+        <li>In each response, identify the position(s) you held during the activity you are describing (e.g. “When I was a Planner II for the City of ABC, …”).</li>
+        <li>Each response must be between 250 and 500 words.</li>
+        <li>Each criterion response must stand alone and individually meet the professional planning criteria.</li>
+      </ul><br>
+    </p>
+
+  {% else %}
+    <a href="https://planning.org/media/document/9162410/" class="click-criteria" target="_blank">
+      Please click here to read the AICP Guide Part 1 before beginning this part of the application.
+    </a>
+
+    <h3>AICP Certification APPLICATION</h3>
+    <p>
+      The AICP Commission has established three criteria that distinguish the experiences of professional planners from
+      those of layperson planners, allied professionals, community stakeholders, and elected or appointed officials:
+    </p>
+    <ol>
+      <li>Professional planners demonstrate a professional level of responsibility and resourcefulness while applying a planning process appropriate to the project or situation.</li>
+      <li>Professional planners evaluate multiple impacts to a community when implementing professional planning tasks.</li>
+      <li>Professional planners influence public decision making in the public interest.</li>
+    </ol>
+    <p> To earn the AICP credential, all applicants must write three short essays (i.e., "criteria responses") that describe
+      or explain how their professional experiences align with these normative criteria. This section of the Guide provides
+      criteria response requirements and general tips for applicants before explaining each criterion and offering
+      criterion-specific response instructions and guidance.
+    </p>
+
+    <p><strong>CRITERIA RESPONSE REQUIREMENTS</strong></p>
+    <ul>
+      <li>Each response must be between 250 and 500 words in length.</li>
+      <li>Each response must be based on the applicant's verified professional experience
+        (but does not need to address the entirety of that experience).
+      </li>
+      <li>Each response must be unique and aligned with its respective criterion
+        (i.e., a response cannot be repeated for multiple criteria).
+      </li>
+      <li>Each response must be self-contained and self-explanatory (i.e., a response must not be dependent on information
+        provided in a different response, an employment verification letter, or external documentation).
+      </li>
+    </ul>
+
+    <p><strong>General Tips for Applicants</strong>
+    <ul>
+      <li>Follow the criterion-specific instructions for each response.</li>
+      <li>Provide one specific example from your professional experience for each response to illustrate your alignment
+        with the criterion; avoid generalities or aspirational statements about planners.
+      </li>
+      <li> Describe or explain one specific example in detail for each response rather than briefly mentioning multiple examples. </li>
+      <li> Write about your experiences in the first person and identify your personal contributions to all team efforts. </li>
+      <li> Proofread each response carefully to make sure that your response as written meets the requirements as defined and stated by APA </li>
+    </ul>
+
+    <p>Full Criteria guidelines can be found <a href="https://planning.org/media/document/9162410/" target="_blank"> here in the AICP Guide Part 1: Certification Application.</a> </p>
+  {% endif %}
+  {% endblock %}
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <form class="planning-form validate-form" method="post" id="submission_form">
+      {% csrf_token %}
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+
+      {% include "ui/newtheme/forms/includes/display-errors.html" with form=form %}
+
+      {% block form_fields %}
+
+      {% if form.text %}
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">General Description</h3>
+        <div class="form-group">
+
+            <p class="small">
+              Please clearly describe the objectives this activity will achieve (e.g. what AICP members will learn) by addressing the following:
+              <ol class="small">
+                <li>Be designed to meet a specific planning-related training objective. The educational purpose or objective must be clearly identified.</li>
+                <li>Be designed to teach subject matter in appropriate depth and scope for the following minimum level &mdash; a planner in current practice with at least four years of professional experience after earning a 2-year master's degree in planning; and</li>
+                <li>Address the demonstrated educational needs of AICP members as outlined in the <a href="/aicp/corecompetencies/">AICP Core Competencies</a>.</li>
+              </ol>
+            </p>
+            {# {{ form.text }} #}
+            <div class="form-group">
+              <div class="form-group{%if form.text.errors %} has-error {% endif %}">
+                  {{ form.text }}
+                {% if form.text.errors %}
+                <div class="form-error">
+                  {% for error in form.text.errors %}
+                  <p class="form-error-server">{{ error|escape }}</p>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if speaker_formset %}
+        {% include "submissions/newtheme/includes/speaker-formset.html" with speaker_formset=speaker_formset %}
+      {% endif %}
+
+      {% if form.submission_category.the_questions %}
+      <div class="form-section form-section-enclosed-dark">
+        <div class="action">
+
+            {% load content_extras %}
+
+{% for question in form.submission_category.the_questions %}
+{% with n=question.id|stringformat:"s"%}
+{% with question_field_name="submission_question_"|add:n %}
+{% with question_field=form|getattr:question_field_name %}
+
+<div>
+	{% if question.question_type == "CHECKBOX" %}
+		<h3>{{question_field.label}}</h3>
+		<table>
+			<tr>
+				<td>{{question_field}}</td>
+				<td>{{question_field.help_text}}{% if question_field.field.required %} <span class="required"></span>{% endif %}</td>
+			</tr>
+		</table>
+	{% else %}
+
+		<h3>Criterion {{forloop.counter}}: </h3>
+      {% if is_advanced %}
+        <h3>
+          {% if forloop.counter == 1 %} {{ criterion_1_subtitle }}
+          {% elif forloop.counter == 2 %} {{ criterion_2_subtitle }}
+          {% elif forloop.counter == 3 %} {{ criterion_3_subtitle }}
+          {% endif %}
+        </h3>
+      {% endif %}
+
+		<h3>{{question_field.label}}{% if question_field.field.required %}<span class="required"></span>{% endif %}</h3>
+		{% if question_field.help_text %}<span>{{question_field.help_text}}</span><br/>{% endif %}
+		<p>
+      {% with AICP_guide_url="https://planning.org/media/document/9162410/" %}
+      <a class="click-criteria" target="_blank" href={% if is_advanced %}{{ criteria_guidelines_url }} {% else %} {{ AICP_guide_url}} {% endif %}}>
+            Click here for Criterion {{forloop.counter}} Guidelines.</a>
+      {% endwith %}
+
+		  {{ question_field }}
+
+	    {% if forloop.counter == 1 %}
+        Current Word Count (calculated on save): {{ answer_word_count_1 }}
+      {% elif forloop.counter == 2 %}
+		    Current Word Count (calculated on save): {{ answer_word_count_2 }}
+      {% elif forloop.counter == 3 %}
+		    Current Word Count (calculated on save): {{ answer_word_count_3 }}
+	    {% endif %}
+
+		</p>
+	{% endif %}
+</div>
+<br/>
+<br/>
+
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      {% endblock %}
+      <br >
+      <div class="clearfix btn-toolbar btn-mobile">
+      <button type="submit" name="submitButton" value="submit" class="btn btn-primary">Save and Continue to Next Step</button>
+      <button type="submit" name="submitButton" value="save" class="btn btn-default">Save and Review Changes</button>
+      <!-- <a class="btn btn-default pull-right button-float" href="{{home_url}}">Cancel</a> -->
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'ui/modal/js/modal.js' %}?v=0"></script>
+<script src="{% static 'submissions/js/event_edit.js' %}?v=0"></script>
+<script src="{% static 'content/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'newtheme/ui/forms/js/formset.js' %}"></script>
+<script src="{% static 'newtheme/autocomplete/js/autocomplete.js' %}"></script>
+<script src="{% static 'rome/rome.min.js' %}"></script>
+<script src="{% static 'rome/rome_setup.js' %}"></script>
+<script src="{% static 'content/js/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'content/js/tinymce/tinymce_setup.js' %}"></script>
+
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script>
+  $(function () {
+    $('.empty_form').find('input[type="radio"],input[type="checkbox"]').iCheck('destroy');
+    $('[data-toggle="popover"]').popover()
+  });
+</script>
+
+{% endblock %}

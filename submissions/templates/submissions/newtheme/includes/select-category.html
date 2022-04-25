@@ -1,0 +1,52 @@
+{% load l10n %}
+
+{% if open_categories %}
+{% for category in open_categories %}
+<div class="layout-tracery {% if forloop.first %}no-bottom-border{% elif forloop.last %}no-top-border{% else %}no-border{% endif %}">
+	<div class="layout-column">
+		<h3>{{ category.title }}</h3>
+		<p>
+			{{ category.description|default_if_none:" " }}
+			{% with open_period=category.get_open_active_period %}
+			{% if open_period and open_period.end_time %}
+			<br/><b>Deadline: {{open_period.end_time_chicago|date:"l, F j, Y, P e"}}</b>
+			{% endif %}
+			{% endwith %}
+		</p>
+		<a class="btn btn-primary" href="{{next_url}}?submission_category_code={{category.code}}">Start New {{ category.title }}</a>
+	</div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% for category in past_categories %}
+
+{% if forloop.first %}
+<div class="layout-tracery no-bottom-border">
+	<div class="layout-column">
+		<h2>Closed Categories</h2>
+		<p>APA is not accepting submissions for these categories at this time</p>
+	</div>
+</div>
+{% endif %}
+
+<div class="layout-tracery {% if forloop.first %}no-bottom-border{% elif forloop.last %}no-top-border{% else %}no-border{% endif %}">
+	<div class="layout-column">
+		
+		<h3>{{ category.title }}</h3>
+		<p>
+			{{ category.description|default_if_none:" " }}
+			{% with latest_period=category.get_latest_active_period %}
+			{% if latest_period.is_future  %}
+				<br/>
+				<b>Opens: {{ latest_period.begin_time_chicago|date:"l, F j, Y, P e" }}</b>
+			{% elif latest_period.is_past %}
+				<br/>
+				<b>Deadline: {{ latest_period.end_time_chicago|date:"l, F j, Y, P e" }}</b>
+			{% endif %}
+			{% endwith %}
+		</p>
+	</div>
+</div>
+
+{% endfor %}

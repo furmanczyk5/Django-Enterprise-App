@@ -1,0 +1,64 @@
+{% extends "pages/newtheme/default.html" %}
+
+{% load ui_tags %}
+{% load knowledgebase_tags %}
+
+{% block content_main %}
+
+	{% if not request.detect_mobile_app.is_mobileapp %}
+	<div class="page-head page-head-conference no-border-bottom little-spacing-bottom">
+		<div class="page-head-social-sharing">
+
+		{% include "newtheme/templates/includes/social-sharing-widget.html" %}
+		{% if request.contact %}
+		{% include "newtheme/templates/includes/myapa-bookmark-widget.html" with content_id=content.master.id bookmarked=bookmarked %}
+		{% endif %}
+		</div>
+	</div>
+	{% endif %}
+
+	<h2 class="details-title" style="margin-bottom: 0px">{{content.title}}</h2>
+	{% if content.subtitle %}
+		<h3 class="details-subtitle" style="margin-top: 5px">{{content.subtitle}}</h3>
+	{% endif %}
+
+	{% if content.contactrole.all %}
+		<h4 class="details-subtitle" style="margin-top: 20px">
+			By: {{content.contactrole.all|format_authors_without_links|safe}}
+		</h4>
+	{% endif %}
+
+	{% if content.resource_url %}
+	<h5>
+		<a href="{{ content.resource_url }}">{{ content.resource_url }}</a>
+	</h5>
+	{% endif %}
+
+	<hr/>
+
+	<div class="content-managed-html">
+    {{ content.text|render_planning_shortcodes|safe }}
+	</div>
+
+	<hr/>
+
+	{% for cp in content.contentplace.all|dictsort:"place.title" %}
+		<h4 class="details-subtitle">{{ cp.place|get_place_name}}</h4>
+		{% if cp.place|get_place_data %}
+			<p>
+				2010 Population:
+				<strong>
+					{{ cp.place|get_population_data }}
+				</strong>
+			</p>
+			<p>
+				2010 Population Density:
+				<strong>
+					{{ cp.place|get_population_density }}/square mile
+				</strong>
+			</p>
+		{% endif %}
+		<br/>
+	{% endfor %}
+
+{% endblock content_main %}

@@ -1,0 +1,52 @@
+{% if microsite.is_npc %}
+<div id="conference-countdown" style="display: none;">
+  <div class="conference-countdown-heading">
+    <!-- text will be dynamically set here by conference-countdown.js -->
+  </div>
+  <div class="conference-countdown-body">
+    <div class="conference-countdown-counts">
+      <ul>
+        <li id="conference-countdown-days">
+          <span class="count">
+            0
+          </span>
+          <span class="unit">
+            days
+          </span>
+        </li>
+        <li id="conference-countdown-hours">
+          <span class="count">
+            0
+          </span>
+          <span class="unit">
+            hours
+          </span>
+        </li>
+        <li id="conference-countdown-minutes">
+          <span class="count">
+            0
+          </span>
+          <span class="unit">
+            minutes
+          </span>
+        </li>
+        <li id="conference-countdown-seconds">
+          <span class="count">
+            0
+          </span>
+          <span class="unit">
+            seconds
+          </span>
+        </li>
+      </ul>
+    </div>
+    {% comment %}
+    <div class="conference-countdown-btn-wrap">
+      <a href="/conference/registration/" class="btn btn-primary btn-lg">
+        Register Now
+      </a>
+    </div>
+    {% endcomment %}
+  </div>
+</div>
+{% endif %}

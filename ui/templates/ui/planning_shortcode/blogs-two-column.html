@@ -1,0 +1,21 @@
+{% load content_extras %}
+
+<div class="row">
+{% with blog_columns=results.response.docs|columns_alternate:2 %}
+	{% for blog_column in blog_columns %}
+	<div class="col-xs-12 col-sm-6"> {# change column size if adding more columns #}
+		<div class="list-of-links">
+		{% for blog in blog_column %}
+			<h6 class="content-preview-item-superheadline">
+	            {{ blog.begin_time|datetime_from_json|date:"F j, Y" }}
+	        </h6>
+			<h4>
+				<a href="{{blog|solr_record_to_details_path_filter}}">{{blog.title}}</a>
+			</h4>
+			<p></p>
+		{% endfor %}
+		</div>
+	</div>
+	{% endfor %}
+{% endwith %}
+</div>

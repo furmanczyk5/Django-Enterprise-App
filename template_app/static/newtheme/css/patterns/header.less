@@ -1,0 +1,151 @@
+//header
+.header {
+  margin-top: @grid-gutter-width / 2;
+  padding-bottom: @grid-gutter-width / 2;
+  border-bottom: solid #e4e7eb 1px;
+  font-family: @font-family-base;
+
+  .icon-APA-box-logo {
+    font-size: 90px;
+    color: @color-bahama-blue;
+  }
+}
+
+//Mobile search and Menu toggle
+.header-mobile-search-toggle,
+.header-mobile-menu-toggle {
+  border-width: 0;
+  padding: 0;
+
+  height: 50px;
+  width: 50px;
+
+  background-color: transparent;
+  border-color: transparent;
+
+}
+
+.header-toggle-wrap button {
+  margin-right: 20px;
+  // only the first items add margin, in case we want to add more.
+  &:first-child { // first since floated right
+    margin-right: 0;
+  }
+  &:focus {
+    outline: none; //don't show this
+  }
+}
+
+.header-mobile-search-toggle {
+  color: @color-sycamore;
+  font-size: @font-size-large * 1.75;
+}
+
+.header-mobile-menu-toggle {
+  color: white;
+  background-color: @color-limeade;
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+
+  &.active {
+    background-color: @color-sycamore;
+  }
+}
+.header-mobile-menu-toggle-label {
+  position: relative;
+  top: -10px;
+
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+// Search bar
+//too much to override so we'll just do a max-width`
+@media screen and (max-width: @screen-xs-max) {
+  .header-search-form-wrap {
+    margin-left: -50%;
+    padding: 0px 13px 12px 15px; // a little less on the right for the search button drop shadow
+    width: 150%;
+    display: none;
+
+    &.open {
+      display: block;
+    }
+  }
+  .header-search-form {
+    margin-top: @grid-gutter-width;
+
+    .form-control {
+      height: 44px;
+    }
+    .btn {
+      height: 44px;
+    }
+  }
+}
+
+// Super nav lives in header, holds about, join, log in, cart...
+.nav-super {
+  margin-bottom: @grid-gutter-width / 2;
+  ul {
+    li {
+      float: left;
+
+      a {
+        padding: 12px 10px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: @screen-xs-min) {
+
+  .header {
+    .icon-APA-box-logo {
+      font-size: 90px;
+    }
+  }
+
+}
+
+@media screen and (min-width: @screen-sm-min) {
+  .header {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .nav-super {
+    // margin-top: @grid-gutter-width / 3;
+    margin-bottom: 25px;
+
+    [class^="icon-"], [class*=" icon-"] {
+      font-size: 20px;
+    }
+  }
+  .header-search-form {
+    margin-top: 0;
+
+    .input-group-btn {
+      .btn {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: @screen-md-min) {
+  .nav-super {
+    margin-bottom: 35px;
+  }
+
+}
+
+@media screen and (min-width: @screen-lg-min) {
+  .header {
+    width: @container-lg;
+  }
+
+}

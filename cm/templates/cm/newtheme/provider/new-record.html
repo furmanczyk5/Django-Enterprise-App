@@ -1,0 +1,124 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load staticfiles %}
+{% block title %}Certification Maintenance Provider Application{% endblock %}
+
+{% block content_main %}
+<div class="page-head">
+  <h1 class="page-title">
+    New Provider Account Creation Form
+  </h1>
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+    <form method="post" action="/cm/provider/newrecord/" class="planning-form validate-form">
+      {% csrf_token %}
+      {# {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %} #}
+      {% include "ui/newtheme/forms/includes/display-errors.html" with form=form %}
+
+      <div class="form-section form-section-enclosed-dark form-section-limit-width">
+          <h3 class="form-section-title">General Information</h3>
+          <div class="help-block">All fields are required unless labeled as optional</div>
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.company %}
+
+          {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.organization_type %}
+
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.ein_number %}
+
+          <div class="form-group">
+            <div class="form-group{%if form.address1.errors %} has-error {% endif %}">
+              <label>
+                Street address:
+              </label>
+              {{ form.address1 }}
+              {% if form.address1.help_text %}
+              <div class="help-block">{{ form.address1.help_text|safe }}</div>
+              {% endif %}
+              {% if form.address1.errors %}
+              <div class="form-error">
+                {% for error in form.address1.errors %}
+                <p>{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+
+            <div class="form-group{%if form.address2.errors %} has-error {% endif %}">
+              <label>
+                Address 2:
+              </label>
+              {{ form.address2 }}
+              {% if form.address2.help_text %}
+              <div class="help-block">{{ form.address2.help_text|safe }}</div>
+              {% endif %}
+              {% if form.address2.errors %}
+              <div class="form-error">
+                {% for error in form.address2.errors %}
+                <p>{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %}
+
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %}
+
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %}
+
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.zip_code %}
+
+
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.phone %}
+
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.personal_url %}
+
+          <div class="form-group{%if form.bio.errors %} has-error {% endif %}">
+            <p class="small">
+              Provide the nature/mission of your organization as it will appear on the APA website’s Directory of Approved CM Providers
+            </p>
+            {{ form.bio }}
+            {% if form.bio.help_text %}
+            <div class="help-block">{{ form.bio.help_text|safe }}</div>
+            {% endif %}
+            {% if form.bio.errors %}
+            <div class="form-error">
+              {% for error in form.bio.errors %}
+              <p>{{ error|escape }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+
+      </div>
+      <br>
+      <div>
+        <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+    <!-- TO DO...
+  
+  create new model form (in forms.py) in order to create new instance of contact record
+
+  ... use that form here (similar to other forms in templates) in order to submit general info for the organization
+
+  ... in the view, once the organization contact created, also create the relationship for the admin
+
+  ... don't need to include "primary contact" and "secondary contact" in this form
+
+  ... after saving, redirect to application form (NOTE... may change this in the future to redirect to dashboard instead)
+
+    -->
+
+
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+{% endblock %}

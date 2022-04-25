@@ -1,0 +1,1 @@
+50 8 * * * /srv/sites/apa/envs/apa/bin/python /srv/sites/apa/proj/apa/manage.py credly_nightly_sync

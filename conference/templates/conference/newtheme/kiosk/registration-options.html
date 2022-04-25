@@ -1,0 +1,148 @@
+<div class="container" style="line-height:.9">
+  {% extends extends_template|default:"newtheme/templates/conference/page-nosidebar.html"  %}
+{#{% extends extends_template|default:"newtheme/templates/layout-nosidebar.html"  %}#}
+
+{% load tz %}
+
+{% block content_main %}
+
+<style>
+	form ul {
+		margin: 0 0 0 2em;
+		padding: 0;
+		list-style-type: none;
+	}
+
+  label {
+		zoom:1.4;
+	}
+	.iradio {s
+		zoom:2;
+		margin-bottom:0.4em;
+	}
+  .icheckbox {
+    zoom:2;
+    margin-bottom:0.4em;
+  }
+</style>
+
+<div class="layout-tracery">
+	<div class="layout-column">
+	<h1>{{ event.title }}</h1>
+
+		<p>
+			{% localtime off %}
+			{% ifequal event.begin_time|date:"SHORT_DATE_FORMAT" event.end_time|date:"SHORT_DATE_FORMAT"%}
+		      <span>{{event.begin_time_astimezone|date:"l, F j, Y"}}</span><br/>
+		      <span>
+		        {{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+		      </span>
+		      {% else %}
+		      <span>
+		        {{event.begin_time_astimezone|date:"l, F j, P"}} - {{event.end_time_astimezone|date:"l, F j, Y, P e"}}
+		      </span>
+		    {% endifequal %}
+		    {# {{ event.begin_time_astimezone|date:"F jS" }} - {{ event.end_time_astimezone|date:"F jS, Y" }} #}
+		    {% endlocaltime %}
+		</p>
+
+		{% if not already_purchased_registration %}
+
+		<hr/>
+    {# class="planning-form validate-form big-radio" #}
+		<form class="planning-form validate-form" method="post" novalidate>
+
+			{% csrf_token %}
+
+			{% if form.errors or display_errors %}
+			<div class="section-icon section-icon-attention">
+				<p class="error">
+				<b>
+					The operation could not be performed because one or more error(s) occurred.
+					<br />
+					Please resubmit the form after making the changes below.
+				</b>
+				</p>
+			</div>
+			{% endif %}
+
+			<div class="form-section">
+				{% for field in form.visible_fields %}
+				<div class="form-group">
+					<b>{{ field.label_tag }}</b>
+					{{field}}
+					<div class="help-block">
+						{{field.help_text|safe}}
+					</div>
+					<div class="error has-error">
+						<div class='form-error'>
+							<strong>{{field.errors.as_text}}</strong>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			<br />
+
+			{% block form_submit_buttons %}
+
+{% if event.ticket_template %}
+<div class="row">
+	<div class="col-sm-6">
+		<p>
+			<button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="edit_badge">Continue</button>
+		</p>
+	</div>
+</div>
+{% elif event.event_type == "EVENT_MULTI"%}
+<div class="row">
+	<div class="col-sm-6">
+		<p>
+			<button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="and_add_activities">Add Ticketed Activities Before Checkout</button>
+		</p>
+	</div>
+	<div class="col-sm-6">
+		<p>
+			<button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="just_register">Check Out</button>
+		</p>
+	</div>
+</div>
+{% else %}
+<div class="row">
+	<div class="col-sm-9">
+		<p>
+			<button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="just_register">Continue</button>
+		</p>
+	</div>
+</div>
+{% endif %}
+			{% endblock %}
+
+		</form>
+
+
+{% else %}
+
+	<h1>Thank you for registering!</h1>
+
+	{% if event.event_type == "EVENT_SINGLE" %}
+	<p><a href="/events/eventsingle/{{event.master_id}}/">See event details</a></p>
+	{% elif event.event_type == "EVENT_MULTI" %}
+	<p><a href="/events/eventmulti/{{event.master_id}}/">See event details</a></p>
+	{% elif event.event_type == "COURSE" %}
+	<p><a href="/events/course/{{event.master_id}}/">See event details</a></p>
+	{% else %}
+	<p><a href="/events/event/{{event.master_id}}/">See event details</a></p>
+	{% endif %}
+
+
+{% endif %}
+
+	</div>
+</div>
+
+
+<br/>
+
+{% endblock %}
+</div>

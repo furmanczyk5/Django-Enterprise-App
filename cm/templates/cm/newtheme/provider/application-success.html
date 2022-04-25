@@ -1,0 +1,23 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+
+{% block content_main %}
+{% csrf_token %}
+<div class="page-head">
+  <h1 class="page-title">
+    {{ title }}
+  </h1>
+</div>
+<div class="layout-tracery">
+  <div class="layout-column">
+    <h1>Provider Application Submitted Successfully.</h1>
+    <h2>Thank you for submitting your application.</h2>
+  </div>
+</div>
+<br>
+<!-- TO DO: MORE INSTRUCTIONS NEEDED ... get content from Alisa -->
+<a class="btn btn-primary" href="{% url 'myorg' %}">Return to My Organization Dashboard</a>
+
+{% endblock %}

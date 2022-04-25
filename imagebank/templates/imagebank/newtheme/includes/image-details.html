@@ -1,0 +1,61 @@
+<div class="row image-detail-wrapper">
+  <div class="col-xs-12 col-md-7 image-container">
+    <img style="" src="{{image.image_file.url}}" />
+   </div>
+
+  <div class="col-xs-12 col-md-5 image-detail-description">
+    <h1>{{image.title}}</h1>
+    <div class="centered-button"><a class="btn btn-primary image-download" href={{image.image_file.url}} download="{{image.title}}">Download</a></div>
+    <h6 class="image-id">Image ID: {{image.master_id}}</h6>
+
+    <div class="image-description">{# For the Description on Image (if empty, "N/A" is shown in its place) #}
+
+    {% if image.description %}
+    {{image.description}}
+    {% endif %}
+    </div>
+
+    <div class="image-list-item">
+      {% if photographer_roles %}
+      <span class="bold-text">Photographer: </span>
+      {% for role in photographer_roles %}
+        {% if role.contact %}
+        {{role.contact.title}}
+        {% else %}
+        {{role.first_name}} {{role.last_name}}
+        {% endif %}
+        {% if not forloop.last %}, {% endif %}
+      {% endfor %}
+      {% else %}
+      Photographer: Unknown
+      {% endif %} 
+    </div>
+    
+    <div class="image-list-item"> 
+      {# For Year Image was Created (if empty, "Unknown" is shown in its place #}
+      {% if image.img_year %}
+      <span class="bold-text"> Year Taken: </span>{{image.img_year}}
+      {% else %}
+      Year Taken: Unknown
+      {% endif %}
+    </div>
+
+    <div class="image-formats">{# For the Resolution of Image, measured in DPI (if empty, does not show) #}
+      {% if image.resolution  %}
+       <span class="bold-text"> Details: </span>
+       {{image.width}} x {{image.height}} PX | {{image.resolution}} DPI | {{image.get_file_extension|upper}} | {{image.user_friendly_file_size}}
+      {% else %}
+      {{image.width}} x {{image.height}} PX | {{image.get_file_extension}} | {{image.user_friendly_file_size}}
+      {% endif %}
+      <br>
+      <br>
+      <p>{{image.abstract|default:""}}</p>
+    </div>
+
+    <div class="image-license-wrapper">
+      <span class="copyright-statement">{{image.copyright_statement}}</span>
+      <a rel="license" target="_blank" class="creative-commons-license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />
+      <span class="creative-commons-statement">This work is licensed under a <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a></span>
+    </div>
+  </div>
+</div>

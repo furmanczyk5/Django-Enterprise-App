@@ -1,0 +1,60 @@
+
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block content_main %}
+
+
+  <div class="content-managed-html">
+    {% block content_details %}
+      
+        <div class="page-head">
+          <h1>Sorry! We can’t find that webpage</h1>
+        </div>
+
+        <div class="layout-tracery">
+        <div class="layout-column">
+
+            <p>
+            Could there be a problem with the URL you entered? Please check the format and spelling. If you spot a problem, make the change and refresh the page.
+            </p>
+
+            <p>
+                Nothing wrong at your end? APA may have altered the URL or deleted the page.
+            </p>
+
+            <hr/>
+
+            <h2>
+                We can help you find your way again
+            </h2>
+
+            <p>Select from the navigation choices at the top of this page or on the APA homepage; or - </p>
+
+            <h4>Try a keyword search:</h4>
+
+            <div class="col-xs-12 col-sm-8 search-results-form-wrap">
+                <form action="/search/" class="filter-selection" method="GET">
+                  <div class="input-group header-search-form">
+                    <label class="control-label sr-only" for="keyword">Search</label>
+                    <input type="text" class="form-control" placeholder="Enter keyword" name="keyword" {% if keyword %}value="{{ keyword }}" {% endif %} required />
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" id="go" type="submit">Go</button>
+                    </span>
+                  </div>
+                </form>
+                <br/>
+                <br/>
+            </div>
+
+
+        </div>
+        </div>
+
+
+    {% endblock %}
+  </div>
+
+{% endblock %}
+

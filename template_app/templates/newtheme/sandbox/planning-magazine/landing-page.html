@@ -1,0 +1,606 @@
+{% extends 'newtheme/templates/layout-planning-magazine.html' %}
+{% load static %}
+
+{% block content_main %}
+
+<div class="planning">
+
+  <!-- Breadcrumbs -->
+  <ol class="breadcrumb">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/knowledgecenter/">Knowledge Center</a>
+    </li>
+    <li>
+      <a href="/research/">APA Publications</a>
+    </li>
+    <li>
+      <a href="/research/">Planning Magazine</a>
+    </li>
+  </ol>
+
+  <!-- Title -->
+  <div class="row top_title articles">
+    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
+      <h1>Planning Magazine</h1>
+      <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+    </div>
+  </div>
+
+    <!-- featured article -->
+    <div class="featured_article">
+      <div class="flex-col-1">
+        <div>
+          <h6>Innovation</h6>
+          <h2><a href="#">Eliminating Racial Segregation is Good Economic Policy</a></h2>
+          <p class="featured">
+            Income disparities and racial segregation are deeply intertwined, burdening both people of color and the U.S. economy. Here's how we can reverse that trend.
+          </p>
+          <p class="featured_date">January 4, 2021</p>
+          <p class="featured_byline"><i>By</i> <span>Brian Barth</span></p>
+        </div>
+      </div>
+      <div class="flex-col-2">
+        <img src="//placehold.it/1200x567" alt="featured article image" class="img-responsive"/>
+      </div>
+    </div>
+
+  <!-- Recent Articles -->
+  <div class="row recent_articles">
+    <!-- title for row -->
+    <div class="col-md-12 col-sm-12 col-xs-12 title-column">
+      <h3>Recent Articles</h3>
+    </div>
+
+    <!-- left column -->
+    <div class="col-md-6 col-sm-12 col-xs-12 left-column remove-outside-gutter-mobile">
+
+      <a href="#" class="content-preview-item">
+        <div class="content-preview-item-image-block">
+          <img src="//placehold.it/568x426" alt="featured recent article image" class="img-responsive" />
+        </div>
+        <div class="content-preview-item-headline add-outside-gutter-mobile">
+          <div class="members-only">APA Member Content</div>
+          <h6 class="content-preview-item-superheadline">Innovation</h6>
+          <div class="content-preview-item-title">Title of the article will go here when on two lines and break onto two lines when long</div>
+        </div>
+        <div class="content-preview-item-postline add-outside-gutter-mobile"><strong>January 4, 2021</strong></div>
+      </a>
+
+    </div>
+
+    <!-- right column -->
+    <div class="col-md-6 col-sm-12 col-xs-12 right-column">
+
+      <!-- nested row: 1 -->
+      <div class="row nested-row row-no-gutters">
+
+        <!-- left image -->
+        <div class="col-md-4 col-sm-4 col-xs-12 cust-xs-img">
+          <div class="content-preview-item-image-block">
+            <img src="//placehold.it/198x132" alt="recent article image" class="img-responsive"/>
+          </div>
+        </div>
+        <!-- right column -->
+        <div class="col-md-8 col-sm-8 col-xs-12 cust-xs-text">
+          <div class="content-preview-item">
+            <div class="content-preview-item-headline">
+              <div class="members-only">APA Member Content</div>
+              <h6 class="content-preview-item-superheadline">Innovation</h6>
+              <div class="content-preview-item-title"><a href="#">Title of the article will go here when on two lines</a></div>
+            </div>
+            <div class="content-preview-item-postline"><strong>January 4, 2021</strong></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- nested row: 2 -->
+      <div class="row nested-row row-no-gutters">
+
+        <!-- left image -->
+        <div class="col-md-4 col-sm-4 col-xs-12 cust-xs-img">
+          <div class="content-preview-item-image-block">
+            <img src="//placehold.it/198x132" alt="recent article image" class="img-responsive"/>
+          </div>
+        </div>
+        <!-- right column -->
+        <div class="col-md-8 col-sm-8 col-xs-12 cust-xs-text">
+          <div class="content-preview-item">
+            <div class="content-preview-item-headline">
+              <h6 class="content-preview-item-superheadline">Innovation</h6>
+              <div class="content-preview-item-title"><a href="#">Title of the article will go here when on two lines</a></div>
+            </div>
+            <div class="content-preview-item-postline"><strong>January 4, 2021</strong></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- nested row: 3 -->
+      <div class="row nested-row row-no-gutters">
+
+        <!-- left image -->
+        <div class="col-md-4 col-sm-4 col-xs-12 cust-xs-img">
+          <div class="content-preview-item-image-block">
+            <img src="//placehold.it/198x132" alt="recent article image" class="img-responsive"/>
+          </div>
+        </div>
+        <!-- right column -->
+        <div class="col-md-8 col-sm-8 col-xs-12 cust-xs-text">
+          <div class="content-preview-item">
+            <div class="content-preview-item-headline">
+              <h6 class="content-preview-item-superheadline">Innovation</h6>
+              <div class="content-preview-item-title"><a href="#">Title of the article will go here when on two lines</a></div>
+            </div>
+            <div class="content-preview-item-postline"><strong>January 4, 2021</strong></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- additional articles section -->
+
+  <!-- Innovation -->
+  <div class="row addtl_articles layout-tracery">
+
+    <div class="layout-column">
+
+      <div class="title-column">
+        <h2>Innovation</h2>
+      </div>
+
+      <div class="row slider">
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive" />
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only">APA Member Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only">APA Member Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only sponsored-content">Sponsored Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="row read-more-row">
+
+        <div class="col-md-11 col-sm-12 read-more-col">
+          <a href="#" class="read-more-link">See more Innovation articles</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- tools -->
+  <div class="row addtl_articles layout-tracery">
+
+    <div class="layout-column">
+
+      <div class="title-column">
+        <h2>Tools</h2>
+      </div>
+
+      <div class="row slider">
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive" />
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only">APA Member Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only">APA Member Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only sponsored-content">Sponsored Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="row read-more-row">
+
+        <div class="col-md-11 col-sm-12 read-more-col">
+          <a href="#" class="read-more-link">See more Tools articles</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Intersections -->
+  <div class="row addtl_articles layout-tracery">
+
+    <div class="layout-column">
+
+      <div class="title-column">
+        <h2>Intersections</h2>
+      </div>
+
+      <div class="row slider">
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive" />
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only">APA Member Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only">APA Member Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only sponsored-content">Sponsored Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="row read-more-row">
+
+        <div class="col-md-11 col-sm-12 read-more-col">
+          <a href="#" class="read-more-link">See more Intersections articles</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- tools -->
+  <div class="row addtl_articles layout-tracery">
+
+    <div class="layout-column">
+
+      <div class="title-column">
+        <h2>Voices</h2>
+      </div>
+
+      <div class="row slider">
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive" />
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only">APA Member Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only">APA Member Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 ss-col">
+          <a href="#" class="content-preview-item">
+            <div class="content-preview-item-image-block">
+              <img src="//placehold.it/198x132" alt="Additional article image" class="img-responsive"/>
+            </div>
+            <div class="content-preview-item-headline">
+              <div class="members-only sponsored-content">Sponsored Content</div>
+              <h6 class="content-preview-item-superheadline">Japa Takeway</h6>
+              <div class="content-preview-item-title">Title of the article will go here</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="row read-more-row">
+
+        <div class="col-md-11 col-sm-12 read-more-col">
+          <a href="#" class="read-more-link">See more Voices articles</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Pre-footer CTA -->
+  <div class="homepage-featured-content-secondary-row row prefooter_cta">
+    <div class="homepage-featured-content-secondary">
+      <div class="homepage-featured-content-secondary-body">
+        <h4 class="homepage-featured-content-secondary-title">Sign up for Planning emails</h4>
+        <p>Receive Planning featured articles and recent content in your inbox</p>
+        <a href="#" class="btn btn-primary btn-sub">Subscribe</a>
+      </div>
+    </div>
+    <div class="homepage-featured-content-secondary img-col">
+      <div class="homepage-featured-content-secondary-body">
+        <div class="row nested-row">
+          <div class="col-md-4 col-sm-12 text-center">
+            <img class="img-responsive" src="//placehold.it/113x143" alt="Planning magazine image"/>
+          </div>
+          <div class="col-md-8 col-sm-12 text-col">
+            <h4 class="homepage-featured-content-secondary-title">Download Planning Magazine</h4>
+            <p>Access the most recent issue. Download the digital version now.</p>
+            <a href="#" class="btn btn-primary btn-download">Log in to download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="homepage-featured-content-secondary">
+      <div class="homepage-featured-content-secondary-body list-of-links">
+        <h4 class="homepage-featured-content-secondary-title">Additional Resources</h4>
+        <h4><a href="#">About</a></h4>
+        <h4><a href="#">Contributor Guidelines</a></h4>
+        <h4><a href="#">Previous Edition</a></h4>
+        <h4><a href="#">Advertise with APA</a></h4>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pre-footer 3 up ads -->
+  <div class="row prefooter_3up_ads hidden-xs hidden-sm">
+
+    <div class="col-md-2 col-md-offset-3">
+      <div class="banner-ad banner-ad-small">
+        <script type="text/javascript">
+        sas.call("std", {
+        siteId: 80676, // 
+        pageId: 584791, // Page : Planning.org/apa
+        formatId: 34980, // Format : APA - Box 1 (180x150) 180x150
+        target: '' // Targeting
+        });
+        </script>
+        <noscript>
+        <a href="http://www5.smartadserver.com/ac?jump=1&nwid=1541&siteid=80676&pgname=apa&fmtid=34980&visit=m&tmstp=[timestamp]&out=nonrich" target="_blank">                
+        <img src="https://www5.smartadserver.com/ac?out=nonrich&nwid=1541&siteid=80676&pgname=apa&fmtid=34980&visit=m&tmstp=[timestamp]" border="0" alt="" /></a>
+        </noscript>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="banner-ad banner-ad-small">
+        <script type="text/javascript">
+        sas.call("std", {
+        siteId: 80676, // 
+        pageId: 584791, // Page : Planning.org/apa
+        formatId: 34981, // Format : APA - Box 2 (180x150) 180x150
+        target: '' // Targeting
+        });
+        </script>
+        <noscript>
+        <a href="http://www5.smartadserver.com/ac?jump=1&nwid=1541&siteid=80676&pgname=apa&fmtid=34981&visit=m&tmstp=[timestamp]&out=nonrich" target="_blank">                
+        <img src="https://www5.smartadserver.com/ac?out=nonrich&nwid=1541&siteid=80676&pgname=apa&fmtid=34981&visit=m&tmstp=[timestamp]" border="0" alt="" /></a>
+        </noscript>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="banner-ad banner-ad-small">
+        <script type="text/javascript">
+        sas.call("std", {
+        siteId: 80676, // 
+        pageId: 584791, // Page : Planning.org/apa
+        formatId: 34982, // Format : APA - Box 3 (180x150) 180x150
+        target: '' // Targeting
+        });
+        </script>
+        <noscript>
+        <a href="http://www5.smartadserver.com/ac?jump=1&nwid=1541&siteid=80676&pgname=apa&fmtid=34982&visit=m&tmstp=[timestamp]&out=nonrich" target="_blank">                
+        <img src="https://www5.smartadserver.com/ac?out=nonrich&nwid=1541&siteid=80676&pgname=apa&fmtid=34982&visit=m&tmstp=[timestamp]" border="0" alt="" /></a>
+        </noscript>
+      </div>
+    </div>
+  </div>
+
+  <!-- prefooter long ad -->
+  <div class="row prefooter_lng_ad">
+    <div class="col-md-12 col-sm-12 text-center">
+      <div class="banner-ad banner-ad-leaderboard banner-ad-footer">
+        <script type="text/javascript">
+
+        sas.call("std", {
+          siteId: 80676, // 
+          pageId: 584791, // Page : Planning.org/apa
+          formatId: 34985, // Format : APA - Footer (728x90) 728x90
+          target: '' // Targeting
+        });
+
+        </script>
+
+        <noscript>
+          <a href="https://www5.smartadserver.com/ac?jump=1&nwid=1541&siteid=80676&pgname=apa&fmtid=34985&visit=m&tmstp=[timestamp]&out=nonrich" target="_blank">
+            <img src="https://www5.smartadserver.com/ac?out=nonrich&nwid=1541&siteid=80676&pgname=apa&fmtid=34985&visit=m&tmstp=[timestamp]" border="0" alt="" />
+
+          </a>
+        </noscript>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

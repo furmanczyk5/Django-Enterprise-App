@@ -1,0 +1,188 @@
+{% extends 'myapa/newtheme/join/summary.html' %}
+
+{% load myapa_tags %}
+
+
+{% block join_title %}APA Student Membership{% endblock %}
+
+
+{% block join_account_informaton_link %}
+<a class="btn btn-sm btn-icon pull-right" href="{% url "join_student_account" %}">
+	Edit
+	<span class="icon-apa-edit"></span>
+</a>
+{% endblock %}
+
+
+{% block join_school_information_section %}
+<div class="form-section form-section-enclosed-light">
+
+  {% block join_school_information_link %}
+  <a class="btn btn-sm btn-icon pull-right" href="{% url "join_student_school_information" %}">
+    Edit
+    <span class="icon-apa-edit"></span>
+  </a>
+  {% endblock %}
+
+  <h3>School Information</h3>
+
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>School</td>
+          <td>
+            {{school_information.other_school}}
+          </td>
+        </tr>
+        <tr>
+          <td>Program</td>
+          <td>
+            {{school_information.program}}
+          </td>
+        </tr>
+        <tr>
+          <td>Expected Graduation Date</td>
+          <td>{{school_information.graduation_date}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block join_personal_information_section %}
+<div class="form-section form-section-enclosed-light">
+
+  {% block join_personal_information_link %}
+  <a class="btn btn-sm btn-icon pull-right" href="{% url "join_student_personal_info" %}">
+    Edit
+    <span class="icon-apa-edit"></span>
+  </a>
+  {% endblock %}
+
+  <h3>Demographic Information</h3>
+
+  <div class="table-responsive">
+    <table class="table">
+      <!-- Include Salary Range and Functional Title-->
+      <tbody>
+        <tr>
+          <td>Functional Title</td>
+          <td>{{demographics.functional_title|get_functional_title_name}}</td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td>{{demographics.gender|get_gender_name}}</td>
+        </tr>
+        <tr>
+          <td>Race</td>
+          <td>
+          {% with races=demographics|get_race_name_list %}
+          {% for race in races %}
+          <div>{{race}}</div>
+          {% endfor %}
+          {% endwith %}
+          </td>
+        </tr>
+        <tr>
+          <td>Hispanic Origin</td>
+          <td>{{demographics|get_hispanic_origin_name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block join_membership_information_section %}
+<div class="form-section form-section-enclosed-light">
+
+  {% block join_membership_informaton_link %}
+  <a class="btn btn-sm btn-icon pull-right" href="{% url "join_student_subscriptions" %}">
+    Edit
+    <span class="icon-apa-edit"></span>
+  </a>
+  {% endblock %}
+
+  <h3>Membership Information</h3>
+
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+
+        <tr>
+          <td>Membership Type</td>
+          <td>{{membership_purchase.product.content.title}}</td>
+        </tr>
+
+        {% if aicp_dues_purchase %}
+        <tr>
+          <td></td>
+          <td>{{aicp_dues_purchase.product.content.title}}</td>
+        </tr>
+        {% elif aicp_prorated_dues_purchase %}
+        <tr>
+          <td></td>
+          <td>{{aicp_prorated_dues_purchase.product.content.title}}</td>
+        </tr>
+        {% endif %}
+
+        <tr>
+          <td>Primary APA Chapter</td>
+          <td>{{primary_chapter_purchase.product.content.title}}</td>
+        </tr>
+
+        {% for division_purchase in division_purchases %}
+        <tr>
+          <td>{% if forloop.first %}APA Divisions{% endif %}</td>
+          <td>{{division_purchase.product.content.title}}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td>APA Divisions</td>
+          <td>(None)</td>
+        </tr>
+        {% endfor %}
+
+        
+        {% comment %}
+        <!-- TENTATIVE: list all special subscriptions that students get -->
+        <!--
+        <tr>
+          <td>Subscriptions</td>
+          <td>Planning Magazine (Digital)</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>JAPA (Digital)</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>...others</td>
+        </tr>
+        -->
+        {% endcomment %}
+
+        <tr>
+          <td>Planners' Advocacy Network</td>
+          <td>You have elected to {{planners_advocacy|yesno:",not "}}join the Planners' Advocacy Network</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block join_continue_button %}
+<div>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">AICP Certification Application</h1><br>
+    <h2 class="page-title">SECTION 5: APPLICATION SUMMARY AND REVIEW</h2>
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+      <div class="row">
+
+
+          <form id="new_user_reg" align="left" method="post" class="validate-form">
+            {% csrf_token %}
+            <!-- {{ degree_formset.as_table }} -->
+            <!-- {{ job_formset.as_table }} -->
+            <!-- {{ criteria_formset.as_table }} -->
+            <!-- {{ ethics_formset.as_table }} -->
+
+            <!-- {{ degree_formset.management_form }} -->
+            {{ job_formset.management_form }}
+            {{ criteria_formset.management_form }}
+            {{ ethics_formset.management_form }}
+
+
+            {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+            <div class="form-section form-section-enclosed-dark">
+              <h3 class="form-section-title">AICP Certification Application {{ view.application.application_type }} Summary</h3>
+              {% if submitted == False %}
+              Review your AICP Certification Application and make any necessary changes.<br><br>
+              {% else %}
+              Review a summary of your submitted AICP Certification Application.<br>
+              Application submitted on/at: {{ submission_time }}<br>
+              {% endif %}
+              <h3>General Information:</h3>
+              <strong>Applicant:</strong> {{ contact }}<br>
+              <strong>Exam:</strong> {{ exam }}<br>
+              <strong>Application Type:</strong> {{ application_type }}<br>
+              <strong>Application Status:</strong> {{ application_status }}<br>
+              <strong>Agreed to Code of Ethics?</strong> {{ code_of_ethics }}<br><br>
+              {% if submitted == False %}
+              <a class="btn btn-primary" href="{% url 'exam_application_type_edit' master_id=view.application.master_id %}">Edit Application Type</a>
+              <br><br>
+              {% endif %}
+              {% if is_advanced == False %}<h3>Applicant Degrees:</h3>{% endif %}
+              {% for degree in degrees %}
+                <strong>Educational Institution: </strong>
+                {% if degree.school %} 
+                  <em>{{ degree.school }}</em><br>
+                {% elif degree.other_school %}
+                  <em>{{ degree.other_school }}</em><br>
+                {% endif %}
+
+                <strong>Graduation Date: </strong>
+                <em>{{ degree.graduation_date }}</em><br>
+                <strong>Education Level: </strong>
+                {% if degree.level == 'B' %}
+                  <em>{{ bachelor }}</em><br>
+                {% elif degree.level == 'M' %}
+                  <em>{{ master }}</em><br>
+                {% elif degree.level == 'P' %}
+                  <em>{{ doctorate }}</em><br>
+                {% elif degree.level == 'O' %}
+                  <em>{{ other_degree }}</em><br>
+                {% endif %}
+                  <!-- <em>{{ degree.level }}</em><br> -->
+                <strong>Planning Degree?: </strong>
+                <em>{{ degree.is_planning }}</em><br>
+                <strong>PAB Accredited Degree?: </strong>
+                <em>{{ degree.pab_accredited }}</em><br>
+                <strong>Education Verification Document: </strong>
+                <em>{{ degree.verification_document }}</em><br>
+                <em>{{ degree.uploaded_file }}</em><br>
+
+              {% endfor %}
+              <!-- <table>{{ review_degree_formset }}</table> -->
+              {% if submitted == False and is_advanced == False %}
+              <a class="btn btn-primary" href="{% url 'exam_degree_history' master_id=view.application.master_id %}">Edit Degree Credentials</a>
+              <br><br>
+              {% endif %}
+              <h3>Applicant Employment Experience:</h3>
+              <h4>Required Planning Experience for This Application: <strong>{{ required_planning_experience }} years</strong></h4>              
+              <h4>Total Planning Experience Entered So Far: <strong>{{ planning_experience }} years</strong></h4><br>
+              {% for job in jobs %}
+                <strong>Job Title: </strong><em>{{ job.title|default:"No Title" }}</em><br>
+                <strong>Organization: </strong><em>{{ job.company }}</em> <br>
+                <!-- <strong>City: </strong><em>{{ job.city }}</em>&nbsp<strong>State: </strong><em>{{ job.state }}</em>&nbsp<strong>Zip Code: </strong><em>{{ job.zip_code }}</em> <br> -->
+                <!-- <strong>Country: </strong><em>{{ job.country }}</em><br><strong>Phone: </strong><em>{{ job.phone }}</em><br> -->
+                <strong>Start Date: </strong><em>{{ job.start_date }}</em>&nbsp<strong>End Date: </strong><em>{{ job.end_date }}</em><br>
+                <strong>This is your current job: </strong><em>{{ job.is_current }}</em><br><strong>This is a part-time job: </strong><em>{{ job.is_part_time }}</em><br>
+                <!-- <strong>We may contact your employer: </strong><em>{{ job.contact_employer }}</em><br> -->
+                <strong>Supervisor Name: </strong><em>{{ job.supervisor_name }}
+                </em><br>
+                {% if is_advanced == False %}
+                  <strong>Employment Verification Document: </strong><em>{{ job.verification_document }}</em><br><br>
+                {% endif %}
+              {% endfor %}
+              <!-- <table>{{ job_formset }}</table> -->
+              {% if submitted == False %}
+              <a class="btn btn-primary" href="{% url 'exam_job_history' master_id=view.application.master_id %}">Edit Employment Experience</a>
+              <br><br>
+              {% endif %}
+              <h3>Application Criteria Responses:</h3>
+              {% for question,answer in qa_dict.items %}
+                <strong>{{question}}</strong> <br> <em>{{ answer.get_value }}</em> <br><br>
+              {% endfor %}
+              <!-- <table>{{ criteria_formset }}</table> -->
+              {% if submitted == False %}
+              <a class="btn btn-primary" href="{% url 'exam_criteria' master_id=view.application.master_id %}">Edit Criteria Responses</a>
+              <br><br>
+              {% endif %}
+              <h3>Code of Ethics Affirmation:</h3>
+              {{ code_of_ethics }}<br><br>
+              <!-- <table>{{ ethics_formset }}</table> -->
+              {% if submitted == False %}
+              <a class="btn btn-primary" href="{% url 'exam_app_code_of_ethics' master_id=view.application.master_id %}">Edit Code of Ethics Response</a>
+              <br><br>
+              {% endif %}
+              <!-- Here are the degree forms: -->
+              <!-- {% for aform in degree_formset %} -->
+                <!-- <h3>Another Degree Form:</h3> -->
+                <!-- {{ aform }} -->
+              <!-- {% endfor %} -->
+
+            </div>
+
+            <div class="form-actions">
+            <p><h3>Planning Advisory Board Data Release Statement</h3>
+The American Planning Association (APA) and its institute, the American Institute of Certified Planners (AICP), reserve the right, as owners of the data collected in relation to the AICP Certification Exam, to analyze the results of each cycle of AICP Certification Exams. Furthermore, APA and AICP reserve the right to provide observational exam data (e.g. demographic or employment information in the aggregate) to the Association of Collegiate Schools of Planners (ACSP and the Planning Accreditation Board (PAB), so that they may conduct their own analysis to better inform the education and accreditation decision-making.  However, APA and AICP will not use personal identification information in their analysis of AICP exam results data, nor will they provide personal identification information to ACSP or PAB to support those organizations’ analysis of AICP exam result data. Such personal identification information includes applicants’ email addresses, mailing addresses, or telephone numbers. APA will share specific application data with the applicants’ school for purposes of accreditation only.
+            </p><br>
+              {% if submitted == False %}
+              <input type="submit" name="submit" class="btn btn-primary" value="Submit Application"/>
+              {% endif %}
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

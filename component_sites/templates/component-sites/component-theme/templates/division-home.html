@@ -1,0 +1,97 @@
+{% extends 'component-sites/component-theme/templates/base.html' %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load content_extras %}
+
+{% block leader_ad %}{% endblock %}
+
+{% block nav %}
+<div class="layout-hero-image-with-nav">
+    {% image page.featured_image width-1200 as feat_img %}
+    <img src="{{feat_img.url}}" alt="{{page.featured_image.alt_text}}" class="layout-hero-image-with-nav-image" style="height:auto">
+    {{block.super}}
+</div>
+{% endblock %}
+
+{% block content_main %}
+
+<div class="layout-hero-image layout-hero-image-home">
+  <div class="layout-hero-image-content">
+    {{page.featured_content}}
+  </div>
+</div>
+
+{% comment %}
+
+{{page.additional_content}}
+
+{# this allows values passed in block context but it messes up the formatting #}
+{% for block in page.additional_content %}
+    {% if block.block_type == 'news' %}
+        {% include_block block with compo_type=component_type %}
+    {% else %}
+        {% include_block block %}
+    {% endif %}
+{% endfor %}
+{% endcomment %}
+
+<div class="layout-tracery layout-tracery-flex">
+{% for block in page.additional_content %}
+    {% if block.block_type == 'events' %}
+    <div class="layout-column">
+        {% include_block block with compo_type=component_type %}
+        </div>
+    {% elif block.block_type == 'news' %}
+    <div class="layout-column">
+        {% include_block block with compo_type=component_type %}
+        </div>
+    {% elif block.block_type == 'npc_activities' %}
+    <div class="layout-column">
+        {% include_block block with compo_type=component_type %}
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+<div class="layout-tracery layout-tracery-flex">
+{% for block in page.additional_content %}
+    {% if block.block_type == 'text' %}
+    <div class="layout-column">
+        {% include_block block with compo_type=component_type %}
+        </div>
+    {% elif block.block_type == 'video' %}
+    <div class="layout-column">
+        {% include_block block with compo_type=component_type %}
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+<div class="layout-tracery layout-tracery-flex">
+{% for block in page.additional_content %}
+    {% if block.block_type == 'photo_gallery' %}
+    <div class="layout-column">
+        {% include_block block with compo_type=component_type %}
+        </div>
+    {% elif block.block_type == 'feature_list' %}
+    <div class="layout-column">
+        {% include_block block with compo_type=component_type %}
+        </div>
+    {% elif block.block_type == 'tiled_images' %}
+    <div class="layout-column">
+        {% include_block block with compo_type=component_type %}
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+
+{% comment %}
+{% for block in page.additional_content %}
+<h1>{{block.block_type}}</h1>
+    {% if block.block_type != 'events' and block.block_type != 'news' and block.block_type != 'npcactivities' %}
+        {% include_block block %}
+    {% endif %}
+{% endfor %}
+{% endcomment %}
+
+{% endblock %}
+
+{% block footer_ad %}{% endblock %}

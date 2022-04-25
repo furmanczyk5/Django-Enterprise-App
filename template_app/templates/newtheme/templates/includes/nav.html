@@ -1,0 +1,26 @@
+<div class="container-fluid nav-container">
+  <div class="nav-wrap">
+    <nav class="desktop-navbar">
+      <ul class="nav navbar-nav">
+
+        {% for m in root_menu %}
+          <li>
+            <span class="navbar-nav-link-wrap">
+              {% if m.get_child_menuitems %}
+              <a href="#" class="nav-mega-menu-toggle" data-child="mega-menu-section-{{m.id}}">
+                {{ m.title }}<span class="icon-keyboard-arrow-right pull-right"></span>
+              </a>
+              {% else %}
+              <a href="{{ m.get_url }}">
+                {{ m.title }}
+              </a>
+              {% endif %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% include 'newtheme/templates/includes/nav-mega-menu.html' %}
+    {% include 'newtheme/templates/includes/nav-mobile.html' %}
+  </div>
+</div> <!-- container-fluid nav-container -->

@@ -1,0 +1,47 @@
+/**
+ * dependencies: slab
+ */
+
+.homepage-conference-cta {
+  &:extend(.slab-blue all);
+  // margin: 0 -30px;
+  // padding: 0 30px;
+  position: relative;
+  background: fade(@color-bg-blue, 90%);
+
+  p {
+    font-size: 18px;
+    // &:extend(p.featured all);
+  }
+
+}
+
+.homepage-conference-cta-body {
+  .make-row(@main-sidebar-gutter-width-xs);
+  margin: 0;
+
+  padding-top: @grid-gutter-width;
+  padding-left: @padding-level-2-xs;
+  padding-right: @padding-level-2-xs;
+
+  @media screen and (min-width: @screen-sm-min) {
+    padding-top: 64px; // 44 + 30 for countdown offset
+    padding-bottom: 54px; // 24 + 30 for countdown offset
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    padding-left: @padding-level-2-md;
+    padding-right: @padding-level-2-md;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1080px;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    
+  }
+}
+
+.homepage-conference-cta-logo {
+  position: relative;
+  top: 30px;
+}

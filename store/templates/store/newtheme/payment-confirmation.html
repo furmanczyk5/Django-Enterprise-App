@@ -1,0 +1,203 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load staticfiles %}
+{% load tz %}
+{% load compress %}
+{% load content_extras %}
+{% load myapa_tags %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+  <div class="page-head">
+
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+{#    <h1 class="page-title">Receipt for Order #{{ order.id }} </h1>#}
+    <h1 class="page-title">Receipt for Order #{{ order.trans_number }} </h1>
+
+  </div>
+
+
+  <div class="layout-tracery">
+    <div class="layout-column">
+
+    <!-- FOR AWARDS, REMOVED LINK FOR "Back to My Awards Nominations" ... NEED TO RETHINK HOW WE HANDLE PRODUCT-SPECIFIC MESSAGING ON THESE CONFIRMATIONS -->
+
+      <h2>Thank you for your order!</h2>
+
+      {% for purchase in confirmation_text_purchases %}
+      {% if purchase.product.confirmation_text %}
+      <p>{{ purchase.product.confirmation_text|safe }}</p>
+      {% endif %}
+      {% endfor %}
+
+    <div class="table-responsive">
+    <table class="table">
+    <tbody>
+      <tr><td colspan="5">
+        {% localtime off %}
+        <h4>ORDER PLACED: {{ order.transaction_date|date:"m/d/Y "}}</h4>
+        {% endlocaltime %}
+        <h5>{{ contact }} | APA ID: #{{ contact.user.username }}</h5>
+
+      </td></tr>
+
+        <tr class="action info">
+          <td colspan="2"> <strong>Items</strong> </td>
+          <td style="text-align:right"><strong>Price</strong></td>
+          <td style="text-align:right"><strong>Qty</strong></td>
+          <td style="text-align:right"><strong>Total</strong></td>
+        </tr>
+
+        {% get_purchases_products_list order as purchases_products_list %}
+        {% get_related_trans order as related_trans %}
+        {% get_total_balance related_trans as total_balance %}
+
+        {% for purchase in purchases_products_list %}
+        {% get_django_purchase purchase.0 as django_purchase %}
+          {% if not django_order %}
+            {% get_django_order django_purchase as django_order %}
+          {% endif %}
+        {# TBD: If/How to limit transactions seen by user #}
+        {#{% if purchase.1.status != "H" and purchase.0.quantity != 0 %}#}
+        {% if True %}
+        <tr>
+          <td colspan="2">
+            {% if django_purchase.product.title %}
+              <h4>{{ django_purchase.product.title }}</h4>
+            {% elif purchase.1.title %}
+              <h4>{{ purchase.1.title }}</h4>
+            {% else %}
+              {% get_description related_trans as description %}
+              <h4>{{description|safe}}</h4>
+            {% endif %}
+          {% if purchase|is_waitlist %}
+            <br/><span class="bold">WAITLIST</span>
+          {% endif %}
+            {% comment %}
+              {% if purchase.1.product_code|is_standby %}
+                <br/><span class="bold">STANDBY</span>
+              {% endif %}
+            {% endcomment %}
+            {% if django_purchase.product.product_type == "STREAMING" %}
+            <p><a class="button small" href="/events/course/{{ django_purchase.product.content.master.id }}/"> Open </a></p>
+            {% elif django_purchase.product.product_type == "EBOOK" %}
+              <a href="/publications/book/{{ django_purchase.product.content.master.id }}/">Download</a>
+            {% elif django_purchase.product.product_type == "DIGITAL_PUBLICATION" %}
+              <!-- TO DO... need to create/verify this link -->
+              {% if django_purchase.product.content.resource_type == "REPORT" %}
+                <a href="/publications/report/{{ django_purchase.product.content.master.id }}/">Download</a>
+              {% else %}
+                <a href="/publications/document/{{ django_purchase.product.content.master.id }}/">Download</a>
+              {% endif %}
+            {% endif %}
+
+          </td>
+          <td style="text-align:right">${{ purchase.0.unit_price|floatformat:"2" }}&nbsp;</td>
+          <td style="text-align:right">{{ purchase.0.quantity|floatformat:"2" }}&nbsp;</td>
+          <td style="text-align:right">${{ purchase.2|abs|floatformat:"2" }}</td>
+
+        </tr>
+
+            {% if django_purchase.product.product_type == "LEARN_COURSE" %}
+
+              {% if django_purchase.quantity > 1 or django_purchase.for_someone_else %}
+                      <tr>
+                        <td class="small">
+                          <hr/>
+                          <b>&nbsp;&nbsp;License Codes</b>
+                        </td>
+                        <td class="small">
+                          <hr/>
+                          <b>Redeemed</b>
+                        </td>
+                      </tr>
+                      {% for c in django_purchase.learn_group_licenses.all %}
+                      <tr>
+                        <td class="small">&nbsp;&nbsp;{{ c.license_code }}</td>
+                        <td class="small">
+                          {% if c.redemption_date %}
+                          <input type="checkbox" checked="checked" disabled="disabled"/>
+                          by
+                            {{ c.redemption_contact.title }}
+                          {% else %}
+                            <input type="checkbox" disabled="disabled"/>
+                          {% endif %}
+                        </td>
+                        <td colspan="3">
+                        </td>
+                      </tr>
+                      {% endfor %}
+
+              {% else %}
+              <tr>
+                {% if django_purchase.product.content.event.digital_product_url %}
+                <td colspan="2"><a class="btn btn-primary btn-small" href="{{ django_purchase.product.content.event.digital_product_url }}">Open</a>
+                </td>
+                {% else %}
+                <td colspan="2"><a class="btn btn-primary btn-small" href="https://{{ learn_domain }}/local/catalog/view/product.php?globalid={{ django_purchase.product.code }}"> Open </a>
+                </td>
+                {% endif %}
+                <td colspan="3">
+                </td>
+              </tr>
+              {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+
+        <tr>
+          <td colspan="4" style="text-align:right"><strong>Total Purchased:</strong></td>
+          <td style="text-align:right"><strong>${{ total_balance.0|floatformat:"2" }}</strong></td>
+        </tr>
+
+          {% if order.transaction_type == "PAY" %}
+             <tr><td colspan="5">  </td></tr>
+              <tr><td colspan="5"><h3>Payment:</h3> </td></tr>
+              <tr class="action info">
+                <td colspan="3"> </td>
+                <td colspan="2" style="text-align:right"><strong>Total</strong></td>
+              </tr>
+              <tr class="{% cycle "even" "odd" %}">
+                <td colspan="3">
+                  {% if order.payment_type %}
+                    {{ order.payment_type }}
+                  {% else %}
+                    {#Payment type unspecified#}
+                  {% endif %}
+                  </td>
+                <td colspan="2" style="text-align:right">${{ order.amount|floatformat:"2" }} </td>
+              </tr>
+          {% endif %}
+
+
+      <tr>
+        <td colspan="5">  </td>
+      </tr>
+          <tr>
+            <td colspan="4" style="text-align:right"> <strong>Balance:</strong> </td>
+            <td style="text-align:right"><strong>${{ total_balance.1|abs|floatformat:"2" }} </strong></td>
+          </tr>
+          </tbody>
+
+    </table>
+    {% if purchases_products_list|is_apa_learn_order %}
+    <p>
+      <a href="/apalearn/agreement/">View Digital Agreement</a>
+    </p>
+    <p>
+      <a href="/refunds/">View Refund Policy</a>
+    </p>
+    {% endif %}
+
+    </div>
+
+
+
+    </div>
+    </div>
+{% endblock %}

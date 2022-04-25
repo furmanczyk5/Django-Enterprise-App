@@ -1,0 +1,407 @@
+{% extends request.detect_mobile_app.use_template %}
+{% load static %}
+{% load content_extras %}
+{% load event_tags %}
+{% load cm_tags %}
+{% load tz %}
+
+{% block content_main %}
+
+{% if not request.detect_mobile_app.is_mobileapp %}
+  <div class="page-head page-head-conference no-border-bottom little-spacing-bottom">
+    <div class="page-head-social-sharing">
+
+      {% include "newtheme/templates/includes/social-sharing-widget.html" %}
+      {% if request.contact %}
+      {% include "newtheme/templates/includes/myapa-bookmark-widget.html" with content_id=content.master.id bookmarked=bookmarked %}
+      {% endif %}
+    </div>
+
+    {% include 'newtheme/templates/conference/includes/breadcrumbs.html' %}
+    {% if content.overline %}
+      <h3>{{ content.overline }}</h3>
+    {% endif %}
+  </div>
+
+
+{% endif %}
+
+{% with event=content %}
+
+<div class="session-detail-page">
+  <div class="session-detail-page-body">
+    <div class="col-sm-9 session-detail-page-body-main">
+      <!-- Session Detail Title -->
+      <div class="session-detail-title">
+        <!--Saturday, May 6, 2017 from 10:45 a.m. – 12:00 p.m.-->
+        <h2>
+        {% localtime off %}
+          {% ifequal event.begin_time|date:"SHORT_DATE_FORMAT" event.end_time|date:"SHORT_DATE_FORMAT"%}
+            {{event.begin_time_astimezone|date:"l, F j, Y"}} from {{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+          {% else %}
+            {{event.begin_time_astimezone|date:"l, F j, Y, P"}} - {{event.end_time_astimezone|date:"l, F j, Y, P e"}}
+          {% endifequal %}
+        {% endlocaltime %}
+        </h2>
+      </div>
+      <!-- Session Detail Title -->
+      <!-- Session Details -->
+      <div class="session-detail-body-details">
+        <div class="session-detail-body-detail">
+          <!-- CM -->
+          <p>
+            <span class="cm-wrapper">
+              <span>
+              {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=event %}
+              </span>
+            </span>
+          </p>
+          <!-- CM -->
+          <!-- Tracks -->
+          {% if event.contenttagtype_EVENTS_NATIONAL_TRACK_21 %}
+            <div class="session-detail-body-detail">
+              <p>
+                <strong>Track</strong>:
+                {% for tag in event.contenttagtype_EVENTS_NATIONAL_TRACK_21.active_tags|sorted_by:"tag_type.sort_number,tag_type.title" %}
+                  {% if not request.detect_mobile_app.is_mobileapp %}
+                    <a href="/conference/program/search/?keyword=&amp;filter_events_national_track_21={{ tag.code }}">
+                    {{ tag.title }}</a>{% if not forloop.last %}, {% endif %}
+                  {% else %}
+                    {{ tag.title }}{% if not forloop.last %}, {% endif %}
+                  {% endif %}
+                {% endfor %}
+              </p>
+            </div>
+          {% endif %}
+          <!-- end Tracks -->
+
+          <!--cost-->
+          <div class="session-detail-body-details">
+            <div class="session-detail-body-detail">
+              {% if product %}
+                <p class="session-detail-body-cost">
+                  <strong>Cost</strong>:&nbsp;${{ product.get_price.price }}
+                </p>
+              {% else %}
+                {% if event.outside_vendor %}
+                  <p class="session-detail-body-cost">
+                    <strong>Cost</strong>:&nbsp;Purchase ticket from 3rd party
+                  </p>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+          <!-- type, division, etc -->
+          <div class="session-detail-body-details">
+            <div class="session-detail-body-detail">
+                <p>
+                {% if event.contenttagtype_EVENTS_NATIONAL_TYPE and event.contenttagtype_EVENTS_NATIONAL_TYPE.active_tags %}
+                    <strong>Activity Type</strong>:
+                    {% for tag in event.contenttagtype_EVENTS_NATIONAL_TYPE.active_tags|sorted_by:"tag_type.sort_number,tag_type.title" %}
+                      {% if not request.detect_mobile_app.is_mobileapp %}
+                      <a href="{{ microsite.program_search_url }}/?filter_events_national_type={{ tag.code }}">
+                        {{ tag.title }}</a>{% if not forloop.last %}, {% endif %}
+                      {% else %}
+                        {{ tag.title }}{% if not forloop.last %}, {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                {% endif %}
+                </p>
+
+            </div>
+          </div>
+          <!-- type, division, etc -->
+          <!-- Location/Room -->
+          {% if event.location %}
+          <p class="session-detail-body-location">
+            <strong>Location:</strong> {{event.location}}
+          </p>
+          {% elif room %}
+          <p class="session-detail-body-location">
+            <strong>Location:</strong> {{room}}
+          </p>
+          {% endif %}
+          <!-- Location/Room -->
+        </div>
+      </div>
+              {% evaluate_event_button event request.user.contact %}
+      <br />
+      {% if is_apa_learn_product %}
+        <br />
+        <h3 class="form-section-title">Now Available from APA Learn</h3>
+        <hr />
+        <p>This course is now offered on the APA Learn educational platform.</p>
+        <p>
+          <a class="btn btn-primary" href="{{ event.digital_product_url }}">Open in APA Learn</a>
+          <a class="btn btn-default" href="https://{{ LEARN_DOMAIN }}/catalog/">Browse APA Learn catalog</a>
+        </p>
+     {% endif %}
+      <!-- Session Details -->
+      <!-- Session desc -->
+      {% if not event.learning_objectives %}
+      <div class="session-detail-body-description">
+        {{ event.text|safe }}
+      </div>
+      {% else %}
+      <h3 class="headline-underline">LEARNING OUTCOMES</h3>
+        {{ event.learning_objectives|safe }}
+        {{ event.text|safe }}
+      {% endif %}
+      <!-- Session desc -->
+      <!-- Local/Inclusive/Interactive -->
+      {% if is_inclusive %}
+      <br />
+        {{microsite.text_blurb_one|safe}}
+      {% endif %}
+      {% if is_local %}
+      <br />
+        {{microsite.details_local_blurb|safe}}
+      {% endif %}
+      {% if is_interactive %}
+      <br />
+        {{microsite.interactive_educational_session|safe}}
+      {% endif %}
+      <!-- Local/Inclusive/Interactive -->
+      {% if is_recorded %}
+      <br />
+      {{ microsite.text_blurb_one|safe }}
+      {% endif %}
+
+      <!-- Session Speakers -->
+      {% if event.speaker_roles %}
+      <div class="session-detail-body-description-speakers color-orange">
+        <h2 class="headline-underline">
+          {% if activity_type.code == "MOBILE_WORKSHOP" %}
+            Mobile Workshop Guides
+          {% else %}
+            Session Speakers
+          {% endif %}
+      </h2>
+        <div class="row">
+          {% for role in event.speaker_roles|dictsort:"contact.first_name" %}
+          {% if role.role_type != "ORGANIZER" %}
+          <div class="col-xs-12 col-md-6 content-preview-item-speaker">
+            <div class="content-preview-item">
+
+              {# REMOVE FOR LOCAL TESTING AND TO ENABLE CONFERENCE DETAILS #}
+
+
+              {% if role.contact.individualprofile.image.image_thumbnail %}
+              <div class="content-preview-item-image-floated">
+                <img src="{{ role.contact.individualprofile.image.image_thumbnail.url }}" />
+              </div>
+              {% else %}
+              <div class="content-preview-item-image-floated">
+                <img src="{% static 'images/anonymous_headshot.jpg' %}" title="Anonymous Headshot" alt="Anonymous Headshot" />
+              </div>
+              {% endif %}
+
+
+              <p>
+                {% if role.contact.bio %}
+                <a type="button" class="popover-link" data-container="body" data-toggle="popover"
+                  data-trigger="focus" tabindex="0" role="button" data-placement="bottom"
+                  data-title="{% if role.confirmed %}Bio{% elif role.invitation_sent %}Invited Speaker{% endif %} <a type='button' class='exit-button' onClick='$(&quot;.popover-link&quot;).popover(&quot;hide&quot;)'>Close</a>"
+                  data-content="{{ role.contact.bio }}">
+                  {{ role.contact.full_title }}
+                </a>
+                {% else %}
+                  {{ role.contact.full_title }}
+                {% endif %}
+                <br />
+                {{ role.role_type|get_role_type_label }}
+                <br />
+                {% if role.contact.company %}
+                  {{ role.contact.company }}
+                <br />
+                {% endif %}
+                {% if role.contact.city %}{{ role.contact.city}}{% endif %}{% if role.contact.state %}, {{ role.contact.state}}{% endif %}
+              </p>
+            </div>
+          </div>
+          {% endif %} <!-- role.role_type != "ORGANIZER" -->
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      <!-- Session Speakers -->
+    </div>
+    {% if not request.detect_mobile_app.is_mobileapp %}
+    <div class="col-sm-3">
+    {% block conference_sidebar %}
+      {% include "newtheme/templates/conference/includes/schedule-widget.html" %}
+    {% endblock %}
+    </div>
+    {% endif %}
+  </div>
+
+
+    <div class="row">
+      <div class="col-sm-9">
+        <!-- More Session Details -->
+        <div class="session-detail-body-description-more">
+
+          <div class="session-detail-list-of-links">
+
+          {% if not request.detect_mobile_app.is_mobileapp %}
+              <!-- Downloads -->
+              {% if not has_downloads %}
+                {% if is_authenticated %}
+                  {% if has_ticket %}
+                    {% if event.resource_url %}
+                    <div class="link-item"><a href="{{ event.resource_url }}">PowerPoint Presentations</a></div>
+                    {% endif %}
+
+                    {% if event.digital_product_url %}
+                    <div class="link-item"><a class="arrowlink" href="{{ event.digital_product_url }}">Free Access to Recording</a></div>
+                    {% endif %}
+                  {% else %}
+                    {% if event.digital_product_url %}
+                      <div class="link-item"><a class="arrowlink" href="{{ event.digital_product_url }}">Purchase Recording</a></div>
+                    {% endif %}
+                  {% endif %}
+                {% elif event.resource_url or event.digital_product_url %}
+                  <div class="link-item"><em>Conference attendees: log in to access downloads</em></div>
+                {% endif %}
+              {% endif %}
+              <!-- Downloads -->
+            {% endif %}
+            <!-- Track, Topics, and Division -->
+
+            {% if event.contenttagtype_SEARCH_TOPIC %}
+                <div class="link-item">
+                  <strong>Topics</strong>:
+                  {% for tag in event.contenttagtype_SEARCH_TOPIC.active_tags|sorted_by:"tag_type.sort_number,tag_type.title" %}
+                    {% if not request.detect_mobile_app.is_mobileapp %}
+                      <a href="/conference/program/search/?keyword=&amp;topics={{ tag.code }}">
+                      {{ tag.title }}</a>{% if not forloop.last %}, {% endif %}
+                    {% else %}
+                      {{ tag.title }}{% if not forloop.last %}, {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+            {% endif %}
+            {% if event.contenttagtype_DIVISION %}
+                <div class="link-item">
+                  <strong>Division Endorsed</strong>:
+                  {% for tag in event.contenttagtype_DIVISION.active_tags|sorted_by:"tag_type.sort_number,tag_type.title" %}
+                    {% if not request.detect_mobile_app.is_mobileapp %}
+                      <a href="/conference/program/search/?keyword=&amp;divisions={{ tag.code }}">
+                      {{ tag.title }}</a>{% if not forloop.last %}, {% endif %}
+                    {% else %}
+                      {{ tag.title }}{% if not forloop.last %}, {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+            {% endif %}
+            <!-- Track, Topics, and Division -->
+          </div>
+        </div>
+
+        <!-- More Session Details -->
+        <!-- Buttons -->
+        {% if not request.detect_mobile_app.is_mobileapp %}
+        <div class="session-detail-buttons">
+          {% if is_authenticated and event.event_type != "EVENT_MULTI" and is_registered and show_schedule_stuff %}
+            {% if not product %}
+                <a class="btn btn-primary" href="#" id="activity-remove-{{event.master_id}}" onclick="removeFromSchedule({{ event.master_id }})" {% if not has_ticket %} style="display:none;" {% endif %}>
+                  Remove from My Schedule
+                </a>
+                <a class="btn btn-primary" href="#" id="activity-add-{{event.master_id}}" onclick="addToSchedule({{ event.master_id }})" {% if has_ticket %} style="display:none;" {% endif %}>
+                  Add to My Schedule
+                </a>
+            {% elif product %}
+              {% add_product_info event as activity %}
+              <span class="add-to-cart-hidden-quantity">
+                {% activity_ticket_link activity=activity product_price=activity.product_info.price purchase_info=activity.product_info.purchase_info has_registration=is_registered %}
+              </span>
+            {% endif %}
+
+            {% if event.cm_approved %}
+              {# {% if has_ticket %} #}
+                {% evaluate_event_button event request.user.contact %}
+              {% comment %}
+              {% else %}
+                <a class="btn btn-primary" disabled href="#">Add to My Log</a>
+              {% endif %}
+              {% endcomment %}
+            {% endif %}
+          {% endif %}
+        </div>
+        {% endif %}
+        <br />
+        <p class="session-detail-body-cost">
+          <strong>Activity ID</strong>: {{ event.code }}
+        </p>
+        <!-- Buttons -->
+      </div>
+    </div>
+    {% if not request.detect_mobile_app.is_mobileapp %}
+{#    <div class="session-detail-footer">#}
+{#      <div class="row">#}
+{#        <div class="col-12">#}
+{#          <div class="quick-links-block">#}
+{#            {% if activity_type.code == "POSTER" %}#}
+{#            <hr>#}
+{#            <h2><a href="http://apa.cnf.io/" target="_blank">Click Here for Poster Voting</a></h2>#}
+{#            <hr>#}
+{#            {% endif %}#}
+{#            <h2 class="headline-underline">Quick Links</h2>#}
+{#            <a href="{% url 'registrations:select_registration' master_id=event.parent.id %}" class="btn btn-primary quick-links-button session-detail-footer-quick-links-button">Register for NPC18</a>#}
+{#            <div class="list-of-links list-of-links-small quick-links">#}
+{#              <h4><a href="/conference/search/">View Full Program</a></h4>#}
+{#              <h4><a href="/conference/tracks/">View Program Tracks</a></h4>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+  {% endif %}
+
+</div>
+
+
+
+
+
+
+
+{% endwith %}
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'newtheme/vendor/bootstrap/js/tooltip.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/popover.js' %}"></script>
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover({
+    html: true,
+    trigger: "manual"
+  });
+  $('[data-toggle="popover"]').click(function(e) {
+    $('[data-toggle="popover"]').each(function() {
+      if (this === e.target) {
+        $(this).popover("toggle");
+      } else {
+        $(this).popover("hide");
+      }
+    });
+  });
+});
+  </script>
+<script>
+  // Defining the add/remove from My Schedule functionality here instead of trying to
+    // inline it in the button onclick in the results-list-item template...
+    function removeFromSchedule(activityId) {
+        $.get('/conference/api/0.3/schedule/remove/' + activityId + '/');
+        $('#activity-add-' + activityId + ',#activity-remove-' + activityId).toggle();
+        return false;
+    }
+
+    function addToSchedule(activityId) {
+        $.get('/conference/api/0.3/schedule/add/' + activityId + '/');
+        $('#activity-add-' + activityId + ',#activity-remove-' + activityId).toggle();
+        return false;
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% load content_extras %}
+
+<!-- I THINK THIS IS NO LONGER USED -->
+<div class="col-md-6 col-sm-6 column-1 content-preview-item content-preview-item-data-block">
+  <div class="content-preview-item-image-floated">
+    <img src="{{rec.thumbnail}}" class="img-responsive"/>
+  </div>
+  <div class="content-preview-item-headline">
+    <h6 class="content-preview-item-superheadline">{{rec|planning_mag_section}}</h6>
+    <div class="content-preview-item-title"><a href="{{rec.url}}">{{rec.title}}</a></div>
+    <div class="content-preview-item-postline"><strong>{{rec.publication.date_text}}</strong></div>
+  </div>
+</div>

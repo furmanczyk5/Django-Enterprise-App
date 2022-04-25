@@ -1,0 +1,670 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load tz %}
+{% load staticfiles %}
+{% load myapa_tags %}
+{% load content_extras %}
+
+{% block content_main %}
+
+<!--
+NOTE: everything on My APA should be timezone specific, so turn off localtime
+-->
+
+{% localtime off %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">My APA</h1>
+</div>
+
+<div class="layout-hero-image">
+  <img class="layout-hero-image-image" src="//planning-org-uploaded-media.s3.amazonaws.com:443/image/MY-APA-2016-03-15.jpg" />
+  <div class="layout-hero-image-content">
+    <h3 class="featured-item-title">
+      <span>
+        {{contact.full_title}}
+      </span>
+    </h3>
+    <div class="layout-tracery no-top-border">
+      <div class="layout-column slab-gray featured-family">
+        <div class="row">
+          <div class="col-sm-4 col-lg-3 section-overview-featured-item">
+            {% if profile|conditional_get_image_url:contact %}
+            <img src="{{ profile.image.image_thumbnail.url }}" class="img-responsive" alt="Profile Image" />
+            {% else %}
+            <p class="small">Please upload a photo that shows you at your professional best. The photo can be a jpg, jpeg, or png file. </p>
+            {% endif %}
+
+            <form method="post" action="{% url 'profile_image_update' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <p class="hidden">{{ profile_image_form.upload_type }}</p>
+              <p class="small" id="file_field">{{ profile_image_form.image_file }} </p>
+              <input id="file_upload" type="submit" class="btn btn-sm btn-primary" value="Upload"/>
+              &thinsp;
+              {% if profile.image %}
+              <div>
+                <a class="btn btn-sm btn-icon btn-icon-danger btn-dashboard-events" href="{% url 'details_delete' %}?image_delete=true">
+                  Remove
+                  <span class="icon-apa-close"></span>
+                </a>
+              </div>
+              {% endif %}
+            </form>
+            <hr class="visible-xs">
+          </div>
+
+          <div class="col-sm-8 col-lg-9">
+            <div class="row">
+
+              <div class="col-lg-8 clearfix">
+              {% if membership.is_member or membership.is_xmem %}
+
+                <p>
+                  <strong>APA ID: </strong>{{ contact.user.username }} <br />
+                  <strong>Member Type: </strong>{{ contact.member_type | get_member_type_label }} <br />
+                {% if profile.slug %}
+                  <strong>Profile URL: </strong><a href="/profile/{{ profile.slug }}">www.planning.org/profile/{{profile.slug}}</a> <br/>
+                {% endif %}
+
+                  <strong>Profile Status: </strong> {{ profile.get_share_profile_display }} <br/>
+                  <a href="{% url 'edit_profile_sharing' %}" class="btn btn-sm btn-icon pull-left">
+                    Edit Profile
+                    <span class="icon-apa-edit"></span>
+                  </a>
+                </p>
+
+                <br/>
+                <br/>
+
+                <p>
+                  <strong>APA Membership:</strong> Expires <span class="{% if membership.renew_alert or membership.apa_expired %}error" {% else %} "{% endif %}>
+                     {{ membership.expiry_date|date:"SHORT_DATE_FORMAT" }}</span> <br/>
+
+                  {% if membership.primary_chapter %}
+                   <strong>Primary Chapter:</strong> {{ membership.primary_chapter }} | Expires <span class="{% if membership.renew_alert or membership.apa_expired %}error" {% else %} " {% endif %}>
+                     {{ membership.expiry_date|date:"SHORT_DATE_FORMAT" }}</span> <br/>
+                  {% endif %}
+                </p>
+
+                <br>
+                {% if membership.is_aicp or membership.aicp_expired %}
+                  <p>
+                    <strong>AICP Membership:</strong> Expires <span class="{% if membership.renew_alert or membership.aicp_expired %}error" {% else %} "{% endif %}>
+                      {{ membership.aicp_expiry_date|date:"SHORT_DATE_FORMAT" }}</span> <br/>
+                    <strong>AICP Start Date:</strong> {{ aicp_start|date:"SHORT_DATE_FORMAT" }} <br/>
+                    <strong>AICP Certification #:</strong> {{ aicp_cert_no }} <br/>
+                  </p>
+
+                  {% endif %}
+
+
+              {% else %}
+
+                <p>
+                  <strong>APA ID:</strong> {{ contact.user.username }} <br/>
+                  {% if expiry_date %}
+                    <strong>Membership Expired: </strong> <span class="error">{{ expiry_date|date:"SHORT_DATE_FORMAT" }}</span><br/>
+                {% endif %}
+                </p>
+
+
+              {% endif %}
+
+              {% if organization.company_admin %}
+                <p><strong>My Organization</strong>: <a href="{% url 'myorg' %}">{{ organization.company }}</a></p>
+              {% endif %}
+              <br/>
+              </div>
+
+              {% with membership.is_aicp as aicp %}
+              {% with membership.is_cand as aicp_cand %}
+              {% with membership.has_current_npc_webgroup as this_npc %}
+              {% with membership.is_leadership as leadership %}
+              {% with membership.is_staff as staff %}
+
+
+              {% if aicp or aicp_cand or this_npc or leadership or staff %}
+                <div class="col-lg-4">
+                  <div class="clearfix">
+                    <a href="https://engage.planning.org/">
+                      <img src="{% static 'images/apa-engage-logo.png' %}" width="210" height="46"/>
+                    </a>
+                    {% if leadership or staff %}
+                    <p>
+                      <a href="https://engage.planning.org/">Leadership Communities</a>
+                    </p>
+                    {% endif %}
+                    {% if aicp or aicp_cand or this_npc %}
+                    <p>
+                      <a href="https://engage.planning.org/mentoring/mentor-overview">Mentor Match</a>
+                    </p>
+                    {% endif %}
+                    <br/>
+                  </div>
+                </div>
+              {% endif %}
+              {% endwith %}
+              {% endwith %}
+              {% endwith %}
+              {% endwith %}
+              {% endwith %}
+
+
+
+              <!-- SPECIAL CASE FOR APA ENGAGE -->
+              {% comment %}
+              Since non-members can be part of APA Engage and should see the banner on their MyAPA,
+              we need to offset the APA Learn banner column to have it right-aligned under the
+              Engage banner as well. Non-members won't have the col-lg-8 profile column above populated
+              with data and the APA Learn banner will occupy that space on the left. But if a member
+              is also on leadership and should have the Engage banner, offsetting the column will
+              create too much white space.
+              {% endcomment %}
+
+              {% if membership.is_member %}
+              <div class="col-lg-4">
+              {% else %}
+              <div class="col-lg-4 col-lg-offset-8">
+              {% endif%}
+                <!-- APA Learn should display for non-members as well -->
+                <div class="clearfix">
+                  <a href="https://{{ LEARN_DOMAIN }}/catalog/" target="_blank">
+                    <img src="{% static 'images/APALearn_210x46.jpg' %}" />
+                  </a>
+                  <p>
+                    <a href="https://{{ LEARN_DOMAIN }}/catalog/" target="_blank">View the Course Catalog</a>
+                  </p>
+                </div>
+              </div>
+              {% if membership.is_member %}
+              <div class="col-lg-4 section-overview-featured-item">
+                <p><b>Badges</b></p>
+                <div class="clearfix">
+
+                  {% if contact.designation or membership.chapters or membership.divisions %}
+                    {% if contact.designation == "AICP" %}
+                      <img class="pull-left" src="{% static 'images/badges/AICP_renew.jpg' %}" width="70" height="70"/>
+                    {% elif contact.designation == "FAICP" %}
+                      <img class="pull-left" src="{% static 'images/badges/AICP_Fellow_Badge.jpg' %}" width="70" height="70"/>
+                    {% endif %}
+                    {% if has_cep %}
+                      <img class="pull-left" src="{% static 'images/badges/CEP_badgeforweb.png' %}" width="70" height="70"/>
+                    {% endif %}
+                    {% if has_ctp %}
+                      <img class="pull-left" src="{% static 'images/badges/CTP_badgeforweb.png' %}" width="70" height="70"/>
+                    {% endif %}
+                    {% if has_cud %}
+                      <img class="pull-left" src="{% static 'images/badges/CUD_badgeforweb.png' %}" width="70" height="70"/>
+                    {% endif %}
+
+                    {% for chapter in membership.chapters %}
+                      {% if chapter.url %}
+                      <a href="{{ chapter.url }}">
+                        <img class="pull-left" src="{% static 'images/badges/'|add:chapter.image_code|add:'logo.jpg' %}" width="70" height="70"/>
+                      </a>
+                      {% else %}
+                      <img class="pull-left" src="{% static 'images/badges/'|add:chapter.image_code|add:'logo.jpg' %}" width="70" height="70"/>
+                      {% endif %}
+                    {% endfor %}
+                    {% for division in membership.divisions %}
+                      {% if division.url %}
+                      <a href="{{ division.url }}">
+                        <img class="pull-left" src="{% static 'images/badges/'|add:division.image_code|add:'.png' %}" width="70" height="70"/>
+                      </a>
+                      {% else %}
+                      <img class="pull-left" src="{% static 'images/badges/'|add:division.image_code|add:'.png' %}" width="70" height="70"/>
+                      {% endif %}
+
+                    {% endfor %}
+
+                  {% endif %}
+
+
+                   {% if contact.member_type == "STU" and membership.divisions|length < 5 %}
+                   <div class="layout-tracery">
+                      <div class="layout-column">
+
+                    <a href="/myapa/student/freedivisions/" class="btn btn-sm btn-icon pull-left">Add Additional Free Divisions</a>
+
+                  </div>
+                    </div>
+                   {% endif %}
+
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% if membership.is_member and membership.renew_alert %}
+          <hr class="dashed">
+          {% if contact.member_type == "FSTU" %}
+          <a class="btn btn-sm btn-primary" href="/join/student/account/">Renew Online</a>
+          {% elif contact.member_type != "STU" %}
+          <a class="btn btn-sm btn-primary" href="/join/account/">Renew Online</a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+
+    {% include "ui/newtheme/forms/includes/display-errors.html" %}
+
+    <div class="directory-page-grid">
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">Membership</h2>
+          <div class="accordion-content">
+            <p>View and maintain your APA member status.</p>
+            <div class="list-of-links list-of-links-small">
+                <h4>APA ID: {{ contact.user.username }}</h4>
+                {% if membership.is_member %}
+                  <h4>Membership Type: {{ membership.member_type }}</h4>
+                  <h4>
+                  Your membership is active through: {{ membership.expiry_date|date:"SHORT_DATE_FORMAT" }}
+                  </h4>
+                  {% if membership.renew_alert and membership.member_type == "STU" %}
+                  <h4>
+                    <a class="btn btn-sm btn-primary" href="/join/student/account/">Renew Online</a>
+                  </h4>
+                  {% elif membership.renew_alert and membership.member_type == "FSTU" %}
+                  <h4>
+                    <a class="btn btn-sm btn-primary" href="/join/student/account/">Renew Online</a>
+                  </h4>
+                  {% elif membership.renew_alert %}
+                  <h4>
+                    <a class="btn btn-sm btn-primary" href="/join/account/">Renew Online</a>
+                  </h4>
+                  {% endif %}
+
+                {% else %}
+                  <h4>
+                    <a class="btn btn-sm btn-primary" href="/join/account/">Join/Renew Membership</a>
+                  </h4>
+                {% endif %}
+
+                {% if membership.prorate_balance %}
+                  <h4>"Passed the exam? Take the last step to AICP membership: <a href='/aicp/dues/initial/' target='_blank'>Pay My AICP Initial Dues</a>
+                  </h4>
+                {% endif %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">Profile</h2>
+          <div class="accordion-content">
+            <p>
+              Create a professional profile for networking.
+            </p>
+            <div class="list-of-links list-of-links-small">
+              <h4><a href="/myapa/profile/sharing/">Update sharing preferences</a></h4>
+              <h4><a href="/myapa/profile/bio/">About Me &amp; Biography</a></h4>
+              <h4><a href="/myapa/education/update/">Education</a></h4>
+              <h4><a href="/myapa/job_history/update/">Job History</a></h4>
+              <h4><a href="/myapa/profile/">Resume</a></h4>
+              <h4><a href="/myapa/profile/#planners-advocacy-network">Planners' Advocacy Network</a></h4>
+            </div>
+            <div class="read-more-link">
+              <a href="/myapa/profile/">View profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">Account Settings</h2>
+          <div class="accordion-content">
+            <p>
+              Manage your APA account.
+            </p>
+            <div class="list-of-links list-of-links-small">
+              <h4><a href="/myapa/account/">Email, Date of Birth, and Phone</a></h4>
+              <!--<h4><a href="/myapa/addresses/">Primary and Secondary Address</a></h4>-->
+              <h4><a href="/myapa/addresses/">Addresses</a></h4>
+              <h4><a href="/myapa/personal-information/">Professional and Demographic Information</a></h4>
+              <h4><a href="/myapa/contactpreferences/update/">Contact Preferences</a></h4>
+              <h4><a href="/myapa/password_change/">Change Password</a></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% if cm.log and membership.is_aicp %}
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">My CM</h2>
+          <div class="accordion-content">
+            <p>View and update your CM log.</p>
+            <div class="list-of-links list-of-links-small">
+              <h4><a href="/cm/log">Log CM credits for courses and events</a></h4>
+              <h4><a href="/cm/search/">Search for CM-eligible courses and events</a></h4>
+            </div>
+            <hr>
+            <h5>{{ cm.log.period.title }} Reporting Period</h5>
+            <div>
+              <p>CM Status: {{ cm.log.get_status_display }}</p>
+              {% localtime on %}
+              <p>CM Period: {{ cm.log.begin_time|date:'n/j/Y' }} to {{ cm.log.end_time|date:'n/j/Y' }} </p>
+              {% endlocaltime %}
+            </div>
+            <div class="row">
+              <div class="col-xs-8">
+                <p>
+                Credits Required:
+                </p>
+              </div>
+              <div class="col-xs-4">
+                <p>
+                {{ cm.log.credits_required }}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8">
+                <p>
+                Credits Earned:
+                </p>
+              </div>
+              <div class="col-xs-4">
+                <p>
+                {{ cm.credits_earned }}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8">
+                <p>
+                Remaining Credits Needed:
+                </p>
+              </div>
+              <div class="col-xs-4">
+                <p>
+                {{cm.general_credits_needed}}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8">
+                <p>
+                Law Credits Needed:
+                </p>
+              </div>
+              <div class="col-xs-4">
+                <p>
+                {{ cm.law_credits_needed }}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8">
+                <p>
+                Ethics Credits Needed:
+                </p>
+              </div>
+              <div class="col-xs-4">
+                <p>
+                {{ cm.ethics_credits_needed }}
+                </p>
+              </div>
+            </div>
+            <p class="h4 green">Coming January 1, 2022:</p>
+            <div class="row">
+              <div class="col-xs-8">
+                <p>
+                Equity Credits Needed:
+                </p>
+              </div>
+              <div class="col-xs-4">
+                <p>
+                  {% if cm.equity_credits_needed %}
+                    {{ cm.equity_credits_needed }}
+                  {% else %}
+                    1.0
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8">
+                <p>
+                  {% if cm.targeted_credits_topic %}
+                    {{ cm.targeted_credits_topic }} Credits Needed:
+                  {% else %}
+                    Sustainability & Resilience Credits Needed:
+                  {% endif %}
+                </p>
+              </div>
+              <div class="col-xs-4">
+                <p>
+                  {% if cm.targeted_credits_needed %}
+                    {{ cm.targeted_credits_needed }}
+                  {% else %}
+                    1.0
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-xs-8">
+                <p>
+                Credits for carry over:
+                </p>
+              </div>
+              <div class="col-xs-4">
+                <p>
+                {{ cm.log_carryover }}
+                </p>
+              </div>
+            </div>
+            <div class="read-more-link">
+              <a href="/cm/log/">View all</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+<!--REMOVING WHILE SUNSETTING OW-->
+<!--      <div class="directory-page-grid-item">-->
+<!--        <div class="accordion">-->
+<!--          <h2 class="accordion-handle">Path to AICP Certification</h2>-->
+<!--          <div class="accordion-content">-->
+<!--            <h4><a href="/myapa/aicp-status/">View your status in the AICP credential process</a></h4>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="directory-page-grid-item">
+          <div class="accordion">
+          <h2 class="accordion-handle">Receipts</h2>
+          <div class="accordion-content">
+            <p>
+              View your order history.
+            </p>
+            {% if orders %}
+              <div class="list-of-links list-of-links-small">
+              {% for order in orders %}
+                <h6 class="h-flush">{{order.transaction_date|date:"SHORT_DATE_FORMAT"}}</h6>
+                <h4><a href="/store/order_confirmation/?order_id={{ order.trans_number }}">Order #{{ order.trans_number }}</a></h4>
+                {% comment %}
+                <h6 class="h-flush">{{order.submitted_time|date:"SHORT_DATE_FORMAT"}}</h6>
+                <h4><a href="/store/order_confirmation/?order_id={{ order.id }}">Order #{{ order.id }}</a></h4>
+                {% endcomment %}
+              {% endfor %}
+              </div>
+              <div class="read-more-link">
+                <a href="/myapa/orderhistory/">View all</a>
+              </div>
+            {% else %}
+              <i>No order history is available</i>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">My APA Bookmarks</h2>
+          <div class="accordion-content">
+            <p>
+              Shortcuts to all your favorite APA resources.
+            </p>
+            {% if bookmarks %}
+            <div class="list-of-links list-of-links-small">
+              {% for bookmark in bookmarks %}
+                {% if bookmark.content.url %}
+                  <h4><a href="{{ bookmark.content.url }}">{{ bookmark.content.title }}</a></h4>
+                {% elif bookmark.content.content_type == 'JOB' and not bookmark.content.make_inactive_time|datetime_is_past %}
+                  <h4><a href="/jobs/ad/{{ bookmark.content.master.id }}">{{ bookmark.content.title }}</a></h4>
+                {% elif bookmark.content.content_type == 'JOB' and bookmark.content.make_inactive_time|datetime_is_past %}
+                  <h4>{{ bookmark.content.title }} - Expired</h4>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="read-more-link">
+              <a href="/myapa/bookmarks/">View all</a>
+            </div>
+            {% else %}
+              <i>You currently have no bookmarked pages</i>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">Events</h2>
+          <div class="accordion-content">
+            <p>
+              Find or share events you're registered for.
+            </p>
+            {% if events %}
+            <div class="list-of-links list-of-links-small">
+            {% for event in events %}
+
+              <h6 class="h-flush">{{ event.begin_time|date:"SHORT_DATE_FORMAT" }} - {{ event.end_time|date:"SHORT_DATE_FORMAT" }}</h6>
+              {% if event.event_type == "EVENT_SINGLE" %}
+              <h4><a href="/events/eventsingle/{{ event.master_id }}">{{ event.title }}</a></h4>
+              {% elif event.event_type == "EVENT_MULTI" %}
+              <h4><a href="/events/eventmulti/{{ event.master_id }}">{{ event.title }}</a></h4>
+              {% endif %}
+
+              <p>
+                {% if event.cm_approved and event.cm_approved > 0 and event.event_type != "EVENT_MULTI" %}
+                <span class="cm">CM | </span><span class="cmpoints">{{ event.cm_approved }}</span>
+                {% endif %}
+              </p>
+
+            {% endfor %}
+            </div>
+            {% endif %}
+            <div class="read-more-link">
+              <a href="/myapa/events/">View all</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="directory-page-grid-item">
+          <div class="accordion">
+            <h2 class="accordion-handle">Downloads</h2>
+            <div class="accordion-content">
+              <p>Access e-books, reports and publications you've purchased.</p>
+              {% if downloads %}
+              {% for purchase in downloads %}
+                <div class="row">
+                  <div class="col-xs-3 education-image">
+                    <img src="https://planning-org-uploaded-media.s3.amazonaws.com:443/{{purchase.product.content.thumbnail}}" class="img-responsive">
+                  </div>
+                  <div class="col-xs-9">
+                    <h4>{{ purchase.product.content.title }}</h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-9 col-sm-offset-3">
+                  {% if purchase.product.product_type == "EBOOK" %}
+                    <a href="/publications/book/{{ purchase.product.content.master.id }}/" type="submit" class="btn btn-sm btn-primary btn-full" value="">Download</a>
+                  {% elif purchase.product.product_type == "DIGITAL_PUBLICATION" %}
+                    <!-- TO DO... need to create/verify this link -->
+                    {% if purchase.product.content.resource_type == "REPORT" %}
+                      <a href="/publications/report/{{ purchase.product.content.master.id }}/" type="submit" class="btn btn-sm btn-primary btn-full" value="">Download</a>
+                    {% else %}
+                      <a href="/publications/document/{{ purchase.product.content.master.id }}/" type="submit" class="btn btn-sm btn-primary btn-full" value="">Download</a>
+                    {% endif %}
+                  {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+              <div class="read-more-link">
+                <a href="/myapa/orderhistory/">View all</a>
+              </div>
+              {% else %}
+              <p><i>No downloads available</i></p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+
+      <div class="directory-page-grid-item">
+        <div class="accordion">
+          <h2 class="accordion-handle">APA Learn Courses</h2>
+          <div class="accordion-content">
+            <p>Access courses you have purchased.</p>
+
+            {% comment %}
+            {% if membership.has_current_npc_webgroup %}
+              <p>All recorded {{ membership.npc_short_name }} sessions are now available! You have free, unlimited access to these sessions through {{ one_year_post_current_npc_course_launch|date:"m/d/Y" }}. <a href="https://{{ LEARN_DOMAIN }}/course/view.php?{{membership.current_digital_product_url_id}}">See the complete list.</a></p>
+            {% endif %}
+
+
+            {% if membership.has_previous_npc_webgroup %}
+              <p>Don’t miss out – your free access to all recorded {{ membership.previous_npc_short_name }} sessions is only available through 11:59 p.m. on {{ apa_learn_one_year_post_launch|date:"F d, Y" }}. <a href="https://{{ LEARN_DOMAIN }}/course/view.php?{{membership.previous_digital_product_url_id}}">See the complete list.</a></p>
+            {% endif %}
+            {% endcomment %}
+
+            {% if learn %}
+              {% for purchase in learn %}
+                <div class="row">
+                  <div class="col-xs-9">
+                    <h4>{{ purchase.product.content.title }}</h4>
+                  </div>
+                  <div class="col-xs-9">
+                    {% if purchase.product.content.event.digital_product_url %}
+                    <a href="{{ purchase.product.content.event.digital_product_url }}" type="submit" class="btn btn-sm btn-full btn-primary" value="">Open</a>
+                    {% else %}
+                    <a href="https://{{ LEARN_DOMAIN }}/local/catalog/view/product.php?globalid={{ purchase.product.code }}" type="submit" class="btn btn-sm btn-full btn-primary" value="">Open</a>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            <div class="read-more-link">
+                <a href="https://{{ LEARN_DOMAIN }}/my/">View all</a>
+            </div>
+            {% else %}
+            <p><em>Peruse the <a href="https://{{ LEARN_DOMAIN }}/catalog/">APA Learn Course Catalog</a> to find top-quality online education on a broad array of planning topics.</em></p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endlocaltime %}
+
+{% endblock %}
+

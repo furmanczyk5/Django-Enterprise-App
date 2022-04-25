@@ -1,0 +1,116 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+{% block content_main %}
+
+<div class="page-head">
+  <p>
+    <a class="btn btn-default" href="{% url 'myorg' %}">Back to My Organization</a>
+  </p>
+  <h1 class="page-title">My Organization: Addresses</h1>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <div class="form-head">
+      <h2>Address Information</h2>
+      <p>This is where you can edit your organization's primary and secondary address information.</p>
+    </div>
+
+    <form method="post" class="planning-form">
+
+      {% csrf_token %}
+      
+      {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+      {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field }}
+      {% endfor %}
+
+      {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=form.billing_preferences %}
+      {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=form.mailing_preferences %}
+
+      <div class="form-section form-section-enclosed-dark">
+
+        <div class="form-section form-section-limit-width">
+          <h3 class="form-section-title">Primary Address</h3>
+          
+          {% block join_addresses_description %}{% endblock %}
+          {% comment %}
+          {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.home_preferred_bill %}
+          {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.home_preferred_mail %}
+          {% endcomment %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address1 %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address2 %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.zip_code %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.company %}
+        </div>
+      </div>
+
+        <div class="form-actions">
+          <a type="button" id="additional_address_button" href="javascript:;">
+            + Add Additional Address
+          </a>
+        </div>
+
+      <div id="additional_fields" class="form-section form-section-enclosed-dark hidden">
+        <div class="form-section form-section-limit-width">
+          <h3>Secondary Address</h3>
+
+          {% if view.organization.user.username and form.additional_user_address_num.value %}
+          <a class="btn btn-danger" href="{% url 'additional_address_del'%}?org_id={{view.organization.user.username}}&address_num={{form.additional_user_address_num.value}}">Delete</a>
+
+          {% elif form.additional_user_address_num.value %}
+          <a class="btn btn-danger" href="{% url 'additional_address_del'%}?address_num={{form.additional_user_address_num.value}}">Delete</a>
+          {% endif %}
+
+          {% comment %}
+          {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.work_preferred_bill %}
+          {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.work_preferred_mail %}
+          {% endcomment %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_address1 %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_address2 %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_country %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_state %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_city %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_zip_code %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_company %}
+
+         
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <div class="btn-toolbar">
+          <input type="submit" name="address_button" class="btn btn-primary" value="Save">
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+<script>
+
+function showAdditionalAddressFields() {
+  $("#additional_address_button").addClass("hidden");
+  $('#additional_fields').removeClass('hidden');
+}
+
+$(function(){
+    $("#additional_address_button").on("click", showAdditionalAddressFields);
+    var additional_address1_value = $("[name='additional_address1']").val();
+    if(additional_address1_value) {
+        showAdditionalAddressFields();
+    }
+});
+
+</script>
+{% endblock %}

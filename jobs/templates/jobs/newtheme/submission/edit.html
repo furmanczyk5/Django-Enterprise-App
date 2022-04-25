@@ -1,0 +1,134 @@
+{% extends "submissions/newtheme/forms/edit.html" %}
+
+
+{% load static %}
+
+
+{% block submission_description %}
+  <p>Employer,<br>
+		Thank you for posting a job in APA’s Jobs Online.
+    You will have the opportunity to review and edit your ad before and after it is posted.
+    The job will be posted once you've verified the entry and completed payment(if necessary).
+    If you are having any trouble with your ad after it is published, please contact customer service through our
+    <a href="/customerservice/contact-us/JOBS/">customer service form</a> or call 312-431-9100.
+	</p>
+<p>{{ content_messages.JOBS_POST_INSTRUCTIONS.text|safe }}</p>
+
+
+{% endblock %}
+
+    {% block form_fields %}
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">General Information</h3>
+        <div class="help-block">All fields are required unless labeled as optional</div>
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.title %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.editorial_comments %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.company %}
+
+        {% include "submissions/newtheme/includes/location-fields.html" with form=form %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.salary_range %}
+
+        <div class="form-group">
+          {% include "submissions/newtheme/includes/tag-fields.html" with form=form %}
+        </div>
+      </div>
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Job Description</h3>
+        <p>Maximum 1,000 words. Include the application deadline, if applicable. Please verify grammar, spelling, accuracy, and completeness. APA is not responsible for errors in employer-submitted content.</p>
+        <div class="form-group">
+            <div class="form-group{%if form.text.errors %} has-error {% endif %}">
+                {{ form.text }}
+              {% if form.text.errors %}
+              <div class="form-error">
+                {% for error in form.text.errors %}
+                <p class="form-error-server">{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+        </div>
+
+      </div>
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Contact Information</h3>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+                {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.display_contact_info %}
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group{%if form.contact_us_first_name.errors %} has-error {% endif %}">
+                  <label for="{{ form.contact_us_first_name.id_for_label }}">{{ form.contact_us_first_name.label }}:</label>
+                  {{ form.contact_us_first_name }}
+                  {% if form.contact_us_first_name.help_text %}
+                  <div class="help-block">{{ form.contact_us_first_name.help_text|safe }}</div>
+                  {% endif %}
+                  {% if form.contact_us_first_name.errors %}
+                  <div class="form-error">
+                    {% for error in form.contact_us_first_name.errors %}
+                    <p class="form-error-server">{{ error|escape }}</p>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group{%if form.contact_us_last_name.errors %} has-error {% endif %}">
+                      <label for="{{ form.contact_us_last_name.id_for_label }}">{{ form.contact_us_last_name.label }}:</label>
+                      {{ form.contact_us_last_name }}
+                      {% if form.contact_us_last_name.help_text %}
+                      <div class="help-block">{{ form.contact_us_last_name.help_text|safe }}</div>
+                      {% endif %}
+                      {% if form.contact_us_last_name.errors %}
+                      <div class="form-error">
+                        {% for error in form.contact_us_last_name.errors %}
+                        <p class="form-error-server">{{ error|escape }}</p>
+                        {% endfor %}
+                      </div>
+                      {% endif %}
+                </div>
+            </div>
+            </div>
+        </div>
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_us_address1 %}
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_us_address2 %}
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-4">
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_us_country %}
+            </div>
+            <div class="col-sm-4">
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_us_state %}
+            </div>
+            <div class="col-sm-4">
+              {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_us_city %}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group"><div class="row"><div class="col-sm-12">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_us_zip_code %}
+        </div></div></div>
+        <div class="form-group"><div class="row"><div class="col-sm-12">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_us_email %}
+        </div></div></div>
+        <div class="form-group"><div class="row"><div class="col-sm-12">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.contact_us_phone %}
+        </div></div></div>
+        <div class="form-group"><div class="row"><div class="col-sm-12">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.resource_url %}
+        </div></div></div>
+
+      </div>
+
+{% endblock %}

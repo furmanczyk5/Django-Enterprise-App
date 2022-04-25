@@ -1,0 +1,37 @@
+---
+
+# Django model admin permissions for the staff-wagtail-admin group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "081605"  # Ralph Jassen
+  - "123377"  # Mike Welch
+  - "360575"  # Brandon Robinson
+
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+  - componentsites_buildsettings
+  - componentsites_socialmediasettings
+  - componentsites_appearancesettings
+  - componentsites_providersettings
+  - componentsites_chapterhomepage
+  - componentsites_communitytypetag
+  - componentsites_communitytypetagrelationship
+  - componentsites_componentimage
+  - componentsites_componentrendition
+  - componentsites_divisionhomepage
+  - componentsites_jurisdictiontag
+  - componentsites_jurisdictiontagrelationship
+  - componentsites_landingpage
+  - componentsites_newspage
+  - componentsites_sitesetting
+  - componentsites_sitesettings
+  - componentsites_standardpage
+  - componentsites_topictag
+  - componentsites_topictagrelationship
+  - jobs_job
+  - jobs_wagtailjob

@@ -1,0 +1,108 @@
+{% load tz %}
+
+{% load cm_tags %}
+
+<li class="search-result">
+  <div class="row">
+    <div class="col-md-6 col-lg-7 dashboard-events-result-col">
+
+      {% if claim.title %}
+      <h4 class="search-result-title">
+        {{ claim.title }}
+      </h4>
+      {% endif %}
+
+      {% if claim.event or claim.self_reported %}
+        <p class="small">
+        {% localtime off %}
+          {% ifequal claim.begin_time|date:"SHORT_DATE_FORMAT" claim.end_time|date:"SHORT_DATE_FORMAT"%}
+            {{claim.begin_time_astimezone|date:"l, F j, Y"}}
+            {{ claim.begin_time_astimezone|date:"P" }} - {{ claim.end_time_astimezone|date:"P e" }}
+          {% else %}
+            {{claim.begin_time_astimezone|date:"l, F j, Y, P"}} - {{claim.end_time_astimezone|date:"l, F j, Y, P e"}}
+          {% endifequal %}
+        {% endlocaltime %}
+        </p>
+      {% endif %}
+    </div>
+    <div class="col-md-3 dashboard-events-result-col">
+      {% if claim.event and claim.comment.rating %}
+      {% star_rating claim.comment.rating %}
+      {% endif %}
+    </div>
+    <div class="col-md-3 col-lg-2 dashboard-events-result-col">
+      <div class="dashboard-events-result-cm">
+
+        {% if claim.event.master.id %}
+        <span class="small">#{{claim.event.master.id}}</span>
+        {% endif %}
+
+        <div class="cm-credits-stacked">
+        {% if claim.credits != 0 %}
+          <div>
+            <span class="cm">CM | </span><span class="cmpoints">{{claim.credits|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        {% if claim.law_credits > 0 %}
+          <div>
+            <span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{claim.law_credits|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        {% if claim.ethics_credits > 0 %}
+          <div>
+            <span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{claim.ethics_credits|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        <!-- FLAGGED FOR REFACTORING: CM CREDITS DISPLAY -->
+        {% if claim.equity_credits > 0 %}
+          <div>
+            <span class="cmlawethics">Eq</span><span class="cmpoints"><span class="cm"> | </span>{{claim.equity_credits|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        {% if claim.targeted_credits > 0 %}
+          <div>
+            <span class="cmlawethics">SR</span><span class="cmpoints"><span class="cm"> | </span>{{claim.targeted_credits|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        </div>
+
+        <div>
+        {% if claim.is_speaker %}
+          <p class="small"><em>Speaker</em></p>
+        {% endif %}
+        {% if claim.is_author %}
+          <p class="small"><em>Author</em></p>
+        {% endif %}
+        {% if claim.self_reported %}
+          <p class="small"><em>Self Reported</em></p>
+        {% endif %}
+        {% if claim.is_pro_bono %}
+          <p class="small"><em>Pro-Bono</em></p>
+        {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {% if claim.log.is_current and not claim.is_carryover %}
+  <div class="row dashboard-events-controls">
+    <div class="col-xs-12">
+        {% if claim.self_reported == True %}
+        <a class="btn btn-sm btn-icon btn-dashboard-events" href="/cm/log/claim/selfreport/{{ claim.id }}/">
+        {% elif claim.is_author == True %}
+        <a class="btn btn-sm btn-icon btn-dashboard-events" href="/cm/log/claim/author/{{ claim.id }}/">
+        {% else %}
+        <a class="btn btn-sm btn-icon btn-dashboard-events" href="/cm/log/claim/event/{{ claim.event.master.id }}/">
+        {% endif %}
+        Edit
+        <span class="icon-apa-edit"></span>
+        </a>
+        <a class="btn btn-sm btn-icon btn-dashboard-events" href="/cm/log/claim/delete/{{ claim.id }}/">
+          Delete
+          <span class="icon-apa-close"></span>
+        </a>
+    </div>
+  </div>
+  {% endif %}
+</li>

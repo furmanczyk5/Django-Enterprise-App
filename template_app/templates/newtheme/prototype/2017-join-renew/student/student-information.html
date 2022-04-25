@@ -1,0 +1,101 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+
+  <div class="page-head">
+    <h1 class="page-title">APA Student Membership</h1>
+  </div>
+
+<div class="layout-tracery no-bottom-border">
+  <div class="layout-column">
+    <div class="form-head">
+      <h2>Current School Information</h2>
+      <p></p>
+    </div>
+
+    <form method="post" class="planning-form">
+
+      {% csrf_token %}
+
+      {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+      <div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">Verify Student Status</h3>
+
+        {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.verify %}
+
+        <p>OR</p>
+
+        <p>I am not a current student, but I would like to <a href="/join/account">join now as a regular member</a></p>
+
+      </div>
+
+      <div class="form-section form-section-enclosed-light">
+        <h3 class="form-section-title">School Information</h3>
+
+        <div class="form-section-limit-width form-group">
+          {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.school %}
+          <div id="schoolOther" class="form-group" style="display:none">
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.other_school %}
+          </div>
+
+          {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.degree_type_choice %}
+          <div id="degreetypeOther" class="form-group" style="display:none">
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.degree_type_other %}
+          </div>
+
+          {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.degree_level_choice %}
+          <div id="degreelevelOther" class="form-group" style="display:none">
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.degree_level_other %}
+          </div>
+        </div>
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.expected_graduation_date %}
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Continue</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script>
+$(function(){
+
+  function getSelectShowOtherCallback(input_selector, target_selector){
+    var $input = $(input_selector);
+    var $target = $(target_selector);
+    function selectShowOtherCallback(event) {
+      if( $input.val() == "OTHER" ){
+        $target.slideDown();
+      }else{
+        $target.slideUp();
+      }
+    }
+    return selectShowOtherCallback
+  }
+
+  var schoolSelector = "select[name='school']";
+  var degreetypeSelector = "select[name='degree_type_choice']";
+  var degreelevelSelector = "select[name='degree_level_choice']";
+
+  var selectSchoolCallback = getSelectShowOtherCallback(schoolSelector, "#schoolOther");
+  var selectDegreetypeCallback = getSelectShowOtherCallback(degreetypeSelector, "#degreetypeOther");
+  var selectDegreeLevelCallback = getSelectShowOtherCallback(degreelevelSelector, "#degreelevelOther");
+
+  selectSchoolCallback();
+  selectDegreetypeCallback();
+  selectDegreeLevelCallback();
+
+  $(schoolSelector).on("change", selectSchoolCallback);
+  $(degreetypeSelector).on("change", selectDegreetypeCallback);
+  $(degreelevelSelector).on("change", selectDegreeLevelCallback);
+
+});
+</script>
+{% endblock %}

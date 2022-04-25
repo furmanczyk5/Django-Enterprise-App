@@ -1,0 +1,41 @@
+{% load content_extras %}
+{% with result|solr_record_to_details_path_filter as post_url %}
+{% with "http://planning.org"|add:post_url as social_post_url %}
+{% with resource_published_date=result.resource_published_date|datetime_from_json %}
+{% with begin_time=result.begin_time|datetime_from_json %}
+<li class="content-preview-item">
+    {% if result.featured_image %}
+    <a href="{{ post_url }}" class="content-preview-item-image-block">
+        <img src="{{result.featured_image}}" />
+    </a>
+    {% endif %}    
+    {% if resource_published_date %}
+    <h6 class="content-preview-item-superheadline">{{ resource_published_date|date:"F j, Y" }}</h6>
+    {% elif begin_time %}
+    <h6 class="content-preview-item-superheadline">{{ begin_time|date:"F j, Y" }}</h6>
+    {% endif %}
+    <h4 class="content-preview-item-headline"><a href="{{ post_url }}">{{ result.title }}</a></h4>
+    <div class="content-preview-item-summary">
+        {{ result.description }}
+    </div>
+    <div class="content-preview-item-social">
+        <div class="row">
+            <div class="col-sm-6">
+                {% include "newtheme/templates/includes/social-sharing-widget.html" with url=social_post_url title=result.title %}
+            </div>
+            {# {% if request.contact %} #}
+            {# <div class="col-sm-6"> #}
+            {# {% include "newtheme/templates/includes/myapa-bookmark-widget.html" with content_id=result.id|split_on_period:1 bookmarked=false hide_all_bookmarks='true'%} #}
+            {# </div> #}
+            {# {% endif %} #}
+        </div>
+
+    </div>
+    <div class="content-preview-item-subheadline">
+        <div class="read-more-link"><a href="{{post_url}}/">Read More</a></div>
+    </div>
+</li>
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}

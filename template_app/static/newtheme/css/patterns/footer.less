@@ -1,0 +1,173 @@
+.footer {
+  font-size: 14px;
+  font-family: @font-family-base;
+
+  width: 100%;
+
+  background-color: @color-bg-gray;
+  //maybe move below somewhere smarter
+  .icon-APA-box-logo {
+    font-size: 72px;
+    color: #005595;
+  }
+
+}
+.footer-social-container {
+  margin: 0 -15px;
+  background-color: @color-limeade;
+}
+.footer-social-wrap {
+
+  color: #fff;
+}
+
+.footer-nav-page {
+  //APA logo icon, back to top link
+  margin-top: @grid-gutter-width / 2;
+  margin-bottom: @grid-gutter-width / 2;
+}
+
+.footer-nav-core {
+  //login, contact...conditions
+  padding: 0;
+
+  li {
+    margin: @grid-gutter-width / 6 0;
+    padding: 0;
+    display: inline-block;
+  }
+
+  a {
+    padding: @grid-gutter-width / 6 @grid-gutter-width / 2;
+  }
+
+}
+.footer-nav-sitemap-section {
+  ul {
+    padding: 0;
+
+    li {
+      list-style: none;
+
+      a {
+        padding: 4px 0;
+        display: inline-block;
+        line-height: 1.25
+      }
+
+    }
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+.footer-copy {
+  margin-top: @grid-gutter-width / 2;
+  margin-bottom: @grid-gutter-width / 2;
+
+  font-size: @font-size-small;
+
+}
+
+@media screen and (min-width: @screen-sm-min) {
+
+  .footer-social-wrap {
+    padding-right: @grid-gutter-width / 2;
+    padding-bottom: 6px;
+    text-align: right;
+  }
+
+  .footer-social-label {
+    padding-right: 20px;
+    border-right: solid rgba(255,255,255,0.3) 1px;
+    display: inline-block;
+
+    font-size: 20px;
+  }
+
+  .footer-nav-sitemap-core-wrap {
+    margin-top: 10px;
+  }
+
+  .footer-nav-sitemap-section {
+    position: relative;
+    margin-top: @grid-gutter-width;
+    padding-right: @grid-gutter-width / 2;
+    min-height: 1px;
+    width: 33.33333333%;
+    //turn this into a 3 column with similar heights
+    &:nth-child(3n + 1) {
+      clear: left;
+    }
+
+  }
+
+  .footer-nav-core {
+    margin-top: 21px;
+    margin-bottom: 20px;
+
+    font-size: @font-size-large;
+  }
+
+  .footer-locations {
+
+    h5 {
+      text-transform: uppercase;
+    }
+
+    p {
+      font-family: @font-family-sans-serif;
+    }
+
+  }
+
+}
+
+@media screen and (min-width: @screen-md-min) {
+
+  .footer-social-wrap {
+    padding-right: 0;
+  }
+
+  .footer-nav-sitemap-section {
+    width: 20%;
+    //turn this into a 5 column with similar heights, reset the old nth child clears
+    &:nth-child(1n+0) {
+      clear: none;
+    }
+
+    &:nth-child(5n + 1) {
+      clear: left;
+    }
+  }
+
+  .footer-nav-core {
+    margin-top: @grid-gutter-width;
+    margin-bottom: 20px;
+
+  }
+
+}
+
+@media screen and (min-width: @screen-lg-min) {
+
+  .footer {
+    padding: 0;
+  }
+  .footer-social-wrap,
+  .footer-nav-sitemap-core-wrap,
+  .footer-copy {
+    margin-right: auto;
+    margin-left: auto;
+    width: @container-lg;
+  }
+  .footer-social-container {
+    margin: 0;
+  }
+  .footer-nav-sitemap,
+  .footer-copy {
+    padding: 0 @grid-gutter-width;
+  }
+}

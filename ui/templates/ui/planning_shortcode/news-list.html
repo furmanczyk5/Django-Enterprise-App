@@ -1,0 +1,22 @@
+{% load content_extras %}
+
+<div class="content-preview-list no-top-spacing no-top-border no-bottom-border">
+  <ul>
+    {% for story in news %}
+    <li class="content-preview-item">
+      <h6 class="content-preview-item-superheadline">{{ story.arrival_time }} | {{ story.pubsource }}</h6>
+      <h4 class="content-preview-item-headline">
+        {% if story.source_type == "Premium" %}
+        <span class="members-only">Members Only</span>
+        {% endif %}
+        <a href="/news/daily/story/{{story.story_id}}/{{story.source_type}}/">
+          {{ story.headline }}
+        </a>
+      </h4>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="read-more-link">
+  <a href="/news/{{cat}}/">View More {% if cat == 'daily' %}Planning{% else %}{{cat|title}}{% endif %} News</a>
+</div>

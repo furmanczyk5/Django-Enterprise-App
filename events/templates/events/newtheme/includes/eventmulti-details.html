@@ -1,0 +1,81 @@
+{% extends "events/newtheme/includes/event-details.html" %}
+
+{% load content_extras %}
+{% load tz %}
+
+{% block events_multi %}
+{% with event=content %}
+
+<h3>Activities</h3>
+<div class="content-preview-list layout-tracery no-bottom-border">
+	<ul>
+	{% for activity in event.master.activities %}
+		<li class="content-preview-item">
+		  <div class="row">
+		    <div class="col-sm-9">
+
+		      <h4 class="content-preview-item-headline">
+		      	<a href='/events/activity/{{activity.master_id}}/'>
+		      		{{ activity.title }}
+		      	</a>
+		      </h4>
+
+		      {% if activity.provider_roles %} d
+		      <div class="content-preview-item-subheadline">
+		        {{activity.provider_roles.0.contact.title }}
+		      </div>
+		      {% endif %}
+
+		      {% if activity.description %}
+		      <div class="content-preview-item-summary">{{activity.description}}</div>
+		      {% endif %}
+
+	        {% if activity.begin_time and activity.end_time %}
+	        <div class="content-preview-item-summary">
+	        	{% localtime off %}
+	        	{% ifequal activity.begin_time|date:"SHORT_DATE_FORMAT" activity.end_time|date:"SHORT_DATE_FORMAT"%}
+				<span>{{activity.begin_time_astimezone|date:"l, F j, Y"}}</span><br/>
+				<span>
+					{{ activity.begin_time_astimezone|date:"P" }} - {{ activity.end_time_astimezone|date:"P e" }}
+				</span>
+				{% else %}
+				<span>
+					{{activity.begin_time_astimezone|date:"l, F j, Y, P"}} - {{activity.end_time_astimezone|date:"l, F j, Y, P e"}}
+				</span>
+				{% endifequal %}
+				{% endlocaltime %}
+	        </div>
+	        {% endif %}
+
+	        <ul class="content-preview-item-speaker-list">
+	        	{% for speaker_role in activity.speaker_roles %}
+	        	<li>
+					{% if speaker_role.contact %}
+						<span><a href="/search/?speakers={{speaker_role.contact_id}}">{{speaker_role.contact.title}}</a></span>
+					{% else %}
+						<span>{{speaker_role.first_name}} {{speaker_role.last_name}}</span>
+					{% endif %}
+	          	</li>
+	          	{% endfor %}
+	        </ul>
+
+		    </div>
+
+		    <div class="col-sm-3">
+		      <div class="content-preview-item-cm-info">
+		        <span>#{{activity.master_id}}</span>
+		        <span>
+		        {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=activity %}
+		        </span>
+		      </div>
+		    </div>
+
+		  </div>
+
+		</li>
+	{% endfor %}
+	</ul>
+</div>
+
+{% endwith %}
+{% endblock %}

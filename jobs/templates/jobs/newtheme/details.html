@@ -1,0 +1,176 @@
+{% extends "pages/newtheme/default.html" %}
+
+{% load content_extras %}
+{% block content_main %}
+{% block submission_review_display %}
+
+{% if ancestors %}
+  <ol class="breadcrumb">
+    {% for ancestor in ancestors %}
+    <li><a href="{{ancestor.url}}">{{ancestor}}</a></li>
+    {% endfor %}
+  </ol>
+{% endif %}
+
+{% if not request.detect_mobile_app.is_mobileapp %}
+<div class="page-head page-head-conference no-border-bottom little-spacing-bottom">
+	<div class="page-head-social-sharing">
+
+	{% include "newtheme/templates/includes/social-sharing-widget.html" %}
+	{% if request.contact %}
+	{% include "newtheme/templates/includes/myapa-bookmark-widget.html" with content_id=content.master.id bookmarked=bookmarked %}
+	{% endif %}
+	</div>
+</div>
+{% endif %}
+
+<div>
+	<a class="small right btn btn-sm btn-default" href="/employers/">Employer? Post a Job Now</a>
+</div>
+
+<h2 class="details-title">{{content.title}}</h2>
+<h3 class="details-subtitle">{{content.company}}</h3>
+
+<p>
+	{% if content.city %}<span>{{content.city}},</span>{% endif %}
+    {% if content.state %}<span>{{content.state}}</span>{% endif %}
+    {% if content.country %}<span>{{content.country}}</span>{% endif %}
+</p>
+
+
+<div class="content-managed-html">
+    {{ content.text|safe }}
+	</div>
+
+{% endblock submission_review_display %}
+
+
+{% block submission_review_form %}
+    <div class="form-section form-section-enclosed-light">
+	
+	<div class="layout-tracery">
+		<div class="layout-column">
+			<div class="admin-list">
+			<div class="row hidden-xs hidden-sm">
+				<div class="col-md-3">
+					<h3>Experience Level</h3>
+				</div>
+				<div class="col-md-2">
+					<h3>AICP Level </h3>
+				</div>
+				<div class="col-md-4">
+					<h3>Specialty</h3>
+				</div>
+				<div class="col-md-3">
+					<h3>Salary Range</h3>
+				</div>
+			</div>
+			<div class="admin-list-group-wrap">
+			<div class="col-md-3 admin-list-group">
+				<div class="h3 h-flush visible-xs-block visible-sm-block">
+					Experience Level
+				</div>
+				{% if job_experience_level %} 
+					<span>{{ job_experience_level }}</span> 
+				{% else %} 
+					-- 
+				{% endif %}
+			</div>
+			<div class="col-md-2 admin-list-group">
+				<div class="h3 h-flush visible-xs-block visible-sm-block">
+					AICP Level
+				</div>
+				{% if job_aicp_level %}
+					<span>{{ job_aicp_level }}</span> 
+				{% else %} 
+					-- 
+				{% endif %}
+			</div>
+			<div class="col-md-4 admin-list-group">
+				<div class="h3 h-flush visible-xs-block visible-sm-block">
+					Specialty
+				</div>
+				{% if job_category %}
+					{{ job_category }}
+				{% else %}
+					--
+				{% endif %}
+			</div>
+			<div class="col-md-3 admin-list-group">
+				<div class="h3 h-flush visible-xs-block visible-sm-block">
+					Salary Range
+				</div>
+				{% if content.salary_range %}
+					{{ content.salary_range }}
+				{% else %}
+					--
+				{% endif %}
+			</div>
+
+		    </div> <!-- admin list group wrap -->
+		    </div> <!-- admin list -->
+	 	</div> <!-- layout column -->
+	 </div> <!-- layout tracery -->
+	</div>
+
+    {% if content.display_contact_info %}
+	    <div class="form-section form-section-enclosed-light">
+
+	        <h3 class="section-title">Contact Information</h3>
+	        	<div>
+	        	{% if content.contact_us_first_name %}{{content.contact_us_first_name }} {% endif %}
+		        {% if content.contact_us_first_name %}{{content.contact_us_last_name }}{% endif %}
+			    </div>
+
+			{% if content.contact_us_address1 %}
+			<h5> Address</h5>
+				<div>{{content.contact_us_address1}}</div>
+			{% endif %}
+			{% if content.contact_us_address2 %}
+				<div>{{content.contact_us_address2}}</div>
+			{% endif %}
+			{% if content.contact_us_state and content.contact_us_city%}
+				<div>{{content.contact_us_city}}, {{content.contact_us_state}}</div>
+			{% elif content.contact_us_state %}
+        <div>{{content.contact_us_state}}</div>
+			{% endif %}
+			{% if content.contact_us_zip_code %}
+				<div>{{content.contact_us_zip_code}}</div>
+			{% endif %}
+			{% if content.contact_us_country %}
+				<div>{{content.contact_us_country}}</div>
+			{% endif %}
+
+			{% if content.resource_url %}
+				<h5> Resource URL </h5>
+				<div>
+					<a href="{{content.resource_url}}" target="_blank">{{content.resource_url}}</a>
+				</div>
+			{% endif %}
+
+			{% if content.contact_us_email %}
+				<h5> Email </h5>
+
+				{% if content.contact_us_email %}
+					<div><a href="mailto:{{content.contact_us_email}}" target="_top">{{content.contact_us_email}}</a></div>
+				{% endif %}
+				
+			{% endif %}
+
+			{% if content.contact_us_phone %}
+				<h5> Phone </h5>
+
+
+				{% if content.contact_us_phone %}
+					<div>{{content.contact_us_phone}}</div>
+				{% endif %}
+
+	    	{% endif %}		
+	    </div>
+    {% endif %}
+
+{% endblock submission_review_form %}<!-- submission_review_info block-->
+
+{% block cm_verification %}{% endblock %}
+
+{% endblock content_main %}

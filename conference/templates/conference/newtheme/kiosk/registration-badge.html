@@ -1,0 +1,110 @@
+<div class="container">
+  {% extends "registrations/newtheme/registration-badge.html" %}
+
+{% load tz %}
+{% load compress %}
+{% load static %}
+{% load badge_tags %}
+
+{% block address_fields %}{% endblock %}
+
+{% block content_main %}
+<style>
+	label {
+		zoom:1.4;
+	}
+	.iradio {
+		zoom:2;
+		margin-bottom:0.4em;
+	}
+</style>
+
+<div class="layout-tracery">
+	<div class="layout-column">
+	<h1>{{ event.title }}</h1>
+
+		<p>
+			{% localtime off %}
+			{% ifequal event.begin_time|date:"SHORT_DATE_FORMAT" event.end_time|date:"SHORT_DATE_FORMAT"%}
+		      <span>{{event.begin_time_astimezone|date:"l, F j, Y"}}</span><br/>
+		      <span>
+		        {{ event.begin_time_astimezone|date:"P" }} - {{ event.end_time_astimezone|date:"P e" }}
+		      </span>
+		      {% else %}
+		      <span>
+		        {{event.begin_time_astimezone|date:"l, F j, P"}} - {{event.end_time_astimezone|date:"l, F j, Y, P e"}}
+		      </span>
+		    {% endifequal %}
+		    {# {{ event.begin_time_astimezone|date:"F jS" }} - {{ event.end_time_astimezone|date:"F jS, Y" }} #}
+		    {% endlocaltime %}
+		</p>
+
+		<hr/>
+
+		<form method="post" id="confirm_badge_form">
+			{% csrf_token %}
+
+			{% block badge_fields %}
+			<div class="row form-group">
+				<div class="col-xsm-10 col-sm-8 col-md-6">
+					<h2 style="margin-bottom: 0px">Badge Details</h2>
+          <h4 style="margin-bottom: 28px">The information below will display on your badge.</h4>
+
+					<div class="form-group">
+						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.badge_name %}
+					</div>
+          <div class="form-group">
+						<div class="form-group">
+
+              <label>Full Name:</label>
+
+              <input type="text" readonly placeholder="{{badge|get_full_name}}" class="form-control " />
+            </div>
+					</div>
+
+					<div class="form-group">
+						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.badge_company %}
+					</div>
+					<div class="form-group">
+						{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.badge_location %}
+					</div>
+				</div>
+
+        <div class="col-xsm-2 col-sm-4 col-md-6"></div>
+			</div>
+			{% endblock %}
+      {% block form_submit_button %}
+{% if event.event_type == "EVENT_MULTI"%}
+	<div class="row">
+		<div class="col-lg-9">
+			<div class="layout-tracery no-top-border no-bottom-border no-bottom-spacing no-side-spacing">
+				<div class="layout-column">
+					<p>
+						<button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="and_add_activities">Add Ticketed Activities Before Checkout</button>
+            <button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="just_register">Check Out</button>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% else %}
+	<div class="layout-tracery no-top-border no-bottom-border no-bottom-spacing no-side-spacing">
+		<div class="layout-column">
+			<p>
+				<button type="submit" name="submit_button" class="btn btn-primary btn-lg" value="just_register">{{ confirm_badge_text|default:"Submit" }}</button>
+			</p>
+		</div>
+	</div>
+{% endif %}
+
+{% endblock %}
+
+		</form>
+
+	</div>
+</div>
+{% endblock %}
+
+
+
+  </div>

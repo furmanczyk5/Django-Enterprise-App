@@ -1,0 +1,54 @@
+{% extends "myapa/newtheme/join/student/enhance-membership.html" %}
+
+{% load static %}
+
+{% block join_title %}Student Membership: Free Divisions{% endblock %}
+
+{% block join_exclude_planning_print %}{% endblock %}
+
+{% block join_planners_advocacy %}{% endblock %}
+
+{% block join_primary_chapter %}{% endblock %}
+
+{% block join_chapters %}{% endblock %}
+
+{% block join_subscriptions %}{% endblock %}
+
+{% block join_divisions %}
+{% if active_division_products %}
+<div class="form-section form-section-enclosed-light">
+	<h2>Your Active Divisions</h2>
+	<p>Here is a list of divisions that you already have</p>
+	<ul>
+	{% for division_product in active_division_products %}
+	<li>
+		{% comment %}
+	 	<!-- <img class="pull-left"  src="{% static 'images/badges/'|add:division_product.code|add:'.png' %}" width="70" height="70"/> -->
+	 	{% endcomment %}
+	 	<span>{{division_product.content.title}}</span>
+	</li>
+	{% endfor %}
+	</ul>
+</div>
+{% endif %}
+<div class="form-section form-section-enclosed-dark">
+	<h3 class="form-section-title">DIVISIONS</h3>
+	<p>With your APA Student Membership you can select up to five free APA divisions. You may add these divisions at any time during your membership, but you may not change or switch divisions until your membership is up for renewal.</p>
+	{% include "myapa/newtheme/join/includes/multiple-checkbox-field.html" with field=form.divisions form=form %}
+</div>
+{% endblock %}
+
+{% block form_submit_button %}
+<div class="form-actions">
+<button class="btn btn-primary" type="submit">Add Divisions</button>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{ block.super }}
+<script>
+  $('#enhance-membership-form').one('submit', function() {
+    $(this).find('button[type="submit"]').attr('disabled', 'disabled');
+  });
+</script>
+{% endblock %}

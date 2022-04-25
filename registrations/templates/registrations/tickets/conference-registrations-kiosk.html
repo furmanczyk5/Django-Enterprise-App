@@ -1,0 +1,22 @@
+{% load staticfiles %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=yes">
+		<title>{% block title %}{{ title }}{% endblock %}</title>
+	</head>
+	<body>
+		<div class="pdf-content sato">
+		{% for attendee in full_attendees %}
+			{% include "registrations/tickets/conference-registration-items.html" %}
+		{% endfor %}
+
+		{% for attendee in ticket_attendees %}
+			{% include "registrations/tickets/conference-ticket-only-items.html" %}
+		{% endfor %}
+		</div>
+	</body>
+</html>

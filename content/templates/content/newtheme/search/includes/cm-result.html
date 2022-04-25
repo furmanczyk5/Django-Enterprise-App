@@ -1,0 +1,87 @@
+{% load content_extras %}
+{% load tz %}
+
+<li class="clearfix">
+  {% if result.thumbnail %}
+  <a href="{{result|solr_record_to_details_path_filter}}" class="search-result search-result-book">
+    <div class="search-result-image">
+      <img src="{{result.thumbnail}}" />
+    </div>
+  </a>
+  {% endif %}
+
+  <div class="search-left">
+
+    <h6 class="search-result-category"> {{result.content_type}} </h6>
+
+    <h4 class="search-result-title"><a href="{{result|solr_record_to_details_path_filter}}" class="search-result">{{result.title}}</a></h4>
+
+    {% if result.subtitle %}
+      {{result.subtitle}}
+    {% endif %}
+
+    {% if result.contact_roles_AUTHOR %}
+    <div class="search-result-meta"><span class="author-name"> by: </span> <a href="" class="author-name">{{result.contact_roles_AUTHOR.0|split_on_line:1 }}</a></div>
+    {% endif %}
+
+    <div class="search-result-description">{{result.description}}</div>
+
+    {% if result.content_type == "EVENT" %}
+      {% if result.begin_time and result.end_time %}
+      {% localtime off %}
+      {% if result.timezone %}
+      <span class="search-result-description"> 
+        {% date_range_with_zone_from_json result.begin_time result.end_time result.timezone %} </span>
+      {% else %}
+      <span class="search-result-description"> {{result.begin_time|date_range_from_json_datetimes:result.end_time}} </span>
+      {% endif %}
+      {% endlocaltime %}
+      {% endif %}
+
+      {% if result.address_city or result.address_state or result.address_country %}
+      <div class="search-location">
+        {{result.address_city}}{%if result.address_state %}, {{ result.address_state }}{% endif %}{% if result.address_country and result.address_country != "United States" %}, {{result.address_country}} {% endif %}
+      </div>
+      {% endif %}
+      {% if result.contact_roles_SPEAKER %}
+      <div class="search-speakers">
+        {% for speaker in result.contact_roles_SPEAKER %}
+        <a href="https://conference.planning.org/conference/program/search/?speakers={{speaker|split_on_line:0}}" class="speaker-name"><span>{{ speaker|split_on_line:1 }}</span>{% if not forloop.last %} | {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if result.contact_roles_ORGANIZER_SPEAKER %}
+      <div class="search-speakers">
+        {% for speaker in result.contact_roles_ORGANIZER_SPEAKER %}
+        <a href="https://conference.planning.org/conference/program/search/?speakers={{speaker|split_on_line:0}}" class="speaker-name"><span>{{ speaker|split_on_line:1 }}</span>{% if not forloop.last %} | {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if result.contact_roles_MODERATOR %}
+      <div class="search-speakers">
+        {% for speaker in result.contact_roles_MODERATOR %}
+        <a href="https://conference.planning.org/conference/program/search/?speakers={{speaker|split_on_line:0}}" class="speaker-name"><span>{{ speaker|split_on_line:1 }}</span>{% if not forloop.last %} | {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if result.contact_roles_ORGANIZER_MODERATOR %}
+      <div class="search-speakers">
+        {% for speaker in result.contact_roles_ORGANIZER_MODERATOR %}
+        <a href="https://conference.planning.org/conference/program/search/?speakers={{speaker|split_on_line:0}}" class="speaker-name"><span>{{ speaker|split_on_line:1 }}</span>{% if not forloop.last %} | {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    {% endif %}
+  </div>
+  <div class="search-right"> 
+    <span class="search-id">#{{result.id|split_on_period:1}}</span>
+    <span class="cm-credits">
+    {% include "cm/newtheme/includes/cm-credits-stacked.html" with event=result %}
+    </span>
+  </div>
+</li>

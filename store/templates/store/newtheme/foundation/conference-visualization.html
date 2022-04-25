@@ -1,0 +1,35 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="//d3js.org/d3.v4.min.js"></script>
+		<script src="{% static 'store/js/donation-visualization.js' %}"></script>
+		{% compress css %}
+		<link type="text/less" rel="stylesheet" href="{% static 'store/css/donation-visualization.less' %}" />
+		{% endcompress %}
+	</head>
+	<body {% if body_class %}class="{{body_class}}"{% endif%}>
+		<div class="foundation-content">
+			<div class="foundation-logo"></div>
+			<div class="foundation-message">
+				<span>We are grateful to the many recent contributors whose generous gifts support the APA Foundation.</span>
+			</div>
+			<div id="donation-data">
+				<div id="donation-count">
+					<span class="label">Donations: </span>
+					<span class="value"></span>
+				</div>
+				<div id="donation-amount">
+					<span class="label">$</span>
+					<span class="value"></span>
+				</div>
+			</div>
+			<div id="donation-donor">
+				<span class="value"></span>
+			</div>
+		</div>
+	</body>
+</html>

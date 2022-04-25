@@ -1,0 +1,104 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load content_extras %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+
+{% block content_main %}
+<div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">Profile Sharing Preferences</h1>
+</div>
+
+<div class="layout-tracery">
+    <div class="layout-column">
+
+        {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+        <div class="form-head">
+          <div class="help-block">All fields are required unless labeled as optional</div>
+        </div>
+        <div class="form-section form-section-enclosed-dark">
+            <h2 class="form-section-title">URL</h2>
+
+
+            <div class="form-group{%if form.slug.errors %} has-error {% endif %}">
+                <label for="id_slug">My URL: </label>
+                <input class="form-control" type="text" id="id_slug" value="{% if form.instance.slug %} {{ form.instance.slug }} {% endif %}" placeholder="johnsmith" />
+                <div class="help-block">
+                    Create a custom URL to help others find your profile. Make your URL easy to remember, use, and share. Tips: The URLs are case sensitive. Use letters and numbers only. You can run words together or link them with a hyphen (-) or underscore (_). Don’t use spaces, slashes, or periods.<br/><br/>
+                    Example: If you enter johnsmith, your URL will be www.planning.org/profile/johnsmith/.<br/><br/>
+                    <a class="btn btn-primary" onclick="urlFunction()">Generate URL</a>
+                </div>
+            </div>
+
+        </div>
+        <br/>
+        <form method="post" id="planning-form" class="planning-form action">
+            {% csrf_token %}
+            <div class="form-section form-section-enclosed-dark">
+                <h2 class="form-section-title">Sharing Preferences</h2>
+
+                {% for field in form %}
+                {% if field.name != "slug" %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=field %}
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+<hr/>
+
+{% endblock %}
+
+
+
+{% block additional_body_js %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#id_share_profile").change(function(){ 
+            var preference = $(this).val()
+            var preference_id = $(this).attr("id")
+            $('#planning-form').find('select').each(function(){
+                if (preference == "PRIVATE" && $(this).attr("id") != preference_id){
+                    $(this).val("PRIVATE")
+                    $(this).attr("disabled", true)
+                }
+                else if (preference != "PRIVATE" && $(this).attr("id") != preference_id){
+                    $(this).attr("disabled", false)
+                }
+            })
+            $('#planning-form').submit(function(){
+                $(this).find('select').each(function(){
+                    $(this).attr("disabled", false)
+                 })
+            })
+        })
+    })
+
+var urlFunction = function(){
+    var url_text = $("#id_slug").val()
+    var slug_regex = /^([A-Za-z0-9-_]+)$/
+    if (slug_regex.test(url_text)){
+            urlFunction = function(){};
+            $.ajax({'url':"{% url 'url_generator'%}","data":"username="+url_text, method:"get", success: function(obj)
+                            {
+                                $("#id_slug").val(obj.url)
+                                $("#id_slug").attr("disabled", true)
+                            }
+                    })
+    }
+    else{
+        alert("My URL field accepts only letters, numbers, underscores or hyphens. Please check your entry and enter accordingly.")
+    }
+};
+
+</script>
+{% endblock %}

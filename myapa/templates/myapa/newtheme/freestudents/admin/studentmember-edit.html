@@ -1,0 +1,502 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load static %}
+{% load content_extras %}
+
+{% block content_main %}
+
+<div class="page-head">
+  <a class="btn btn-sm btn-default back-button" href="{% url 'freestudents_school_admin_dashboard' school_id=school.user.username %}">Back</a>
+  <h1 class="page-title">Free Student Enrollment Form</h1>
+  <h2 class="page-title">School : {{ school.company }}</h2>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+    <p>Enter information from the student’s completed application. All fields are required unless labeled “Optional.”
+      <strong><i>“Save Information and Return Later” is currently unavailable. You may only submit complete student records at this time.</i></strong>
+      <!--<del>At the end, choose either “Upload Enrollment to APA” or “Save Information and Return Later.” -->
+        <!--Note: In order to save, you must enter at least the student’s first and last names, email, and degree info. -->
+        <!--Choosing either button will return you to the enrollment portal.</del>-->
+    </p>
+    <p>Note: Clicking “Back” from this page will return you to the enrollment portal without saving the information you have entered.</p>
+  </div>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+  	<div class="layout-column">
+		<form class="planning-form validate-form" method="post" id="submission_form">
+
+  		{% csrf_token %}
+
+   		{% include "ui/newtheme/forms/includes/multiform-display-errors.html" with forms=forms forms_have_errors=forms_have_errors %}
+
+			{% block form_fields %}
+
+			{% with form=account_form %}
+			<div class="form-section form-section-enclosed-dark">
+        <div class="form-group">
+  				<h3 class="form-section-title" style="margin-bottom:0px">General Information</h3>
+  				<div class="help-block">All fields are required unless labeled as optional</div>
+        </div>
+				<div class="form-group">
+
+						{% for hidden in form.hidden_fields %}
+	          {{hidden}}
+	          {% endfor %}
+
+				    <div class="row form-group">
+			      	<div class="col-sm-2">
+			      	{% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.prefix_name %}
+			      	</div>
+							<div class="col-sm-6">
+							{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.first_name %}
+							</div>
+							<div class="col-sm-4">
+							{% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.middle_name %}
+							</div>
+				    </div>
+				    <div class="row form-group">
+							<div class="col-sm-9">
+						    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.last_name %}
+							</div>
+							<div class="col-sm-3">
+				        {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.suffix_name %}
+				      	</div>
+						</div>
+				    <div class="row form-group">
+				    	<div class="col-sm-4 col-md-6">
+				        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.informal_name %}
+				      	</div>
+				      	<div class="col-sm-8 col-md-6">
+				        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.birth_date %}
+				      	</div>
+				    </div>
+				</div>
+			</div>
+
+			<div class="form-section form-section-enclosed-dark">
+        <div class="form-group">
+  				<h3 class="form-section-title" style="margin-bottom:0px">Contact Information</h3>
+  				<div class="help-block">All fields are required unless labeled as optional</div>
+        </div>
+
+				<div class="form-group">
+        	<div class="row">
+	      		<div class="col-md-6">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %}
+	      		</div>
+		      	<div class="col-md-6">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_email %}
+		      	</div>
+				    </div>
+				</div>
+
+				<div class="form-group">
+				    <div class="row">
+				      	<div class="col-sm-4">
+			            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.cell_phone %}
+				      	</div>
+				       	<div class="col-sm-4">
+			            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.secondary_phone %}
+				      	</div>
+				      	<div class="col-sm-4">
+			            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.phone %}
+				      	</div>
+				    </div>
+				    <br>
+
+			   </div>
+			</div>
+
+			<div class="form-section form-section-enclosed-dark">
+
+		    <div class="form-section form-section-limit-width">
+          <div class="form-group">
+		        {#<h3 class="form-section-title" style="margin-bottom:0px">Home Address and Chapter</h3>#}
+          </div>
+
+          <h3>Home Address</h3>
+          <div class="help-block">All fields are required unless labeled as optional</div>
+
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address1 %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.address2 %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.country %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.state %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.city %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.zip_code %}
+		    </div>
+
+		    <div class="form-actions">
+		      <a type="button" id="additional_address_button" href="javascript:;">
+		        + Add Work Address
+		      </a>
+		    </div>
+
+		    <div id="additional_fields" class="form-section form-section-limit-width hidden">
+		      <h3>Work Address (Optional)</h3>
+
+		      {% if form.additional_user_address_num.value %}
+		      <a class="btn btn-danger" href="{% url 'additional_address_del'%}?address_num={{form.additional_user_address_num.value}}">Delete</a>
+		      {% endif %}
+
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_address1 %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_address2 %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_country %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_state %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_city %}
+		      {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_zip_code %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.additional_company %}
+		    </div>
+
+			</div>
+
+     <div class="form-section form-section-enclosed-dark">
+
+        <div class="form-section form-section-limit-width">
+          <h3 class="form-section-title">Address Preferences and Chapter Assignment</h3>
+
+          {% block join_addresses_description %}
+          <div class="form-group">
+            <p>All APA members in the United States must belong to a local chapter. Your chapter membership is based on your Mailing address.</p>
+          </div>
+          {% endblock %}
+
+          {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=form.mailing_preferences %}
+          {% include "newtheme/sandbox/forms/includes/input-radio-select.html" with field=form.billing_preferences %}
+
+        </div>
+     </div>
+
+ 			{% endwith %}
+
+ 			{% with form=degree_form %}
+			<div class="form-section form-section-enclosed-dark">
+        <div class="form-group">
+  				<h3 class="form-section-title" style="margin-bottom:0px">Degree Information</h3>
+  				<div class="help-block">All fields are required unless labeled as optional</div>
+        </div>
+
+				<div class="form-section-limit-width form-group">
+
+          {% for hidden in form.hidden_fields %}
+          {{hidden}}
+          {% endfor %}
+
+          <div class="degree-program-other form-group" style="display:none">
+          {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.degree_program %}
+          </div>
+
+          <div class="other-school-fields form-group" style="display:none">
+
+            {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.degree_type_choice %}
+            <div class="degreetype-other form-group" style="display:none">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.degree_type_other %}
+            </div>
+
+            {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.level %}
+            <div class="degreelevel-other form-group" style="display:none">
+            {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.level_other %}
+            </div>
+          </div>
+
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.student_id %}
+          {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.graduation_date %}
+
+        </div>
+			</div>
+    	{% endwith %}
+
+   		{% with form=demographics_form %}
+			<div class="form-section form-section-enclosed-dark">
+        <div class="form-group">
+  				<h3 class="form-section-title" style="margin-bottom:0px">Demographic Information</h3>
+  				<div class="help-block">All fields are required unless labeled as optional</div>
+        </div>
+
+				{% for hidden in form.hidden_fields %}
+        {{hidden}}
+        {% endfor %}
+
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.gender %}
+
+        <div class="form-group" id="gender_other_field_wrap" style="display:none">
+        {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.gender_other %}
+        </div>
+
+        <div class="form-group{%if form.race.errors %} has-error {% endif %}">
+          <label for="{{ form.race.id_for_label }}">{{ form.race.label }}:</label>
+          {% if form.race.errors %}
+          <div class="form-error">
+            {% for error in form.race.errors %}
+            <p>{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if form.race.help_text %}
+          <div class="help-block help-block-align-left">{{ form.race.help_text|safe }}</div>
+          {% endif %}
+
+          <div class="multiple-choices">
+            <div class="multiple-choices-row">
+              {% for column in form.race.field.choices|columns_alternate:2 %}
+              <div class="multiple-choices-column">
+                {% for the_value, the_label in column %}
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="{{ form.race.html_name }}" value="{{the_value}}" {% if the_value in form.race.value %}checked="checked"{% endif %}>
+                    {{ the_label }}
+                    {% with other=form.race_option_other|getattr:the_value %}
+                    {% if other %}
+                    {{form|getattr:other}}
+                    {% endif %}
+                    {% endwith %}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group{%if form.hispanic_origin.errors %} has-error {% endif %}">
+          <label for="{{ form.hispanic_origin.id_for_label }}">{{ form.hispanic_origin.label }}:</label>
+          {% if form.hispanic_origin.errors %}
+          <div class="form-error">
+            {% for error in form.hispanic_origin.errors %}
+            <p>{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if form.hispanic_origin.help_text %}
+          <div class="help-block help-block-align-left">{{ form.hispanic_origin.help_text|safe }}</div>
+          {% endif %}
+          <!-- -->
+          <div class="multiple-choices">
+            <div class="multiple-choices-row">
+              {% for column in form.hispanic_origin.field.choices|columns_alternate:2 %}
+              <div class="multiple-choices-column">
+                {% for the_value, the_label in column %}
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="{{ form.hispanic_origin.html_name }}" value="{{the_value}}" {% if the_value == form.hispanic_origin.value %}checked="checked"{% endif %}>
+                    {{ the_label }}
+                    {% with other=form.hispanic_origin_option_other|getattr:the_value %}
+                    {% if other %}
+                    {{form|getattr:other}}
+                    {% endif %}
+                    {% endwith %}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+			</div>
+   		{% endwith %}
+
+   		{% with form=divisions_form %}
+
+   		{% for hidden in form.hidden_fields %}
+      {{hidden}}
+      {% endfor %}
+
+   		<div class="form-section form-section-enclosed-dark">
+        <h3 class="form-section-title">JOIN THE PLANNERS’ ADVOCACY NETWORK</h3>
+        <p>Dig into grassroots advocacy! APA’s new network lets you connect with elected officials, influence policymakers, access special reports, get advocacy training, and save on events.</p>
+        <h4><b>What's in it for you?</b></h4>
+        <ul>
+          <li>Shape APA's policy and advocacy work</li>
+          <li>Receive exclusive tips, training, and tools</li>
+          <li>Be in the know about what the latest from Washington means for planners</li>
+          <li>Get special registration rates for APA's annual Policy and Advocacy Conference</li>
+        </ul>
+        {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.planners_advocacy %}
+      </div>
+   		<div class="form-section form-section-enclosed-dark">
+				<h3 class="form-section-title">Divisions</h3>
+				<p>Divisions offer specialized education, forums, and publications, as well as contribute to national policy work. Please enter up to five free divisions.</p><br/>
+				{% include "myapa/newtheme/join/includes/multiple-checkbox-field.html" with field=form.divisions form=form %}
+			</div>
+			{% endwith %}
+
+    	{% endblock %}
+
+      <div class="layout-tracery">
+        <div class="layout-column">
+        <p>Clicking “Upload Enrollment to APA” will send the student’s information to APA and create a membership record with an APA ID number. You will not be able to edit or delete this student record. </p>
+        </div>
+      </div>
+      <div class="clearfix btn-toolbar btn-mobile">
+	      <button type="submit" name="submit_button" value="submit" class="btn btn-primary">Upload Enrollment to APA</button>
+	      <!--<button type="submit" name="submit_button" value="save" class="btn btn-default">Save Information and Return Later</button>-->
+	      <a class="btn btn-default pull-right button-float" href="{% url 'freestudents_school_admin_dashboard' school_id=school.user.username %}">Cancel</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'ui/forms/js/selectchain.js' %}"></script>
+
+<script>
+// script for address information
+function showAdditionalAddressFields() {
+  $("#additional_address_button").addClass("hidden");
+  $('#additional_fields').removeClass('hidden');
+}
+
+function hideDuplicatePrompt(){
+    $("#duplicate-account-prompt").hide();
+    $(".form-head").show();
+    $("#account-information-fields").show();
+}
+
+$(function(){
+    $("#additional_address_button").on("click", showAdditionalAddressFields);
+    var additional_address1_value = $("[name='additional_address1']").val();
+    if(additional_address1_value) {
+        showAdditionalAddressFields();
+    }
+});
+</script>
+
+<script>
+// script for school information
+$(function(){
+
+  function initSchoolInfoForm(container_selector) {
+
+    container_selector = container_selector || document;
+    $container = $(container_selector);
+
+    var $school = $("select[name='school']", $container);
+    var $degreeProgram = $("select[name='degree_program']");
+    var $degreeType = $("select[name='degree_type_choice']", $container);
+    var $degreeLevel = $("select[name='level']", $container);
+
+    var $degreeProgramContainer = $(".degree-program-other", $container);
+
+    var $otherFieldsContainer = $(".other-school-fields", $container);
+    var $schoolOtherContainer = $(".school-other", $container);
+    var $degreeTypeOtherContainer = $(".degreetype-other", $container);
+    var $degreeLevelOtherContainer= $(".degreelevel-other", $container);
+
+
+    function showHideFields() {
+
+      var school_val = $school.val();
+      var degreeProgram_val = $degreeProgram.val();
+      var degreeType_val = $degreeType.val();
+      var degreeLevel_val = $degreeLevel.val();
+
+      // show/hide degree program and school other
+      if (school_val == "OTHER") {
+        $degreeProgramContainer.slideUp();
+        $schoolOtherContainer.slideDown();
+      }else{
+        $degreeProgramContainer.slideDown();
+        $schoolOtherContainer.slideUp();
+      }
+
+      // show/hide other fields
+      if (school_val == "OTHER" || degreeProgram_val == "OTHER") {
+        $otherFieldsContainer.slideDown();
+      }else{
+        $otherFieldsContainer.slideUp();
+      }
+
+      // show/hide degreetype other
+      if(degreeType_val == "OTHER") {
+        $degreeTypeOtherContainer.slideDown();
+      }else{
+        $degreeTypeOtherContainer.slideUp();
+      }
+
+      // show/hide degree level other
+      if(degreeLevel_val == "N") {
+        $degreeLevelOtherContainer.slideDown();
+      }else{
+        $degreeLevelOtherContainer.slideUp();
+      }
+
+    }
+
+    showHideFields();
+
+    $school.on("change", showHideFields);
+    $degreeProgram.on("change", showHideFields);
+    $degreeType.on("change", showHideFields);
+    $degreeLevel.on("change", showHideFields)
+
+  }
+
+  initSchoolInfoForm();
+
+});
+</script>
+
+<script>
+// script for demographic information
+var $gender_select = $("[name=gender]");
+var $gender_other_field_wrap = $("#gender_other_field_wrap");
+
+function showHideGenderOther() {
+  if($gender_select.val() == "S") {
+    $gender_other_field_wrap.slideDown();
+  }else{
+    $gender_other_field_wrap.slideUp();
+  }
+}
+
+$(function(){
+  $gender_select.on("change", showHideGenderOther);
+  showHideGenderOther();
+});
+
+</script>
+
+<script>
+// script for divisions
+$(function(){
+
+  function checkNumberOfDivisions(){
+    var $checkedDivisions = $("input[name='divisions']:checked");
+    var $uncheckedDivisions = $("input[name='divisions']").not(":checked");
+    if($checkedDivisions.length >= 5) {
+      $uncheckedDivisions.iCheck('disable');
+    }else{
+      $uncheckedDivisions.iCheck('enable');
+    }
+    $checkedDivisions.iCheck('enable');
+  }
+
+  $("input[name='divisions']").on("ifToggled", checkNumberOfDivisions);
+  checkNumberOfDivisions();
+
+});
+</script>
+
+<script>
+// don't prevent submission if just trying to save
+$(function() {
+  $("button[type='submit'][value='save']").on("click", function(){
+    newtheme.cancelValidation();
+  })
+});
+</script>
+
+<script>
+  $(function () {
+    $('.empty_form').find('input[type="radio"],input[type="checkbox"]').iCheck('destroy');
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% with id=widget.attrs.id %}
+  <!-- Removing this because when it puts class=form-control it causes the list to overlap following elements -->
+  {#<ul {% if id %} id="{{ id }}"{% endif %}{% if widget.attrs.class %} class="{{ widget.attrs.class }}"{% endif %} style="border: solid black 15px;">#}
+  <ul {% if id %} id="{{ id }}"{% endif %}>
+      {% for group, options, index in widget.optgroups %}
+          {% if group %}
+              <li>{{ group }}
+              <ul{% if id %} id="{{ id }}_{{ index }}"{% endif %}>
+          {% endif %}
+          {% for option in options %}
+              <li style="display: inline-block">{% include option.template_name with widget=option %}</li>
+              <!-- THIS WORKS AND KEEPS FIRST RADIO FLUSH LEFT: -->
+              <!-- &nbsp;&nbsp;&nbsp; -->
+          {% endfor %}
+          {% if group %}
+              </ul>
+              </li>
+          {% endif %}
+      {% endfor %}
+  </ul>
+{% endwith %}

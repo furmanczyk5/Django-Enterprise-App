@@ -1,0 +1,27 @@
+/* ////////////////////
+// FANCY HR
+//////////////////// */
+hr {
+  border-color: @color-content-borders;
+  margin-top: @padding-vertical-outer;
+  margin-bottom: @padding-vertical-outer;
+}
+
+hr.double {
+  border-color: @color-content-borders;
+  border-style: solid;
+  border-width: 1px 0;
+  height: @padding-vertical-outer;
+  margin-top: @padding-vertical-outer;
+  margin-bottom: @padding-vertical-outer;
+}
+
+
+hr.dashed {
+  border: none;
+  height: 10px;
+
+  background-image: url('/static/newtheme/image/rule-line.png');
+  background-repeat: repeat-x;
+  background-size: 4px 10px;
+}

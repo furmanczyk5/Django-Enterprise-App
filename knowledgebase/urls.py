@@ -1,0 +1,82 @@
+from django.conf.urls import url
+
+from .views.submission import (
+    dashboard,
+    deactivate,
+    form,
+    preview
+)
+from .views import search
+
+
+urlpatterns = [
+    url(
+        r'^solar/data/$',
+        search.ResourceSearchView.as_view(),
+        name='search',
+        kwargs=dict(master_id=9103049)
+    ),
+    url(
+        r'^knowledgebase/search/$',
+        search.ResourceSearchView.as_view(),
+        name='search'
+    ),
+    url(
+        r'^knowledgebase/collection/search/$',
+        search.CollectionSearchView.as_view(),
+        name='collection_search'
+    ),
+    url(
+        r'^knowledgebase/collection/(?P<master_id>\d+)/search/$',
+        search.ResourceSearchView.as_view(),
+        name='collection_search'
+    ),
+    url(
+        r'^knowledgebase/collection/(?P<master_id>\d+)/subcollection/search/$',
+        search.CollectionSearchView.as_view(),
+        name='subcollection_search'
+    ),
+    url(
+        r'^knowledgebase/story/submit/$',
+        form.StorySubmissionFormTypeView.as_view()
+    ),
+    url(
+        r'^knowledgebase/resource/submit/$',
+        form.ResourceSuggestionFormTypeView.as_view()
+    ),
+    url(
+        r'^knowledgebase/dashboard/$',
+        dashboard.SubmissionAdminDashboard.as_view(),
+        name='dashboard'
+    ),
+    url(
+        r'^knowledgebase/story/(?P<master_id>\d+)/edit/$',
+        form.StorySubmissionFormTypeView.as_view(),
+        name='story_edit'
+    ),
+    url(
+        r'^knowledgebase/resource/(?P<master_id>\d+)/edit/$',
+        form.ResourceSuggestionFormTypeView.as_view(),
+        name='resource_edit'
+    ),
+    url(
+        r'^knowledgebase/story/(?P<master_id>\d+)/deactivate/$',
+        deactivate.SubmissionFormDeactivateView.as_view(),
+        name='story_deactivate'
+    ),
+    url(
+        r'^knowledgebase/resource/(?P<master_id>\d+)/deactivate/$',
+        deactivate.SubmissionFormDeactivateView.as_view(),
+        name='resource_deactivate'
+    ),
+    url(
+        r'^knowledgebase/story/(?P<master_id>\d+)/details/$',
+        preview.StoryPreviewView.as_view(),
+        name='story_details'
+    ),
+    url(
+        r'^knowledgebase/resource/(?P<master_id>\d+)/details/$',
+        preview.ResourcePreviewView.as_view(),
+        name='resource_details'
+    ),
+]

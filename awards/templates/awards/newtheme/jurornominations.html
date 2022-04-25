@@ -1,0 +1,75 @@
+{% extends "newtheme/templates/layout-nosidebar.html" %}
+
+{% load content_extras %}
+
+{% block title %}My Nomination Reviews{% endblock %}
+
+{% block content_main %}
+
+<div class="section">
+    <h1>My Nomination Reviews: {{ user.first_name }} {{ user.last_name }}</h1>
+    {% with querystring_minus_filter=request.META.QUERY_STRING|remove_querystring_param:'filter' %}
+        <table class="page-header text-center" style="border-bottom: none">
+            <tbody>
+                <tr>
+                    <td>
+                        <a class="btn-lg{% if not filter_string %} btn-primary{% else %} slab-gray{% endif %}" href="?{{querystring_minus_filter}}">All Reviews</a>
+                    </td>
+                    <td><a class="btn-lg{% if filter_string == 'mine_only'%} btn-primary{% else %} slab-gray{% endif %}" href="?{{querystring_minus_filter}}&amp;filter=mine_only">My Reviews</a></td>
+                    <td><a class="btn-lg{% if filter_string == 'finalist_only'%} btn-primary{% else %} slab-gray{% endif %}" href="?{{querystring_minus_filter}}&amp;filter=finalist_only">Finalists</a></td>
+                    <td><a class="btn-lg{% if filter_string == 'nonfinalist_only'%} btn-primary{% else %} slab-gray{% endif %}" href="?{{querystring_minus_filter}}&amp;filter=nonfinalist_only">Not a Finalist</a></td>
+                </tr>
+            </tbody>
+        </table>
+    {% endwith %}
+
+    <div class="clearfix"></div>
+
+    {% if submissions %}
+    <table class="full-width border-box table-striped table">
+        <thead class="bg-primary">
+            <td>
+                <strong>
+                    Category
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    Name of Entry
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    Jurors
+                </strong>
+            </td>
+            <td></td>  
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+                <tr {% if forloop.counter|divisibleby:2 %}class="alt"{% endif %}>
+                    <td>{{ submission.content.submission_category }}</td>
+                    <td>{{ submission.content.title }}</td>
+                    <td>
+                        {% for review in submission.reviews %}
+                        <div style="white-space:nowrap; font-size:0.8em;">{{ review.contact }}</div>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if submission.is_reviewer %}
+                        <a href="/awards/jury/myreviews/{{submission.content.master_id}}/review/" class="button">Rate</a>
+                        {% else %}
+                        <a href="/awards/jury/myreviews/{{submission.content.master_id}}/view/" class="button">View</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <h3>There are currently no nominations assigned.</h3>
+    {% endif %}
+    <br/>
+    
+</div>
+{% endblock %}

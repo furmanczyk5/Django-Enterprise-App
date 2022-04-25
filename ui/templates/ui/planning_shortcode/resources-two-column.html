@@ -1,0 +1,18 @@
+{% load content_extras %}
+
+<div class="row">
+{% with resource_columns=results.response.docs|columns_alternate:2 %}
+	{% for resource_column in resource_columns %}
+	<div class="col-xs-12 col-sm-6"> {# change column size if adding more columns #}
+		<div class="list-of-links">
+		{% for resource in resource_column %}
+		<h4>
+			<a href="{{resource|solr_record_to_details_path_filter}}">{{resource.title}}</a>
+		</h4>
+		<p>{{resource.description}}</p>
+		{% endfor %}
+		</div>
+	</div>
+	{% endfor %}
+{% endwith %}
+</div>

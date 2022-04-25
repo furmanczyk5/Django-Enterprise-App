@@ -1,0 +1,69 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block title %}Reports Export{% endblock %}
+
+{% block content_main %}
+
+	<div class="page-head">
+	  <h1 class="page-title">{{ event }} Reports </h1>
+	</div>
+
+<div class="form-section form-section-enclosed-dark">
+<h3 class="form-section-title">Choose start and end dates to filter your selected report.</h3>	
+<form action = "{% url 'reports_download' event.master_id %}">
+ <div class="form-group">
+  <div class="row">
+    <div class="col-sm-6">
+    Start date: <input type="date" class="planning-datetime-widget" name="from_date" maxlength="10" style="width:195px;">
+    </div>
+	<div class="col-sm-6">
+    End date: <input type="date" class="planning-datetime-widget" name="to_date" maxlength="10" style="width:195px;">
+    </div>
+  </div>
+	<h5>Report Type:</h5>
+	<select name="report_options">
+	<option>Select One Report</option>
+	<option value="registration"> Attendees: Event Registrations </option>
+	<option value="activity_registration"> Attendees: Activity Registrations </option>
+	<option value="and_activity_registration"> Attendees: Event and Activity Registrations </option>
+	<option value="cancelledreport"> Attendees: Activity Cancelled Registrations </option>
+	<option value="financialsummaryreport"> Financial Summary </option>
+	<option value="activitysummaryreport">Activity Summary </option>
+	<option value="event_option_report">Event Option Summary</option>
+	<option value="all_purchase_report"> All Purchases Report </option>
+	<!--<option value="registration_summary"> Registration Summary Report </option>-->
+	</select>
+	<br><br>
+	<p>Note: financial activity, activity summary, and activity cancelled reports are not filtered by dates.</p>
+	<input type="submit" name="Download" />
+	</div>
+</form>
+</div>
+
+<!--
+<table>
+<tr>
+<td>Start date: </td><td><input type="text" class="planning-datetime-widget" name="from_date" maxlength="10" style="width:195px;"></td>
+<td>End date: </td><td><input type="text" class="planning-datetime-widget" name="to_date" maxlength="10" style="width:195px;"></td>
+</tr>
+</table>
+<br>
+<h4>Reports: </h4>
+<select name="report_options">
+<option>Select One Report</option>
+<option value="registration"> Attendees: Event Registrations Report </option>
+<option value="activity_registration"> Attendees: Activity Registrations Report </option>
+<option value="and_activity_registration"> Attendees: Event and Activity Registrations Report </option>
+<option value="financialsummaryreport"> Financial Summary Report </option>
+<option value="activitysummaryreport">Activity Summary Report </option>
+<option value="cancelledreport"> Activity Cancelled Report </option>
+<option value="allpurcahsereport"> All Purchase Report </option>
+<option value="registration_summary"> Registration Summary Report </option>
+</select>
+<br><br>
+<input type="submit" name="Download" />
+</form>
+	</div>
+	</div>
+-->
+{% endblock %}

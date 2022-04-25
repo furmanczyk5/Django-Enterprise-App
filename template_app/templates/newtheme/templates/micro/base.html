@@ -1,0 +1,25 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load template_app_extras %}
+{% load compress %}
+{% load static %}
+{% load component_sites_tags %}
+
+{% block additional_head_css %}
+
+  <link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet">
+
+  {% compress css %}
+  <link type="text/less" rel="stylesheet" href="{% static 'micro/css/style.less' %}" />
+  {% endcompress %}
+
+{% endblock %}
+
+
+{% block header %}
+  {% include "newtheme/templates/micro/includes/header.html" %}
+{% endblock header %}
+
+{% block nav %}
+  {% include "newtheme/templates/conference/includes/nav.html" %}
+{% endblock %}

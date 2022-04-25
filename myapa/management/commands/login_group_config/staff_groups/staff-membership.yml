@@ -1,0 +1,60 @@
+---
+
+# Django model admin permissions for the staff-membership group.
+
+# The staff users who belong in this group.
+# Values are usernames (i.e. APA id)
+staff_users:
+  - "126856"  # Rosemary Regalado
+  - "126862"  # Carlos Parra
+  - "259188"  # William French
+  - "268322"  # Karl Schmidt
+  - "284708"  # Milagros Marrero
+  - "307515"  # Dustin Calliari
+  - "309833"  # Kathleen Gems
+  - "360649"  # Rachel Hoffman
+
+# The value of :attr:`django.contrib.auth.models.Permission.codename`
+# :attr:`django.contrib.auth.models.ContentType.model`
+# split on the _ for adding Permissions codenames
+app_models_granted:
+
+  - auth_user
+  - cm_claim
+  - cm_cmcomment
+  - cm_cmorder
+  - cm_log
+  - cm_period
+  - cm_provider
+  - cm_providerapplication
+  - cm_providerregistration
+  - exam_aicpcandidateapplication
+  - exam_applicationcategory
+  - exam_applicationdegree
+  - exam_applicationjobhistory
+  - exam_exam
+  - exam_examapplication
+  - exam_examapplicationorder
+  - exam_examapplicationreview
+  - exam_examapplicationrole
+  - exam_examregistration
+  - exam_examregistrationorder
+  - exam_verificationdocument
+  - myapa_bookmark
+  - myapa_contact
+  - myapa_contactcommittee
+  - myapa_contactcontentadded
+  - myapa_contactrelationship
+  - myapa_contactrole
+  - myapa_contacttagtype
+  - myapa_educationaldegree
+  - myapa_individualcontact
+  - myapa_individualprofile
+  - myapa_jobhistory
+  - myapa_organization
+  - myapa_organizationprofile
+  - myapa_provider
+  - myapa_school
+  - myapa_staffcontact
+  - pages_aboutpage
+  - pages_membershippage

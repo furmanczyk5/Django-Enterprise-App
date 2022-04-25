@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300italic');
+@import url('https://www.planning.org/static/content/css/icomoon/style.css'); // Need to import this way because wkhtmltopdf dont like relative urls for fonts
+
+@import "../../../../content/static/content/css/mixins";
+
+@width-page:7.5in;
+@height-page:10in;
+
+//page-break-before: always; // TO ALWAYS START A NEW PAGE
+//page-break-inside: avoid; // TO PREVENT STARTING NEW PAGE WITHIN THIS ELEMENT
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.clearfix {
+
+	&:after {
+		content:"";
+		display:block;
+		clear:both;
+	}
+
+}
+
+body {
+
+	margin:0;
+
+	.page {
+		page-break-before: always;
+		page-break-after: always;
+	}
+
+	.content {
+		.clearfix;
+		background-color:white;
+	}
+
+	// FOR PDF
+	&.pdf {
+		background-color:white;
+		width:@width-page;
+
+		.content {
+			width:100%;
+		}
+	}
+
+	// WHEN DEVELOPING AS HTML PAGE
+	&.html {
+		.clearfix;
+		background-color:lightgrey;
+		width:100vw;
+
+		.content {
+			.box-shadow();
+			margin:1em auto;
+			width:@width-page;
+		}
+
+	}
+
+}
+
+
+
+//////////////////////////////////////////////////////////////////////
+// THINGS TAKEN FROM style.less (later import after organizing css) //
+//////////////////////////////////////////////////////////////////////
+
+
+
+///////////
+// MIXIN //
+///////////
+.lato {
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
+}
+.sanspro {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+html, button, select, input, textarea {
+	.sanspro;
+}
+
+/////////////
+// HEADERS //
+/////////////
+h1, h2, h3, h4, h5, h6 {
+	color: @color-header;
+	margin:@width-margin 0px;
+	.lato();
+}
+
+h1 {
+	font-size:2.4em;
+	margin-top:2 * @width-margin;
+}
+h2 {font-size:1.9em;}
+h3 {font-size:1.6em;}
+h4 {font-size:1.3em;}
+h5 {
+	font-size:1.0em;
+	font-weight:bold; // lato is so thin that some lines disappear
+}
+h6 {
+	font-size:0.9em;
+	font-weight:bold;
+}
+
+header, .header {
+
+	border-bottom:2px solid @color-header;
+	margin-bottom:@width-margin/2;
+
+	h1,h2,h3,h4,h5,h6 {
+		margin-bottom:2px;
+	}
+}
+
+
+///////////////////////
+// links and buttons //
+///////////////////////
+
+a {
+
+	font-weight:normal;
+	text-decoration:none;
+	cursor:pointer;
+	color:@color-link;
+
+	&:hover {
+		.opacity(0.8);
+	}
+
+	img {
+		border:none; //old ie versions do wierd things
+	}
+}
+
+// I don't like the not but it works, later do a search for all button tags, we should be targeting a class, not just all buttons
+.button, .btn,  button[type='submit'], input[type='submit'], input[type='button'] {
+
+	.gradient(@color-button, darken(@color-button,5%), lighten(@color-button,5%));
+	.rounded();
+	.box-shadow();
+
+	padding:4px 12px 4px;
+	color:#fff;
+	font-size:1.2em;
+	border-width:0px;
+	text-align:center;
+	display:inline-block;
+	vertical-align:bottom;
+
+	* {
+		vertical-align:middle;
+	}
+
+	&.small {
+		padding:2px 12px 2px;
+		font-size:0.8em;
+
+		&:hover {
+			padding:3px 12px 1px;
+		}
+	}
+
+	&:hover {
+		.gradient(@color-button, lighten(@color-button,5%), darken(@color-button,5%));
+		.opacity(1);
+		.box-shadow(0px, 0px,0px);
+		padding:5px 12px 3px;
+		cursor: pointer;
+		cursor: hand;
+	}
+
+	&.red {
+		.gradient(@color-red, darken(@color-red,5%), lighten(@color-red,5%));
+		&:hover {
+			.gradient(@color-red, lighten(@color-red,5%), darken(@color-red,5%));
+		}
+	}
+
+}
+
+////////////////
+// CM CREDITS //
+////////////////
+.cm {
+	color:@color-apa;
+}
+
+.cmpoints {
+	color:#950000;
+	line-height:1.4;
+}
+
+.cmlawethics {
+	background-color:@color-apa;
+	color:white;
+	padding:0px 4px;
+	margin:1px;
+	.rounded(4px);
+}
+
+////////////////////////////
+// SEARCH RESULTS STYLING //
+////////////////////////////
+.pdf-title {
+	margin:0px 4px 0px 0px;
+	display:inline-block;
+
+}
+
+.filter-display {
+	font-size:1.15em;
+}
+
+.search-info {
+
+	margin:@width-margin 0px;
+
+	.scope {
+		color:@color-scope;
+	}
+
+	.keyword {
+		color:#444;
+	}
+
+	.tag {
+		color: lighten(rgb(luma(@color-header), luma(@color-header), luma(@color-header)), 40%);
+		font-size:1em;
+	}
+	.divider {
+		color: lighten(rgb(luma(@color-header), luma(@color-header), luma(@color-header)), 40%);
+		margin:0px 6px;
+	}
+}
+
+.separator, .sub-separator {
+	color:white;
+}
+
+.separator {
+	font-size:1.3em;
+	background-color:#444;
+	padding:0.375em 0.375em;
+}
+
+.sub-separator {
+	background-color:#999;
+	padding:0.25em 0.25em;
+	// min-height:1.5em;
+}
+
+///////////////////////////
+// SEARCH RECORD STYLING //
+///////////////////////////
+
+.avoid-pagebreak-inside {
+	page-break-inside: avoid;
+}
+
+.search-doc-top span{
+	display:inline-block;
+	vertical-align: middle;
+}
+
+.search-doc-right{
+	float:right;
+	text-align:right;
+	width:120px;
+	margin-left:@width-margin;
+	margin-bottom:@width-margin;
+}
+
+.search-doc-id {
+	color:#6f6f6f;
+}
+
+h3.search-doc-title {
+	margin:0px;
+	a {
+		color:@color-link;
+	}
+}
+
+.search-doc-subtitle {
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
+	color:@color-green;
+}
+
+.search-doc-description {
+	color:#333333;
+	margin-bottom:@width-margin / 4;
+}
+
+.search-doc-speakers {
+	color:#6f6f6f;
+}
+
+.search-doc {
+	.clearfix;
+	padding:12px 0px;
+	font-size:0.8em;
+	border-top:1px solid #999;
+
+	.search-doc-time {
+		margin-right:24px;
+	}
+
+	.tag.search-doc-room {
+		font-size:1em;
+	}
+
+	.search-doc-room {
+		margin-right:20px;
+	}
+
+	.search-doc-pricing {
+		font-size:0.75em;
+		color:#444;
+
+		.key-value-pair {
+			.key {
+				font-weight:bold;
+			}
+		}
+	}
+
+	.tag {
+	color:#444;
+	}
+
+	.tagtype {
+		color:#457595;
+		font-weight:bold;
+	}
+}
+
+.search-doc-icon {
+	margin-right:2px;
+}
+
+.search-doc-tags {
+
+	padding-top:@width-margin/4;
+
+	.tag, .tagtype {
+		font-size:0.8em;
+		padding:0 @width-margin/4 @width-margin/4 @width-margin/4;
+		white-space:nowrap;
+		display:inline-block;
+		margin:0px 0px 2px 0px;
+		vertical-align:bottom;
+	}
+}
+
+.header-image {
+	width:100%;
+}

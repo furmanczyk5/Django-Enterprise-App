@@ -1,0 +1,95 @@
+{% extends "newtheme/templates/layout-sidebar.html" %}
+
+{% block title %}Awards Review Details{% endblock %}
+
+{% block content_main %}
+
+<br/>
+<div class="section">
+    <a href="/awards/jury/myreviews/" class="button right">Back</a>
+    <h1>Nomination for {{ content.submission_category }}</h1>
+    <div class="callout">
+        <h2>{{ title }} </h2>
+    </div>
+    <div class="callout">
+
+        <h5>Location: </h5>
+        <p class="margin-left">{{content.city}}, {{content.state}}{% if content.country and content.country != "United States" %}, {{content.country}}{% endif %}</p>
+
+        <h5>Questions and Answers</h5>
+        {% for answer in answers %}
+            <p class="margin-left">
+                <strong>{{ answer.question.title }}:  </strong>
+                <br/> 
+                <span class="margin-left">{{ answer.text }}</span>
+            </p> 
+        {% endfor %}
+
+        <h5>Uploads</h5>
+
+        {% for upload_type in upload_types %}
+        <p class="margin-left">
+            <strong>{{upload_type}}:</strong><br/>
+            {% for upload in upload_type.the_uploads %}
+                {% if upload.is_image %}<div><img src="{{upload.get_file.url}}" style="max-width:400px" /></div>{% endif %}
+                <a class="margin-left" target="_blank" href="{% if upload.get_file %}{{upload.get_file.url}}{% elif upload.url %}{{upload.url}}{%endif%}">{{ upload }}</a><br />
+                {% if upload.resource_class %}<span class="margin-left">Resource Type: {{upload.resource_class}}</span><br/>{% endif %}
+                {% if upload.description%}<span class="margin-left">Description: {{upload.description}}</span><br/>{% endif %}
+                {% if upload.copyright_type %}<span class="margin-left">Copyright: {{upload.copyright_type}}</span><br/>{% endif %}
+                {% if upload.creator_full_name %}<span class="margin-left">Letter Writer: {{upload.creator_full_name}}</span><br/>{% endif %}
+                <br/>
+            {% empty %}
+                <span class="margin-left">*No Uploads of this Type*</span>
+            {% endfor %}
+        </p>
+        {% endfor %}
+    </div>
+    
+    {% if form_obj %}
+        <form method="post">
+        {% csrf_token %}
+        <h3>Juror Review {{ r }}</h3>
+        {% if form_obj.errors %}
+        <div class="callout error" id="form-error">
+            <p>The operation could not be performed because one or more error(s) occurred.<br />Please resubmit the form after making the following changes:</p>
+            <ul>
+            {% for field in form_obj %}
+            {% if field.errors %}
+            <li><strong>{{field.label}}</strong>: {{ field.errors|striptags }}</li>
+            {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="callout">
+            <h5>Rating: <span class="margin-left">{{ form_obj.rating_1 }}</span></h5>
+            <h5>Comments: </h5>
+            <span>{{ form_obj.comments }}</span>
+        </div>
+
+        {{ form_obj.content }}
+        {{ form_obj.contact }}
+        {{ form_obj.role }}
+
+        <a href="/awards/jury/myreviews/" class="button">Cancel</a>
+        <button type="submit" name="submitButton" value="submit" class="right margin-left">Submit Review</button>
+        {# <input type="submit"  name="submit" value == "submit"/>  #}
+        </form>
+        {% else %}
+            <a href="/awards/jury/myreviews/" class="button right">Back</a>
+        {% endif %}
+</div>
+
+{% endblock %}
+
+{{ comment }}
+
+{{ form.non_field_errors }}
+<div class="fieldWrapper">
+    {{ form.subject.errors }}
+    <label for="{{ form.subject.id_for_label }}">Email subject:</label>
+    {{ form.subject }}
+</div>
+
+{{ endcooment}}

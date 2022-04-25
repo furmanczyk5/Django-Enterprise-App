@@ -1,0 +1,121 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+{% load content_extras %}
+{% load myapa_tags %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">Create or Edit Your Consultant Profile</h1><br>
+  </div>
+  <div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+      <div class="row">
+          <form align="left" id="new_user_reg" method="post" class="validate-form" onsubmit="return formsubmitcheck()" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="section">
+                {% include "ui/newtheme/forms/includes/display-errors.html" with form=view.o_form_obj %}
+                {% include "ui/newtheme/forms/includes/display-errors.html" with form=view.op_form_obj %}
+            </div>
+
+            {% for hidden in op_form_obj.hidden_fields %}
+              {{ hidden }}
+            {% endfor %}
+            {% for hidden in o_form_obj.hidden_fields %}
+              {{ hidden }}
+            {% endfor %}
+    <p>APA encourages you to create a robust online profile so prospective clients acquire a complete and well-rounded idea of your firm’s qualifications and areas of expertise.</p><br>
+    <div class="help-block">All fields are required unless labeled as optional</div>
+
+    <h3>GENERAL INFORMATION</h3><br>
+    <p>Company Logo/Image: </p>
+    {% if profile.image %}<p><img src="{{image_file_url}}" height="{{image_height}}" width="{{image_width}}"/></p>{% endif %}
+    <!-- <p class="small" id="file_field">{{ view.op_form_obj.image_uploaded_file }}</p> -->
+    <p class="small" id="file_field">{{ view.op_form_obj.image_file }}</p>
+    <div class="help-block">Optional</div><br>
+    <!--
+    <div class="form-actions">
+      <input id="file_upload" type="submit" name="upload_company_logo" class="btn btn-primary" value="UPLOAD FILE"/>
+    </div>
+    -->
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.company %}
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.bio %}
+    <div class="help-block">Maximum 40 words. Content will appear to users as you format it. Please review for correct spelling, accuracy, and completeness. APA is not responsible for errors in consultant-submitted content. APA reserves the right to correct grammar, punctuation, and spelling errors.</div><br>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.about_me %}
+    <div class="help-block">Maximum 250 words. Content will appear to users as you format it. Please review for correct spelling, accuracy, and completeness. APA is not responsible for errors in consultant-submitted content. APA reserves the right to correct grammar, punctuation, and spelling errors.</div><br>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.op_form_obj.principals %}
+    <div class="help-block">Separate names by commas. Please review for correct spelling. APA is not responsible for errors in consultant-submitted content.</div><br>
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.op_form_obj.number_of_staff %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.op_form_obj.number_of_planners %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.op_form_obj.number_of_aicp_members %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.op_form_obj.date_founded %}
+
+
+    <h3>Firm Specialties</h3>
+      <div class="multiple-choices">
+        <div class="multiple-choices-row">
+          {% for column in view.o_form_obj.specialty_tag_ids.field.choices|columns_alternate:2 %}
+          <div class="multiple-choices-column">
+            {% for the_value, the_label in column %}
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="{{ view.o_form_obj.specialty_tag_ids.html_name }}" value="{{ the_value }}" 
+                {% if the_value in view.o_form_obj.specialty_tag_ids.value %} checked="checked" {% endif %}>
+                {{ the_label }}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="help-block">{{ view.o_form_obj.specialty_tag_ids.field.help_text|safe }}</div>
+      <br/>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.personal_url %}
+    <h3>Main Office</h3><br>
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.address1 %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.address2 %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.city %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.state %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.zip_code %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.country %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.phone %}
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.o_form_obj.email %}<br>
+    <hr>
+    <h3>Branch Offices</h3><br>
+    {% for branch in branch_offices %}
+        {{ branch.city }}: {{ branch.parent_organization.company }} Branch Office<br>
+        {% if branch.address1 %}{{ branch.address1 }}<br>{% endif %}{% if branch.address2 %}{{ branch.address2 }}<br>{% endif %}
+        {{ branch.city }}, {{ branch.state }} {{ branch.zip_code }}<br>
+        {{ branch.country }}<br>
+        Phone: {{ branch.phone }}<br>
+        {% if branch.email %} Email: {{ branch.email }}{% endif %}{% if branch.website %}<br>Website: {{ branch.website }}{% endif %}<hr>
+
+    {% endfor %}
+
+    <div class="form-actions">
+      <input id="file_upload" type="submit" name="save_and_add_branch" class="btn btn-primary" value="Add/Edit/Delete a Branch Office"/>
+    </div><hr>
+
+    <!-- {% include "newtheme/sandbox/forms/includes/input-text.html" with field=view.op_form_obj.consultant_listing_until %} -->
+            <!-- Company Contact List: {{ contact_list }} -->
+            <div class="form-actions">
+              <input id="file_upload" type="submit" name="save_and_continue" class="btn btn-primary" value="Save and Continue" />
+              <input id="file_upload" type="submit" name="save_and_return_later" class="btn btn-default" value="Save and Return Later"/>
+            </div>
+        </form>
+
+        </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

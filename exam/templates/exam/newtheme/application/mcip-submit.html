@@ -1,0 +1,50 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block content_main %}
+<div class="new-account-form">
+  <div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+
+    <h1 class="page-title">AICP Certification Application {{ view.application.application_type }}</h1>
+    
+  </div>
+
+  <div class="layout-tracery no-bottom-border">
+
+    <div class="layout-column">
+      <div class="row">
+
+      <form id="new_user_reg" align="left" method="post" class="validate-form" enctype="multipart/form-data">
+  {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+
+              {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+  <h3 class="form-section-title">AICP Certification Application MCIP Submission</h3>
+	<p class="small" id="file_field">Choose MCIP Membership Verification Document: {{ form.uploaded_file }} </p><br>
+   <a href="https://www.planning.org/ethics/ethicscode.htm" target="_blank">Click here to read the AICP Code of Ethics and Professional Conduct</a> 
+  {% include "newtheme/sandbox/forms/includes/input-boolean.html" with field=form.code_of_ethics %}
+
+            <div class="form-section form-section-enclosed-dark">
+              <h3 class="form-section-title">AICP Certification Application {{ view.application.application_type }} Summary</h3>
+              Review your AICP Certification Application and make any necessary changes.<br><br>
+            </div>
+
+            <div class="form-actions">
+            <p><h3>Planning Advisory Board Data Release Statement</h3>
+The American Planning Association (APA) and its institute, the American Institute of Certified Planners (AICP), reserve the right, as owners of the data collected in relation to the AICP qualification exam, to analyze the results of each cycle of AICP qualification exams. Furthermore, APA and AICP reserve the right to provide observational exam data (e.g. demographic or employment information in the aggregate) to the Association of Collegiate Schools of Planners (ACSP and the Planning Accreditation Board (PAB), so that they may conduct their own analysis to better inform the education and accreditation decision-making.  However, APA and AICP will not use personal identification information in their analysis of AICP exam results data, nor will they provide personal identification information to ACSP or PAB to support those organizations’ analysis of AICP exam result data. Such personal identification information includes applicants’ email addresses, mailing addresses, or telephone numbers. APA will share specific application data with the applicants’ school for purposes of accreditation only.
+            </p><br>
+              {% if submitted == False %}
+              <input type="submit" name="submit" class="btn btn-primary" value="Submit Application"/>
+              {% endif %}
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,134 @@
+//Styles for the cart.
+
+.cart-subtotal-container {
+
+}
+
+.cart-subtotal-container h2.cart-subtotal,
+.cart-subtotal-container h4.cart-total-savings {
+  margin: 0;
+}
+
+//labels
+.cart-subtotal-container h2.cart-subtotal .cart-subtotal-label,
+.cart-subtotal-container h4.cart-total-savings .cart-total-savings-label {
+  display: inline;
+  font-weight: 800;
+
+  //Add colon
+  &:after {
+    content: ':';
+  }
+}
+
+//values
+.cart-subtotal-container h2.cart-subtotal .cart-subtotal-value,
+.cart-subtotal-container h4.cart-total-savings .cart-total-savings-value {
+  display: inline;
+  font-weight: 400;
+}
+
+
+.cart-subtotal-container h2.cart-subtotal {
+  color: @color-bahama-blue;
+
+}
+
+.cart-subtotal-container h2.cart-subtotal .cart-subtotal-label {
+}
+
+.cart-subtotal-container h2.cart-subtotal .cart-subtotal-value {
+}
+
+.cart-subtotal-container h4.cart-total-savings {
+  color: @color-anzac;
+  margin-top: 10px;
+}
+
+.cart-subtotal-container h4.cart-total-savings .cart-total-savings-label {
+}
+
+.cart-subtotal-container h4.cart-total-savings .cart-total-savings-value {
+}
+
+.cart-action-buttons.cart-action-buttons-align-right-lg {
+  @media screen and (min-width: @screen-lg-min) {
+    text-align: right;
+  }
+}
+
+.cart-action-buttons .btn {
+  margin-top: 18px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @media screen and (min-width: @screen-sm-min) {
+    margin-top: 0;
+  }
+
+}
+
+//Pre Cart
+.pre-cart {
+  margin: 40px 0;
+}
+
+.pre-cart .cart-subtotal-container {
+  margin-bottom: 18px;
+
+  @media screen and (min-width: @screen-lg-min) {
+    margin-bottom: 0;
+  }
+}
+
+
+//After cart
+.after-cart {
+  margin: 40px 0;
+}
+
+.after-cart .cart-subtotal-container {
+  margin: 20px 0;
+}
+
+.after-cart .cart-action-buttons {
+  margin: 20px 0;
+}
+
+@btn-toolbar-btn-extra-spacing: 16px;
+
+.btn-toolbar {
+  margin-left: -1 * @btn-toolbar-btn-extra-spacing;
+}
+
+.btn-toolbar > .btn,
+.btn-toolbar > .btn-group,
+.btn-toolbar > .input-group {
+  margin-left: 5px;
+  margin-bottom: 15px;
+}
+
+.btn-toolbar {
+  margin-left: -5px;
+
+  .pull-right {
+    float: none !important;
+  }
+}
+
+@media screen and (min-width: @screen-sm-min) {
+
+  .btn-toolbar > .btn,
+  .btn-toolbar > .btn-group,
+  .btn-toolbar > .input-group {
+    margin-left: @btn-toolbar-btn-extra-spacing;
+    margin-bottom: 0px;
+  }
+
+  .btn-toolbar {
+    margin-left: -16px;
+  }
+}
+

@@ -1,0 +1,85 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load template_app_extras %} {# anything custom needed for the template app #}
+{% block additional_head_css %}
+<style type="text/css">
+
+</style>
+{% endblock %}
+
+{% block content_main %}
+<br><br>
+
+
+<form method="post">
+  {% csrf_token %}
+
+  {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+
+  <div class="form-section">
+
+    <h3 class="form-section-title">Name</h3>
+
+    <div class="form-group{%if form.prefix_name.errors %} has-error {% endif %}">
+      <label for="{{ form.prefix_name.id_for_label }}">Prefix:</label>
+      {{ form.prefix_name }}
+      {% if form.prefix_name.help_text %}
+      <div class="help-block">{{ form.prefix_name.help_text|safe }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group{%if form.first_name.errors %} has-error {% endif %}">
+      <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+      {{ form.first_name }}
+      {% if form.first_name.help_text %}
+      <div class="help-block">{{ form.first_name.help_text|safe }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group{%if form.middle_name.errors %} has-error {% endif %}">
+      <label for="{{ form.middle_name.id_for_label }}">Initial:</label>
+      {{ form.middle_name }}
+      {% if form.middle_name.help_text %}
+      <div class="help-block">{{ form.middle_name.help_text|safe }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group{%if form.last_name.errors %} has-error {% endif %}">
+      <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+      {{ form.last_name }}
+      {% if form.last_name.help_text %}
+      <div class="help-block">{{ form.last_name.help_text|safe }}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="form-section">
+
+    <h3 class="form-section-title">Email</h3>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.email %}
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.verify_email %}
+
+  </div>
+
+  <div class="form-section">
+
+    <h3 class="form-section-title">Create a Password</h3>
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.password %}
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.verify_password %}
+
+    {% include "newtheme/sandbox/forms/includes/input-select.html" with field=form.password_hint %}
+
+    {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.password_answer %}
+
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+
+<br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

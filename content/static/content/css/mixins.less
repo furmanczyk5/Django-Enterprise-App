@@ -1,0 +1,108 @@
+////////////////////////
+// SOME VARIABLES //////
+////////////////////////
+
+@color-lightgrey:#aeaeae;
+@color-darkgrey:#444444;
+@color-offwhite:#f3f3f3;
+@color-green:#009555;
+@color-red:#ff5545;
+
+@color-apa:#005595;
+@color-myapa:#444444;
+@color-conference:#824874;
+
+@color-header: #006738;
+@color-navigation:@color-apa;
+@color-footer:#aeaeae;
+@color-button:#009555;
+@color-link:#0055ff;
+
+@color-facebook:#3b5998; 	// blue
+@color-twitter:#00aced; 	//light blue
+@color-googleplus:#dd4b39; 	//red
+@color-youtube:#bb0000; 	//red
+@color-linkedin:#007bb6; 	//blue
+@color-flickr:#ff0084; 		//pink
+@color-feed:#ee802f; 		//orange
+@color-podcast:#02a058;     //greenish? what's the official color?
+@color-instagram:#517fa4;   //blue
+
+@color-action:@color-offwhite;
+@color-info:#cce9ff;
+@color-success:#75f075;
+@color-warning:#f5e585;
+@color-warning-orange:#d59500;
+@color-error:#ff5545;
+@color-highlight:#fdffdd;
+@color-scope:#b5b585;
+@color-gold:#fae560;
+
+
+@width-system:960px;
+@width-margin:12px;
+
+@width-ads: 196px;
+
+@width-content: @width-system - @width-ads;
+
+@height-header:48px;
+
+@width-input:420px;
+
+
+@width-mobile:480px;
+@height-icon:46px;
+
+@height-search-bar:32px;
+@height-search-bar-mobile:42px;
+
+
+////////////////////////
+// SOME USEFUL MIXINS //
+////////////////////////
+
+.rounded(@radius:6px) {
+	-webkit-border-radius:@radius;
+	-moz-border-radius:@radius;
+	border-radius:@radius;
+	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
+}
+
+.opacity(@opacity: 0.8) {
+  -moz-opacity: @opacity;
+  -khtml-opacity: @opacity;
+  -webkit-opacity: @opacity;
+  opacity: @opacity;
+}
+
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
+  background: @color;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, @start), color-stop(1, @stop));
+  background: -ms-linear-gradient(bottom, @start, @stop);
+  background: -moz-linear-gradient(center bottom, @start 0%, @stop 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start}', endColorstr='@{stop}'); /* for IE */
+}
+
+.box-shadow(@left:2px, @top:2px, @blur:5px, @color:#666) {
+  -webkit-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+
+// tinted background color, always get background-color with 90% lightness
+.scaled-lighten-background(@color) {
+	background-color:lighten(@color,(90% - lightness(@color)));
+}
+
+.transition(@time:0.4s){
+	-webkit-transition: all @time ease-out;  	// Android 2.1+, Chrome 1-25, iOS 3.2-6.1, Safari 3.2-6
+    transition: all @time ease-out; 			//Chrome 26, Firefox 16+, iOS 7+, IE 10+, Opera, Safari 6.1+
+}
+
+.appearance-none {
+	-webkit-appearance: none;
+   -moz-appearance:    none;
+   appearance:         none;
+}
+

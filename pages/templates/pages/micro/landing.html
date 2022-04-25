@@ -1,0 +1,37 @@
+{% extends 'newtheme/templates/micro/base.html' %}
+
+{% load ui_tags %}
+{% load content_extras %}
+
+{% block content_wrap %}
+	<div class="container content-wrap content-borders">
+	  <div class="content-main">
+	    {% include "newtheme/templates/includes/django-message.html" %}
+	      {% block content_main_access %}
+	        {{ block.super }}
+	      {% endblock %}
+
+	      {% include "newtheme/sandbox/banner-ad/banner-ad-footer.html" %}
+	  </div>
+	</div>
+{% endblock %}
+
+{% block content_main %}
+	{% include 'newtheme/templates/includes/page-head.html' %}
+
+  <div class="content-managed-html">
+    {% block content_details %}
+      {{ content.text|safe }}
+    {% endblock %}
+  </div>
+
+	{% if content.show_search_results %}
+	<div class="content-preview-list layout-tracery no-bottom-border">
+		<ul>
+			{% solr_results filters=content.search_query rows=content.search_max sort=content.sort_field %}
+		</ul>
+	</div>
+	{% endif %}
+
+{% endblock %}
+

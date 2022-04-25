@@ -1,0 +1,44 @@
+{% extends "newtheme/templates/layout-nosidebar.html" %}
+
+{% block title %}APA Image Library Uploads Dashboard{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+  {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">APA Image Library Uploads Dashboard</h1>
+</div>
+
+<div class="layout-tracery">
+  <div class="layout-column">
+      <p class="featured">
+        Use this page to: 
+        <ul>
+            <li>Upload a new image</li>
+            <li>Continue working on images you have uploaded but not submitted</li>
+            <li>Check whether your submitted images have been accepted</li>
+        </ul>
+      </p>
+  		<p class="featured">Ready to upload an image? Start here.</p>
+		<p><a class="btn btn-primary" href="{% url "imagebank:submissions_add" %}">Upload an Image</a></p>
+	</div>
+</div>
+	
+<div class="layout-tracery">
+  	<div class="layout-column">
+  		<h2>My Image Library Uploads</h2>
+
+  		{% if unsubmitted_imageroles or pending_imageroles or approved_imageroles %}
+
+  		{% include 'imagebank/newtheme/submission/includes/dashboard-images-unsubmitted.html' with imageroles=unsubmitted_imageroles %}
+  		{% include 'imagebank/newtheme/submission/includes/dashboard-images-pending.html' with imageroles=pending_imageroles %}
+  		{% include 'imagebank/newtheme/submission/includes/dashboard-images-approved.html' with imageroles=approved_imageroles %}
+
+  		{% else %}
+  		<p>You have not uploaded any images.</p>
+  		{% endif %}
+
+	</div>
+</div>
+
+{% endblock %}

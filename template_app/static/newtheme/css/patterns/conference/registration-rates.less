@@ -1,0 +1,120 @@
+/**
+ * dependencies: form-section slab
+ */
+
+.registration-rate-row {
+  & .registration-rate-content {
+    &:extend(.form-section all);
+    &:extend(.slab-gray all);
+
+    padding-top: 32px + @form-section-top-line-thickness;
+    padding-bottom: 32px; //allow field margin to expand bottom
+
+    padding-left: @padding-level-2-xs;
+    padding-right: @padding-level-2-xs;
+
+    @media screen and (min-width: @screen-md-min) {
+      padding-left: @padding-level-2-md;
+      padding-right: @padding-level-2-md;
+    }
+
+    border: @color-content-borders solid 1px;
+    border-radius: @border-radius-base;
+
+    margin-bottom: 70px;
+    min-height: 466px;
+    position: relative;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    p {
+      margin: 0 0 22px;
+
+      + ul {
+        margin-top: -10px;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        &::before {
+          content: '- ';
+        }
+      }
+    }
+
+    .btn {
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      display: block;
+      @media screen and (min-width: @screen-sm-min) {
+        width: 75%;
+        margin-left: 12.5%;
+        margin-right: 12.5%;
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: @screen-sm-min) {
+  html.flexbox {
+
+    & .registration-rate-row {
+      display: flex;
+      flex-flow: row wrap;
+      margin-left: @grid-gutter-width / -2;
+      margin-right: @grid-gutter-width / -2;
+
+      & .registration-rate-content {
+        width: calc(50% ~"-" @grid-gutter-width);
+        margin-left: @grid-gutter-width / 2;
+        margin-right: @grid-gutter-width / 2;
+      }
+    }
+
+  }
+
+  html.no-flexbox {
+
+    & .registration-rate-row {
+      .clearfix();
+      margin-left: @grid-gutter-width / -2;
+      margin-right: @grid-gutter-width / -2;
+
+      & .registration-rate-content {
+        float: left;
+        margin-left: @grid-gutter-width / 2;
+        margin-right: @grid-gutter-width / 2;
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: @screen-sm-min) {
+ html.flexbox {
+
+   & .registration-rate-row {
+     display: flex;
+     flex-flow: row wrap;
+     margin-left: @grid-gutter-width / -2;
+     margin-right: @grid-gutter-width / -2;
+
+     & .registration-rate-content {
+       width: 100%;
+       margin-left: @grid-gutter-width / 2;
+       margin-right: @grid-gutter-width / 2;
+       flex-direction: column;
+     }
+   }
+
+ }
+
+}

@@ -1,0 +1,107 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load tz %}
+{% load cm_tags %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+  <h1 class="page-title">Log APA Learn Course Credits</h1><br>
+
+{% if not hidden_course_evals %}
+<p style="color:#005595">You do not have any hidden pending APA Learn courses.</p>
+{% else %}
+  <p>
+    Here are the pending (or already logged) APA Learn Courses that you have hidden.
+  </p>
+{% endif %}
+</div>
+
+<div>
+  <form action="/cm/log/" style="display:inline-block">
+  <button style="color:#005595" class="button btn btn-lg" type="submit" value="back_to_cm_log">Back to My CM</button>
+</form>
+<a style="color: #005595;display: inline-block;background-color: lightcyan" class="button btn btn-lg pull-right" href="/learn/apa-learn-courses/">Go to Pending Courses</a>
+</div>
+
+    <div class="search-results-list dashboard-events-list">
+      <ul>
+{% for eval in hidden_course_evals %}
+{% if not eval.cm_claim %}
+<li class="search-result">
+  <div class="row">
+    <div class="col-md-6 col-lg-7 dashboard-events-result-col">
+
+      {% if eval.content.title %}
+      <h4 class="search-result-title">
+        {{ eval.content.title }}
+      </h4>
+      {% endif %}
+
+      {% if eval.submitted_time %}
+        <p class="small">
+{#        {% localtime off %} #}
+            This APA Learn course was completed on:
+            {{eval.submitted_time|date:"l, F j, Y, P e"}}
+{#        {% endlocaltime %} #}
+        </p>
+      {% endif %}
+    </div>
+    {% comment %}
+    <div class="col-md-3 dashboard-events-result-col">
+      {% if eval.content and eval.rating %}
+      {% star_rating eval.rating %}
+      {% endif %}
+    </div>
+    {% endcomment %}
+    <div class="col-md-3 col-lg-2 dashboard-events-result-col pull-right">
+      <div class="dashboard-events-result-cm">
+
+        {% if eval.content.master.id %}
+        <span class="small">#{{eval.content.master.id}}</span>
+        {% endif %}
+
+        <div class="cm-credits-stacked">
+        {% if eval.content.event.cm_approved != 0 %}
+          <div>
+            <span class="cm">CM | </span><span class="cmpoints">
+            {{eval.content.event.cm_approved|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        {% if eval.content.event.cm_law_approved > 0 %}
+          <div>
+            <span class="cmlawethics">L</span><span class="cmpoints"><span class="cm"> | </span>{{eval.content.event.cm_law_approved|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        {% if eval.content.event.cm_ethics_approved > 0 %}
+          <div>
+            <span class="cmlawethics">E</span><span class="cmpoints"><span class="cm"> | </span>{{eval.content.event.cm_ethics_approved|floatformat:"-2"}}</span>
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% localtime off %}
+        <div class="col-xs-12"><br>
+          <br>
+          <form class="pull-right" action="/learn/hidden-pending-courses/">
+            <button type="submit" value="{{eval.id}}" name="unhide_course" class="bt btn-sm btn-icon" href="/learn/hide-learn-course/" style="padding: 0; border: none; background: none;">Unhide</button>
+          </form>
+        </div>
+    {% endlocaltime %}
+
+  </div>
+
+</li>
+{% endif %}
+{% endfor %}
+</div>
+</ul>
+
+{% endblock %}

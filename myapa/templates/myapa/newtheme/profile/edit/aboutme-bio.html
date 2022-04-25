@@ -1,0 +1,47 @@
+{% extends 'newtheme/templates/layout-sidebar.html' %}
+
+{% load static %}
+
+{% block content_sidebar %}
+{% include 'newtheme/templates/includes/sidenav.html' %}
+{% endblock %}
+
+{% block content_main %}
+
+<div class="page-head">
+    {% include 'newtheme/templates/includes/breadcrumbs.html' %}
+    <h1 class="page-title">Professional Biography and About Me</h1>
+</div>
+
+<div class="layout-tracery no-bottom-border">
+    <div class="layout-column">
+
+        {% include "newtheme/sandbox/forms/includes/form-errors.html" with form=form %}
+        <div class="form-head">
+          <div class="help-block">All fields are required unless labeled as optional</div>
+        </div>
+        <form name="about_me_form" method="post" class="action">
+            {% csrf_token %}
+
+            <div class="form-section form-section-enclosed-dark form-section-limit-width">
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.bio %}
+                {% include "newtheme/sandbox/forms/includes/input-text.html" with field=form.about_me %}
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body_js %}
+{{ block.super }}
+<script src="{% static 'content/ckeditor-content/ckeditor.js' %}"></script>
+<script>
+  CKEDITOR.replace('id_bio');
+  CKEDITOR.replace('id_about_me');
+</script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% block content_main %}
+
+<div class="layout-tracery no-top-border">
+  <div class="layout-column">
+    <p>{{ message|safe }}</p>
+  </div>
+</div>
+
+{% if evaluation_url and log %}
+<div class="layout-tracery no-top-border">
+  <div class="layout-column">
+  	<p>
+  		You can still evaluate this event without logging credits.
+    	<a class="btn btn-primary" href="{{ evaluation_url}}">Evaluate</a>
+   	</p>
+    
+  </div>
+</div>
+{% elif is_aicp %}
+
+div class="layout-tracery no-top-border">
+  <div class="layout-column">
+  	<p>
+  		You can still evaluate this event without logging credits.
+    	<a class="btn btn-primary" href="{{ evaluation_url}}">Evaluate</a>
+   	</p>
+    
+  </div>
+
+
+{% endif %}
+
+{% endblock %}

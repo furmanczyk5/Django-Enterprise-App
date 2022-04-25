@@ -1,0 +1,89 @@
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+
+{% load ui_tags %}
+
+{% block content_main %}
+
+<div class="page-head">
+  <a class="btn btn-sm btn-default back-button" href="{{home_url}}">Back</a>
+  <h1 class="page-title">{{title}} - {{ content.submission_category}}</h1>
+  <br/>
+</div>
+
+{% for upload_type in upload_types %}
+
+<div class="layout-tracery no-bottom-border">
+  	<div class="layout-column">
+
+		<div class="form-section form-section-enclosed-dark">
+			<h2>{{ upload_type.title }}</h2>
+			<p>{{ upload_type.description|safe }}</p>
+
+			<p style="font-weight:bold">Allowed File Types: {% for ext in upload_type.allowed_types.all %}{{ext.title}}{% if not forloop.last%}, {% endif %}{% endfor %}
+			{% if upload_type.max_file_size %}<br />Max File Size: {{ upload_type.max_file_size|user_friendly_file_size:"KB" }}{% endif%}
+			</p>
+
+			{% if upload_type.allowed_min or upload_type.allowed_max %}
+			<p>{{upload_type.the_uploads|length}} materials uploaded. {{upload_type.allowed_min|default:"0"}}{% if upload_type.allowed_max %} to {{upload_type.allowed_max}}{% endif %} required</p>
+			{% endif%}
+
+			<br/>
+
+			{% if not upload_type.allowed_max or upload_type.allowed_max > upload_type.the_uploads|length %}
+			<form method="POST" enctype="multipart/form-data" class="validate-form">
+				{% csrf_token %}
+				<div>
+				{% include "content/newtheme/includes/form-include.html" with form=upload_type.form %}
+				</div>
+				<br/>
+				<br/>
+				<p>
+					<button type="submit" name="submit_button" value="{{upload_type.code}}" class="btn btn-primary">Add Resource</button>
+				</p>
+			</form>
+			{% endif %}
+
+			<hr class="clear margin-top"/>
+
+			{% block uploads_list %}
+			{% for upload in upload_type.the_uploads %}
+			<p>
+				{% include "uploads/newtheme/includes/listed-record-editable.html" with upload=upload %}
+			</p>
+			<div class="clearfix"></div>
+			{% empty %}
+			<p>
+				You have not uploaded anything yet.
+			</p>
+			{% endfor %}
+			{% endblock %}
+
+		</div>
+
+		<br/>
+	</div>
+</div>
+{% endfor %}
+
+{% if upload_types_are_valid %}
+<div class="clearfix btn-toolbar btn-mobile" align="right">
+	Nothing else to upload? <a class="btn btn-primary back-button" href="{{success_url}}">Continue</a>
+</div>
+{% else %}
+<div class="section-icon section-icon-attention" style="display:none" id="upload-type-errors">
+	<h3>Please correct the following errors before you continue</h3>
+	{% for upload_type in upload_types %}
+	{% if upload_type.the_errors %}
+	<div><b>{{upload_type.title}}</b></div>
+	{% for error in upload_type.the_errors %}
+	<div>{{error}}</div>
+	{% endfor %}
+	{% endif %}
+	{% endfor%}
+</div>
+<div class="clearfix btn-toolbar btn-mobile" align="right">
+	Nothing else to upload? <a class="btn btn-default back-button" href="javascript:$('#upload-type-errors').show();">Continue</a>
+</div>
+{% endif %}
+
+{% endblock %} {# content_main #}

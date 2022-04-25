@@ -1,0 +1,32 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+
+.breadcrumb {
+  padding: @breadcrumb-padding-vertical @breadcrumb-padding-horizontal;
+  margin-bottom: @line-height-computed;
+  list-style: none;
+  background-color: @breadcrumb-bg;
+  border-radius: @border-radius-base;
+
+  > li {
+    display: inline-block;
+
+    //Move separator to :after and show on every single cell
+    & + li:before {
+      content: '';
+      display: none;
+    }
+
+    &:after {
+      content: "\00a0@{breadcrumb-separator}"; // Unicode space added since inline-block means non-collapsing white-space
+      padding: 0 5px;
+      color: @breadcrumb-color;
+    }
+  }
+
+  > .active {
+    color: @breadcrumb-active-color;
+  }
+}

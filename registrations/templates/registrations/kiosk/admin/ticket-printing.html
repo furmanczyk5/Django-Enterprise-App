@@ -1,0 +1,34 @@
+{% extends "newtheme/templates/blank.html" %}
+
+{% load static %}
+{% load compress %}
+
+{% block content_main %} 
+<div class="layout-tracery">
+    <div class="layout-column">
+    	<h1>Ticket Printing</h1>
+    </div>
+</div>
+<div class="layout-tracery">
+    <div class="layout-column application-workspace">
+        <a id="refresh-attendees-button" style="float:right" class="btn btn-default btn-lg">REFRESH</a>
+<!--		<a id="print-tickets-button" class="btn btn-primary btn-lg">PRINT</a>-->
+<!--		<a id="dismiss-attendee-button" class="btn btn-default btn-lg">DISMISS</a>-->
+
+        <form id="print-tickets-form" action="/registrations/{{master_id}}/ticket_printing/print/" method="get">
+    	{% include "registrations/kiosk/admin/ticket-printing-attendees.html" %}
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_head_css %}
+{% compress css %}
+    <link type="text/less" rel="stylesheet" href="{% static 'content/css/include/loading.less' %}" />
+{% endcompress %}
+{% endblock %}
+
+{% block additional_body_js %}
+<script src="{% static 'registrations/js/kiosk_ticket_printing.js' %}"></script>
+{% endblock %}

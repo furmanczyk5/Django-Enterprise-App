@@ -1,0 +1,107 @@
+{% extends extends_template|default:'newtheme/templates/layout-nosidebar.html' %}
+
+{% load content_extras %}
+{% load staticfiles %}
+{% load compress %}
+
+{% block additional_head_css %}
+{{block.super}}
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome.min.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'rome/rome_custom.css' %}" />
+{% endblock additional_head_css %}
+
+{% block content_main %}
+<div class="layout-tracery">
+  <div class="layout-column">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="page-head search-bar no-border-bottom">
+          {% if breadcrumb %}
+          {% include 'newtheme/templates/includes/breadcrumbs.html' with breadcrumb=breadcrumb%}
+          {% endif %}
+
+          {% block searchHeader %}
+          <h1 class="page-title list-of-links">Search Results {% if filter_form.keyword.value %}for &ldquo;<strong>{{filter_form.keyword.value}}</strong>&rdquo;{% endif %}</h1>
+          {% endblock searchHeader %}
+
+          <div class="results-items">
+
+            <div class="search-pagination">
+{#      {% include "content/newtheme/search/includes/information.html" with p=pagination %} #}
+      {% include "content/newtheme/search/includes/pagination.html" with p=pagination %}
+            </div>
+
+          </div>
+        </div>
+
+        {% block searchKeyword %}
+        {% include "content/newtheme/search/includes/search-keyword.html" with keyword=keyword %}
+        {% endblock searchKeyword %}
+
+        {% block filterSortControl %}
+        {% include "content/newtheme/search/includes/filter-sort-control.html" with facet_results=facet_results filter_form=filter_form %}
+        {% endblock filterSortControl %}
+
+        {% block searchList %}
+
+        <!-- APA Learn Call-out -->
+
+        {% if call_out_results %}
+        {% with call_out_tuple=call_out_results|get_highest_search_count %}
+      <li class="content-preview-item">
+        <div class="content-preview-item-center-block">
+            <h6 class="content-preview-item-superheadline">
+            <ol class="breadcrumb">
+                <li>Apa Learn</li>
+            </ol>
+          </h6>
+          <div class="content-preview-item-image-floated">
+            <a href="/search/?keyword={{keyword}}&tags={{call_out_tuple.0}}&sort=relevance">
+              <img src="{% static "/newtheme/image/apa-learn-icon.jpg" %}" alt="APA Learn" height="120" width="80"/>
+            </a>
+          </div>
+          <h4 class="content-preview-item-headline">
+            <p><a href="/search/?keyword={{keyword}}&tags={{call_out_tuple.0}}&sort=relevance">Looking for education on this topic?</a></p>
+            <p><a href="/search/?keyword={{keyword}}&tags={{call_out_tuple.0}}&sort=relevance">Click here for related APA Learn courses.</a></p>
+          </h4>
+        </div>
+        <br>
+      </li>
+        {% endwith %}
+        {% endif %}
+
+        {% include "content/newtheme/search/includes/results-list.html" with results=results.response.docs timeout=results.responseHeader.timeout %}
+        {% endblock searchList %}
+
+        <!-- Pagination -->
+
+        <div class="layout-tracery no-top-border no-bottom-border">
+          <div class="layout-column col-md-12 ">
+            <div class="search-pagination">
+            {% include "content/newtheme/search/includes/pagination.html" with p=pagination %}
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="col-lg-3">
+        <div class="banner-ads-container">
+          {% include 'newtheme/sandbox/banner-ad/layout-banner-ad-small-3up-vertical.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block additional_body_js %}
+{{block.super}}
+<script src="{% static 'newtheme/vendor/bootstrap/js/transition.js' %}"></script>
+<script src="{% static 'newtheme/vendor/bootstrap/js/collapse.js' %}"></script>
+<script src="{% static 'rome/rome.min.js' %}"></script>
+<script src="{% static 'rome/rome_setup.js' %}"></script>
+<script src="{% static 'newtheme/js/filter-sort-control.js' %}"></script>
+{% endblock additional_body_js%}

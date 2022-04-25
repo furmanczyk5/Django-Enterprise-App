@@ -1,0 +1,78 @@
+
+{% extends 'newtheme/templates/layout-nosidebar.html' %}
+{% load static %}
+
+{% block title %}Server error{% endblock %}
+
+{% block header %}
+<header class="container-fluid header">
+  <div class="row">
+    <div class="logo col-xs-4 col-md-6">
+      <a href="/" title="APA Home">
+        <img src="{% static 'content/image/APA_horizontal_647_370x108.png' %}" height="107" width="370" alt="APA Logo" class="hidden-xs hidden-sm">
+        <span class="icon-APA-box-logo visible-xs visible-sm pull-left"></span>
+      </a>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block nav %}
+<div class="container-fluid nav-container">
+  <div class="nav-wrap">
+    <br/>
+    <!--  {# (keep nav empty for 500) #} -->
+  </div>
+</div>
+{% endblock %}
+
+{% block content_main %}
+
+  <div class="content-managed-html">
+    {% block content_details %}
+      
+        <div class="page-head">
+          <h1>Oh no!</h1>
+          <h2>We’re sorry, but you can’t get there from here.</h2>
+        </div>
+
+        <div class="layout-tracery">
+        <div class="layout-column">
+
+            <p>
+            Please wait a moment and try again.
+            </p>
+
+
+            <h3>
+            Still no way forward? 
+            </h3>
+
+            <p>
+            You’ve reached a dead end. 
+            Please report the problem to APA Customer Service. 
+            {% if request.sentry.id %}
+                <p>You may reference this error as
+                <strong>{{ request.sentry.id }}</strong>.</p>
+            {% endif %}
+            </p>
+
+
+            <p>
+                Contact us via
+                <a href="/customerservice/contact-us/">our online form</a>
+                or <a href="mailto:customerservice@planning.org?subject=Website 500 error: {{ request.sentry.id }}">email</a>.
+            </p>
+
+
+        </div>
+        </div>
+
+
+    {% endblock %}
+  </div>
+
+{% endblock %}
+
+{%block footer %} {% endblock %}
+
